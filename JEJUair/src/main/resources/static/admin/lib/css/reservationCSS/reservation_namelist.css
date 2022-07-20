@@ -1,0 +1,60 @@
+.subtitle input, .subtitle span{
+    margin-left: 5px;
+}
+
+.subtitle input{
+    width: 130px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #d9d9d9;
+    text-align: center;
+    color: #555454;
+}
+
+.subtitle span{
+    color: var(--black);
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.subtitle{
+    margin-bottom: 20px;
+    margin: 0;
+}
+
+.topbanner td{
+    text-align: center;
+    height: 30px;
+    margin-bottom: 30px;
+}
+
+.list_box{
+    width: 150px;
+    height: 30px;
+    border: 1px solid var(--black2);
+    border-radius: 5px;
+    margin: 0 auto;
+}
+
+.leg_list{
+    min-height: 300px !important;
+}
+
+table .topbanner{
+    height: 40px;
+}
+
+table .lists{
+    height: 40px;
+    text-align: center;
+}
+
+.paging{
+    margin: 0 auto;
+    padding-top: 30px;
+}
+
+.reser_list tbody tr:hover{
+    background: var(--orange);
+    color: var(--white);
+}

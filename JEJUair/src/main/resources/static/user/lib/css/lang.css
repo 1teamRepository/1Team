@@ -1,0 +1,126 @@
+@charset "UTF-8";
+
+/*한국어*/
+:lang(ko) .jeju-intro-wrap .pattern-box span.stone {background: url(../images/etc/img_stone_ko.png);}
+:lang(ko) .jeju-intro-wrap .pattern-box span.wave {background: url(../images/etc/img_wave_ko.png);}
+:lang(ko) .jeju-intro-wrap .pattern-box span.island {background: url(../images/etc/img_island_ko.png);}
+:lang(ko) .jeju-intro-wrap .flex-box .sevenc {background:url(../images/etc/img_intro_p01_t01_02.png) no-repeat; width:425px; height:425px}
+:lang(ko) .footer__top-item--family .family-link {font-size:13px}
+/* :lang(ko) .pc-flex--lineup .join-info__row dd {padding-right: 32px} */
+
+:lang(ko) .footer__inner.ko-only {padding: 22px 20px 24px 24px;}
+:lang(ko) .footer__inner.ko-only .button-footer {display: inline-block;line-height: 2; margin-left:0px} 
+:lang(ko) .footer__inner.ko-only .button-footer-biz {display: inline-block;}
+
+/*영어*/
+:lang(en) .ticketing-target .sub {font-size:13px; color:#888; font-weight: 700; padding-left:6px;padding-right:6px;}
+:lang(en) .main-ticketing .ticketing-target .sub span {display:none}
+/* :lang(en) .target.js-target-pick .sub {float: left; text-align: right;width: calc(100% - 40px); display: block; height:42px; line-height:42px} */
+:lang(en) .ticketing .ticketing-date .txt {letter-spacing: -.5px;}
+
+:lang(en) .footer__bottom-info .info-item .link:hover { letter-spacing:-0.36px; } /*#1271286224 */
+:lang(en) .tab--default .tab__anchor.is-active {letter-spacing: -0.2px;} /*#1271286224  */
+:lang(en) .footer__top-item a {letter-spacing:-0.35px}/*#1271286224  */
+
+:lang(en) .radio-wrap.btn_in .radio input:checked + .radio__label + .button {margin-top: 8px !important; margin-left:24px; display: block;}
+:lang(en) .link-wrap--arrow.pb0 .link-wrap__text span {line-height:1.4;}
+/* :lang(en) .link-wrap--arrow.pb0 .link-wrap__text:before {top:20px} */
+:lang(en) .boarding__issue .boarding__issue-title {padding-bottom:20px;}/*모바일탑승권*/
+:lang(en) .boarding__issue-info .graph-wrap__time { text-align: left;line-height:1.2; width:60px; margin-top:-20px; font-size:12px}
+:lang(en) .boarding__issue-info .graph-wrap__item--international .graph-wrap__time.center {text-align: center;width:80px; margin-top:-20px}
+:lang(en) .boarding__issue-info .graph-wrap__item--domestic .graph-wrap__time {text-align: right}
+:lang(en) .tab--default .tab__button { height:60px;}
+:lang(en) .GD .checkbox-list .checkbox-list__label .unit + .price_txt {margin-left: -10px;}
+:lang(en) .join-info .w55 { width: 170px;} /* en에서 가로사이즈 문제 */
+:lang(en) .join-info__row .one-way img {padding-top:0px;} /* en 화살표 정렬 문제 */
+:lang(en) .link-wrap--arrow .link-wrap__text:before {margin-top: -3px;} /* en 꺽쇠 정렬 문제 */
+:lang(en) .input--line .input-flex.add .input-box + .input-box {margin:0 14px 0 19px; position:relative; width: 521px;} /* IM00321489 */
+
+
+@media (min-width: 1080px) {
+   /* :lang(ko) .summarize__item { max-width: 33.33333333%;}  */
+}
+
+@media (min-width: 1080px) {
+  :lang(en) .footer__top-item ~ .footer__top-item { margin-left:10px; padding-left:10px; } 
+  :lang(en) .input-row.input-row--number { width:270px !important} 
+  :lang(en) .radio-wrap.btn_in .radio input:checked + .radio__label + .button {display: inline-flex; vertical-align: top; margin: -5px 0 -5px 10px !important}
+  :lang(en) .boarding__issue-info .graph-wrap__time {width:100px;}
+  :lang(en) .boarding__issue-info .graph-wrap__item--international .graph-wrap__time.center {width:120px;}
+  :lang(en) .boarding__issue-info .graph-wrap__item--domestic .graph-wrap__time {width:100px;}
+  /* :lang(en) .link-wrap--arrow.pb0 .link-wrap__text:before {top:11px} */
+  :lang(en) .tab--default .tab__button { height:50px;}
+  :lang(en) .picker--button {padding:0 0px 0 0px; letter-spacing: -.5px; font-size:13px !important} /* padding:0 0px 0 10px; */
+}
+
+@media all and (max-width:1079px){
+  :lang(en) .ticketing-target .sub em {display: block;}
+  :lang(en) .main-ticketing .ticketing-target .sub span {display: none;}
+  :lang(en) .target.js-target-pick .sub {float: none; text-align: right;width: auto; display: block; height:auto; line-height:1.5}
+  :lang(en) .ticketing-target .sub {padding-right:0; padding-left:0;line-height:1.5}
+  :lang(en) .ticket-path .sub {font-size:13px; color:#888; display: block; font-size:13px;}
+  :lang(en) .input--line .input-flex.add .input-box + .input-box {margin:0 0px 0 20px; position:relative; width: 100%;} /* IM00321489 */
+}
+
+
+/*일본어*/
+:lang(ja) body,:lang(ja) button,:lang(ja) input,:lang(ja) select,:lang(ja) textarea{font-family:'SpoqaHanSansNeo', Meiryo,"Yu Gothic UI","ＭＳ Ｐゴシック",Osaka,"Open Sans",Verdana, Arial,Helvetica,sans-serif}
+:lang(ja) .section-title.title__section--additional .tooltip {top:0px} /* IM00321452 물음표와 텍스트 정렬 3px---> 0  */
+:lang(ja) .premium__sports-icon span { padding: 0px 6px; font-size: 12px;}
+:lang(ja) .footer__top-item--family .family-link {font-size:12px}
+:lang(ja) .flatpickr-day.inRange.sun:after {left: auto;}
+:lang(ja) .flatpickr-day.inRange.mon::after {content: '';position: absolute;top:50%;right: 20px; z-index: -1; transform: translateY(-50%); height: 30px; width: 100%; background: #f2f2f2;}
+/* :lang(ja) .flatpickr-day.inRange.sun:after, .flatpickr-day.inRange:after {right: -20px;} */
+:lang(ja) .flatpickr-day.inRange.sat:after {right: -20px;}
+:lang(ja) .flatpickr-day.endRange.sun:after {left: -8px;width: 0%;} 
+:lang(ja) .gnb__header-bot .additional .link-wrap {width:70px; text-align:right}
+:lang(ja) .ticketing .ticketing-row-bot .promotion .inp-txt {margin-top:3px} /* #1271286046 : 프로모션코드 줄맞춤 */
+:lang(ja) .join-info .w55 { width: 100px;} /* ja에서 가로사이즈 문제 */
+:lang(ja) .join-info__row .one-way img {padding-top:0px;} /* ja 화살표 정렬 문제 */
+:lang(ja) .link-wrap--arrow .link-wrap__text:before {margin-top: -3px;} /* ja 꺽쇠 정렬 문제 */
+
+
+@media (min-width: 1080px) {
+  /* :lang(ja) .main-ticketing .ticketing-row-bot .promotion .inp-txt {padding: 0px 0 0 176px} */
+  :lang(ja) .footer__top-item { position: relative; font-size: 13px;} /* ja 갯수가 많아져서 13으로 줄임 */
+  :lang(ja) .footer__top-item ~ .footer__top-item { margin-left:10px; padding-left:10px; } 
+  :lang(ja) .flatpickr-day.inRange.mon::after {content: '';position: absolute;top:15px;left:0;z-index: -1; transform: translateY(-50%); height: 30px; width: 110%; background: #f2f2f2;}
+  :lang(ja) .flatpickr-day.inRange.sun:after{content: ''; position: absolute; top: 0; right: -4px; left: -4px; z-index: -1; height: 30px; width: auto; background: #f2f2f2;transform: none;}
+  /* :lang(ja) .picker--button {padding:0 0px 0 10px; letter-spacing: -.5px; font-size:13px !important;} */ /*#1271286578 : 삭제 */
+  :lang(ja) .flatpickr-day.endRange.sun:after {left: -8px;width: 80%; left:-10px;}
+  :lang(ja) .flatpickr-day.endRange.mon:after {left: -10px; width: 50%;}
+}
+
+@media screen and (max-width: 320px) {
+  :lang(ja) .quick-menu__item span {letter-spacing: -1px;}
+}
+
+
+/*중국어(간체)*/
+:lang(zh-CN) body,:lang(zh-CN) button,:lang(zh-CN) input,:lang(zh-CN) select,:lang(zh-CN) textarea{font-family:"Microsoft YaHei","Heiti SC",Verdana,PMingLiU,Arial,Helvetica,sans-serif}
+:lang(zh-CN) .ticketing .ticketing-date .txt {letter-spacing: -.8px;}
+:lang(zh-CN) .main-ticketing .ticketing-date .txt {letter-spacing: -.8px;}
+:lang(zh-CN) .ticketing .ticketing-row-bot .promotion .inp-txt {margin-top:3px} /* #1271286046 : 프로모션코드 줄맞춤 */
+:lang(zh-CN) .join-info .w55 { width: 100px;} /* CN에서 가로사이즈 문제 */
+:lang(zh-CN) .join-info__row .one-way img {padding-top:0px;} /* zh-CN 화살표 정렬 문제 */
+:lang(zh-CN) .link-wrap--arrow .link-wrap__text:before {margin-top: -3px;} /* zh-CN 꺽쇠 정렬 문제 */
+
+/*중국어(번체- 홍콩)*/
+:lang(zh-HK) body,:lang(zh-HK) button,:lang(zh-HK) input,:lang(zh-HK) select,:lang(zh-HK) textarea{font-family:"Microsoft JhengHei","Heiti  TC",Verdana,PMingLiU,Arial,Helvetica,sans-serif}
+:lang(zh-HK) .ticketing .ticketing-date .txt {letter-spacing: -.8px;}
+:lang(zh-HK) .main-ticketing .ticketing-date .txt {letter-spacing: -.8px;}
+:lang(zh-HK) .ticketing .ticketing-row-bot .promotion .inp-txt {margin-top:3px} /* #1271286046 : 프로모션코드 줄맞춤 */
+:lang(zh-HK) .join-info .w55 { width: 100px;} /* HK에서 가로사이즈 문제 */
+:lang(zh-HK) .join-info__row .one-way img {padding-top:0px;} /* zh-HK 화살표 정렬 문제 */
+:lang(zh-HK) .link-wrap--arrow .link-wrap__text:before {margin-top: -3px;} /* zh-HK 꺽쇠 정렬 문제 */
+
+/*중국어(번체- 대만어)*/
+:lang(zh-TW) body,:lang(zh-TW) button,:lang(zh-TW) input,:lang(zh-TW) select,:lang(zh-TW) textarea{font-family:"Microsoft JhengHei","Heiti  TC",Verdana,PMingLiU,Arial,Helvetica,sans-serif}
+:lang(zh-TW) .ticketing .ticketing-date .txt {letter-spacing: -.8px;}
+:lang(zh-TW) .main-ticketing .ticketing-date .txt {letter-spacing: -.8px;}
+:lang(zh-TW) .ticketing .ticketing-row-bot .promotion .inp-txt {margin-top:3px} /* #1271286046 : 프로모션코드 줄맞춤 */
+:lang(zh-TW) .join-info .w55 { width: 100px;} /* TW에서 가로사이즈 문제 */
+:lang(zh-TW) .join-info__row .one-way img {padding-top:0px;} /* zh-TW 화살표 정렬 문제 */
+:lang(zh-TW) .link-wrap--arrow .link-wrap__text:before {margin-top: -3px;} /* zh-TW 꺽쇠 정렬 문제 */
+
+

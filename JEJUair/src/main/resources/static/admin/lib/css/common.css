@@ -1,0 +1,1142 @@
+/* 
+    ✔ 관리자페이지 공통 프레임
+        모든 페이지 이 폼으로 작업할 것!
+
+        <div class="container">             
+            <div class="containerMenu">     <== 메뉴
+                <div class="navigation">
+                </div>
+            </div>
+            <div class="containerbody">     <== 메인
+                <div class="main">
+                여기서 작업
+                </div>
+            </div>
+        <div>
+
+    ✔ 공통 클래스
+        board_list form은 class="details"
+        borad_regist form은 class="bodytext_area"
+*/
+
+@import url('https://font.googleapis.comcss2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+li{
+    list-style: none;
+}
+
+body{
+    height: 170%;
+}
+
+:root
+{
+    --orange: #FF5000;
+    --white: #fff;
+    --grey: #f5f5f5;
+    --black: #222;
+    --black2: #999;
+    --darkgrey: #4B4C4E;
+}
+
+/* relative줘서 자동으로 메뉴 옆으로 붙도록 */
+.containerbody{
+    position: relative;
+    width: 100%;
+}
+
+.btn{
+    position: relative;
+    padding: 5px 10px;
+    background-color: var(--orange);
+    text-decoration: none;
+    color: var(--white);
+    border-radius: 6px;
+}
+
+button.cancel{
+    width: 60px;
+    height: 30px;
+    border-radius: 6px;
+    border: none;
+    background-color: var(--darkgrey);
+    color: var(--white);
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+button.register, button.search{
+    width: 60px;
+    height: 30px;
+    border-radius: 6px;
+    border: none;
+    background-color: var(--orange);
+    color: var(--white);
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+button.used_list {
+    width: 120px;
+    height: 40px;
+    border-radius: 6px;
+    border: none;
+    background-color: var(--orange);
+    color: var(--white);
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+
+
+.buttonArea{
+    margin-bottom: 50px;
+    text-align: right;
+    margin-right: 30px;
+}
+
+/* 1. 메뉴시작 */
+
+.container{
+    display: flex;
+}
+
+/* 메뉴 부분 플렉스 주고, width 값으로 퍼센트 조절*/
+.containerMenu{
+    display: flex;
+    height: 100vh;
+}
+
+.navigation{
+    width: 200px;
+    height: 170%;
+    background-color: var(--darkgrey);
+    transition: 1s;
+    overflow: hidden;
+}
+
+.homelogo{
+    position: relative;
+    padding: 20px;
+    left: 25px;
+    top: 10px;
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+.navigation ul li{
+    width: 100%;
+}
+
+.navigation ul>li:hover>a,
+.navigation ul>li.hovered>a{
+    background-color: var(--orange);
+}
+
+
+.navigation ul>li>a{
+    display: block;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    color: var(--white);
+    height: 40px;
+}
+
+.navigation ul li:hover>a,
+.navigation ul li.hovered>a{
+    color: var(--white);
+}
+
+.navigation ul li a .icon{
+    display: block;
+    min-width: 60px;
+    height: 40px;
+    line-height: 50px;
+    text-align: center;
+}
+
+
+.navigation ul li a .icon ion-icon{
+    font-size: 1.3em;
+}
+
+
+.navigation ul>li>a span.title{
+    display: block;
+    height: 40px;
+    line-height: 40px;
+}
+
+
+.navigation ul li a span.sub-title{
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+}
+
+/* ol */
+
+.navigation ol>li{
+    display: none;
+}
+
+/* 풀지마시오 절대로 풀면 사망
+.navigation ul li:hover ol>li{
+    display: block;
+}*/
+
+/* 경준 추가 */
+.navigation ul>li.thispage>a{
+    background-color: var(--white);
+}
+.navigation ul ol li.thispage>a, .navigation ul>li.thispage>a{
+    color: var(--orange);
+}
+/* 경준 추가 끝 */
+
+.navigation ol>li a{
+    position: relative;
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    color: var(--white);
+    font-size: 0.75em;
+    left: 60px;
+} 
+
+/* 1. 메뉴 끝 */
+
+
+/* 2. 메인 페이지 시작 */
+
+.cardheader{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.cardheader h2{
+    font-weight: 600;
+    color: var(--orange);
+}
+
+.btn{
+    position: relative;
+    padding: 5px 10px;
+    background-color: var(--orange);
+    text-decoration: none;
+    color: var(--white);
+    border-radius: 6px;
+} 
+
+.status.delivered{
+    padding: 2px 4px;
+    background: #f9ca3f;
+    color: var(--white);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.status.pending{
+    padding: 2px 4px;
+    background: var(--darkgrey);
+    color: var(--white);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.status.return{
+    padding: 2px 4px;
+    background: #67da84;
+    color: var(--white);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.status.inprogress{
+    padding: 2px 4px;
+    background: #2f7a9c;
+    color: var(--white);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+
+.recentCustomers{
+    position: relative;
+    display: grid;
+    width: 25%;
+    min-height: 500px;
+    padding: 20px;
+    background: var(--white);
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+}
+
+.recentCustomers .imgBx{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.recentCustomers .imgBx img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.recentCustomers table tr:hover{
+    background: var(--orange);
+    color: var(--white);
+}
+
+.recentCustomers table tr td{
+    padding: 12px 10px;
+}
+
+.recentCustomers table tr td h4{
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2em;
+}
+
+.recentCustomers table tr td h4 span{
+    font-size: 14px;
+    color: var(--black2);
+}
+
+.recentCustomers table tr:hover{
+    background: var(--orange);
+    color: var(--white);
+}
+
+.recentCustomers table tr:hover td h4 span{
+    color: var(--white);
+}
+
+
+.cardBox{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap : 30px;
+}
+
+.cardBox .card{
+    position: relative;
+    background: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+
+.cardBox .card .numbers{
+    position: relative;
+    font-weight: 500;
+    font-size: 2.5em;
+    color: var(--orange);
+}
+
+.cardBox .card .cardName{
+    color: var(--black2);
+    font-size: 1.1em;
+    margin-top: 5px;
+}
+
+.cardBox .card .iconBox{
+    font-size: 3.5em;
+    color: var(--black2);
+}
+
+.cardBox .card:hover{
+    background: var(--orange);
+}
+
+.cardBox .card:hover .numbers,
+.cardBox .card:hover .cardName,
+.cardBox .card:hover .iconBox{
+    color: var(--white);
+} 
+
+
+/* 2. 메인 페이지 끝*/
+
+
+/* 안쪽에 있는 애한테 포지션 앱솔루트, 트랜스폼 - 트렌스레이트 x,y -50%씩 주고 탑이랑left에 50% 가운데 고정이 된다. */
+
+/* 
+
+/* 3. board_list(조회) 시작 */
+
+.details{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    /* grid-template-columns: 2fr 1fr; */
+    grid-gap: 30px;
+}
+
+.formain{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    /* grid-template-columns: 2fr 1fr; */
+    grid-gap: 30px;
+}
+
+.details table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.details table thead td{
+    font-weight: 600;
+}
+
+.details .recentOrders{
+    position: relative;
+    display: grid;
+    width: 100%;
+    min-height: 500px;
+    background: var(--white);
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+}
+
+.details .recentOrders table tr{
+    color: var(--black);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.details .recentOrders table tbody tr:hover{
+    background: var(--orange);
+    color: var(--white);
+}
+
+.details .recentOrders table tr td{
+    padding: 10px;
+    text-align: center;
+}
+
+.calheader h2{
+    font-size: 23px; 
+    font-weight: bold; 
+    color: var(--darkgrey);
+    margin-top: 10px;
+    margin-bottom: 15px;
+    color: var(--black2);
+}
+
+/* 3-1. 검색 시작 */
+
+.details .wrapper {
+    display: flex; 
+    justify-content: flex-end;
+}
+
+.details .wrapper .selectDiv {
+    border: none;
+}
+
+.details .wrapper .selectDiv #menu-select {
+    margin-right: 10px; 
+    border-radius: 7px;
+    border: 1px solid var(--black2);
+    width: 120px; 
+    height: 30px;
+    text-align: center;
+    color: var(--black2);
+}
+
+.details .wrapper .selectDiv input.searchBox{
+    margin-right: 10px; 
+    border-radius: 7px;
+    border: 1px solid var(--black2);
+    width: 200px; 
+    height: 30px;
+    text-align: center;
+    color: var(--black2);
+    font-size: 12px;
+}
+
+
+/* 3-1. 검색 끝 */
+
+/* 3-2. 테이블 시작 */
+
+.details table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.details table thead tr.topbanner {
+    background-color: rgb(231, 231, 231);
+}
+
+.details table thead td{
+    font-weight: 600;
+}
+
+.details .tableDiv table tr{
+    color: var(--darkgrey);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 15px;
+}
+
+.details .tableDiv table tbody tr:hover{
+    background: var(--orange);
+    color: var(--white);
+}
+
+.details .tableDiv table tr td{
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* 3-2 테이블 끝 */
+
+/* 3-3 페이지네이션 시작 */
+
+
+.paging {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0 10px;
+}
+
+.page_btn {
+    background-color: rgb(255, 255, 255);
+    width: 40px;
+    border-radius: 5px;
+    margin: 0 5px;
+    text-align: center;
+    border: 1px solid rgb(172, 172, 172);
+    height: 25px;
+}
+
+.page_btn2 {
+    background-color: rgb(255, 255, 255);
+    width: 25px;
+    border-radius: 5px;
+    margin: 0 5px;
+    text-align: center;
+    border: 1px solid rgb(172, 172, 172);
+    height: 25px;
+}
+
+.page_btn a, .page_btn a:link, .page_btn2 a, .page_btn2 a:link {
+    font-size: 13px;
+    text-decoration: none;
+    color: rgb(172, 172, 172);
+}
+
+.current_btn {
+    background-color: rgb(163, 163, 163);
+}
+
+.current_btn a, .current_btn a:link  {
+    color: rgb(255, 255, 255);
+}
+
+.pagenum{
+    color: rgb(172, 172, 172);
+    padding: 5px;
+}
+
+.pagenum span {
+    text-decoration: none;
+}
+/* 3-3 페이지네이션 끝 */
+/* 3 board_list(조회) 끝 */
+
+/* 4. board_regist(등록) -두줄- 시작 */
+
+.bodytext_area {
+    padding: 20px;
+}
+
+.tableBorder{
+    background: var(--white);
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    position: relative;
+    margin-bottom: 30px;
+    /* width: 1100px; */
+}
+
+.pageTitle h2{
+    position: relative;
+    text-align: center;
+    padding-top: 30px;
+    color: var(--black2);
+}
+
+/* 
+fieldset{
+    border: 0;
+    width: 600px;
+    border-radius: 50px;
+    background: #ffffff;
+} */
+
+.regForm{
+    padding: 20 px ;
+}
+
+/* leg_list를 flex로 수정해서 한 row에 li 두개씩 오도록 수정 */
+.regForm .leg_list{
+    background: none;
+    padding: 50px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.regForm .leg_list li{
+    position: relative;
+    min-height: 50px;
+    padding: 0;
+    color: var(--darkgrey);
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.regForm .leg_list li .tit_lbl{
+    position: relative;
+    float: left;
+    width: 35%;
+    box-sizing: border-box;
+    padding-left: 10px;
+    line-height: 50px;
+    font-weight: bold;
+    font-size: 16px;
+    grid-template-columns: repeat(2,1fr);
+    text-align: center;
+}
+
+.regForm .leg_list li .reg_content{
+    float: left;
+    width: 65%;
+    box-sizing: border-box;
+    padding-right: 10px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    font-size: 15px;
+    line-height: 50px;
+    height: 50px;
+    grid-template-columns: repeat(2,1fr);
+    color: #9b9a9a;
+}
+
+.textBox{
+    border: 1px solid #d9d9d9;
+    height: 30px;
+    width: 300px;
+    border-radius: 7px;
+    text-align: center;
+}
+
+.textBox2{
+    border: 1px solid #d9d9d9;
+    height: 30px;
+    width: 286px;
+    border-radius: 7px;
+    text-align: center;
+}
+
+.textBox.withButton{
+    width: 250px;
+}
+
+.selectBox{
+    color: #9b9a9a;
+    text-align: center;
+}
+
+.reg_content label{
+    margin-right: 15px;
+}
+
+.reg_content .css-radio{
+    margin-right: 5px
+}
+
+.regForm .leg_list li .reg_content *{
+    vertical-align: middle;
+}
+
+.regForm .leg_list li .reg_content.radio_area{
+    padding-top: 5px;
+}
+
+.regForm .leg_list li .reg_content label{
+    vertical-align: middle;
+}
+
+.regForm .leg_list li .reg_content .info_line{
+    padding: 10px 10px 15px 0;
+    line-height: 1.4;
+    font-size: 15px;
+}
+
+/* board_regist(등록) -두줄- 끝 */
+
+
+/* 은비 */
+
+/* 은비끝 */
+
+
+
+/* 성호 시작 */
+
+/* 공통 */
+
+textarea {
+    resize: none;
+}
+
+input {
+    text-align: center;
+}
+
+button, a, label, .containerbody .main .details tbody td {
+    cursor: pointer;
+}
+
+button.list{
+    width: 60px;
+    height: 30px;
+    border-radius: 6px;
+    border: none;
+    background-color: var(--darkgrey);
+    color: var(--white);
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+button.edit, button.delete {
+    width: 60px;
+    height: 30px;
+    border-radius: 6px;
+    border: none;
+    background-color: var(--orange);
+    color: var(--white);
+    font-size: 15px;
+}
+
+button.file {
+    width: 60px;
+    height: 30px;
+    border-radius: 6px;
+    border: none;
+    background-color: var(--orange);
+    color: var(--white);
+    font-size: 15px;
+
+}
+
+.buttonPosition{
+    height: 60px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.textBox3{
+    border: 1px solid #d9d9d9;
+    height: 30px;
+    width: 230px;
+    border-radius: 7px;
+    text-align: center;
+}
+
+
+
+/* 공통 끝 */
+
+
+/* 기내식 정보/수정/작성 공통 */
+
+
+.regForm .leg_list li .reg_content.multicheck{
+    line-height: 0px;
+}
+
+.regForm .leg_list li .reg_content .invis, .regForm .leg_list li .reg_content #vis{
+    height: 30px;
+    margin-top: 10px;
+}
+
+.regForm .leg_list li .reg_content .vis{
+    display: none;
+}
+
+.regForm .leg_list li .reg_content .vis .vis_list{
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid var(--darkgrey);
+    border-radius: 5px;
+    background-color: var(--white);
+    width: 300px;
+    margin-top: 5px;
+}
+
+.regForm .leg_list li .reg_content .multitext{
+    height: 30px;
+    line-height: 30px;
+    width: 300px;
+    text-align: center;
+    color: var(--black);
+    border: 1px solid #d9d9d9;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.regForm .leg_list li .reg_content .vis .multitext{
+    margin-top: 10px;
+}
+
+.regForm .leg_list li .reg_content .vis label{
+    width: 300px;
+    margin: 15px 0;
+}
+
+.regForm .leg_list li .reg_content .vis label input{
+    margin: 0 10px 0 25px;
+}
+
+.regForm .description {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.regForm .description #fo_title {
+    width: 90%;
+    margin: 10px;
+    border-radius: 5px;
+    height: 30px;
+}
+
+.regForm .description #fo_content {
+    width: 90%;
+    margin: 10px;
+    border-radius: 5px;
+    height: 250px;
+}
+
+li.clear .reg_content button.file {
+    margin-left: 10px;
+}
+
+textarea{
+    margin-bottom: 30px;
+}
+
+/* 기내식 정보/수정/작성 공통 끝 */
+
+.margin_bottom_20 {
+    margin-bottom: 20px;
+}
+
+/* 성호 끝 */
+
+
+
+/*미지 목록버튼*/
+button.back{
+    width: 60px;
+    height: 30px;
+    border-radius: 6px;
+    border: none;
+    background-color: var(--darkgrey);
+    color: var(--white);
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+/*공지사항 상세*/
+textarea {
+    width: 100%;
+    height: 30em;
+    resize: none;
+}
+/* 미지끝*/
+
+/* 응수: coupon_detail에 button.list 추가 */
+
+
+button.cancel, button.list{
+    width: 60px;
+    height: 30px;
+    border-radius: 6px;
+    border: none;
+    background-color: var(--darkgrey);
+    color: var(--white);
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+/* 응수 : coupon_detail에 button.edit, button.delete 추가 */
+button.register, button.searc, button.edit, button.delete{
+    width: 60px;
+    height: 30px;
+    border-radius: 6px;
+    border: none;
+    background-color: var(--orange);
+    color: var(--white);
+    font-size: 15px;
+}
+
+
+
+
+
+/* 우재 */
+
+.details table thead tr.topbanner1 {
+    background-color: rgb(231, 231, 231);
+    text-align: left;
+}
+
+.banner1 {
+    margin-bottom: 20px;
+}
+
+button.write{
+    width: 80px;
+    height: 30px;
+    border-radius: 6px;
+    border: none;
+    background-color: var(--orange);
+    color: var(--white);
+    font-size: 13px;
+    margin-top: 10px;
+    margin-left: auto;
+}
+
+button.back{
+    width: 60px;
+    height: 30px;
+    border-radius: 6px;
+    border: none;
+    background-color: var(--darkgrey);
+    color: var(--white);
+    font-size: 15px;
+}
+
+button.register, button.search{
+    width: 60px;
+    height: 30px;
+    border-radius: 6px;
+    border: none;
+    background-color: var(--orange);
+    color: var(--white);
+    font-size: 15px;
+}
+
+.event_btn .buttonArea .button.cancel {
+    width: 60px;
+    height: 30px;
+    border-radius: 6px;
+    border: none;
+    background-color: var(--orange);
+    color: var(--white);
+    font-size: 15px;
+}
+
+.FAQ_register {
+    width: 80px;
+    height: 30px;
+    border-radius: 6px;
+    border: none;
+    background-color: var(--orange);
+    color: var(--white);
+    font-size: 15px;
+}
+
+
+.event_btn { margin-top: 20px; }
+
+
+.details .wrapper .selectDiv #menu-select {
+    margin-right: 10px; 
+    border-radius: 7px;
+    border: 1px solid var(--black2);
+    width: 150px; 
+    height: 30px;
+    text-align: center;
+    color: var(--black2);
+}
+
+#menu-select {
+    margin-right: 10px; 
+    border-radius: 7px;
+    border: 1px solid var(--black2);
+    width: 150px; 
+    height: 30px;
+    text-align: center;
+    color: var(--black2);
+    margin-top: 20px;
+}
+
+.classic_title {
+    margin-right: 10px; 
+    background-color: #e3e3e3;
+    width: 100%; 
+    height: 30px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+.details .wrapper1 {
+    display: flex; 
+
+    
+}
+
+.details .wrapper1 h3{ 
+    width: 100px; 
+    height: 30px;
+    color: var(--black2);
+    font-size: 15px;  
+    margin-top: 5px;
+}
+
+.details .wrapper1 input.searchBox1{
+    margin-right: 10px; 
+    margin-left: 10px; 
+    border-radius: 7px;
+    border: 1px solid var(--black2);
+    width: 200px; 
+    height: 30px;
+    text-align: center;
+    color: var(--black2);
+    font-size: 12px;
+}
+
+.details .wrapper1 h4{ 
+    width: 200px; 
+    height: 30px;
+    color: var(--black2);
+    font-size: 12px;  
+    margin-top: 5px;
+    margin-left: auto;
+} 
+
+.details .wrapper1 {
+    display: flex; 
+}
+
+.details .wrapper1 .selectDiv {
+    border: none;
+}
+
+.details .wrapper1 .selectDiv h3{ 
+    width: 100px; 
+    height: 30px;
+    color: var(--black2);
+    font-size: 15px;  
+    margin-top: 5px;
+}
+
+.details .wrapper1 .selectDiv input.searchBox{
+    margin-right: 10px; 
+    margin-left: 10px; 
+    border-radius: 7px;
+    border: 1px solid var(--black2);
+    width: 150px; 
+    height: 30px;
+    text-align: center;
+    color: var(--black2);
+    font-size: 12px;
+}
+
+.details .wrapper1 .selectDiv h4{ 
+    width: 200px; 
+    height: 30px;
+    color: var(--black2);
+    font-size: 12px;  
+    margin-top: 5px;
+    margin-left: auto;
+}  
+/* 우재 끝 */
+
+
+/* 로그인 */
+.background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: var(--darkgrey);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form.login {
+    display: flex;
+    flex-wrap: wrap;
+    width: 200px;
+    height: 200px;
+}
+
+.login_box {
+    width: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 0 20px;
+}
+
+.login_box input {
+    width: 200px;
+    background-color: var(--black2);
+}
+
+.login_box span {
+    color: var(--white);
+    margin-bottom: 5px;
+}
+
+.login_box .login_logo {
+    width: 100%;
+}
+
+.login_box button.register {
+    width: 100%;
+    margin-top: 10px;
+}
+/* 로그인 끝 */
+
+

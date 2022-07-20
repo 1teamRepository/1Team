@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<!--head-->
+<div th:replace="/user/fragment/head :: head"></div>
+<!--head 끝-->
+
+<body id="subLayoutBody">
+
+	<!-- 개선 #1271286440
+<div id="skipNav" class="skip-nav">
+	<a href="#content" class="skip-nav__item">본문 바로가기</a>
+</div>
+-->
+	<!-- 상단 띠배너 공지사항은 메인페이지만 표시합니다. -->
+	<!-- 앱설치알림 -->
+	<!-- 남은시간 연장 및 공지바 노출-->
+	<div class="top-custom-banner ticketing_top_bar"><!--활성화시 .on 추가-->
+		<div class="top-custom-banner__inner">
+			<dl class="time_bar">
+				<dt>이용 가능시간 : </dt>
+				<dd><strong></strong></dd>
+			</dl>
+			<div class="link-wrap--arrow">
+				<button type="button"  class="link-wrap__text" onclick="javascript:sendExtTripsell();"><span>연장하기</span></button>
+			</div>
+			<button type="button" class="top-custom-banner__close" aria-label="닫기"></button>
+		</div>
+	</div>
+	<!-- 앱설치알림 끝-->
+    <!-- header -->
+	<head th:replace="/user/fragment/header :: header"></head>
+	<!-- //header 끝 -->
+
+	<div id="body">
+
+		<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD2BQQ4" height="0" width="0"
+				style="display:none;visibility:hidden"></iframe></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+
+		<!-- //로그인 페이지 시작 -->
+		<div class="wrap wrap--login pc-small">
+			<div class="content" id="content">
+				<main id="main" class="main ">
+					<div class="page-title-wrap">
+						<div class="page-title">로그인</div>
+						<div class="page-sub-title">포인트 적립에서 운임할인까지<br>회원전용 혜택을 받아보세요.</div>
+					</div>
+					<!--//20210519 title영역 수정-->
+					<input type="hidden" id="bookType" value="">
+					<div class="login">
+						<form id="frm" action="/member/auth/loginAction.do" method="post">
+							<input type="hidden" name="apiRequestType" id="apiRequestType" />
+							<input type="hidden" name="targetUrl" id="targetUrl" value="" />
+							<input type="hidden" name="nonTargetUrl" id="nonTargetUrl" value="" />
+							<input type="hidden" name="security" id="security" value="" />
+							<input type="hidden" name="snsType" id="snsType" />
+							<input type="hidden" name="snsId" id="snsId" />
+
+							<!-- //회원 로그인 시작 -->
+							<div class="login__input-area">
+								<div class="input-row">
+									<!-- D : 에러메세지 노출 시 'input--error' 클래스 추가 -->
+									<div id="idAreaForm" data-element="form" class="input ">
+										<!-- <label for="userId" class="input__label">아이디 <span title="required" class="input__label-asterisk">*</span></label> -->
+										<!--20210427 label 추가-->
+										<input type="text" data-element="input" id="userId" name="userId"
+											class="input__text" tabindex="1" placeholder='아이디' />
+										<!--placeholder 삭제-->
+										<button type="button" data-element="remove" class="input__remove-button"><span
+												class="hidden">삭제</span></button>
+									</div>
+									<!-- 6자 미만 입력 시 or 띄어쓰기 입력 시 -->
+									<p tabindex="0" id="idErrorArea" class="input__error">
+
+									</p>
+									<!-- //6자 미만 입력 시 or 띄어쓰기 입력 시 -->
+
+									<!-- 탈퇴한 ID 입력 시
+				<p tabindex="0" class="input__error">탈퇴한 적이 있는 아이디는 사용할 수 없습니다.<br>다른 아이디로 가입해 주세요.</p>
+				//탈퇴한 ID 입력 시 -->
+								</div>
+								<!-- D : 에러메세지 노출 시 'input--error' 클래스 추가 -->
+								<div class="input-row input-row--password">
+									<div id="pwAreaForm" data-element="form" class="input ">
+										<!-- <label for="userPwd" class="input__label">비밀번호 <span title="required" class="input__label-asterisk">*</span></label> -->
+										<!--20210427 label 추가-->
+										<input type="password" data-element="input" id="userPwd" name="userPwd"
+											class="input__text" tabindex="2" placeholder='비밀번호' />
+										<!--placeholder 삭제-->
+										<button type="button" data-element="remove" class="input__remove-button"><span
+												class="hidden">삭제</span></button>
+										<button type="button" data-element="toggleShow" class="input__show-button"
+											aria-label="비밀번호 보기"></button>
+									</div>
+									<!-- 등록되지 않은 아이디 or 아이디/비밀번호 불일치 시 -->
+									<p tabindex="0" id="pwErrorArea" class="input__error">
+
+									</p>
+									<!-- //등록되지 않은 아이디 or 아이디/비밀번호 불일치 시 -->
+								</div>
+							</div>
+							<!-- //회원 로그인 끝 -->
+							<div class="login__check">
+								<span class="checkbox checkbox--small">
+									<input type="checkbox" class="checkbox__input" name="userIdSave" id="userIdSave"
+										data-element="checkbox">
+									<label for="userIdSave" class="checkbox__label">
+										<i class="checkbox__ico" aria-hidden="true"></i>
+										<span>아이디 저장</span>
+									</label>
+								</span>
+							</div>
+							<div class="button-wrap button-wrap--login">
+								<div class="button-wrap">
+									<button type="button" class="button button--primary" data-action="idpwlogin"
+										tabindex="3"><span class="button__text">로그인</span></button>
+								</div>
+
+								<!--한국-->
+
+								<!-- //카카오로그인, 비회원 로그인 시작 -->
+								<div class="button-wrap advertise">
+									<span class="advertisement">광고</span>
+									<button type="button" class="button button--option " data-action="loginAd"><span
+											class="button__text button__icon button__icon--phone">휴대폰 번호로
+											로그인</span></button>
+									<!--20211027 오픈 후 추가-->
+								</div>
+								<div class="button-wrap">
+									<button type="button" class="button button--option"
+										data-action="snsNaverLogin"><span class="button__text button__icon">네이버
+											로그인</span></button>
+								</div>
+
+								<div class="button-wrap">
+									<button type="button" class="button button--option" id="reauthenticate-popup-btn"
+										onclick="loginFormWithKakao()"><span class="button__text button__icon button__icon--kakao">카카오
+											로그인</span></button>
+									<p id="reauthenticate-popup-result"></p>
+									<script type="text/javascript">
+										function loginFormWithKakao() {
+										Kakao.Auth.loginForm({
+											success: function(authObj) {
+											showResult(JSON.stringify(authObj))
+											},
+											fail: function(err) {
+											showResult(JSON.stringify(err))
+											},
+										})
+										}
+										function showResult(result) {
+										document.getElementById('reauthenticate-popup-result').innerText = result
+										}
+									</script>
+								</div>
+
+								<div class="button-wrap">
+									<button type="button" class="button button--option apple-black"
+										data-action="snsAppleLogin"><span
+											class="button__text button__icon button__icon--apple"><em class="en">애플</em>
+											<em class="txt">로그인</em></span></button>
+								</div>
+
+								<!--한국외 기타-->
+
+								<div class="button-wrap">
+									<button type="button" class="button button--option" data-action="nonUserLogin"><span
+											class="button__text">비회원 로그인</span></button>
+								</div>
+								<!--20210519 class명 변경-->
+								<!-- D : MO-004-030 | 다른방법 로그인 백드롭 -->
+								<!-- //카카오로그인, 비회원 로그인 끝 -->
+								
+								<!--
+				
+					<div class="link-wrap sub-box">
+						
+						<button type="button" class="link-wrap__underline" data-action="nonUserLogin"><span>다른 방법으로 로그인</span></button>
+					</div>
+				
+				-->
+							</div>
+							<div class="guide-info guide-info--login">
+								<p class="guide-info__text">비회원으로 로그인하면 리프레시 포인트 및 회원 혜택이 제공되지 않습니다. </p>
+							</div>
+							<div class="link-wrap link-wrap--login">
+								<!--20210519 class명 삭제-->
+								<a href="#" class="link-wrap__item" data-action="menu"
+									data-menu-name="findUserInfo">아이디/비밀번호 찾기</a>
+								<a href="#" class="link-wrap__item" data-action="menu" data-menu-name="join">회원가입</a>
+							</div>
+						</form>
+					</div>
+					<a href="#" class="hidden" data-element="modal_anchor" data-target="#modalLayer01"
+						data-modal-type="full" style="color: #fff;"></a>
+					<div id="modalLayer01" class="modal modal-full modal-scroll">
+						<div class="modal-header">
+							<div class="modal-header__title">미가입 계정 안내</div>
+						</div>
+						<div class="modal-content">
+							<div class="finish-item-wrap finish-item-wrap--full">
+								<div class="finish-item no-data">
+									<div aria-hidden="true" class="finish-item__img"></div>
+									<p class="finish-item__title">가입되어 있지 않은 계정입니다.</p>
+									<p class="finish-item__text">회원으로 가입하시면 <br>각종 회원 전용 서비스를 이용하실 수 있습니다.</p>
+								</div>
+							</div>
+						</div>
+						<div class="fixed-wrap fixed-wrap--multi-line border-none ">
+							<div class="button-wrap">
+								<button type="button" class="button button--primary button--active " data-action="menu"
+									data-menu-name="join"><span class="button__text">회원가입하기</span></button>
+							</div>
+						</div>
+						<a href="#" rel="modal:close" class="modal__close"><span class="blind">Close</span></a>
+					</div>
+				</main>
+			</div>
+		</div>
+		<!-- //로그인 페이지 끝 -->
+	</div>
+
+	<!-- footer -->
+	<div th:replace="/user/fragment/footer :: footer"></div>
+	<!-- / footer 끝 -->
+
+
+	<!-- 공통 스크립트 선언 -->
+	<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/admin/lib/admin/lib.min.js"></script>
+
+	<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/admin/lib/jquery.i18n.js"></script>
+	<script type="text/javascript"
+		src="https://static.jejuair.net/hpgg/resources/js/admin/lib/jquery.i18n.messagestore.js"></script>
+	<!-- 메인페이지 스크립트 에러 발생으로 이전 소스로 변경합니다. 
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/booking/plugin.js"></script>
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/booking/common.js"></script>
+-->
+	<script>
+		$(document).ready(function () {
+
+			$.ajaxSetup({
+				beforeSend: function (xhr) {
+					xhr.setRequestHeader('tcode', '0000000134');
+					xhr.setRequestHeader('cname', USER_DEVICE.getName());
+				}
+			});
+
+			//BOOKING LAYOUT상태서 sub로 바뀔경우  
+			$(document).off('changeLayout').on('changeLayout', function (e, type) {
+				if (type === 'sub') {
+					$('.bookingType').hide();
+					$('.subType').show();
+				} else if (type === 'booking') {
+					$('.subType').hide();
+					$('.bookingType').show();
+				}
+			});
+
+			//breadcrumbs cursor default
+			$('.breadcrumb__item > a').css('cursor', 'default');
+		});
+
+		//타이틀 설정
+		$('header.mobile-only h2.header__page-name').text($('#main div.page-title').eq(0).text());
+	</script>
+	<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/plugin.js"></script>
+	<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/common.js"></script>
+
+	<!--필요시만 로드-->
+	<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/vendor/lodash.min.js"></script>
+	<!--사용되지 않음-->
+	<!--<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/vendor/localforage.min.js"></script>-->
+	<script type="text/javascript"
+		src="https://static.jejuair.net/hpgg/resources/js/vendor/handlebars.min-v4.7.6.js"></script>
+	<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/handlebars.helpers.js"></script>
+
+	<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/util/sUtil.js"></script>
+	<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/util/dUtil.js"></script>
+	<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/util/utils.js"></script>
+
+	<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/bizjs/commons/bizCommons.js"></script>
+	<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/jj.helpers.js"></script>
+
+
+
+	<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/bizjs/member/auth/login.js"></script>
+
+	<div id="ifmWrap"
+		style="height:100%; display:none; overflow:auto; text-align:center; -webkit-overflow-scrolling:touch;">
+		<iframe src="" width="100%" height="100%" name="popupChkApp"></iframe>
+	</div>
+	<script type="text/javascript" src="/VCKXGvDtC/yEH/JSx/ElhWy7SOzvcE/aOD3tDrm7p1O/KSMWAQ/K0sAYw/ZXXnI"></script>
+</body>
+
+</html>

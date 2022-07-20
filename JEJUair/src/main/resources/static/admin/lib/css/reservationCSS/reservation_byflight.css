@@ -1,0 +1,26 @@
+.resSearch .flightsearch{
+    margin: 0 30px;
+}
+
+.subtitle h4{
+    color: var(--black);
+}
+.subtitle{
+    margin: 20px 20px;
+}
+
+.topbanner td{
+    color: var(--black);
+    padding: 5px 0;
+}
+
+.lists input, .lists select{
+    width: 150px;
+    height: 25px;
+    border-radius: 5px;
+    border: 1px solid var(--black2);
+    margin: 5px 0;
+    text-align: center;
+}
+
+

@@ -1,0 +1,3665 @@
+<!DOCTYPE html>
+<html lang="ko"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org/">
+<!--head-->
+<head th:replace="/user/fragment/head :: head"></head>
+<!--head 끝-->
+<body>
+
+	<!-- 개선 #1271286440
+<div id="skipNav" class="skip-nav">
+	<a href="#content" class="skip-nav__item">본문 바로가기</a>
+</div>
+-->
+	<!-- 상단 띠배너 공지사항은 메인페이지만 표시합니다. -->
+
+	<div class="top-custom-banner">
+		<div class="top-custom-banner__inner">
+			<div class="carousel carousel--full swiper-container" data-carousel="mainTop">
+				<div class="carousel__item swiper-wrapper">
+
+
+					<div class="carousel__list swiper-slide">
+						<a class="carousel__contents"
+							href="https://www.jejuair.net/ko/customerServiceCenter/noticeDetail.do?billboardNo=0000000171">
+							<p class="default-message__text">항공권 구매 시 유의사항 안내</p>
+						</a>
+					</div>
+
+					<div class="carousel__list swiper-slide">
+						<a class="carousel__contents"
+							href="https://www.jejuair.net/ko/customerServiceCenter/noticeDetail.do?billboardNo=0000000032">
+							<p class="default-message__text">코로나19 국가별 입출국 제한 안내 </p>
+						</a>
+					</div>
+
+				</div>
+				<div class="top-custom-banner__ctrl">
+
+					<div class="carousel__button carousel__button-prev"></div>
+					<div class="carousel__button carousel__button-next"></div>
+					<div class="carousel__pagination-number"></div>
+
+				</div>
+				<button type="button" class="top-custom-banner__close" aria-label="닫기"></button>
+			</div>
+		</div>
+	</div>
+
+	<!-- 앱설치알림 -->
+
+	<!-- 남은시간 연장 및 공지바 노출-->
+	<div class="top-custom-banner ticketing_top_bar">
+		<!--활성화시 .on 추가-->
+		<div class="top-custom-banner__inner">
+			<dl class="time_bar">
+				<dt>이용 가능시간 : </dt>
+				<dd><strong></strong></dd>
+			</dl>
+			<div class="link-wrap--arrow">
+				<button type="button" class="link-wrap__text"
+					onclick="javascript:sendExtTripsell();"><span>연장하기</span></button>
+			</div>
+			<button type="button" class="top-custom-banner__close" aria-label="닫기"></button>
+		</div>
+	</div>
+
+	<!-- //남은시간 연장 및 공지바 노출 -->
+	<!-- header -->
+	<div id="header" class="header header--main">
+		<!-- mobile -->
+		<header class="header__inner mobile-only">
+			<div class="header__logo">
+				<a href="" data-action="menu" data-menu-name="main">
+
+					<img src="https://static.jejuair.net/cms/images/banner_image/20211209174521722.png"
+						alt="제주항공 로고 화이트" class="img_default" loading="lazy" />
+
+					<img src="https://static.jejuair.net/cms/images/banner_image/20211014191229348.png"
+						alt="jejuairlogo" class="img_sticky" loading="lazy" />
+
+				</a>
+			</div>
+
+			<div class="header__button-wrap subType" data-element="gnbToggle">
+				<!-- 예매전 노출
+			<button type="button" class="header__button-ticket">
+				<span class="hidden">티켓보기</span>
+			</button>
+			// 예매전 노출 -->
+
+				<button type="button" class="gnb__button">
+
+
+					<!-- 2021.06.08 메인페이지는 스크롤 시, 배경이 주황색으로 변하며 대비를 이루기 위해 흰색을 매치한다. -->
+					<!--2021-04-13 이미지로 변경 // 전체메뉴 버튼-->
+					<img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-hamburger-header-white.png"
+						alt="전체메뉴 열기" class="img_default" loading="lazy">
+					<!--2021-04-13 이미지로 변경 // 삭제 버튼-->
+
+
+
+					<img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-hamburger-header.png"
+						alt="전체메뉴 열기" class="img_sticky" loading="lazy">
+				</button>
+
+
+			</div>
+			<!-- 스크롤시 스티키 상단 -->
+
+			<!-- 전체메뉴 -->
+			<div class="gnb" id="gnb">
+				<div class="gnb__header">
+					<div class="gnb__header-top" data-absolute-sticky>
+						<a href="javascript:;" class="button-home" title="홈으로 이동" data-action="menu"
+							data-menu-name="main">
+							<img loading="lazy"
+								src="https://static.jejuair.net/hpgg/resources/images/upload/icon_bottombar_home_on_56x2.png"
+								alt="홈">
+						</a>
+						<a class="select-wrap select-wrap--inline lang-type" id="btnCountrySelector"
+							data-modal-type="full">
+
+							대한민국
+
+						</a>
+						<div class="additional">
+							<!-- D : '웹'일경우 APP다운로드 버튼 -->
+							<button type="button" class="button button--small" onclick="APPCALL.goMarket()"><span
+									class="button__text button__icon">APP</span></button>
+							<a href="javascript:;" class="button-search" title="통합검색이동">
+								<img loading="lazy"
+									src="https://static.jejuair.net/hpgg/resources/images/icon/icon-header-search.png"
+									alt="통합 검색 이동">
+							</a>
+							<a href="javascript:;" class="gnb-close" aria-label="닫기">
+								<img loading="lazy"
+									src="https://static.jejuair.net/hpgg/resources/images/icon/icon-header-gnb-close.png"
+									alt="전체메뉴 닫기" class="close">
+							</a>
+						</div>
+					</div>
+					<div class="gnb__header-bot">
+
+						<div class="before">
+							<div class="title">
+								로그인 하시고<br>더 풍부한 혜택을 누리세요!
+							</div>
+							<!-- fixed 영역 -->
+							<div class="sticky-wrap">
+								<div class="button-wrap button-flex sticky__inner gnb-sticky1">
+									<button type="button" class="button button--secondary" data-action="menu"
+										data-menu-name="join"><span class="button__text">회원가입</span></button>
+									<button type="button" class="button button--secondary button--active"
+										data-action="menu" data-menu-name="login"><span
+											class="button__text">로그인</span></button>
+									<a href="javascript:;" class="gnb-close" aria-label="닫기">
+										<img loading="lazy"
+											src="https://static.jejuair.net/hpgg/resources/images/icon/icon-header-gnb-close.png"
+											alt="전체메뉴 닫기" class="close">
+									</a>
+								</div>
+							</div>
+							<!-- //fixed 영역 -->
+							<div class="title">
+								<div class="title__section title__section--additional">제주항공에서 예약하지 않으셨다면?
+									<div class="additional">
+										<div class="link-wrap">
+											<a href="javascript:;" class="link-wrap__underline" data-action="menu"
+												data-menu-name="bookingSearch"><span>예약조회</span></a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="icon-link">
+
+								<a href="/ko/ibe/mypage/viewReservationList.do" class="icon-link__item"
+									data-action="menu" data-menu-name="tourAndTicket">
+
+									<img src="https://static.jejuair.net/cms/images/banner_image/20211117132250301.png"
+										alt="" loading="lazy" />
+									<span class="icon-link__text" style="color:white;">나의 예약
+								</a>
+
+								<a href="/ko/prepare/flight/viewScheduleInfo.do" class="icon-link__item"
+									data-action="menu" data-menu-name="tourAndTicket">
+
+									<img src="https://static.jejuair.net/cms/images/banner_image/20211005132323185.png"
+										alt="" loading="lazy" />
+									<span class="icon-link__text" style="color:white;">출도착 조회
+								</a>
+
+								<a href="/ko/customerService/csCenter/faqList.do" class="icon-link__item"
+									data-action="menu" data-menu-name="tourAndTicket">
+
+									<img src="https://static.jejuair.net/cms/images/banner_image/20211005132333367.png"
+										alt="" loading="lazy" />
+									<span class="icon-link__text" style="color:white;">고객센터
+								</a>
+
+							</div>
+
+						</div>
+
+						<!-- //로그인 후 -->
+					</div>
+				</div>
+				<hr class="section-spacer">
+				<div class="gnb-wrap">
+
+					<div class="gnb__box">
+						<div class="gnb__title">회원 혜택 안내</div>
+						<div class="gnb__list">
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/memberBenefit/memberBenefit.do?param=newMember ')">신규회원
+								혜택</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/memberBenefit/memberBenefit.do?param=promotion')">프로모션
+								코드</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/memberBenefit/refreshPoint/main.do')">리프레시 포인트</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/memberBenefit/refreshPoint/pointBuy.do')">포인트 구매</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/memberBenefit/refreshPoint/pointSearch.do')">포인트 조회</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/additionalService/service/gifticket.do')">기프티켓</a>
+
+						</div>
+					</div>
+
+					<div class="gnb__box">
+						<div class="gnb__title">여행준비 안내</div>
+						<div class="gnb__list">
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/ibe/booking/Availability.do')">항공권 예매</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/prepare/fare/domesticBenefit.do')">국내선 운임</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/prepare/fare/internationalBenefit.do')">국제선 운임</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/prepare/flight/viewScheduleInfo.do')">운항 정보</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/ibe/booking/viewMilitaryInput.do')">민항공후급증 예약</a>
+
+						</div>
+					</div>
+					<div class="gnb__box">
+						<div class="gnb__title">부가서비스 안내</div>
+						<div class="gnb__list">
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/additionalService/service/main.do')">부가서비스 소개</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/additionalService/service/preorderedBaggage.do')">사전
+								수하물</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/additionalService/service/preorderedSeat.do')">사전 좌석</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/additionalService/service/preorderedMeal.do')">사전 기내식</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/additionalService/service/insurance.do')">보험 상품</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/additionalService/service/bundleGuide.do')">번들 묶음 구매</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/additionalService/service/afterPayGuide.do')">나중에 결제</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/additionalService/service/carringBagGuide.do')">자전거 캐링백
+								서비스</a>
+
+						</div>
+					</div>
+
+					<div class="gnb__box">
+						<div class="gnb__title">프리미엄 혜택 안내</div>
+						<div class="gnb__list">
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/premium/businesslite/main.do')">비즈니스 라이트</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/premium/sportsMembership/main.do')">스포츠 멤버십</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/additionalService/service/allianceService.do')">제휴서비스</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('https://www.jejuairshop.com?jjout=Y')">온라인몰 제이샵</a>
+
+						</div>
+					</div>
+
+					<div class="gnb__box">
+						<div class="gnb__title">마이페이지</div>
+						<div class="gnb__list">
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/member/mypage/main.do')">마이페이지 메인</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/ibe/mypage/viewOnOffReservationList.do')">예약 조회</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/ibe/mypage/viewReservationList.do')">나의 예약 현황</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/member/mypage/myFlightList.do')">나의 탑승 내역</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/member/mypage/viewMyGiftTicketList.do')">나의 기프티켓</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/member/mypage/memberInfoModify.do')">회원정보 수정</a>
+
+						</div>
+					</div>
+
+					<div class="gnb__box">
+						<div class="gnb__title">탑승 수속 안내</div>
+						<div class="gnb__list">
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/ibe/checkin/viewCheckin.do')">모바일 탑승권</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/linkService/boardingProcessGuide/baggageGuide.do')">수하물</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/linkService/fastProcedure/guide.do')">빠른 수속</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/linkService/airport/info.do')">공항 정보</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/linkService/help/main.do')">도움이 필요한 고객</a>
+
+						</div>
+					</div>
+
+					<div class="gnb__box">
+						<div class="gnb__title">기내 서비스 안내</div>
+						<div class="gnb__list">
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/cabinService/service/airCafe.do')">에어카페</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('http://jejuair.granddfs.com/?jjout=Y')">기내 면세</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/cabinService/service/funService.do')">기내 FUN 서비스</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/cabinService/immigration/etcFormGuide.do')">출입국 신고서
+								작성방법</a>
+
+						</div>
+					</div>
+
+					<div class="gnb__box">
+						<div class="gnb__title">이벤트</div>
+						<div class="gnb__list">
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/event/event.do')">진행중인 이벤트</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/event/pastEvent.do')">지난 이벤트</a>
+
+						</div>
+					</div>
+
+					<div class="gnb__box">
+						<div class="gnb__title">고객센터</div>
+						<div class="gnb__list">
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/customerService/csCenter/faqList.do')">고객센터</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/customerService/cabinLost/cabinLost.do')">기내 유실물 센터</a>
+
+							<a href="javascript:void(0);" class="gnb__list-item"
+								onclick="URL_LINK.getI18Url('/customerServiceCenter/notice.do')">공지사항</a>
+						</div>
+					</div>
+
+					<div class="gnb__footer">
+
+						<div class="gnb__title">SNS</div>
+						<div class="sns-wrap">
+
+							<a href="https://www.facebook.com/funjejuair/" class="sns-wrap__item" target="_blank">
+								<img loading="lazy"
+									src="https://static.jejuair.net/cms/images/sns_ch/20211027200713454.png"
+									alt="https://www.facebook.com/funjejuair/">
+							</a>
+
+							<a href="https://www.youtube.com/user/funjejuair" class="sns-wrap__item" target="_blank">
+								<img loading="lazy"
+									src="https://static.jejuair.net/cms/images/sns_ch/20211027200700139.png"
+									alt="https://www.youtube.com/user/funjejuair">
+							</a>
+
+							<a href="https://instagram.com/jejuair_official" class="sns-wrap__item" target="_blank">
+								<img loading="lazy"
+									src="https://static.jejuair.net/cms/images/sns_ch/20211027200545316.png"
+									alt="https://instagram.com/jejuair_official">
+							</a>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<!-- //전체메뉴 -->
+		</header>
+		<!-- //mobile -->
+
+		<!-- pc용 공통 헤더 -->
+		<div class="header__util util pc-only">
+			<div class="util__inner">
+				<div class="util__benefit">
+					<!-- 기업우대 여행자우대 사이트 한국어만 표출   , 기업우대서비스 오픈이 11월 8일,  오픈 시기  -->
+
+					<a href="javascript:;" class="util__link company" data-action="menu" data-menu-name="company">기업
+						우대</a>
+					<div class="util__link-wrap" data-element="toggle"
+						data-options='{"mode": "slide", "speed": 0, "clickToClose": true}'>
+						<button type="button" class="util__link arrow__link" data-element="toggle__anchor">여행사
+							우대</button>
+						<div class="util__link-panel" data-element="toggle__panel">
+							<a href="javascript:;" class="item" data-action="menu"
+								data-menu-name="travelAgencyD">국내선</a>
+							<a href="javascript:;" class="item" data-action="menu"
+								data-menu-name="travelAgencyF">국제선</a>
+						</div>
+					</div>
+
+					<a href="https://cargo.jejuair.net" target="_black" class="util__link2" data-action="menu"
+						data-menu-name="Cargo">Cargo</a>
+				</div>
+
+				<div class="util__link-list" data-custom-toggle="wrap">
+
+					<a href="javascript:;" class="util__link" data-action="menu" data-menu-name="login">로그인</a>
+					<a href="javascript:;" class="util__link" data-action="menu" data-menu-name="join">회원가입</a>
+
+					<!-- // 로그인 전 노출 -->
+
+					<a href="javascript:;" onclick="URL_LINK.getI18Url('/memberBenefit/refreshPoint/main.do')"
+						class="util__link">리프레시 포인트</a>
+
+					<a href="javascript:;" onclick="URL_LINK.getI18Url('/customerService/csCenter/faqList.do')"
+						class="util__link">고객센터</a>
+
+					<a href="javascript:;" onclick="URL_LINK.getI18Url('/customerServiceCenter/notice.do')"
+						class="util__link">공지사항</a>
+
+					<button type="button" class="util__country" data-custom-toggle="button">
+						<span class="text">
+
+							대한민국
+
+						</span>
+					</button>
+					<div class="header-country__layer" data-custom-toggle="panel">
+						<div class="country__title">
+							지역 및 언어 설정
+						</div>
+						<div class="country__input">
+							<div class="select-wrap select-wrap--line">
+
+								<select title="국가 선택" class="select-wrap__select" name="countryChoice"
+									id="countryChoice">
+
+									<option value="KR" selected>대한민국</option>
+
+									<option value="JP">日本</option>
+
+									<option value="CN">中国</option>
+
+									<option value="TW">台灣</option>
+
+									<option value="HK">香港</option>
+
+									<option value="MO">澳門</option>
+
+									<option value="US">US</option>
+
+									<option value="TH">THAILAND</option>
+
+									<option value="VN">VIETNAM</option>
+
+									<option value="PH">PHILLIPINES</option>
+
+									<option value="MY">MALAYSIA</option>
+
+									<option value="LA">LAOS</option>
+
+									<option value="RU">RUSSIA</option>
+
+									<option value="SG">SINGAPORE</option>
+
+									<option value="MN">MONGOLIA</option>
+
+								</select>
+							</div>
+							<div class="select-wrap select-wrap--line">
+								<select class="select-wrap__select" title="언어 선택" name="languageChoice"
+									id="languageChoice">
+
+									<option value="ko" selected>한국어</option>
+
+								</select>
+							</div>
+							<button class="country__button" id="countryAndLanguageChoiceBtn"
+								data-flag="base">확인</button>
+						</div>
+						<button class="button-close" data-custom-toggle="close">
+							<span class="hidden">닫기</span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<header class="header__inner  pc-only">
+			<div class="sticky-header" data-sticky>
+				<div class="header__box">
+					<!-- header__box 추가 -->
+					<h1 class="header__logo">
+
+						<a href="" data-action="menu" data-menu-name="main">
+
+							<img src="https://static.jejuair.net/cms/images/banner_image/20211014191229348.png"
+								alt="jejuairlogo" loading="lazy" />
+
+						</a>
+					</h1>
+
+					<div class="header__link-list">
+
+						<a href="javascript:void(0);" class="header__link"
+							onclick="URL_LINK.getI18Url('/ibe/booking/Availability.do')">항공권 예매</a>
+
+						<a href="javascript:void(0);" class="header__link"
+							onclick="URL_LINK.getI18Url('/member/mypage/main.do')">마이페이지</a>
+
+						<a href="javascript:void(0);" class="header__link"
+							onclick="URL_LINK.getI18Url('/additionalService/service/main.do')">부가서비스 안내</a>
+
+						<a href="javascript:void(0);" class="header__link"
+							onclick="URL_LINK.getI18Url('/ibe/checkin/viewCheckin.do')">모바일 탑승권</a>
+
+						<a href="../event/event.html" class="header__link">이벤트</a>
+
+					</div>
+
+					<div class="header__search-wrap header-search subType" data-custom-toggle="wrap">
+						<!-- <button type="button" class="header__button-ticket">
+					<span class="hidden">티켓보기</span>
+					</button> -->
+						<button type="button" class="header__button-search" data-custom-toggle="button">
+							<img loading="lazy"
+								src="https://static.jejuair.net/hpgg/resources/images/icon/icon-header-search.png"
+								alt="검색">
+						</button>
+						<div class="header-search__layer" data-custom-toggle="panel">
+							<div class="header-search__form" data-element="form">
+								<input type="search" class="search__text" placeholder="검색어를 입력해 주세요"
+									data-element="input">
+								<button type="button" data-element="remove" class="input__remove-button">삭제</button>
+								<div class="search-button">
+									<button class="button" type="button">검색</button>
+								</div>
+							</div>
+							<!-- <button type="button" class="search__close" data-custom-toggle="button">
+					<span class="hidden">검색창 닫기</span>
+				</button> -->
+						</div>
+					</div>
+					<div class="header__button-wrap subType" data-element="gnbToggle">
+						<button type="button" class="gnb__button">
+							<img loading="lazy"
+								src="https://static.jejuair.net/hpgg/resources/images/icon/icon-hamburger-header.png"
+								alt="전체메뉴 열기" class="open">
+
+							<!-- 2021.06.08 메인페이지는 스크롤 시, 배경이 주황색으로 변하며 대비를 이루기 위해 흰색을 매치한다. -->
+							<!--2021-04-13 이미지로 변경 // 전체메뉴 버튼-->
+							<img loading="lazy"
+								src="https://static.jejuair.net/hpgg/resources/images/icon/icon-header-gnb-close.png"
+								alt="전체메뉴 닫기" class="close">
+							<!--2021-04-13 이미지로 변경 // 삭제 버튼-->
+
+						</button>
+					</div>
+
+					<!-- goto-quick-booking : 스티키 클릭용 -->
+					<div class="goto-quick-booking">
+						<a href="javascript:;">
+							<span>어디로 여행가세요?</span>
+							<div class="goto-btn">
+								<span>항공권 검색</span>
+							</div>
+						</a>
+					</div>
+					<!-- //goto-quick-booking -->
+
+				</div>
+
+				<!-- 전체메뉴 -->
+				<div class="gnb" id="gnb">
+					<div class="gnb-wrap">
+
+						<div class="gnb__box">
+							<div class="gnb__title">회원 혜택 안내</div>
+							<div class="gnb__list">
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/memberBenefit/memberBenefit.do?param=newMember ')">신규회원
+									혜택</a>
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/memberBenefit/memberBenefit.do?param=promotion')">프로모션
+									코드</a>
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/memberBenefit/refreshPoint/main.do')">리프레시 포인트</a>
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/memberBenefit/refreshPoint/pointBuy.do')">포인트 구매</a>
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/memberBenefit/refreshPoint/pointSearch.do')">포인트
+									조회</a>
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/additionalService/service/gifticket.do')">기프티켓</a>
+
+							</div>
+						</div>
+
+						<div class="gnb__box">
+							<div class="gnb__title">여행준비 안내</div>
+							<div class="gnb__list">
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/ibe/booking/Availability.do')">항공권 예매</a>
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/prepare/fare/domesticBenefit.do')">국내선 운임</a>
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/prepare/fare/internationalBenefit.do')">국제선 운임</a>
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/prepare/flight/viewScheduleInfo.do')">운항 정보</a>
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/ibe/booking/viewMilitaryInput.do')">민항공후급증 예약</a>
+
+							</div>
+						</div>
+
+
+						<div class="gnb__box">
+							<div class="gnb__title">부가서비스 안내</div>
+							<div class="gnb__list">
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/additionalService/service/main.do')">부가서비스 소개</a>
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/additionalService/service/preorderedBaggage.do')">사전
+									수하물</a>
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/additionalService/service/preorderedSeat.do')">사전
+									좌석</a>
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/additionalService/service/preorderedMeal.do')">사전
+									기내식</a>
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/additionalService/service/insurance.do')">보험 상품</a>
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/additionalService/service/bundleGuide.do')">번들 묶음
+									구매</a>
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/additionalService/service/afterPayGuide.do')">나중에
+									결제</a>
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/additionalService/service/carringBagGuide.do')">자전거
+									캐링백 서비스</a>
+
+
+							</div>
+						</div>
+
+
+						<div class="gnb__box">
+							<div class="gnb__title">프리미엄 혜택 안내</div>
+							<div class="gnb__list">
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/premium/businesslite/main.do')">비즈니스 라이트</a>
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/premium/sportsMembership/main.do')">스포츠 멤버십</a>
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/additionalService/service/allianceService.do')">제휴서비스</a>
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('https://www.jejuairshop.com?jjout=Y')">온라인몰 제이샵</a>
+
+
+
+							</div>
+						</div>
+
+
+						<div class="gnb__box">
+							<div class="gnb__title">마이페이지</div>
+							<div class="gnb__list">
+
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/member/mypage/main.do')">마이페이지 메인</a>
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/ibe/mypage/viewOnOffReservationList.do')">예약 조회</a>
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/ibe/mypage/viewReservationList.do')">나의 예약 현황</a>
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/member/mypage/myFlightList.do')">나의 탑승 내역</a>
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/member/mypage/viewMyGiftTicketList.do')">나의 기프티켓</a>
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/member/mypage/memberInfoModify.do')">회원정보 수정</a>
+
+
+
+							</div>
+						</div>
+
+
+
+						<div class="gnb__box">
+							<div class="gnb__title">탑승 수속 안내</div>
+							<div class="gnb__list">
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/ibe/checkin/viewCheckin.do')">모바일 탑승권</a>
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/linkService/boardingProcessGuide/baggageGuide.do')">수하물</a>
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/linkService/fastProcedure/guide.do')">빠른 수속</a>
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/linkService/airport/info.do')">공항 정보</a>
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/linkService/help/main.do')">도움이 필요한 고객</a>
+
+
+
+							</div>
+						</div>
+
+
+						<div class="gnb__box">
+							<div class="gnb__title">기내 서비스 안내</div>
+							<div class="gnb__list">
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/cabinService/service/airCafe.do')">에어카페</a>
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('http://jejuair.granddfs.com/?jjout=Y')">기내 면세</a>
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/cabinService/service/funService.do')">기내 FUN 서비스</a>
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/cabinService/immigration/etcFormGuide.do')">출입국 신고서
+									작성방법</a>
+
+
+
+							</div>
+						</div>
+
+
+
+						<div class="gnb__box">
+							<div class="gnb__title">이벤트</div>
+							<div class="gnb__list">
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/event/event.do')">진행중인 이벤트</a>
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/event/pastEvent.do')">지난 이벤트</a>
+
+
+
+							</div>
+						</div>
+
+
+						<div class="gnb__box">
+							<div class="gnb__title">고객센터</div>
+							<div class="gnb__list">
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/customerService/csCenter/faqList.do')">고객센터</a>
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/customerService/cabinLost/cabinLost.do')">기내 유실물
+									센터</a>
+
+
+
+								<a href="javascript:void(0);" class="gnb__list-item"
+									onclick="URL_LINK.getI18Url('/customerServiceCenter/notice.do')">공지사항</a>
+
+
+							</div>
+						</div>
+
+
+
+						<div class="gnb__footer">
+
+
+
+							<div class="gnb__title">SNS</div>
+							<div class="sns-wrap">
+
+								<a href="https://www.facebook.com/funjejuair/" target="_blank" class="sns-wrap__item">
+									<img loading="lazy"
+										src="https://static.jejuair.net/cms/images/sns_ch/20211027200713454.png"
+										alt="https://www.facebook.com/funjejuair/">
+								</a>
+
+								<a href="https://www.youtube.com/user/funjejuair" target="_blank"
+									class="sns-wrap__item">
+									<img loading="lazy"
+										src="https://static.jejuair.net/cms/images/sns_ch/20211027200700139.png"
+										alt="https://www.youtube.com/user/funjejuair">
+								</a>
+
+								<a href="https://instagram.com/jejuair_official" target="_blank" class="sns-wrap__item">
+									<img loading="lazy"
+										src="https://static.jejuair.net/cms/images/sns_ch/20211027200545316.png"
+										alt="https://instagram.com/jejuair_official">
+								</a>
+
+							</div>
+
+
+
+						</div>
+					</div>
+				</div>
+
+				<!-- //전체메뉴 -->
+			</div>
+		</header>
+		<!-- //pc용 공통 헤더 -->
+		<!-- pc용 공통 헤더 -->
+	</div>
+	<!-- //header -->
+
+
+	<div id="body">
+		<div class="wrap wrap--main GA">
+			<div class="main-content" id="content">
+				<main id="main" class="main">
+					<form id="availSearchForm"><input type="hidden" id="availSearchData" name="availSearchData"></form>
+					<div class="main-booking-visual open">
+						<!-- quick-booking -->
+						<div class="quick-booking quick-sticky-controller">
+							<div class="dimmed"></div>
+							<div class="inner">
+								<div class="fixed-block">
+									<div class="main-ticketing round">
+										<div class="ticketing-in content-guide">
+											<ul class="ticketing-type">
+												<li class="item selected" data-tripType="RT"><a href="#"
+														class="item-btn">왕복</a></li> <!-- 왕복 -->
+												<li class="item" data-tripType="OW"><a href="#" class="item-btn">편도</a>
+												</li> <!-- 편도 -->
+												<li class="item" data-tripType="MT"><a href="#" class="item-btn">다구간</a>
+												</li> <!-- 다구간 -->
+											</ul>
+
+											<div class="ticketing-row-top single">
+												<div class="ticketing-target">
+													<button type="button" class="start js-target-pick"><span
+															class="txt before-select"
+															id="spanDepartureDesc">출발지</span></button> <!-- 출발지 -->
+													<input type="hidden" id="departureData">
+													<button type="button" class="target js-target-pick"><span
+															class="txt before-select"
+															id="spanArrivalDesc">도착지</span></button> <!-- 도착지 -->
+													<input type="hidden" id="arrivalData">
+													<button type="button" class="btn-open js-target-pick"
+														data-route="DEP" id="btnExchangeRoute1"><span
+															class="blind">열기</span></button>
+													<!--열기-->
+												</div>
+												<div class="ticketing-date">
+
+
+													<button type="button" class="btn-date" id="btnDatePicker"><span
+															class="txt">2022.06.18(토) ~ 2022.06.25(토)</span></button>
+													<input type="hidden" id="departureDate" value="2022-06-18">
+													<input type="hidden" id="arrivalDate" value="2022-06-25">
+												</div>
+											</div>
+
+											<div class="ticketing-row-hidden single">
+												<div class="flight-layer flight-start" id="depAirportLayer">
+													<div class="layer-header">
+														<div class="header__input-wrap input is-focus"
+															data-element="form">
+															<button type="button" class="header__button"
+																name="header_btn"><span
+																	class="hidden">이전으로</span></button> <!-- 이전으로 -->
+															<button type="button" class="header__input-search"><img
+																	src="https://static.jejuair.net/hpgg/resources/images/icon/icon-header-search.png"
+																	alt="검색"></button>
+															<input type="text" id="txtDEPAirport" class="header__input"
+																data-element="input" placeholder="어디에서 출발하세요?">
+															<!-- 어디에서 출발하세요? -->
+															<p class="map-list-txt" id="mapDEPAirport">어디에서 출발하세요?</p>
+															<!-- 어디에서 출발하세요? -->
+															<button type="button" data-element="remove"
+																class="input__remove-button"><span
+																	class="hidden">삭제</span></button> <!-- 삭제 -->
+														</div>
+														<div id="divDEPAirportAC" name="search_auto"
+															target="txtDepAirport"></div>
+													</div>
+													<div class="txt-list">
+														<div class="header-sub" data-element="tab">
+															<div class="tab__buttons">
+																<div data-element="tab__list" class="tab__button"
+																	role="presentation">
+																	<button type="button" class="tab__anchor is-active"
+																		id="selectTab01" data-element="tab__anchor"
+																		data-index="0" role="tab" tabindex=""
+																		aria-selected="true" aria-expanded="true">최근
+																		검색</button> <!-- 최근 검색 -->
+																</div>
+																<div data-element="tab__list" class="tab__button"
+																	role="presentation">
+																	<button type="button" class="tab__anchor"
+																		id="selectTab02" data-element="tab__anchor"
+																		data-index="1" role="tab" tabindex=""
+																		aria-selected="false"
+																		aria-expanded="false">즐겨찾기</button>
+																	<!-- 즐겨찾기 -->
+																</div>
+																<div data-element="tab__list" class="tab__button"
+																	role="presentation" name="divPromotion">
+																	<button type="button" class="tab__anchor"
+																		id="selectTab03" data-element="tab__anchor"
+																		data-index="2" role="tab" tabindex=""
+																		aria-selected="false"
+																		aria-expanded="false">프로모션</button>
+																	<!-- 프로모션 -->
+																</div>
+															</div>
+															<div data-element="tab__panel" class="tab__panel is-active"
+																aria-labelledby="selectTab01" role="tabpanel"
+																tabindex="0">
+																<div data-element="tab">
+																	<div class="tab__button-wrap">
+																		<div class="tag-list" data-scroll="x"
+																			name="latelySearch"></div>
+																	</div>
+																</div>
+															</div>
+															<div data-element="tab__panel" class="tab__panel"
+																aria-labelledby="selectTab02" role="tabpanel"
+																tabindex="0" style="display: none;">
+																<div data-element="tab">
+																	<div class="tab__button-wrap">
+																		<div class="tag-list" data-scroll="x"
+																			name="favorites"></div>
+																	</div>
+																</div>
+															</div>
+															<div data-element="tab__panel" class="tab__panel"
+																aria-labelledby="selectTab03" role="tabpanel"
+																tabindex="0" style="display: none;">
+																<div data-element="tab">
+																	<div class="tab__button-wrap">
+																		<div class="tag-list" data-scroll="x"
+																			name="promotionSearch"></div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="main--destination-select">
+															<hr class="booking-line">
+															<div data-element="tab"
+																class="tab tab--vertical tab--booking">
+																<div class="tab__buttons vertical_scroll_set"
+																	id="divDepArea"></div>
+																<div class="tab__panel-wrap scrollbar-inner"
+																	data-element="tab__panel-wrap"></div>
+															</div>
+															<!--<button type="button" class="floating-button btn-map" onclick="viewTabMap('start','map')">
+															<span class="hidden">지도보기</span></button>-->
+														</div>
+													</div>
+													<div class="map-list">
+														<div class="map-wrap">
+															<div id="map-start" class="flight-map"></div>
+															<div class="tab-top">
+																<ul class="tab-top-list"></ul>
+															</div>
+															<div class="tab-swipe">
+																<div class="tab-swipe-wrapper swiper-wrapper"></div>
+																<div class="swiper-scrollbar"></div>
+															</div>
+														</div>
+														<button type="button" class="floating-button btn-list"
+															onclick="viewTabMap('start', 'list')">
+															<span class="hidden">리스트보기</span> <!-- 리스트보기 -->
+														</button>
+													</div>
+													<a href="#a" class="layer-close"><span class="blind">닫기</span></a>
+													<!-- 닫기 -->
+												</div>
+												<div class="flight-layer flight-target" id="arrAirportLayer">
+													<div class="layer-header">
+														<div class="header__input-wrap input is-focus"
+															data-element="form">
+															<button type="button" class="header__button"
+																name="header_btn"><span
+																	class="hidden">이전으로</span></button> <!-- 이전으로 -->
+															<button type="button" class="header__input-search"><img
+																	src="https://static.jejuair.net/hpgg/resources/images/icon/icon-header-search.png"
+																	alt="검색"></button>
+															<input type="text" id="txtARRAirport" class="header__input"
+																data-element="input" placeholder="어디로 여행가세요?">
+															<!-- 어디로 여행가세요? -->
+															<p class="map-list-txt" id="mapARRAirport">어디로 여행가세요?</p>
+															<!-- 어디로 여행가세요? -->
+															<button type="button" data-element="remove"
+																class="input__remove-button"><span
+																	class="hidden">삭제</span></button> <!-- 삭제 -->
+														</div>
+														<div id="divARRAirportAC" name="search_auto"
+															target="txtArrAirport"></div>
+													</div>
+													<div class="txt-list">
+														<div class="header-sub" data-element="tab">
+															<div class="tab__buttons">
+																<div data-element="tab__list" class="tab__button"
+																	role="presentation">
+																	<button type="button" class="tab__anchor is-active"
+																		id="selectTab01" data-element="tab__anchor"
+																		data-index="0" role="tab" tabindex=""
+																		aria-selected="true" aria-expanded="true">최근
+																		검색</button> <!-- 최근 검색 -->
+																</div>
+																<div data-element="tab__list" class="tab__button"
+																	role="presentation">
+																	<button type="button" class="tab__anchor"
+																		id="selectTab02" data-element="tab__anchor"
+																		data-index="1" role="tab" tabindex=""
+																		aria-selected="false"
+																		aria-expanded="false">즐겨찾기</button>
+																	<!-- 즐겨찾기 -->
+																</div>
+																<div data-element="tab__list" class="tab__button"
+																	role="presentation" name="divPromotion">
+																	<button type="button" class="tab__anchor"
+																		id="selectTab03" data-element="tab__anchor"
+																		data-index="2" role="tab" tabindex=""
+																		aria-selected="false"
+																		aria-expanded="false">프로모션</button>
+																	<!-- 프로모션 -->
+																</div>
+															</div>
+															<div data-element="tab__panel" class="tab__panel is-active"
+																aria-labelledby="selectTab01" role="tabpanel"
+																tabindex="0">
+																<div data-element="tab">
+																	<div class="tab__button-wrap">
+																		<div class="tag-list" data-scroll="x"
+																			name="latelySearch"></div>
+																	</div>
+																</div>
+															</div>
+															<div data-element="tab__panel" class="tab__panel"
+																aria-labelledby="selectTab02" role="tabpanel"
+																tabindex="0" style="display: none;">
+																<div data-element="tab">
+																	<div class="tab__button-wrap">
+																		<div class="tag-list" data-scroll="x"
+																			name="favorites"></div>
+																	</div>
+																</div>
+															</div>
+															<div data-element="tab__panel" class="tab__panel"
+																aria-labelledby="selectTab03" role="tabpanel"
+																tabindex="0" style="display: none;">
+																<div data-element="tab">
+																	<div class="tab__button-wrap">
+																		<div class="tag-list" data-scroll="x"
+																			name="promotionSearch"></div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="main--destination-select">
+															<hr class="booking-line">
+															<div data-element="tab"
+																class="tab tab--vertical tab--booking">
+																<div class="tab__buttons vertical_scroll_set"
+																	id="divArrArea"></div>
+																<div class="tab__panel-wrap scrollbar-inner"
+																	data-element="tab__panel-wrap"></div>
+															</div>
+															<!--<button type="button" class="floating-button btn-map" onclick="viewTabMap('target','map')">
+															<span class="hidden">지도보기</span></button>-->
+														</div>
+													</div>
+													<div class="map-list">
+														<div class="map-wrap">
+															<div id="map-target" class="flight-map"></div>
+															<div class="tab-top">
+																<ul class="tab-top-list"></ul>
+															</div>
+															<div class="tab-swipe">
+																<div class="tab-swipe-wrapper swiper-wrapper"></div>
+																<div class="swiper-scrollbar"></div>
+															</div>
+														</div>
+														<button type="button" class="floating-button btn-list"
+															onclick="viewTabMap('target', 'list')">
+															<span class="hidden">리스트보기</span> <!-- 리스트보기 -->
+														</button>
+													</div>
+													<a href="#a" class="layer-close"><span class="blind">닫기</span></a>
+													<!-- 닫기 -->
+												</div>
+												<div class="date-layer" id="dateLayer">
+													<div class="layer-header">
+														<button type="button" class="header__button" name="header_btn">
+															<span class="hidden">이전으로</span> <!-- 이전으로 -->
+														</button>
+														<h2 class="customer-layer__title">언제 떠나세요?</h2>
+														<!-- 언제 떠나세요? -->
+													</div>
+													<div class="layer-content">
+														<div class="booking-trip mobile-only">
+															<div class="booking-trip__from" name="divFromDate"><span
+																	class="location"></span></div>
+															<span class="booking-trip__direction round-trip"></span>
+															<div class="booking-trip__to"><span class="location"></span>
+															</div>
+														</div>
+														<div class="picker picker--full">
+															<div class="info-wrap"><span class="info">1인 편도 운임
+																	기준</span><span class="currency"
+																	name="currency"></span></div> <!-- 1인 편도 운임  기준 -->
+															<input type="text" class="picker__input" id="selectDate"
+																data-picker="range" data-text="1인 편도 운임 기준"
+																data-locale="ko" data-min-date="today"
+																data-format="Y.m.d (D)" data-selected=''
+																data-range-text='{"start": "가는 날", "end": "오는날", "current": "왕복"}'>
+														</div>
+														<div class="booking-button cal-button">
+															<button type="button"
+																class="button button--primary button--black pc-only"
+																data-station="DEP" data-reset-date="#selectDate">
+																<span class="button__text">초기화</span> <!-- 초기화 -->
+															</button>
+															<button type="button"
+																class="button button--primary button--active"
+																data-select-date="#selectDate" rel="modal:close">
+																<span class="button__text">선택</span> <!-- 선택 -->
+															</button>
+														</div>
+													</div>
+													<a href="#a" class="layer-close"><span class="blind">닫기</span></a>
+													<!-- 닫기 -->
+												</div>
+												<div class="customer-layer" id="customerLayer">
+													<div class="layer-header">
+														<button type="button" class="header__button"
+															name="header_btn"><span class="hidden">이전으로</span></button>
+														<!-- 이전으로 -->
+														<h2 class="customer-layer__title">누구와 함께 떠나세요?</h2>
+														<!-- 누구와 함께 떠나세요? -->
+													</div>
+													<div class="layer-content">
+														<div class="booking-trip">
+															<div class="booking-trip__from" id="divFromPas"><span
+																	class="location"></span></div>
+															<span class="booking-trip__switch"><span
+																	class="hidden">에서</span></span> <!-- 에서 -->
+															<div class="booking-trip__to" id="divToPax"><span
+																	class="location"></span></div>
+														</div>
+														<hr class="section-spacer">
+														<div class="booking-members">
+															<div class="input-wrap input--line">
+																<div
+																	class="input-row input-row--number input-row--icon">
+																	<label for="adtCount"
+																		class="input__label">성인</label> <!-- 성인 -->
+																	<div data-element="form"
+																		class="input input--number">
+																		<button type="button"
+																			data-element="number__button"
+																			onclick="javascript:chkAdtCount('');"
+																			data-type="decrease"
+																			class="input__number input__number-minus"
+																			aria-label="빼기" disabled></button>
+																		<!-- 빼기 -->
+																		<input type="text" id="adtCount"
+																			placeholder="숫자입력"
+																			data-element="number__input" value="1"
+																			data-max="9" data-min="1"
+																			data-string-number="" class="input__number">
+																		<!-- 숫자입력 -->
+																		<button type="button"
+																			data-element="number__button"
+																			data-type="increase"
+																			class="input__number input__number-plus"
+																			aria-label="더하기"></button> <!-- 더하기 -->
+																	</div>
+																	<p class="text__small text--color-gray" id="adtMsg">
+																		12세 이상</p> <!-- 12세 이상 -->
+																</div>
+																<div
+																	class="input-row input-row--number input-row--icon">
+																	<label for="chdCount"
+																		class="input__label">소아</label> <!-- 소아 -->
+																	<div data-element="form"
+																		class="input input--number">
+																		<button type="button"
+																			data-element="number__button"
+																			data-type="decrease"
+																			class="input__number input__number-minus"
+																			aria-label="빼기" disabled></button>
+																		<!-- 빼기 -->
+																		<input type="text" id="chdCount"
+																			placeholder="숫자입력"
+																			data-element="number__input" value="0"
+																			data-max="9" data-min="0"
+																			data-string-number="" class="input__number">
+																		<!-- 숫자입력 -->
+																		<button type="button"
+																			data-element="number__button"
+																			data-type="increase"
+																			class="input__number input__number-plus"
+																			aria-label="더하기"></button> <!-- 더하기 -->
+																	</div>
+																	<p class="text__small text--color-gray"
+																		name="chdMsg">국제선 기준 만 2세~12세 미만</p>
+																	<!-- 국제선 기준<br>만 2세 ~ 만 12세 미만 -->
+																</div>
+																<div
+																	class="input-row input-row--number input-row--icon">
+																	<label for="infCount"
+																		class="input__label">유아</label> <!-- 유아 -->
+																	<div data-element="form"
+																		class="input input--number">
+																		<button type="button"
+																			data-element="number__button"
+																			data-type="decrease"
+																			class="input__number input__number-minus"
+																			aria-label="빼기" disabled></button>
+																		<!-- 빼기 -->
+																		<input type="text" id="infCount"
+																			placeholder="숫자입력"
+																			data-element="number__input" value="0"
+																			data-max="9" data-min="0"
+																			data-string-number="" class="input__number">
+																		<!-- 숫자입력 -->
+																		<button type="button" id="btnInfCount"
+																			onclick="javascript:chkInfCount('');"
+																			data-element="number__button"
+																			data-type="increase"
+																			class="input__number input__number-plus"
+																			aria-label="더하기"></button> <!-- 더하기 -->
+																	</div>
+																	<p class="text__small text--color-gray"
+																		name="infantDesc">생후 7일 이상~만 2세 미만<br>(만 24개월
+																		미만/최종 탑승일 기준)<br>유아의 여정이 동반 성인과 불일치 할 경우 환불 후
+																		재구매해야 합니다.</p>
+																	<!-- 생후 7일 이상~만 2세 미만<br>(만 24개월 미만) -->
+																</div>
+															</div>
+														</div>
+
+
+														<div class="pc-40 mo-30">
+															<!--20210520 class명 변경-->
+															<div data-element="toggle"
+																class="toggle-item toggle-item--booking"
+																data-options='{"mode": "slide"}'>
+																<div class="toggle-item__title">
+																	<button type="button" data-element="toggle__anchor"
+																		class="toggle-item__anchor">나이계산기</button>
+																	<!-- 나이계산기 -->
+																</div>
+																<div data-element="toggle__panel"
+																	class="toggle-item__content">
+																	<div class="input-wrap input--line">
+																		<div class="input-row input-row--label">
+																			<div class="input-label">생년월일</div>
+																			<!-- 생년월일 -->
+																			<div class="input-item">
+																				<div class="input-flex">
+																					<div class="input-box">
+																						<div class="input"
+																							data-element="form">
+																							<input type="text"
+																								class="input__text input__text--placeholder"
+																								name="txtCalYear"
+																								maxlength="4"
+																								data-element="input"
+																								title="연도 입력"
+																								placeholder="년">
+																							<!-- 연도 입력 년 -->
+																							<button type="button"
+																								data-element="remove"
+																								class="input__remove-button">삭제</button>
+																							<!-- 삭제 -->
+																						</div>
+																					</div>
+																					<div class="input-box">
+																						<div
+																							class="select-wrap select-wrap--line">
+																							<select
+																								class="select-wrap__select"
+																								title="월 선택"
+																								name="selCalMonth">
+																								<!-- 월 선택 -->
+																								<option value="0"
+																									disabled selected
+																									hidden>월</option>
+																								<option value="1">1
+																								</option>
+																								<option value="2">2
+																								</option>
+																								<option value="3">3
+																								</option>
+																								<option value="4">4
+																								</option>
+																								<option value="5">5
+																								</option>
+																								<option value="6">6
+																								</option>
+																								<option value="7">7
+																								</option>
+																								<option value="8">8
+																								</option>
+																								<option value="9">9
+																								</option>
+																								<option value="10">10
+																								</option>
+																								<option value="11">11
+																								</option>
+																								<option value="12">12
+																								</option>
+																							</select>
+																						</div>
+																					</div>
+																					<div class="input-box">
+																						<div
+																							class="select-wrap select-wrap--line">
+																							<select
+																								class="select-wrap__select"
+																								title="일 선택"
+																								name="selCalDate">
+																								<!-- 일 선택 -->
+																								<option>일</option>
+																							</select>
+																						</div>
+																					</div>
+																				</div>
+																				<p tabindex="0" class="input__error"
+																					id="calcError"></p>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="button-wrap button-wrap--center mt10">
+																		<button type="button"
+																			class="button button--optional"
+																			onclick="javascript:calcAge();"><span
+																				class="button__text">계산하기</span></button>
+																		<!-- 계산하기 -->
+																	</div>
+																	<div class="notice-box--white" name="calcMsg"
+																		style="display: none;"></div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="fixed-wrap fixed-wrap--multi-line border-none">
+														<div class="button-wrap">
+															<button type="button" class="button button--active"
+																name="btnSetPassenger"><span class="button__text">선택
+																	완료</span></button> <!-- 선택 완료 -->
+														</div>
+													</div>
+													<a href="#a" class="layer-close"><span class="blind">닫기</span></a>
+													<!-- 닫기 -->
+												</div>
+											</div>
+											<div class="ticketing-row-top multi" style="display: none;">
+												<div class="ticketing-target">
+													<button type="button" class="start js-target-pick">
+														<span class="txt before-select"
+															id="spanMultiDepartureDesc">출발지</span> <!-- 출발지 -->
+													</button>
+													<input type="hidden" id="multiDepartureData">
+													<button type="button" class="target js-target-pick">
+														<span class="txt before-select"
+															id="spanMultiArrivalDesc">도착지</span> <!-- 도착지 -->
+													</button>
+													<input type="hidden" id="multiArrivalData">
+													<button type="button" class="btn-open js-target-pick"
+														data-route="Multi" id="btnExchangeRoute2"><span
+															class="blind">열기</span></button> <!-- 열기 -->
+												</div>
+												<div class="ticketing-date">
+
+
+
+													<button type="button" class="btn-date" id="btnMultiDatePicker"><span
+															class="txt">2022.06.18(토)</span></button>
+													<input type="hidden" id="multiArrivalDate" value="2022-06-18">
+												</div>
+											</div>
+											<div class="ticketing-row-hidden multi" style="display: none;">
+												<div class="flight-layer flight-start flight-start01"
+													id="depMultiAirportLayer" style="display: none;">
+													<div class="layer-header">
+														<div class="header__input-wrap input is-focus"
+															data-element="form">
+															<button type="button" class="header__button"
+																name="header_btn"><span
+																	class="hidden">이전으로</span></button><!-- 이전으로 -->
+															<button type="button" class="header__input-search"><img
+																	src="https://static.jejuair.net/hpgg/resources/images/icon/icon-header-search.png"
+																	alt="검색"></button>
+															<input type="text" id="txtMultiDEPAirport"
+																class="header__input" data-element="input"
+																placeholder="어디에서 출발하세요?">
+															<button type="button" data-element="remove"
+																class="input__remove-button"><span
+																	class="hidden">삭제</span></button><!-- 삭제 -->
+														</div>
+														<div id="divMultiDEPAirportAC" name="search_auto"
+															target="txtMultiDEPAirport"></div>
+													</div>
+													<div class="txt-list">
+														<div class="header-sub" data-element="tab">
+															<div class="tab__buttons">
+																<div data-element="tab__list" class="tab__button"
+																	role="presentation">
+																	<button type="button" class="tab__anchor is-active"
+																		id="dep_selectTab01" data-element="tab__anchor"
+																		data-index="0" role="tab" tabindex=""
+																		aria-selected="true" aria-expanded="true">최근
+																		검색</button><!-- 최근 검색 -->
+																</div>
+																<div data-element="tab__list" class="tab__button"
+																	role="presentation">
+																	<button type="button" class="tab__anchor"
+																		id="dep_selectTab02" data-element="tab__anchor"
+																		data-index="1" role="tab" tabindex=""
+																		aria-selected="false"
+																		aria-expanded="false">즐겨찾기</button><!-- 즐겨찾기 -->
+																</div>
+															</div>
+															<div data-element="tab__panel" class="tab__panel is-active"
+																aria-labelledby="dep_selectTab01" role="tabpanel"
+																tabindex="0">
+																<div data-element="tab">
+																	<div class="tab__button-wrap">
+																		<div class="tag-list" data-scroll="x"
+																			name="latelySearch"></div>
+																	</div>
+																</div>
+															</div>
+															<div data-element="tab__panel" class="tab__panel"
+																aria-labelledby="dep_selectTab02" role="tabpanel"
+																tabindex="0" style="display: none;">
+																<div data-element="tab">
+																	<div class="tab__button-wrap">
+																		<div class="tag-list" data-scroll="x"
+																			name="favorites"></div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="main--destination-select">
+															<hr class="booking-line">
+															<div data-element="tab"
+																class="tab tab--vertical tab--booking">
+																<div class="tab__buttons vertical_scroll_set"
+																	id="divMultiDepArea"></div>
+																<div class="tab__panel-wrap scrollbar-inner"
+																	data-element="tab__panel-wrap"></div>
+															</div>
+															<!--<button type="button" class="floating-button btn-map" onclick="viewTabMap('start','map')">
+																<span class="hidden">지도 보기</span>
+									                    	</button>-->
+														</div>
+													</div>
+													<div class="map-list">
+														<div class="map-wrap">
+															<div id="map-start" class="flight-map"></div>
+															<div class="tab-top">
+																<ul class="tab-top-list"></ul>
+															</div>
+															<div class="tab-swipe">
+																<div class="tab-swipe-wrapper swiper-wrapper"></div>
+																<div class="swiper-scrollbar"></div>
+															</div>
+														</div>
+														<button type="button" class="floating-button btn-list"
+															onclick="viewTabMap('start', 'list')">
+															<span class="hidden">리스트보기</span>
+														</button>
+													</div>
+													<a href="#a" class="layer-close"><span class="blind">닫기</span></a>
+												</div>
+												<div class="flight-layer flight-target flight-target01"
+													id="arrMultiAirportLayer" style="display: none;">
+													<div class="layer-header">
+														<div class="header__input-wrap input is-focus"
+															data-element="form">
+															<button type="button" class="header__button"
+																name="header_btn"><span
+																	class="hidden">이전으로</span></button><!-- 이전으로 -->
+															<button type="button" class="header__input-search"><img
+																	src="https://static.jejuair.net/hpgg/resources/images/icon/icon-header-search.png"
+																	alt="검색"></button>
+															<input type="text" id="txtMultiARRAirport"
+																class="header__input" data-element="input"
+																placeholder="어디로 여행가세요?">
+															<!--어디로 여행가세요?-->
+															<button type="button" data-element="remove"
+																class="input__remove-button"><span
+																	class="hidden">삭제</span></button><!-- 삭제 -->
+														</div>
+														<div id="divMultiARRAirportAC" name="search_auto"
+															target="txtMultiARRAirport"></div>
+													</div>
+													<div class="txt-list">
+														<div class="header-sub" data-element="tab">
+															<div class="tab__buttons">
+																<div data-element="tab__list" class="tab__button"
+																	role="presentation">
+																	<button type="button" class="tab__anchor is-active"
+																		id="arr_selectTab01" data-element="tab__anchor"
+																		data-index="0" role="tab" tabindex=""
+																		aria-selected="true" aria-expanded="true">최근
+																		검색</button><!-- 최근 검색 -->
+																</div>
+																<div data-element="tab__list" class="tab__button"
+																	role="presentation">
+																	<button type="button" class="tab__anchor"
+																		id="arr_selectTab02" data-element="tab__anchor"
+																		data-index="1" role="tab" tabindex=""
+																		aria-selected="false"
+																		aria-expanded="false">즐겨찾기</button><!-- 즐겨찾기 -->
+																</div>
+															</div>
+															<div data-element="tab__panel" class="tab__panel is-active"
+																aria-labelledby="arr_selectTab01" role="tabpanel"
+																tabindex="0">
+																<div data-element="tab">
+																	<div class="tab__button-wrap">
+																		<div class="tag-list" data-scroll="x"
+																			name="latelySearch"></div>
+																	</div>
+																</div>
+															</div>
+															<div data-element="tab__panel" class="tab__panel"
+																aria-labelledby="arr_selectTab02" role="tabpanel"
+																tabindex="0" style="display: none;">
+																<div data-element="tab">
+																	<div class="tab__button-wrap">
+																		<div class="tag-list" data-scroll="x"
+																			name="favorites"></div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="main--destination-select">
+															<hr class="booking-line">
+															<div data-element="tab"
+																class="tab tab--vertical tab--booking">
+																<div class="tab__buttons vertical_scroll_set"
+																	id="divMultiArrArea"></div>
+																<div class="tab__panel-wrap scrollbar-inner"
+																	data-element="tab__panel-wrap"></div>
+															</div>
+															<!--<button type="button" class="floating-button btn-map" onclick="viewTabMap('target','map')">
+																<span class="hidden">지도 보기</span>
+									                    	</button>-->
+														</div>
+													</div>
+													<div class="map-list">
+														<div class="map-wrap">
+															<div id="map-target" class="flight-map"></div>
+															<div class="tab-top">
+																<ul class="tab-top-list"></ul>
+															</div>
+															<div class="tab-swipe">
+																<div class="tab-swipe-wrapper swiper-wrapper"></div>
+																<div class="swiper-scrollbar"></div>
+															</div>
+														</div>
+														<button type="button" class="floating-button btn-list"
+															onclick="viewTabMap('target', 'list')">
+															<span class="hidden">리스트보기</span>
+														</button>
+													</div>
+													<a href="#a" class="layer-close"><span class="blind">닫기</span></a>
+												</div>
+												<div class="date-layer date-layer02" id="multiDateLayer"
+													style="display: none;">
+													<div class="layer-header">
+														<button type="button" class="header__button" name="header_btn">
+															<span class="hidden">이전으로</span>
+														</button>
+														<h2 class="customer-layer__title">언제 떠나세요?</h2><!-- 언제 떠나세요? -->
+													</div>
+													<div class="layer-content">
+														<div class="booking-trip mobile-only">
+															<div class="booking-trip__from" name="divFromDate"><span
+																	class="location"></span></div>
+															<span class="booking-trip__direction one-way"></span>
+															<div class="booking-trip__to"><span class="location"></span>
+															</div>
+														</div>
+														<div class="picker picker--full">
+															<div class="info-wrap"><span class="info">1인 편도 운임
+																	기준</span><span class="currency"
+																	name="currency"></span></div> <!-- 1인 편도 운임  기준 -->
+															<input type="text" class="picker__input"
+																id="selectMultiDate" data-picker="single"
+																data-text="1인 편도 운임 기준" data-locale="ko"
+																data-min-date="today" data-format="Y.m.d (D)"
+																data-selected=''>
+														</div>
+														<div class="booking-button cal-button">
+															<button type="button"
+																class="button button--primary button--black pc-only"
+																data-station="MultiARR"
+																data-reset-date="#selectMultiDate">
+																<span class="button__text">초기화</span>
+															</button>
+															<button type="button"
+																class="button button--primary button--active"
+																data-select-date="#selectMultiDate" rel="modal:close">
+																<span class="button__text">선택</span> <!-- 선택 -->
+															</button>
+														</div>
+													</div>
+													<a href="#a" class="layer-close"><span class="blind">닫기</span></a>
+												</div>
+												<div class="customer-layer" id="multiCustomerLayer"
+													style="display: none;">
+													<div class="layer-header">
+														<button type="button" class="header__button"
+															name="header_btn"><span class="hidden">이전으로</span></button>
+														<h2 class="customer-layer__title">누구와 함께 떠나세요?</h2>
+														<!-- 누구와 함께 떠나세요? -->
+													</div>
+													<div class="layer-content">
+														<div class="booking-trip">
+															<div class="booking-trip__from" id="divFromPas"><span
+																	class="location"></span></div>
+															<span class="booking-trip__switch"><span
+																	class="hidden">에서</span></span>
+															<div class="booking-trip__to" id="divToPax"><span
+																	class="location"></span></div>
+														</div>
+														<hr class="section-spacer">
+														<div class="booking-members">
+															<div class="input-wrap input--line">
+																<div
+																	class="input-row input-row--number input-row--icon">
+																	<label for="adtCountMulti"
+																		class="input__label">성인</label><!-- 성인 -->
+																	<div data-element="form"
+																		class="input input--number">
+																		<button type="button"
+																			data-element="number__button"
+																			onclick="javascript:chkAdtCount('Multi');"
+																			data-type="decrease"
+																			class="input__number input__number-minus"
+																			aria-label="빼기" disabled></button>
+																		<input type="text" id="adtCountMulti"
+																			placeholder="숫자입력"
+																			data-element="number__input" value="1"
+																			data-max="9" data-min="1"
+																			data-string-number="" class="input__number">
+																		<button type="button"
+																			data-element="number__button"
+																			data-type="increase"
+																			class="input__number input__number-plus"
+																			aria-label="더하기"></button>
+																	</div>
+																	<p class="text__small text--color-gray" id="adtMsg">
+																		12세 이상</p>
+																	<!--12세 이상 -->
+																</div>
+																<div
+																	class="input-row input-row--number input-row--icon">
+																	<label for="chdCountMulti"
+																		class="input__label">소아</label><!-- 소아 -->
+																	<div data-element="form"
+																		class="input input--number">
+																		<button type="button"
+																			data-element="number__button"
+																			data-type="decrease"
+																			class="input__number input__number-minus"
+																			aria-label="빼기" disabled></button>
+																		<input type="text" id="chdCountMulti"
+																			placeholder="숫자입력"
+																			data-element="number__input" value="0"
+																			data-max="9" data-min="0"
+																			data-string-number="" class="input__number">
+																		<button type="button"
+																			data-element="number__button"
+																			data-type="increase"
+																			class="input__number input__number-plus"
+																			aria-label="더하기"></button>
+																	</div>
+																	<p class="text__small text--color-gray"
+																		name="chdMsg">국제선 기준 만 2세~12세 미만</p>
+																	<!-- 국제선 기준<br>만 2세 ~ 만 12세 미만 -->
+																</div>
+																<div
+																	class="input-row input-row--number input-row--icon">
+																	<label for="infCountMulti"
+																		class="input__label">유아</label><!-- 유아 -->
+																	<div data-element="form"
+																		class="input input--number">
+																		<button type="button"
+																			data-element="number__button"
+																			data-type="decrease"
+																			class="input__number input__number-minus"
+																			aria-label="" disabled></button>
+																		<input type="text" id="infCountMulti"
+																			placeholder="" data-element="number__input"
+																			value="0" data-max="9" data-min="0"
+																			data-string-number="" class="input__number">
+																		<button type="button" id="btnInfCount"
+																			onclick="javascript:chkInfCount('Multi');"
+																			data-element="number__button"
+																			data-type="increase"
+																			class="input__number input__number-plus"
+																			aria-label="더하기"></button>
+																	</div>
+																	<p class="text__small text--color-gray"
+																		name="infantDesc">생후 7일 이상~만 2세 미만<br>(만 24개월
+																		미만/최종 탑승일 기준)<br>유아의 여정이 동반 성인과 불일치 할 경우 환불 후
+																		재구매해야 합니다.</p>
+																	<!--생후 14일 이상~만 2세 미만-->
+																</div>
+															</div>
+														</div>
+
+														<div class="pc-40 mo-30">
+															<!--20210520 class명 변경-->
+															<div data-element="toggle"
+																class="toggle-item toggle-item--booking"
+																data-options='{"mode": "slide"}'>
+																<div class="toggle-item__title">
+																	<button type="button" data-element="toggle__anchor"
+																		class="toggle-item__anchor">나이계산기</button>
+																	<!-- 나이계산기 -->
+																</div>
+																<div data-element="toggle__panel"
+																	class="toggle-item__content">
+																	<div class="input-wrap input--line">
+																		<div class="input-row input-row--label">
+																			<div class="input-label">생년월일</div>
+																			<!-- 생년월일 -->
+																			<div class="input-item">
+																				<div class="input-flex">
+																					<div class="input-box">
+																						<div class="input"
+																							data-element="form">
+																							<input type="text"
+																								class="input__text input__text--placeholder"
+																								name="txtCalYear"
+																								maxlength="4"
+																								data-element="input"
+																								title="연도 입력"
+																								placeholder="년">
+																							<button type="button"
+																								data-element="remove"
+																								class="input__remove-button">삭제</button>
+																							<!-- 삭제 -->
+																						</div>
+																					</div>
+																					<div class="input-box">
+																						<div
+																							class="select-wrap select-wrap--line">
+																							<select
+																								class="select-wrap__select"
+																								title="월 선택"
+																								name="selCalMonth">
+																								<option value="0">월
+																								</option>
+																								<option value="1">1
+																								</option>
+																								<option value="2">2
+																								</option>
+																								<option value="3">3
+																								</option>
+																								<option value="4">4
+																								</option>
+																								<option value="5">5
+																								</option>
+																								<option value="6">6
+																								</option>
+																								<option value="7">7
+																								</option>
+																								<option value="8">8
+																								</option>
+																								<option value="9">9
+																								</option>
+																								<option value="10">10
+																								</option>
+																								<option value="11">11
+																								</option>
+																								<option value="12">12
+																								</option>
+																							</select>
+																						</div>
+																					</div>
+																					<div class="input-box">
+																						<div
+																							class="select-wrap select-wrap--line">
+																							<select
+																								class="select-wrap__select"
+																								title="일 선택"
+																								name="selCalDate">
+																								<option>일</option>
+																								<!-- 일 -->
+																							</select>
+																						</div>
+																					</div>
+																				</div>
+																				<p tabindex="0" class="input__error"
+																					id="calcError"></p>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="button-wrap button-wrap--center">
+																		<button type="button"
+																			class="button button--optional button--optional-black"
+																			onclick="javascript:calcAge();"><span
+																				class="button__text">계산하기</span></button>
+																		<!-- 계산하기 -->
+																	</div>
+																	<div class="notice-box--white" name="calcMsg"
+																		style="display: none;"></div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="fixed-wrap fixed-wrap--multi-line border-none">
+														<div class="button-wrap">
+															<button type="button" class="button button--active active"
+																name="btnSetPassenger"><span class="button__text">선택
+																	완료</span></button><!-- 선택 완료 -->
+														</div>
+													</div>
+													<a href="#a" class="layer-close"><span class="blind">닫기</span></a>
+												</div>
+											</div>
+											<div class="ticketing-row-bot">
+												<div class="ticketing-row-sub">
+													<div class="ticketing-people">
+														<button type="button" class="btn-passengers" data-adtcount="1"
+															data-chdcount="0" data-infcount="0"><span
+																class="txt">성인1</span></button><!-- 성인1 -->
+													</div>
+													<div class="payment">
+														<div class="payment-head">
+															<div class="payment-tit">결제 방법</div> <!-- 결제 방법 -->
+															<span class="tooltip">
+																<button type="button" class="tooltip__button"
+																	data-element="modal_anchor"
+																	data-target="#toolTipModalLayer2"
+																	data-modal-type="full"></button>
+															</span>
+														</div>
+														<div class="radio-wrap">
+															<span class="radio payment-basic">
+																<input type="radio" id="paymentRadio01"
+																	name="paymentMethod" class="radio__input"
+																	checked="">
+																<label for="paymentRadio01" class="radio__label"><i
+																		aria-hidden="true"
+																		class="radio__ico"></i><span>일반</span></label>
+																<!-- 일반 -->
+															</span>
+															<span class="radio">
+																<input type="radio" id="paymentRadio02"
+																	name="paymentMethod" class="radio__input">
+																<label for="paymentRadio02" class="radio__label">
+																	<i aria-hidden="true" class="radio__ico"></i>
+																	<span>포인트</span> <!-- 포인트 -->
+																</label>
+															</span>
+
+															<span class="radio payment-giftticket">
+																<input type="radio" id="paymentRadio03"
+																	name="paymentMethod" class="radio__input">
+																<label for="paymentRadio03" class="radio__label">
+																	<i aria-hidden="true" class="radio__ico"></i>
+																	<span>기프티켓</span> <!-- 기프티켓 -->
+																</label>
+															</span>
+
+														</div>
+													</div>
+												</div>
+												<div class="ticketing-row-sub">
+													<div class="promotion">
+														<div class="promotion-top">
+															<div class="promotion-head">
+																<div class="promotion-tit">프로모션 코드 입력</div>
+																<!-- 프로모션 코드 입력 -->
+																<span class="tooltip">
+																	<button type="button" class="tooltip__button"
+																		data-element="modal_anchor"
+																		data-target="#toolTipModalLayer1"
+																		data-modal-type="full"></button>
+																</span>
+															</div>
+															<div class="promotion-inp">
+																<input type="text" class="inp-txt" id="txtPromoCode">
+															</div>
+														</div>
+														<p class="caution" id="WarnPromoCode" style="display:none;">
+															<span class="txt">프로모션 코드를 정확히 입력해 주세요.</span></p>
+														<!-- 프로모션 코드를 정확히 입력해 주세요. -->
+													</div>
+													<div class="g-ticket">
+														<select class="g-ticket-select" id="selectGifticket"></select>
+														<div class="g-ticket-select nodata" style="display:none;"
+															name="nodataGift">선택 가능한 기프티켓이 없습니다.</div>
+														<a href="/ko/additionalService/service/gifticket.do"
+															target='_blank' class="go-detail" name="nodataGift"
+															style="display:none;">기프티켓 자세히 보기 &gt;</a>
+														<!-- 선택 가능한 기프티켓이 없습니다. 기프티켓 자세히 보기  -->
+													</div>
+													<button type="button" id="searchFlight"
+														onclick="javascript:setSearchAvailParam(true);"
+														class="btn-flight-sch-again" disabled>항공권 검색</button>
+													<!-- 항공권  검색 -->
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- 최근 검색 노선 -->
+									<div class="search">
+										<div class="search__label">최근 검색 노선</div> <!-- 최근 검색 노선 -->
+										<div class="search__slide" data-carousel="spaceItem">
+											<div class="search__box-wrap swiper-wrapper" id="divRecentRoute"></div>
+											<button type="button" class="carousel__button-next"></button>
+											<button type="button" class="carousel__button-prev"></button>
+										</div>
+									</div>
+									<!-- 최근 검색 노선 -->
+								</div>
+							</div>
+						</div>
+						<!-- //quick-booking -->
+
+						<!-- main-carousel -->
+						<div class="main-carousel swiper-container" data-carousel="mainItem">
+							<div class="mobile-shawdow"></div> <!-- 20211109 모바일슬라이드 그림자추가 -->
+							<!-- 개인화 타입 변수 설정 -->
+
+
+							<div class="color-transfer swiper1">
+								<div class="bg-shape left   swiper1"></div>
+								<div class="bg-shape left2  swiper1"></div>
+								<div class="bg-shape left3  swiper1"></div>
+								<div class="bg-shape left4  swiper1"></div>
+								<div class="bg-shape right  swiper1"></div>
+								<div class="bg-shape right2 swiper1"></div>
+								<div class="bg-shape right3 swiper1"></div>
+							</div>
+
+							<a class="main-carousel__text test"></a>
+
+							<div class="carousel-wrapper swiper-wrapper">
+
+								<!-- 개인화 타입 변수 설정 -->
+
+								<a href="javascript:void(0);"
+									onclick="URL_LINK.getI18Url('/event/eventDetail.do?eventNo=0000000316')"
+									id="main-carousel__text_0" name="#ff5000" style="display:none;">
+
+									<div class='title' style="background-color:#ffffff00; color:#ffffff">
+										더 알차게 돌아온 혜택
+									</div>
+									<div class='title2' style="background-color:#ffffff00; color:#ffffff">
+										최대 4만원 할인!
+									</div>
+									<div class='link-wrap--arrow'>
+
+										<div class='link-wrap__text'>
+											<span style="background-color:#ffffff00; color:#ffffff">자세히 보기</span>
+										</div>
+
+									</div>
+								</a>
+
+								<div class="main-carousel__item swiper-slide">
+
+									<a href="javascript:void(0);"
+										onclick="URL_LINK.getI18Url('/event/eventDetail.do?eventNo=0000000316')"
+										class="main-carousell-link"></a>
+
+									<div class="main-carousel__bg mobile-only">
+										<div class="inner"
+											style="background-image: url(https://static.jejuair.net/cms/images/banner_image/20220610164837592.png);">
+											<div class="hidden"></div>
+										</div>
+									</div>
+									<div class="main-carousel__bg pc-only"
+										style="background-image: url(https://static.jejuair.net/cms/images/banner_image/20220610164837592.png);">
+										<div class="hidden"></div>
+									</div>
+								</div>
+
+								<a href="javascript:void(0);"
+									onclick="URL_LINK.getI18Url('/event/eventDetail.do?eventNo=0000000320')"
+									id="main-carousel__text_1" name="#d3afe4" style="display:none;">
+
+									<div class='title' style="background-color:#ffffff00; color:#ffffff">
+										꿈보다 더한 감동
+									</div>
+									<div class='title2' style="background-color:#ffffff00; color:#ffffff">
+										몽골로 떠나자!
+									</div>
+									<div class='link-wrap--arrow'>
+
+										<div class='link-wrap__text'>
+											<span style="background-color:#ffffff00; color:#ffffff">자세히 보기</span>
+										</div>
+
+									</div>
+								</a>
+
+								<div class="main-carousel__item swiper-slide">
+
+									<a href="javascript:void(0);"
+										onclick="URL_LINK.getI18Url('/event/eventDetail.do?eventNo=0000000320')"
+										class="main-carousell-link"></a>
+
+									<div class="main-carousel__bg mobile-only">
+										<div class="inner"
+											style="background-image: url(https://static.jejuair.net/cms/images/banner_image/20220614151158538.png);">
+											<div class="hidden"></div>
+										</div>
+									</div>
+									<div class="main-carousel__bg pc-only"
+										style="background-image: url(https://static.jejuair.net/cms/images/banner_image/20220614151158538.png);">
+										<div class="hidden"></div>
+									</div>
+								</div>
+
+								<a href="javascript:void(0);"
+									onclick="URL_LINK.getI18Url('/event/eventDetail.do?eventNo=0000000325')"
+									id="main-carousel__text_2" name="#c5935a" style="display:none;">
+
+									<div class='title' style="background-color:#ffffff00; color:#ffffff">
+										동양의 파리
+									</div>
+									<div class='title2' style="background-color:#ffffff00; color:#ffffff">
+										베트남 호찌민으로 떠나자!
+									</div>
+									<div class='link-wrap--arrow'>
+
+										<div class='link-wrap__text'>
+											<span style="background-color:#ffffff00; color:#ffffff">자세히 보기</span>
+										</div>
+
+									</div>
+								</a>
+
+								<div class="main-carousel__item swiper-slide">
+
+									<a href="javascript:void(0);"
+										onclick="URL_LINK.getI18Url('/event/eventDetail.do?eventNo=0000000325')"
+										class="main-carousell-link"></a>
+
+									<div class="main-carousel__bg mobile-only">
+										<div class="inner"
+											style="background-image: url(https://static.jejuair.net/cms/images/banner_image/20220603134338991.jpg);">
+											<div class="hidden"></div>
+										</div>
+									</div>
+									<div class="main-carousel__bg pc-only"
+										style="background-image: url(https://static.jejuair.net/cms/images/banner_image/20220603134338991.jpg);">
+										<div class="hidden"></div>
+									</div>
+								</div>
+
+								<a href="javascript:void(0);"
+									onclick="URL_LINK.getI18Url('/event/eventDetail.do?eventNo=0000000331')"
+									id="main-carousel__text_3" name="#565656" style="display:none;">
+
+									<div class='title' style="background-color:#ffffff00; color:#ffffff">
+										Only JEJU
+									</div>
+									<div class='title2' style="background-color:#ffffff00; color:#ffffff">
+										제주도 혜택 모음
+									</div>
+									<div class='link-wrap--arrow'>
+
+										<div class='link-wrap__text'>
+											<span style="background-color:#ffffff00; color:#ffffff">자세히 보기</span>
+										</div>
+
+									</div>
+								</a>
+
+								<div class="main-carousel__item swiper-slide">
+
+									<a href="javascript:void(0);"
+										onclick="URL_LINK.getI18Url('/event/eventDetail.do?eventNo=0000000331')"
+										class="main-carousell-link"></a>
+
+									<div class="main-carousel__bg mobile-only">
+										<div class="inner"
+											style="background-image: url(https://static.jejuair.net/cms/images/banner_image/20220616085155107.jpg);">
+											<div class="hidden"></div>
+										</div>
+									</div>
+									<div class="main-carousel__bg pc-only"
+										style="background-image: url(https://static.jejuair.net/cms/images/banner_image/20220616085155107.jpg);">
+										<div class="hidden"></div>
+									</div>
+								</div>
+
+								<a href="javascript:void(0);"
+									onclick="URL_LINK.getI18Url('/event/eventDetail.do?eventNo=0000000254')"
+									id="main-carousel__text_4" name="#3fa7a1" style="display:none;">
+
+									<div class='title' style="background-color:#ffffff00; color:#ffffff">
+										제주항공 X 하나합
+									</div>
+									<div class='title2' style="background-color:#ffffff00; color:#ffffff">
+										`손흥민` 유니폼 득템기회!
+									</div>
+									<div class='link-wrap--arrow'>
+
+										<div class='link-wrap__text'>
+											<span style="background-color:#ffffff00; color:#ffffff">자세히 보기</span>
+										</div>
+
+									</div>
+								</a>
+
+								<div class="main-carousel__item swiper-slide">
+
+									<a href="javascript:void(0);"
+										onclick="URL_LINK.getI18Url('/event/eventDetail.do?eventNo=0000000254')"
+										class="main-carousell-link"></a>
+
+									<div class="main-carousel__bg mobile-only">
+										<div class="inner"
+											style="background-image: url(https://static.jejuair.net/cms/images/banner_image/20220614101042729.jpg);">
+											<div class="hidden"></div>
+										</div>
+									</div>
+									<div class="main-carousel__bg pc-only"
+										style="background-image: url(https://static.jejuair.net/cms/images/banner_image/20220614101042729.jpg);">
+										<div class="hidden"></div>
+									</div>
+								</div>
+
+								<a href="javascript:void(0);"
+									onclick="URL_LINK.getI18Url('/additionalService/service/insurance.do')"
+									id="main-carousel__text_5" name="#152a66" style="display:none;">
+
+									<div class='title' style="background-color:#ffffff00; color:#ffffff">
+										안전한 여행을 위해서
+									</div>
+									<div class='title2' style="background-color:#ffffff00; color:#ffffff">
+										준비해주세요
+									</div>
+									<div class='link-wrap--arrow'>
+
+										<div class='link-wrap__text'>
+											<span style="background-color:#ffffff00; color:#ffffff">여행자 보험 구매하기</span>
+										</div>
+
+									</div>
+								</a>
+
+								<div class="main-carousel__item swiper-slide">
+
+									<a href="javascript:void(0);"
+										onclick="URL_LINK.getI18Url('/additionalService/service/insurance.do')"
+										class="main-carousell-link"></a>
+
+									<div class="main-carousel__bg mobile-only">
+										<div class="inner"
+											style="background-image: url(https://static.jejuair.net/cms/images/banner_image/20211217143306041.jpg);">
+											<div class="hidden"></div>
+										</div>
+									</div>
+									<div class="main-carousel__bg pc-only"
+										style="background-image: url(https://static.jejuair.net/cms/images/banner_image/20211217143306041.jpg);">
+										<div class="hidden"></div>
+									</div>
+								</div>
+
+								<a href='https://www.jejuair.net/ko/member/mypage/main.do' id="main-carousel__text_6"
+									name="" style="display:none;">
+
+									<div class='title' style="background-color:#ffffff00; color:#ffffff">
+										신규회원 특별혜택<br />운임 최대 7%할인
+									</div>
+									<div class='title2' style="background-color:#ffffff00; color:#ffffff">
+
+									</div>
+									<div class='link-wrap--arrow'>
+
+										<div class='link-wrap__text'>
+											<span style="background-color:#ffffff00; color:#ffffff">회원 가입하기</span>
+										</div>
+
+									</div>
+								</a>
+
+								<div class="main-carousel__item swiper-slide">
+
+									<a href='https://www.jejuair.net/ko/member/mypage/main.do'
+										class="main-carousell-link"></a>
+
+									<div class="main-carousel__bg mobile-only">
+										<div class="inner"
+											style="background-image: url(https://static.jejuair.net/cms/images/main_ind_domain/20220106103255812.png);">
+											<div class="hidden"></div>
+										</div>
+									</div>
+									<div class="main-carousel__bg pc-only"
+										style="background-image: url(https://static.jejuair.net/cms/images/main_ind_domain/20220106103255812.png);">
+										<div class="hidden"></div>
+									</div>
+								</div>
+
+								<a href='https://www.jejuair.net/ko/memberBenefit/refreshPoint/pointUse.do'
+									id="main-carousel__text_7" name="#897554" style="display:none;">
+
+									<div class='title' style="background-color:#ffffff00; color:#ffffff">
+										항공운임 5% 기본 적립<br />리프레시 포인트
+									</div>
+									<div class='title2' style="background-color:#ffffff00; color:#ffffff">
+
+									</div>
+									<div class='link-wrap--arrow'>
+
+										<div class='link-wrap__text'>
+											<span style="background-color:#ffffff00; color:#ffffff">리프레시 포인트 보기</span>
+										</div>
+
+									</div>
+								</a>
+
+								<div class="main-carousel__item swiper-slide">
+
+									<a href='https://www.jejuair.net/ko/memberBenefit/refreshPoint/pointUse.do'
+										class="main-carousell-link"></a>
+
+									<div class="main-carousel__bg mobile-only">
+										<div class="inner"
+											style="background-image: url(https://static.jejuair.net/cms/images/main_ind_domain/20220215175517945.jpg);">
+											<div class="hidden"></div>
+										</div>
+									</div>
+									<div class="main-carousel__bg pc-only"
+										style="background-image: url(https://static.jejuair.net/cms/images/main_ind_domain/20220215175517945.jpg);">
+										<div class="hidden"></div>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="carousel__pagination swiper-pagination"></div>
+							<button type="button" class="carousel__button-next"></button>
+							<button type="button" class="carousel__button-prev"></button>
+
+						</div>
+					</div>
+
+					<!-- pc-wrap -->
+					<div class="pc-wrap">
+
+						<!-- 개인화 타입 A : 로그인 N -->
+
+
+						<!-- 추천 항공권: pc-only  -->
+
+
+						<div class="promotion-list pc-only">
+
+							<div class="title">
+								<h3 class="title__section">추천 항공권</h3> <!-- 추천 항공권 -->
+							</div>
+
+							<div class="swiper-container recommendTicket-pc" data-carousel="recommendTicket">
+								<div class="swiper-wrapper">
+									<a href="/ko/ibe/booking/Availability.do?depStn=CJJ&arrStn=CJU&depDate=2022-07-16&arrDate=2022-07-31"
+										class="swiper-slide">
+										<div class="carousel_bg"
+											style="background-image: url(https://static.jejuair.net/cms/images/immigration_card/20220329102528015.png);">
+											<div class="hidden">제주</div>
+										</div>
+										<div class="txt-wrap">
+											<div class="name">청주 - 제주</div>
+											<div class="text">
+												<span class="total_price_txt">편도총액</span> <!-- 편도총액 -->
+												<span class="price_txt">38,500</span>
+												<span class="unit">원</span>
+												~
+											</div>
+											<div class="date">2022.07.16 ~ 2022.07.31</div>
+										</div>
+									</a>
+									<a href="/ko/ibe/booking/Availability.do?depStn=PUS&arrStn=SPN&depDate=2022-07-15&arrDate=2022-08-15"
+										class="swiper-slide">
+										<div class="carousel_bg"
+											style="background-image: url(https://static.jejuair.net/cms/images/immigration_card/20220517143513339.png);">
+											<div class="hidden">사이판</div>
+										</div>
+										<div class="txt-wrap">
+											<div class="name">부산 - 사이판</div>
+											<div class="text">
+												<span class="total_price_txt">편도총액</span> <!-- 편도총액 -->
+												<span class="price_txt">261,300</span>
+												<span class="unit">원</span>
+												~
+											</div>
+											<div class="date">2022.07.15 ~ 2022.08.15</div>
+										</div>
+									</a>
+									<a href="/ko/ibe/booking/Availability.do?depStn=KUV&arrStn=CJU&depDate=2022-07-16&arrDate=2022-07-31"
+										class="swiper-slide">
+										<div class="carousel_bg"
+											style="background-image: url(https://static.jejuair.net/cms/images/immigration_card/20220427110619723.png);">
+											<div class="hidden">제주</div>
+										</div>
+										<div class="txt-wrap">
+											<div class="name">군산 - 제주</div>
+											<div class="text">
+												<span class="total_price_txt">편도총액</span> <!-- 편도총액 -->
+												<span class="price_txt">66,000</span>
+												<span class="unit">원</span>
+												~
+											</div>
+											<div class="date">2022.07.16 ~ 2022.07.31</div>
+										</div>
+									</a>
+									<a href="https://www.jejuair.net/ko/main/base/index.do" class="swiper-slide">
+										<div class="carousel_bg"
+											style="background-image: url(https://static.jejuair.net/cms/images/immigration_card/20220413145920421.jpg);">
+											<div class="hidden">코타키나발루</div>
+										</div>
+										<div class="txt-wrap">
+											<div class="name">서울(인천) - 코타키나발루</div>
+											<div class="text">
+												<span class="total_price_txt">편도총액</span> <!-- 편도총액 -->
+												<span class="price_txt">266,300</span>
+												<span class="unit">원</span>
+												~
+											</div>
+											<div class="date">2022.07.15 ~ 2022.08.15</div>
+										</div>
+									</a>
+									<a href="https://www.jejuair.net/ko/main/base/index.do" class="swiper-slide">
+										<div class="carousel_bg"
+											style="background-image: url(https://static.jejuair.net/cms/images/immigration_card/20220413150011522.jpg);">
+											<div class="hidden">클락</div>
+										</div>
+										<div class="txt-wrap">
+											<div class="name">서울(인천) - 클락</div>
+											<div class="text">
+												<span class="total_price_txt">편도총액</span> <!-- 편도총액 -->
+												<span class="price_txt">183,800</span>
+												<span class="unit">원</span>
+												~
+											</div>
+											<div class="date">2022.07.15 ~ 2022.08.15</div>
+										</div>
+									</a>
+									<a href="/ko/ibe/booking/Availability.do?depStn=RSU&arrStn=CJU&depDate=2022-07-16&arrDate=2022-07-31"
+										class="swiper-slide">
+										<div class="carousel_bg"
+											style="background-image: url(https://static.jejuair.net/cms/images/immigration_card/20220608135913940.png);">
+											<div class="hidden">여수</div>
+										</div>
+										<div class="txt-wrap">
+											<div class="name">여수 - 제주</div>
+											<div class="text">
+												<span class="total_price_txt">편도총액</span> <!-- 편도총액 -->
+												<span class="price_txt">69,600</span>
+												<span class="unit">원</span>
+												~
+											</div>
+											<div class="date">2022.07.16 ~ 2022.07.31</div>
+										</div>
+									</a>
+								</div>
+							</div>
+
+							<button type="button" class="carousel__button-next2 show"></button>
+							<button type="button" class="carousel__button-prev2 show"></button>
+						</div>
+						<!-- 추천 항공권: mobile-only -->
+						<div class="promotion-list mobile-only">
+
+							<div class="title">
+								<h3 class="title__section">추천 항공권</h3> <!-- 추천 항공권 -->
+							</div>
+
+							<div class="swiper-container recommendTicket-mobile" data-carousel="recommendTicket">
+								<div class="swiper-wrapper">
+
+									<a href="/ko/ibe/booking/Availability.do?depStn=CJJ&arrStn=CJU&depDate=2022-07-16&arrDate=2022-07-31"
+										class="swiper-slide">
+										<div class="carousel_bg"
+											style="background-image: url(https://static.jejuair.net/cms/images/immigration_card/20220329102528015.png);">
+											<div class="hidden">제주</div>
+										</div>
+										<div class="txt-wrap">
+											<div class="name">청주 - 제주</div>
+											<div class="text">
+												<span class="total_price_txt">편도총액</span> <!-- 편도총액 -->
+												<span class="price_txt">38,500</span>
+												<span class="unit">원</span>
+
+												~
+											</div>
+											<div class="date">2022.07.16 ~ 2022.07.31</div>
+										</div>
+									</a>
+
+									<a href="/ko/ibe/booking/Availability.do?depStn=PUS&arrStn=SPN&depDate=2022-07-15&arrDate=2022-08-15"
+										class="swiper-slide">
+										<div class="carousel_bg"
+											style="background-image: url(https://static.jejuair.net/cms/images/immigration_card/20220517143513339.png);">
+											<div class="hidden">사이판</div>
+										</div>
+										<div class="txt-wrap">
+											<div class="name">부산 - 사이판</div>
+											<div class="text">
+												<span class="total_price_txt">편도총액</span> <!-- 편도총액 -->
+
+												<span class="price_txt">261,300</span>
+												<span class="unit">원</span>
+
+												~
+											</div>
+											<div class="date">2022.07.15 ~ 2022.08.15</div>
+										</div>
+									</a>
+
+									<a href="/ko/ibe/booking/Availability.do?depStn=KUV&arrStn=CJU&depDate=2022-07-16&arrDate=2022-07-31"
+										class="swiper-slide">
+										<div class="carousel_bg"
+											style="background-image: url(https://static.jejuair.net/cms/images/immigration_card/20220427110619723.png);">
+											<div class="hidden">제주</div>
+										</div>
+										<div class="txt-wrap">
+											<div class="name">군산 - 제주</div>
+											<div class="text">
+												<span class="total_price_txt">편도총액</span> <!-- 편도총액 -->
+												<span class="price_txt">66,000</span>
+												<span class="unit">원</span>
+
+												~
+											</div>
+											<div class="date">2022.07.16 ~ 2022.07.31</div>
+										</div>
+									</a>
+
+									<a href="https://www.jejuair.net/ko/main/base/index.do" class="swiper-slide">
+										<div class="carousel_bg"
+											style="background-image: url(https://static.jejuair.net/cms/images/immigration_card/20220413145920421.jpg);">
+											<div class="hidden">코타키나발루</div>
+										</div>
+										<div class="txt-wrap">
+											<div class="name">서울(인천) - 코타키나발루</div>
+											<div class="text">
+												<span class="total_price_txt">편도총액</span> <!-- 편도총액 -->
+
+												<span class="price_txt">266,300</span>
+												<span class="unit">원</span>
+
+												~
+											</div>
+											<div class="date">2022.07.15 ~ 2022.08.15</div>
+										</div>
+									</a>
+									<a href="https://www.jejuair.net/ko/main/base/index.do" class="swiper-slide">
+										<div class="carousel_bg"
+											style="background-image: url(https://static.jejuair.net/cms/images/immigration_card/20220413150011522.jpg);">
+											<div class="hidden">클락</div>
+										</div>
+										<div class="txt-wrap">
+											<div class="name">서울(인천) - 클락</div>
+											<div class="text">
+												<span class="total_price_txt">편도총액</span> <!-- 편도총액 -->
+
+												<span class="price_txt">183,800</span>
+												<span class="unit">원</span>
+
+												~
+											</div>
+											<div class="date">2022.07.15 ~ 2022.08.15</div>
+										</div>
+									</a>
+
+									<a href="/ko/ibe/booking/Availability.do?depStn=RSU&arrStn=CJU&depDate=2022-07-16&arrDate=2022-07-31"
+										class="swiper-slide">
+										<div class="carousel_bg"
+											style="background-image: url(https://static.jejuair.net/cms/images/immigration_card/20220608135913940.png);">
+											<div class="hidden">여수</div>
+										</div>
+										<div class="txt-wrap">
+											<div class="name">여수 - 제주</div>
+											<div class="text">
+												<span class="total_price_txt">편도총액</span> <!-- 편도총액 -->
+
+												<span class="price_txt">69,600</span>
+												<span class="unit">원</span>
+
+												~
+											</div>
+											<div class="date">2022.07.16 ~ 2022.07.31</div>
+										</div>
+									</a>
+
+								</div>
+							</div>
+						</div>
+
+						<!-- 회원혜택 -->
+
+						<div class="main-banner">
+							<div class="title">
+								<h3 class="title__section">회원혜택</h3> <!-- 회원혜택 -->
+							</div>
+
+							<div class="swiper-container" data-carousel="mainBanner">
+								<div class="swiper-wrapper">
+
+
+									<div class="swiper-slide">
+
+										<a href="javascript:void(0);"
+											onclick="URL_LINK.getI18Url('/memberBenefit/refreshPoint/main.do')"
+											style="background-color:#ffd7b8">
+											<div class="img-area">
+												<!-- 이미지 영역 110x120 -->
+												<img src="https://static.jejuair.net/cms/images/banner_image/20211103160036963.png"
+													alt="">
+											</div>
+											<div class="txt-area" style="color:#000000">
+
+												제주항공 VIP 회원 혜택<br />항공운임 5% + 5% 적립
+
+
+											</div>
+										</a>
+									</div>
+
+								</div>
+
+								<button type="button" class="main-banner-next"><span class="blind">다음</span></button>
+								<button type="button" class="main-banner-prev"><span class="blind">이전</span></button>
+
+							</div>
+
+							<div class="carousel__pagination swiper-pagination"></div>
+						</div>
+
+
+						<!-- // 회원혜택 -->
+
+
+						<!-- // 개인화 타입 A : 로그인 N -->
+
+						<!-- 개인화 타입 B : 로그인 Y, 예매 : 無 -->
+
+						<!-- // 개인화 타입 B : 로그인 Y, 예매 : 無 -->
+
+						<!-- 개인화 타입 C : 로그인 : Y, 예매 : 有, 체크인 가능 (D-24h < now < D) : N, 여정 시작 전 -->
+
+						<!-- // 개인화 타입 C : 로그인 : Y, 예매 : 有, 체크인 가능 (D-24h < now < D) : N, 여정 시작 전 -->
+
+						<!-- 개인화 타입 D : 로그인 : Y, 예매 : 有, 체크인 가능 (D-24h < now < D) : N, 여정 중 -->
+
+						<!-- // 개인화 타입 D : 로그인 : Y, 예매 : 有, 체크인 가능 (D-24h < now < D) : N, 여정 중 -->
+
+						<!-- 개인화 타입 E : 로그인 : Y, 예매 : 有, 체크인 가능 (D-24h < now < D) : Y -->
+
+						<!-- // 개인화 타입 E : 로그인 : Y, 예매 : 有, 체크인 가능 (D-24h < now < D) : Y -->
+
+						<!-- everymundo airmodule 삽입 -->
+						<div data-container-id="em-7c-5d325c50-0d5b-40ec-be3e-edc862341b38" style="display: none;" />
+
+					</div>
+					<!-- //pc-wrap -->
+
+					<div class="simple-info mobile-only" data-element="toggle" data-options='{"mode": "move scroll"}'>
+						<!-- 마케팅 제휴 모바일-->
+						<div class="simple-info__header">
+							<button type="button" class="simple-info__title" data-element="toggle__anchor">마케팅
+								제휴</button>
+						</div>
+						<div class="simple-info__content" data-element="toggle__panel">
+							<div class="contact">
+								<a href="#" class="mailto">partnership@jejuair.net</a>
+								<div class="contact__text">
+									브랜드 협업, 미디어 노출, 제휴 프로모션 등 제안을 기다립니다. <br>제안별로 담당자 검토 후 제휴가 진행됩니다.
+								</div>
+								<div class="contact__mail">
+									<a href="javascript:void(0);" class="block" data-element="modal_anchor"
+										data-target="#divModalEmailNoTerms" data-modal-type="full">이메일 무단 수집 거부</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</main>
+			</div>
+
+			<div class="footer mobile-only">
+				<footer class="footer__inner">
+					<a href="javascript:void(0);" class="button-footer" data-action="menu" data-menu-name="about">제주항공
+						소개</a> <!-- 제주항공 소개 -->
+
+					<a href="javascript:void(0);" class="button-footer button-footer-biz" data-action="menu"
+						data-menu-name="company">기업우대</a> <!-- 기업우대 -->
+
+					<a href="https://cargo.jejuair.net" target="_black" class="button-footer" data-action="menu"
+						data-menu-name="Cargo">Cargo</a> <!-- Cargo -->
+
+					<hr>
+					<div class="footer__link">
+						<a href="javascript:void(0);" class="footer__link-item" data-action="menu"
+							data-menu-name="homepageTerms">이용약관</a> <!-- 이용약관 -->
+						<a href="javascript:void(0);" class="footer__link-item" data-action="menu"
+							data-menu-name="carriageTemrs">여객운송약관</a> <!-- 여객운송약관 -->
+						<a href="javascript:void(0);" class="footer__link-item bold" data-action="menu"
+							data-menu-name="personalTerms">개인정보처리방침</a> <!-- 개인정보처리방침 -->
+
+					</div>
+					<hr>
+					<p class="footer__copy">
+						<a href="tel:1599-1500" class="block">고객센터 1599-1500 (09:00 ~ 19:00)<br />
+							일본 0570-001132 (월~금 14:00~18:00)</a><br><!-- 고객센터 1599-1500 (09:00 ~ 19:00) -->
+						Copyright ⓒ JEJUAIR. All Rights Reserved.<br>
+						<!-- Copyright ⓒ JEJUair Inc. All rights reserved. -->
+					</p>
+				</footer>
+			</div>
+
+			<div class="main-util pc-only">
+				<div class="main-util__inner">
+
+					<div class="main-util__cs">
+						<h4 class="main-util__title">고객센터 1599-1500 (09:00~19:00)</h4> <!-- 고객센터 -->
+						<p class="main-util__text">일본 0570-001132 (평일 10:00~13:00, 14:00~18:00)</p> <!-- 도움이 필요하신가요? -->
+
+						<div class="button-wrap">
+
+							<button type="button" class="button button--small"
+								onclick="location.href='/ko/customerService/csCenter/faqList.do'">
+								<span class="button__text">고객센터 바로가기</span>
+							</button> <!-- 고객센터 바로가기 -->
+
+						</div>
+					</div>
+
+
+					<div class="main-util__social">
+						<h4 class="main-util__title">SNS</h4>
+						<div class="main-social">
+
+							<a href="https://www.facebook.com/funjejuair/" target="_blank" class="main-social__list">
+								<i class="icon"><img
+										src="https://static.jejuair.net/cms/images/sns_ch/20211027200713454.png" alt=""
+										loading="lazy"></i>
+								<span class="hidden">https://www.facebook.com/funjejuair/</span>
+							</a>
+
+							<a href="https://www.youtube.com/user/funjejuair" target="_blank" class="main-social__list">
+								<i class="icon"><img
+										src="https://static.jejuair.net/cms/images/sns_ch/20211027200700139.png" alt=""
+										loading="lazy"></i>
+								<span class="hidden">https://www.youtube.com/user/funjejuair</span>
+							</a>
+
+							<a href="https://instagram.com/jejuair_official" target="_blank" class="main-social__list">
+								<i class="icon"><img
+										src="https://static.jejuair.net/cms/images/sns_ch/20211027200545316.png" alt=""
+										loading="lazy"></i>
+								<span class="hidden">https://instagram.com/jejuair_official</span>
+							</a>
+
+						</div>
+					</div>
+
+					<div class="main-util__contact">
+						<h4 class="main-util__title">
+							<!-- 마케팅 제휴 -->
+							마케팅 제휴<span class="mailto">partnership@jejuair.net</span>
+							<!--<a href="partnership@jejuair.net" class="mailto">partnership@jejuair.net</a> -->
+						</h4>
+						<p class="main-util__text">브랜드 협업, 미디어 노출, 제휴 프로모션 등 제안을 기다립니다. <br>제안별로 담당자 검토 후 제휴가 진행됩니다.</p>
+						<!-- 브랜드 협업, 미디어 노출, 제휴 프로모션 등 제안을 기다립니다.<br>제안별로 담당자 검토 후 제휴가 진행됩니다. -->
+						<div class="main-util__mail">
+							<a href="javascript:void(0);" class="block" data-element="modal_anchor"
+								data-target="#divModalEmailNoTerms" data-modal-type="full">이메일 무단 수집 거부</a>
+							<!-- 이메일 무단 수집 거부 -->
+						</div>
+					</div>
+
+					<!-- 풀팝업 -->
+					<div id="divModalEmailNoTerms" class="modal modal-full modal-scroll modal--fixed-multi">
+						<div class="modal-header">
+							<div class="modal-header__title">이메일 무단 수집 거부</div> <!-- 이메일 무단 수집 거부 -->
+						</div>
+						<div class="modal-content">
+							<div class="first-margin">
+								<div class="section-sub-txt">
+									본 웹사이트는 게시된 이메일 주소가 전자우편 수집 프로그램이나 그 밖의 기술적 장치를 이용하여 무단 수집되는 것을 거부합니다.<br><br>
+									<!-- 본 웹사이트는 게시된 이메일 주소가 전자우편 수집 프로그램이나 그 밖의 기술적 장치를 이용하여 무단 수집되는 것을 거부합니다. -->
+									이를 위반 시 『정보통신망 이용촉진 및 정보보호 등에 관한 법률』 등에 의해 처벌을 받을 수 있습니다.
+									<!-- 이를 위반 시 『정보통신망 이용촉진 및 정보보호 등에 관한 법률』 등에 의해 처벌을 받을 수 있습니다. -->
+								</div>
+							</div>
+						</div>
+						<div class="fixed-wrap fixed-wrap--multi-line border-none">
+							<!-- checkbox 없는 경우 border-none class 추가 -->
+							<div class="button-wrap">
+								<button type="button" rel="modal:close" class="button button--active"><span
+										class="button__text">확인</span></button> <!-- 확인 -->
+							</div>
+						</div>
+						<a href="#" rel="modal:close" class="modal__close"><span class="blind">닫기</span></a> <!-- 닫기 -->
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div id="toolTipModalLayer1" class="modal modal-full modal-scroll">
+		<div class="modal-header">
+			<div class="modal-header__title">프로모션 코드 사용 안내</div> <!-- 프로모션 코드 사용 안내 -->
+		</div>
+		<div class="modal-content multi-bottom">
+			<div class="terms-item">
+				<ul class="list-guide">
+					<li class="list-guide__item">사전에 안내된 프로모션 코드를 입력하고 항공권을 검색하면 할인된 가격이 적용된 항공편을 선택할 수 있습니다.</li>
+					<!-- 사전에 안내된 프로모션 코드를 입력하고 항공권을 검색하면 할인된 가격이 적용된 항공편을 선택할 수 있습니다. -->
+					<li class='list-guide__item'>사용 가능한 조건에 맞는 프로모션 코드를 입력해야 할인이 적용됩니다.</li>
+					<!-- 사용 가능한 조건에 맞는 프로모션 코드를 입력해야 할인이 적용됩니다. -->
+				</ul>
+			</div>
+		</div>
+		<a href="#" rel="modal:close" class="modal__close"><span class="blind">닫기</span></a> <!-- 닫기 -->
+	</div>
+	<div id="toolTipModalLayer2" class="modal modal-full modal-scroll">
+		<div class="modal-header">
+			<div class="modal-header__title">결제방법 안내</div>
+		</div>
+		<div class="modal-content">
+			<div class="first-margin">
+				<p class="section-title">포인트 결제</p>
+				<ul class="list-guide large list-guide--narrow">
+					<li class="list-guide__item">보유하고 있는 포인트로 항공권 예매가 가능하며, 부족한 포인트는 구매 후 사용할 수 있습니다.</li>
+					<li class="list-guide__item">유류할증료 및 공항이용료는 포인트로 결제하실 수 없습니다.</li>
+				</ul>
+			</div>
+
+			<div class="sub-section">
+				<!--class추가-->
+				<p class="section-title">기프티켓 결제</p>
+				<ul class="list-guide large list-guide--narrow">
+					<li class="list-guide__item">사전에 등록된 기프티켓이 있으면 선택하여 사용 가능합니다</li>
+					<li class="list-guide__item">기프티켓은 항공권 운임에만 적용되며, 유류할증료 및 공항이용료와 부가서비스는 별도 결제가 필요합니다.</li>
+				</ul>
+			</div>
+
+		</div>
+		<a href="#" rel="modal:close" class="modal__close"><span class="blind">닫기</span></a>
+	</div>
+	<!-- alert 팝업 -->
+	<div id="alertModalLayer" class="modal modal--simple">
+		<div class="modal-content">
+			<p class="alert-text"></p>
+		</div>
+		<div class="modal__button-area button-wrap">
+			<button type="button" class="button button--secondary button--active" rel="modal:close"
+				onclick="javascript:closeCurrentModal(this);"><span class="button__text">확인</span></button><!-- 확인 -->
+		</div><!-- 확인 -->
+	</div>
+	<!-- 컨펌 팝업 -->
+	<div id="confirmModalLayer" class="modal modal--simple">
+		<div class="modal-content">
+			<h2 class="alert-title">알림</h2>
+			<p class="alert-text">로그인이 필요한 서비스입니다. 로그인해주세요!</p>
+		</div><!-- 로그인이 필요한 서비스입니다.로그인해주세요 -->
+		<div class="modal__button-area button-wrap">
+			<button type="button" class="button button--secondary" rel="modal:close"
+				onclick="javascript:closeLoginModal(this);"><span class="button__text">취소</span></button><!-- 취소 -->
+			<button type="button" onclick="javascript:loginModal();"
+				class="button button--secondary button--active add--ml-10"><span class="button__text">확인</span></button>
+			<!-- 확인 -->
+		</div>
+		<a href="javascript:void(0);" rel="modal:close" onclick="closeLoginModal(this)" class="modal__close"><span
+				class="blind">닫기</span></a>
+	</div>
+
+	<div id="footer" class="footer pc-only">
+
+		<!-- pc -->
+		<footer class="footer__inner">
+			<div class="footer__top">
+				<div class="footer__top-item">
+					<a href="javascript:void(0);" class="footer__top-link" data-action="menu"
+						data-menu-name="about">제주항공 소개</a>
+				</div>
+
+				<div class="footer__top-item">
+					<a href="javascript:void(0);" class="footer__top-link" data-action="menu"
+						data-menu-name="irNotice">투자정보</a>
+				</div>
+
+
+				<div class="footer__top-item">
+					<a href="javascript:void(0);" class="footer__top-link" data-action="menu"
+						data-menu-name="incruit">채용안내</a>
+				</div>
+
+				<div class="footer__top-item">
+					<a href="javascript:void(0);" class="footer__top-link" data-action="menu"
+						data-menu-name="carriageTemrs">여객운송약관</a>
+				</div>
+				<div class="footer__top-item">
+					<a href="javascript:void(0);" class="footer__top-link" data-action="menu"
+						data-menu-name="homepageTerms">홈페이지 이용약관</a>
+				</div>
+				<div class="footer__top-item footer__top-item--privacy">
+					<a href="javascript:void(0);" class="footer__top-link" data-action="menu"
+						data-menu-name="personalTerms">개인정보처리방침</a>
+				</div>
+				<div class="footer__top-item">
+					<a href="javascript:void(0);" class="footer__top-link" data-action="menu"
+						data-menu-name="sitemap">사이트맵</a>
+				</div>
+
+				<div class="footer__top-item footer__top-item--family">
+					<div class="family-wrap" data-element="toggle"
+						data-options='{"mode": "slide", "speed": 100, "clickToClose": true}'>
+						<button type="button" class="button-family" data-element="toggle__anchor">Family Site</button>
+						<div class="family-list" data-element="toggle__panel">
+							<a href="javascript:void(0);" class="family-link" data-action="menu"
+								data-menu-name="familyAekyung">㈜애경산업</a>
+							<a href="javascript:void(0);" class="family-link" data-action="menu"
+								data-menu-name="familyAtecltd">㈜에이텍</a>
+							<a href="javascript:void(0);" class="family-link" data-action="menu"
+								data-menu-name="familyAekyngst">애경S.T</a>
+							<a href="javascript:void(0);" class="family-link" data-action="menu"
+								data-menu-name="familyAkis">에이케이아이에스㈜</a>
+							<a href="javascript:void(0);" class="family-link" data-action="menu"
+								data-menu-name="familyAdmission">애드미션</a>
+							<a href="javascript:void(0);" class="family-link" data-action="menu"
+								data-menu-name="familyNeopharm">네오팜</a>
+							<a href="javascript:void(0);" class="family-link" data-action="menu"
+								data-menu-name="familyAkp">애경유화㈜</a>
+							<a href="javascript:void(0);" class="family-link" data-action="menu"
+								data-menu-name="familyAkc">애경화학㈜</a>
+							<a href="javascript:void(0);" class="family-link" data-action="menu"
+								data-menu-name="familyAkchemtech">에이케이켐텍</a>
+							<a href="javascript:void(0);" class="family-link" data-action="menu"
+								data-menu-name="familyKospa">코스파</a>
+							<a href="javascript:void(0);" class="family-link" data-action="menu"
+								data-menu-name="familyAkplaza">AK PLAZA</a>
+							<a href="javascript:void(0);" class="family-link" data-action="menu"
+								data-menu-name="familyAekyunggroup">AK홀딩스</a>
+							<a href="javascript:void(0);" class="family-link" data-action="menu"
+								data-menu-name="familyAkdjbcc">애경개발</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<hr class="footer__spacer">
+			<div class="footer__bottom">
+
+				<a href="#" class="footer__logo" data-action="menu" data-menu-name="main" style="background: #FFFFFF00;">
+					<img src="https://static.jejuair.net/cms/images/banner_image/20211108172526406.png" alt="제주항공로고"
+						loading="lazy" />
+				</a>
+
+				<div class="footer__bottom-contents">
+
+					<div class="footer__bottom-info">
+
+						<div class="info-item">
+							<a href="javascript:URL_LINK.getI18Url('/terms/page/transportationServicePlan.do');"
+								class="link">항공교통이용자 서비스 계획</a>
+						</div>
+
+						<div class="info-item">
+							<a href="javascript:URL_LINK.getI18Url('https://www.avsec365.or.kr/');" class="link">항공위험물안내
+							</a>
+						</div>
+
+						<div class="info-item">
+							<a href="javascript:URL_LINK.getI18Url('https://static.jejuair.net/hpgg/resources/pdf/Application_for_Damage_Redress.pdf');"
+								class="link">항공교통이용자 피해구제 계획</a>
+						</div>
+
+						<div class="info-item">
+							<a href="javascript:URL_LINK.getI18Url('https://static.jejuair.net/cms/images/file_upload/20211119133243857.pdf');"
+								class="link">항공안전투자공시</a>
+						</div>
+
+					</div>
+
+					<div class="footer__bottom-util">
+						<a href="javascript:void(0);" class="util-app-ios" data-action="menu"
+							data-menu-name="iOSBtn"><img
+								src="https://static.jejuair.net/hpgg/resources/images/icon/icon-footer-app-ios.png"
+								alt="" loading="lazy"> IOS</a>
+						<a href="javascript:void(0);" class="util-app-aos" data-action="menu"
+							data-menu-name="AndroidBtn"><img
+								src="https://static.jejuair.net/hpgg/resources/images/icon/icon-footer-app-aos.png"
+								alt="" loading="lazy"> Android</a>
+					</div>
+
+					<p class="footer__bottom-address"><span>사업자등록번호 : 616-81-50527</span><span>대표이사 : 김이배</span><br>
+						제주특별자치도 제주시 신대로 64(연동, 건설공제회관 3층)</p>
+					<p class="footer__bottom-copy">Copyright ⓒ JEJUAIR. All Rights Reserved.</p>
+
+				</div>
+			</div>
+		</footer>
+		<!-- //pc -->
+
+	</div>
+
+
+	<div id="modalLayer01" class="modal modal-full" data-width="380">
+		<div class="modal-header">
+			<div class="modal-header__title">프로모션 운임 규정 안내</div>
+		</div>
+		<div class="modal-content" style="min-height: 500px;">
+		</div>
+		<a href="#" rel="modal:close" class="modal__close"><span class="blind">닫기</span></a>
+	</div>
+
+	<div id="modalLangType" class="modal modal-full modal-scroll">
+		<div class="modal-header">
+			<div class="modal-header__title">지역 및 언어 설정</div>
+		</div>
+		<div class="modal-content">
+			<div class="input-wrap input--line select-type">
+				<div class="input-row input-row--label">
+					<div class="input-label">지역 설정</div>
+					<div class="input-item">
+						<div class="input-box">
+							<select title="지역 설정" class="select-default">
+								<option>대한민국</option>
+								<option>미국</option>
+								<option>일본</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="input-row input-row--label">
+					<div class="input-label">언어 설정</div>
+					<div class="input-item">
+						<div class="input-box">
+							<select title="언어 설정" class="select-default">
+								<option>한국어</option>
+								<option>영어</option>
+								<option>일어</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="fixed-wrap">
+			<div class="button-wrap button-wrap--stick">
+				<button type="button" class="button button--primary button--active"><span
+						class="button__text">확인</span></button>
+			</div>
+		</div>
+		<a href="#" rel="modal:close" class="modal__close"><span class="blind">닫기</span></a>
+	</div>
+
+	<div class="quick-menu mobile-only">
+		<!-- D : 활성화 클래스 on -->
+		<a href="javascript:void(0);" class="quick-menu__item n1 on"
+			onclick="URL_LINK.getI18Url('/main/base/index.do')">
+
+			<img src="https://static.jejuair.net/hpgg/resources/images/upload/icon_bottombar_home_on_56x2.png" alt="홈"
+				loading="lazy">
+
+			<!--2021-04-13 이미지로 변경-->
+			<span>홈</span> <!-- 홈 -->
+		</a>
+		<a href="javascript:void(0);" class="quick-menu__item n2 "
+			onclick="URL_LINK.getI18Url('/ibe/booking/Availability.do')">
+
+			<img src="https://static.jejuair.net/hpgg/resources/images/upload/icon_bottom	bar_reservation_off_56x2.png"
+				alt="항공권예매" loading="lazy">
+
+			<!--2021-04-13 이미지로 변경-->
+			<span>예매</span> <!-- 항공권예매 -->
+		</a>
+		<a href="javascript:void(0);" class="quick-menu__item n3 "
+			onclick="URL_LINK.getI18Url('/ibe/checkin/viewCheckin.do')">
+
+			<img src="https://static.jejuair.net/hpgg/resources/images/upload/icon_bottombar_mboardingpass_off_56x2.png"
+				alt="모바일 탑승권" loading="lazy">
+
+			<!--2021-04-13 이미지로 변경-->
+			<span>모바일 탑승권</span> <!-- 모바일 탑승권 -->
+		</a>
+		<a href="javascript:void(0);" class="quick-menu__item n4 "
+			onclick="URL_LINK.getI18Url('/additionalService/service/main.do')">
+
+			<img src="https://static.jejuair.net/hpgg/resources/images/upload/icon_bottombar_service_off_56x2.png"
+				alt="부가서비스" loading="lazy">
+
+			<!--2021-04-13 이미지로 변경-->
+			<span>부가서비스</span> <!-- 부가서비스 -->
+		</a>
+		<a href="javascript:void(0);" class="quick-menu__item n5 "
+			onclick="URL_LINK.getI18Url('/member/mypage/main.do')">
+
+			<img src="https://static.jejuair.net/hpgg/resources/images/upload/icon_bottombar_mypage_off_56x2.png"
+				alt="마이페이지" loading="lazy">
+
+			<!--2021-04-13 이미지로 변경-->
+			<span>마이페이지</span> <!-- 마이페이지 -->
+		</a>
+	</div>
+
+
+	<!-- 공통 스크립트 선언 -->
+	<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/admin/lib/admin/lib.min.js"></script>
+
+	<script type="text/javascript"
+		src="https://static.jejuair.net/hpgg/resources/js/admin/lib/moment-with-locales.min.js"></script>
+
+	<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/admin/lib/jquery.i18n.js"></script>
+	<script type="text/javascript"
+		src="https://static.jejuair.net/hpgg/resources/js/admin/lib/jquery.i18n.messagestore.js"></script>
+	<!-- 메인페이지 스크립트 에러 발생으로 이전 소스로 변경합니다. 
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/booking/plugin.js"></script>
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/booking/common.js"></script>
+-->
+	<script>
+		$(document).ready(function () {
+
+			$.ajaxSetup({
+				beforeSend: function (xhr) {
+					xhr.setRequestHeader('tcode', '0000000127');
+					xhr.setRequestHeader('cname', USER_DEVICE.getName());
+				}
+			});
+
+
+			//BOOKING LAYOUT상태서 sub로 바뀔경우  
+			$(document).off('changeLayout').on('changeLayout', function (e, type) {
+				if (type === 'sub') {
+					$('.bookingType').hide();
+					$('.subType').show();
+				} else if (type === 'booking') {
+					$('.subType').hide();
+					$('.bookingType').show();
+				}
+			});
+
+			//breadcrumbs cursor default
+			$('.breadcrumb__item > a').css('cursor', 'default');
+		});
+
+		//타이틀 설정
+		$('header.mobile-only h2.header__page-name').text($('#main div.page-title').eq(0).text());
+	</script>
+	<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/plugin.js"></script>
+	<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/common.js"></script>
+
+	<!--필요시만 로드-->
+	<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/vendor/lodash.min.js"></script>
+	<!--사용되지 않음-->
+	<!--<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/vendor/localforage.min.js"></script>-->
+	<script type="text/javascript"
+		src="https://static.jejuair.net/hpgg/resources/js/vendor/handlebars.min-v4.7.6.js"></script>
+	<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/handlebars.helpers.js"></script>
+
+	<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/util/sUtil.js"></script>
+	<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/util/dUtil.js"></script>
+	<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/util/utils.js"></script>
+
+	<!--필요시만 로드-->
+	<script type="text/javascript"
+		src="https://static.jejuair.net/hpgg/resources/js/amcharts/amcharts.core.js"></script>
+
+
+	<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/bizjs/commons/bizCommons.js"></script>
+	<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/jj.helpers.js"></script>
+
+	<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/bizjs/main/base/index.js"></script>
+	<script src="https://static.jejuair.net/hpgg/resources/js/booking/airport.js"></script>
+	<script src="https://static.jejuair.net/hpgg/resources/js/admin/lib/jquery-ui.min.js"></script>
+	<script>
+		let cultureCode = "ko_KR";
+		let tripType = document.querySelectorAll(".ticketing-type .selected")[0].getAttribute("data-tripType")
+		let domIntType = "";
+		let booleanLowestFare = false;
+		let searchLatelyDatas = [];
+		let bookType = "Common"
+		let departureAiportsMap = [];
+		let arrivalAiportsMap = [];
+		let airportMapLayer
+		let lowestFareJson = [2];
+		let searchUrl = 'https://sec.jejuair.net'
+		let currentDate = '2022.06.18(토)'.replace(/[^0-9]/g, '')
+		let jsAdtCount = '1', jsChdCount = '0', jsInfCount = '0';
+		let pageId = '0000000127';
+		let mapListType = 'List';
+		//추가
+		let announcePopupYn = "N";
+		let cname = "";
+		if (USER_DEVICE.getName() != "APP") {
+			if (USER_DEVICE.getName() == "PC") {
+				cname = "WPC";
+			} else {
+				cname = "WMO";
+			}
+		} else {
+			cname = "APP";
+		}
+		$(document).ready(function () {
+			BIZ_COMMONS_SCRIPT.callI18n(pageId)
+
+			if (cultureCode.startsWith('zh-tw') || cultureCode.startsWith('zh-hk')) {
+				let dates = $("#btnDatePicker").find('.txt').text().split('.');
+				let startDate = new Date(dates[0], dates[1] - 1, dates[2].substring(0, 2));
+				let endDate = new Date(dates[2].replace(/[^0-9]/gi, '').substring(2, 6), dates[3] - 1, dates[4].replace(/[^0-9]/gi, ''));
+				moment.lang(I18N.language);
+				let start = moment(startDate).format("yyyy.MM.DD(ddd)");
+				let end = moment(endDate).format("yyyy.MM.DD(ddd)");
+				$("#btnDatePicker").find('.txt').html(start + " ~ " + end)
+			}
+
+			if (announcePopupYn == "Y") {
+				var params = {
+					url: "/" + I18N.language + '/main/base/getMainPopup.do',
+					body: {}
+				};
+				BIZ_COMMONS_SCRIPT.getHtml(params, function (datas) {
+					$('body').append(datas);
+					//data-target="#modalLayer03"
+
+					if (getCookie("mainPopup") != "false") {
+						fullPopOpen('mainPopup');
+					}
+				}, function () { });
+			}
+
+			selectDepartureAirports('DEP');
+
+			recentSearch();
+			$(document).on('click', '.choise__button', clickChoiseButton);
+			$(document).on('click', 'button[name=btnAAMChartAirport]', clickChoiseButton);
+			$(document).on('click', 'button[name=btnLatelyAirport]', clickChoiseButton);
+
+			$(document).on('click', 'button[name=btnFavoriteAirport]', clickChoiseButton);
+
+			$(document).on('click', '.tab-swipe-item', clickAAMChartBtn);
+			$(document).on('click', 'button[name=btnPromotion]', clickPromotionButton);
+			$(document).on('focusin', '#txtPromoCode', keyDownPromotion);
+			$(document).on('contextmenu', '#txtPromoCode', preventClick);
+			$(document).on('focusout', 'input[name=txtCalYear]', focusoutCalcYear);
+			$(document).on('change', 'input[name=txtCalYear],[name=selCalMonth]', changeCalcMonth);
+			$(document).on('click', '.flatpickr-prev-month , .flatpickr-next-month', pickerMoveMonth);
+			$(document).on('click', '.date-layer button[data-select-date]', selectDate);
+			$(document).on('click', '.date-layer button[data-reset-date]', clearDate);
+			$(document).on('focus', '.header__input', autoComplete);
+			$(document).on('click', 'button[name=header_btn]', clickPrevButton);
+			$(document).on('click', 'button[name=btnSetPassenger]', setPassengerData);
+			document.getElementById("btnExchangeRoute1").addEventListener("click", exchangeRoute, false);
+			document.getElementById("btnExchangeRoute2").addEventListener("click", exchangeRoute, false);
+
+
+			$('.main-ticketing').sliding();
+
+			/* 2021-11-08 common.js 거로 사용 */
+			/*
+			//추천항공권 4개이상인 경우 롤링 처리
+			var recommTcktSize = '6';  
+			if(recommTcktSize > 4) {
+				var ticket = new Swiper('[data-carousel="recommendTicket"]', {
+					slidesPerView: 4,   
+					direction: 'horizontal',
+					// pagination: {
+					// 	el: '.carousel__pagination',
+					// 	clickable: true
+					// },
+					navigation: {
+							nextEl: '.carousel__button-next2',
+							prevEl: '.carousel__button-prev2'  
+					},
+					speed: 100,
+					autoplay: {
+							delay: 4000,
+							disableOnInteraction: false,
+					},
+					loop: true,
+					});
+			} 
+			*/
+
+			$("#arrivalData").data("stationcode", null)
+			$("#arrivalData").data("countrycode", null)
+			$("#arrivalData").data("arrivalname", null)
+
+			// common.js var mainItem 대체코드
+			var mainItem = new Swiper('[data-carousel="mainItem"]', {
+				effect: 'fade',
+				direction: 'horizontal',
+				pagination: {
+					el: '.carousel__pagination',
+					clickable: true
+				},
+				navigation: {
+					nextEl: '.carousel__button-next',
+					prevEl: '.carousel__button-prev'
+				},
+				speed: 100,
+				autoplay: {
+					delay: 4000,
+					disableOnInteraction: false,
+				},
+				loop: true,
+				on: {
+					slideChangeTransitionStart: function () {
+						var _index = this.activeIndex;
+						liLength = $('.main-carousel .swiper-slide').length - 2;
+
+						if (_index == 0) { // 첫번째 슬라이드에서 이전으로 넘어 갈때 마지막 슬라이드
+							$('.main-carousel__text').html($('#main-carousel__text_' + (liLength - 1)).html());
+							$('.swiper1').css('background', $('#main-carousel__text_' + (liLength - 1)).attr('name'));
+
+							var main_carousel_text = $('.main-carousel__text')[0];
+							var main_carousel_text_index = $('#main-carousel__text_' + (liLength - 1))[0];
+							if (main_carousel_text.tagName === 'A' && main_carousel_text_index.tagName === 'A') {
+								main_carousel_text.href = main_carousel_text_index.href;
+								main_carousel_text.onclick = main_carousel_text_index.onclick;
+							}
+						} else if (_index == liLength + 1) { // 마지막 슬라이드에서 다음으로 넘어 갈때 첫번째 슬라이드
+							$('.main-carousel__text').html($('#main-carousel__text_' + 0).html());
+							$('.swiper1').css('background', $('#main-carousel__text_' + 0).attr('name'));
+
+							var main_carousel_text = $('.main-carousel__text')[0];
+							var main_carousel_text_index = $('#main-carousel__text_' + 0)[0];
+							if (main_carousel_text.tagName === 'A' && main_carousel_text_index.tagName === 'A') {
+								main_carousel_text.href = main_carousel_text_index.href;
+								main_carousel_text.onclick = main_carousel_text_index.onclick;
+							}
+						} else { // Default  
+							$('.main-carousel__text').html($('#main-carousel__text_' + (_index - 1)).html());
+							$('.swiper1').css('background', $('#main-carousel__text_' + (_index - 1)).attr('name'));
+
+							var main_carousel_text = $('.main-carousel__text')[0];
+							var main_carousel_text_index = $('#main-carousel__text_' + (_index - 1))[0];
+							if (main_carousel_text.tagName === 'A' && main_carousel_text_index.tagName === 'A') {
+								main_carousel_text.href = main_carousel_text_index.href;
+								main_carousel_text.onclick = main_carousel_text_index.onclick;
+							}
+						}
+					},
+				}
+			});
+		});
+
+
+		function recentSearch() {
+			if (localStorage.getItem('recentSearchRoutes') != null) {
+				paintRecentRoutes();
+			} else {
+				$("#divRecentRoute").parents(".search").hide();
+			}
+		}
+
+
+		function paintRecentRoutes() {
+			$("#divRecentRoute").text("");
+			let btnRecentRoute = "";
+			deleteRecentRoute();
+			let localStorageDatas = JSON.parse(localStorage.getItem('recentSearchRoutes'));
+
+			for (let index = 0; index < localStorageDatas.length; index++) {
+				let trips = localStorageDatas[index];
+				if (trips.tripRoute[0].destinationName === '') {
+					continue;
+				}
+				if (trips.cultureCode.indexOf('ko') == -1) {
+					continue;
+				}
+				btnRecentRoute += '<div class="search__box swiper-slide"><button type="button" onclick="javascript:setRecentRoute(this);" class="search__item" data-trips = ' + JSON.stringify(trips) + '>' +
+					'<span class="search__destination"><span>' + trips.tripRoute[0].originName + '</span>'
+				if (trips.tripType === 'RT') {
+					btnRecentRoute += '<i class="icon round-trip" aria-label="' + trips.tripType + '"></i>'
+				} else {
+					btnRecentRoute += '<i class="icon one-way" aria-label="' + trips.tripType + '"></i>'
+				}
+
+				let passengerCnt = 0;
+				for (let i = 0; i < trips.passengers.length; i++) {
+					passengerCnt += Number(trips.passengers[i].count);
+				}
+				btnRecentRoute += '<span>' + trips.tripRoute[0].destinationName + '</span></span><span class="search__date">' +
+					trips.tripRoute[0].flightDate.replace(/[^0-9]/gi, '').substring(4, 6) + '.' + trips.tripRoute[0].flightDate.replace(/[^0-9]/gi, '').substring(6, 8);
+				if (trips.tripRoute.length > 1) {
+					btnRecentRoute += ' ~ ' + trips.tripRoute[1].flightDate.replace(/[^0-9]/gi, '').substring(4, 6) + '.' + trips.tripRoute[1].flightDate.replace(/[^0-9]/gi, '').substring(6, 8);
+				}
+				btnRecentRoute += '</span>' +
+					'<span class="search__person">' + passengerCnt + '</span>' +
+					'</button><button type="button" class="search__item-del" aria-label="delete" onclick="javascript:deleteRecentRoute(' + index + ');"></button></div></div>'
+			}
+			$("#divRecentRoute").append(btnRecentRoute);
+			if (localStorageDatas.length < 6) {
+				$(".carousel__button-next.swiper-button-disabled").hide();
+				$(".carousel__button-prev.swiper-button-disabled").hide();
+			}
+
+			if (btnRecentRoute == '') {
+				$("#divRecentRoute").parents(".search").hide();
+			}
+
+			var carouselDom = $(".search__slide")[0]
+			uiCarousel.reset(carouselDom);
+		}
+
+
+		function deleteRecentRoute(index) {
+			let recentSearchRoutes = []
+			let oldRecentSearchRoutes = JSON.parse(localStorage.getItem('recentSearchRoutes'));
+			for (let i = 0; i < oldRecentSearchRoutes.length; i++) {
+				let oldRecentSearchRoute = oldRecentSearchRoutes[i]
+				if (typeof index == 'undefined') {
+					if (oldRecentSearchRoutes[i].tripRoute[0].flightDate.replace(/[^0-9]/gi, '') >= '20220618') {
+						recentSearchRoutes.push(oldRecentSearchRoute)
+					}
+				} else {
+					if (i != index) {
+						recentSearchRoutes.push(oldRecentSearchRoute)
+					}
+				}
+			}
+			if (recentSearchRoutes.length != 0) {
+				localStorage.setItem('recentSearchRoutes', JSON.stringify(recentSearchRoutes));
+			} else {
+				localStorage.removeItem('recentSearchRoutes')
+			}
+			$("#divRecentRoute").text("");
+			if (typeof index != 'undefined') {
+				recentSearch();
+			}
+		}
+
+
+		function setRecentRoute(trips) {
+			$('.main-ticketing').addClass('open')
+			if ($(trips).data('trips').tripType === 'OW') {
+				$('.ticketing-type .item-btn').eq(1).trigger('click');
+			} else {
+				$('.ticketing-type .item-btn').eq(0).trigger('click');
+			}
+			let trip1 = {
+				stationCode: $(trips).data('trips').tripRoute[0].originAirport,
+				countryCode: $(trips).data('trips').domIntType === 'D' ? 'KR' : '',
+				stationName: $(trips).data('trips').tripRoute[0].originName,
+				stationType: 'DEP'
+			};
+		// 선택한 공항을 세팅
+				$("#depAirportLayer").data("target", "spanDepartureDesc")
+			setAirportInfo(trip1);
+
+			let trip2 = {
+				stationCode: $(trips).data('trips').tripRoute[0].destinationAirport,
+				countryCode: $(trips).data('trips').domIntType === 'D' ? 'KR' : '',
+				stationName: $(trips).data('trips').tripRoute[0].destinationName,
+				stationType: 'ARR'
+			};
+
+			$("#arrAirportLayer").data("target", "spanArrivalDesc")
+			setAirportInfo(trip2);
+			$("[id^='adtCount'],[id^='chdCount'],[id^='infCount']").val(0);
+			jsAdtCount = 0; jsChdCount = 0; jsInfCount = 0;
+			for (let i = 0; i < $(trips).data('trips').passengers.length; i++) {
+				if ($(trips).data('trips').passengers[i].type === 'ADT') {
+					$("[id^='adtCount']").val($(trips).data('trips').passengers[i].count)
+					jsAdtCount = $(trips).data('trips').passengers[i].count
+					if ($(trips).data('trips').passengers[i].count > 0) {
+						$("[id^='adtCount']").siblings().prop('disabled', false);
+					}
+				} else if ($(trips).data('trips').passengers[i].type === 'CHD') {
+					$("[id^='chdCount']").val($(trips).data('trips').passengers[i].count)
+					jsChdCount = $(trips).data('trips').passengers[i].count
+					if ($(trips).data('trips').passengers[i].count > 0) {
+						$("[id^='chdCount']").siblings().prop('disabled', false);
+					}
+				} else if ($(trips).data('trips').passengers[i].type === 'INF') {
+					$("[id^='infCount']").val($(trips).data('trips').passengers[i].count)
+					jsInfCount = $(trips).data('trips').passengers[i].count
+					if ($(trips).data('trips').passengers[i].count > 0) {
+						$("[id^='infCount']").siblings().prop('disabled', false);
+					}
+				}
+			}
+			setPassengerData()
+			if ($(trips).data('trips').tripRoute.length === 1) {
+				tripType = 'OW'
+				$("#departureDate").val($(trips).data('trips').tripRoute[0].flightDate)
+				$("#departureDate").prev().find('.txt').text(dUtil.dateWeekNameTime($("#departureDate").val().replace(/[^0-9]/gi, ''), weekLang))
+				$("#arrivalDate").val("");
+				$("div[name=divFromDate]").eq(0).next().addClass('one-way')
+				$("div[name=divFromDate]").eq(0).next().removeClass('round-trip')
+			} else {
+				tripType = 'RT'
+				$("#departureDate").val($(trips).data('trips').tripRoute[0].flightDate)
+				$("#arrivalDate").val($(trips).data('trips').tripRoute[1].flightDate)
+				$("#departureDate").prev().find('.txt').text(dUtil.dateWeekNameTime($("#departureDate").val().replace(/[^0-9]/gi, ''), weekLang) + " ~ " + dUtil.dateWeekNameTime($("#arrivalDate").val().replace(/[^0-9]/gi, ''), weekLang));
+				$("div[name=divFromDate]").eq(0).next().removeClass('one-way')
+				$("div[name=divFromDate]").eq(0).next().addClass('round-trip')
+			}
+			domIntType = $(trips).data('trips').domIntType
+			$("#paymentRadio01").prop("checked", true)
+			$("#paymentRadio01").attr('checked', 'checked').trigger('change');
+		}
+
+		function calcAge() {
+			const year = $("input[name=txtCalYear]:visible").val();
+			let month = $("[name=selCalMonth]:visible").val();
+			let day = $("[name=selCalDate]:visible").val().replace(/[^0-9]/g, '');
+			if (year === "" || month == null || day === "0") {
+				$('#calcError').siblings().find('.input-box').eq(0).addClass('input--error')
+				$('#calcError').siblings().find('.input-box').eq(1).addClass('input--error')
+				$('#calcError').text('생년월일을 입력해 주세요.');
+				$('#calcError').show();
+				$('div[name=calcMsg]').hide();
+				return;
+			}
+			$('#calcError').siblings().find('.input-box').eq(0).removeClass('input--error')
+			$('#calcError').siblings().find('.input-box').eq(1).removeClass('input--error')
+			if (month.length === 1) {
+				month = "0" + month;
+			}
+			if (day.length === 1) {
+				day = "0" + day;
+			}
+
+			//국제선은 출발일 기준
+			let baseDate = $("#departureDate").val();
+			const age = getAge(year, month, day, baseDate);
+			let passengerType;
+			if (domIntType === 'D') {
+				if (age < 2) {
+					passengerType = BIZ_COMMONS_SCRIPT.getI18n("0000000127.msg00049");
+					if (tripType != 'OW') {
+						baseDate = $("#arrivalDate").val();
+						const age = getAge(year, month, day, baseDate);
+						if (age >= 2) {
+							passengerType = BIZ_COMMONS_SCRIPT.getI18n("0000000127.msg00044");
+						}
+					}
+				} else if (age < 13) {
+					passengerType = BIZ_COMMONS_SCRIPT.getI18n("0000000127.msg00044");
+				} else {
+					passengerType = BIZ_COMMONS_SCRIPT.getI18n("0000000127.msg00039");
+				}
+			} else { // 국제선
+				if (age < 2) {
+					passengerType = BIZ_COMMONS_SCRIPT.getI18n("0000000127.msg00049");
+					if (tripType != 'OW') {
+						baseDate = $("#arrivalDate").val();
+						const age = getAge(year, month, day, baseDate);
+						if (age >= 2) {
+							passengerType = BIZ_COMMONS_SCRIPT.getI18n("0000000127.msg00044");
+						}
+					}
+				} else if (age < 12) {
+					passengerType = BIZ_COMMONS_SCRIPT.getI18n("0000000127.msg00044");
+				} else {
+					passengerType = BIZ_COMMONS_SCRIPT.getI18n("0000000127.msg00039");
+				}
+			}
+			const resultBox = $('div[name=calcMsg]');
+			resultBox.empty();
+			const resultMessage = BIZ_COMMONS_SCRIPT.getI18n("0000000127.msg00105").replace("#0", baseDate).replace("#1", "<strong class='orange'>" + passengerType + "</strong>")
+			resultBox.html(resultMessage);
+			resultBox.show();
+		}
+
+		function getCookie(name) {
+			var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+			return value ? value[2] : '';
+		}
+	</script>
+	<script async src="https://s.yimg.jp/images/listing/tool/cv/ytag.js"></script>
+	<script>
+		if (langCdtTag === 'ja') {
+			window.yjDataLayer = window.yjDataLayer || [];
+			function ytag() { yjDataLayer.push(arguments); }
+			ytag({
+				"type": "yjad_retargeting",
+				"config": {
+					"yahoo_retargeting_id": "IHEOTL2YNO",
+					"yahoo_retargeting_label": "",
+					"yahoo_retargeting_page_type": "",
+					"yahoo_retargeting_items": [
+						{ item_id: '', category_id: '', price: '', quantity: '' }
+					]
+				}
+			});
+		}
+	</script>
+	<script type="text/javascript" src="/XTUjN2OR7FOlz/x/YiVt3oEZZeykQ/h3Q3hpGfm3/PFY6AQ/ODR2K/g0YOD4"></script>
+</body>
+
+</html>

@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제주항공 | 운항스케줄 조회</title>
+    <link rel="stylesheet" type="text/css" href="/admin/lib/css/common.css">
+    <link rel="icon" href="/admin/lib/images/favicon.ico">
+</head>
+<script>
+    function dropdown(num) {
+        var droptarget = 'drop' + num;
+        console.log(droptarget)
+        var target = document.getElementsByClassName(droptarget);
+        var uptarget;
+        var up;
+
+
+        for (var i = 0; i < 12; i++) {
+            if (num == i) { i = i + 1; }
+            console.log('들어옴' + i)
+            uptarget = 'drop' + i;
+            up = document.getElementsByClassName(uptarget);
+
+            for (var j = 0; j < up.length; j++) {
+                console.log('j들어옴' + j)
+                up[j].style.display = 'none';
+                console.log(up[j].style.display);
+            }
+        }
+
+        var disStyle = target[0].style.display;
+        console.log('V' + disStyle + 'V');
+        console.log(disStyle == 'block');
+
+        if (disStyle == 'block') {
+            for (var i = 0; i < target.length; i++) {
+                target[i].style.display = 'none';
+            }
+        } else {
+            for (var i = 0; i < target.length; i++) {
+                target[i].style.display = 'block';
+            }
+        }
+    }
+
+</script>
+
+<body>
+    <div class="container">
+        <div class="containerMenu">
+            <div class="navigation">
+                <div class="homelogo">
+                    <a href="/pages/index.html">
+                        <span class="logo"><img src="/admin/lib/images/Jejuair_logo.png"></span>
+                    </a>
+                </div>
+                <ul>
+                    <li>
+                        <a href="#" onclick="dropdown(0)">
+                            <span class="icon">
+                                <ion-icon name="calendar-outline"></ion-icon>
+                            </span>
+                            <span class="title">운항스케줄</span>
+                        </a>
+                        <ol>
+                            <li class="drop0">
+                                <a href="/pages/flight_schedule/flight_schedule_list/flight_schedule_list.html">
+                                    o <span class="sub-title">운항스케줄 조회</span>
+                                </a>
+                            </li>
+                            <li class="drop0">
+                                <a href="/pages/flight_schedule/flight_schedule_regist/flight_schedule_regist.html">
+                                    o <span class="sub-title">운항스케줄 등록</span>
+                                </a>
+                            </li>
+                            <li class="drop0">
+                                <a href="/pages/flight_schedule/aircraft_list/aircraft_list.html">
+                                    o <span class="sub-title">항공기 정보 조회</span>
+                                </a>
+                            </li>
+                            <li class="drop0">
+                                <a href="/pages/flight_schedule/aircraft_regist/aircraft_regist.html">
+                                    o <span class="sub-title">항공기 신규 등록</span>
+                                </a>
+                            </li>
+                            <li class="drop0">
+                                <a href="/pages/flight_schedule/destination_list/destination_list.html">
+                                    o <span class="sub-title">취항지 정보 조회</span>
+                                </a>
+                            </li>
+                            <li class="drop0">
+                                <a href="/pages/flight_schedule/destination_regist/destination_regist.html">
+                                    o <span class="sub-title">취항지 신규 등록</span>
+                                </a>
+                            </li>
+                        </ol>
+                    </li>
+
+                    <li>
+                        <a href="/pages/customer/customer_list/customer_list.html" onclick="dropdown(1)">
+                            <span class="icon">
+                                <ion-icon name="people-outline"></ion-icon>
+                            </span>
+                            <span class="title">고객조회</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="dropdown(2)">
+                            <span class="icon">
+                                <ion-icon name="document-text-outline"></ion-icon>
+                            </span>
+                            <span class="title">예약조회</span>
+                        </a>
+                        <ol>
+                            <li class="drop2">
+                                <a href="/pages/reservation/reservation_list_byflight/reservation_list_byflight.html">
+                                    ㅇ <span class="sub-title">운항별 예약자 조회</span>
+                                </a>
+                            </li>
+                            <li class="drop2">
+                                <a href="/pages/reservation/reservation_namelist/reservation_namelist.html">
+                                    ㅇ <span class="sub-title">예약자명 조회</span>
+                                </a>
+                            </li>
+                        </ol>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="dropdown(3)">
+                            <span class="icon">
+                                <ion-icon name="ticket-outline"></ion-icon>
+                            </span>
+                            <span class="title">쿠폰</span>
+                        </a>
+                        <ol>
+                            <li class="drop3">
+                                <a href="/pages/coupon/coupon_list/coupon_list.html">
+                                    ㅇ <span class="sub-title">쿠폰 조회</span>
+                                </a>
+                            </li>
+                            <li class="drop3">
+                                <a href="/pages/coupon/coupon_regist/coupon_reg.html">
+                                    ㅇ <span class="sub-title">쿠폰 등록</span>
+                                </a>
+                            </li>
+                        </ol>
+                    </li>
+
+                    <li>
+                        <a href="/pages/point/point_list/point_list.html" onclick="dropdown(4)">
+                            <span class="icon">
+                                <ion-icon name="color-wand-outline"></ion-icon>
+                            </span>
+                            <span class="title">포인트</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/pages/payment/payment_list/payment_list.html" onclick="dropdown(5)">
+                            <span class="icon">
+                                <ion-icon name="card-outline"></ion-icon>
+                            </span>
+                            <span class="title">결제조회</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="dropdown(6)">
+                            <span class="icon">
+                                <ion-icon name="gift-outline"></ion-icon>
+                            </span>
+                            <span class="title">이벤트</span>
+                        </a>
+                        <ol>
+                            <li class="drop6">
+                                <a href="/pages/event/event_list/event_list.html">
+                                    ㅇ <span class="sub-title">이벤트 목록</span>
+                                </a>
+                            </li>
+                            <li class="drop6">
+                                <a href="/pages/event/event_regist/event_regist.html">
+                                    ㅇ <span class="sub-title">이벤트 등록</span>
+                                </a>
+                            </li>
+                        </ol>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="dropdown(7)">
+                            <span class="icon">
+                                <ion-icon name="book-outline"></ion-icon>
+                            </span>
+                            <span class="title">문의</span>
+                        </a>
+                        <ol>
+                            <li class="drop7">
+                                <a href="/pages/inquiry/personal_inquiry list/personal_inquiry list.html">
+                                    ㅇ <span class="sub-title">1:1문의 목록</span>
+                                </a>
+                            </li>
+                            <li class="drop7">
+                                <a href="/pages/inquiry/FAQ_list/FAQ_list.html">
+                                    ㅇ <span class="sub-title">FAQ 목록</span>
+                                </a>
+                            </li>
+                        </ol>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="dropdown(8)">
+                            <span class="icon">
+                                <ion-icon name="basket-outline"></ion-icon>
+                            </span>
+                            <span class="title">유실물 관리</span>
+                        </a>
+                        <ol>
+                            <li class="drop8">
+                                <a href="/pages/lost_item/lost_item_list/lost_item_list.html">
+                                    ㅇ <span class="sub-title">유실물 목록</span>
+                                </a>
+                            </li>
+                            <li class="drop8">
+                                <a href="/pages/lost_item/lost_item_register/lost_item_register.html">
+                                    ㅇ <span class="sub-title">유실물 등록</span>
+                                </a>
+                            </li>
+                        </ol>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="dropdown(9)">
+                            <span class="icon">
+                                <ion-icon name="pizza-outline"></ion-icon>
+                            </span>
+                            <span class="title">기내식 관리</span>
+                        </a>
+                        <ol>
+                            <li class="drop9">
+                                <a href="/pages/airline_food_/airline_food_list/airline_food_list.html">
+                                    ㅇ <span class="sub-title">기내식 목록</span>
+                                </a>
+                            </li>
+                            <li class="drop9">
+                                <a href="/pages/airline_food_/airline_food_register/airline_food_regist.html">
+                                    ㅇ <span class="sub-title">기내식 등록</span>
+                                </a>
+                            </li>
+                        </ol>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="dropdown(10)">
+                            <span class="icon">
+                                <ion-icon name="person-outline"></ion-icon>
+                            </span>
+                            <span class="title">관리자 관리</span>
+                        </a>
+                        <ol>
+                            <li class="drop10">
+                                <a href="/pages/admin_settings/admin_list/admin_list.html">
+                                    ㅇ <span class="sub-title">관리자 목록</span>
+                                </a>
+                            </li>
+                            <li class="drop10">
+                                <a href="/pages/admin_settings/admin_regist/admin_regist.html">
+                                    ㅇ <span class="sub-title">관리자 등록</span>
+                                </a>
+                            </li>
+                        </ol>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="dropdown(11)">
+                            <span class="icon">
+                                <ion-icon name="settings-outline"></ion-icon>
+                            </span>
+                            <span class="title">메인페이지 관리</span>
+                        </a>
+                        <ol>
+                            <li class="drop11">
+                                <a href="/pages/mainpage_settings/recommended_flight_list/recommended_flight_list.html">
+                                    ㅇ <span class="sub-title">추천 항공권 목록</span>
+                                </a>
+                            </li>
+                            <li class="drop11">
+                                <a href="/pages/mainpage_settings/recommended_flight_regist/recommended_flight_regist.html">
+                                    ㅇ <span class="sub-title">추천 항공권 등록</span>
+                                </a>
+                            </li>
+                        </ol>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="dropdown(12)">
+                            <span class="icon">
+                                <ion-icon name="log-out-outline"></ion-icon>
+                            </span>
+                            <span class="title">로그아웃</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- main -->
+        <div class="containerbody">
+            <div class="main">
+                <!-- 본문 -->
+                <div class="bodytext_area box_inner">
+                    <dl class="myinfo">
+                        <form action="#" class="regForm">
+                            <div class="tableBorder">
+                                <div class="pageTitle">
+                                    <h2>운항스케줄 상세페이지 수정</h2>
+                                </div>
+                                <ul class="leg_list">
+                                    <li class="clear">
+                                        <span class="tit_lbl">항공기타입</span>
+                                        <div class="reg_content">
+                                            <select class="textBox selectBox" >
+                                                <option value="항공기타입">항공기타입1</option>
+                                                <option value="항공기타입">항공기타입1</option>
+                                            </select>
+                                        </div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">국내/국외</span>
+                                        <div class="reg_content">
+                                            <select class="textBox selectBox" >
+                                                <option value="국내">국내</option>
+                                                <option value="국외">국외</option>
+                                            </select>
+                                        </div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">항공기명</span>
+                                        <div class="reg_content">
+                                            <select class="textBox selectBox" >
+                                                <option value="항공기명">항공기명1</option>
+                                                <option value="항공기명">항공기명2</option>
+                                            </select>
+                                        </div>
+                                    </li>
+
+                                    <li class="clear">
+                                        <span class="tit_lbl">출발지</span>
+                                        <div class="reg_content">
+                                            <select class="textBox selectBox" >
+                                                <option value="인천">서울(인천) ICN</option>
+                                                <option value="김포">서울(김포) GMP</option>
+                                                <option value="부산">부산 PUS</option>
+                                                <option value="제주">제주 CJU</option>
+                                                <option value="광주">광주 KWJ</option>
+                                                <option value="여수">여수 RSU</option>
+                                                <option value="군산">군산 KUV</option>
+                                                <option value="청주">청주 CJJ</option>
+                                                <option value="대구">대구 TAE</option>
+                                                <option value="도쿄">도쿄(나리타) NRT</option>
+                                                <option value="오사카">오사카(간사이) KIX</option>
+                                                <option value="후쿠오카">후쿠오카 FUK</option>
+                                                <option value="웨이하이">웨이하이 WEH</option>
+                                                <option value="하얼빈">하얼빈 HRB</option>
+                                                <option value="울란바타르">울란바타르 UBN</option>
+                                                <option value="하노이">하노이 HAN</option>
+                                                <option value="호찌민">호찌민 SGN</option>
+                                                <option value="다낭">다낭 DAD</option>
+                                                <option value="나트랑">나트랑/냐짱 CXR</option>
+                                                <option value="방콕">방콕 BKK</option>
+                                                <option value="마닐라">마닐라 MNL</option>
+                                                <option value="세부">세부 CEB</option>
+                                                <option value="보홀">보홀 TAG</option>
+                                                <option value="클락">클락 CRK</option>
+                                                <option value="싱가포르">싱가포르 SIN</option>
+                                                <option value="코타키나발라">코타키나발라 BKI</option>
+                                                <option value="괌">괌 GUM</option>
+                                                <option value="사이판">사이판 SPN</option>
+                                            </select>
+                                        </div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">도착지</span>
+                                        <div class="reg_content">
+                                            <select class="textBox selectBox" >
+                                                <option value="인천">서울(인천) ICN</option>
+                                                <option value="김포">서울(김포) GMP</option>
+                                                <option value="부산">부산 PUS</option>
+                                                <option value="제주">제주 CJU</option>
+                                                <option value="광주">광주 KWJ</option>
+                                                <option value="여수">여수 RSU</option>
+                                                <option value="군산">군산 KUV</option>
+                                                <option value="청주">청주 CJJ</option>
+                                                <option value="대구">대구 TAE</option>
+                                                <option value="도쿄">도쿄(나리타) NRT</option>
+                                                <option value="오사카">오사카(간사이) KIX</option>
+                                                <option value="후쿠오카">후쿠오카 FUK</option>
+                                                <option value="웨이하이">웨이하이 WEH</option>
+                                                <option value="하얼빈">하얼빈 HRB</option>
+                                                <option value="울란바타르">울란바타르 UBN</option>
+                                                <option value="하노이">하노이 HAN</option>
+                                                <option value="호찌민">호찌민 SGN</option>
+                                                <option value="다낭">다낭 DAD</option>
+                                                <option value="나트랑">나트랑/냐짱 CXR</option>
+                                                <option value="방콕">방콕 BKK</option>
+                                                <option value="마닐라">마닐라 MNL</option>
+                                                <option value="세부">세부 CEB</option>
+                                                <option value="보홀">보홀 TAG</option>
+                                                <option value="클락">클락 CRK</option>
+                                                <option value="싱가포르">싱가포르 SIN</option>
+                                                <option value="코타키나발라">코타키나발라 BKI</option>
+                                                <option value="괌">괌 GUM</option>
+                                                <option value="사이판">사이판 SPN</option>
+                                            </select>
+                                        </div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">출발 일시</span>
+                                        <div class="reg_content"><input type="date" name="startday"
+                                                class="textBox selectBox"  value="2022-07-06"></div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">도착 일시</span>
+                                        <div class="reg_content"><input type="date" name="startday"
+                                                class="textBox selectBox"  value="2022-07-12"></div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">출발 시간</span>
+                                        <div class="reg_content">
+                                            <input type="time" name="timeset" class="textBox selectBox"  value="15:30">
+                                        </div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">도착 시간</span>
+                                        <div class="reg_content">
+                                            <input type="time" name="timeset" class="textBox selectBox"  value="18:30">
+                                        </div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">BIZ-LITE 가격</span>
+                                        <div class="reg_content"><input type="text" class="textBox"  value="200,000">
+                                        </div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">BIZ-LITE 적립율</span>
+                                        <div class="reg_content"><input type="text" class="textBox2"  value="5"> %
+                                        </div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">FLEX 가격</span>
+                                        <div class="reg_content"><input type="text" class="textBox"  value="300,000">
+                                        </div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">FLEX 적립율</span>
+                                        <div class="reg_content"><input type="text" class="textBox2"  value="5"> %
+                                        </div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">FLY-BAG 가격</span>
+                                        <div class="reg_content"><input type="text" class="textBox"  value="50,000">
+                                        </div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">FLY-BAG 적립율</span>
+                                        <div class="reg_content"><input type="text" class="textBox2"  value="5"> %
+                                        </div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">FLY 가격</span>
+                                        <div class="reg_content"><input type="text" class="textBox"  value="30,000">
+                                        </div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">FLY 적립율</span>
+                                        <div class="reg_content"><input type="text" class="textBox2"  value="5"> %
+                                        </div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">기내식 유무</span>
+                                        <div class="reg_content">
+                                            <input type="radio" class="css-radio" id="mmm_lbl" name="meal"
+                                                value="포함"  checked><label for="mmm_lbl">포함</label>
+
+                                            <input type="radio" class="css-radio" id="www_lbl" name="meal"
+                                                value="불포함" ><label for="www_lbl">불포함</label>
+                                        </div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">반려동물</span>
+                                        <div class="reg_content"><input type="text" class="textBox2"  value="3"> /
+                                            5
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="buttonArea">
+                                <button type="button" class="button back" value="목록"
+                                    onclick="location.href='/flight_schedule/flight_schedule_list/flight_schedule_list.html'">목록</button>
+                                <button type="submit" class="button register" value="저장">저장</button>
+                            </div>
+                        </form>
+                    </dl>
+                </div>
+
+                <!-- 본문 끝 -->
+            </div>
+        </div>
+
+    </div>
+
+    <!--아이콘 사용을 위한 설치 스크립트-->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+    <script>
+        console.log("헬로우")
+        console.log(document.title.substr(7));
+        var name2 = document.title.substr(7);
+        var span = document.querySelectorAll('.navigation span');
+        var regex = /[^0-9]/g;
+        for (var i = 0; i < span.length; i++) {
+            if (span[i].innerHTML == name2) {
+                console.log("같은게 들어옴 " + i + "번")
+                var li = span[i].parentElement.parentElement
+                var num;
+                var str;
+                if (li.className.substr(0, 4) == 'drop') {
+                    str = li.parentElement.parentElement.firstElementChild.getAttribute("onclick");
+                    num = str.replace(regex, "");
+                    dropdown(num);
+                    li.classList.add('thispage');
+                    li.parentElement.parentElement.classList.add('thispage');
+                } else {
+                    str = li.firstElementChild.getAttribute("onclick");
+                    num = str.replace(regex, "");
+                    dropdown(num);
+                    li.classList.add('thispage');
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>
