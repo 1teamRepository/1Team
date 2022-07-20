@@ -1,0 +1,73 @@
+{
+"transactionTime": "2022-07-19T13:52:59.7699204",
+"resultCode": "OK",
+"data": {
+    "TB_MEMBERResponse": {
+        "idx": 15,
+        "userid": "orange",
+        "userpw": "4444",
+        "hp": "010-4444-4444",
+        "email": "orange@orange.com",
+        "regDate": "2022-07-04T10:38:24",
+        "status": "REGISTERED",
+        "TB_RESERVATIONResponseList": [
+            {
+                "RES_IDX": 25,
+                "RES_EMAIL": "orange@orange.com",
+                "RES_KO_NAME": "kim",
+                .....
+                ...
+                "MEM_IDX": 15,      <<<<<<<<<<<<<<< Member 연결
+                "SCH_IDX": 32,      <<<<<<<<<<<<<<< Schedule idx 연결
+                "TB_EXTRA_SERVICEResponseList": [
+                    {
+                        "EXT_IDX": 43,
+                        "EXT_SERVICE_TYPE": "Food", <<<< if(Food){ findByFoodIdx }
+                        "EXT_Ind_Buy": "No",    <<<<<<<< 개별구매 No
+                        .......
+                        "RES_IDX": 25,          <<<<<<<< reservation 연결
+                        "Search_IDX": 3,        <<<<<<<< Food 연결
+                        "TB_AIRLINE_FOODResponse":{
+                            "FOOD_IDX": 3,
+                            "FOOD_KRW_PRICE": 30000,
+                            "FOOD_KOR_NAME": "햄버거",
+                            .......
+                        }
+                    },
+                    {
+                        "EXT_IDX": 48,
+                        "EXT_SERVICE_TYPE": "baggage",  <<<< if(baggage){ findByBaggageIdx }
+                        "EXT_Ind_Buy": "Yes",       <<<<<<<< 개별구매 Yes
+                        .......
+                        "RES_IDX": 25,              <<<<<<<< reservation 연결
+                        "Search_IDX": 2,            <<<<<<<< Food 연결
+                        "TB_AIRLINE_FOODResponse":{
+                            "Baggage_IDX": 2,
+                            "Baggage_PRICE": 20000,
+                            "Baggage_Weight": "20Kg",
+                            .......
+                    }
+
+                    ],
+                "TB_FLIGHT_SCHEDULEResponse":{
+                    "SCH_IDX": 32,
+                    "SCH_DEPARTURE": "김포",
+                    "SCH_ARRIVAL": "제주",
+                    .......
+                }
+
+
+            },
+            {
+                "RES_IDX": 26,
+                "RES_EMAIL": "kim@orange.com",
+                "RES_KO_NAME": "kim",
+                .....
+                ......
+            }
+        ]
+    }
+},
+"description": "OK",
+"pagination": null
+}

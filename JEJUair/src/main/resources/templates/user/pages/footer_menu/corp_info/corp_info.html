@@ -1,0 +1,2634 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, maximum-scale=1, user-scalable=0">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="format-detection" content="telephone=no">
+	<title>제주항공</title>
+	<link rel="icon" type="image/png" href="https://static.jejuair.net/hpgg/resources/images/icon/favicon.ico" />
+	
+	
+	
+	
+
+
+
+<link rel="stylesheet" href="https://static.jejuair.net/hpgg/resources/css/global.css">
+<link rel="stylesheet" href="https://static.jejuair.net/hpgg/resources/css/component.css">
+<link rel="stylesheet" href="https://static.jejuair.net/hpgg/resources/css/page.css">
+<link rel="stylesheet" href="https://static.jejuair.net/hpgg/resources/css/responsive.css">
+<link rel="stylesheet" href="https://static.jejuair.net/hpgg/resources/css/lang.css">
+
+
+
+
+<!-- 다국어 관련 스크립트 변수 -->
+<script type="text/javascript">
+var I18N = {
+	language : "ko",
+	country : "KR",
+	countryAndLanguage : [{"languages":[{"cntryCd":"KR","langNm":"한국어","cntryNm":"대한민국","langCd":"ko"}],"cntryCd":"KR","cntryNm":"대한민국"},{"languages":[{"cntryCd":"JP","langNm":"日本語","cntryNm":"日本","langCd":"ja"}],"cntryCd":"JP","cntryNm":"日本"},{"languages":[{"cntryCd":"CN","langNm":"中文(内地)","cntryNm":"中国","langCd":"zh-CN"}],"cntryCd":"CN","cntryNm":"中国"},{"languages":[{"cntryCd":"TW","langNm":"中文(繁體)","cntryNm":"台灣","langCd":"zh-TW"}],"cntryCd":"TW","cntryNm":"台灣"},{"languages":[{"cntryCd":"HK","langNm":"中文(繁體)","cntryNm":"香港","langCd":"zh-HK"}],"cntryCd":"HK","cntryNm":"香港"},{"languages":[{"cntryCd":"MO","langNm":"中文(繁體)","cntryNm":"澳門","langCd":"zh-HK"}],"cntryCd":"MO","cntryNm":"澳門"},{"languages":[{"cntryCd":"US","langNm":"ENGLISH","cntryNm":"US","langCd":"en"}],"cntryCd":"US","cntryNm":"US"},{"languages":[{"cntryCd":"TH","langNm":"ENGLISH","cntryNm":"THAILAND","langCd":"en"}],"cntryCd":"TH","cntryNm":"THAILAND"},{"languages":[{"cntryCd":"VN","langNm":"ENGLISH","cntryNm":"VIETNAM","langCd":"en"}],"cntryCd":"VN","cntryNm":"VIETNAM"},{"languages":[{"cntryCd":"PH","langNm":"ENGLISH","cntryNm":"PHILLIPINES","langCd":"en"}],"cntryCd":"PH","cntryNm":"PHILLIPINES"},{"languages":[{"cntryCd":"MY","langNm":"ENGLISH","cntryNm":"MALAYSIA","langCd":"en"}],"cntryCd":"MY","cntryNm":"MALAYSIA"},{"languages":[{"cntryCd":"LA","langNm":"ENGLISH","cntryNm":"LAOS","langCd":"en"}],"cntryCd":"LA","cntryNm":"LAOS"},{"languages":[{"cntryCd":"RU","langNm":"ENGLISH","cntryNm":"RUSSIA","langCd":"en"}],"cntryCd":"RU","cntryNm":"RUSSIA"},{"languages":[{"cntryCd":"SG","langNm":"ENGLISH","cntryNm":"SINGAPORE","langCd":"en"}],"cntryCd":"SG","cntryNm":"SINGAPORE"},{"languages":[{"cntryCd":"MN","langNm":"ENGLISH","cntryNm":"MONGOLIA","langCd":"en"}],"cntryCd":"MN","cntryNm":"MONGOLIA"}]
+}
+var APP_DATA = {
+	loginSuccessFirstChecker : '', // 값의 유무로만 판단.
+	// deviceOs : "",
+	// deviceType : ""
+	deviceOs : "none",
+	deviceType : "PC",
+	shortUrl : ""
+}
+var USER_INFO = {
+	get : function() {
+		var data = JSON.stringify();
+		return data || "{}";
+	}
+}
+var PROP = {
+	assetsUrl : "https://static.jejuair.net/hpgg/resources",
+	cmsUrl: "https://static.jejuair.net/cms/images",
+}
+var USER_DEVICE = {
+	getName : function() {
+		return "PC";
+	},
+	isApp : function() {
+		return false;
+	},
+	isMobile : function() {
+		return false;
+	},
+	isWeb : function() {
+		return ;
+	}
+}
+var APPCALL = {
+	setMenu : function() {
+
+		if(APP_DATA.deviceOs == "ios") {
+			window.webkit.messageHandlers.goMenu.postMessage({});
+		} else if(APP_DATA.deviceOs == "aos") {
+			window.JejuAir.goMenu();
+		} else {
+			console.log("PC에서 호출작동됨 :: 메뉴를 개방하라");
+		}
+	},
+	back : function() {
+		if(APP_DATA.deviceOs == "ios") {
+			window.webkit.messageHandlers.goBack.postMessage({});
+		} else if(APP_DATA.deviceOs == "aos") {
+			window.JejuAir.goBack();
+		} else {
+			window.history.back();
+		}
+	},
+	close : function() {
+		if(APP_DATA.deviceOs == "ios") {
+			if(window.webkit.messageHandlers.goClose) {
+				window.webkit.messageHandlers.goClose.postMessage({});
+			}			
+		} else if(APP_DATA.deviceOs == "aos") {
+			window.JejuAir.goClose();
+		} else {
+			console.log("PC는 닫기가 존재하지 않습니다.");
+		}
+	},
+	afterLogin : function(userInfo) { // 로그인 시, APP은 1번 호출한다.
+		if(!userInfo) {
+			userInfo = USER_INFO.get();
+		}
+		if(APP_DATA.deviceOs == "ios") {
+			window.webkit.messageHandlers.userInfo.postMessage(userInfo);
+		} else if(APP_DATA.deviceOs == "aos") {
+			window.JejuAir.userInfo(userInfo);
+		} else {
+			console.log("호출완료");
+		}
+	},
+	callPassport : function() { // 로그인 시, APP은 1번 호출한다.
+		if(APP_DATA.deviceOs == "ios") {
+			window.webkit.messageHandlers.goOCRPassport.postMessage({});
+		} else if(APP_DATA.deviceOs == "aos") {
+			window.JejuAir.goOCRPassport();
+		} else {
+			console.log("호출완료");
+		}
+	},
+	callPastBoardingPass : function() { // 로그인 시, APP은 1번 호출한다.
+		if(APP_DATA.deviceOs == "ios") {
+			window.webkit.messageHandlers.goPastBoardingPass.postMessage({})
+		} else if(APP_DATA.deviceOs == "aos") {
+			window.JejuAir.goPastBoardingPass()
+		} else {
+			console.log("호출완료");
+		}
+	},
+	callBoardingPass : function(jsonString) { // 로그인 시, APP은 1번 호출한다.
+		if(APP_DATA.deviceOs == "ios") {
+			window.webkit.messageHandlers.mobileTicket.postMessage(jsonString)
+		} else if(APP_DATA.deviceOs == "aos") {
+			window.JejuAir.mobileTicket(jsonString)
+		} else {
+			console.log("호출완료");
+		}
+	},
+	goMain: function() { //메인화면 이동
+		if(APP_DATA.deviceOs == "ios") {
+			window.webkit.messageHandlers.callMain.postMessage({});
+		} else if(APP_DATA.deviceOs == "aos") {
+			window.JejuAir.goMain();
+		} else {
+			location.href="/"+I18N.language+"/main/base/index.do";
+		}
+	},
+	goLogout: function() {// 로그아웃시 네티이브 호출
+		if(APP_DATA.deviceOs == "ios") {
+			window.webkit.messageHandlers.goLogout.postMessage({});
+		} else if(APP_DATA.deviceOs == "aos") {
+			window.JejuAir.goLogout();
+		}else {
+			console.log('logout');
+		}
+	},
+	loginState: function() { //로그인 상태 체크
+		if(APP_DATA.deviceOs == "ios") {
+			window.webkit.messageHandlers.onLoginState.postMessage({})
+		} else if(APP_DATA.deviceOs == "aos") {
+			window.JejuAir.onLoginState();
+		}
+	},
+
+	goMyCoupon: function() { //쿠폰 이동
+		if(APP_DATA.deviceOs == "ios") {
+			window.webkit.messageHandlers.goMyCoupon.postMessage({});
+		} else if(APP_DATA.deviceOs == "aos") {
+			window.JejuAir.goMyCoupon();
+		}else {
+			URL_LINK.getI18Url('/member/mypage/myCoupon.do');
+		}
+	},
+
+	goMarket: function() {
+		if(APP_DATA.deviceOs !== "ios" && APP_DATA.deviceOs !== "aos") {
+			var infos = getMobileDevice(navigator.userAgent);
+			if(infos.isiOS) {
+				window.open("https://itunes.apple.com/ko/app/jeju-air/id373053637?l=ko&mt=8", "_blank");
+			}else if(infos.isAndroid) {
+				window.open("https://play.google.com/store/apps/details?id=com.parksmt.jejuair.android16", "_blank");
+			}
+		}
+	}
+}
+var URL_LINK = {
+	getI18Url : function(path) {
+		/*
+		if(path.indexOf('/corpService/') == 0 ) {
+			location.href = path;
+			return;
+		} else if(path.indexOf('/member/auth/') == 0 ) {
+			location.href = path;
+			return;
+		} else
+		*/
+		if(path.indexOf('/bonusProgram/') == 0 ) {
+			location.href = path;
+			return;
+		} else if(path.indexOf('#') == 0 ) {
+			location.href = path;
+			return;
+		} else if(path.indexOf('http') == 0 ) {
+			window.open(path, "_blank");
+			return;
+		}  else if(path.indexOf('/myPage/myBoardingList.do') == 0) {
+			alert("준비중입니다.");
+			return;
+		}
+		if(path.indexOf('viewCheckin.do') !== -1) {
+			URL_LINK.getHwUrl(path);
+		}else{
+			location.href = "/"+I18N.language+path;
+		}
+	},
+	getHwUrl : function(path, params) { //homepage <-> webcheckin
+		var vHtml = '';
+		if(params) {
+			Object.keys(params).map(function(key) {
+				vHtml += '<input type="hidden" name="'+key+'" value="'+params[key]+'">';
+			});
+		}
+		$("body").append("<form id='hybdComForm'><input type='hidden' name='targetUrl' value='" + "/"+I18N.language+path + "'/>"+vHtml+"</form>");
+    	$("#hybdComForm").prop("action", "/"+I18N.language+"/common/connect/index.do").prop("method", "POST").prop("target", "_self").submit();
+	}
+}
+
+if(APP_DATA.loginSuccessFirstChecker !="") {
+	APPCALL.afterLogin();
+}
+
+if(location.href.indexOf('flag=logout')!==-1) {
+	APPCALL.goLogout();
+}
+
+//웹 로그인 상태 확인 콜백
+//true : 로그인 상태
+//false : 비로그인 상태 
+function callbackLoginState(result){
+   var isLogin = "false";//web 로그인여부
+   if(!isLogin && result) { //web비로그인 native로그인일경우
+	 APPCALL.goLogout(); //native로그아웃
+   }
+}
+
+if(USER_DEVICE.isApp) {//앱일경우 native로그인 상태체크
+	APPCALL.loginState();
+}
+
+// 웹뷰 이탈 시 좌석 해제 홈페이지에 없어 에러 발생해 추가함
+function callbackFocusOut() {}
+
+//스크립 오류 발생으로 인해 빈 메소드 추가
+function _AutofillCallbackHandler() {}
+
+//안드로이드 modal일경우 back버튼 클릭시 뒤로가기가 아닌 modal닫기
+function goBackBtn() {
+
+	var isOpen1 = false;
+	var isOpen2 = false;
+
+	if($('html').hasClass('open-modal')){
+		$('div.jquery-modal').find('a.modal__close').trigger('click');
+		for(var i=0;i < $('div.modal-wrapper').length;i++){
+			if($('div.modal-wrapper:eq('+i+')').hasClass('on')){
+				$('div.modal-wrapper:eq('+i+')').find('a.modal__close').trigger('click');
+
+				if($('html').hasClass('open-modal')){
+					$('html').removeClass('open-modal');
+				}
+				break;
+			}
+		};
+		
+		return false;
+	}
+
+	if($('body > div').hasClass('dim')) {
+		//bottomSheet
+		for(var i=0;i < $('div.bottom-sheet').length;i++){
+			if($('div.bottom-sheet:eq('+i+')').css('display')==='block'){
+				$('div.bottom-sheet:eq('+i+')').find('button[data-element="bottomSheet__button-close"]').trigger('click');
+				break;
+			}
+		};
+		return false;
+	}
+	
+	if($('div.flight-layer').length > 0) {
+		for(var i=0;i < $('div.flight-layer').length;i++){
+			if($('div.flight-layer:eq('+i+')').css('display')==='block'){
+				$('div.flight-layer:eq('+i+')').find('a.layer-close').trigger('click');
+				isOpen1 = true;
+				break;
+			}
+		};
+	}
+	
+	if($('div.date-layer').length > 0) {
+		for(var i=0;i < $('div.date-layer').length;i++){
+			if($('div.date-layer:eq('+i+')').css('display')==='block'){
+				$('div.date-layer:eq('+i+')').find('a.layer-close').trigger('click');
+				isOpen2 = true;
+				break;
+			}
+		};
+	}
+
+	if(!$('html').hasClass('open-modal') && !$('body > div').hasClass('dim') && !isOpen1 && !isOpen2) {
+		try {
+			window.JejuAir.callBackBtn('Y');
+		}catch(e){}
+	}
+	
+}
+
+</script>
+	
+	
+	
+			
+	
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	window.dataLayer.push({
+		'event'		: 'pageview',
+		'dimension2':btoa(JSON.parse(USER_INFO.get()).userId),
+		'dimension3':'PC-WEB',
+		'dimension4': JSON.parse(USER_INFO.get()).membergrade 
+	})
+	</script>    	
+    <!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-PD2BQQ4');</script>
+	<!-- End Google Tag Manager -->
+	
+	
+    <script>
+	var langCdtTag = 'ko';	
+	</script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+	<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49935507-8"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'UA-49935507-8');
+	</script>  종료 N006-->
+	
+	<!-- Global site tag (gtag.js) - Google Ads -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=AW-763115837"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'AW-763115837');
+	</script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-49935507-9"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'UA-49935507-9');
+	</script>
+	
+	
+	
+	<script type="text/javascript" src="//wcs.naver.net/wcslog.js"> </script> 
+	<script type="text/javascript"> 
+	if (!wcs_add) var wcs_add={};
+		wcs_add["wa"] = "s_29f8dbdc0496";
+		if (!_nasa) var _nasa={};
+		if(window.wcs){
+		wcs.inflow();
+		wcs_do(_nasa);
+	}
+	</script>
+	<script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/adfit/static/kp.js"></script>
+	<script type="text/javascript">kakaoPixel('6788472491368532022').pageView();</script>   
+<script src='/tuna_.js'></script>
+                              <script>!function(a){var e="https://s.go-mpulse.net/boomerang/",t="addEventListener";if("False"=="True")a.BOOMR_config=a.BOOMR_config||{},a.BOOMR_config.PageParams=a.BOOMR_config.PageParams||{},a.BOOMR_config.PageParams.pci=!0,e="https://s2.go-mpulse.net/boomerang/";if(window.BOOMR_API_key="AYF4Y-8J9XB-2BDC5-23EM3-Q7Z28",function(){function n(e){a.BOOMR_onload=e&&e.timeStamp||(new Date).getTime()}if(!a.BOOMR||!a.BOOMR.version&&!a.BOOMR.snippetExecuted){a.BOOMR=a.BOOMR||{},a.BOOMR.snippetExecuted=!0;var i,_,o,r=document.createElement("iframe");if(a[t])a[t]("load",n,!1);else if(a.attachEvent)a.attachEvent("onload",n);r.src="javascript:void(0)",r.title="",r.role="presentation",(r.frameElement||r).style.cssText="width:0;height:0;border:0;display:none;",o=document.getElementsByTagName("script")[0],o.parentNode.insertBefore(r,o);try{_=r.contentWindow.document}catch(O){i=document.domain,r.src="javascript:var d=document.open();d.domain='"+i+"';void(0);",_=r.contentWindow.document}_.open()._l=function(){var a=this.createElement("script");if(i)this.domain=i;a.id="boomr-if-as",a.src=e+"AYF4Y-8J9XB-2BDC5-23EM3-Q7Z28",BOOMR_lstart=(new Date).getTime(),this.body.appendChild(a)},_.write("<bo"+'dy onload="document._l();">'),_.close()}}(),"".length>0)if(a&&"performance"in a&&a.performance&&"function"==typeof a.performance.setResourceTimingBufferSize)a.performance.setResourceTimingBufferSize();!function(){if(BOOMR=a.BOOMR||{},BOOMR.plugins=BOOMR.plugins||{},!BOOMR.plugins.AK){var e=""=="true"?1:0,t="",n="3z2yq5yx3cp3gyv5kska-f-c0a190c3f-clientnsv4-s.akamaihd.net",i="false"=="true"?2:1,_={"ak.v":"32","ak.cp":"881439","ak.ai":parseInt("562947",10),"ak.ol":"0","ak.cr":7,"ak.ipv":4,"ak.proto":"h2","ak.rid":"e3eb8d","ak.r":44964,"ak.a2":e,"ak.m":"b","ak.n":"essl","ak.bpcip":"222.117.136.0","ak.cport":58392,"ak.gh":"23.216.159.175","ak.quicv":"","ak.tlsv":"tls1.3","ak.0rtt":"","ak.csrc":"-","ak.acc":"","ak.t":"1656575124","ak.ak":"hOBiQwZUYzCg5VSAfCLimQ==XfaF3oScVqRTLmwCY1nTWqTfx+OaoD7oCEtClUMDwx5Eam+xOVtUYd87tZocliMoFW9bTW29EGbWzJer6EYz1TE0yu3m1fh7SWWJyRObJHEWZCTXEEXANjRDBxnq8ZQ7vgoyXFuv2P0r4/BPNals0san3moEuEsARCvHkWcQPcqFu29IyYYvalw1HxHrF4v8RXMtfNdoP2sbn0pgLpL2kiR5aqGHZQ+2xNIfDbFQVKhcyK5VvGv5WDhK1jv/sa9+yJ4S8LzhB48zeceATBR+awajB5Og/rvzHFEPoR25lRqbRprULBbXGRf4hltSBqRPAI/yqQk1rGM5M7/9OVBfHB89QgHNrizd3niiuIUpVADjQ96ecF6oFHcVaHok+lO2bGCQlNtdPZr0n/5tZla69kLRo6zPYSpdUC1yBnXLgso=","ak.pv":"78","ak.dpoabenc":"","ak.tf":i};if(""!==t)_["ak.ruds"]=t;var o={i:!1,av:function(e){var t="http.initiator";if(e&&(!e[t]||"spa_hard"===e[t]))_["ak.feo"]=void 0!==a.aFeoApplied?1:0,BOOMR.addVar(_)},rv:function(){var a=["ak.bpcip","ak.cport","ak.cr","ak.csrc","ak.gh","ak.ipv","ak.m","ak.n","ak.ol","ak.proto","ak.quicv","ak.tlsv","ak.0rtt","ak.r","ak.acc","ak.t","ak.tf"];BOOMR.removeVar(a)}};BOOMR.plugins.AK={akVars:_,akDNSPreFetchDomain:n,init:function(){if(!o.i){var a=BOOMR.subscribe;a("before_beacon",o.av,null,null),a("onbeacon",o.rv,null,null),o.i=!0}return this},is_complete:function(){return!0}}}}()}(window);</script></head>
+<body id="subLayoutBody">
+	
+
+
+
+
+<!-- 개선 #1271286440
+<div id="skipNav" class="skip-nav">
+	<a href="#content" class="skip-nav__item">본문 바로가기</a>
+</div>
+-->
+<!-- 상단 띠배너 공지사항은 메인페이지만 표시합니다. -->
+
+	
+
+
+<!-- 앱설치알림 -->
+
+
+
+
+	
+
+
+<!-- 남은시간 연장 및 공지바 노출-->
+<div class="top-custom-banner ticketing_top_bar"><!--활성화시 .on 추가-->
+  <div class="top-custom-banner__inner">
+    <dl class="time_bar">
+        <dt>이용 가능시간 : </dt>
+        <dd><strong></strong></dd>
+    </dl>
+    <div class="link-wrap--arrow">
+        <button type="button"  class="link-wrap__text" onclick="javascript:sendExtTripsell();"><span>연장하기</span></button>
+    </div>
+    <button type="button" class="top-custom-banner__close" aria-label="닫기"></button>
+  </div>
+</div>
+
+<!-- //남은시간 연장 및 공지바 노출 -->
+<!-- header -->
+	<!-- 앱설치알림 -->
+	<!-- 남은시간 연장 및 공지바 노출-->
+	<div class="top-custom-banner ticketing_top_bar"><!--활성화시 .on 추가-->
+		<div class="top-custom-banner__inner">
+			<dl class="time_bar">
+				<dt>이용 가능시간 : </dt>
+				<dd><strong></strong></dd>
+			</dl>
+			<div class="link-wrap--arrow">
+				<button type="button"  class="link-wrap__text" onclick="javascript:sendExtTripsell();"><span>연장하기</span></button>
+			</div>
+			<button type="button" class="top-custom-banner__close" aria-label="닫기"></button>
+		</div>
+	</div>
+	<!-- 앱설치알림 끝-->
+    <!-- header -->
+    <div id="header" class="header">
+
+		<!-- mobile -->
+		<header class="header__inner mobile-only">
+			<div class="header__button-wrap subType"  data-element="gnbToggle"  >
+			</div>
+			<!-- 스크롤시 스티키 상단 -->
+
+			<!-- 전체메뉴 -->
+			<div class="gnb" id="gnb">
+				<div class="gnb__header">
+					<div class="gnb__header-top" data-absolute-sticky>
+						<div class="additional">
+						</div>
+					</div>
+					<div class="gnb__header-bot">
+						<div class="before">
+							<div class="title">
+								로그인 하시고<br>더 풍부한 혜택을 누리세요!
+							</div>
+							<!-- fixed 영역 -->
+							<div class="sticky-wrap">
+								<div class="button-wrap button-flex sticky__inner gnb-sticky1">
+								</div>
+							</div>
+							<!-- //fixed 영역 -->
+							<div class="title">
+								<div class="title__section title__section--additional">제주항공에서 예약하지 않으셨다면?
+									<div class="additional">
+										<div class="link-wrap">
+											<a href="javascript:;" class="link-wrap__underline" data-action="menu" data-menu-name="bookingSearch"><span>예약조회</span></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="icon-link">
+							</div>
+						</div>
+					<!-- //로그인 후 -->
+					</div>
+				</div>
+				<hr class="section-spacer">
+				<div class="gnb-wrap">
+					<div class="gnb__footer">
+					</div>
+				</div>
+			</div>
+		<!-- //전체메뉴 -->
+		</header>
+		<!-- //mobile -->
+
+        <!-- pc용 공통 헤더 -->
+
+        <!--  상단 헤더  -->
+        <div class="header__util util pc-only">
+            <div class="util__inner">
+                <div class="util__benefit">
+                <!-- 기업우대 여행자우대 사이트 한국어만 표출   , 기업우대서비스 오픈이 11월 8일,  오픈 시기  -->
+                    <a href="javascript:;" class="util__link company" data-action="menu" data-menu-name="company">기업 우대</a>
+                    <div class="util__link-wrap" data-element="toggle" data-options='{"mode": "slide", "speed": 0, "clickToClose": true}'>
+                        <button type="button" class="util__link arrow__link"  data-element="toggle__anchor">여행사 우대</button>
+                        <div class="util__link-panel" data-element="toggle__panel">
+                            <a href="javascript:;" class="item" data-action="menu" data-menu-name="travelAgencyD">국내선</a>
+                            <a href="javascript:;" class="item" data-action="menu" data-menu-name="travelAgencyF">국제선</a>
+                        </div>
+                    </div>	
+                    <a href="https://cargo.jejuair.net" target="_black" class="util__link2" data-action="menu" data-menu-name="Cargo">Cargo</a>	
+                </div>
+
+
+                <div class="util__link-list" data-custom-toggle="wrap">
+                    <!--  로그인 전 노출 -->
+                    <a href="javascript:;" class="util__link" data-action="menu" data-menu-name="login">로그인</a>
+                    <a href="javascript:;" class="util__link" data-action="menu" data-menu-name="join">회원가입</a>
+                    <!-- / 로그인 전 노출 끝 -->
+
+                    <!--  로그인 후 노출 -->
+                    <!--
+                    <span class="util__personal">
+                        <a href="javascript:;" onclick="URL_LINK.getI18Url('/memberBenefit/refreshPoint/pointSearch.do');"><span class="text">나의 포인트</span> <strong class="point" data-user-info-box="availPoint">1,000P</strong></a>
+                    </span>
+                    <a href="javascript:;" class="util__link" id="logout" >로그아웃</a>
+                    -->
+                    <!-- / 로그인 후 노출 끝 -->
+					
+					<a href="javascript:;" onclick="URL_LINK.getI18Url('/memberBenefit/refreshPoint/main.do')" class="util__link">리프레시 포인트</a>
+					<a href="javascript:;" onclick="URL_LINK.getI18Url('/customerService/csCenter/faqList.do')" class="util__link">고객센터</a>
+					<a href="javascript:;" onclick="URL_LINK.getI18Url('/customerServiceCenter/notice.do')" class="util__link">공지사항</a>
+
+                    
+					<!--  언어 설정  -->
+					<!-- 일단 주석으로 처리할게요 -->
+					<button type="button" class="util__country" data-custom-toggle="button">
+                        <span class="text">대한민국</span>
+                    </button>
+					<!--
+                    <div class="header-country__layer" data-custom-toggle="panel">
+                        <div class="country__title">
+                            지역 및 언어 설정
+                        </div>
+                        <div class="country__input">
+                            <div class="select-wrap select-wrap--line">
+                                <select title="국가 선택" class="select-wrap__select" name="countryChoice" id="countryChoice">
+                                    <option value="KR" selected>대한민국</option>
+                                    <option value="JP" >日本</option>
+                                    <option value="CN" >中国</option>
+                                    <option value="TW" >台灣</option>
+                                    <option value="HK" >香港</option>
+                                    <option value="MO" >澳門</option>
+                                    <option value="US" >US</option>
+                                    <option value="TH" >THAILAND</option>
+                                    <option value="VN" >VIETNAM</option>
+                                    <option value="PH" >PHILLIPINES</option>
+                                    <option value="MY" >MALAYSIA</option>
+                                    <option value="LA" >LAOS</option>
+                                    <option value="RU" >RUSSIA</option>
+                                    <option value="SG" >SINGAPORE</option>
+                                    <option value="MN" >MONGOLIA</option>
+                                </select>
+                            </div>
+                            <div class="select-wrap select-wrap--line">
+                                <select class="select-wrap__select" title="언어 선택" name="languageChoice" id="languageChoice">
+                                    <option value="ko" selected>한국어</option>
+                                </select>
+                            </div>
+                            <button class="country__button" id="countryAndLanguageChoiceBtn" data-flag="base">확인</button>
+                        </div>
+                        <button class="button-close" data-custom-toggle="close">
+                            <span class="hidden">닫기</span>
+                        </button>
+                    </div>
+					-->
+                    <!-- / 언어 설정 끝 -->
+                </div>
+            </div>
+        </div>
+        <!-- / 상단 헤더 끝 -->
+
+
+
+        <!-- / 하단 헤더  -->
+        <header class="header__inner  pc-only">
+			<div class="sticky-header" data-sticky>
+
+				<!-- 헤더 보이는 부분 -->
+				<div class="header__box">
+					<!-- header__box 추가 -->
+					<h1 class="header__logo">
+						<a href="javascript:;" data-action="menu" data-menu-name="main">
+
+							<img src="..//user/lib/images//JEJUair-Logo.png" alt="jejuairlogo" loading="lazy"/>
+						</a>
+					</h1>
+					<h2 class="header__page-name"></h2>
+
+					<!-- 대표 메뉴 -->
+					<div class="header__link-list">
+						<a href="javascript:void(0);" class="header__link" onclick="URL_LINK.getI18Url('/ibe/booking/Availability.do')">항공권 예매</a>
+						<a href="javascript:void(0);" class="header__link" onclick="URL_LINK.getI18Url('/member/mypage/main.do')">마이페이지</a>
+						<a href="javascript:void(0);" class="header__link" onclick="URL_LINK.getI18Url('/additionalService/service/main.do')">부가서비스 안내</a>
+						<a href="javascript:void(0);" class="header__link" onclick="URL_LINK.getI18Url('/ibe/checkin/viewCheckin.do')">모바일 탑승권</a>
+						<a href="javascript:void(0);" class="header__link" onclick="URL_LINK.getI18Url('/event/event.do')">이벤트</a>
+					</div>
+                    <!-- / 대표 메뉴 끝 -->
+
+					<div class="header__search-wrap header-search subType" data-custom-toggle="wrap"  >
+						<!-- <button type="button" class="header__button-ticket">
+						<span class="hidden">티켓보기</span>
+						</button> -->
+						<button type="button" class="header__button-search" data-custom-toggle="button">
+							<img loading="lazy" src="https://static.jejuair.net/hpgg/resources/images/icon/icon-header-search.png" alt="검색">
+						</button>
+						<div class="header-search__layer" data-custom-toggle="panel">
+							<div class="header-search__form" data-element="form">
+								<input type="search" class="search__text" placeholder="검색어를 입력해 주세요" data-element="input">
+								<button type="button" data-element="remove" class="input__remove-button">삭제</button>
+								<div class="search-button">
+									<button class="button" type="button">검색</button>
+								</div>
+							</div>
+							<!-- <button type="button" class="search__close" data-custom-toggle="button">
+								<span class="hidden">검색창 닫기</span>
+							</button> -->
+						</div>
+					</div>
+
+					<!-- 사이트 맵 버튼 -->
+					<div class="header__button-wrap subType" data-element="gnbToggle" >
+						<button type="button" class="gnb__button">
+							<img loading="lazy" src="..//user/lib/images//icon-hamburger-header.png" alt="전체메뉴 열기" class="open">
+							<!-- 2021.06.08 메인페이지는 스크롤 시, 배경이 주황색으로 변하며 대비를 이루기 위해 흰색을 매치한다. -->
+							<!--2021-04-13 이미지로 변경 // 전체메뉴 버튼-->
+						</button>
+					</div>
+					<!-- / 사이트 맵 버튼 끝 -->
+
+
+					<!-- goto-quick-booking : 스티키 클릭용 -->
+					<!-- 스크롤 아래로 내릴시 나옴 -->
+					<div class="goto-quick-booking">
+						<a href="javascript:;">
+							<span>어디로 여행가세요?</span>
+							<div class="goto-btn">
+								<span>항공권 검색</span>
+							</div>
+						</a>
+					</div>
+					<!-- //goto-quick-booking 끝 -->
+
+
+				</div>
+				<!-- / 헤더 보이는 부분 끝 -->
+
+				<!-- 사이트 맵메뉴 -->
+				<div class="gnb" id="gnb">
+					<div class="gnb__header">
+						<div class="gnb__header-top" data-absolute-sticky>
+							<a href="javascript:;" class="button-home" title="홈으로 이동" data-action="menu" data-menu-name="main">
+								<img loading="lazy" src="https://static.jejuair.net/hpgg/resources/images/upload/icon_bottombar_home_on_56x2.png" alt="홈">
+							</a>
+							<a class="select-wrap select-wrap--inline lang-type" id="btnCountrySelector" data-modal-type="full">대한민국</a>
+							<div class="additional">
+								<!-- D : '웹'일경우 APP다운로드 버튼 -->
+								<button type="button" class="button button--small" onclick="APPCALL.goMarket()" ><span class="button__text button__icon">APP</span></button>
+								<a href="javascript:;" class="button-search" title="통합검색이동">
+									<img loading="lazy" src="https://static.jejuair.net/hpgg/resources/images/icon/icon-header-search.png" alt="통합 검색 이동">
+								</a>
+								<a href="javascript:;" class="gnb-close" aria-label="닫기">
+									<img loading="lazy" src="..//user/lib/images//icon-header-gnb-close.png" alt="전체메뉴 닫기" class="close">
+								</a>
+							</div>
+						</div>
+					</div>
+					<hr class="section-spacer">
+					<div class="gnb-wrap">
+						<div class="gnb__box">
+							<div class="gnb__title">회원 혜택 안내</div>
+							<div class="gnb__list">
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/memberBenefit/memberBenefit.do?param=newMember ')">신규회원 혜택</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/memberBenefit/memberBenefit.do?param=promotion')">프로모션 코드</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/memberBenefit/refreshPoint/main.do')">리프레시 포인트</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/memberBenefit/refreshPoint/pointBuy.do')">포인트 구매</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/memberBenefit/refreshPoint/pointSearch.do')">포인트 조회</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/additionalService/service/gifticket.do')">기프티켓</a>
+							</div>
+						</div>
+							
+						<div class="gnb__box">
+							<div class="gnb__title">여행준비 안내</div>
+							<div class="gnb__list">
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/ibe/booking/Availability.do')">항공권 예매</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/prepare/fare/domesticBenefit.do')">국내선 운임</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/prepare/fare/internationalBenefit.do')">국제선 운임</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/prepare/flight/viewScheduleInfo.do')">운항 정보</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/ibe/booking/viewMilitaryInput.do')">민항공후급증 예약</a>
+							</div>
+						</div>
+							
+						<div class="gnb__box">
+							<div class="gnb__title">부가서비스 안내</div>
+							<div class="gnb__list">
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/additionalService/service/main.do')">부가서비스 소개</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/additionalService/service/preorderedBaggage.do')">사전 수하물</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/additionalService/service/preorderedSeat.do')">사전 좌석</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/additionalService/service/preorderedMeal.do')">사전 기내식</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/additionalService/service/insurance.do')">보험 상품</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/additionalService/service/bundleGuide.do')">번들 묶음 구매</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/additionalService/service/afterPayGuide.do')">나중에 결제</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/additionalService/service/carringBagGuide.do')">자전거 캐링백 서비스</a>
+							</div>
+						</div>
+							
+						<div class="gnb__box">
+							<div class="gnb__title">프리미엄 혜택 안내</div>
+							<div class="gnb__list">
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/premium/businesslite/main.do')">비즈니스 라이트</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/premium/sportsMembership/main.do')">스포츠 멤버십</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/additionalService/service/allianceService.do')">제휴서비스</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('https://www.jejuairshop.com?jjout=Y')">온라인몰 제이샵</a>
+							</div>
+						</div>
+							
+						<div class="gnb__box">
+							<div class="gnb__title">마이페이지</div>
+							<div class="gnb__list">
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/member/mypage/main.do')">마이페이지 메인</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/ibe/mypage/viewOnOffReservationList.do')">예약 조회</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/ibe/mypage/viewReservationList.do')">나의 예약 현황</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/member/mypage/myFlightList.do')">나의 탑승 내역</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/member/mypage/viewMyGiftTicketList.do')">나의 기프티켓</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/member/mypage/memberInfoModify.do')">회원정보 수정</a>
+							</div>
+						</div>
+							
+						<div class="gnb__box">
+							<div class="gnb__title">탑승 수속 안내</div>
+							<div class="gnb__list">
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/ibe/checkin/viewCheckin.do')">모바일 탑승권</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/linkService/boardingProcessGuide/baggageGuide.do')">수하물</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/linkService/fastProcedure/guide.do')">빠른 수속</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/linkService/airport/info.do')">공항 정보</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/linkService/help/main.do')">도움이 필요한 고객</a>
+							</div>
+						</div>
+							
+						<div class="gnb__box">
+							<div class="gnb__title">기내 서비스 안내</div>
+							<div class="gnb__list">
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/cabinService/service/airCafe.do')">에어카페</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('http://jejuair.granddfs.com/?jjout=Y')">기내 면세</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/cabinService/service/funService.do')">기내 FUN 서비스</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/cabinService/immigration/etcFormGuide.do')">출입국 신고서 작성방법</a>
+							</div>
+						</div>
+							
+						<div class="gnb__box">
+							<div class="gnb__title">이벤트</div>
+							<div class="gnb__list">
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/event/event.do')">진행중인 이벤트</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/event/pastEvent.do')">지난 이벤트</a>
+							</div>
+						</div>
+							
+						<div class="gnb__box">
+							<div class="gnb__title">고객센터</div>
+							<div class="gnb__list">
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/customerService/csCenter/faqList.do')">고객센터</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/customerService/cabinLost/cabinLost.do')">기내 유실물 센터</a>
+								<a href="javascript:void(0);" class="gnb__list-item" onclick="URL_LINK.getI18Url('/customerServiceCenter/notice.do')">공지사항</a>
+							</div>
+						</div>
+							
+						<div class="gnb__footer">
+							<div class="gnb__title">SNS</div>
+							<div class="sns-wrap">
+								<a href="https://www.facebook.com/funjejuair/" target="_blank" class="sns-wrap__item">
+									<img loading="lazy" src="..//user/lib/images//icon-header-app-facebook.png" alt="https://www.facebook.com/funjejuair/">
+								</a>
+								<a href="https://www.youtube.com/user/funjejuair" target="_blank" class="sns-wrap__item">
+									<img loading="lazy" src="..//user/lib/images//icon-header-app-youtube.png" alt="https://www.youtube.com/user/funjejuair">
+								</a>
+								<a href="https://instagram.com/jejuair_official" target="_blank" class="sns-wrap__item">
+									<img loading="lazy" src="..//user/lib/images//icon-header-app-instagram.png" alt="https://instagram.com/jejuair_official">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- //사이트 맵 메뉴 끝 -->
+
+			</div>
+		</header>
+		<!-- //pc용 공통 헤더 끝 -->
+	</div>
+	<!-- //header 끝 -->
+
+	
+	<div id="body">
+		
+		<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD2BQQ4" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+
+		<div class="wrap wrap--button FT" >
+			
+			
+	
+			
+			<div class="content" id="content">
+				<main id="main" class="main ">
+					
+					<div class="page-title-wrap pc-only">
+		<div class="page-title">제주항공 소개</div><!-- 제주항공 소개-->
+	</div>
+	<div class="jeju-intro-wrap">
+		<div class="tab tab--customer tab--square tab--square-cols4 tab--cols4 pc-only" data-element="tab" data-options='{"linkedTab": "#linkedTab"}'>
+			<div class="tab__buttons">
+				<div data-element="tab__list" class="tab__button">
+					<button type="button" data-element="tab__anchor" class="tab__anchor is-active" id="anchor1">About 제주항공</button><!-- 제주항공-->
+				</div>
+				<div data-element="tab__list" class="tab__button">
+					<button type="button" data-element="tab__anchor" class="tab__anchor" id="anchor2">안전하고 건강한 여행</button><!-- 안전하고 건강한 여행-->
+				</div>
+				
+					<div data-element="tab__list" class="tab__button">
+						<button type="button" data-element="tab__anchor" class="tab__anchor">뉴스 센터</button><!-- 뉴스 센터-->
+					</div>
+					<div data-element="tab__list" class="tab__button">
+						<button type="button" data-element="tab__anchor" class="tab__anchor">수상내역</button><!-- 수상내역-->
+					</div>
+				
+			</div>
+		</div>
+		<!--// .tab 전체탭 -->
+		<div class="linked-tab" id="linkedTab" data-element="tab__link">
+			<div data-element="tab__panel" class="tab__panel pc-only">
+				<div class="info-title large">대한민국 No.1 LCC 제주항공입니다.</div><!-- 대한민국 No.1 LCC 제주항공입니다. -->
+				<div class="section-sub-txt">
+					<p>항공 여행의 새로운 기준을 만들어 가는<br class="mobile-only"> 제주항공을 소개합니다.</p><!-- 항공 여행의 새로운 기준을 만들어 가는<br class="mobile-only"> 제주항공을 소개합니다. -->
+				</div>
+				<div class="img-box about">
+					<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_intro_p01.jpg" alt="" class="pc-only">
+				</div>
+				<div class="sub-section">
+					<p class="text__default">
+					제주항공은 2005년 설립 이후 고객의 합리적인 항공 여행 가격 요구에 맞춰 빠르게 확장하고 있으며 항공 업계에 지속적으로 혁신을 가져오고 있습니다.<br><br><!-- 제주항공은 2005년 설립 이후 고객의 합리적인 항공 여행 가격 요구에 맞춰 빠르게 확장하고 있으며 항공 업계에 지속적으로 혁신을 가져오고 있습니다. -->
+					제주항공의 합리적 가격정책은 항공 여행의 대중화를 실현하였고 이전에 시도되지 않았던 방법으로 한국을 세계인의 관광 목적지로 만들었습니다.<br><br><!-- 제주항공의 합리적 가격정책은 항공 여행의 대중화를 실현하였고 이전에 시도되지 않았던 방법으로 한국을 세계인의 관광 목적지로 만들었습니다. -->
+					전 세계에서 가장 바쁜 노선인 김포-제주를 비롯한 국내선과 일본, 중국, 필리핀, 태국, 베트남, 대양주(괌, 사이판), 러시아, 라오스 등 아시아 태평양 49개 도시,<br>84개 이상의 노선을 운항하고 있습니다. 2020년 8월 기준으로 3,200명의 임직원이 근무하고 있으며, 서울 김포공항과 인천공항을 주요 거점으로 운항하고 있습니다.<br><br><!-- 전 세계에서 가장 바쁜 노선인 김포-제주를 비롯한 국내선과 일본, 중국, 필리핀, 태국, 베트남, 대양주(괌, 사이판), 러시아, 라오스 등 아시아 태평양 49개 도시,<br> 84개 이상의 노선을 운항하고 있습니다. 2020년 8월 기준으로 3,200명의 임직원이 근무하고 있으며, 서울 김포공항과 인천공항을 주요 거점으로 운항하고 있습니다. -->
+					제주항공은 안전에 대해서는 어떠한 타협도 하지 않으면서 정시 운항을 위한 모든 노력을 다하고 있습니다.<!-- 제주항공은 안전에 대해서는 어떠한 타협도 하지 않으면서 정시 운항을 위한 모든 노력을 다하고 있습니다. -->
+					</p>
+				</div>
+				<div class="section-wrap">
+					<div class="select-chips full swiper-container">
+						<ul class="chips-group swiper-wrapper">
+							<li class="chip swiper-slide">
+								<button type="button" class="chip-btn checked" data-index=0>
+									<span class="txt">인사말</span><!-- 인사말 -->
+								</button>
+							</li>
+							<li class="chip swiper-slide">
+								<button type="button" class="chip-btn" data-index=1>
+									<span class="txt">제주항공 철학 및 가치</span><!-- 철학 및 가치 -->
+								</button>
+							</li>
+							<li class="chip swiper-slide">
+								<button type="button" class="chip-btn" data-index=2>
+									<span class="txt">제주항공 BI</span><!-- BI 소개 -->
+								</button>
+							</li>
+							<li class="chip swiper-slide">
+								<button type="button" class="chip-btn" id="data1" data-index=3>
+									<span class="txt">숫자로 보는 제주항공</span><!-- 숫자로 보는 제주항공 -->
+								</button>
+							</li>
+							<li class="chip swiper-slide">
+								<button type="button" class="chip-btn" data-index=4 id="airplaneInfoBtn">
+									<span class="txt">제주항공 현황</span><!-- 현황 -->
+								</button>
+							</li>
+						</ul>
+					</div>
+					<!-- // .select-chips -->
+					<div class="show" data-chip-show=0>
+						<div class="section-wrap mt0">
+							<div class="section-title pb20">
+								세계를 주도하는 대한민국 대표 항공사, 제주항공<!-- 세계를 주도하는 대한민국 대표 항공사, 제주항공 -->
+							</div>
+							<div class="flex-box">
+								<div class="img ceo">
+									<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_intro_p01_t01_01.jpg" alt="">
+								</div>
+								<div class="txt">
+									제주항공을 방문해주신 고객 여러분 환영합니다.  <br>세계 항공시장의 ‘NEW STANDARD’ 제주항공입니다.
+									<br><br><!-- 제주항공을 방문해주신 고객 여러분 환영합니다. <br> 세계 항공시장의 ‘NEW STANDARD’ 제주항공입니다. -->
+
+									고객의 합리적인 항공권 가격 요구에 맞춰 2005년 설립된 제주항공은 폭발적인 성장을 거듭해 명실 상부 ‘No.1 LCC’로써 ‘새로운 도전’과 ‘지속적 혁신’을 주도하고 있습니다.
+									<br><br><!-- 고객의 합리적인 항공권 가격 요구에 맞춰 2005년 설립된 제주항공은 폭발적인 성장을 거듭해 명실 상부 ‘No.1 LCC’로써 ‘새로운 도전’과 ‘지속적 혁신’을 주도하고 있습니다. -->
+
+									제주항공은 온 국민의 항공 여행 대중화를 실현하며, 더 넓은 하늘로  고객과 함께 행복한 여행의 경험을 나누고자 합니다. 전 세계에서 가장 바쁜 노선인 김포-제주를 비롯한 국내선과 50개 도시 85개 이상의 노선을 운항하고 있습니다. 
+									<br><br><!-- 제주항공은 온 국민의 항공 여행 대중화를 실현하며, 더 넓은 하늘로 고객과 함께 행복한 여행의 경험을 나누고자 합니다. 전 세계에서 가장 바쁜 노선인 김포-제주를 비롯한 국내선과 50개 도시 85개 이상의 노선을 운항하고 있습니다. -->
+
+									또한, 유례없는 COVID-19에 선제적으로 대응해 고객의 안전하고 건강한 여행을 만들고, 고객과 함께 환경을 고민하는 친환경 여행 문화를 지속적으로 확산시켜 나가겠습니다.
+									<br><br><!-- 또한, 유례없는 COVID-19에 선제적으로 대응해 고객의 안전하고 건강한 여행을 만들고, 고객과 함께 환경을 고민하는 친환경 여행 문화를 지속적으로 확산시켜 나가겠습니다. -->
+									
+									여행하는 과정의 행복을 제주항공 고객에게 전하기 위해, 절대 타협할 수 없는 ‘안전’과 ‘고객지향적’ 사고로 끊임없이 변화하겠습니다.
+									<br><br><!-- 여행하는 과정의 행복을 제주항공 고객에게 전하기 위해, 절대 타협할 수 없는 ‘안전’과 ‘고객지향적’ 사고로 끊임없이 변화하겠습니다. -->
+
+									고객님의 변함없는 사랑과 신뢰에 진심으로 감사드립니다.
+									<br><br><!-- 고객님의 변함없는 사랑과 신뢰에 진심으로 감사드립니다.	-->
+									
+									<div class="txt-lv02">제주항공 대표이사<span>김이배<span></div><!-- 제주항공 대표이사 --><!-- 김이배 -->
+
+								</div>
+							</div>
+							<!-- // .flex-box -->
+						</div>
+						<div class="section-wrap">
+							<div class="info-title large pb30">
+								포스트 코로나 시대의 회복탄력성을 위한 7C정신<!-- 포스트 코로나 시대의 회복탄력성을 위한 7C정신 -->
+							</div>
+							<div class="flex-box">
+								<div class="img">
+									<div class="sevenc"></div>
+								</div>
+								<div class="txt">
+									<div class="list-type01">
+										<ul class="">
+											<li>
+												<h4>Confident</h4><!-- Confident -->
+												<p>위기를 이겨낼 수 있다는 확신과 자신감</p><!-- 위기를 이겨낼 수 있다는 확신과 자신감 -->
+											</li>
+											<li>
+												<h4>Competent</h4><!-- Competent -->
+												<p>개인과 조직의 기본 실력, 최소한의 역량</p><!-- 개인과 조직의 기본 실력, 최소한의 역량 -->
+											</li>
+											<li>
+												<h4>Connected</h4><!-- Connected -->
+												<p>강한 유대감과 공동체의식</p><!-- 강한 유대감과 공동체의식 -->
+											</li>
+											<li>
+												<h4>Cooperative  </h4><!-- Cooperative -->
+												<p>존중하고 배려하는 협동 정신</p><!-- 존중하고 배려하는 협동 정신 -->
+											</li>
+											<li>
+												<h4>Consistent</h4><!-- Consistent -->
+												<p>일관성 있는 추진력</p><!-- 일관성 있는 추진력 -->
+											</li>
+											<li>
+												<h4>Creative</h4><!-- Creative -->
+												<p>유연성과 창의력의 극대화</p><!-- 유연성과 창의력의 극대화 -->
+											</li>
+											<li>
+												<h4>Customer oriented</h4><!-- Customer oriented -->
+												<p>고객의 요구에 선제적 대응</p><!-- 고객의 요구에 선제적 대응 -->
+											</li>
+										</ul>
+									</div>
+									<!-- //.list-type01 -->
+								</div>
+							</div>
+							<!-- // .flex-box -->
+						</div>
+					</div>
+					<!-- //인사말 -->
+					<div class="" data-chip-show=1>
+						<div class="section-title pb20">우리가 추구하는 가치는 고객을 위한 혁신에 있습니다.</div><!-- 우리가 추구하는 가치는 고객을 위한 혁신에 있습니다. -->
+						<div>
+							<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_intro_p01_t02_01.jpg" alt="">
+						</div>
+						<div class="section-wrap">
+							<div class="section-title sub-title">MISSION</div><!-- MISSION -->
+							<div class="section-sub-txt">제주항공의 존재 이유이자 목적지입니다.</div><!-- 제주항공의 존재 이유이자 목적지입니다. -->
+							<div class="border-box border-box--about">
+								<p class="border-box__text">
+									더 넓은 하늘을 향한 도전으로 <br class="mobile-only"><span class="text--color-org">더 많은 사람들과<br>행복한 여행의 경험</span>을 나눈다.
+									<!-- 더 넓은 하늘을 향한 도전으로 <br class="mobile-only"><span class="text--color-org">더 많은 사람들과<br>행복한 여행의 경험</span>을 나눈다. -->
+								</p>
+							</div>
+						</div>
+						<div class="section-wrap">
+							<div class="section-title sub-title">CORE VALUE</div><!-- CORE VALUE -->
+							<div class="section-sub-txt">제주항공의 행동 기준이 되는 핵심 가치입니다.</div><!-- 제주항공의 행동 기준이 되는 핵심 가치입니다. -->
+							<div class="limpid-box__circle">
+								<div class="limpid-box__circle-area"><span class="limpid-box__circle-item">안전</span></div><!-- 저비용 -->
+								<div class="limpid-box__circle-area"><span class="limpid-box__circle-item">저비용</span></div><!-- 팀워크 -->
+								<div class="limpid-box__circle-area"><span class="limpid-box__circle-item">신뢰</span></div><!-- 안전 -->
+								<div class="limpid-box__circle-area"><span class="limpid-box__circle-item">팀워크</span></div><!-- 신뢰 -->
+								<div class="limpid-box__circle-area"><span class="limpid-box__circle-item">도전</span></div><!-- 도전 -->
+							</div>
+						</div>
+						<div class="section-wrap">
+							<div class="section-title sub-title">BRAND TAGLINE</div><!-- BRAND TAGLINE -->
+							<div class="section-sub-txt">제주항공의 정체성을 한 단어로 전달합니다.</div><!-- 제주항공의 정체성을 한 단어로 전달합니다. -->
+							<div class="limpid-box__img jeju_logo border-box--about tagline">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_intro_p01_t02_02.png" alt="JEJUair NEW STANDARD">
+							</div>
+						</div>
+						<div class="section-wrap">
+							<div class="section-title text--color-org sub-title">NEW STANDARD</div><!-- NEW STANDARD -->
+							<div class="section-sub-txt">제주항공의 미션, 즉 더 많은 사람들과 행복한 여행 경험을 나누기 위해  새로운 항공 서비스를 제안합니다.  기존 항공사의 획일적인 항공 서비스에서 벗어나 새롭고 고객이 직접 선택할 수 있는 폭넓은 서비스를 제공하고자 끊임없이 도전하고 있습니다. </div><!-- 제주항공의 미션, 즉 더 많은 사람들과 행복한 여행 경험을 나누기 위해 새로운 항공 서비스를 제안합니다. 기존 항공사의 획일적인 항공 서비스에서 벗어나 새롭고 고객이 직접 선택할 수 있는 폭넓은 서비스를 제공하고자 끊임없이 도전하고 있습니다. -->
+
+						</div>
+						<div class="section-wrap">
+							<div class="section-title sub-title">BRAND STATEMENT</div><!-- BRAND STATEMENT -->
+							<div class="section-sub-txt">고객이 바라는 제주항공이 되겠습니다.</div><!-- 고객이 바라는 제주항공이 되겠습니다. -->
+							<div class="border-box border-box--about">
+								<p class="border-box__text">
+									합리적인 고객에게 새로운 여행경험을 주기 위해 <br>고객 지향적 사고로 끊임없이 혁신하는 <br>대한민국 <span class="text--color-org">No.1 LCC </span>
+									<!-- 합리적인 고객에게 새로운 여행경험을 주기 위해 <br>고객 지향적 사고로 끊임없이 혁신하는 <br>대한민국 <span class="text--color-org">No.1 LCC </span> -->
+								</p>
+							</div>
+						</div>
+
+					</div>
+					<!-- //철학 및 가치 -->
+					<div class="" data-chip-show=2>
+						<div class="section-wrap mt0">
+							<div class="section-title">새로운 도약! 제주항공의 새로운 BI!</div><!-- 새로운 도약! 제주항공의 새로운 BI! -->
+							<div class="limpid-box__img jeju_logo border-box--about">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_intro_p01_t03_01.png" alt="JEJUair NEW STANDARD">
+							</div>
+							<div class="sub-box">
+								<p class="text__default">
+									제주항공의 새로운 BI(Brand Identity)는 창립 10주년을 맞이하여 진취적이고 신뢰감을 주는 항공사 이미지를 추구하며, 아시아 최고의 저비용 항공사(LCC)로 발돋움하기 위한 의지를 담아 제주의 자연을 형상화한 디자인으로 표현하였습니다. 
+									<br>
+									<br><!-- 제주항공의 새로운 BI(Brand Identity)는 창립 10주년을 맞이하여 진취적이고 신뢰감을 주는 항공사 이미지를 추구하며, 아시아 최고의 저비용 항공사(LCC)로 발돋움하기 위한 의지를 담아 제주의 자연을 형상화한 디자인으로 표현하였습니다. -->
+
+									영문 로고 중 ‘i’의 깃발 형상은 제주항공을 이용하는 고객들을 맞이하는 반가움과 환영의 의미를, 전 세계로 뻗어나가는 제주항공 임직원들의 리더십과 대표성을 상징하고 있습니다.
+									<br>
+									<br><!-- 영문 로고 중 ‘i’의 깃발 형상은 제주항공을 이용하는 고객들을 맞이하는 반가움과 환영의 의미를, 전 세계로 뻗어나가는 제주항공 임직원들의 리더십과 대표성을 상징하고 있습니다. -->
+									
+									활기차고 즐거운 느낌을 주는 제주의 감귤색인 오렌지 색상을 더 선명하게 표현하고, 특히 ‘I’의 깃발 형상에 포인트로 블루 색상을 추가하여 안전함과 신뢰감을 더하면서 오렌지 색상과 조화를 이루도록 하여 신선함을 강화하였습니다.
+									<br>
+									<br><!-- 활기차고 즐거운 느낌을 주는 제주의 감귤색인 오렌지 색상을 더 선명하게 표현하고, 특히 ‘I’의 깃발 형상에 포인트로 블루 색상을 추가하여 안전함과 신뢰감을 더하면서 오렌지 색상과 조화를 이루도록 하여 신선함을 강화하였습니다. -->
+
+									또한 디자인 전체적으로도 기존 오렌지 단일 색상에 블루 색상을 추가해 다양화함으로써 아시아 전역으로 노선망을 확대해 고객들에게 다양한 서비스를 제공한다는 의미도 함축하고 있습니다.
+									<!-- 또한 디자인 전체적으로도 기존 오렌지 단일 색상에 블루 색상을 추가해 다양화함으로써 아시아 전역으로 노선망을 확대해 고객들에게 다양한 서비스를 제공한다는 의미도 함축하고 있습니다. -->
+								</p>
+							</div>
+						</div>
+						<div class="section-wrap">
+							<div class="section-title sub-title"><!-- #1271271782 : 20211227 mt60 추가 -->
+								새로운 패턴<!-- 새로운 패턴 -->
+							</div>
+							<div class="section-sub-txt">
+								항공기 꼬리 날개 디자인은 제주를 상징하는 돌, 바람(파도), 그리고 본섬과 부속 섬들을 새로운 무늬(pattern)로 형상화하였습니다. <br><!-- 항공기 꼬리 날개 디자인은 제주를 상징하는 돌, 바람(파도), 그리고 본섬과 부속 섬들을 새로운 무늬(pattern)로 형상화하였습니다. -->
+								우리나라의 대표적인 화산섬인 제주도에는 돌이 많아 밭과 밭 사이를 구분하는 밭담과 집의 울타리 등을 돌로 쌓은 모습을 쉽게 찾아볼 수 있습니다. <br><!-- 우리나라의 대표적인 화산섬인 제주도에는 돌이 많아 밭과 밭 사이를 구분하는 밭담과 집의 울타리 등을 돌로 쌓은 모습을 쉽게 찾아볼 수 있습니다. -->
+								또한 제주는 바다로 둘러싸여 바람이 많이 불고 강한 바람에 일렁이는 파도를 어디서나 볼 수 있는데, 이런 제주의 모습들을 모티브로 삼아 새로운 패턴을 만들었습니다. <br><!-- 또한 제주는 바다로 둘러싸여 바람이 많이 불고 강한 바람에 일렁이는 파도를 어디서나 볼 수 있는데, 이런 제주의 모습들을 모티브로 삼아 새로운 패턴을 만들었습니다. -->
+								새로운 패턴은 제주항공의 이미지를 상징하는 요소들 중 하나입니다.<!-- 새로운 패턴은 제주항공의 이미지를 상징하는 요소들 중 하나입니다. -->
+							</div>
+							<div class="img-box mb30">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_intro_p01_t03_02.jpg" alt="JEJUair NEW STANDARD">
+							</div>
+							<div class="pattern-box">
+								<div class="leaf">
+									<span class="stone"></span>
+								</div>
+								<div class="leaf">
+									<span class="wave"></span>
+								</div>
+								<div class="leaf">
+									<span class="island"></span>
+								</div>
+							</div>
+							<!-- // .pattern-box -->
+						</div>
+						<div class="section-wrap">
+							<div class="section-title sub-title pb30">
+								색상 안내<!-- 색상 안내 -->
+							</div>
+							<div class="color-guide">
+								<div class="card">
+									<div class="tit">
+										JEJUair <br>Orange<!-- JEJUair <br>Orange -->
+									</div>
+									<div class="des">
+										<p>PANTONE 021C</p><!-- PANTONE 021C -->
+										<p>R241 G90 B34</p><!-- R241 G90 B34 -->
+										<p>C0 M80 Y100 K0</p><!-- C0 M80 Y100 K0 -->
+										<p>#f15a22</p><!-- #f15a22 -->
+									</div>
+								</div>
+								<div class="card">
+									<div class="tit">
+										JEJUair <br>Orange Sub<!-- JEJUair <br> Orange Sub -->
+									</div>
+									<div class="des">
+										<p>PANTONE 151C</p><!-- PANTONE 151C -->
+										<p>R245 G130 B32</p><!-- R245 G130 B32 -->
+										<p>0 M60 Y100 K0</p><!-- 0 M60 Y100 K0 -->
+										<p>#f58220</p><!-- #f58220 -->
+									</div>
+								</div>
+								<div class="card">
+									<div class="tit">
+										JEJUair <br>Blue<!-- JEJUair <br>Blue -->
+									</div>
+									<div class="des">
+										<p>PANTONE 801C</p><!-- PANTONE 801C -->
+										<p>R0 G167 B225</p><!-- R0 G167 B225 -->
+										<p>C75 M15 Y0 K0</p><!-- C75 M15 Y0 K0 -->
+										<p>#00a7e1</p><!-- #00a7e1 -->
+									</div>
+								</div>
+							</div>
+							<!-- // .color-guide -->
+						</div>
+						<div class="section-wrap">
+							<div class="section-title sub-title pb15">
+								로고 타입<!-- 로고 타입 -->
+							</div>
+							<div class="section-sub-txt">
+								제주항공의 태그라인 로고타입은 항공과 여행의 기준을 새로 세우고 실천한다는 의미의 워드마크 형태로 개발되었습니다. 기존의 제주항공 로고타입에 추가된 태그라인 ‘뉴스탠다드’는 새로운 기준을 만드는 정직하고 단단한 신념을 담고 있습니다. 중앙에 그어진 가로선은 이전과 이후를 나누는 기준, 동시에 새로운 출발을 의미하는 출발선을 상징합니다.<!-- 제주항공의 태그라인 로고타입은 항공과 여행의 기준을 새로 세우고 실천한다는 의미의 워드마크 형태로 개발되었습니다. 기존의 제주항공 로고타입에 추가된 태그라인 ‘뉴스탠다드’는 새로운 기준을 만드는 정직하고 단단한 신념을 담고 있습니다. 중앙에 그어진 가로선은 이전과 이후를 나누는 기준, 동시에 새로운 출발을 의미하는 출발선을 상징합니다. -->
+							</div>
+
+							<div class="sub-box logo-box">
+								<div class="leaf">
+									<div class="tit">세로형</div><!-- 세로형 -->
+									<div class="img">
+										<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_intro_p01_t03_06.png" alt="">
+									</div>
+								</div>
+								<div class="leaf">
+									<div class="tit">가로형</div><!-- 가로형 -->
+									<div class="img">
+										<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_intro_p01_t03_07.png" alt="">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- // bi소개 -->
+					<div class="" data-chip-show=3>
+						<div class="section-title">제주항공의 현재</div><!-- 제주항공의 현재 -->
+						<div class="section-sub-txt">
+							2022년 1월 기준<!-- 2021년 10월 기준 -->
+						</div>
+						<div class="jeju-leaderboard-box">
+							<div class="item">
+								<div class="img">
+									<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_intro_p01_t04_01.jpg" alt="">
+								</div>
+								<div class="info">
+									<div class="tit">항공기</div><!-- 항공기 -->
+									<div class="count">
+										<span></span><span>39</span>대<!-- <span>41</span>대 -->
+									</div>
+								</div>
+							</div>
+							<div class="item">
+								<div class="img">
+									<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_intro_p01_t04_02.jpg" alt="">
+								</div>
+								<div class="info">
+									<div class="tit">취항 도시</div><!-- 취항지 -->
+									<div class="count">
+										<span>51</span>개<!-- <span>85</span>개 -->
+									</div>
+								</div>
+							</div>
+							<div class="item">
+								<div class="img">
+									<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_intro_p01_t04_03.jpg" alt="">
+								</div>
+								<div class="info">
+									<div class="tit">취항 노선  </div><!-- 취항 노선 -->
+									<div class="count">
+										<span>87</span>개<!-- <span>50</span>개 -->
+									</div>
+								</div>
+							</div>
+							<div class="item">
+								<div class="img">
+									<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_intro_p01_t04_04.jpg" alt="">
+								</div>
+								<div class="info">
+									<div class="tit">2021 탑승객</div><!-- 2020 탑승객 -->
+									<div class="count">
+										<span>652만</span>명<!-- <span>545만</span>명 -->
+									</div>
+								</div>
+							</div>
+							<div class="item">
+								<div class="img">
+									<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_intro_p01_t04_05.jpg" alt="">
+								</div>
+								<div class="info">
+									<div class="tit">항공기 일 가동시간<!-- 항공기 일 가동시간 -->
+									</div>
+									<div class="count">
+										<span>13</span>시간+<!-- <span>13</span>시간 -->
+									</div>
+								</div>
+							</div>
+							<div class="item">
+								<div class="img">
+									<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_intro_p01_t04_06.jpg" alt="">
+								</div>
+								<div class="info">
+									<div class="tit">일 항공편수</div><!-- 일 항공편수 -->
+									<div class="count">
+										<span>240</span>편+<!-- CMS 스타일 추가 240+ -->
+									</div>
+								</div>
+							</div>
+							<div class="guide-info guide-info--gray"><!-- 제주항공 현재 안내 문구 아이콘 추가 -->
+								<p class="guide-info__text">취항 노선, 취항 도시, 항공기 일 가동시간, 일 항공편 수는 코로나 이전 수치</p><!-- IM00318450 제주항공 소개 CMS 메시지 코드 msg00438 -->
+						    </div>
+						   </div>
+						<!-- // .jeju-leaderboard-box -->
+						<div class="section-wrap">
+							<div class="section-title">제주항공의 역사</div><!-- 제주항공의 역사 -->
+							<div id="linkedTab" data-element="tab__link" class="linked-tab">
+								<div data-element="tab__panel" class="tab__panel tab__panel--pat20 pt0">
+									<div data-element="tab" class="tab tab--2depth">
+										<div class="tab__buttons">
+											<div data-element="tab__list" class="tab__button">
+												<button type="button" data-element="tab__anchor" class="tab__anchor is-active">2015년 ~</button><!-- 2015년 ~ -->
+											</div>
+											<div data-element="tab__list" class="tab__button">
+												<button type="button" data-element="tab__anchor" class="tab__anchor">
+													2005년 ~ 2014년<!-- 2005년 ~ 2014년 -->
+												</button>
+											</div>
+										</div>
+										<div data-element="tab__panel" class="tab__panel">
+											<div class="history-box">
+												<ul>
+													<li>
+														<div class="pocket">
+															<div class="year">
+																 2021년<!--2021년 --> <!-- 2021년  역사 추가 -->
+															</div>
+															<div class="list">
+																<p>
+																    <span>04월</span> 항공업계 최초 기내식 카페, 여행맛(여행의 행복을 맛보다) 오픈<!--<span>04월</span> 항공업계 최초 기내식 카페, 여행맛(여행의 행복을 맛보다) 오픈  -->
+																</p>
+																<p>
+																    <span>07월</span> 국적항공사 최초 SNS(인스타그램) 팔로워 20만명 돌파 <!--<span>07월</span> 국적항공사 최초 SNS(인스타그램) 팔로워 20만명 돌파  -->
+																</p>
+																<p>
+																	<span>10월</span> 차세대 고객서비스시스템, PSS 도입<!--<span>10월</span> 차세대 고객서비스시스템, PSS 도입 -->
+																</p>
+															</div>
+														</div>
+													</li>
+													<li>
+														<div class="pocket">
+															<div class="year">
+																2020년<!-- 2020년  -->
+															</div>
+															<div class="list">
+																<p>
+																	<span>05월</span> 안전한 항공 여행 캠페인<!-- <span>05월</span> 안전한 항공 여행 캠페인 -->
+																</p>
+																<p>
+																	<span>07월</span> 김포–여수 정기노선 취항, 여수–제주 정기노선 취항<!-- <span>07월</span> 김포–여수 정기노선 취항, 여수–제주 정기노선 취항 -->
+																</p>
+																<p>
+																	<span>10월</span> 제주–군산 정기노선 취항, 객실 화물 탑재, 무착륙 관광 비행<!-- <span>10월</span> 제주–군산 정기노선 취항, 객실 화물 탑재, 무착륙 관광 비행 -->
+																</p>
+																<p>
+																	<span>12월</span> 무착륙 국제 면세 비행<!-- <span>12월</span> 무착륙 국제 면세 비행 -->
+																</p>
+															</div>
+														</div>
+													</li>
+													<li>
+														<div class="pocket">
+															<div class="year">
+																2019년<!-- 2019년 -->
+															</div>
+															<div class="list">
+																<p>
+																	<span>01월</span> LCC 최초 운항 시물레이터 도입<!-- <span>01월</span> LCC 최초 운항 시물레이터 도입 -->
+																</p>
+																<p>
+																	<span>02월</span> LCC 최초 40호기 도입<!-- <span>02월</span> LCC 최초 40호기 도입 -->
+																</p>
+																<p>
+																	<span>06월</span> 인천공항 JJ 라운지 오픈<!-- <span>06월</span> 인천공항 JJ 라운지 오픈 -->
+																</p>
+																<p>
+																	<span>07월</span> Regular Busan-Singapore flights commenced; NEW CLASS service launched<!-- <span>07월</span> 싱가포르 정기노선 첫 취항 (부산-싱가포르), NEW CLASS 서비스 시작 -->
+																</p>
+															</div>
+														</div>
+													</li>
+													<li>
+														<div class="pocket">
+															<div class="year">
+																2018년<!-- 2018년 -->
+															</div>
+															<div class="list">
+																<p>
+																	<span>01월</span> 국내선 화물운송 시작<!-- <span>01월</span> 국내선 화물운송 시작 -->
+																</p>
+																<p>
+																	<span>02월</span> 누적 탑승객 5,000만명 돌파<!-- <span>02월</span> 누적 탑승객 5,000만명 돌파 -->
+																</p>
+																<p>
+																	<span>07월</span> LCC 최초 항공기 구매<!-- <span>07월</span> LCC 최초 항공기 구매 -->
+																</p>
+																<p>
+																	<span>09월</span>홀리데이인 익스프레스 서울 홍대 오픈<!-- <span>09월</span> 홀리데이인 익스프레스 서울 홍대 오픈 -->
+																</p>
+															</div>
+														</div>
+													</li>
+													<li>
+														<div class="pocket">
+															<div class="year">
+																2017년<!-- 2017년 -->
+															</div>
+															<div class="list">
+																<p>
+																	<span>03월</span> 광주 – 제주 정기노선 취항<!-- <span>03월</span> 광주 – 제주 정기노선 취항 -->
+																</p>
+																<p>
+																	<span>09월</span> 러시아 정기노선 첫 취항 (인천–블라디보스토크)<!-- <span>09월</span> 러시아 정기노선 첫 취항 (인천–블라디보스토크) -->
+																</p>
+																<p>
+																	<span>10월</span> 라오스 정기노선 첫 취항 (인천–비엔티안)<!-- <span>10월</span> 라오스 정기노선 첫 취항 (인천–비엔티안) -->
+																</p>
+																<p>
+																	<span>12월</span> LCC 최초 연간 탑승객수 1000만명 돌파<!-- <span>12월</span> LCC 최초 연간 탑승객수 1000만명 돌파 -->
+																</p>
+															</div>
+														</div>
+													</li>
+													<li>
+														<div class="pocket">
+															<div class="year">
+																2016년<!-- 2016년 -->
+															</div>
+															<div class="list">
+																<p>
+																	<span>05월</span> 서울-부산 취항<!-- <span>05월</span> 서울-부산 취항 -->
+																</p>
+																<p>
+																	<span>07월</span> 말레이시아 첫 취항 (인천–코타키나발루)<!-- <span>07월</span> 말레이시아 첫 취항 (인천–코타키나발루) -->
+																</p>
+															</div>
+														</div>
+													</li>
+													<li>
+														<div class="pocket">
+															<div class="year">
+																2015년<!-- 2015년 -->
+															</div>
+															<div class="list">
+																<p>
+																	<span>11월</span> 코스피 상장<!-- <span>11월</span> 코스피 상장 -->
+																</p>
+															</div>
+														</div>
+													</li>
+												</ul>
+											</div>
+											<!-- // .history-box -->
+										</div>
+										<!-- //2015년~ -->
+										<div data-element="tab__panel" class="tab__panel">
+											<div class="history-box">
+												<ul>
+													<li>
+														<div class="pocket">
+															<div class="year">
+																2014년<!-- 2014년 -->
+															</div>
+															<div class="list">
+																<p>
+																	<span>07월</span> 대구–제주 정기노선 취항<!-- <span>07월</span> 대구–제주 정기노선 취항 -->
+																</p>
+																<p>
+																	<span>10월</span> 사이판 정기노선 첫 취항 (인천–사이판)<!-- <span>10월</span> 사이판 정기노선 첫 취항 (인천–사이판) -->
+																</p>
+																<p>
+																	<span>12월</span> 베트남 노선 첫 취항 (인천–하노이)<!-- <span>12월</span> 베트남 노선 첫 취항 (인천–하노이) -->
+																</p>
+															</div>
+														</div>
+													</li>
+													<li>
+														<div class="pocket">
+															<div class="year">
+																2012년<!-- 2012년 -->
+															</div>
+															<div class="list">
+																<p>
+																	<span>01월</span> 국제선 화물 운송 시작<!-- <span>01월</span> 국제선 화물 운송 시작 -->
+																</p>
+																<p>
+																	<span>05월</span> 누적 탑승객 1000만명 돌파<!-- <span>05월</span> 누적 탑승객 1000만명 돌파 -->
+																</p>
+																<p>
+																	<span>09월</span> 괌 정기노선 첫 취항 (인천–괌)<!-- <span>09월</span> 괌 정기노선 첫 취항 (인천–괌) -->
+																</p>
+															</div>
+														</div>
+													</li>
+													<li>
+														<div class="pocket">
+															<div class="year">
+																2010년<!-- 2010년 -->
+															</div>
+															<div class="list">
+																<p>
+																	<span>06월</span> Q400 항공기 퇴역<!-- <span>06월</span> Q400 항공기 퇴역 -->
+																</p>
+																<p>
+																	<span>10월</span> 홍콩 정기노선 첫 취항 (인천-홍콩)<!-- <span>10월</span> 홍콩 정기노선 첫 취항 (인천-홍콩) -->
+																</p>
+																<p>
+																	<span>11월</span> 필리핀 정기노선 첫 취항 (인천–필리핀)<!-- <span>11월</span> 필리핀 정기노선 첫 취항 (인천–필리핀) -->
+																</p>
+															</div>
+														</div>
+													</li>
+													<li>
+														<div class="pocket">
+															<div class="year">
+																2009년<!-- 2009년 -->
+															</div>
+															<div class="list">
+																<p>
+																	<span>03월</span> 국제선 정기노선 취항 (일본 노선, 인천-오사카)<!-- <span>03월</span> 국제선 정기노선 취항 (일본 노선, 인천-오사카) -->
+																</p>
+																<p>
+																	<span>04월</span> 태국 정기노선 첫 취항 (인천–방콕)<!-- <span>04월</span> 태국 정기노선 첫 취항 (인천–방콕) -->
+																</p>
+															</div>
+														</div>
+													</li>
+													<li>
+														<div class="pocket">
+															<div class="year">
+																2008년<!-- 2008년 -->
+															</div>
+															<div class="list">
+																<p>
+																	<span>05월</span> B737-800 항공기 도입<!-- <span>05월</span> B737-800 항공기 도입 -->
+																</p>
+																<p>
+																	<span>06월</span> 청주 – 제주 정기노선 취항<!-- <span>06월</span> 청주 – 제주 정기노선 취항 -->
+																</p>
+																<p>
+																	<span>07월</span> 국제선 취항 개시(부정기)<!-- <span>07월</span> 국제선 취항 개시(부정기) -->
+																</p>
+															</div>
+														</div>
+													</li>
+													<li>
+														<div class="pocket">
+															<div class="year">
+																2006년<!-- 2006년 -->
+															</div>
+															<div class="list">
+																<p>
+																	<span>06월</span> 서울 – 제주 정기노선 취항<!-- <span>06월</span> 서울 – 제주 정기노선 취항 -->
+																</p>
+																<p>
+																	<span>08월</span> 부산 – 제주 정기노선 취항<!-- <span>08월</span> 부산 – 제주 정기노선 취항 -->
+																</p>
+															</div>
+														</div>
+													</li>
+													<li>
+														<div class="pocket">
+															<div class="year">
+																2005년<!-- 2005년 -->
+															</div>
+															<div class="list">
+																<p>
+																	<span>01월</span> 제주항공 창립 (25일)<!-- <span>01월</span> 제주항공 창립 (25일) -->
+																</p>
+																<p>
+																	<span>08월</span> 정기운송사업 면허 취득 (국내선, 국제선)<!-- <span>08월</span> 정기운송사업 면허 취득 (국내선, 국제선) -->
+																</p>
+															</div>
+														</div>
+													</li>
+												</ul>
+											</div>
+											<!-- // .history-box -->
+										</div>
+										<!-- //2005년~2014년 -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- // 숫자로보는 제주항공 -->
+					<div class="" data-chip-show=4>
+						<div class="section-wrap mt0">
+							<div class="section-title pb15">
+								취항 노선<!-- 취항 노선 -->
+							</div>
+							<div class="">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_intro_p01_t05_01.jpg" alt="" class="" style="width: 534px;">
+							</div>
+						</div>
+						<div class="section-wrap" id="airplaneInfo">
+							<div class="section-title pb15 mt60"><!-- #1271271782 : 20211227 mt60 추가 -->
+								항공기 소개<!-- 항공기 소개 -->
+							</div>
+							<div class="">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_intro_p01_t05_02.jpg" alt="" class="">
+							</div>
+							<div class="sub-box text__samll">
+								보잉 737-800NG는 전 세계 유수의 항공사들이 안정성과 성능을 인정한 베스트셀러 항공기이며, 100~200인승 항공기 중 현재 가장 인기있는 기종으로 전 세계적으로 2,000여대가 운항중인 기종입니다. 
+								<!-- 보잉 737-800NG는 전 세계 유수의 항공사들이 안정성과 성능을 인정한 베스트셀러 항공기이며, 100~200인승 항공기 중 현재 가장 인기있는 기종으로 전 세계적으로 2,000여대가 운항중인 기종입니다. -->
+							</div>
+							<div class="table-horizontal mt60">
+								<table>
+									<caption>
+										제조사,좌석수,평균 좌석간격,날개 폭,전체 길이,꼬리날개 높이,최대 이륙 중량,항속거리,평균 순항 속도,엔진
+										<!-- 제조사,좌석수,평균 좌석간격,날개 폭,전체 길이,꼬리날개 높이,최대 이륙 중량,항속거리,평균 순항 속도,엔진 -->
+									</caption>
+									<colgroup>
+										<col style="width: 30%;">
+										<col>
+									</colgroup>
+									<tbody class="table-horizontal__tbody">
+										<tr>
+											<th scope="row" class="table-horizontal__th">제조사</th><!-- 제조사-->
+											<td class="table-horizontal__td">보잉사</td><!-- 보잉사 -->
+										</tr>
+										<tr>
+											<th scope="row" class="table-horizontal__th">좌석수</th><!-- 좌석수 -->
+											<td class="table-horizontal__td">
+												189석<!-- 189석 -->
+											</td>
+										</tr>
+										<tr>
+											<th scope="row" class="table-horizontal__th">평균 좌석간격</th><!-- 평균 좌석간격 -->
+											<td class="table-horizontal__td">
+												28~29인치<!-- 28~29인치 -->											</td>
+										</tr>
+										<tr>
+											<th scope="row" class="table-horizontal__th">날개 폭</th><!-- 날개 폭 -->
+											<td class="table-horizontal__td">
+												35.79M<!-- 35.79m -->
+											</td>
+										</tr>
+										<tr>
+											<th scope="row" class="table-horizontal__th">전체 길이</th><!-- 전체 길이 -->
+											<td class="table-horizontal__td">
+												39.50M<!-- 39.50m -->
+											</td>
+										</tr>
+										<tr>
+											<th scope="row" class="table-horizontal__th">꼬리날개 높이</th><!-- 꼬리날개 높이 -->
+											<td class="table-horizontal__td">
+												12.50M<!-- 12.50m -->
+											</td>
+										</tr>
+										<tr>
+											<th scope="row" class="table-horizontal__th">최대 이륙 중량</th><!-- 최대 이륙 중량 -->
+											<td class="table-horizontal__td">
+											국내 70.000KG / 국제 79.000KG<!-- 국내 70.000kg / 국제 79.000kg -->
+											</td>
+										</tr>
+										<tr>
+											<th scope="row" class="table-horizontal__th">항속거리</th><!-- 항속거리 -->
+											<td class="table-horizontal__td">
+												5,130KM<!-- 5,130km -->
+											</td>
+										</tr>
+										<tr>
+											<th scope="row" class="table-horizontal__th">평균 순항 속도</th><!-- 평균 순항 속도 -->
+											<td class="table-horizontal__td">
+												850KM/H<!-- 850km/h -->
+											</td>
+										</tr>
+										<tr>
+											<th scope="row" class="table-horizontal__th">엔진</th><!-- 엔진 -->
+											<td class="table-horizontal__td">
+												CFM56-7B26 X 2<!-- CFM56-7B26 X 2 -->
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="section-wrap">
+							<div class="section-title sub-title pb15 mt60"><!-- #1271271782 : 20211227 mt60 추가 -->
+								좌석 배치도<!-- 좌석 배치도 -->
+							</div>
+							<div class="section-sub-txt">737-800 NG</div><!-- 737-800 NG -->
+							<div>
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_intro_p01_t05_03.png" alt="" class="pc-only">
+							</div>
+							<div class="seat-guide-box">
+								<ul>
+									<li class="c01">
+										앞/비상구 좌석<!-- 앞/비상구 좌석 -->
+									</li>
+									<li class="c02">
+										세미 프론트 구역<!-- 세미 프론트 구역-->
+									</li>
+									<li class="c03">
+										일반석 A구역<!-- 일반석 A구역 -->
+									</li>
+									<li class="c04">
+										일반석 B구역<!-- 일반석 B구역 -->
+									</li>
+									<li class="c05">
+										일반석 C구역<!-- 일반석 C구역 -->
+									</li>
+								</ul>
+							</div>
+							<!-- // .seat-guide-box -->
+							<div class="section-sub-txt mt-30">737-800 NC</div><!-- 737-800 NC -->
+							<div>
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_intro_p01_t05_04.png" alt="" class="pc-only">
+							</div>
+							<div class="seat-guide-box">
+								<ul>
+									<li class="c06">
+										비즈니스 라이트<!-- 비즈니스 라이트 -->
+									</li>
+									<li class="c01">
+										앞/비상구 좌석<!-- 앞/비상구 좌석 -->
+									</li>
+									<li class="c03">
+										일반석 A구역<!-- 일반석 A구역 -->
+									</li>
+									<li class="c04">
+										일반석 B구역<!-- 일반석 B구역 -->
+									</li>
+									<li class="c05">
+										일반석 C구역<!-- 일반석 C구역 -->
+									</li>
+								</ul>
+							</div>
+							<!-- // .seat-guide-box -->
+						</div>
+					</div>
+					<!-- // 현황 -->
+				</div>
+			</div>
+			<!-- // About 제주항공 -->
+			<div data-element="tab__panel" class="tab__panel is-active mo-only">
+				<div class="info-title large mt40 mb30"><!-- #1271271782 : 20211227 변경 -->
+					항공 안전과 고객 건강을 <br class="mobile-only">최우선으로 생각합니다.<!-- 항공 안전과 고객 건강을 <br class="mobile-only"> 최우선으로 생각합니다. -->
+				</div>
+				<div class="img-box safe_healthy">
+					<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_p02_01.png" alt="">
+				</div>
+				<div class="section-wrap">
+					<div class="section-title">안전하고 건강한 여행 캠페인</div><!-- 안전하고 건강한 여행 캠페인 -->
+					<div class="section-sub-txt">제주항공은 생활방역을 준수하고 항공 여행 중 직원과 승객, 승객 간 접촉을 최소화함으로써, 안전하고 건강한 여행문화를 만들어 갑니다.</div><!-- 제주항공은 생활방역을 준수하고 항공 여행 중 직원과 승객, 승객 간 접촉을 최소화함으로써, 안전하고 건강한 여행문화를 만들어 갑니다. -->
+					<div class="row-box">
+						<ul>
+							<li>
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_p02_02_m.jpg" data-src="https://static.jejuair.net/hpgg/resources/images/etc/img_p02_02.png" alt="">
+							</li>
+							<li>
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_p02_03_m.jpg" data-src="https://static.jejuair.net/hpgg/resources/images/etc/img_p02_03.png" alt="">
+							</li>
+							<li>
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_p02_04_m.jpg" data-src="https://static.jejuair.net/hpgg/resources/images/etc/img_p02_04.png" alt="">
+							</li>
+						</ul>
+					</div>
+					<!-- // .row-box -->
+					<div class="tab tab--default" data-element="tab">
+						<div class="tab__button-wrap">
+							<div class="tab__buttons">
+								<div class="tab__button" data-element="tab__list">
+									<button class="tab__anchor" type="button" data-element="tab__anchor">체크인 시</button><!-- 체크인 시 -->
+								</div>
+								<div class="tab__button" data-element="tab__list">
+									<button class="tab__anchor" type="button" data-element="tab__anchor">탑승 시</button><!-- 탑승 시 -->
+								</div>
+								<div class="tab__button" data-element="tab__list">
+									<button class="tab__anchor" type="button" data-element="tab__anchor">기내에서</button><!-- 기내에서 -->
+								</div>
+							</div>
+						</div>
+						<div class="tab__panel cancel--pt" data-element="tab__panel">
+							<div class="event-page-banner">
+								<div class="event-top-banner" style="background-image: url(https://static.jejuair.net/hpgg/resources/images/etc/img-safe-center01-pc.png)">                          
+								</div>
+							</div>
+							<div class="checkin-icon-list">
+								<ul>
+									<li>
+										<div class="tit">
+											발권 카운터 투명 가림막 설치<!-- 발권 카운터 투명 가림막 설치 -->
+										</div>
+										<div class="des">
+											제주항공은 국내 항공사 최초로 발권 카운터에 비말 방지용 투명 가림막을 설치하여 고객이 안전하게 탑승수속을 할 수 있도록 도와드리고 있습니다.<!-- 제주항공은 국내 항공사 최초로 발권 카운터에 비말 방지용 투명 가림막을 설치하여 고객이 안전하게 탑승수속을 할 수 있도록 도와드리고 있습니다. -->
+										</div>
+									</li>
+									<li>
+										<div class="tit">
+											거리두기 수속 실시<!-- 거리두기 수속 실시 -->
+										</div>
+										<div class="des">
+											발권 수속을 위해 대기할 때에는 대기열 안내 스티커에 맞춰 충분한 거리를 유지하도록 안내하고 있습니다. 안전한 여행을 위해 고객 여러분의 협조 부탁드립니다.<!-- 발권 수속을 위해 대기할 때에는 대기열 안내 스티커에 맞춰 충분한 거리를 유지하도록 안내하고 있습니다. 안전한 여행을 위해 고객 여러분의 협조 부탁드립니다. -->
+										</div>
+									</li>
+									<li>
+										<div class="tit">
+											탑승객 간 기내 거리 확보<!-- 탑승객 간 기내 거리 확보 -->
+										</div>
+										<div class="des">
+											예약 상황에 따라 좌석에 여유가 있는 경우 혼자 여행하는 고객은 창가와 통로 측 좌석만 배정하고 3명 이상 동행할 경우는 한 줄 혹은 두 줄로 앉되 앞뒤 열을 비워 탑승객 간의 기내 거리를 충분히 확보하도록 노력하고 있습니다.<!-- 예약 상황에 따라 좌석에 여유가 있는 경우 혼자 여행하는 고객은 창가와 통로 측 좌석만 배정하고 3명 이상 동행할 경우는 한 줄 혹은 두 줄로 앉되 앞뒤 열을 비워 탑승객 간의 기내 거리를 충분히 확보하도록 노력하고 있습니다. -->
+										</div>
+									</li>
+									<li>
+										<div class="tit">
+											셀프 백드랍 이용 (Self Back Drop)<!-- 셀프 백드랍 이용 (Self Back Drop) -->
+										</div>
+										<div class="des">
+											위탁 수하물을 소지한 고객은 셀프 백드랍을 통해 편리하고 안전하게 비대면으로 수하물 수속을 할 수 있습니다. 해당 서비스는 국제선에 한하며, 국내선의 경우 발권 카운터에서 수하물 수속을 할 수 있습니다. <!-- 위탁 수하물을 소지한 고객은 셀프 백드랍을 통해 편리하고 안전하게 비대면으로 수하물 수속을 할 수 있습니다. 해당 서비스는 국제선에 한하며, 국내선의 경우 발권 카운터에서 수하물 수속을 할 수 있습니다. -->
+										</div>
+									</li>
+									<li>
+										<div class="tit">
+											모바일 탑승권<!-- 모바일 탑승권 -->
+										</div>
+										<div class="des">
+											비대면 수속을 통해 보다 안전하게 여행하실 수 있습니다. 모바일 탑승권 자동 발급을 신청하신 고객에 한해 출발 24시간 전에 자동으로 모바일 탑승권이 발급됩니다. 모바일 탑승권을 신청하신 고객 중 부칠 짐이 없는 경우, 공항 카운터를 방문하지 않고 바로 출발장으로 입장할 수 있습니다. <!-- 비대면 수속을 통해 보다 안전하게 여행하실 수 있습니다. 모바일 탑승권 자동 발급을 신청하신 고객에 한해 출발 24시간 전에 자동으로 모바일 탑승권이 발급됩니다. 모바일 탑승권을 신청하신 고객 중 부칠 짐이 없는 경우, 공항 카운터를 방문하지 않고 바로 출발장으로 입장할 수 있습니다. -->
+										</div>
+									</li>
+									<li>
+										<div class="tit">
+											키오스크 사용<!-- 키오스크 사용 -->
+										</div>
+										<div class="des">
+											공항 도착 전 모바일 탑승권을 발급하지 못했다면 키오스크(무인 발권기)를 통해 안전하고 편리하게 비대면 수속을 할 수 있습니다. 국내 모든 공항에서 키오스크 이용 시 무료로 탑승권을 발급할 수 있으며, 예약번호만 입력하시면 간편하게 탑승권이 발급됩니다. 단, 국제선의 경우 키오스크에 여권을 인식해야 합니다. <!-- 공항 도착 전 모바일 탑승권을 발급하지 못했다면 키오스크(무인 발권기)를 통해 안전하고 편리하게 비대면 수속을 할 수 있습니다. 국내 모든 공항에서 키오스크 이용 시 무료로 탑승권을 발급할 수 있으며, 예약번호만 입력하시면 간편하게 탑승권이 발급됩니다. 단, 국제선의 경우 키오스크에 여권을 인식해야 합니다. -->
+										</div>
+									</li>
+								</ul>
+							</div>
+							<!-- // .checkin-icon-list -->
+						</div>
+						<!-- //체크인 시 -->
+						<div class="tab__panel cancel--pt" data-element="tab__panel">
+							<div class="event-page-banner">
+								<div class="event-top-banner" style="background-image: url(https://static.jejuair.net/hpgg/resources/images/etc/img-safe-center02-pc.png)">                          
+								</div>
+							</div>
+							<div class="checkin-icon-list type02">
+								<ul>
+									<li>
+										<div class="tit">
+											탑승구 셀프 바코드 인식<!-- 탑승구 셀프 바코드 인식 -->
+										</div>
+										<div class="des">
+											직원과 탑승객의 접촉을 최소화하기 위해 탑승객이 직접 바코드 인식기에 항공권을 인식하도록 탑승제도를 개선하였습니다. 탑승객이 바코드 인식기 앞의 직원에게 항공권을 보여 주면 직원이 눈으로 확인하고, 이상이 없는 고객은 항공권 하단의 바코드를 직접 인식한 후 비행기로 이동하시면 됩니다.<!-- 직원과 탑승객의 접촉을 최소화하기 위해 탑승객이 직접 바코드 인식기에 항공권을 인식하도록 탑승제도를 개선하였습니다. 탑승객이 바코드 인식기 앞의 직원에게 항공권을 보여 주면 직원이 눈으로 확인하고, 이상이 없는 고객은 항공권 하단의 바코드를 직접 인식한 후 비행기로 이동하시면 됩니다. -->
+										</div>
+									</li>
+									<li>
+										<div class="tit">
+											좌석 위치별 순차 탑승<!-- 좌석 위치별 순차 탑승 -->
+										</div>
+										<div class="des">
+											탑승 시 기내에서 승객 간의 접촉을 최소화하도록 좌석 위치별 탑승 순서를 구분하여 운영합니다. 우선 탑승 20열 이후 좌석 앞쪽 좌석 순으로 탑승해 기내 이동 시 승객 간의 접촉을 최소화하고 있습니다.단, ‘좌석 위치별 순차 탑승’은 정시 운항일 경우에만 시행되며, 지연 등의 비정상 상황이 발생하거나 공항 사정에 따라 시행이 어려울 경우 기존과 같은 선착순 탑승으로 진행됩니다.<!-- 탑승 시 기내에서 승객 간의 접촉을 최소화하도록 좌석 위치별 탑승 순서를 구분하여 운영합니다. 우선 탑승 20열 이후 좌석 앞쪽 좌석 순으로 탑승해 기내 이동 시 승객 간의 접촉을 최소화하고 있습니다. 단, ‘좌석 위치별 순차 탑승’은 정시 운항일 경우에만 시행되며, 지연 등의 비정상 상황이 발생하거나 공항 사정에 따라 시행이 어려울 경우 기존과 같은 선착순 탑승으로 진행됩니다. -->
+										</div>
+									</li>
+									<li>
+										<div class="tit">
+											탑승 전 체온 측정<!-- 탑승 전 체온 측정 -->
+										</div>
+										<div class="des">
+											탑승 시 열화상 카메라와 비접촉식 체온계를 사용하여 탑승객 전원의 체온을 측정하고 있습니다. 안전한 여행을 위해 탑승객 여러분의 협조 부탁드립니다.<!-- 탑승 시 열화상 카메라와 비접촉식 체온계를 사용하여 탑승객 전원의 체온을 측정하고 있습니다. 안전한 여행을 위해 탑승객 여러분의 협조 부탁드립니다. -->
+										</div>
+									</li>
+									<li>
+										<div class="tit">
+											마스크 필수 착용<!-- 마스크 필수 착용 -->
+										</div>
+										<div class="des">
+											공항에서 근무하는 제주항공의 모든 직원은 마스크 또는 안면가리개 착용을 의무화하고 있습니다. 고객 여러분의 안전하고 건강한 여행을 위해서 공항에서는 마스크를 꼭 착용해 주시기 바랍니다.<!-- 공항에서 근무하는 제주항공의 모든 직원은 마스크 또는 안면가리개 착용을 의무화하고 있습니다. 고객 여러분의 안전하고 건강한 여행을 위해서 공항에서는 마스크를 꼭 착용해 주시기 바랍니다. -->
+										</div>
+									</li>
+								</ul>
+							</div>
+							<!-- // .checkin-icon-list -->
+						</div>
+						<!-- //탑승 시 -->
+						<div class="tab__panel cancel--pt" data-element="tab__panel">
+							<div class="event-page-banner">
+								<div class="event-top-banner" style="background-image: url(https://static.jejuair.net/hpgg/resources/images/etc/img-safe-center03-pc.png)">                          
+								</div>
+							</div>
+							<div class="section-wrap">
+								<div class="section-title sub-title pb15">
+									제주항공 기내 서비스의 새로운 기준 : S.A.F.E<!-- 제주항공 기내 서비스의 새로운 기준 : S.A.F.E -->
+								</div>
+								<div class="section-sub-txt">
+									(Sanitary·위생적인 서비스, Avoided·거리두기 서비스, Friendly·친근한 서비스, Emotional·감성 서비스)  승객의 위생을 최우선으로 생각하고, 승객과 승무원간 물리적 거리는 유지하면서 고객 개개인에게는 세심한 서비스를 제공하기 위해 최선을 다하겠습니다.                        <!-- (Sanitary·위생적인 서비스, Avoided·거리두기 서비스, Friendly·친근한 서비스, Emotional·감성 서비스) 	승객의 위생을 최우선으로 생각하고, 승객과 승무원간 물리적 거리는 유지하면서 고객 개개인에게는 세심한 서비스를 제공하기 위해 최선을 다하겠습니다. -->
+								</div>
+							</div>
+							<div class="checkin-icon-list type03">
+								<ul>
+									<li>
+										<div class="tit">
+											승무원 마스크, 장갑 착용<!-- 승무원 마스크, 장갑 착용 -->
+										</div>
+										<div class="des">
+											제주항공의 모든 객실승무원은 마스크와 라텍스 장갑 착용을 의무화하고 있습니다. 고객 여러분의 안전하고 건강한 여행을 위해서 기내에서도 마스크를 꼭 착용하시기 바랍니다.<!-- 제주항공의 모든 객실승무원은 마스크와 라텍스 장갑 착용을 의무화하고 있습니다. 고객 여러분의 안전하고 건강한 여행을 위해서 기내에서도 마스크를 꼭 착용하시기 바랍니다. -->
+										</div>
+									</li>
+									<li>
+										<div class="tit">
+											운항 중 기내 소독<!-- 운항 중 기내 소독 -->
+										</div>
+										<div class="des">
+											제주항공은 국내 항공사 최초로 모든 노선에서 운항 중 기내 화장실 내부 및 화장실 손잡이를 소독하여 최상의 위생상태를 유지하기 위해 노력하고 있습니다.<!-- 제주항공은 국내 항공사 최초로 모든 노선에서 운항 중 기내 화장실 내부 및 화장실 손잡이를 소독하여 최상의 위생상태를 유지하기 위해 노력하고 있습니다. -->
+										</div>
+									</li>
+									<li>
+										<div class="tit">
+											언택트 서비스<!-- 언택트 서비스 -->
+										</div>
+										<div class="des">
+											기내 에어카페 상품은 기존에는 카트에 비치해 판매하는 방식이었으나 현재는 승객이 구매를 요청할 때만 개별적으로 판매하는 방식으로 전환하였습니다. 또한, 상품 구매 시 승객이 직접 단말기에 카드를 꽂아 결제하도록 안내하여 승무원과 승객 간 접촉을 최소화하기 위해 노력하고 있습니다.<!-- 기내 에어카페 상품은 기존에는 카트에 비치해 판매하는 방식이었으나 현재는 승객이 구매를 요청할 때만 개별적으로 판매하는 방식으로 전환하였습니다. 또한, 상품 구매 시 승객이 직접 단말기에 카드를 꽂아 결제하도록 안내하여 승무원과 승객 간 접촉을 최소화하기 위해 노력하고 있습니다. -->
+										</div>
+									</li>
+									<li>
+										<div class="tit">
+											위생용품 기내 판매<!-- 위생용품 기내 판매 -->
+										</div>
+										<div class="des">
+											승객의 건강한 여행을 위해 휴대용 소독 스프레이, 손세정제, 마스크 등의 위생용품을 기내 에어카페에서 구매할 수 있도록 준비하였습니다.<!-- 승객의 건강한 여행을 위해 휴대용 소독 스프레이, 손세정제, 마스크 등의 위생용품을 기내 에어카페에서 구매할 수 있도록 준비하였습니다. -->
+										</div>
+									</li>
+									<li>
+										<div class="tit">
+											헤파필터로 기내 공기 정화<!-- 헤파필터로 기내 공기 정화 -->
+										</div>
+										<div class="des">
+											제주항공은 코로나19 바이러스로부터 안전한 기내 환경을 만들기 위해 항공기 내 공기순환 시스템 및 ‘헤파(HEPA, High Efficiency Particulate Air)필터*’를 주기적으로 점검하여 최적의 성능을 유지하고 있습니다.<!-- 제주항공은 코로나19 바이러스로부터 안전한 기내 환경을 만들기 위해 항공기 내 공기순환 시스템 및 ‘헤파(HEPA, High Efficiency Particulate Air)필터*’를 주기적으로 점검하여 최적의 성능을 유지하고 있습니다. -->
+										</div>
+										<div class="des-sub">
+											*헤파필터는 먼지나 바이러스, 박태리아 같은 각종 입자를 효과적으로 차단하는 고성능 필터입니다.<!-- *헤파필터는 먼지나 바이러스, 박태리아 같은 각종 입자를 효과적으로 차단하는 고성능 필터입니다. -->
+										</div>
+									</li>
+								</ul>
+							</div>
+							<!-- // .checkin-icon-list -->
+						</div>
+						<!-- //기내에서 -->
+					</div>
+					<div class="corona19"><!-- #1271271782 : 20211227 corona19 추가 -->
+						<div class="section-wrap">
+							<div class="section-title">
+								코로나19 안내 센터<!-- 코로나19 안내 센터 -->
+							</div>
+							<div class="section-sub-txt">
+								모든 승객의 안전을 최우선으로 생각하는 제주항공이 되겠습니다.<!-- 모든 승객의 안전을 최우선으로 생각하는 제주항공이 되겠습니다. -->
+							</div>
+						</div>
+						<div class="news__item mt-30">
+							<div class="news__list">
+								<a href="javascript:void(0);" onclick="URL_LINK.getI18Url('/customerServiceCenter/notice.do')">
+									<p class="news__list-text">국가별 출/입국 제한 현황 안내</p><!-- 국가별 출/입국 제한 현황 안내 -->
+								</a>
+							</div>
+						</div>
+						<!-- // .news__item -->
+					</div>
+	                <!--//corona19-->
+				</div>
+			</div>
+			<!-- // 안전하고 건강한 여행  -->
+			
+				<div data-element="tab__panel" class="tab__panel pc-only">
+
+					<div class="tab tab--default" data-element="tab">
+						<div class="info-title large pb30">제주항공이 고객과 소통하는 다양한 소식을 만나보세요.</div><!-- 제주항공이 고객과 소통하는 다양한 소식을 만나보세요. -->
+						<div class="tab__button-wrap">
+							<div class="tab__buttons">
+								<div class="tab__button" data-element="tab__list">
+									<button class="tab__anchor" type="button" data-element="tab__anchor">기내지</button><!-- 기내지 -->
+								</div>
+								<div class="tab__button" data-element="tab__list">
+									<button class="tab__anchor" type="button" data-element="tab__anchor">홍보영상</button><!-- 홍보영상 -->
+								</div>
+
+							</div>
+						</div>
+						<div class="tab__panel cancel--pt" data-element="tab__panel">
+							<div class="media-top">
+								<div class="section-wrap"><!-- #1271271782 : 20211227 mt30 삭제 -->
+									<div class="section-title sub-title mt30"><!-- #1271271782 : 20211227 mt30 추가 -->
+										제주항공의 기내지 JOIN enJOY 입니다.<!-- 제주항공의 기내지 JOIN enJOY 입니다. -->
+									</div>
+									<div class="input-box">
+										<div class="select-wrap select-wrap--line">
+											<select title="" class="select-wrap__select selected sel_tab"><!-- 일 선택 -->
+												<option selected=""><!-- 2021년 --> 2022년</option><!-- 2022년 -->
+												<option>2021년</option><!-- 2021년 -->
+												<option>2020년</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- //.media-top -->
+							<div class="sel_tab_cont"> <!-- 2022년 기내지 추가 --> 
+								<div class="list-magazine">
+									<div class="item">
+										<div class="thumb">
+											<img src="https://static.jejuair.net/hpgg/resources/images/etc/Join_enjoy_winter2022.jpg" alt="">
+										</div>
+										<p class="mt10">겨울 (1.2.3 월호)</p>
+										<a href="https://static.jejuair.net/hpgg/resources/pdf/Join_enjoy_winter2022.pdf" target="_blank" class="button button--small"><span class="button__text">자세히 보기 </span></a><!-- 2022 자세히 보기 버튼 -->
+									</div>
+								</div>
+							</div>
+							
+							<div class="sel_tab_cont"> <!-- 2021년 기내지 -->  
+								<div class="list-magazine">
+									<div class="item">
+										<div class="thumb">
+											<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_p04_03.jpg" alt="">
+										</div>
+										<p class="mt10">겨울 (1.2.3 월호)</p>
+										<a href="https://static.jejuair.net/hpgg/resources/pdf/Join enjoy_winter2021.pdf" target="_blank" class="button button--small"><span class="button__text">자세히 보기</span></a><!-- 자세히 보기 -->
+									</div>
+									<div class="item">
+										<div class="thumb">
+											<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_p04_01.jpg" alt="">
+										</div>
+										<p class="mt10">봄 (4.5.6 월호)</p>
+										<a href="https://static.jejuair.net/hpgg/resources/pdf/Join enjoy_spring2021.pdf" target="_blank" class="button button--small"><span class="button__text">자세히 보기</span></a><!-- 자세히 보기 -->
+									</div>
+									<div class="item">
+										<div class="thumb">
+											<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_p04_02.jpg" alt="">
+										</div>
+										<p class="mt10">여름 (7.8.9 월호)</p>
+										<a href="https://static.jejuair.net/hpgg/resources/pdf/Join enjoy_summer2021.pdf" target="_blank" class="button button--small"><span class="button__text">자세히 보기</span></a><!-- 자세히 보기 -->
+									</div>
+									<div class="item">
+										<div class="thumb">
+											<img src="https://static.jejuair.net/hpgg/resources/images/etc/Join_enjoy_autumn2021.jpg" alt="">
+										</div>
+										<p class="mt10">가을 (10.11.12 월호)</p>
+										<a href="https://static.jejuair.net/hpgg/resources/pdf/Join_enjoy_autumn2021.pdf" target="_blank" class="button button--small"><span class="button__text">자세히 보기</span></a><!-- 자세히 보기 -->
+									</div>
+								</div>
+							</div>
+
+
+							<div class="sel_tab_cont" data-element="corp-page-wrap"> 
+								<div class="list-magazine" data-element="corp-page">
+									<div class="item">
+										<div class="thumb">
+											<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_magazine_2020-01.jpg" alt="">
+										</div>
+										<a href="https://static.jejuair.net/hpgg/resources/pdf/Join enjoy_2020.01.pdf" target="_blank" class="button button--small"><span class="button__text">자세히 보기</span></a><!-- 자세히 보기 -->
+									</div>
+									<div class="item">
+										<div class="thumb">
+											<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_magazine_2020-02.jpg" alt="">
+										</div>
+										<a href="https://static.jejuair.net/hpgg/resources/pdf/Join enjoy_2020.02.pdf" target="_blank" class="button button--small"><span class="button__text">자세히 보기</span></a><!-- 자세히 보기 -->
+									</div>
+									<div class="item">
+										<div class="thumb">
+											<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_magazine_2020-03.jpg" alt="">
+										</div>
+										<a href="https://static.jejuair.net/hpgg/resources/pdf/Join enjoy_2020.03.pdf" target="_blank" class="button button--small"><span class="button__text">자세히 보기</span></a><!-- 자세히 보기 -->
+									</div>
+									<div class="item">
+										<div class="thumb">
+											<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_magazine_2020-04.jpg" alt="">
+										</div>
+										<a href="https://static.jejuair.net/hpgg/resources/pdf/Join enjoy_2020.04.pdf" target="_blank" class="button button--small"><span class="button__text">자세히 보기</span></a><!-- 자세히 보기 -->
+									</div>
+								</div>
+								<div class="list-magazine" data-element="corp-page" style="display:none;">
+									<div class="item">
+										<div class="thumb">
+											<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_magazine_2020-05.jpg" alt="">
+										</div>
+										<a href="https://static.jejuair.net/hpgg/resources/pdf/Join enjoy_2020.05.pdf" target="_blank" class="button button--small"><span class="button__text">자세히 보기</span></a><!-- 자세히 보기 -->
+									</div>
+									<div class="item">
+										<div class="thumb">
+											<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_magazine_2020-06.jpg" alt="">
+										</div>
+										<a href="https://static.jejuair.net/hpgg/resources/pdf/Join enjoy_2020.06.pdf" target="_blank" class="button button--small"><span class="button__text">자세히 보기</span></a><!-- 자세히 보기 -->
+									</div>
+									<div class="item">
+										<div class="thumb">
+											<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_magazine_2020-07.jpg" alt="">
+										</div>
+										<a href="https://static.jejuair.net/hpgg/resources/pdf/Join enjoy_2020.07.pdf" target="_blank" class="button button--small"><span class="button__text">자세히 보기</span></a><!-- 자세히 보기 -->
+									</div>
+									<div class="item">
+										<div class="thumb">
+											<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_magazine_2020-08.jpg" alt="">
+										</div>
+										<a href="https://static.jejuair.net/hpgg/resources/pdf/Join enjoy_2020.08.pdf" target="_blank" class="button button--small"><span class="button__text">자세히 보기</span></a><!-- 자세히 보기 -->
+									</div>
+								</div>
+								<div class="list-magazine" data-element="corp-page" style="display:none;">
+									<div class="item">
+										<div class="thumb">
+											<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_magazine_2020-09.jpg" alt="">
+										</div>
+										<a href="https://static.jejuair.net/hpgg/resources/pdf/Join enjoy_2020.09.pdf" target="_blank" class="button button--small"><span class="button__text">자세히 보기</span></a><!-- 자세히 보기 -->
+									</div>
+									<div class="item">
+										<div class="thumb">
+											<img src="https://static.jejuair.net/hpgg/resources/images/etc/img_magazine_2020 AUTUMN.jpg" alt="">
+										</div>
+										<a href="https://static.jejuair.net/hpgg/resources/pdf/Join enjoy_fall2020.pdf" target="_blank" class="button button--small"><span class="button__text">자세히 보기</span></a><!-- 자세히 보기 -->
+									</div>
+								</div>
+								<div class="paging-center">
+									<div class="paging">
+										<span class="page-first"><a class="off" href="javascript:void(0);">처음</a></span><!-- 처음 -->
+										<span class="page-prev"><a class="off" href="javascript:void(0);">이전</a></span><!-- 이전 -->
+										<span class="page-num on"><a href="javascript:void(0);">1</a></span>
+										<span class="page-num"><a href="javascript:void(0);">2</a></span>
+										<span class="page-num"><a href="javascript:void(0);">3</a></span>
+										<span class="page-next"><a href="javascript:void(0);">다음</a></span><!-- 다음 -->
+										<span class="page-last"><a href="javascript:void(0);">끝</a></span><!-- 끝 -->
+									</div>
+								</div>
+								<!-- //paging-center -->
+							</div>
+							<!-- //.list-magazine -->
+						</div>
+						<!-- //기내지 -->
+						<div class="tab__panel cancel--pt" data-element="tab__panel">
+							<div class="section-wrap mt30">
+								<div class="section-title sub-title pb15">
+									더 많은 제주항공 영상은 제주항공 공식 유튜브 채널에서 만나 볼 수 있습니다. <!-- 더 많은 제주항공 영상은 제주항공 공식 유튜브 채널에서 만나 볼 수 있습니다. -->
+								</div>
+								<a href="https://www.youtube.com/user/funjejuair" target="_blank" class="btn-go-youtube">제주항공 유튜브 공식채널</a><!-- 제주항공 유튜브 공식채널 -->
+								<div class="embed-video-box">
+									<div class="tit">
+										객실훈련센터 인터뷰 대공개ㅣ우리가 안전을 수호하는 방법
+									</div>
+									<div class="embed-video">
+										<div class="video">
+											<iframe id="youtubeIframe" width="1004" height="564" src="https://www.youtube.com/embed/WYkbZzf2j7s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+										</div>
+									</div>
+								</div>
+								<!-- // .embed-video-box -->
+								
+								<div data-element="corp-page-wrap"> 
+									<div data-element="corp-page">
+										<div class="newscenter">
+											<div  class="newscenter_thum">
+												<a href="javascript:void(0);" data-action="setYoutube">
+													<p><img src="https://img.youtube.com/vi/WYkbZzf2j7s/mqdefault.jpg"></p>
+													<P class="tit">객실훈련센터 인터뷰 대공개ㅣ우리가 안전을 수호하는 방법</P>
+												</a>
+											</div>
+
+											<div  class="newscenter_thum">
+												<a href="javascript:void(0);" data-action="setYoutube">
+													<p><img src="https://img.youtube.com/vi/DUE5XEF8Ao4/mqdefault.jpg"></p>
+													<P class="tit">요즘 인스타에서 핫하다는 제주항공 기내식카페 "여행맛"</P>
+											</div>
+
+											<div  class="newscenter_thum">
+												<a href="javascript:void(0);" data-action="setYoutube">
+													<p><img src="https://img.youtube.com/vi/kOd-nKj8Xt4/mqdefault.jpg"></p>
+													<P class="tit">제주항공고 고고챌린지에 동참합니다ㅣ플라스틱 줄이기 고고챌린지</P>
+												</a>
+											</div>                   
+											
+										</div>
+										
+
+
+										<div class="newscenter">
+											<div class="newscenter_thum">
+											<a href="javascript:void(0);" data-action="setYoutube">
+												<p><img src="https://img.youtube.com/vi/NZWYtyNJx9Y/mqdefault.jpg"></p>
+												<P class="tit">축하메세지가 도착했어요!ㅣ제주항공 창립 16주년</P>
+											</a>
+											</div>
+										
+											<div class="newscenter_thum">
+											<a href="javascript:void(0);" data-action="setYoutube">
+												<p><img src="https://img.youtube.com/vi/Qr4PHgRQu7U/mqdefault.jpg"></p>
+												<P class="tit">여행가고픈 아이들의 순수함이 담긴 그림을 공개합니다ㅣ제주항공 랜선 기내 하늘길 그림 그리기 대회</P>
+											</div>
+										
+											<div class="newscenter_thum">
+											<a href="javascript:void(0);" data-action="setYoutube">
+												<p><img src="https://img.youtube.com/vi/P0bHe3KSo_Q/mqdefault.jpg"></p>
+												<P class="tit">"이래도 버리실 건가요..?"ㅣ제주항공 유기견 봉사동아리 개취존중팀 이야기  ㅣ승무원이 눈물을 흘린 이유</P>
+											</a>
+											</div>                      
+										</div>
+
+
+
+										<div class="newscenter">
+											<div class="newscenter_thum">
+											<a href="javascript:void(0);" data-action="setYoutube">
+												<p><img src="https://img.youtube.com/vi/AilM5wjhRuY/mqdefault.jpg"></p>
+												<P class="tit">[EBS 별일입니다] 항공정비사의 리얼스토리 공개</P>
+											</a>
+											</div>
+										
+											<div class="newscenter_thum">
+											<a href="javascript:void(0);" data-action="setYoutube">
+												<p><img src="https://img.youtube.com/vi/y4X4Nt80S4I/mqdefault.jpg"></p>
+												<P class="tit">[JTV] 제주항공 임직원이 직접 참여한 연탄나눔 봉사활동현장 전격공개!</P>
+											</div>
+										
+											<div class="newscenter_thum">
+											<a href="javascript:void(0);" data-action="setYoutube">
+												<p><img src="https://img.youtube.com/vi/ivpQBNPxwnc/mqdefault.jpg"></p>
+												<P class="tit">제주항공이 청춘들의 꿈과 도전을 응원합니다!</P>
+											</a>
+											</div>                      
+										</div>
+									</div>
+
+									<div data-element="corp-page" style="display:none;">
+										<div class="newscenter">
+											<div class="newscenter_thum">
+											<a href="javascript:void(0);" data-action="setYoutube">
+												<p><img src="https://img.youtube.com/vi/W1yoA_phmTA/mqdefault.jpg"></p>
+												<P class="tit">제주항공에 등장한 에코 어벤져서, 그린크루의 정체는?!</P>
+											</a>
+											</div>
+										
+											<div class="newscenter_thum">
+											<a href="javascript:void(0);" data-action="setYoutube">
+												<p><img src="https://img.youtube.com/vi/Q-3q3O4_eZg/mqdefault.jpg"></p>
+												<P class="tit">아이들이 직접 비행조종을 체험해봤다! With 기장님</P>
+											</div>
+										
+											<div class="newscenter_thum">
+											<a href="javascript:void(0);" data-action="setYoutube">
+												<p><img src="https://img.youtube.com/vi/gLdwotYUoaQ/mqdefault.jpg"></p>
+												<P class="tit">제주항공의 신규항공기 제작과정</P>
+											</a>
+											</div>                      
+										</div>
+									</div>
+									<!-- // .video-list -->
+									<div class="paging-center">
+										<div class="paging">
+											<span class="page-first"><a class="off" href="javascript:void(0);">처음</a></span><!-- 처음 -->
+											<span class="page-prev"><a class="off" href="javascript:void(0);">이전</a></span><!-- 이전 -->
+											<span class="page-num on"><a href="javascript:void(0);">1</a></span>
+											<span class="page-num"><a href="javascript:void(0);">2</a></span>
+											<span class="page-next"><a href="javascript:void(0);">다음</a></span><!-- 다음 -->
+											<span class="page-last"><a href="javascript:void(0);">끝</a></span><!-- 끝 -->
+										</div>
+									</div>
+									<!-- //paging-center -->
+								</div>
+							</div>
+						</div>
+						<!-- //홍보영상 -->
+					</div>
+
+				</div>
+				<!-- // 뉴스 센터 -->
+				<div data-element="tab__panel" class="tab__panel pc-only">
+					<div class="info-title large">고객과 함께 더 큰 행복을 꿈꾸는 제주항공이 되겠습니다.</div><!-- 고객과 함께 더 큰 행복을 꿈꾸는 제주항공이 되겠습니다. -->
+					<ul class="award_list">
+						<li>
+							<div class="award-img">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/awards_31.jpg" alt="">
+							</div>
+							<div class="award-txt">
+								2022년 한국 산업 브랜드 파워(K-BPI)<br>저비용항공(LCC)부문 8년 연속 1위
+							</div>
+						</li>
+						<li>
+							<div class="award-img">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/awards_2.png" alt="">
+							</div>
+							<div class="award-txt">
+								2022년 대한민국 친환경상품 ‛그린스타‛<br>저비용항공 부문 4년 연속 1위<!-- 2021 대한민국 친환경상품 ‘그린스타’<br>저비용항공 부문 3년 연속 1위 -->
+							</div>
+						</li>
+						<li>
+							<div class="award-img">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/awards_3.png" alt="">
+							</div>
+							<div class="award-txt">
+								2022년 국가고객만족도(NCSI) LCC부문 1위<!-- 2020년 국가고객만족도(NSCI) LCC부문 1위 -->
+							</div>
+						</li>
+						<li>
+							<div class="award-img">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/awards_4.png" alt="">
+							</div>
+							<div class="award-txt">
+								국가산업대상 경영혁신부문 (2018)<!-- 국가산업대상 경영혁신부문 (2018) -->
+							</div>
+						</li>
+						<li>
+							<div class="award-img">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/awards_5.jpg" alt="">
+							</div>
+							<div class="award-txt">
+								한국소비자 평가 최고의 브랜드 항공사부문 (2018)<!-- 한국소비자 평가 최고의 브랜드 항공사부문 (2018) -->
+							</div>
+						</li>
+						<li>
+							<div class="award-img">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/awards_6.png" alt="">
+							</div>
+							<div class="award-txt">
+								고객감동경영대상 4년 연속 (2018)<!-- 고객감동경영대상 4년 연속 (2018) -->
+							</div>
+						</li>
+						<li>
+							<div class="award-img">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/awards_7.png" alt="">
+							</div>
+							<div class="award-txt">
+								대한민국 공감받는 브랜드 저비용항공사부문 <br>1위 5년 연속(2013-2017)<!-- 대한민국 공감받는 브랜드 저비용항공사부문 <br>1위 5년 연속(2013-2017) -->
+							</div>
+						</li>
+						<li>
+							<div class="award-img">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/awards_8.png" alt="">
+							</div>
+							<div class="award-txt">
+								대한민국 고용친화 모범경영대상 (2017)(2015)<!-- 대한민국 고용친화 모범경영대상 (2017)(2015) -->
+							</div>
+						</li>
+						<li>
+							<div class="award-img">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/awards_9.png" alt="">
+							</div>
+							<div class="award-txt">
+								대한민국 소비자 대상 저비용항공 부문 (2015)<!-- 대한민국 소비자 대상 저비용항공 부문 (2015) -->
+							</div>
+						</li>
+						<li>
+							<div class="award-img">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/awards_11.png" alt="">
+							</div>
+							<div class="award-txt">
+								대한민국 경영대상 지속가능 경영대상 2년 연속 <br>(2015-2016)<!-- 대한민국 경영대상 지속가능 경영대상 2년 연속 <br>(2015-2016) -->
+							</div>
+						</li>
+						<li>
+							<div class="award-img">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/awards_12.png" alt="">
+							</div>
+							<div class="award-txt">
+								IATA IOSA 11th Edition인증 획득<!-- IATA IOSA 11th Edition인증 획득 -->
+							</div>
+						</li>
+						<li>
+							<div class="award-img">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/awards_13.png" alt="">
+							</div>
+							<div class="award-txt">
+								국가 공인 인증기관 웹와치 웹 접근성 인증 3년 연속 <br>(2015-2017)<!-- 국가 공인 인증기관 웹와치 웹 접근성 인증 3년 연속 <br>(2015-2017) -->
+							</div>
+						</li>
+						<li>
+							<div class="award-img">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/awards_14.png" alt="">
+							</div>
+							<div class="award-txt">
+								인증범위 : 인터넷 예약발권 시스템 및 대외서비스 운영 <br>유효기간 : 2021.12.2 ~ 2024.12.1<!-- 인증범위 : 인터넷 예약발권 시스템 및 대외서비스 운영 <br>유효기간 : 2018.12.1 ~ 2021.12.1 -->
+							</div>
+						</li>
+						<li>
+							<div class="award-img">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/awards_15.png" alt="">
+							</div>
+							<div class="award-txt">
+								인증범위 : 인터넷 예약발권 시스템 및 대외서비스 운영 <br>유효기간 : 2019.10.16 ~ 2022.10.15<!-- 인증범위 : 인터넷 예약발권 시스템 및 대외서비스 운영 <br>유효기간 : 2019.10.16 ~ 2022.10.15 -->
+							</div>
+						</li>
+						<li>
+							<div class="award-img">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/awards_16.png" alt="">
+							</div>
+							<div class="award-txt">
+								고객감동 브랜드 지수 저비용항공사 부분 1위 <br>(2017)<!-- 고객감동 브랜드 지수 저비용항공사 부분 1위 <br>(2017) -->
+							</div>
+						</li>
+						<li>
+							<div class="award-img">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/awards_17.png" alt="">
+							</div>
+							<div class="award-txt">
+								국가 소비자중심 브랜드 대상 저비용항공사부문 <br>3년 연속 (2015-2017)<!-- 국가 소비자중심 브랜드 대상 저비용항공사부문 <br>3년 연속 (2015-2017) -->
+							</div>
+						</li>
+						<li>
+							<div class="award-img">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/awards_18.png" alt="">
+							</div>
+							<div class="award-txt">
+								대한민국 명품브랜드 대상 저비용항공서비스부문 <br>3년 연속 (2014-2016)<!-- 대한민국 명품브랜드 대상 저비용항공서비스부문 <br>3년 연속 (2014-2016) -->
+							</div>
+						</li>
+						<li>
+							<div class="award-img">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/awards_19.png" alt="">
+							</div>
+							<div class="award-txt">
+								대한민국 사회공헌기업 대상 3년 연속 (2015-2017)<!-- 대한민국 사회공헌기업 대상 3년 연속 (2015-2017) -->
+							</div>
+						</li>
+						<li>
+							<div class="award-img">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/awards_20.png" alt="">
+							</div>
+							<div class="award-txt">
+								대한민국 사회공헌기업 대상 (2015)<!-- 대한민국 사회공헌기업 대상 (2015) -->
+							</div>
+						</li>
+						<li>
+							<div class="award-img">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/awards_21.png" alt="">
+							</div>
+							<div class="award-txt">
+								고용창출 우수기업 선정 대통령 표창 3년 연속 <br>(2013-2015)<!-- 고용창출 우수기업 선정 대통령 표창 3년 연속 <br>(2013-2015) -->
+							</div>
+						</li>
+						<li>
+							<div class="award-img">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/awards_22.jpg" alt="">
+							</div>
+							<div class="award-txt">
+								대한민국 온라인 광고대상 최우수상 (2014)<!-- 대한민국 온라인 광고대상 최우수상 (2014) -->
+							</div>
+						</li>
+						<li>
+							<div class="award-img">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/awards_23.png" alt="">
+							</div>
+							<div class="award-txt">
+								사랑나눔 사회공헌 대상, 다문화 가정 부문 <br>2년 연속 (2013-2014))<!-- 사랑나눔 사회공헌 대상, 다문화 가정 부문 <br>2년 연속 (2013-2014)) -->
+							</div>
+						</li>
+						<li>
+							<div class="award-img">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/awards_24.jpg" alt="">
+							</div>
+							<div class="award-txt">
+								대한민국 광고대상 옥외부분 은상 (2012)<!-- 대한민국 광고대상 옥외부분 은상 (2012) -->
+							</div>
+						</li>
+						<li>
+							<div class="award-img">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/awards_25.png" alt="">
+							</div>
+							<div class="award-txt">
+								대한민국 베스트셀링 브랜드 <br>브랜드 아이덴티티·디자인부문 (2016)<!-- 대한민국 베스트셀링 브랜드 <br>브랜드 아이덴티티·디자인부문 (2016) -->
+							</div>
+						</li>
+						<li>
+							<div class="award-img">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/awards_26.png" alt="">
+							</div>
+							<div class="award-txt">
+								대한민국 SNS 산업대상 <br>한국콘텐츠진흥원장상 (2016)<!-- 대한민국 SNS 산업대상 <br>한국콘텐츠진흥원장상 (2016) -->
+							</div>
+						</li>
+						<li>
+							<div class="award-img">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/awards_27.png" alt="">
+							</div>
+							<div class="award-txt">
+								대한민국 미래창조 경영대상 <br>창조인재경영 일자리창출 부문 (2016)<!-- 대한민국 미래창조 경영대상 <br>창조인재경영 일자리창출 부문 (2016) -->
+							</div>
+						</li>
+						<li>
+							<div class="award-img">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/awards_28.png" alt="">
+							</div>
+							<div class="award-txt">
+								소비자평가 No.1 브랜드 대상 <br>저비용항공사 부문 (2016)<!-- 소비자평가 No.1 브랜드 대상 <br>저비용항공사 부문 (2016) -->
+							</div>
+						</li>
+						<li>
+							<div class="award-img">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/awards_29.png" alt="">
+							</div>
+							<div class="award-txt">
+								올해의 소비자공감 브랜드 대상 (2016)<!-- 올해의 소비자공감 브랜드 대상 (2016) -->
+							</div>
+						</li>
+						<li>
+							<div class="award-img">
+								<img src="https://static.jejuair.net/hpgg/resources/images/etc/awards_30.png" alt="">
+							</div>
+							<div class="award-txt">
+								대한민국 혁신 기업인 대상 글로벌 부문 (2016)<!-- 대한민국 혁신 기업인 대상 글로벌 부문 (2016) -->
+							</div>
+						</li>
+					</ul>
+					<!-- //.award_list -->
+				</div>
+				<!-- // 수상내역 -->
+			
+		</div>
+	</div>
+	</div>
+				</main>
+			</div>
+			
+		</div>
+	</div>
+
+	
+	
+
+
+
+
+
+<div id="footer" class="footer pc-only">
+	
+    <!-- pc -->
+    <footer class="footer__inner">
+		<div class="footer__top">
+			<div class="footer__top-item">
+				<a href="javascript:void(0);" class="footer__top-link" data-action="menu" data-menu-name="about">회사소개</a>
+			</div>
+			
+			<div class="footer__top-item">
+				<a href="javascript:void(0);" class="footer__top-link" data-action="menu" data-menu-name="esg">ESG경영</a>
+			</div>
+			
+			
+				<div class="footer__top-item">
+					<a href="javascript:void(0);" class="footer__top-link" data-action="menu" data-menu-name="irNotice">투자정보</a>
+				</div>
+			
+			
+				<div class="footer__top-item">
+					<a href="javascript:void(0);" class="footer__top-link" data-action="menu" data-menu-name="incruit">채용안내</a>
+				</div>
+			
+			<div class="footer__top-item">
+				<a href="javascript:void(0);" class="footer__top-link" data-action="menu" data-menu-name="carriageTemrs">여객운송약관</a>
+			</div>
+			<div class="footer__top-item">
+				<a href="javascript:void(0);" class="footer__top-link" data-action="menu" data-menu-name="homepageTerms">홈페이지 이용약관</a>
+			</div>
+			<div class="footer__top-item footer__top-item--privacy">
+				<a href="javascript:void(0);" class="footer__top-link" data-action="menu" data-menu-name="personalTerms">개인정보처리방침</a>
+			</div>
+			<div class="footer__top-item">
+				<a href="javascript:void(0);" class="footer__top-link" data-action="menu" data-menu-name="sitemap">사이트맵</a>
+			</div>
+			
+			<div class="footer__top-item footer__top-item--family">
+				<div class="family-wrap" data-element="toggle" data-options='{"mode": "slide", "speed": 100, "clickToClose": true}'>
+					<button type="button" class="button-family" data-element="toggle__anchor">Family Site</button>
+					<div class="family-list" data-element="toggle__panel">
+						<a href="javascript:void(0);" class="family-link" data-action="menu" data-menu-name="familyAekyung">㈜애경산업</a>
+						<a href="javascript:void(0);" class="family-link" data-action="menu" data-menu-name="familyAtecltd">㈜에이텍</a>
+						<a href="javascript:void(0);" class="family-link" data-action="menu" data-menu-name="familyAekyngst">애경S.T</a>
+						<a href="javascript:void(0);" class="family-link" data-action="menu" data-menu-name="familyAkis">에이케이아이에스㈜</a>
+						<a href="javascript:void(0);" class="family-link" data-action="menu" data-menu-name="familyAdmission">애드미션</a>
+						<a href="javascript:void(0);" class="family-link" data-action="menu" data-menu-name="familyNeopharm">네오팜</a>
+						<a href="javascript:void(0);" class="family-link" data-action="menu" data-menu-name="familyAkp">애경유화㈜</a>
+						<a href="javascript:void(0);" class="family-link" data-action="menu" data-menu-name="familyAkc">애경화학㈜</a>
+						<a href="javascript:void(0);" class="family-link" data-action="menu" data-menu-name="familyAkchemtech">에이케이켐텍</a>
+						<a href="javascript:void(0);" class="family-link" data-action="menu" data-menu-name="familyKospa">코스파</a>
+						<a href="javascript:void(0);" class="family-link" data-action="menu" data-menu-name="familyAkplaza">AK PLAZA</a>
+						<a href="javascript:void(0);" class="family-link" data-action="menu" data-menu-name="familyAekyunggroup">AK홀딩스</a>
+						<a href="javascript:void(0);" class="family-link" data-action="menu" data-menu-name="familyAkdjbcc">애경개발</a>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		<hr class="footer__spacer">
+		<div class="footer__bottom">
+			
+				
+				<a href="#" class="footer__logo"  data-action="menu" data-menu-name="main" style="background: ;">
+					<img src="https://static.jejuair.net/cms/images/banner_image/20211108172526406.png" alt="제주항공로고" loading="lazy"/>
+				</a>
+			
+			<div class="footer__bottom-contents">
+				
+				
+					<div class="footer__bottom-info">
+						
+							
+							
+								
+							
+							<div class="info-item">
+								<a href="javascript:URL_LINK.getI18Url('/terms/page/transportationServicePlan.do');" class="link">항공교통이용자 서비스 계획</a>
+							</div>
+						
+							
+							
+								
+							
+							<div class="info-item">
+								<a href="javascript:URL_LINK.getI18Url('https://www.avsec365.or.kr/');" class="link">항공위험물안내 </a>
+							</div>
+						
+							
+							
+								
+									
+								
+							
+							<div class="info-item">
+								<a href="javascript:URL_LINK.getI18Url('https://static.jejuair.net/hpgg/resources/pdf/Application_for_Damage_Redress.pdf');" class="link">항공교통이용자 피해구제 계획</a>
+							</div>
+						
+							
+							
+								
+							
+							<div class="info-item">
+								<a href="javascript:URL_LINK.getI18Url('http://static.jejuair.net/cms/images/file_upload/20220628173251946.pdf');" class="link">항공안전투자공시</a>
+							</div>
+						
+					</div>
+				
+				
+				
+				
+				<div class="footer__bottom-util">
+					<a href="javascript:void(0);" class="util-app-ios" data-action="menu" data-menu-name="iOSBtn"><img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-footer-app-ios.png" alt="" loading="lazy"> IOS</a>
+					<a href="javascript:void(0);" class="util-app-aos" data-action="menu" data-menu-name="AndroidBtn"><img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-footer-app-aos.png" alt="" loading="lazy"> Android</a>
+				</div>
+				
+				<p class="footer__bottom-address"><span>사업자등록번호 : 616-81-50527</span><span>대표이사 : 김이배</span><br>
+            	제주특별자치도 제주시 신대로 64(연동, 건설공제회관 3층)</p>
+          		<p class="footer__bottom-copy">Copyright ⓒ JEJUAIR. All Rights Reserved.</p>
+          		
+			</div>
+		</div>
+    </footer>
+    <!-- //pc -->
+ 
+ </div>
+
+
+	
+	
+
+
+
+
+
+
+<!-- 공통 스크립트 선언 -->
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/admin/lib/admin/lib.min.js"></script>
+
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/admin/lib/moment-with-locales.min.js"></script>
+
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/admin/lib/jquery.i18n.js"></script>
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/admin/lib/jquery.i18n.messagestore.js"></script>
+<!-- 메인페이지 스크립트 에러 발생으로 이전 소스로 변경합니다. 
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/booking/plugin.js"></script>
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/booking/common.js"></script>
+-->
+<script>
+$(document).ready(function(){
+	
+		$.ajaxSetup({
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader('tcode', '0000000101');
+				xhr.setRequestHeader('cname', USER_DEVICE.getName());
+			}
+		});
+	
+	
+	//BOOKING LAYOUT상태서 sub로 바뀔경우  
+	$(document).off('changeLayout').on('changeLayout', function(e, type) {
+		if(type==='sub') {
+			$('.bookingType').hide();
+			$('.subType').show();
+		}else if(type==='booking'){
+			$('.subType').hide();
+			$('.bookingType').show();
+		}
+	});
+    
+	//breadcrumbs cursor default
+	$('.breadcrumb__item > a').css('cursor','default');
+});
+
+//타이틀 설정
+$('header.mobile-only h2.header__page-name').text($('#main div.page-title').eq(0).text());
+</script>
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/plugin.js"></script>
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/common.js"></script>
+
+<!--필요시만 로드-->
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/vendor/lodash.min.js"></script>
+<!--사용되지 않음-->
+<!--<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/vendor/localforage.min.js"></script>-->
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/vendor/handlebars.min-v4.7.6.js"></script>
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/handlebars.helpers.js"></script>
+
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/util/sUtil.js"></script>
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/util/dUtil.js"></script>
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/util/utils.js"></script>
+
+<!--필요시만 로드-->
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/amcharts/amcharts.core.js"></script>
+
+
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/bizjs/commons/bizCommons.js"></script>
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/jj.helpers.js"></script>
+
+	
+        
+            <script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/bizjs/about/corp/page.js"></script>
+        
+    
+
+	
+	
+	<div id="ifmWrap" style="height:100%; display:none; overflow:auto; text-align:center; -webkit-overflow-scrolling:touch;">
+		<iframe src="" width="100%" height="100%" name="popupChkApp"></iframe>    
+	</div>
+<script type="text/javascript"  src="/VCKXGvDtC/yEH/JSx/ElhWy7SOzvcE/aOD3tDrm7p1O/KSMWAQ/K0sAYw/ZXXnI"></script></body>
+</html>

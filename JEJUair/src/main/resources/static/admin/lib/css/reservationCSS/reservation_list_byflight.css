@@ -1,0 +1,55 @@
+h4{
+    color: #545454;
+    line-height: 30px;
+}
+
+.subtitle{
+    float: left;
+}
+
+.searchBtnDiv{
+    float: right;
+}
+
+.searchBtnDiv button{
+    padding: 1px 3px;
+    border: none;
+    border-radius: 5px;
+    width: 80px;
+    height: 30px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: orangered;
+}
+
+input{
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #d9d9d9;
+    text-align: center;
+    color: #555454;
+}
+
+.textBox{
+    width: 200px !important;
+}
+
+.topbanner td{
+    color:#545454;
+}
+
+.lists td{
+    color:#545454;
+}
+
+.details .recentOrders .option tbody tr:hover{
+    background: var(--white);
+    color: var(--black);
+}
+
+.reser_list tbody tr:hover td {
+    color: var(--white);
+}
+

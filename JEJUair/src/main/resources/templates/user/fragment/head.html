@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, shrink-to-fit=no, maximum-scale=1, user-scalable=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no">
+    <title>제주항공</title>
+    <link rel="icon" type="image/png" href="https://static.jejuair.net/hpgg/resources/images/icon/favicon.ico" />
+
+    <link rel="stylesheet" href="https://static.jejuair.net/hpgg/resources/css/global.css">
+    <link rel="stylesheet" href="https://static.jejuair.net/hpgg/resources/css/component.css">
+    <link rel="stylesheet" href="https://static.jejuair.net/hpgg/resources/css/page.css">
+    <link rel="stylesheet" href="https://static.jejuair.net/hpgg/resources/css/responsive.css">
+    <link rel="stylesheet" href="https://static.jejuair.net/hpgg/resources/css/lang.css">
+
+    <!-- 다국어 관련 스크립트 변수 -->
+    <script type="text/javascript">
+        var I18N = {
+            language: "ko",
+            country: "KR",
+            countryAndLanguage: [{ "languages": [{ "cntryCd": "KR", "langNm": "한국어", "cntryNm": "대한민국", "langCd": "ko" }], "cntryCd": "KR", "cntryNm": "대한민국" }, { "languages": [{ "cntryCd": "JP", "langNm": "日本語", "cntryNm": "日本", "langCd": "ja" }], "cntryCd": "JP", "cntryNm": "日本" }, { "languages": [{ "cntryCd": "CN", "langNm": "中文(内地)", "cntryNm": "中国", "langCd": "zh-CN" }], "cntryCd": "CN", "cntryNm": "中国" }, { "languages": [{ "cntryCd": "TW", "langNm": "中文(繁體)", "cntryNm": "台灣", "langCd": "zh-TW" }], "cntryCd": "TW", "cntryNm": "台灣" }, { "languages": [{ "cntryCd": "HK", "langNm": "中文(繁體)", "cntryNm": "香港", "langCd": "zh-HK" }], "cntryCd": "HK", "cntryNm": "香港" }, { "languages": [{ "cntryCd": "MO", "langNm": "中文(繁體)", "cntryNm": "澳門", "langCd": "zh-HK" }], "cntryCd": "MO", "cntryNm": "澳門" }, { "languages": [{ "cntryCd": "US", "langNm": "ENGLISH", "cntryNm": "US", "langCd": "en" }], "cntryCd": "US", "cntryNm": "US" }, { "languages": [{ "cntryCd": "TH", "langNm": "ENGLISH", "cntryNm": "THAILAND", "langCd": "en" }], "cntryCd": "TH", "cntryNm": "THAILAND" }, { "languages": [{ "cntryCd": "VN", "langNm": "ENGLISH", "cntryNm": "VIETNAM", "langCd": "en" }], "cntryCd": "VN", "cntryNm": "VIETNAM" }, { "languages": [{ "cntryCd": "PH", "langNm": "ENGLISH", "cntryNm": "PHILLIPINES", "langCd": "en" }], "cntryCd": "PH", "cntryNm": "PHILLIPINES" }, { "languages": [{ "cntryCd": "MY", "langNm": "ENGLISH", "cntryNm": "MALAYSIA", "langCd": "en" }], "cntryCd": "MY", "cntryNm": "MALAYSIA" }, { "languages": [{ "cntryCd": "LA", "langNm": "ENGLISH", "cntryNm": "LAOS", "langCd": "en" }], "cntryCd": "LA", "cntryNm": "LAOS" }, { "languages": [{ "cntryCd": "RU", "langNm": "ENGLISH", "cntryNm": "RUSSIA", "langCd": "en" }], "cntryCd": "RU", "cntryNm": "RUSSIA" }, { "languages": [{ "cntryCd": "SG", "langNm": "ENGLISH", "cntryNm": "SINGAPORE", "langCd": "en" }], "cntryCd": "SG", "cntryNm": "SINGAPORE" }, { "languages": [{ "cntryCd": "MN", "langNm": "ENGLISH", "cntryNm": "MONGOLIA", "langCd": "en" }], "cntryCd": "MN", "cntryNm": "MONGOLIA" }]
+        }
+        var APP_DATA = {
+            loginSuccessFirstChecker: '', // 값의 유무로만 판단.
+            // deviceOs : "",
+            // deviceType : ""
+            deviceOs: "none",
+            deviceType: "PC",
+            shortUrl: ""
+        }
+        var USER_INFO = {
+            get: function () {
+                var data = JSON.stringify();
+                return data || "{}";
+            }
+        }
+        var PROP = {
+            assetsUrl: "https://static.jejuair.net/hpgg/resources",
+            cmsUrl: "https://static.jejuair.net/cms/images",
+        }
+        var USER_DEVICE = {
+            getName: function () {
+                return "PC";
+            },
+            isApp: function () {
+                return false;
+            },
+            isMobile: function () {
+                return false;
+            },
+            isWeb: function () {
+                return;
+            }
+        }
+        var APPCALL = {
+            setMenu: function () {
+
+                if (APP_DATA.deviceOs == "ios") {
+                    window.webkit.messageHandlers.goMenu.postMessage({});
+                } else if (APP_DATA.deviceOs == "aos") {
+                    window.JejuAir.goMenu();
+                } else {
+                    console.log("PC에서 호출작동됨 :: 메뉴를 개방하라");
+                }
+            },
+            back: function () {
+                if (APP_DATA.deviceOs == "ios") {
+                    window.webkit.messageHandlers.goBack.postMessage({});
+                } else if (APP_DATA.deviceOs == "aos") {
+                    window.JejuAir.goBack();
+                } else {
+                    window.history.back();
+                }
+            },
+            close: function () {
+                if (APP_DATA.deviceOs == "ios") {
+                    if (window.webkit.messageHandlers.goClose) {
+                        window.webkit.messageHandlers.goClose.postMessage({});
+                    }
+                } else if (APP_DATA.deviceOs == "aos") {
+                    window.JejuAir.goClose();
+                } else {
+                    console.log("PC는 닫기가 존재하지 않습니다.");
+                }
+            },
+            afterLogin: function (userInfo) { // 로그인 시, APP은 1번 호출한다.
+                if (!userInfo) {
+                    userInfo = USER_INFO.get();
+                }
+                if (APP_DATA.deviceOs == "ios") {
+                    window.webkit.messageHandlers.userInfo.postMessage(userInfo);
+                } else if (APP_DATA.deviceOs == "aos") {
+                    window.JejuAir.userInfo(userInfo);
+                } else {
+                    console.log("호출완료");
+                }
+            },
+            callPassport: function () { // 로그인 시, APP은 1번 호출한다.
+                if (APP_DATA.deviceOs == "ios") {
+                    window.webkit.messageHandlers.goOCRPassport.postMessage({});
+                } else if (APP_DATA.deviceOs == "aos") {
+                    window.JejuAir.goOCRPassport();
+                } else {
+                    console.log("호출완료");
+                }
+            },
+            callPastBoardingPass: function () { // 로그인 시, APP은 1번 호출한다.
+                if (APP_DATA.deviceOs == "ios") {
+                    window.webkit.messageHandlers.goPastBoardingPass.postMessage({})
+                } else if (APP_DATA.deviceOs == "aos") {
+                    window.JejuAir.goPastBoardingPass()
+                } else {
+                    console.log("호출완료");
+                }
+            },
+            callBoardingPass: function (jsonString) { // 로그인 시, APP은 1번 호출한다.
+                if (APP_DATA.deviceOs == "ios") {
+                    window.webkit.messageHandlers.mobileTicket.postMessage(jsonString)
+                } else if (APP_DATA.deviceOs == "aos") {
+                    window.JejuAir.mobileTicket(jsonString)
+                } else {
+                    console.log("호출완료");
+                }
+            },
+            goMain: function () { //메인화면 이동
+                if (APP_DATA.deviceOs == "ios") {
+                    window.webkit.messageHandlers.callMain.postMessage({});
+                } else if (APP_DATA.deviceOs == "aos") {
+                    window.JejuAir.goMain();
+                } else {
+                    location.href = "/" + I18N.language + "/main/base/index.do";
+                }
+            },
+            goLogout: function () {// 로그아웃시 네티이브 호출
+                if (APP_DATA.deviceOs == "ios") {
+                    window.webkit.messageHandlers.goLogout.postMessage({});
+                } else if (APP_DATA.deviceOs == "aos") {
+                    window.JejuAir.goLogout();
+                } else {
+                    console.log('logout');
+                }
+            },
+            loginState: function () { //로그인 상태 체크
+                if (APP_DATA.deviceOs == "ios") {
+                    window.webkit.messageHandlers.onLoginState.postMessage({})
+                } else if (APP_DATA.deviceOs == "aos") {
+                    window.JejuAir.onLoginState();
+                }
+            },
+
+            goMyCoupon: function () { //쿠폰 이동
+                if (APP_DATA.deviceOs == "ios") {
+                    window.webkit.messageHandlers.goMyCoupon.postMessage({});
+                } else if (APP_DATA.deviceOs == "aos") {
+                    window.JejuAir.goMyCoupon();
+                } else {
+                    URL_LINK.getI18Url('/member/mypage/myCoupon.do');
+                }
+            },
+
+            goMarket: function () {
+                if (APP_DATA.deviceOs !== "ios" && APP_DATA.deviceOs !== "aos") {
+                    var infos = getMobileDevice(navigator.userAgent);
+                    if (infos.isiOS) {
+                        window.open("https://itunes.apple.com/ko/app/jeju-air/id373053637?l=ko&mt=8", "_blank");
+                    } else if (infos.isAndroid) {
+                        window.open("https://play.google.com/store/apps/details?id=com.parksmt.jejuair.android16", "_blank");
+                    }
+                }
+            }
+        }
+        var URL_LINK = {
+            getI18Url: function (path) {
+                /*
+                if(path.indexOf('/corpService/') == 0 ) {
+                    location.href = path;
+                    return;
+                } else if(path.indexOf('/member/auth/') == 0 ) {
+                    location.href = path;
+                    return;
+                } else
+                */
+                if (path.indexOf('/bonusProgram/') == 0) {
+                    location.href = path;
+                    return;
+                } else if (path.indexOf('#') == 0) {
+                    location.href = path;
+                    return;
+                } else if (path.indexOf('http') == 0) {
+                    window.open(path, "_blank");
+                    return;
+                } else if (path.indexOf('/myPage/myBoardingList.do') == 0) {
+                    alert("준비중입니다.");
+                    return;
+                }
+                if (path.indexOf('viewCheckin.do') !== -1) {
+                    URL_LINK.getHwUrl(path);
+                } else {
+                    location.href = "/" + I18N.language + path;
+                }
+            },
+            getHwUrl: function (path, params) { //homepage <-> webcheckin
+                var vHtml = '';
+                if (params) {
+                    Object.keys(params).map(function (key) {
+                        vHtml += '<input type="hidden" name="' + key + '" value="' + params[key] + '">';
+                    });
+                }
+                $("body").append("<form id='hybdComForm'><input type='hidden' name='targetUrl' value='" + "/" + I18N.language + path + "'/>" + vHtml + "</form>");
+                $("#hybdComForm").prop("action", "/" + I18N.language + "/common/connect/index.do").prop("method", "POST").prop("target", "_self").submit();
+            }
+        }
+
+        if (APP_DATA.loginSuccessFirstChecker != "") {
+            APPCALL.afterLogin();
+        }
+
+        if (location.href.indexOf('flag=logout') !== -1) {
+            APPCALL.goLogout();
+        }
+
+        //웹 로그인 상태 확인 콜백
+        //true : 로그인 상태
+        //false : 비로그인 상태
+        function callbackLoginState(result) {
+            var isLogin = "false";//web 로그인여부
+            if (!isLogin && result) { //web비로그인 native로그인일경우
+                APPCALL.goLogout(); //native로그아웃
+            }
+        }
+
+        if (USER_DEVICE.isApp) {//앱일경우 native로그인 상태체크
+            APPCALL.loginState();
+        }
+
+        // 웹뷰 이탈 시 좌석 해제 홈페이지에 없어 에러 발생해 추가함
+        function callbackFocusOut() { }
+
+        //스크립 오류 발생으로 인해 빈 메소드 추가
+        function _AutofillCallbackHandler() { }
+
+        //안드로이드 modal일경우 back버튼 클릭시 뒤로가기가 아닌 modal닫기
+        function goBackBtn() {
+
+            var isOpen1 = false;
+            var isOpen2 = false;
+
+            if ($('html').hasClass('open-modal')) {
+                $('div.jquery-modal').find('a.modal__close').trigger('click');
+                for (var i = 0; i < $('div.modal-wrapper').length; i++) {
+                    if ($('div.modal-wrapper:eq(' + i + ')').hasClass('on')) {
+                        $('div.modal-wrapper:eq(' + i + ')').find('a.modal__close').trigger('click');
+
+                        if ($('html').hasClass('open-modal')) {
+                            $('html').removeClass('open-modal');
+                        }
+                        break;
+                    }
+                };
+
+                return false;
+            }
+
+            if ($('body > div').hasClass('dim')) {
+                //bottomSheet
+                for (var i = 0; i < $('div.bottom-sheet').length; i++) {
+                    if ($('div.bottom-sheet:eq(' + i + ')').css('display') === 'block') {
+                        $('div.bottom-sheet:eq(' + i + ')').find('button[data-element="bottomSheet__button-close"]').trigger('click');
+                        break;
+                    }
+                };
+                return false;
+            }
+
+            if ($('div.flight-layer').length > 0) {
+                for (var i = 0; i < $('div.flight-layer').length; i++) {
+                    if ($('div.flight-layer:eq(' + i + ')').css('display') === 'block') {
+                        $('div.flight-layer:eq(' + i + ')').find('a.layer-close').trigger('click');
+                        isOpen1 = true;
+                        break;
+                    }
+                };
+            }
+
+            if ($('div.date-layer').length > 0) {
+                for (var i = 0; i < $('div.date-layer').length; i++) {
+                    if ($('div.date-layer:eq(' + i + ')').css('display') === 'block') {
+                        $('div.date-layer:eq(' + i + ')').find('a.layer-close').trigger('click');
+                        isOpen2 = true;
+                        break;
+                    }
+                };
+            }
+
+            if (!$('html').hasClass('open-modal') && !$('body > div').hasClass('dim') && !isOpen1 && !isOpen2) {
+                try {
+                    window.JejuAir.callBackBtn('Y');
+                } catch (e) { }
+            }
+
+        }
+
+    </script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'pageview',
+            'dimension2': btoa(JSON.parse(USER_INFO.get()).userId),
+            'dimension3': 'PC-WEB',
+            'dimension4': JSON.parse(USER_INFO.get()).membergrade
+        })
+    </script>
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' }); var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-PD2BQQ4');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-49935507-8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-49935507-8');
+    </script>
+    <!-- Global site tag (gtag.js) - Google Ads -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-763115837"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'AW-763115837');
+    </script>
+    <!-- Global site tag (gtag.js) - Google Ads: 10828977727 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10828977727"></script>
+    <script>
+        var langCdtTag = 'ko';
+        if (langCdtTag === 'ja') {
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', 'AW-10828977727');
+            gtag('event', 'page_view', { 'send_to': 'AW-10828977727' });
+        }
+    </script>
+
+    <script type="text/javascript" src="//wcs.naver.net/wcslog.js"> </script>
+    <script type="text/javascript">
+        if (!wcs_add) var wcs_add = {};
+        wcs_add["wa"] = "s_29f8dbdc0496";
+        if (!_nasa) var _nasa = {};
+        if (window.wcs) {
+            wcs.inflow();
+            wcs_do(_nasa);
+        }
+    </script>
+    <script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/adfit/static/kp.js"></script>
+    <script type="text/javascript">kakaoPixel('6788472491368532022').pageView();</script>
+    <script src='/tuna_.js'></script>
+    <script>!function (a) { var e = "https://s.go-mpulse.net/boomerang/", t = "addEventListener"; if ("False" == "True") a.BOOMR_config = a.BOOMR_config || {}, a.BOOMR_config.PageParams = a.BOOMR_config.PageParams || {}, a.BOOMR_config.PageParams.pci = !0, e = "https://s2.go-mpulse.net/boomerang/"; if (window.BOOMR_API_key = "AYF4Y-8J9XB-2BDC5-23EM3-Q7Z28", function () { function n(e) { a.BOOMR_onload = e && e.timeStamp || (new Date).getTime() } if (!a.BOOMR || !a.BOOMR.version && !a.BOOMR.snippetExecuted) { a.BOOMR = a.BOOMR || {}, a.BOOMR.snippetExecuted = !0; var i, _, o, r = document.createElement("iframe"); if (a[t]) a[t]("load", n, !1); else if (a.attachEvent) a.attachEvent("onload", n); r.src = "javascript:void(0)", r.title = "", r.role = "presentation", (r.frameElement || r).style.cssText = "width:0;height:0;border:0;display:none;", o = document.getElementsByTagName("script")[0], o.parentNode.insertBefore(r, o); try { _ = r.contentWindow.document } catch (O) { i = document.domain, r.src = "javascript:var d=document.open();d.domain='" + i + "';void(0);", _ = r.contentWindow.document } _.open()._l = function () { var a = this.createElement("script"); if (i) this.domain = i; a.id = "boomr-if-as", a.src = e + "AYF4Y-8J9XB-2BDC5-23EM3-Q7Z28", BOOMR_lstart = (new Date).getTime(), this.body.appendChild(a) }, _.write("<bo" + 'dy onload="document._l();">'), _.close() } }(), "".length > 0) if (a && "performance" in a && a.performance && "function" == typeof a.performance.setResourceTimingBufferSize) a.performance.setResourceTimingBufferSize(); !function () { if (BOOMR = a.BOOMR || {}, BOOMR.plugins = BOOMR.plugins || {}, !BOOMR.plugins.AK) { var e = "" == "true" ? 1 : 0, t = "", n = "3rfdhaix3cp4cyvnlfna-f-88ae86c4b-clientnsv4-s.akamaihd.net", i = "false" == "true" ? 2 : 1, _ = { "ak.v": "32", "ak.cp": "881439", "ak.ai": parseInt("562947", 10), "ak.ol": "0", "ak.cr": 18, "ak.ipv": 4, "ak.proto": "h2", "ak.rid": "5628bffc", "ak.r": 44964, "ak.a2": e, "ak.m": "b", "ak.n": "essl", "ak.bpcip": "220.74.51.0", "ak.cport": 5325, "ak.gh": "23.216.159.189", "ak.quicv": "", "ak.tlsv": "tls1.3", "ak.0rtt": "", "ak.csrc": "-", "ak.acc": "", "ak.t": "1655527770", "ak.ak": "hOBiQwZUYzCg5VSAfCLimQ==Ul3J2dg/GfZxfDRQwd+bp4BT4oc65Uhjfz4iKYPkZElvML4IFVz5FNC2sF1gjqLvbNsk8Gi874X3uH9zqwuUbvtf63jdXvPF7dI9vOJiMyjx7/luUmN0+dp7Xo00hASa3rVz4ZR3uZV3uVVQDDo3QE+NP7PjQpjj2EorFZc2pIoumtwzJfFtOGgJLOgMWZRip2LlACQFglkzx4wTHKd5tI17HBYLcDVJ0BWgoh7lz5GTqOudHfpbIM95/sAz/ZnDZKFS4V6l2d5bJW8TwQh0ErOqnWEcjPk1EPHZSZcg1L3AjFgZuZmU2H7zJG+77GVVVDi5958b9YS0fGfm4kD8jQkjZcqbG/sDnPBLyl3X2gO4oGzKOn/kPwzUC4bUIahYZ8lCxq9DG9Rii7fDOBntgoenyoTvrIobmfmQVbd2VLU=", "ak.pv": "78", "ak.dpoabenc": "", "ak.tf": i }; if ("" !== t) _["ak.ruds"] = t; var o = { i: !1, av: function (e) { var t = "http.initiator"; if (e && (!e[t] || "spa_hard" === e[t])) _["ak.feo"] = void 0 !== a.aFeoApplied ? 1 : 0, BOOMR.addVar(_) }, rv: function () { var a = ["ak.bpcip", "ak.cport", "ak.cr", "ak.csrc", "ak.gh", "ak.ipv", "ak.m", "ak.n", "ak.ol", "ak.proto", "ak.quicv", "ak.tlsv", "ak.0rtt", "ak.r", "ak.acc", "ak.t", "ak.tf"]; BOOMR.removeVar(a) } }; BOOMR.plugins.AK = { akVars: _, akDNSPreFetchDomain: n, init: function () { if (!o.i) { var a = BOOMR.subscribe; a("before_beacon", o.av, null, null), a("onbeacon", o.rv, null, null), o.i = !0 } return this }, is_complete: function () { return !0 } } } }() }(window);</script>
+</head>
+</html>

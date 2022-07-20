@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제주항공 | 추천 항공권 목록</title>
+    <link rel="stylesheet" type="text/css" href="/admin/lib/css/common.css">
+    <link rel="icon" href="/admin/lib/images/favicon.ico">
+</head>
+<script>
+    function dropdown(num) {
+        var droptarget = 'drop' + num;
+        console.log(droptarget)
+        var target = document.getElementsByClassName(droptarget);
+        var uptarget;
+        var up;
+
+
+        for (var i = 0; i < 12; i++) {
+            if (num == i) { i = i + 1; }
+            console.log('들어옴' + i)
+            uptarget = 'drop' + i;
+            up = document.getElementsByClassName(uptarget);
+
+            for (var j = 0; j < up.length; j++) {
+                console.log('j들어옴' + j)
+                up[j].style.display = 'none';
+                console.log(up[j].style.display);
+            }
+        }
+
+        var disStyle = target[0].style.display;
+        console.log('V' + disStyle + 'V');
+        console.log(disStyle == 'block');
+
+        if (disStyle == 'block') {
+            for (var i = 0; i < target.length; i++) {
+                target[i].style.display = 'none';
+            }
+        } else {
+            for (var i = 0; i < target.length; i++) {
+                target[i].style.display = 'block';
+            }
+        }
+    }
+
+</script>
+
+<body>
+    <div class="container">
+        <div class="containerMenu">
+            <div class="navigation">
+                <div class="homelogo">
+                    <a href="/pages/index.html">
+                        <span class="logo"><img src="/admin/lib/images/Jejuair_logo.png"></span>
+                    </a>
+                </div>
+                <ul>
+                    <li>
+                        <a href="#" onclick="dropdown(0)">
+                            <span class="icon">
+                                <ion-icon name="calendar-outline"></ion-icon>
+                            </span>
+                            <span class="title">운항스케줄</span>
+                        </a>
+                        <ol>
+                            <li class="drop0">
+                                <a href="/pages/flight_schedule/flight_schedule_list/flight_schedule_list.html">
+                                    o  <span class="sub-title">운항스케줄 조회</span>
+                                </a>
+                            </li>
+                            <li class="drop0">
+                                <a href="/pages/flight_schedule/flight_schedule_regist/flight_schedule_regist.html">
+                                    o  <span class="sub-title">운항스케줄 등록</span>
+                                </a>
+                            </li>
+                            <li class="drop0">
+                                <a href="/pages/flight_schedule/aircraft_list/aircraft_list.html">
+                                    o  <span class="sub-title">항공기 정보 조회</span>
+                                </a>
+                            </li>
+                            <li class="drop0">
+                                <a href="/pages/flight_schedule/aircraft_regist/aircraft_regist.html">
+                                    o  <span class="sub-title">항공기 신규 등록</span>
+                                </a>
+                            </li>
+                            <li class="drop0">
+                                <a href="/pages/flight_schedule/destination_list/destination_list.html">
+                                    o  <span class="sub-title">취항지 정보 조회</span>
+                                </a>
+                            </li>
+                            <li class="drop0">
+                                <a href="/pages/flight_schedule/destination_regist/destination_regist.html">
+                                    o  <span class="sub-title">취항지 신규 등록</span>
+                                </a>
+                            </li>
+                        </ol>
+                    </li>
+
+                    <li>
+                        <a href="/pages/customer/customer_list/customer_list.html" onclick="dropdown(1)">
+                            <span class="icon">
+                                <ion-icon name="people-outline"></ion-icon>
+                            </span>
+                            <span class="title">고객조회</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="dropdown(2)">
+                            <span class="icon">
+                                <ion-icon name="document-text-outline"></ion-icon>
+                            </span>
+                            <span class="title">예약조회</span>
+                        </a>
+                        <ol>
+                            <li class="drop2">
+                                <a href="/pages/reservation/reservation_list_byflight/reservation_list_byflight.html">
+                                    ㅇ  <span class="sub-title">운항별 예약자 조회</span>
+                                </a>
+                            </li>
+                            <li class="drop2">
+                                <a href="/pages/reservation/reservation_namelist/reservation_namelist.html">
+                                    ㅇ  <span class="sub-title">예약자명 조회</span>
+                                </a>
+                            </li>
+                        </ol>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="dropdown(3)">
+                            <span class="icon">
+                                <ion-icon name="ticket-outline"></ion-icon>
+                            </span>
+                            <span class="title">쿠폰</span>
+                        </a>
+                        <ol>
+                            <li class="drop3">
+                                <a href="/pages/coupon/coupon_list/coupon_list.html">
+                                    ㅇ  <span class="sub-title">쿠폰 조회</span>
+                                </a>
+                            </li>
+                            <li class="drop3">
+                                <a href="/pages/coupon/coupon_regist/coupon_reg.html">
+                                    ㅇ  <span class="sub-title">쿠폰 등록</span>
+                                </a>
+                            </li>
+                        </ol>
+                    </li>
+
+                    <li>
+                        <a href="/pages/point/point_list/point_list.html" onclick="dropdown(4)">
+                            <span class="icon">
+                                <ion-icon name="color-wand-outline"></ion-icon>
+                            </span>
+                            <span class="title">포인트</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/pages/payment/payment_list/payment_list.html" onclick="dropdown(5)">
+                            <span class="icon">
+                                <ion-icon name="card-outline"></ion-icon>
+                            </span>
+                            <span class="title">결제조회</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="dropdown(6)">
+                            <span class="icon">
+                                <ion-icon name="gift-outline"></ion-icon>
+                            </span>
+                            <span class="title">이벤트</span>
+                        </a>
+                        <ol>
+                            <li class="drop6">
+                                <a href="/pages/event/event_list/event_list.html">
+                                    ㅇ <span class="sub-title">이벤트 목록</span>
+                                </a>
+                            </li>
+                            <li class="drop6">
+                                <a href="/pages/event/event_regist/event_regist.html">
+                                    ㅇ  <span class="sub-title">이벤트 등록</span>
+                                </a>
+                            </li>
+                        </ol>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="dropdown(7)">
+                            <span class="icon">
+                                <ion-icon name="book-outline"></ion-icon>
+                            </span>
+                            <span class="title">문의</span>
+                        </a>
+                        <ol>
+                            <li class="drop7">
+                                <a href="/pages/inquiry/personal_inquiry list/personal_inquiry list.html">
+                                    ㅇ  <span class="sub-title">1:1문의 목록</span>
+                                </a>
+                            </li>
+                            <li class="drop7">
+                                <a href="/pages/inquiry/FAQ_list/FAQ_list.html">
+                                    ㅇ <span class="sub-title">FAQ 목록</span>
+                                </a>
+                            </li>
+                        </ol>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="dropdown(8)">
+                            <span class="icon">
+                                <ion-icon name="basket-outline"></ion-icon>
+                            </span>
+                            <span class="title">유실물 관리</span>
+                        </a>
+                        <ol>
+                            <li class="drop8">
+                                <a href="/pages/lost_item/lost_item_list/lost_item_list.html">
+                                    ㅇ  <span class="sub-title">유실물 목록</span>
+                                </a>
+                            </li>
+                            <li class="drop8">
+                                <a href="/pages/lost_item/lost_item_register/lost_item_register.html">
+                                    ㅇ  <span class="sub-title">유실물 등록</span>
+                                </a>
+                            </li>
+                        </ol>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="dropdown(9)">
+                            <span class="icon">
+                                <ion-icon name="pizza-outline"></ion-icon>
+                            </span>
+                            <span class="title">기내식 관리</span>
+                        </a>
+                        <ol>
+                            <li class="drop9">
+                                <a href="/pages/airline_food_/airline_food_list/airline_food_list.html">
+                                    ㅇ  <span class="sub-title">기내식 목록</span>
+                                </a>
+                            </li>
+                            <li class="drop9">
+                                <a href="/pages/airline_food_/airline_food_register/airline_food_regist.html">
+                                    ㅇ  <span class="sub-title">기내식 등록</span>
+                                </a>
+                            </li>
+                        </ol>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="dropdown(10)">
+                            <span class="icon">
+                                <ion-icon name="person-outline"></ion-icon>
+                            </span>
+                            <span class="title">관리자 관리</span>
+                        </a>
+                        <ol>
+                            <li class="drop10">
+                                <a href="/pages/admin_settings/admin_list/admin_list.html">
+                                    ㅇ  <span class="sub-title">관리자 목록</span>
+                                </a>
+                            </li>
+                            <li class="drop10">
+                                <a href="/pages/admin_settings/admin_regist/admin_regist.html">
+                                    ㅇ  <span class="sub-title">관리자 등록</span>
+                                </a>
+                            </li>
+                        </ol>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="dropdown(11)">
+                            <span class="icon">
+                                <ion-icon name="settings-outline"></ion-icon>
+                            </span>
+                            <span class="title">메인페이지 관리</span>
+                        </a>
+                        <ol>
+                            <li class="drop11">
+                                <a href="/pages/mainpage_settings/recommended_flight_list/recommended_flight_list.html">
+                                    ㅇ  <span class="sub-title">추천 항공권 목록</span>
+                                </a>
+                            </li>
+                            <li class="drop11">
+                                <a href="/pages/mainpage_settings/recommended_flight_regist/recommended_flight_regist.html">
+                                    ㅇ  <span class="sub-title">추천 항공권 등록</span>
+                                </a>
+                            </li>
+                        </ol>
+                    </li>
+
+                    <li>
+                        <a href="#" onclick="dropdown(12)">
+                            <span class="icon">
+                                <ion-icon name="log-out-outline"></ion-icon>
+                            </span>
+                            <span class="title">로그아웃</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- main -->
+        <div class="containerbody">
+            <div class="main">
+                <!-- 본문 -->
+                <div class="bodytext_area box_inner">
+                    <dl class="myinfo">
+                        <form action="#" class="regForm">
+                            <div class="tableBorder">
+                                <div class="pageTitle">
+                                    <h2>항공권 추천 수정</h2>
+                                </div>
+                                <ul class="leg_list">
+                                    <li class="clear">
+                                        <span class="tit_lbl">번호</span>
+                                        <div class="reg_content"><input name="rec_idx" type="text" class="textBox" value="10" disabled></div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">관리자아이디</span>
+                                        <div class="reg_content"><input name="rec_adminid" type="text" class="textBox" value="admin01" disabled></div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">노선명</span>
+                                        <div class="reg_content"><input name="rec_route" type="text" class="textBox" value="서울(인천) - 코타키나발루"></div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">출항 일자</span>
+                                        <div class="reg_content"><input type="date" name="rec_dep_date"
+                                                class="textBox selectBox" value="2022-07-15"></div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">입항 일자</span>
+                                        <div class="reg_content"><input type="date" name="rec_arr_date"
+                                                class="textBox selectBox" value="2022-08-15"></div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">출발지</span>
+                                        <div class="reg_content">
+                                            <input type="radio" class="css-radio" id="act_lbl" name="rec_dep_location" value="활성" checked><label for="act_lbl">활성</label>
+                                            <input type="radio" class="css-radio" id="inact_lbl" name="rec_dep_location" value="비활성"><label for="inact_lbl">비활성</label>
+                                        </div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">편도총액</span>
+                                        <div class="reg_content"><input name="rec_price" type="text" class="textBox" value="266,300원 ~ "></div>
+                                    </li>
+                                    <li class="clear wide">
+                                        <span class="tit_lbl">첨부사진</span>
+                                        <div class="reg_content"><input name="fo_photo" type="text" class="textBox3" value="KotaKinabalu.jpg" readonly><button class="button file">선택</button></div>
+                                    </li>
+                                </ul>
+
+                            <div class="buttonArea">
+                                <button type="button" class="button list margin_bottom_20" value="목록" onclick="location.href='/mainpage_settings/recommended_flight_list/recommended_flight_list.html'">목록</button>
+                                <button type="submit" class="button register margin_bottom_20" value="등록" onclick="edit_view()">등록</button>
+                            </div>
+                        </form>
+                    </dl>
+                </div>
+                <!-- 본문 끝 -->
+            </div>
+        </div>
+    </div>
+
+    <!--아이콘 사용을 위한 설치 스크립트-->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <script>
+        function openCheck(e){
+            const open = document.getElementById(e);
+                open.style.display="none";
+                open.nextSibling.nextSibling.style.display="block";
+
+        }
+
+        function closeCheck(e){
+            const close = document.getElementById(e);
+                close.style.display="none";
+                close.previousSibling.previousSibling.style.display="block";
+        }
+
+        function edit_view(){
+            const yn = confirm("게시물을 수정하시겠습니까?");
+            if(yn){
+                location.href = "";
+            }
+        }
+
+    </script>
+    <script>
+        console.log("헬로우")
+        console.log(document.title.substr(7));
+        var name2 = document.title.substr(7);
+        var span = document.querySelectorAll('.navigation span');
+        var regex = /[^0-9]/g;
+        for(var i=0; i<span.length; i++){
+            if(span[i].innerHTML == name2){
+                console.log("같은게 들어옴 " + i + "번")
+                var li = span[i].parentElement.parentElement
+                var num;
+                var str;
+                if(li.className.substr(0, 4) == 'drop'){
+                    str = li.parentElement.parentElement.firstElementChild.getAttribute("onclick");
+                    num = str.replace(regex, "");
+                    dropdown(num);
+                    li.classList.add('thispage');
+                    li.parentElement.parentElement.classList.add('thispage');
+                }else{
+                    str = li.firstElementChild.getAttribute("onclick");
+                    num = str.replace(regex, "");
+                    dropdown(num);
+                    li.classList.add('thispage');
+                }
+            }
+        }
+    
+    </script>
+</body>
+
+</html>
