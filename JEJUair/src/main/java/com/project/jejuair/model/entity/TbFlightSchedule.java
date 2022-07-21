@@ -1,6 +1,6 @@
 package com.project.jejuair.model.entity;
 
-import com.project.jejuair.model.enumclass.schedule.SchDomesticOverseas;
+import com.project.jejuair.model.enumclass.common.DomesticOverseas;
 import com.project.jejuair.model.enumclass.schedule.SchFood;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,7 +30,7 @@ public class TbFlightSchedule {
     private Long schIdx;
     private String schAircraftType;
     @Enumerated(EnumType.STRING)
-    private SchDomesticOverseas schDomesticOverseas;
+    private DomesticOverseas schDomesticOverseas;
     private String schAircraftName;
     private String schDeparture;
     private String schArrival;

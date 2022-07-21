@@ -1,14 +1,13 @@
-package com.project.jejuair.model.enumclass.schedule;
+package com.project.jejuair.model.enumclass.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public enum SchDomesticOverseas {
-
-    DOMESTIC(0, "국내", "국내"),
-    OVERSEAS(1, "국외", "국외");
+public enum Check {
+    YES(0, "yes", "yes"),
+    No(1, "no", "no");
 
     private Integer id;
     private String title;

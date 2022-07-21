@@ -1,6 +1,6 @@
 package com.project.jejuair.model.entity;
 
-import com.project.jejuair.model.enumclass.Point.PntStatus;
+import com.project.jejuair.model.enumclass.destination.DesContinent;
 import com.project.jejuair.model.enumclass.extraService.ExtServiceType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,26 +17,22 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @SequenceGenerator(
-        name="seq_point",
-        sequenceName = "seq_point",
+        name="seq_extraservice",
+        sequenceName = "seq_extraservice",
         initialValue = 1,
         allocationSize = 1
 )
 @Builder
 @EntityListeners(AuditingEntityListener.class)
-public class TbPoint {
+public class TbDestination {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_point")
-    private Long pntIdx;                // 번호
-    private String pntUserid;           // 아이디
-    private String pntContent;          // 내용
-    private Integer pntAmount;           // 금액
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_extraservice")
+    private Long desIdx;                // 번호
     @Enumerated(EnumType.STRING)
-    private PntStatus pntStatus;           // 상태
+    private DesContinent desContinent;  // 대륙구분
+    private String desDestination;      // 취항지명
+    private String desAirportCode;      // 공항코드
     @CreatedDate
-    private LocalDateTime pntRegdate;   // 등록일
-    private String pntMemIdx;           // MemIdx
+    private LocalDateTime desRegDate;   // 등록일자
 
-    @ManyToOne
-    private TbMember tbMember;
 }
