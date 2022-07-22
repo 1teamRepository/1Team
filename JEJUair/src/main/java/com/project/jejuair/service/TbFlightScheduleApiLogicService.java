@@ -82,34 +82,34 @@ public class TbFlightScheduleApiLogicService extends BaseService<TbFlightSchedul
         TbFlightScheduleRequest tbFlightScheduleRequest = request.getData();
         Optional<TbFlightSchedule> tbFlightSchedule = baseRepository.findById(tbFlightScheduleRequest.getSchIdx());
         return tbFlightSchedule.map(
-                tbFlightSchedule1 -> {
-                    tbFlightSchedule1.setSchAircraftType(tbFlightScheduleRequest.getSchAircraftType());
-                    tbFlightSchedule1.setSchDomesticOverseas(tbFlightScheduleRequest.getSchDomesticOverseas());
-                    tbFlightSchedule1.setSchAircraftName(tbFlightScheduleRequest.getSchAircraftName());
-                    tbFlightSchedule1.setSchDeparture(tbFlightScheduleRequest.getSchDeparture());
-                    tbFlightSchedule1.setSchArrival(tbFlightScheduleRequest.getSchArrival());
-                    tbFlightSchedule1.setSchDepartureDate(tbFlightScheduleRequest.getSchDepartureDate());
-                    tbFlightSchedule1.setSchArrivalDate(tbFlightScheduleRequest.getSchArrivalDate());
-                    tbFlightSchedule1.setSchDepartureTime(tbFlightScheduleRequest.getSchDepartureTime());
-                    tbFlightSchedule1.setSchArrivalTime(tbFlightScheduleRequest.getSchArrivalTime());
-                    tbFlightSchedule1.setSchBizLitePrice(tbFlightScheduleRequest.getSchBizLitePrice());
-                    tbFlightSchedule1.setSchBizLiteDiscount(tbFlightScheduleRequest.getSchBizLiteDiscount());
-                    tbFlightSchedule1.setSchFlexPrice(tbFlightScheduleRequest.getSchFlexPrice());
-                    tbFlightSchedule1.setSchFlexDiscount(tbFlightScheduleRequest.getSchFlexDiscount());
-                    tbFlightSchedule1.setSchFlyBagPrice(tbFlightScheduleRequest.getSchFlyBagPrice());
-                    tbFlightSchedule1.setSchFlyBagDiscount(tbFlightScheduleRequest.getSchFlyBagDiscount());
-                    tbFlightSchedule1.setSchFood(tbFlightScheduleRequest.getSchFood());
-                    return tbFlightSchedule1;
-                }).map(tbFlightSchedule1 -> baseRepository.save(tbFlightSchedule1))
-                .map(tbFlightSchedule1 -> response(tbFlightSchedule1)).map(Header::OK)
+                newTbFlightSchedule -> {
+                    newTbFlightSchedule.setSchAircraftType(tbFlightScheduleRequest.getSchAircraftType());
+                    newTbFlightSchedule.setSchDomesticOverseas(tbFlightScheduleRequest.getSchDomesticOverseas());
+                    newTbFlightSchedule.setSchAircraftName(tbFlightScheduleRequest.getSchAircraftName());
+                    newTbFlightSchedule.setSchDeparture(tbFlightScheduleRequest.getSchDeparture());
+                    newTbFlightSchedule.setSchArrival(tbFlightScheduleRequest.getSchArrival());
+                    newTbFlightSchedule.setSchDepartureDate(tbFlightScheduleRequest.getSchDepartureDate());
+                    newTbFlightSchedule.setSchArrivalDate(tbFlightScheduleRequest.getSchArrivalDate());
+                    newTbFlightSchedule.setSchDepartureTime(tbFlightScheduleRequest.getSchDepartureTime());
+                    newTbFlightSchedule.setSchArrivalTime(tbFlightScheduleRequest.getSchArrivalTime());
+                    newTbFlightSchedule.setSchBizLitePrice(tbFlightScheduleRequest.getSchBizLitePrice());
+                    newTbFlightSchedule.setSchBizLiteDiscount(tbFlightScheduleRequest.getSchBizLiteDiscount());
+                    newTbFlightSchedule.setSchFlexPrice(tbFlightScheduleRequest.getSchFlexPrice());
+                    newTbFlightSchedule.setSchFlexDiscount(tbFlightScheduleRequest.getSchFlexDiscount());
+                    newTbFlightSchedule.setSchFlyBagPrice(tbFlightScheduleRequest.getSchFlyBagPrice());
+                    newTbFlightSchedule.setSchFlyBagDiscount(tbFlightScheduleRequest.getSchFlyBagDiscount());
+                    newTbFlightSchedule.setSchFood(tbFlightScheduleRequest.getSchFood());
+                    return newTbFlightSchedule;
+                }).map(newTbFlightSchedule -> baseRepository.save(newTbFlightSchedule))
+                .map(newTbFlightSchedule -> response(newTbFlightSchedule)).map(Header::OK)
                 .orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 
     @Override
     public Header delete(Long schIdx) {
         Optional<TbFlightSchedule> tbFlightSchedule = baseRepository.findById(schIdx);
-        return tbFlightSchedule.map(tbFlightSchedule1 -> {
-            baseRepository.delete(tbFlightSchedule1);
+        return tbFlightSchedule.map(newTbFlightSchedule -> {
+            baseRepository.delete(newTbFlightSchedule);
             return Header.OK();
         }).orElseGet(() -> Header.ERROR("데이터 없음"));
     }
@@ -117,7 +117,7 @@ public class TbFlightScheduleApiLogicService extends BaseService<TbFlightSchedul
     public Header<List<TbFlightScheduleResponse>> search(Pageable pageable){
         Page<TbFlightSchedule> tbFlightSchedule = baseRepository.findAll(pageable);
         List<TbFlightScheduleResponse> tbFlightScheduleResponseList = tbFlightSchedule.stream().map(
-                tbFlightSchedule1 -> response(tbFlightSchedule1)).collect(Collectors.toList());
+                newTbFlightSchedule -> response(newTbFlightSchedule)).collect(Collectors.toList());
 
         Pagination pagination = Pagination.builder()
                 .totalPages(tbFlightSchedule.getTotalPages())

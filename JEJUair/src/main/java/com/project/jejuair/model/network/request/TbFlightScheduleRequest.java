@@ -1,14 +1,12 @@
 package com.project.jejuair.model.network.request;
 
-import com.project.jejuair.model.enumclass.schedule.SchDomesticOverseas;
+import com.project.jejuair.model.enumclass.common.DomesticOverseas;
 import com.project.jejuair.model.enumclass.schedule.SchFood;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -19,7 +17,7 @@ import java.time.LocalTime;
 public class TbFlightScheduleRequest {
     private Long schIdx;
     private String schAircraftType;
-    private SchDomesticOverseas schDomesticOverseas;
+    private DomesticOverseas schDomesticOverseas;
     private String schAircraftName;
     private String schDeparture;
     private String schArrival;

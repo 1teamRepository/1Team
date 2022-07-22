@@ -35,7 +35,6 @@ public class TbExtraServiceApiLogicService extends BaseService<TbExtraServiceReq
     public Header<TbExtraServiceResponse> create(Header<TbExtraServiceRequest> request) {
         TbExtraServiceRequest tbExtraServiceRequest = request.getData();
         TbExtraService tbExtraService = TbExtraService.builder()
-                .extIdx(tbExtraServiceRequest.getExtIdx())
                 .extServiceType(tbExtraServiceRequest.getExtServiceType())
                 .extServiceDetail(tbExtraServiceRequest.getExtServiceDetail())
                 .extPrice(tbExtraServiceRequest.getExtPrice())
@@ -57,23 +56,23 @@ public class TbExtraServiceApiLogicService extends BaseService<TbExtraServiceReq
         Optional<TbExtraService> tbExtraService = baseRepository.findById(tbExtraServiceRequest.getExtIdx());
 
         return tbExtraService.map(
-                tbExtraService1 -> {
-                    tbExtraService1.setExtServiceType(tbExtraServiceRequest.getExtServiceType());
-                    tbExtraService1.setExtServiceDetail(tbExtraServiceRequest.getExtServiceDetail());
-                    tbExtraService1.setExtRegDate(tbExtraServiceRequest.getExtRegDate());
-                    tbExtraService1.setExtPrice(tbExtraServiceRequest.getExtPrice());
-//                    System.out.println(tbExtraService1.getExtServiceDetail());
-                    return tbExtraService1;
-                }).map(tbExtraService1 -> baseRepository.save(tbExtraService1))
-                .map(tbExtraService1 -> response(tbExtraService1))
+                newTbExtraService -> {
+                    newTbExtraService.setExtServiceType(tbExtraServiceRequest.getExtServiceType());
+                    newTbExtraService.setExtServiceDetail(tbExtraServiceRequest.getExtServiceDetail());
+                    newTbExtraService.setExtRegDate(tbExtraServiceRequest.getExtRegDate());
+                    newTbExtraService.setExtPrice(tbExtraServiceRequest.getExtPrice());
+//                    System.out.println(newTbExtraService.getExtServiceDetail());
+                    return newTbExtraService;
+                }).map(newTbExtraService -> baseRepository.save(newTbExtraService))
+                .map(newTbExtraService -> response(newTbExtraService))
                 .map(Header::OK).orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 
     @Override
     public Header delete(Long extIdx) {
         Optional<TbExtraService> tbExtraService = baseRepository.findById(extIdx);
-        return tbExtraService.map(tbExtraService1 -> {
-            baseRepository.delete(tbExtraService1);
+        return tbExtraService.map(newTbExtraService -> {
+            baseRepository.delete(newTbExtraService);
             return Header.OK();
         }).orElseGet(() -> Header.ERROR("데이터 없음"));
     }
@@ -81,7 +80,7 @@ public class TbExtraServiceApiLogicService extends BaseService<TbExtraServiceReq
     public Header<List<TbExtraServiceResponse>> search(Pageable pageable){
         Page<TbExtraService> tbExtraService = baseRepository.findAll(pageable);
         List<TbExtraServiceResponse> tbExtraServiceResponseList = tbExtraService.stream().map(
-                tbExtraService1 -> response(tbExtraService1)).collect(Collectors.toList());
+                newTbExtraService -> response(newTbExtraService)).collect(Collectors.toList());
 
         Pagination pagination = Pagination.builder()
                 .totalPages(tbExtraService.getTotalPages())

@@ -1,6 +1,6 @@
 package com.project.jejuair.model.network.response;
 
-import com.project.jejuair.model.enumclass.schedule.SchDomesticOverseas;
+import com.project.jejuair.model.enumclass.common.DomesticOverseas;
 import com.project.jejuair.model.enumclass.schedule.SchFood;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +17,7 @@ import java.time.LocalTime;
 public class TbFlightScheduleResponse {
     private Long schIdx;
     private String schAircraftType;
-    private SchDomesticOverseas schDomesticOverseas;
+    private DomesticOverseas schDomesticOverseas;
     private String schAircraftName;
     private String schDeparture;
     private String schArrival;

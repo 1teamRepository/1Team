@@ -32,7 +32,6 @@ public class TbBaggageApiLogicService extends BaseService<TbBaggageRequest, TbBa
     public Header<TbBaggageResponse> create(Header<TbBaggageRequest> request) {
         TbBaggageRequest tbBaggageRequest = request.getData();
         TbBaggage tbBaggage = TbBaggage.builder()
-                .bagIdx(tbBaggageRequest.getBagIdx())
                 .bagDomesticOverseas(tbBaggageRequest.getBagDomesticOverseas())
                 .bagPrice(tbBaggageRequest.getBagPrice())
                 .bagWeight(tbBaggageRequest.getBagWeight())
@@ -53,21 +52,21 @@ public class TbBaggageApiLogicService extends BaseService<TbBaggageRequest, TbBa
         Optional<TbBaggage> tbBaggage = baseRepository.findById(tbBaggageRequest.getBagIdx());
 
         return tbBaggage.map(
-                tbBaggage1 -> {
-                    tbBaggage1.setBagDomesticOverseas(tbBaggageRequest.getBagDomesticOverseas());
-                    tbBaggage1.setBagPrice(tbBaggageRequest.getBagPrice());
-                    tbBaggage1.setBagWeight(tbBaggageRequest.getBagWeight());
-                    return tbBaggage1;
-                }).map(tbBaggage1 -> baseRepository.save(tbBaggage1))
-                .map(tbBaggage1 -> response(tbBaggage1))
+                newTbBaggage -> {
+                    newTbBaggage.setBagDomesticOverseas(tbBaggageRequest.getBagDomesticOverseas());
+                    newTbBaggage.setBagPrice(tbBaggageRequest.getBagPrice());
+                    newTbBaggage.setBagWeight(tbBaggageRequest.getBagWeight());
+                    return newTbBaggage;
+                }).map(newTbBaggage -> baseRepository.save(newTbBaggage))
+                .map(newTbBaggage -> response(newTbBaggage))
                 .map(Header::OK).orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 
     @Override
     public Header delete(Long bagIdx) {
         Optional<TbBaggage> tbBaggage = baseRepository.findById(bagIdx);        
-        return tbBaggage.map(tbBaggage1 -> {
-            baseRepository.delete(tbBaggage1);
+        return tbBaggage.map(newTbBaggage -> {
+            baseRepository.delete(newTbBaggage);
             return Header.OK();
         }).orElseGet(() -> Header.ERROR("데이터 없음"));
     }
@@ -76,7 +75,7 @@ public class TbBaggageApiLogicService extends BaseService<TbBaggageRequest, TbBa
         //  객체를 리스트 타입으로 변환해서 반환
         Page<TbBaggage> tbBaggage = baseRepository.findAll(pageable);
         List<TbBaggageResponse> tbBaggageResponseList = tbBaggage.stream().map(
-                tbBaggage1 -> response(tbBaggage1)).collect(Collectors.toList());
+                newTbBaggage -> response(newTbBaggage)).collect(Collectors.toList());
 //
         Pagination pagination = Pagination.builder()
                 .totalPages(tbBaggage.getTotalPages())
