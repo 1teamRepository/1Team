@@ -36,7 +36,6 @@ public class TbPaymentApiLogicService extends BaseService<TbPaymentRequest, TbPa
     public Header<TbPaymentResponse> create(Header<TbPaymentRequest> request) {
         TbPaymentRequest tbPaymentRequest = request.getData();
         TbPayment tbPayment = TbPayment.builder()
-                .payIdx(tbPaymentRequest.getPayIdx())
                 .payUserid(tbPaymentRequest.getPayUserid())
                 .payContent(tbPaymentRequest.getPayContent())
                 .payAmount(tbPaymentRequest.getPayAmount())
@@ -59,25 +58,24 @@ public class TbPaymentApiLogicService extends BaseService<TbPaymentRequest, TbPa
         TbPaymentRequest tbPaymentRequest = request.getData();
         Optional<TbPayment> tbPayment = baseRepository.findById(tbPaymentRequest.getPayIdx());
         return tbPayment.map(
-                tbPayment1 -> {
-                    tbPayment1.setPayIdx(tbPaymentRequest.getPayIdx());
-                    tbPayment1.setPayUserid(tbPaymentRequest.getPayUserid());
-                    tbPayment1.setPayContent(tbPaymentRequest.getPayContent());
-                    tbPayment1.setPayAmount(tbPaymentRequest.getPayAmount());
-                    tbPayment1.setPayStatus(tbPaymentRequest.getPayStatus());
-                    tbPayment1.setPayMethod(tbPaymentRequest.getPayMethod());
-                    tbPayment1.setPayDate(tbPaymentRequest.getPayDate());
-                    return tbPayment1;
-                }).map(tbPayment1 -> baseRepository.save(tbPayment1))
-                .map(tbPayment1 -> response(tbPayment1))
+                newTbPayment -> {
+                    newTbPayment.setPayUserid(tbPaymentRequest.getPayUserid());
+                    newTbPayment.setPayContent(tbPaymentRequest.getPayContent());
+                    newTbPayment.setPayAmount(tbPaymentRequest.getPayAmount());
+                    newTbPayment.setPayStatus(tbPaymentRequest.getPayStatus());
+                    newTbPayment.setPayMethod(tbPaymentRequest.getPayMethod());
+                    newTbPayment.setPayDate(tbPaymentRequest.getPayDate());
+                    return newTbPayment;
+                }).map(newTbPayment -> baseRepository.save(newTbPayment))
+                .map(newTbPayment -> response(newTbPayment))
                 .map(Header::OK).orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 
     @Override
     public Header delete(Long payIdx) {
         Optional<TbPayment> tbPayment = baseRepository.findById(payIdx);
-        return tbPayment.map(tbPayment1 -> {
-            baseRepository.delete(tbPayment1);
+        return tbPayment.map(newTbPayment -> {
+            baseRepository.delete(newTbPayment);
             return Header.OK();
         }).orElseGet(() -> Header.ERROR("데이터 없음"));
     }
@@ -86,7 +84,7 @@ public class TbPaymentApiLogicService extends BaseService<TbPaymentRequest, TbPa
         //  객체를 리스트 타입으로 변환해서 반환
         Page<TbPayment> tbPayment = baseRepository.findAll(pageable);
         List<TbPaymentResponse> tbPaymentResponseList = tbPayment.stream().map(
-                tbPayment1 -> response(tbPayment1)).collect(Collectors.toList());
+                newTbPayment -> response(newTbPayment)).collect(Collectors.toList());
 //
         Pagination pagination = Pagination.builder()
                 .totalPages(tbPayment.getTotalPages())

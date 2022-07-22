@@ -41,13 +41,4 @@ public class TbAdminuser {
     @CreatedDate
     private LocalDateTime admRegDate;
 
-
-
-    @Enumerated(EnumType.STRING)
-    private ExtServiceType extServiceType;
-    private String extServiceDetail;
-    @CreatedDate
-    private LocalDateTime extRegDate;
-    private Integer extPrice;
-    private Long choiceIdx;
 }

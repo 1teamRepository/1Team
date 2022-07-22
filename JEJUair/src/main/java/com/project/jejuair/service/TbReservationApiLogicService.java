@@ -12,7 +12,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -47,7 +46,6 @@ public class TbReservationApiLogicService extends BaseService<TbReservationReque
     public Header<TbReservationResponse> create(Header<TbReservationRequest> request) {
         TbReservationRequest tbReservationRequest = request.getData();
         TbReservation tbReservation = TbReservation.builder()
-                .resIdx(tbReservationRequest.getResIdx())
                 .resEmail(tbReservationRequest.getResEmail())
                 .resKoName(tbReservationRequest.getResKoName())
                 .resEngName(tbReservationRequest.getResEngName())
@@ -78,29 +76,29 @@ public class TbReservationApiLogicService extends BaseService<TbReservationReque
         TbReservationRequest tbReservationRequest = request.getData();
         Optional<TbReservation> tbReservation = baseRepository.findById(tbReservationRequest.getResIdx());
         return tbReservation.map(
-                tbReservation1 -> {
-                    tbReservation1.setResEmail(tbReservationRequest.getResEmail());
-                    tbReservation1.setResKoName(tbReservationRequest.getResKoName());
-                    tbReservation1.setResEngName(tbReservationRequest.getResEngName());
-                    tbReservation1.setResHp(tbReservationRequest.getResHp());
-                    tbReservation1.setResPosition(tbReservationRequest.getResPosition());
-                    tbReservation1.setResGender(tbReservationRequest.getResGender());
-                    tbReservation1.setResCheckIn(tbReservationRequest.getResCheckIn());
-                    tbReservation1.setResSsn(tbReservationRequest.getResSsn());
-                    tbReservation1.setResStatus(tbReservationRequest.getResStatus());
-                    tbReservation1.setResNationality(tbReservationRequest.getResNationality());
-                    tbReservation1.setResCoupon(tbReservationRequest.getResCoupon());
-                    tbReservation1.setResSeatNum(tbReservationRequest.getResSeatNum());
-                    return tbReservation1;
-                }).map(tbReservation1 -> baseRepository.save(tbReservation1))
-                .map(tbReservation1 -> response(tbReservation1)).map(Header::OK).orElseGet(()->Header.ERROR("데이터 없음"));
+                newTbReservation -> {
+                    newTbReservation.setResEmail(tbReservationRequest.getResEmail());
+                    newTbReservation.setResKoName(tbReservationRequest.getResKoName());
+                    newTbReservation.setResEngName(tbReservationRequest.getResEngName());
+                    newTbReservation.setResHp(tbReservationRequest.getResHp());
+                    newTbReservation.setResPosition(tbReservationRequest.getResPosition());
+                    newTbReservation.setResGender(tbReservationRequest.getResGender());
+                    newTbReservation.setResCheckIn(tbReservationRequest.getResCheckIn());
+                    newTbReservation.setResSsn(tbReservationRequest.getResSsn());
+                    newTbReservation.setResStatus(tbReservationRequest.getResStatus());
+                    newTbReservation.setResNationality(tbReservationRequest.getResNationality());
+                    newTbReservation.setResCoupon(tbReservationRequest.getResCoupon());
+                    newTbReservation.setResSeatNum(tbReservationRequest.getResSeatNum());
+                    return newTbReservation;
+                }).map(newTbReservation -> baseRepository.save(newTbReservation))
+                .map(newTbReservation -> response(newTbReservation)).map(Header::OK).orElseGet(()->Header.ERROR("데이터 없음"));
     }
 
     @Override
     public Header delete(Long resIdx) {
         Optional<TbReservation> tbReservation = baseRepository.findById(resIdx);
-        return tbReservation.map(tbReservation1 -> {
-            baseRepository.delete(tbReservation1);
+        return tbReservation.map(newTbReservation -> {
+            baseRepository.delete(newTbReservation);
             return Header.OK();
         }).orElseGet(() -> Header.ERROR("데이터 없음"));
     }
@@ -108,7 +106,7 @@ public class TbReservationApiLogicService extends BaseService<TbReservationReque
     public Header<List<TbReservationResponse>> search(Pageable pageable){
         Page<TbReservation> tbReservation = baseRepository.findAll(pageable);
         List<TbReservationResponse> tbReservationResponseList = tbReservation.stream().map(
-                tbReservation1 -> response(tbReservation1)).collect(Collectors.toList());
+                newTbReservation -> response(newTbReservation)).collect(Collectors.toList());
 
         Pagination pagination = Pagination.builder()
                 .totalPages(tbReservation.getTotalPages())

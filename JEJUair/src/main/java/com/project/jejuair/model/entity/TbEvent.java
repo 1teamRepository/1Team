@@ -26,13 +26,13 @@ import java.time.LocalDateTime;
 public class TbEvent {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_event")
-    private Long evt_idx;                   // 번호
-    private String evt_title;               // 제목
-    private String evt_content;             // 내용
-    private String evt_img;                 // 이미지 누나?
-    private LocalDateTime evt_start_date;   // 시작일
-    private LocalDateTime evt_end_date;     // 종료일
-    @CreatedDate
-    private LocalDateTime evt_reg_date;     // 등록일
 
+    private Long evtIdx;                   // 번호
+    private String evtTitle;               // 제목
+    private String evtContent;             // 내용
+    private String evtImg;                 // 이미지 누나?
+    private LocalDateTime evtStartDate;   // 시작일
+    private LocalDateTime evtEndDate;     // 종료일
+    @CreatedDate
+    private LocalDateTime evtRegDate;     // 등록일
 }

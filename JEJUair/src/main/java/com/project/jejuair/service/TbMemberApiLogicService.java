@@ -77,31 +77,31 @@ public class TbMemberApiLogicService extends BaseService<TbMemberRequest, TbMemb
         TbMemberRequest tbMemberRequest = request.getData();
         Optional<TbMember> tbMember = baseRepository.findById(tbMemberRequest.getMemIdx());
         return tbMember.map(
-                tbMember1 -> {
-                    tbMember1.setMemUserpw(tbMemberRequest.getMemUserpw());
-                    tbMember1.setMemKoLastname(tbMemberRequest.getMemKoLastname());
-                    tbMember1.setMemKoFirstname(tbMemberRequest.getMemKoFirstname());
-                    tbMember1.setMemEngLastname(tbMemberRequest.getMemEngLastname());
-                    tbMember1.setMemEngFirstname(tbMemberRequest.getMemEngFirstname());
-                    tbMember1.setMemGender(tbMemberRequest.getMemGender());
-                    tbMember1.setMemHp(tbMemberRequest.getMemHp());
-                    tbMember1.setMemEmail(tbMemberRequest.getMemEmail());
+                newTbMember -> {
+                    newTbMember.setMemUserpw(tbMemberRequest.getMemUserpw());
+                    newTbMember.setMemKoLastname(tbMemberRequest.getMemKoLastname());
+                    newTbMember.setMemKoFirstname(tbMemberRequest.getMemKoFirstname());
+                    newTbMember.setMemEngLastname(tbMemberRequest.getMemEngLastname());
+                    newTbMember.setMemEngFirstname(tbMemberRequest.getMemEngFirstname());
+                    newTbMember.setMemGender(tbMemberRequest.getMemGender());
+                    newTbMember.setMemHp(tbMemberRequest.getMemHp());
+                    newTbMember.setMemEmail(tbMemberRequest.getMemEmail());
                     System.out.println(tbMemberRequest.getMemEmail() + " 1");
-                    tbMember1.setMemMarketing(tbMemberRequest.getMemMarketing());
+                    newTbMember.setMemMarketing(tbMemberRequest.getMemMarketing());
                     System.out.println(tbMemberRequest.getMemMarketing() + " 2");
-                    tbMember1.setMemSnsPush(tbMemberRequest.getMemSnsPush());
+                    newTbMember.setMemSnsPush(tbMemberRequest.getMemSnsPush());
                     System.out.println(tbMemberRequest.getMemMarketing() +" 3");
-                    return tbMember1;
-                }).map(tbMember1 -> baseRepository.save(tbMember1))
-                .map(tbMember1 -> response(tbMember1))
+                    return newTbMember;
+                }).map(newTbMember -> baseRepository.save(newTbMember))
+                .map(newTbMember -> response(newTbMember))
                 .map(Header::OK).orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 
     @Override
     public Header delete(Long memIdx) {
         Optional<TbMember> tbMember = baseRepository.findById(memIdx);
-        return tbMember.map(tbMember1 -> {
-            baseRepository.delete(tbMember1);
+        return tbMember.map(newTbMember -> {
+            baseRepository.delete(newTbMember);
             return Header.OK();
         }).orElseGet(() -> Header.ERROR("데이터 없음"));
     }
@@ -109,7 +109,7 @@ public class TbMemberApiLogicService extends BaseService<TbMemberRequest, TbMemb
     public Header<List<TbMemberResponse>> search(Pageable pageable){
         Page<TbMember> tbMember = baseRepository.findAll(pageable);
         List<TbMemberResponse> tbMemberResponseList = tbMember.stream().map(
-                tbMember1 -> response(tbMember1)).collect(Collectors.toList());
+                newTbMember -> response(newTbMember)).collect(Collectors.toList());
 
         Pagination pagination = Pagination.builder()
                 .totalPages(tbMember.getTotalPages())
