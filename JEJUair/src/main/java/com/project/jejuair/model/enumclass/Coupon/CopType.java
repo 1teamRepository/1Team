@@ -1,13 +1,14 @@
-package com.project.jejuair.model.enumclass.schedule;
+package com.project.jejuair.model.enumclass.Coupon;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public enum SchPet {
-    YES(0, "가능", "애견동반 가능"),
-    No(1, "불가능", "애견동반 불가능");
+public enum CopType {
+
+    MONEY(0, "금액권", "금액권"),
+    DISCOUNT(1, "할인권", "할인권");
 
     private Integer id;
     private String title;

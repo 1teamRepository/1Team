@@ -57,4 +57,10 @@ public class TbMember {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tbMember")
     private List<TbPayment> tbPaymentList;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tbMember")
+    private List<TbAnswer> tbAnswerList;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tbMember")
+    private List<TbPoint> tbPointList;
+
 }
