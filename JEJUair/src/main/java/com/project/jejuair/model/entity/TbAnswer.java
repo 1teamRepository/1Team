@@ -39,6 +39,6 @@ public class TbAnswer {
     private Long ansMemIdx;           // memIdx
 
     @ManyToOne
-    private TbMember tbMember;
 
+    private TbMember tbMember;
 }

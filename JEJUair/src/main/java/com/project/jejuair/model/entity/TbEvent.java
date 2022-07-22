@@ -26,6 +26,7 @@ import java.time.LocalDateTime;
 public class TbEvent {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_event")
+
     private Long evtIdx;                   // 번호
     private String evtTitle;               // 제목
     private String evtContent;             // 내용
@@ -34,5 +35,4 @@ public class TbEvent {
     private LocalDateTime evtEndDate;     // 종료일
     @CreatedDate
     private LocalDateTime evtRegDate;     // 등록일
-
 }
