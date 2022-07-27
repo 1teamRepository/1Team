@@ -177,8 +177,18 @@
                                                             </button>
                                                         </div>
                                                         <div class="choise">
-                                                            <button type="button" class="choise__button" data-countrycode="KR" data-stationcode="GMP" data-stationtype="DEP" data-stationname="서울(김포)">
-                                                                <span class="stationName">서울(김포)</span><span class="airport">GMP</span>
+                                                            <button type="button" class="choise__button" data-countrycode="KR" data-stationcode="PUS" data-stationtype="DEP" data-stationname="부산">
+                                                                <span class="stationName">부산</span><span class="airport">PUS</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="choise">
+                                                            <button type="button" class="choise__button" data-countrycode="KR" data-stationcode="CJU" data-stationtype="DEP" data-stationname="제주">
+                                                                <span class="stationName">제주</span><span class="airport">CJU</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="choise">
+                                                            <button type="button" class="choise__button" data-countrycode="KR" data-stationcode="TAE" data-stationtype="DEP" data-stationname="대구">
+                                                                <span class="stationName">대구</span><span class="airport">TAE</span>
                                                             </button>
                                                         </div>
                                                     </div>
@@ -186,6 +196,16 @@
                                                         <div class="choise">
                                                             <button type="button" class="choise__button" data-countrycode="JP" data-stationcode="NRT" data-stationtype="DEP" data-stationname="도쿄(나리타)">
                                                                 <span class="stationName">도쿄(나리타)</span><span class="airport">NRT</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="choise">
+                                                            <button type="button" class="choise__button" data-countrycode="JP" data-stationcode="FUK" data-stationtype="DEP" data-stationname="후쿠오카">
+                                                                <span class="stationName">후쿠오카</span><span class="airport">FUK</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="choise">
+                                                            <button type="button" class="choise__button" data-countrycode="JP" data-stationcode="HRB" data-stationtype="DEP" data-stationname="하얼빈">
+                                                                <span class="stationName">하얼빈</span><span class="airport">HRB</span>
                                                             </button>
                                                         </div>
                                                     </div>
@@ -243,9 +263,59 @@
                                             <div data-element="tab"
                                                  class="tab tab--vertical tab--booking">
                                                 <div class="tab__buttons vertical_scroll_set"
-                                                     id="divArrArea"></div>
+                                                     id="divArrArea">
+                                                    <div data-element="tab__list" class="tab__button" role="presentation">
+                                                        <button type="button" tabindex="" data-element="tab__anchor" role="tab" data-index="0"
+                                                                id="plugin-ARRtab-2" class="tab__anchor is-active" aria-selected="true" aria-expanded="true">대한민국</button>
+                                                    </div>
+                                                    <div data-element="tab__list" class="tab__button" role="presentation">
+                                                        <button type="button" tabindex="" data-element="tab__anchor" role="tab" data-index="1"
+                                                                id="plugin-ARRtab-3" class="tab__anchor" aria-selected="false" aria-expanded="false">동북아시아</button>
+                                                    </div>
+                                                </div>
                                                 <div class="tab__panel-wrap scrollbar-inner"
-                                                     data-element="tab__panel-wrap"></div>
+                                                     data-element="tab__panel-wrap">
+                                                    <div data-element="tab__panel" class="tab__panel is-active" aria-labelledby="plugin-DEPtab-2" role="tabpanel" tabindex="0" style="display: block;">
+                                                        <div class="choise">
+                                                            <button type="button" class="choise__button" data-countrycode="KR" data-stationcode="ICN" data-stationtype="ARR" data-stationname="서울(인천)">
+                                                                <span class="stationName">서울(인천)</span><span class="airport">ICN</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="choise">
+                                                            <button type="button" class="choise__button" data-countrycode="KR" data-stationcode="PUS" data-stationtype="ARR" data-stationname="부산">
+                                                                <span class="stationName">부산</span><span class="airport">PUS</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="choise">
+                                                            <button type="button" class="choise__button" data-countrycode="KR" data-stationcode="CJU" data-stationtype="ARR" data-stationname="제주">
+                                                                <span class="stationName">제주</span><span class="airport">CJU</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="choise">
+                                                            <button type="button" class="choise__button" data-countrycode="KR" data-stationcode="TAE" data-stationtype="ARR" data-stationname="대구">
+                                                                <span class="stationName">대구</span><span class="airport">TAE</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                    <div data-element="tab__panel" class="tab__panel" aria-labelledby="plugin-DEPtab-3" role="tabpanel" tabindex="0" style="display: none;">
+                                                        <div class="choise">
+                                                            <button type="button" class="choise__button" data-countrycode="JP" data-stationcode="NRT" data-stationtype="DEP" data-stationname="도쿄(나리타)">
+                                                                <span class="stationName">도쿄(나리타)</span><span class="airport">NRT</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="choise">
+                                                            <button type="button" class="choise__button" data-countrycode="JP" data-stationcode="FUK" data-stationtype="DEP" data-stationname="후쿠오카">
+                                                                <span class="stationName">후쿠오카</span><span class="airport">FUK</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="choise">
+                                                            <button type="button" class="choise__button" data-countrycode="JP" data-stationcode="HRB" data-stationtype="DEP" data-stationname="하얼빈">
+                                                                <span class="stationName">하얼빈</span><span class="airport">HRB</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <!--<button type="button" class="floating-button btn-map" onclick="viewTabMap('target','map')">
                                              <span class="hidden">지도보기</span>
@@ -554,15 +624,15 @@
     });
 
     $(document).on('click', '.js-target-pick.start', function () {
-        selectDeparture(this);
+        selectDeparture();
     })
 
     $(document).on('click', '.js-target-pick.target', function () {
-        selectTarget(this);
+        selectTarget();
     })
 
     $(document).on('click', '.btn-passengers', function () {
-        selectPassengers(this);
+        selectPassengers();
     });
 
     $(document).on('click', '#btnDatePicker', function () {
@@ -588,23 +658,34 @@
         selectCountry(this);
     })
 
+    $(document).on('click', '.choise__button', function(){
+        selectAirport(this);
+    })
 
-    const trip_btn = document.querySelectorAll('.item-btn');			//<a href="#" class="item-btn">왕복</a>
+    //selectTrip
+    const tripBtn = document.querySelectorAll('.item-btn');			//<a href="#" class="item-btn">왕복</a>
     const mainTicketing = document.querySelector('.main-ticketing');
 
     const departureLayer = document.getElementById('depAirportLayer');	//<div class="flight-layer flight-start" id="depAirportLayer">
     const targetLayer = document.getElementById('arrAirportLayer');		//<div class="flight-layer flight-start" id="depAirportLayer">
     const customerLayer = document.getElementById('customerLayer'); 	//<div class="customer-layer" id="customerLayer">
 
+    //달력
     const dateRound = document.getElementById('date-round');
     const dateOneWay = document.getElementById('date-one-way');
 
+    const departureDesc = document.getElementById('spanDepartureDesc');
+    const arrivalDesc = document.getElementById('spanArrivalDesc');
+
     const adtCount = document.getElementById('adtCount');
     const btnClose = document.getElementsByTagName('button');
+    const btnPassengers = document.getElementsByClassName('btn-passengers')[0];
 
-    const btnPassengers = document.getElementsByClassName('btn-passengers');
     const tabAnchor = document.getElementsByClassName('tab__anchor');
     const tabPanel = document.getElementsByClassName('tab__panel');
+
+    const searchFlight = document.getElementById('searchFlight');
+
 
     function selectTrip(item) {
         let li = item.parentNode;										//<li class="item selected" data-tripType="RT"><a href="#" class="item-btn">왕복</a></li>
@@ -612,9 +693,9 @@
         const trip_type = $(li).attr('data-triptype');  //ow, rt
 
         closeLayer();
-        for (let i = 0; i < trip_btn.length; i++) {
-            console.log(trip_btn[i].parentElement);
-            trip_btn[i].parentElement.classList.remove('selected');
+        for (let i = 0; i < tripBtn.length; i++) {
+            console.log(tripBtn[i].parentElement);
+            tripBtn[i].parentElement.classList.remove('selected');
         }
 
         console.log(mainTicketing_item);
@@ -637,22 +718,21 @@
         }
     }
 
-    function selectDeparture(select) {
+    function selectDeparture() {
         closeLayer();
-        select.classList.add('on');
+        departureDesc.parentElement.classList.add('on');
         departureLayer.style.display = "block";
     }
 
-    function selectTarget(select) {
+    function selectTarget() {
         closeLayer();
-        select.classList.add('on');
+        arrivalDesc.parentElement.classList.add('on');
         targetLayer.style.display = "block";
     }
 
-
-    function selectPassengers(select) {
+    function selectPassengers() {
         closeLayer();
-        select.classList.add('on');
+        btnPassengers.classList.add('on');
         customerLayer.style.display = "block";
     }
 
@@ -679,7 +759,7 @@
     }
 
     function passCnt(select){
-        let passText = btnPassengers[0].firstChild;
+        let passText = btnPassengers.firstChild;
         passText.innerHTML = "성인" + adtCount.value;
         closeLayer();
     }
@@ -720,7 +800,29 @@
     }
 
 
+    function selectAirport(select){
+        let station=$(select).attr('data-stationname');
+        console.log(station);
+        if($(select).attr('data-stationtype') == "DEP"){
+            selectTarget();
+            departureDesc.innerText=station;
+            console.log(departureDesc.innerText);
+
+        }else if($(select).attr('data-stationtype') == "ARR"){
+            selectPassengers();
+            arrivalDesc.innerText=station;
+            console.log(arrivalDesc.innerText);
+            console.log(searchFlight);
+            $(searchFlight).attr('disabled', false);
+        }
+    }
+
+
+
+
+
 </script>
+
 
 
 <!-- 공통 스크립트 선언 -->
