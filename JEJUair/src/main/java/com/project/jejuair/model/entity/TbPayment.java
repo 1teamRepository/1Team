@@ -34,11 +34,11 @@ public class TbPayment {
     @CreatedDate
     private LocalDateTime payDate;  // 결제 일시
 
-    @ManyToOne
-    private TbMember tbMember;
-
-    @OneToOne
-    private TbReservation tbReservation;
-
-    @OneToOne TbExtraService tbExtraService;
+//    @ManyToOne
+//    private TbMember tbMember;
+//
+//    @OneToOne
+//    private TbReservation tbReservation;
+//
+//    @OneToOne TbExtraService tbExtraService;
 }

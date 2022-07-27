@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
 
 <head>
     <meta charset="UTF-8">
@@ -8,48 +10,12 @@
     <title>제주항공 | 관리자 등록</title>
     <link rel="stylesheet" type="text/css" href="/admin/lib/css/common.css">
     <link rel="icon" href="/admin/lib/images/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
 </head>
-<script>
-    function dropdown(num) {
-        var droptarget = 'drop' + num;
-        console.log(droptarget)
-        var target = document.getElementsByClassName(droptarget);
-        var uptarget;
-        var up;
-
-
-        for (var i = 0; i < 12; i++) {
-            if (num == i) { i = i + 1; }
-            console.log('들어옴' + i)
-            uptarget = 'drop' + i;
-            up = document.getElementsByClassName(uptarget);
-
-            for (var j = 0; j < up.length; j++) {
-                console.log('j들어옴' + j)
-                up[j].style.display = 'none';
-                console.log(up[j].style.display);
-            }
-        }
-
-        var disStyle = target[0].style.display;
-        console.log('V' + disStyle + 'V');
-        console.log(disStyle == 'block');
-
-        if (disStyle == 'block') {
-            for (var i = 0; i < target.length; i++) {
-                target[i].style.display = 'none';
-            }
-        } else {
-            for (var i = 0; i < target.length; i++) {
-                target[i].style.display = 'block';
-            }
-        }
-    }
-
-</script>
-
 <body>
-    <div class="container">
+    <div class="container" value="10-2">
         <div class="containerMenu">
             <div class="navigation">
                 <div class="homelogo">
@@ -307,11 +273,12 @@
 
         <!-- main -->
         <div class="containerbody">
+            <div id="category" value="adminuser"></div>
             <div class="main">
                 <!-- 본문 -->
                 <div class="bodytext_area box_inner">
                     <dl class="myinfo">
-                        <form action="#" class="regForm">
+                        <form class="regForm" id="admin_regist" method="post">
                             <div class="tableBorder">
                                 <div class="pageTitle">
                                     <h2>관리자 등록</h2>
@@ -319,45 +286,45 @@
                                 <ul class="leg_list">
                                     <li class="clear">
                                         <span class="tit_lbl">고유번호</span>
-                                        <div class="reg_content"><input name="adm_num" type="text" class="textBox" value=""></div>
+                                        <div class="reg_content"><input name="admIdx" id="admIdx" type="text" class="textBox" value="" disabled></div>
                                     </li>
                                     <li class="clear">
                                         <span class="tit_lbl">연락처</span>
-                                        <div class="reg_content"><input name="adm_tel" type="text" class="textBox" value=""></div>
+                                        <div class="reg_content"><input name="admAdminHp" id="admAdminHp" type="text" class="textBox" value=""></div>
                                     </li>
                                     <li class="clear">
                                         <span class="tit_lbl">아이디</span>
-                                        <div class="reg_content"><input name="adm_adminid" type="text" class="textBox" value=""></div>
+                                        <div class="reg_content"><input name="admAdminId" id="admAdminId" type="text" class="textBox" value=""></div>
                                     </li>
                                     <li class="clear">
                                         <span class="tit_lbl">사번</span>
-                                        <div class="reg_content"><input type="text" name="adm_employee_id" class="textBox" value=""></div>
+                                        <div class="reg_content"><input type="text" name="admEmployee" id="admEmployee" class="textBox" value=""></div>
                                     </li>
                                     <li class="clear">
                                         <span class="tit_lbl">비밀번호</span>
-                                        <div class="reg_content"><input type="text" name="adm_admin_pw" class="textBox" value=""></div>
+                                        <div class="reg_content"><input type="password" name="admAdminPw" id="admAdminPw" class="textBox" value=""></div>
                                     </li>
                                     <li class="clear">
                                         <span class="tit_lbl">부서</span>
-                                        <div class="reg_content"><input type="text" name="adm_departure" class="textBox" value=""></div>
+                                        <div class="reg_content"><input type="text" name="admDeparture" id="admDeparture" class="textBox" value=""></div>
                                     </li>
                                     <li class="clear">
                                         <span class="tit_lbl">성명(KOR)</span>
-                                        <div class="reg_content"><input type="text" name="adm_name_kor" class="textBox" value=""></div>
+                                        <div class="reg_content"><input type="text" name="admKorName" id="admKorName" class="textBox" value=""></div>
                                     </li>
                                     <li class="clear">
                                         <span class="tit_lbl">이메일</span>
-                                        <div class="reg_content"><input type="text" name="adm_email" class="textBox" value=""></div>
+                                        <div class="reg_content"><input type="text" name="admEmail" id="admEmail" class="textBox" value=""></div>
                                     </li>
                                     <li class="clear">
                                         <span class="tit_lbl">성명(ENG)</span>
-                                        <div class="reg_content"><input type="text" name="adm_name_eng" class="textBox" value=""></div>
+                                        <div class="reg_content"><input type="text" name="admEngName" id="admEngName" class="textBox" value=""></div>
                                     </li>
                                 </ul>
-
+                            </div>
                             <div class="buttonArea">
-                                <button type="button" class="button list margin_bottom_20" value="목록" onclick="location.href='/admin_settings/admin_list/admin_list.html'">목록</button>
-                                <button type="submit" class="button register margin_bottom_20" value="등록" onclick="regist_view()">등록</button>
+                                <button type="button" class="button list margin_bottom_20" value="목록" onclick="location.href='/admin/adminuser/list'">목록</button>
+                                <button type="button" class="button register margin_bottom_20" value="등록" id="sendit">등록</button>
                             </div>
                         </form>
                     </dl>
@@ -372,42 +339,10 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script>
 
-        function regist_view(){
-            const yn = confirm("게시물을 등록하시겠습니까?");
-            if(yn){
-                location.href = "";
-            }
-        }
-    </script>
-    <script>
-        console.log("헬로우")
-        console.log(document.title.substr(7));
-        var name2 = document.title.substr(7);
-        var span = document.querySelectorAll('.navigation span');
-        var regex = /[^0-9]/g;
-        for(var i=0; i<span.length; i++){
-            if(span[i].innerHTML == name2){
-                console.log("같은게 들어옴 " + i + "번")
-                var li = span[i].parentElement.parentElement
-                var num;
-                var str;
-                if(li.className.substr(0, 4) == 'drop'){
-                    str = li.parentElement.parentElement.firstElementChild.getAttribute("onclick");
-                    num = str.replace(regex, "");
-                    dropdown(num);
-                    li.classList.add('thispage');
-                    li.parentElement.parentElement.classList.add('thispage');
-                }else{
-                    str = li.firstElementChild.getAttribute("onclick");
-                    num = str.replace(regex, "");
-                    dropdown(num);
-                    li.classList.add('thispage');
-                }
-            }
-        }
-    
     </script>
 
+    <script src="/admin/lib/js/common.js"> </script>
+    <script src="/admin/lib/js/admin/admin_regist.js"> </script>
 </body>
 
 </html>

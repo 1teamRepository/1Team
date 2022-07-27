@@ -1,0 +1,556 @@
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+
+<!--head-->
+<div th:replace="/user/fragment/head :: head"></div>
+<!--head 끝-->
+
+<body id="subLayoutBody">
+
+<!--appAlert-->
+<div th:replace="/user/fragment/appAlert :: appAlert"></div>
+<!--appAlert 끝-->
+
+<!--header-->
+<div th:replace="/user/fragment/header :: header"></div>
+<!--header 끝-->
+
+<div id="body">
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD2BQQ4" height="0" width="0"
+                style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="wrap GD">
+
+
+        <div id="breadcrumb" class="breadcrumb pc-only" aria-label="breadcrumb">
+            <nav class="breadcrumb__inner">
+                <div class="breadcrumb__item">
+                    <a href="javascript:;" class="breadcrumb__link">홈</a>
+                </div>
+
+
+                <div class="breadcrumb__item">
+                    <a href="javascript:;" class="breadcrumb__link">마이페이지</a>
+                </div>
+
+
+                <div class="breadcrumb__item breadcrumb__item--current" aria-current="page" data-element="toggle"
+                     data-options='{"mode": "slide", "speed": 100, "clickToClose": true}'>
+
+
+                    <button type="button" class="breadcrumb__link breadcrumb__link--list"
+                            data-element="toggle__anchor">마이페이지 메인
+                    </button>
+
+
+                    <div class="breadcrumb__siblings-list" data-element="toggle__panel">
+
+                        <a href="user/my_history" class="item">나의 탑승 내역</a>
+                        <a href="user/info_edit" class="item">회원정보 수정</a>
+                        <a href="user/my_reserve" class="item">나의 예약 현황</a>
+
+                    </div>
+                </div>
+
+            </nav>
+        </div>
+
+
+        <div class="content" id="content">
+            <main id="main" class="main ">
+
+                <div class="mobile-only">
+                    <!-- 완료된 예약 탑승일로부터 알림 -->
+                    <div class="text container--default">
+                        <p class="text__large text--exbold"><span>&#44608;&#44221;&#51456;</span>고객님</p>
+                        <div class="container--xsmall">
+                            <p class="text__large text--bold">어디로 여행가세요?</p>
+                        </div>
+                    </div>
+
+                    <div class="container--small">
+                        <div class="button-wrap">
+                            <a href="user/ticket_reservation"
+                               class="button button--middle"><span class="button__text">항공권 예약</span></a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="title pc-only">
+                    <div class="page-title-wrap">
+                        <div class="page-title">마이페이지</div>
+
+                        <div class="title__additional"><span>&#44608;&#44221;&#51456;</span> 고객님, &nbsp;어디로 여행가세요?
+                        </div>
+                        <div class="button-wrap left">
+                            <button type="button" class="button button--primary button--black"
+                                    onclick="window.href='ticket_reservation'">
+                                <span class="button__text">항공권 예약</span>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="new-top-wrap">
+                    <div class="link-wrap--arrow link-wrap--right">
+                        <a href="javascript:void(0)" onclick="MEMBER_MYPAGE_MAIN_SCRIPT.popup();"
+                           class="link-wrap__text"><span>회원등급 안내</span></a>
+                    </div>
+                    <div class="new-top-box">
+                        <div class="new-top-box__inner">
+                            <div class="pc-left">
+                                <div class="mypage__grade">
+                                    <a href="javascript:void(0)" onclick="MEMBER_MYPAGE_MAIN_SCRIPT.popup();"
+                                       class="link-wrap__text"><span class="grade silver"
+                                                                     aria-label="silver"></span></a>
+                                </div>
+                                <div class="mypage__info">
+                                    <div class="name">회원번호</div>
+                                    <div class="number">089485198</div>
+                                    <div class="link-wrap link-wrap--arrow">
+                                        <a href="user/info_edit" class="link-wrap__text"
+                                           data-action="memberInfoModify"><span>회원정보 수정</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pc-right">
+                                <div class="pc-box">
+                                    <div onclick="URL_LINK.getI18Url('/memberBenefit/refreshPoint/main.do')"
+                                         class="mypage__point">
+                                        <strong class="mypage__point--title">사용가능 포인트</strong>
+                                        <span>1,000</span>P
+                                    </div>
+                                    <div class="button-wrap GD">
+                                        <button type="button" class="button button--optional"
+                                                data-target="#myBenefit" data-element="modal_anchor"
+                                                data-modal-type="full" data-width="640" style="color: #fff;"><span
+                                                class="button__text">나의 혜택</span></button>
+                                    </div>
+                                </div>
+                                <div class="box-link-list mypage__link">
+                                    <a href="user/qna_list">
+                                        <div>나의 1:1 문의</div>
+                                    </a>
+                                    <a href="#none" data-action="passengerManager">
+                                        <div>탑승객 관리</div>
+                                    </a>
+                                    <a href="#none" data-action="paymentManager">
+                                        <div>결제수단 관리</div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="frmForAvail" name="frmForAvail" method="post">
+                    <input type="hidden" id="availSearchData" name="availSearchData">
+                </form>
+                <form id="frmResvDetail" name="frmResvDetail" method="post">
+                    <input type="hidden" name="resvDetailReq" value="">
+                    <input type="hidden" name="rpnr" value="">
+                </form>
+                <div id="divResvList" class="section-wrap">
+                    <div class="section-title">
+                        <span>예약 현황</span>
+                        <div class="link-wrap link-wrap--arrow">
+                            <a href="../../ibe/mypage/viewReservationList.do"
+                               class="link-wrap__text"><span>전체보기</span></a>
+                        </div>
+                    </div>
+
+                    <!-- <div class="boarding-no-data">
+<div class="box-no-data">
+    <div class="box-no-data-txt" text="조회중입니다.">
+        잠시만 기다려 주세요.</span>
+    </div>
+</div>
+</div> -->
+
+                    <div class="boarding-no-data">
+                        <div class="box-no-data">
+                            <div class="box-no-data-txt">
+                                <div class="loading__img2">
+                                    <img src="https://static.jejuair.net/hpgg/resources/images/etc/loading_gray.gif"
+                                         alt="">
+                                    <p class="loading__text2" text="조회중입니다.">잠시만 기다려 주세요.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="button-wrap left sub-section">
+                        <button type="button" class="button button--optional -w100" data-action="boardingHistory">
+                            <span class="button__text">지난 탑승 내역 보기</span></button>
+                    </div>
+                </div>
+
+
+                <div class="section-wrap">
+                    <div class="section-title">
+                        <span>즐겨찾기</span>
+                        <div class="link-wrap link-wrap--arrow">
+                            <a href="../mypage/viewMyFavoritesList.do" class="link-wrap__text"><span>전체보기</span></a>
+                        </div>
+                    </div>
+                    <div data-element="tab" class="tab tab--default">
+                        <div class="tab__buttons">
+                            <div data-element="tab__list" class="tab__button">
+                                <button type="button" data-element="tab__anchor" class="tab__anchor">항공편</button>
+                            </div>
+                            <div data-element="tab__list" class="tab__button">
+                                <button type="button" data-element="tab__anchor" class="tab__anchor">여정</button>
+                            </div>
+                            <div data-element="tab__list" class="tab__button">
+                                <button type="button" data-element="tab__anchor" class="tab__anchor">공항</button>
+                            </div>
+                        </div>
+                        <div id="divFlight" data-element="tab__panel" class="tab__panel type-over-hidden">
+                            <div class="finish-item-wrap">
+                                <div class="finish-item">
+                                    <div class="finish-item__img">
+                                        <img src="/user/lib/images/icon-nodata-03.png" alt="">
+                                    </div>
+                                    <p class="finish-item__title">즐겨찾기는 예매 단계에서<br>등록할 수 있어요.</p>
+                                    <p class="finish-item__text">고민 중인 여행이 있다면<br>언제든 저장하고 관리해 보세요:)</p>
+                                    <div class="container--large pc-40">
+                                        <div class="button-wrap--center">
+                                            <button type="button" class="button button--secondary button--active"
+                                                    onclick="moveAvailability();">
+                                                <span class="button__text">예매하러 가기</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="divJourney" data-element="tab__panel" class="tab__panel type-over-hidden">
+                            <div class="finish-item-wrap">
+                                <div class="finish-item">
+                                    <div class="finish-item__img">
+                                        <img src="/user/lib/images/icon-nodata-03.png" alt="">
+                                    </div>
+                                    <p class="finish-item__title">즐겨찾기는 예매 단계에서<br>등록할 수 있어요.</p>
+                                    <p class="finish-item__text">고민 중인 여행이 있다면<br>언제든 저장하고 관리해 보세요:)</p>
+                                    <div class="container--large pc-40">
+                                        <div class="button-wrap--center">
+                                            <button type="button" class="button button--secondary button--active"
+                                                    onclick="moveAvailability();">
+                                                <span class="button__text">예매하러 가기</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="divAirport" class="tab__panel type-over-hidden" data-element="tab__panel">
+                            <div class="finish-item-wrap">
+                                <div class="finish-item">
+                                    <div class="finish-item__img">
+                                        <img src="/user/lib/images/icon-nodata-03.png" alt="">
+                                    </div>
+                                    <p class="finish-item__title">즐겨찾기는 예매 단계에서<br>등록할 수 있어요.</p>
+                                    <p class="finish-item__text">고민 중인 여행이 있다면<br>언제든 저장하고 관리해 보세요:)</p>
+                                    <div class="container--large pc-40">
+                                        <div class="button-wrap button-wrap--center">
+                                            <button type="button" class="button button--secondary button--active"
+                                                    onclick="moveAvailability();">
+                                                <span class="button__text">예매하러 가기</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="confirmDelete" class="modal modal--simple">
+                    <div class="modal-content">
+                        <h2 class="alert-title">
+                            즐겨찾기 삭제</h2>
+                        <p class="alert-text">즐겨찾기를 삭제하시겠습니까?</p>
+                    </div>
+                    <div class="modal__button-area button-wrap">
+                        <button type="button" class="button button--secondary"
+                                onclick="closeModal('confirmDelete')">
+                            <span class="button__text">아니요</span></button>
+                        <button type="button" class="button button--secondary button--active add--ml-10"
+                                onclick="deleteFavorite();">
+                            <span class="button__text">예</span></button>
+                    </div>
+                    <a href="#" onclick="closeModal('confirmDelete')" class="modal__close"><span
+                            class="blind">닫기</span></a>
+                </div>
+
+                <!DOCTYPE html>
+                <div id="myGiftTicketDetailModalLayer" class="modal modal-full modal-scroll modal--fixed-multi">
+                    <div class="modal-header">
+                        <div class="modal-header__title" id="voucherName"></div>
+                    </div>
+                    <div class="modal-content">
+                        <div class="gray-box -dark gray-box--coupon mo-30">
+                            <div class="coupon-list coupon-list--large">
+                                <div id="couponImg" class="coupon-list__item"></div>
+                            </div>
+                        </div>
+
+                        <div class="container--small pc-20">
+                            <div class="table-horizontal">
+                                <table>
+                                    <caption>쿠폰 상세 설명</caption>
+                                    <colgroup>
+                                        <col style="width: 35%">
+                                        <col>
+                                    </colgroup>
+                                    <tbody class="table-horizontal__tbody">
+                                    <tr>
+                                        <th scope="row" class="table-horizontal__th">기프티켓 번호</th>
+                                        <td id="voucherNumber" class="table-horizontal__td"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="table-horizontal__th">이용 가능 기간</th>
+                                        <td id="ceDate" class="table-horizontal__td"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="table-horizontal__th">상태</th>
+                                        <td id="statusName" class="table-horizontal__td"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fixed-wrap fixed-wrap--multi-line border-none ">
+                        <div class="button-wrap">
+                            <button type="button" rel="modal:close"
+                                    class="button button--primary button--active"><span
+                                    class="button__text">확인</span></button>
+                        </div>
+                    </div>
+                    <a href="javascript:void(0)" rel="modal:close" class="modal__close"><span
+                            class="blind">닫기</span></a>
+                </div>
+                <!DOCTYPE html>
+                <div id="myJJLoungeDetailModalLayer" class="modal modal-full modal--fixed-multi modal-scroll">
+                    <div class="modal-header">
+                        <div id="jjTitle" class="modal-header__title"></div>
+                    </div>
+                    <div class="modal-content">
+                        <div class="container--small">
+                            <div class="table-horizontal">
+                                <table>
+                                    <caption>JJ 라운지이용권 상세보기</caption>
+                                    <colgroup>
+                                        <col style="width: 35%">
+                                        <col>
+                                    </colgroup>
+                                    <tbody class="table-horizontal__tbody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="loungePurCancelDiv" class="link-wrap link-wrap--left mt-20">
+                            <a href="javascript:void(0)" id="purCancel"
+                               class="link-wrap__underline"><span>구매취소</span></a>
+                        </div>
+                    </div>
+                    <div class="fixed-wrap fixed-wrap--multi-line border-none">
+                        <div class="button-wrap">
+                            <button type="button" rel="modal:close"
+                                    class="button button--primary button--active"><span
+                                    class="button__text">확인</span></button>
+                        </div>
+                    </div>
+                    <a href="javascript:void(0)" rel="modal:close" class="modal__close"><span
+                            class="blind">닫기</span></a>
+
+                </div>
+                <!DOCTYPE html>
+
+                <div id="mySportsCardDetailModalLayer" class="modal modal-full modal--fixed-multi modal-scroll">
+                    <div class="modal-header">
+                        <div class="modal-header__title">스포츠 멤버십</div>
+                    </div>
+                    <div class="modal-content">
+                        <div class="container--small">
+                            <div class="table-horizontal">
+                                <table>
+                                    <caption>쿠폰 상세 설명</caption>
+                                    <colgroup>
+                                        <col style="width: 120px">
+                                        <col>
+                                    </colgroup>
+                                    <tbody class="table-horizontal__tbody">
+                                    <tr>
+                                        <th scope="row" class="table-horizontal__th">상품명</th>
+                                        <td id="goodName" class="table-horizontal__td"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="table-horizontal__th">구입일자</th>
+                                        <td id="orderDate" class="table-horizontal__td"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="table-horizontal__th">구입금액</th>
+                                        <td id="goodPrice" class="table-horizontal__td"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="table-horizontal__th">사용기간</th>
+                                        <td id="useDate" class="table-horizontal__td"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="table-horizontal__th">상태</th>
+                                        <td id="sportsStatusName" class="table-horizontal__td"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="table-horizontal__th">구매번호</th>
+                                        <td id="customerNumber" class="table-horizontal__td"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="table-horizontal__th">결제수단</th>
+                                        <td id="currencyCode" class="table-horizontal__td"></td>
+                                    </tr>
+                                    <!-- 결제수단에 따른 정보 -->
+                                    <!-- <tr class="currencyType">
+                <th scope="row" class="table-horizontal__th">할부개월</th>
+                <td id="installment" class="table-horizontal__td"></td>
+            </tr> -->
+                                    <tr class="currencyType">
+                                        <th scope="row" class="table-horizontal__th">승인번호</th>
+                                        <td id="approvalNumber" class="table-horizontal__td"></td>
+                                    </tr>
+                                    <tr class="currencyType">
+                                        <th scope="row" class="table-horizontal__th">결제일</th>
+                                        <td id="paymentDate" class="table-horizontal__td"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="sportsPurCancelDiv" class="link-wrap link-wrap--left mt-20">
+                            <a href="javascript:void(0)" id="purCancel"
+                               class="link-wrap__underline"><span>구매취소</span></a>
+                        </div>
+                    </div>
+                    <div class="fixed-wrap fixed-wrap--multi-line border-none ">
+                        <div class="button-wrap">
+                            <button type="button" rel="modal:close"
+                                    class="button button--primary button--active"><span
+                                    class="button__text">확인</span></button>
+                        </div>
+                    </div>
+                    <a href="javascript:void(0)" rel="modal:close" class="modal__close"><span
+                            class="blind">닫기</span></a>
+
+                </div>
+                <button type="button" id="btnModalOpen" data-element="modal_anchor" style="display: none;"></button>
+
+
+                <div id="friendConfirmDelete" class="modal modal--simple">
+                    <div class="modal-content">
+                        <h2 class="alert-title">
+                            탑승객 삭제</h2>
+                        <p class="alert-text"><span></span>님을 탑승객 목록에서 삭제하시겠습니까?</p>
+                    </div>
+                    <div class="modal__button-area button-wrap">
+                        <button type="button" class="button button--secondary" onclick="closeCurrentModal(this)">
+                            <span class="button__text">아니요</span>
+                        </button>
+                        <button name="btnDeleteConfirm" type="button"
+                                class="button button--secondary button--active add--ml-10">
+                            <span class="button__text">예</span>
+                        </button>
+                    </div>
+                    <a href="#" onclick="closeCurrentModal(this)" class="modal__close"><span
+                            class="blind">닫기</span></a>
+                </div>
+                <form role="form" method="post"></form>
+            </main>
+        </div>
+
+
+        <div class="quick-menu mobile-only">
+            <!-- D : 활성화 클래스 on -->
+            <a href="javascript:void(0);" class="quick-menu__item n1 "
+               onclick="URL_LINK.getI18Url('/main/base/index.do')">
+
+
+                <img src="https://static.jejuair.net/hpgg/resources/images/upload/icon_bottombar_home_off_56x2.png"
+                     alt="홈" loading="lazy">
+
+
+                <!--2021-04-13 이미지로 변경-->
+                <span>홈</span> <!-- 홈 -->
+            </a>
+            <a href="javascript:void(0);" class="quick-menu__item n2 "
+               onclick="URL_LINK.getI18Url('/ibe/booking/Availability.do')">
+
+
+                <img src="https://static.jejuair.net/hpgg/resources/images/upload/icon_bottom	bar_reservation_off_56x2.png"
+                     alt="항공권예매" loading="lazy">
+
+
+                <!--2021-04-13 이미지로 변경-->
+                <span>예매</span> <!-- 항공권예매 -->
+            </a>
+            <a href="javascript:void(0);" class="quick-menu__item n3 "
+               onclick="URL_LINK.getI18Url('/ibe/checkin/viewCheckin.do')">
+
+
+                <img src="https://static.jejuair.net/hpgg/resources/images/upload/icon_bottombar_mboardingpass_off_56x2.png"
+                     alt="모바일 탑승권" loading="lazy">
+
+
+                <!--2021-04-13 이미지로 변경-->
+                <span>모바일 탑승권</span> <!-- 모바일 탑승권 -->
+            </a>
+            <a href="javascript:void(0);" class="quick-menu__item n4 "
+               onclick="URL_LINK.getI18Url('/additionalService/service/main.do')">
+
+
+                <img src="https://static.jejuair.net/hpgg/resources/images/upload/icon_bottombar_service_off_56x2.png"
+                     alt="부가서비스" loading="lazy">
+
+
+                <!--2021-04-13 이미지로 변경-->
+                <span>부가서비스</span> <!-- 부가서비스 -->
+            </a>
+            <a href="javascript:void(0);" class="quick-menu__item n5 on"
+               onclick="URL_LINK.getI18Url('/member/mypage/main.do')">
+
+
+                <img src="https://static.jejuair.net/hpgg/resources/images/upload/icon_bottombar_mypage_on_56x2.png"
+                     alt="마이페이지" loading="lazy">
+
+
+                <!--2021-04-13 이미지로 변경-->
+                <span>마이페이지</span> <!-- 마이페이지 -->
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<!-- footer -->
+<div th:replace="/user/fragment/footer :: footer"></div>
+<!-- / footer 끝 -->
+
+
+<div id="ifmWrap"
+     style="height:100%; display:none; overflow:auto; text-align:center; -webkit-overflow-scrolling:touch;">
+    <iframe src="" width="100%" height="100%" name="popupChkApp"></iframe>
+</div>
+
+
+<!-- 공통 스크립트 선언 -->
+<script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
+<script type="text/javascript" src="/user/lib/js/common.js"></script>
+<script type="text/javascript" src="/user/lib/js/plugin.js"></script>
+
+</body>
+
+</html>

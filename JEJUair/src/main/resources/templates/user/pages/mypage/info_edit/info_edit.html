@@ -1,0 +1,193 @@
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+
+<!--head-->
+<div th:replace="/user/fragment/head :: head"></div>
+<!--head 끝-->
+
+<body id="subLayoutBody">
+
+<!--appAlert-->
+<div th:replace="/user/fragment/appAlert :: appAlert"></div>
+<!--appAlert 끝-->
+
+
+<!--header-->
+<div th:replace="/user/fragment/header :: header"></div>
+<!--header 끝-->
+
+<div id="body">
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD2BQQ4" height="0" width="0"
+                style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="wrap wrap--login pc-small">
+
+
+        <div id="breadcrumb" class="breadcrumb pc-only" aria-label="breadcrumb">
+            <nav class="breadcrumb__inner">
+                <div class="breadcrumb__item">
+                    <a href="javascript:;" class="breadcrumb__link">홈</a>
+                </div>
+                <div class="breadcrumb__item">
+                    <a href="javascript:;" class="breadcrumb__link">마이페이지</a>
+                </div>
+
+                <div class="breadcrumb__item breadcrumb__item--current" aria-current="page" data-element="toggle"
+                     data-options='{"mode": "slide", "speed": 100, "clickToClose": true}'>
+
+                    <button type="button" class="breadcrumb__link breadcrumb__link--list" data-element="toggle__anchor">
+                        회원정보 수정
+                    </button>
+
+                    <div class="breadcrumb__siblings-list" data-element="toggle__panel">
+                        <a href="/user/my_history" class="item">나의 탑승 내역</a>
+                        <a href="/user/mypage_main_member" class="item">마이페이지 메인</a>
+                        <a href="/user/my_reserve" class="item">나의 예약 현황</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="content" id="content">
+            <main id="main" class="main ">
+
+                <form id="frm" name="frm" method="post" action="javascript:fn_pwMypage();"/>
+                <!-- SNS 간편 로그인 계정 인 경우 노출 -->
+                <div class="page-title-wrap snsDiv">
+                    <div class="page-title">회원정보 수정</div>
+                    <div id="pageSubDiv" class="page-sub-title" style="display:none;">SNS 계정을 인증해 주세요.</div>
+                </div>
+                <div class="section-wrap snsDiv">
+                    <div class="sub-section section-sub-txt">
+                        제주항공은 회원님의 개인정보를<br>
+                        안전하게 보호하고 있습니다. 정보 수정을 위해<br>
+                        고객님의 계정을 다시 한 번 인증해 주세요.
+                    </div>
+
+                    <div class="sub-section">
+                        <div class="button-wrap button-wrap--login">
+
+
+                            <div class="button-wrap snsLoginFlagY" style="display:none;" data-type="NAVER">
+                                <button type="button" class="button button--option" data-action='goNaverLogin'><span
+                                        class="button__text button__icon">네이버 간편 인증</span></button>
+                            </div>
+                            <div class="button-wrap snsLoginFlagY" style="display:none;" data-type="KAKAO">
+                                <button type="button" class="button button--option" data-action='goKakaoLogin'><span
+                                        class="button__text button__icon button__icon--kakao">카카오 간편 인증</span></button>
+                            </div>
+                            <div class="button-wrap snsLoginFlagY" style="display:none;" data-type="APPLE">
+                                <button type="button" class="button button--option apple-black"
+                                        data-action='goAppleLogin'><span
+                                        class="button__text button__icon button__icon--apple">애플 간편 인증</span></button>
+                            </div>
+
+
+                            <!-- <div class="button-wrap">
+                              <button type="button" class="button button--option"><span class="button__text button__icon button__icon--twitter">트위터 간편 인증</span></button>
+                            </div>
+                            <div class="button-wrap mobile-only">
+                              <button type="button" class="button button--option"><span class="button__text button__icon button__icon--liner">라인 간편 인증</span></button>
+                            </div>
+                            <div class="button-wrap mobile-only">
+                              <button type="button" class="button button--option"><span class="button__text button__icon button__icon--apple">Apple 계정 간편 인증</span></button>
+                            </div>-->
+                            <div class="button-wrap snsLoginFlagN" style="display:none;">
+                                <button type="button" class="button button--option" data-action='goPassAuth'><span
+                                        class="button__text">비밀번호로 본인 인증</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //SNS 간편 로그인 계정 인 경우 노출 -->
+
+                <!-- 그 외 계정 (일반, 14세미만) -->
+                <div class="page-title-wrap passDiv" style="display:none;">
+                    <div class="page-title">회원정보 수정</div>
+                    <div class="page-sub-title">비밀번호를 입력해 주세요.</div>
+                </div>
+                <div class="section-wrap passDiv" style="display:none;">
+                    <div class="sub-section section-sub-txt">
+                        제주항공은 회원님의 개인정보를<br>
+                        안전하게 보호하고 있습니다. 정보 수정을 위해<br>
+                        비밀번호를 한번 더 입력해주세요.
+                    </div>
+
+                    <div class="sub-section">
+                        <div class="input-wrap input--line">
+                            <div class="input-row input-row--password">
+                                <div class="input-item">
+                                    <div class="input-box">
+                                        <label for="inputpw" class="input__label">비밀번호<span title="required"
+                                                                                            class="input__label-asterisk">*</span></label>
+                                        <div class="input" data-element="form">
+                                            <input type="password" class="input__text" data-element="input" id="inputpw"
+                                                   placeholder="">
+                                            <button type="button" class="input__remove-button" data-element="remove">
+                                                삭제
+                                            </button>
+                                            <button type="button" data-element="toggleShow" class="input__show-button"
+                                                    aria-label="비밀번호 보기"></button>
+                                        </div>
+                                    </div>
+                                    <!-- <p class="input__error" tabindex="0">비밀번호가 일치하지 않습니다.</p> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //그 외 계정 (일반, 14세미만) -->
+                <div id="divBtn" style="display:none;" class="button-wrap section-wrap passDiv"
+                     data-element="bottomContent">
+                    <button type="button" id="btnPwNext" class="button button--primary"><span class="button__text">정보 수정하기</span>
+                    </button>
+                </div>
+                <input type="hidden" id="pageDivision" name="pageDivision" value=""/>
+                <input type="hidden" id="snsId" name="snsId" value=''/>
+                <input type="hidden" id="SS_NAVER_UI" name="SS_NAVER_UI" value=''/>
+                <input type="hidden" id="SS_KAKAO_UI" name="SS_KAKAO_UI" value=''/>
+                <input type="hidden" id="SS_GOOGLE_UI" name="SS_GOOGLE_UI" value=''/>
+                <input type="hidden" id="SS_FACEBOOK_UI" name="SS_FACEBOOK_UI" value=''/>
+                <input type="hidden" id="lang" name="lang" value='ko'/>
+                <input type="hidden" id="ffpNo" name="ffpNo" value=''/>
+                <input type="hidden" id="auth" name="auth" value=''/>
+                <input type="hidden" id="redirectUrl" name="redirectUrl" value=''/>
+                <input type="hidden" id="channel" name="channel" value=''/>
+
+
+                </form>
+
+                <form method="post" id="snsRequestAuthForm" name="snsRequestAuthForm" target="snsRequestAuth">
+                    <input type="hidden" id="hidSNSType" name="hidSNSType" value=""/>
+                    <input type="hidden" id="requestType" name="requestType" value="mypage"/>
+                    <input type="hidden" name="hidChannelType" value="HOMEPAGE"/>
+                </form>
+            </main>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- footer -->
+<div th:replace="/user/fragment/footer :: footer"></div>
+<!-- / footer 끝 -->
+
+<div id="ifmWrap"
+     style="height:100%; display:none; overflow:auto; text-align:center; -webkit-overflow-scrolling:touch;">
+    <iframe src="" width="100%" height="100%" name="popupChkApp"></iframe>
+</div>
+
+<!-- 공통 스크립트 선언 -->
+<script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
+<script type="text/javascript" src="/user/lib/js/common.js"></script>
+<script type="text/javascript" src="/user/lib/js/plugin.js"></script>
+
+</body>
+</html>

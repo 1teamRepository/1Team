@@ -1,0 +1,533 @@
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+
+<!--head-->
+<div th:replace="/user/fragment/head :: head"></div>
+<!--head 끝-->
+
+<body id="subLayoutBody">
+
+<!--appAlert-->
+<div th:replace="/user/fragment/appAlert :: appAlert"></div>
+<!--appAlert 끝-->
+
+
+<!--header-->
+<div th:replace="/user/fragment/header :: header"></div>
+<!--header 끝-->
+
+
+<div id="body">
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD2BQQ4" height="0" width="0"
+                style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="wrap GD">
+
+
+        <div class="content" id="content">
+            <main id="main" class="main ">
+
+
+                <form id="formDetail" name="formDetail" method="post" target="_self">
+                    <input type="hidden" name="resvDetailReq" value=""/>
+                    <input type="hidden" name="rpnr" value="">
+                    <input type="hidden" name="agentId" value="">
+                </form>
+
+                <div class="page-title-wrap pc-only">
+                    <div class="page-title">예약조회</div>
+                </div>
+                <div class="section-wrap">
+                    <div class="gray-box gray-box--pc pc-search pc-search--row2">
+                        <div class="input-set cont1">
+                            <div class="input-wrap input--line">
+                                <div class="input-row">
+                                    <div class="input-item" id="inputRecordLocatorDiv">
+                                        <div class="input-box">
+                                            <label class="input__label">예약번호</label>
+                                            <div data-element="form" class="input">
+                                                <input type="text" data-element="input" class="input__text"
+                                                       title="예약번호 입력" id="recordLocatorLabel" name="recordLocator"
+                                                       style="text-transform :uppercase;" maxlength="6">
+                                                <button type="button" data-element="remove"
+                                                        class="input__remove-button">
+                                                    <span class="hidden">삭제</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <p class="input__sub-text">여행사, 공항, 고객센터, 비회원 예약도 조회할 수 있어요.</p>
+                                        <p tabindex="0" class="input__error" id="errorRecordLocator"></p>
+                                    </div>
+                                </div>
+                                <div class="input-row">
+                                    <div class="input-item" id="inputDepDateDiv">
+                                        <div class="input-box label-active">
+                                            <label class="input__label">탑승일자</label>
+                                            <button type="button" data-element="modal_anchor"
+                                                    data-modal-type="datepicker" data-target="#datepicker01"
+                                                    class="picker picker--button"
+                                                    id="boardingDateBtn">YYYY.MM.DD
+                                            </button>
+                                        </div>
+                                        <p tabindex="0" class="input__error" id="errorDepDate"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-set cont2 mt30">
+                            <div class="input-set cont2" id="inputPassengerList">
+                                <div class="notice-box__title">탑승객 정보 입력</div>
+                                <p class="input__sub-text">예약 시 입력한 한글 또는 영문의 탑승객명을 입력해 주세요.</p>
+                                <div class="add-input">
+                                    <div class="input-wrap input--line">
+                                        <div class="input-row">
+                                            <div class="input-item">
+                                                <div class="input-flex">
+                                                    <div class="input-box">
+                                                        <label for="psInputLastName_1"
+                                                               class="input__label">성</label>
+                                                        <div data-element="form" class="input">
+                                                            <input type="text" data-element="input"
+                                                                   id="psInputLastName_1" class="input__text"
+                                                                   style="text-transform :uppercase;">
+                                                            <button type="button" data-element="remove"
+                                                                    class="input__remove-button">삭제
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-box">
+                                                        <label for="psInputFirstName_1"
+                                                               class="input__label">이름</label>
+                                                        <div data-element="form" class="input">
+                                                            <input type="text" data-element="input"
+                                                                   id="psInputFirstName_1" class="input__text"
+                                                                   title="이름 입력" style="text-transform :uppercase;">
+                                                            <button type="button" data-element="remove"
+                                                                    class="input__remove-button">삭제
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="btn_add">
+                                                        <button type="button" class="button button--small"
+                                                                id="addPsFormBtn">
+                                                                <span
+                                                                        class="button__text button__icon icon-plus">추가</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="button-wrap mt-20">
+                            <button type="button" id="searchResvBtn" class="button button--optional"
+                                    onclick="getOnOffReservationDetail();" disabled>
+                                <span class="button__text">조회</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="finish-item-wrap" style="display:none;" id="noResultResvData">
+                    <div class="finish-item">
+                        <div class="finish-item__img">
+                            <img src="/user/lib/images/icon-nodata-02.png" alt="">
+                        </div>
+                        <p class="finish-item__title">조회 결과가 없습니다.</p>
+                    </div>
+                </div>
+
+
+                <div id="datepicker01" class="modal modal-full modal-full--picker" data-max-rate="none">
+                    <div class="modal-header">
+                        <h2 class="header__page-name">날짜를 선택해 주세요.</h2>
+                    </div>
+                    <div class="modal-content">
+                        <div class="picker picker--full">
+
+
+                            <input type="text" data-min-date="today" class="picker__input" data-locale="ko"
+                                   data-defaultDate="2022-07-01" id="selectDate" data-picker="single" title="달력버튼">
+                        </div>
+                        <div class="booking-button cal-button">
+                            <button type="button" class="button button--primary button--black pc-only"
+                                    data-reset-date="#selectDate">
+                                <span class="button__text">초기화</span>
+                            </button>
+                            <button type="button" class="button button--primary button--active"
+                                    data-select-date="#selectDate" rel="modal:close" id="chooseDepDateBtn">
+                                <span class="button__text">선택</span>
+                            </button>
+                        </div>
+                    </div>
+                    <a href="#" rel="modal:close" class="modal__close"><span class="blind">닫기</span></a>
+                </div>
+            </main>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- footer -->
+<div th:replace="/user/fragment/footer :: footer"></div>
+<!-- / footer 끝 -->
+
+<div id="ifmWrap"
+     style="height:100%; display:none; overflow:auto; text-align:center; -webkit-overflow-scrolling:touch;">
+    <iframe src="" width="100%" height="100%" name="popupChkApp"></iframe>
+</div>
+
+<!-- 공통 스크립트 선언 -->
+<script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
+<script type="text/javascript" src="/user/lib/js/common.js"></script>
+<script type="text/javascript" src="/user/lib/js/plugin.js"></script>
+
+<!-- 불안해서 남김 -->
+<script>
+    let maxPsNum = 9;
+    let userInfo = JSON.parse(USER_INFO.get());
+    let cultureCode = 'ko_KR';
+    let channelType = "";
+    let resvDetailReqObj = new Object();
+    let reservationDetailData = "";
+    let psName = "";
+    let psCnt = 1;
+    let agentId = "";
+
+    $(document).on('click', '#addPsFormBtn', function () {
+        addInputPsForm();
+    });
+
+    $(document).on('change', '[id^=psInputLastName_], [id^=psInputFirstName_], #recordLocatorLabel', function () {
+        checkResvBtn();
+    });
+
+    $(document).on('keyup', '[id^=psInputLastName_], [id^=psInputFirstName_]', function () {
+        sUtil.koreng(this);
+    });
+
+    $(document).on('keyup', '#recordLocatorLabel', function () {
+        sUtil.alphaNumeric(this);
+    });
+
+
+    let metaData = '' != '' ? JSON.parse('') : null;
+    let agentErrorCode = '' != '' ? '' : null;
+
+    if (agentErrorCode != null) {
+        $.JJAlert("조회 결과가 없습니다.");
+    } else {
+
+        if (metaData != null) {
+            if (metaData.accessFlag == null) {
+                setResvInfoData(metaData);
+            } else {
+                $("[name=recordLocator]").val(metaData.recordLocator);
+                $("#boardingDateBtn").text(metaData.boardingDate);
+            }
+
+            $("#inputPassengerList").find(".input-box").addClass("label-active");
+            $("#inputRecordLocatorDiv").find(".input-box").addClass("label-active");
+        }
+    }
+
+    $('#datepicker01').on('modal:close', function (e) {
+        valCheckBtn($("#boardingDateBtn"));
+        $('#selectDate').val(dUtil.dateWeekNameTime($("#boardingDateBtn").text().replace(/[^0-9]/gi, ''), "ko"));
+        $("#boardingDateBtn").text(dUtil.dateWeekNameTime($("#boardingDateBtn").text().replace(/[^0-9]/gi, ''), "ko"));
+    });
+
+
+    $("#selectDate").data("min-date", "2021-11-01");
+    $("#selectDate").data("max-date", dUtil.termDate("D", +330, "y-m-d", dUtil.toDate()));
+
+
+    function addInputPsForm() {
+        let inputPsHtml = "";
+        psCnt++;
+
+        inputPsHtml += "<div class='add-input'>";
+        inputPsHtml += "	<div class='input-wrap input--line'>";
+        inputPsHtml += "		<div class='input-row'>";
+        inputPsHtml += "			<div class='input-item'>";
+
+        inputPsHtml += "<div class='input-flex add'>";
+        inputPsHtml += "	<div class='input-box'>";
+        inputPsHtml += "		<label for='psInputLastName_" + psCnt + "' class='input__label'>성</label>"; //성
+        inputPsHtml += "		<div data-element='form' class='input'>";
+        inputPsHtml += "			<input type='text' data-element='input' id='psInputLastName_" + psCnt + "' class='input__text' style='text-transform :uppercase;'>";
+        inputPsHtml += "			<button type='button' data-element='remove' class='input__remove-button'>삭제</button>";
+        inputPsHtml += "		</div>";
+        inputPsHtml += "	</div>";
+        inputPsHtml += "	<div class='input-box'>";
+        inputPsHtml += "		<label for='psInputFirstName_" + psCnt + "' class='input__label'>이름</label>"; //이름
+        inputPsHtml += "		<div data-element='form' class='input'>";
+        inputPsHtml += "			<input type='text' data-element='input' id='psInputFirstName_" + psCnt + "' class='input__text' title='이름 입력'style='text-transform :uppercase;'>";
+        inputPsHtml += "			<button type='button' data-element='remove' class='input__remove-button'>삭제</button>";
+        inputPsHtml += "		</div>";
+        inputPsHtml += "	</div>";
+        inputPsHtml += "	<div class='btn_delete'>";
+        inputPsHtml += "		<button type='button' class='button button--small' onclick='removeInputPsForm(this);'>";
+        inputPsHtml += "			<span class='button__text button__icon icon-minus'>삭제</span>";
+        inputPsHtml += "		</button>";
+        inputPsHtml += "	</div>";
+        inputPsHtml += "</div>";
+
+        inputPsHtml += "			</div>";
+        inputPsHtml += "		</div>";
+        inputPsHtml += "	</div>";
+        inputPsHtml += "</div>";
+
+        $("#inputPassengerList").append(inputPsHtml);
+
+        formControl.init();
+
+        psHandleBtn();
+    }
+
+
+    function removeInputPsForm(obj) {
+        $(obj).parents(".add-input").remove();
+
+        psHandleBtn();
+    }
+
+
+    function psHandleBtn() {
+        if (maxPsNum > $("#inputPassengerList > div.add-input").length) {
+            $("#addPsFormBtn").show();
+        } else {
+            $("#addPsFormBtn").hide();
+        }
+
+        checkResvBtn();
+    }
+
+
+    function checkResvBtn() {
+        let checkName = true;
+
+        for (let i = 0; i < $("[id^=psInputLastName_]").length; i++) {
+            if ($("[id^=psInputLastName_]").eq(i).val() == "" || $("[id^=psInputFirstName_]").eq(i).val() == "") {
+                checkName = false;
+                break;
+            }
+        }
+
+        if ($("[name=recordLocator]").val() != "" && ($("#boardingDateBtn").text() != "YYYY.MM.DD" && $("#boardingDateBtn").text() != "") && checkName) {
+            $("#searchResvBtn").removeAttr("disabled");
+            $("#searchResvBtn").removeClass("button--disabled");
+            $("#searchResvBtn").addClass("button--active");
+        } else {
+            $("#searchResvBtn").attr("disabled", "disabled");
+            $("#searchResvBtn").removeClass("button--active");
+            $("#searchResvBtn").addClass("button--disabled");
+        }
+    }
+
+
+    function valCheckBtn(obj) {
+        let btnObj = $(obj);
+        let checkName = true;
+
+        for (let i = 0; i < $("[id^=psInputLastName_]").length; i++) {
+            if ($("[id^=psInputLastName_]").eq(i).val() == "" || $("[id^=psInputFirstName_]").eq(i).val() == "") {
+                checkName = false;
+                break;
+            }
+        }
+
+        if ((btnObj.text() != "YYYY.MM.DD" && btnObj.text() != "") && $("[name=recordLocator]").val() != "" && checkName) {
+            $("#searchResvBtn").removeAttr("disabled");
+            $("#searchResvBtn").addClass("button--active");
+        } else {
+            $("#searchResvBtn").removeClass("button--active");
+            $("#searchResvBtn").attr("disabled", "disabled");
+        }
+    }
+
+
+    function checkFields() {
+        if ($("[name=recordLocator]").val() == "") {
+            $("#errorRecordLocator").text("예약번호를 입력해주세요.");
+
+            $("#inputRecordLocatorDiv").addClass("input--error");
+            return false;
+        }
+
+        if ($("#boardingDateBtn").text() == "YYYY.MM.DD" || $("#boardingDateBtn").text() == "") {
+            $("#errorDepDate").text("탑승일자를 입력해주세요.");
+            $("#inputDepDateDiv").addClass("input--error");
+            return false;
+        }
+
+        for (let i = 0; i < $("[id^=psInputLastName_]").length; i++) {
+            if ($("[id^=psInputLastName_]").eq(i).val() == "" || $("[id^=psInputFirstName_]").eq(i).val() == "") {
+                $.JJAlert("성명을 입력해주세요.");
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+
+    function setResvInfoData(metaData) {
+        agentId = metaData.agentId;
+        let paxList = metaData.paxName;
+
+        $("[name=recordLocator]").val(metaData.pnrNo);
+        $("#boardingDateBtn").text(metaData.departureDate);
+
+        for (let pdx in paxList) {
+            let splitPaxName = metaData.paxName[pdx].split("/");
+            pdx++;
+
+            $("#psInputLastName_" + pdx).val(splitPaxName[0]);
+            $("#psInputFirstName_" + pdx).val(splitPaxName[1]);
+
+            addInputPsForm();
+        }
+
+        $("#inputPassengerList > .add-input:last").remove();
+
+        getOnOffReservationDetail();
+    }
+
+
+    function getOnOffReservationDetail() {
+
+        if (!checkFields()) {
+            return false;
+        }
+
+        let boardingDate = $("#boardingDateBtn").text().replace(/[^0-9]/g, '');
+        boardingDate = boardingDate.substr(0, 4) + "-" + boardingDate.substr(4, 2) + "-" + boardingDate.substr(6, 2);
+
+        for (let i = 0; i < $("[id^=psInputLastName_]").length; i++) {
+            if (psName != "") {
+                psName += ",";
+            }
+            psName += $("[id^=psInputLastName_]").eq(i).val() + "/" + $("[id^=psInputFirstName_]").eq(i).val();
+        }
+
+        resvDetailReqObj = {
+            recordLocator: $("[name=recordLocator]").val().toUpperCase().replace(/\s/gi, ""),
+            orderSearchType: "N",
+            depDate: boardingDate,
+            passengerName: psName.toUpperCase().replace(/\s/gi, ""),
+            cultureCode: cultureCode.replace("_", "-"),
+            agentId: agentId
+        };
+
+        $.ajax({
+            url: "getReservationDetail.json",
+            type: "post",
+            async: true,
+            dataType: "json",
+            beforeSend: function (request) {
+                Progress.show();
+                if (agentId != "") {
+                    request.setRequestHeader('AgentId', agentId);
+                }
+            },
+            data: {
+                resvDetailReq: JSON.stringify(resvDetailReqObj)
+            },
+            success: function (data) {
+                Progress.hide();
+
+
+                if (data.code == "0000") {
+                    if (data.data.code == null) {
+                        if (Object.keys(data.data).length != 0) {
+                            reservationDetailData = data.data;
+
+                            let psCount = Object.keys(reservationDetailData.passengers).length;
+
+
+                            let openDate = new Date(Date.UTC(2021, 9, 24, 15));//date 객체(0~11 까지 정수) 10월 이니까 -1 으로 9
+                            let bookDate = new Date(reservationDetailData.info.created);
+
+                            if (bookDate <= openDate && (reservationDetailData.breakdown.balanceDue < 0)) {
+                                $.JJAlert("해당 예약은 조회가 불가합니다. 고객센터(1599-1500)로 연락주시기 바랍니다.");
+                            } else {
+                                channelType = getChannelTypeCode(reservationDetailData, userInfo, agentId);
+
+                                if (reservationDetailData.untkYn == 'Y' && !authByChannel[channelType]["untk"]) {
+                                    $.JJAlert("예약 스케줄이 변경되었습니다. 예약처에서 확인해주세요.");
+                                } else {
+                                    if (agentId == "") {
+
+                                        $.JJAlert("" + psCount + " 명의 예약조회에 성공했습니다.", goResvDetail);
+                                    } else {
+
+                                        goResvDetail();
+                                    }
+                                }
+                            }
+                        } else {
+
+                            $("#noResultResvData").show();
+                            $("#boardingDateBtn").text("YYYY-MM-DD");
+                            $("[name=recordLocator]").val("").blur();
+                        }
+                    } else {
+                        let datas = {
+                            title: data.data.code,
+                            message: data.data.message
+                        };
+
+                        $.JJAlert(datas);
+                    }
+                } else {
+                    let datas = {
+                        title: data.code,
+                        message: data.message
+                    };
+
+                    $.JJAlert(datas);
+                }
+
+
+                $("#resultPsListDiv > div").html("");
+                $("#resultPsCntDiv").html("");
+                $("[id^=psInput]").val("").blur();
+                $("#boardingDateBtn").text("YYYY-MM-DD");
+                $("[name=recordLocator]").val("").blur();
+                $("#searchResvBtn").attr("disabled", "disabled");
+                $("#searchResvBtn").removeClass("button--active");
+                $("#searchResvBtn").addClass("button--disabled");
+                $(".btn_delete").find("button").click();
+            }
+        });
+    }
+
+
+    function goResvDetail() {
+        $("#formDetail [name=resvDetailReq]").val(JSON.stringify(resvDetailReqObj));
+        $("#formDetail [name=rpnr]").val(resvDetailReqObj.recordLocator);
+        $("#formDetail [name=agentId]").val(agentId);
+        Progress.show(function () {
+            $("#formDetail").attr({
+                "method": "post",
+                "onsubmit": "return true",
+                "action": "viewReservationDetail.do"
+            }).submit();
+        });
+    }
+
+    initRedrawShowMonthsFromMinDateToMaxDate();
+</script>
+
+</body>
+
+</html>

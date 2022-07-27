@@ -36,16 +36,16 @@ public class TbExtraService {
     private Integer extPrice;
     private Long choiceIdx;
 
-    @ManyToOne
-    private TbReservation tbReservation;
-
-    @OneToOne
-    private TbPayment tbPayment;
-
-    @OneToOne
-    private TbAirlineFood tbAirlineFood;
-
-    @OneToOne
-    private TbBaggage tbBaggage;
+//    @ManyToOne
+//    private TbReservation tbReservation;
+//
+//    @OneToOne
+//    private TbPayment tbPayment;
+//
+//    @OneToOne
+//    private TbAirlineFood tbAirlineFood;
+//
+//    @OneToOne
+//    private TbBaggage tbBaggage;
 
 }

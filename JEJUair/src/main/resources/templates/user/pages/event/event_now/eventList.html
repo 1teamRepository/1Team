@@ -1,0 +1,522 @@
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+<!--head-->
+<div th:replace="/user/fragment/head :: head"></div>
+<!--head 끝-->
+
+<body id="subLayoutBody" class="isPc vsc-initialized">
+
+
+<!-- appAlert -->
+<div th:replace="/user/fragment/appAlert :: appAlert"></div>
+<!-- //appAlert 끝 -->
+
+<!-- header -->
+<div th:replace="/user/fragment/header :: header"></div>
+<!-- //header 끝 -->
+
+
+<div id="body">
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD2BQQ4" height="0" width="0"
+                style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="wrap wrap--no-paddings">
+
+
+        <div id="breadcrumb" class="breadcrumb pc-only" aria-label="breadcrumb">
+            <nav class="breadcrumb__inner">
+                <div class="breadcrumb__item">
+                    <a href="javascript:;" class="breadcrumb__link" style="cursor: default;">홈</a>
+                </div>
+
+
+                <div class="breadcrumb__item">
+                    <a href="javascript:;" class="breadcrumb__link" style="cursor: default;">이벤트</a>
+                </div>
+
+
+                <div class="breadcrumb__item breadcrumb__item--current" aria-current="page" data-element="toggle"
+                     data-options="{&quot;mode&quot;: &quot;slide&quot;, &quot;speed&quot;: 100, &quot;clickToClose&quot;: true}">
+
+
+                    <button type="button" class="breadcrumb__link breadcrumb__link--list" data-element="toggle__anchor"
+                            aria-controls="toggle-2" aria-expanded="false">진행중인 이벤트
+                    </button>
+
+
+                    <div class="breadcrumb__siblings-list" data-element="toggle__panel" id="toggle-2">
+
+
+                        <a href="javascript:void(0);" class="item" onclick="URL_LINK.getI18Url('/event/pastEvent.do')">지난
+                            이벤트</a>
+
+
+                    </div>
+                </div>
+
+
+            </nav>
+        </div>
+
+
+        <div class="content" id="content">
+            <main id="main" class="main ">
+
+                <div class="page-title-wrap pc-only">
+                    <div class="page-title">이벤트</div>
+                </div>
+
+
+                <div class="carousel--event">
+                    <div class="main-carousel swiper-container carousel__contents swiper-container-fade swiper-container-initialized swiper-container-horizontal"
+                         data-carousel="fullItemAuto" data-loop="true">
+                        <div class="carousel-wrapper swiper-wrapper" style="transition-duration: 0ms;">
+
+                            <div class="main-carousel__item swiper-slide swiper-slide-prev"
+                                 style="width: 1004px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                                <div class="event-top-banner"
+                                     style="background-image: url(https://static.jejuair.net/cms/images/event_scrn/20220308101120843.jpg)"
+                                     title="간편계좌결제">
+                                    <a href="/ko/event/eventDetail.do?eventNo=0000000371" class="event-banner-item">
+                                        <div class="event-banner">
+                                            <span class="event-banner__text" style="color: ;">3% 운임할인, 5% 포인트적립</span>
+
+
+                                            <p class="event-banner__title" style="color: ;">
+                                                '간편계좌등록' 결제<br>최대 8% 혜택 !
+                                            </p>
+
+
+                                            <div class="event-banner__bottom">
+
+
+                                                <span class="event-banner__date" style="color: ;">2022.07.06&nbsp;~&nbsp;2022.08.31</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="main-carousel__item swiper-slide swiper-slide-active"
+                                 style="width: 1004px; opacity: 1; transform: translate3d(-1004px, 0px, 0px); transition-duration: 0ms;">
+                                <div class="event-top-banner"
+                                     style="background-image: url(https://static.jejuair.net/cms/images/event_scrn/20220630143158944.jpg)"
+                                     title="">
+                                    <a href="/ko/event/eventDetail.do?eventNo=0000000336" class="event-banner-item">
+                                        <div class="event-banner">
+                                            <span class="event-banner__text" style="color: #FFFFFF;">티빙 신규회원 7일 체험권 전원 증정</span>
+
+
+                                            <p class="event-banner__title" style="color: #FFFFFF;">
+                                                올 여름 제주항공과 <br>티빙 봐캉스!
+                                            </p>
+
+
+                                            <div class="event-banner__bottom">
+
+
+                                                <span class="event-banner__date" style="color: #FFFFFF;">2022.07.11&nbsp;~&nbsp;2022.07.31</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="main-carousel__item swiper-slide swiper-slide-next"
+                                 style="width: 1004px; opacity: 0; transform: translate3d(-2008px, 0px, 0px); transition-duration: 0ms;">
+                                <div class="event-top-banner"
+                                     style="background-image: url(https://static.jejuair.net/cms/images/event_scrn/20220629134701257.jpg)"
+                                     title="">
+                                    <a href="/ko/event/eventDetail.do?eventNo=0000000369" class="event-banner-item">
+                                        <div class="event-banner">
+                                            <span class="event-banner__text" style="color: #000000;">`하나합` 가입 &amp; 자산연결하고</span>
+
+
+                                            <p class="event-banner__title" style="color: #000000;">
+                                                리프레시포인트+<br>커피쿠폰 받으세요!
+                                            </p>
+
+
+                                            <div class="event-banner__bottom">
+
+
+                                                <span class="event-banner__date" style="color: #000000;">2022.07.06&nbsp;~&nbsp;2022.08.31</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="main-carousel__item swiper-slide"
+                                 style="width: 1004px; opacity: 0; transform: translate3d(-3012px, 0px, 0px); transition-duration: 0ms;">
+                                <div class="event-top-banner"
+                                     style="background-image: url(https://static.jejuair.net/cms/images/event_scrn/20220613164822222.jpg)"
+                                     title="">
+                                    <a href="/ko/event/eventDetail.do?eventNo=0000000331" class="event-banner-item">
+                                        <div class="event-banner">
+                                            <span class="event-banner__text"
+                                                  style="color: ;">오직 제주항공회원만 누릴 수 있는 혜택</span>
+
+
+                                            <p class="event-banner__title" style="color: ;">
+                                                Only JEJU<br>'제주'는 제주항공!
+                                            </p>
+
+
+                                            <div class="event-banner__bottom">
+
+
+                                                <span class="event-banner__date" style="color: ;">2022.06.16&nbsp;~&nbsp;2022.08.31</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="main-carousel__item swiper-slide"
+                                 style="width: 1004px; opacity: 0; transform: translate3d(-4016px, 0px, 0px); transition-duration: 0ms;">
+                                <div class="event-top-banner"
+                                     style="background-image: url(https://static.jejuair.net/cms/images/event_scrn/20220214091300974.jpg)"
+                                     title="">
+                                    <a href="/ko/event/eventDetail.do?eventNo=0000000185" class="event-banner-item">
+                                        <div class="event-banner">
+                                            <span class="event-banner__text" style="color: ;">Share The Meal 챌린지 </span>
+
+
+                                            <p class="event-banner__title" style="color: ;">
+                                                제주항공과 <br>#선한영향력 함께해요
+                                            </p>
+
+
+                                            <div class="event-banner__bottom">
+
+
+                                                <span class="event-banner__date" style="color: ;">2022.02.15&nbsp;~&nbsp;2022.12.31</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="main-carousel__item swiper-slide"
+                                 style="width: 1004px; opacity: 0; transform: translate3d(-5020px, 0px, 0px); transition-duration: 0ms;">
+                                <div class="event-top-banner"
+                                     style="background-image: url(https://static.jejuair.net/cms/images/event_scrn/20220617095416248.jpg)"
+                                     title="">
+                                    <a href="/ko/event/eventDetail.do?eventNo=0000000256" class="event-banner-item">
+                                        <div class="event-banner">
+                                            <span class="event-banner__text"
+                                                  style="color: #ffffff;">삼성페이로 모바일탑승권 이용하기</span>
+
+
+                                            <p class="event-banner__title" style="color: #ffffff;">
+                                                모바일탑승권<br>in 삼성페이
+                                            </p>
+
+
+                                            <div class="event-banner__bottom">
+
+
+                                                <span class="event-banner__date" style="color: #ffffff;">2022.06.20&nbsp;~&nbsp;2022.12.31</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="pc-only">
+                            <button type="button" class="carousel__button-next" tabindex="0" role="button"
+                                    aria-label="Next slide" aria-disabled="false"></button>
+                            <button type="button" class="carousel__button-prev" tabindex="0" role="button"
+                                    aria-label="Previous slide" aria-disabled="false"></button>
+                        </div>
+                        <div class="carousel__pagination swiper-pagination swiper-pagination-clickable swiper-pagination-bullets">
+                            <span class="swiper-pagination-bullet" tabindex="0" role="button"
+                                  aria-label="Go to slide 1"></span><span
+                                class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0"
+                                role="button" aria-label="Go to slide 2"></span><span class="swiper-pagination-bullet"
+                                                                                      tabindex="0" role="button"
+                                                                                      aria-label="Go to slide 3"></span><span
+                                class="swiper-pagination-bullet" tabindex="0" role="button"
+                                aria-label="Go to slide 4"></span><span class="swiper-pagination-bullet" tabindex="0"
+                                                                        role="button" aria-label="Go to slide 5"></span><span
+                                class="swiper-pagination-bullet" tabindex="0" role="button"
+                                aria-label="Go to slide 6"></span></div>
+
+                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+                </div>
+
+                <div data-element="tab" class="tab tab--default section-wrap">
+                    <div class="sticky-wrap" style="padding-top: 0px;">
+                        <div class="sticky__inner" data-sticky="">
+                            <div class="tab__buttons tab__buttons--event">
+                                <div class="tab__button">
+                                    <button type="button" class="tab__anchor is-active">진행중인 이벤트(<span>30</span>)
+                                    </button>
+                                </div>
+                                <div class="tab__button">
+                                    <button type="button" class="tab__anchor"
+                                            onclick="location.href='/ko/event/pastEvent.do';">지난 이벤트(<span>117</span>)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-element="tab__panel" class="tab__panel is-active" role="tabpanel" tabindex="0">
+
+
+                        <div class="search-result search-result--event current--event">
+                            <div class="search-result__contents col-3">
+
+
+                                <div class="search-result__item">
+                                    <a href="/ko/event/eventDetail.do?eventNo=0000000412">
+                                        <div class="event-banner-item"
+                                             style="background-image: url(https://static.jejuair.net/cms/images/event_scrn/20220720100359964.jpg)">
+
+                                            <div class="event-banner">
+                                                <span class="event-banner__text" style="color: #ffffff;">제주항공 몽골여행 응원 프로젝트 제2탄 </span>
+                                                <p class="event-banner__title" style="color: #ffffff;">
+                                                    몽골에서<br>하고 싶은 거 다해!
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="event-banner__bottom">
+                                            <span class="event-banner__bottom-text"><spring:message
+                                                    code="0000000607.msg00005" text="추천"></spring:message></span>
+
+                                            <span class="event-banner__date">2022.07.21 ~ 2022.07.27</span>
+                                            <span class="event-banner__day">D-4</span>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="search-result__item">
+                                    <a href="/ko/event/eventDetail.do?eventNo=0000000372">
+                                        <div class="event-banner-item"
+                                             style="background-image: url(https://static.jejuair.net/cms/images/event_scrn/20220415114716269.jpg)">
+
+                                            <div class="event-banner">
+                                                <span class="event-banner__text" style="color: ;">할인에 할인을 더하다!</span>
+                                                <p class="event-banner__title" style="color: ;">
+                                                    카카오페이 <br>최대 3만원 즉시할인!
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="event-banner__bottom">
+
+
+                                            <span class="event-banner__date">2022.07.20 ~ 2022.07.31</span>
+                                            <span class="event-banner__day">D-9</span>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="search-result__item">
+                                    <a href="/ko/event/eventDetail.do?eventNo=0000000393">
+                                        <div class="event-banner-item"
+                                             style="background-image: url(https://static.jejuair.net/cms/images/event_scrn/20220714151731016.jpg)">
+
+                                            <div class="label-wrap">
+                                                <span class="label-wrap__item label-wrap__item--type2 eng"><spring:message
+                                                        code="0000000607.msg00004" text="NEW"></spring:message></span>
+                                            </div>
+
+                                            <div class="event-banner">
+                                                <span class="event-banner__text" style="color: #ffffff;">회원 ONLY!</span>
+                                                <p class="event-banner__title" style="color: #ffffff;">
+                                                    제주항공 회원 대상<br>역대급 할인 혜택
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="event-banner__bottom">
+
+
+                                            <span class="event-banner__date">2022.07.20 ~ 2022.07.26</span>
+                                            <span class="event-banner__day">D-3</span>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="search-result__item">
+                                    <a href="/ko/event/eventDetail.do?eventNo=0000000394">
+                                        <div class="event-banner-item"
+                                             style="background-image: url(https://static.jejuair.net/cms/images/event_scrn/20220718141015636.jpg)">
+
+                                            <div class="event-banner">
+                                                <span class="event-banner__text"
+                                                      style="color: #ffffff;">국내선 기프티켓 제공</span>
+                                                <p class="event-banner__title" style="color: #ffffff;">
+                                                    최대 50만원 상당!<br>현대카드 the Green 이벤트
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="event-banner__bottom">
+
+
+                                            <span class="event-banner__date">2022.07.19 ~ 2022.08.31</span>
+                                            <span class="event-banner__day">D-39</span>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="search-result__item">
+                                    <a href="/ko/event/eventDetail.do?eventNo=0000000405">
+                                        <div class="event-banner-item"
+                                             style="background-image: url(https://static.jejuair.net/cms/images/event_scrn/20220714135143178.jpg)">
+
+                                            <div class="event-banner">
+                                                <span class="event-banner__text" style="color: ;">괌혜택 맛집 제주항공 </span>
+                                                <p class="event-banner__title" style="color: ;">
+                                                    혜택 가득 괌은 <br>제주항공이 잘 괌!
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="event-banner__bottom">
+
+                                            <span class="event-banner__bottom-text"><spring:message
+                                                    code="0000000607.msg00006" text="베스트"></spring:message></span>
+                                            <span class="event-banner__date">2022.07.19 ~ 2022.08.01</span>
+                                            <span class="event-banner__day">D-9</span>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="search-result__item">
+                                    <a href="/ko/event/eventDetail.do?eventNo=0000000395">
+                                        <div class="event-banner-item"
+                                             style="background-image: url(https://static.jejuair.net/cms/images/event_scrn/20211228174725848.jpg)">
+
+                                            <div class="event-banner">
+                                                <span class="event-banner__text" style="color: ;">이제, 여행자보험은 필수!</span>
+                                                <p class="event-banner__title" style="color: ;">
+                                                    여행자보험과 함께<br>제주항공으로 안전한 여행 떠나요~
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="event-banner__bottom">
+
+
+                                            <span class="event-banner__date">2022.07.18 ~ 2022.12.31</span>
+                                            <span class="event-banner__day">D-161</span>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="search-result__item">
+                                    <a href="/ko/event/eventDetail.do?eventNo=0000000381">
+                                        <div class="event-banner-item"
+                                             style="background-image: url(https://static.jejuair.net/cms/images/event_scrn/20220714164735607.jpg)">
+
+                                            <div class="event-banner">
+                                                <span class="event-banner__text" style="color: ;">지금 당장 떠나세요~!!</span>
+                                                <p class="event-banner__title" style="color: ;">
+                                                    라스트미닛 특가
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="event-banner__bottom">
+
+
+                                            <span class="event-banner__date">2022.07.15 ~ 2022.07.29</span>
+                                            <span class="event-banner__day">D-6</span>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="search-result__item">
+                                    <a href="/ko/event/eventDetail.do?eventNo=0000000352">
+                                        <div class="event-banner-item"
+                                             style="background-image: url(https://static.jejuair.net/cms/images/event_scrn/20220704163611887.jpg)">
+
+                                            <div class="event-banner">
+                                                <span class="event-banner__text" style="color: #000000;">부산출발 해외여행 YES, YOU CAN FLY ♪</span>
+                                                <p class="event-banner__title" style="color: #000000;">
+                                                    우리동네<br>해외여행_시즌2
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="event-banner__bottom">
+
+
+                                            <span class="event-banner__date">2022.07.13 ~ 2022.07.25</span>
+                                            <span class="event-banner__day">D-2</span>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="search-result__item">
+                                    <a href="/ko/event/eventDetail.do?eventNo=0000000383">
+                                        <div class="event-banner-item"
+                                             style="background-image: url(https://static.jejuair.net/cms/images/event_scrn/20220712083028591.jpg)">
+
+                                            <div class="event-banner">
+                                                <span class="event-banner__text" style="color: ;">신규 기내식을 주문하면</span>
+                                                <p class="event-banner__title" style="color: ;">
+                                                    시원한 <br>콜라까지!
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="event-banner__bottom">
+
+
+                                            <span class="event-banner__date">2022.07.13 ~ 2022.08.31</span>
+                                            <span class="event-banner__day">D-40</span>
+                                        </div>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="more-wrap">
+                            <button type="button" class="more__button"><span class="more__button-text">더보기 (<span
+                                    class="more__button--color">9</span>/30)</span></button>
+                        </div>
+
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function () {
+                                EVENT_EVENT_SCRIPT.setEventListCnt(30, 4, 1);
+                            });
+                        </script>
+
+                    </div>
+                </div>
+            </main>
+        </div>
+
+    </div>
+</div>
+
+<!-- footer -->
+<div th:replace="user/fragment/footer :: footer"></div>
+<!-- / footer 끝 -->
+
+
+
+<!-- 공통 스크립트 선언 -->
+
+<!--<div th:replace="/user/fragment/js :: js"></div>-->
+<script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
+<script type="text/javascript" src="/user/lib/js/common.js"></script>
+<script type="text/javascript" src="/user/lib/js/plugin.js"></script>
+
+<!-- 공통 스크립트 선언 끝 -->
+
+<script type="text/javascript" src="/user/lib/js/event.js"></script>
+
+
+<div id="ifmWrap"
+     style="height:100%; display:none; overflow:auto; text-align:center; -webkit-overflow-scrolling:touch;">
+    <iframe src="" width="100%" height="100%" name="popupChkApp"></iframe>
+</div>
+
+</body>
+</html>

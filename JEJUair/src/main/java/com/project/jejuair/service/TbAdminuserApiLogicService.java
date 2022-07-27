@@ -6,7 +6,9 @@ import com.project.jejuair.model.network.Header;
 import com.project.jejuair.model.network.Pagination;
 import com.project.jejuair.model.network.request.TbAdminuserRequest;
 import com.project.jejuair.model.network.response.TbAdminuserResponse;
+import com.project.jejuair.repository.TbAdminuserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,10 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class TbAdminuserApiLogicService extends BaseService<TbAdminuserRequest, TbAdminuserResponse, TbAdminuser> {
+
+    @Autowired
+    private final TbAdminuserRepository tbAdminuserRepository;
+
 
     private TbAdminuserResponse response(TbAdminuser tbAdminuser){
         TbAdminuserResponse tbAdminuserResponse = TbAdminuserResponse.builder()
@@ -74,10 +80,10 @@ public class TbAdminuserApiLogicService extends BaseService<TbAdminuserRequest, 
                     newTbAdminuser.setAdmEmployee(tbAdminuserRequest.getAdmEmployee());
                     newTbAdminuser.setAdmAdminHp(tbAdminuserRequest.getAdmAdminHp());
                     newTbAdminuser.setAdmDeparture(tbAdminuserRequest.getAdmDeparture());
-                    newTbAdminuser.setAdmKorName(tbAdminuserRequest.getAdmEngName());
+                    newTbAdminuser.setAdmKorName(tbAdminuserRequest.getAdmKorName());
                     newTbAdminuser.setAdmEngName(tbAdminuserRequest.getAdmEngName());
                     newTbAdminuser.setAdmEmail(tbAdminuserRequest.getAdmEmail());
-                    newTbAdminuser.setAdmStatus(tbAdminuserRequest.getAdmStatus());
+//                    newTbAdminuser.setAdmStatus(tbAdminuserRequest.getAdmStatus());
                     return newTbAdminuser;
                 }).map(newTbAdminuser -> baseRepository.save(newTbAdminuser))
                 .map(newTbAdminuser -> response(newTbAdminuser))
@@ -106,6 +112,15 @@ public class TbAdminuserApiLogicService extends BaseService<TbAdminuserRequest, 
                 .build();
         return Header.OK(tbAdminuserResponseList, pagination);
     }
+
+    public Header<TbAdminuserResponse> pwCheck(String admAdminId, String admAdminPw){
+        return tbAdminuserRepository.findByAdmAdminIdAndAdmAdminPw(admAdminId, admAdminPw)
+                .map(admin -> response(admin)).map(Header::OK)
+                .orElseGet(() -> Header.ERROR(("데이터 없음")));
+    }
+
+
+
 
 
 }

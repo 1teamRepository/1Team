@@ -1,0 +1,28 @@
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+
+
+<!-- 개선 #1271286440
+<div id="skipNav" class="skip-nav">
+    <a href="#content" class="skip-nav__item">본문 바로가기</a>
+</div>
+-->
+<!-- 상단 띠배너 공지사항은 메인페이지만 표시합니다. -->
+
+<!-- 앱설치알림 -->
+<!-- 남은시간 연장 및 공지바 노출-->
+<div class="top-custom-banner ticketing_top_bar" th:fragment="appAlert"><!--활성화시 .on 추가-->
+    <div class="top-custom-banner__inner">
+        <dl class="time_bar">
+            <dt>이용 가능시간 : </dt>
+            <dd><strong></strong></dd>
+        </dl>
+        <div class="link-wrap--arrow">
+            <button type="button"  class="link-wrap__text" onclick="javascript:sendExtTripsell();"><span>연장하기</span></button>
+        </div>
+        <button type="button" class="top-custom-banner__close" aria-label="닫기"></button>
+    </div>
+</div>
+<!-- 앱설치알림 끝-->
+</html>

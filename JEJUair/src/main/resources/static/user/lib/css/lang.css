@@ -1,10 +1,10 @@
 @charset "UTF-8";
 
 /*한국어*/
-:lang(ko) .jeju-intro-wrap .pattern-box span.stone {background: url(../images/etc/img_stone_ko.png);}
-:lang(ko) .jeju-intro-wrap .pattern-box span.wave {background: url(../images/etc/img_wave_ko.png);}
-:lang(ko) .jeju-intro-wrap .pattern-box span.island {background: url(../images/etc/img_island_ko.png);}
-:lang(ko) .jeju-intro-wrap .flex-box .sevenc {background:url(../images/etc/img_intro_p01_t01_02.png) no-repeat; width:425px; height:425px}
+:lang(ko) .jeju-intro-wrap .pattern-box span.stone {background: url(/user/lib/images/img_stone_ko.png);}
+:lang(ko) .jeju-intro-wrap .pattern-box span.wave {background: url(/user/lib/images/img_wave_ko.png);}
+:lang(ko) .jeju-intro-wrap .pattern-box span.island {background: url(/user/lib/images/img_island_ko.png);}
+:lang(ko) .jeju-intro-wrap .flex-box .sevenc {background:url(/user/lib/images/img_intro_p01_t01_02.png) no-repeat; width:425px; height:425px}
 :lang(ko) .footer__top-item--family .family-link {font-size:13px}
 /* :lang(ko) .pc-flex--lineup .join-info__row dd {padding-right: 32px} */
 

@@ -1150,13 +1150,13 @@ var formControl = function () {
     if ($type === 'password') {
       $text.attr('type', 'text');
       $btn // .css({
-      //   'background-image': 'url(../images/icon/icon-password-on.png)',
+      //   'background-image': 'url(/user/lib/images/icon-password-on.png)',
       // })
       .closest('[data-element="form"]').addClass('show-password');
     } else {
       $text.attr('type', 'password');
       $btn // .css({
-      //   'background-image': 'url(../images/icon/icon-password-on.png)',
+      //   'background-image': 'url(/user/lib/images/icon-password-on.png)',
       // })
       .closest('[data-element="form"]').removeClass('show-password');
     }

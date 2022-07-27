@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/schedule")
 @RequiredArgsConstructor
 public class TbFlightScheduleApiController extends CrudController<TbFlightScheduleRequest, TbFlightScheduleResponse, TbFlightSchedule> {
 

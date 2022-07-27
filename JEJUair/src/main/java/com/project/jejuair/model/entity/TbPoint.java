@@ -37,6 +37,6 @@ public class TbPoint {
     private LocalDateTime pntRegdate;   // 등록일
     private String pntMemIdx;           // MemIdx
 
-    @ManyToOne
-    private TbMember tbMember;
+//    @ManyToOne
+//    private TbMember tbMember;
 }

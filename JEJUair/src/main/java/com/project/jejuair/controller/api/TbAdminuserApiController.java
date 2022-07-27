@@ -13,11 +13,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/admin")
+@RequestMapping("/api/adminuser")
 @RequiredArgsConstructor
 public class TbAdminuserApiController extends CrudController<TbAdminuserRequest, TbAdminuserResponse, TbAdminuser> {
 
@@ -48,7 +51,9 @@ public class TbAdminuserApiController extends CrudController<TbAdminuserRequest,
     }
 
     @GetMapping("")
-    public Header<List<TbAdminuserResponse>> findAll(@PageableDefault(sort = {"foodIdx"}, direction = Sort.Direction.DESC) Pageable pageable){     //paging할수있는 객체 생성함
+    public Header<List<TbAdminuserResponse>> findAll(@PageableDefault(sort = {"admIdx"}, direction = Sort.Direction.DESC) Pageable pageable){     //paging할수있는 객체 생성함
         return tbAdminuserApiLogicService.search(pageable);
     }
+
+
 }
