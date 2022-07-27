@@ -19,14 +19,17 @@
         borad_regist form은 class="bodytext_area"
 */
 
-@import url('https://font.googleapis.comcss2?family=Ubuntu:wght@300;400;500;700&display=swap');
-
 *
 {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Ubuntu', sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color: var(--black);
 }
 
 li{
@@ -62,7 +65,7 @@ body{
     border-radius: 6px;
 }
 
-button.cancel{
+.button.cancel{
     width: 60px;
     height: 30px;
     border-radius: 6px;
@@ -73,7 +76,7 @@ button.cancel{
     margin-right: 5px;
 }
 
-button.register, button.search{
+.button.register, .button.search{
     width: 60px;
     height: 30px;
     border-radius: 6px;
@@ -84,7 +87,7 @@ button.register, button.search{
     margin-right: 5px;
 }
 
-button.used_list {
+.button.used_list {
     width: 120px;
     height: 40px;
     border-radius: 6px;
@@ -101,6 +104,8 @@ button.used_list {
     margin-bottom: 50px;
     text-align: right;
     margin-right: 30px;
+    display: flex;
+    justify-content: right;
 }
 
 /* 1. 메뉴시작 */
@@ -436,7 +441,7 @@ button.used_list {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.details .recentOrders table tbody tr:hover{
+.details .recentOrders table tbody tr:hover, .details .recentOrders table tbody tr:hover a{
     background: var(--orange);
     color: var(--white);
 }
@@ -610,7 +615,7 @@ fieldset{
 } */
 
 .regForm{
-    padding: 20 px ;
+    padding: 20px ;
 }
 
 /* leg_list를 flex로 수정해서 한 row에 li 두개씩 오도록 수정 */
@@ -733,7 +738,11 @@ button, a, label, .containerbody .main .details tbody td {
     cursor: pointer;
 }
 
-button.list{
+.button {
+    margin-right: 5px;
+}
+
+.button.list{
     width: 60px;
     height: 30px;
     border-radius: 6px;
@@ -741,10 +750,9 @@ button.list{
     background-color: var(--darkgrey);
     color: var(--white);
     font-size: 15px;
-    margin-right: 5px;
 }
 
-button.edit, button.delete {
+.button.edit, .button.delete {
     width: 60px;
     height: 30px;
     border-radius: 6px;
@@ -752,9 +760,12 @@ button.edit, button.delete {
     background-color: var(--orange);
     color: var(--white);
     font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-button.file {
+.button.file {
     width: 60px;
     height: 30px;
     border-radius: 6px;
@@ -780,6 +791,9 @@ button.file {
     text-align: center;
 }
 
+.button.edit a {
+    color: var(--white);
+}
 
 
 /* 공통 끝 */
@@ -1138,5 +1152,6 @@ form.login {
     margin-top: 10px;
 }
 /* 로그인 끝 */
+
 
 

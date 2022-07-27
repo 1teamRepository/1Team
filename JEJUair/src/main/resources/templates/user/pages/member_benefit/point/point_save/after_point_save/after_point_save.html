@@ -1,0 +1,322 @@
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+
+<!--head-->
+<div th:replace="/user/fragment/head :: head"></div>
+<!--head 끝-->
+
+<body id="subLayoutBody">
+
+<!--appAlert-->
+<div th:replace="/user/fragment/appAlert :: appAlert"></div>
+<!--appAlert 끝-->
+
+<!--header-->
+<div th:replace="/user/fragment/header :: header"></div>
+<!--header 끝-->
+
+
+<div id="body">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD2BQQ4" height="0" width="0"
+                style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div class="wrap NC_1">
+
+
+        <!-- 메인 컨텐츠 -->
+        <div class="content" id="content">
+            <main id="main" class="main ">
+                <div class="page-title-wrap">
+                    <div class="page-title">탑승 후 포인트 적립</div>
+                    <div class="page-sub-title">적립하지 못한 포인트가 있으신가요?</div>
+                </div>
+
+                <!-- 입력 정보 -->
+                <form id="frm" name="frm">
+                    <input type="hidden" id="apiRequestType" name="apiRequestType">
+                    <input type="hidden" id="FLTDATE" name="FLTDATE">
+                    <input type="hidden" id="FFP_NO" name="FFP_NO">
+                    <input type="hidden" id="KOR_LSTNM" name="KOR_LSTNM" value="">
+                    <input type="hidden" id="KOR_FRTNM" name="KOR_FRTNM" value="">
+                    <input type="hidden" id="ENG_LSTNM" name="ENG_LSTNM" value="">
+                    <input type="hidden" id="ENG_FRTNM" name="ENG_FRTNM" value="">
+                    <input type="hidden" id="USER_CODE" name="USER_CODE" value="">
+                    <input type="hidden" id="CHANNEL" name="CHANNEL" value="HOMEPAGE">
+                    <input type="hidden" id="UPTNMFLAG" name="UPTNMFLAG" value="N">
+                    <input type="hidden" id="lang" name="lang" value="ko">
+                    <input type="hidden" id="resultCode" name="resultCode" value="">
+
+                    <div class="section-wrap">
+                        <div class="input-wrap input--line pc-col pc-col-2 pc-row-label">
+                            <!-- 탑승 날짜 -->
+                            <div class="input-row input-row--label">
+                                <div class="input-label label-top">탑승일<span class="input__label-asterisk"
+                                                                            title="required">*</span></div>
+                                <div class="input-item">
+                                    <div class="input-flex">
+                                        <div class="input-box">
+                                            <div data-element="form" class="input">
+                                                <input type="text" data-element="input" id="yearInp" title="연도 입력"
+                                                       class="input__text input__text--placeholder" maxlength="4"
+                                                       value="">
+                                            </div>
+                                        </div>
+                                        <div class="input-box">
+                                            <div class="select-wrap select-wrap--line">
+                                                <select title="월 선택" id="monthSel" class="select-wrap__select selected">
+                                                    <!--20210609 .selected 추가-->
+                                                    <option value="">월</option>
+                                                    <option value="01">01</option>
+                                                    <option value="02">02</option>
+                                                    <option value="03">03</option>
+                                                    <option value="04">04</option>
+                                                    <option value="05">05</option>
+                                                    <option value="06">06</option>
+                                                    <option value="07">07</option>
+                                                    <option value="08">08</option>
+                                                    <option value="09">09</option>
+                                                    <option value="10">10</option>
+                                                    <option value="11">11</option>
+                                                    <option value="12">12</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="input-box">
+                                            <div class="select-wrap select-wrap--line">
+                                                <select title="일 선택" id="daySel" class="select-wrap__select selected">
+                                                    <!--20210609 .selected 추가-->
+                                                    <option value="">일</option>
+                                                    <option value="01">01</option>
+                                                    <option value="02">02</option>
+                                                    <option value="03">03</option>
+                                                    <option value="04">04</option>
+                                                    <option value="05">05</option>
+                                                    <option value="06">06</option>
+                                                    <option value="07">07</option>
+                                                    <option value="08">08</option>
+                                                    <option value="09">09</option>
+                                                    <option value="10">10</option>
+                                                    <option value="11">11</option>
+                                                    <option value="12">12</option>
+                                                    <option value="13">13</option>
+                                                    <option value="14">14</option>
+                                                    <option value="15">15</option>
+                                                    <option value="16">16</option>
+                                                    <option value="17">17</option>
+                                                    <option value="18">18</option>
+                                                    <option value="19">19</option>
+                                                    <option value="20">20</option>
+                                                    <option value="21">21</option>
+                                                    <option value="22">22</option>
+                                                    <option value="23">23</option>
+                                                    <option value="24">24</option>
+                                                    <option value="25">25</option>
+                                                    <option value="26">26</option>
+                                                    <option value="27">27</option>
+                                                    <option value="28">28</option>
+                                                    <option value="29">29</option>
+                                                    <option value="30">30</option>
+                                                    <option value="31">31</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="input__sub-text">탑승 날짜를 입력해 주세요.</p>
+                                    <p tabindex="0" class="input__error">에러메세지</p>
+                                </div>
+                            </div>
+                            <!-- D : 에러시  input--error 클래스 추가 -->
+                            <!-- // 탑승 날짜 -->
+
+                            <!-- 편명 -->
+                            <div class="input-row">
+                                <div class="input-item">
+                                    <label for="inp3-1" class="input-label">편명<span class="input__label-asterisk"
+                                                                                    title="required">*</span></label>
+                                    <div class="input-box">
+                                        <div data-element="form" data-change="true" class="input input-wraping">
+                                            <div class="default-text"><span>7</span><span>C</span></div>
+                                            <input type="text" id="FLTNO" name="FLTNO" class="input__text"
+                                                   data-element="input" maxlength="4" placeholder="●●●●"
+                                                   onkeyup="MEMBER_LOGIN_LOGIN_SCRIPT._byteCheck(this)">
+                                        </div>
+                                    </div>
+                                    <p tabindex="0" class="input__error">편명을 입력해 주세요.
+                                    </p>
+                                    <p tabindex="0" class="input__sub-text">편명은 숫자 4자리를 입력해 주세요.(국내선의 경우 0부터 입력)</p>
+                                </div>
+                            </div>
+
+                            <!-- 예약 번호 -->
+                            <div class="input-row">
+                                <!-- D : 에러시  input--error 클래스 추가 -->
+                                <div class="input-item">
+                                    <div class="input-box">
+                                        <label for="inp4-1" class="input__label">예약번호<span class="input__label-asterisk"
+                                                                                           title="required">*</span></label>
+                                        <div data-element="form" class="input">
+                                            <input type="text" id="PNRNO" name="PNRNO" data-element="input"
+                                                   title="예약번호 입력" class="input__text" maxlength="6">
+                                            <button type="button" data-element="remove" class="input__remove-button">
+                                                <span class="hidden">삭제</span></button>
+                                        </div>
+                                    </div>
+                                    <p tabindex="0" class="input__error">에러메세지</p>
+                                    <p tabindex="0" class="input__sub-text">예) 5 또는 6자리 영/숫자 조합</p>
+                                </div>
+                            </div>
+
+                            <!-- 한국어사이트 일 때 -->
+
+                            <!-- 이름 -->
+                            <div class="input-row">
+                                <!-- D : 에러시  input--error 클래스 추가 -->
+                                <div class="input-item">
+                                    <div class="input-box readonly-box on_load">
+                                        <label for="inp5-1" class="input__label">이름</label>
+                                        <div data-element="form" class="input is-active">
+                                            <input type="text" id="korName" data-element="input" title="이름 입력"
+                                                   class="input__text" value="작성 하는 것이 아닌 session에서 가져오기">
+                                        </div>
+                                    </div>
+                                    <p tabindex="0" class="input__error">에러메세지.</p>
+                                    <p tabindex="0" class="input__sub-text">예) 김제주</p>
+                                </div>
+                            </div>
+
+                            <!-- 한국어사이트 아닐 때 ?ㅋㅋㅋㅋㅋㅋ -->
+
+
+                        </div>
+
+                        <!-- 저장된 이름이 없을 때 ?ㅋㅋㅋㅋㅋ -->
+                        <!-- / 저장된 이름이 없을 때 -->
+
+                    </div>
+                </form>
+                <!-- // 입력 정보 -->
+
+
+                <div class="section-wrap">
+                    <div class="button-wrap button-wrap--center pc-center">
+                        <!-- D : 활성화 클래스 button--active 클래스 제일 뒤에 넣어주세요 -->
+                        <button type="button" id="btnSave" class="button button--primary button--disabled"><span
+                                class="button__text">적립하기</span></button>
+                    </div>
+                </div>
+
+                <div class="section-wrap">
+                    <div class="arrow-list pc-col">
+                        <a href="#" class="arrow-list__item" data-element="modal_anchor" data-target="#modalLayer01"
+                           data-modal-type="full">
+                            <span class="arrow-list__text">항공권 구매 시 포인트 적립 안내</span>
+                        </a>
+                        <a href="#" class="arrow-list__item" data-element="modal_anchor" data-target="#modalLayer02"
+                           data-modal-type="full">
+                            <span class="arrow-list__text">탑승 후 포인트 적립 안내</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 항공권 구매 시 포인트 적립 안내 모달 -->
+                <div id="modalLayer01" class="modal modal-full modal-scroll modal--fixed-multi">
+                    <div class="modal-header">
+                        <h2 class="header__page-name">항공권 구매 시 포인트 적립 안내</h2>
+                    </div>
+                    <div class="modal-content">
+                        <ul class="list-guide">
+                            <li class="list-guide__item">항공권 구매 금액 1,000원당 50P가 적립됩니다. 해외에서 구매하신 경우 해당 국가의 환율이 적용되어
+                                적립됩니다.
+                            </li>
+                            <li class="list-guide__item">항공권 운임 금액에만 그에 비례한 포인트가 적립됩니다. (할인쿠폰, 유류세, 공항이용료, 세금은 적립에서
+                                제외)
+                            </li>
+                            <li class="list-guide__item">일부 항공권은 포인트 적립에 해당되지 않습니다.(포인트 항공권, 이벤트 경품 항공권, 일부 특가 항공권
+                                등)
+                            </li>
+                            <li class="list-guide__item">항공권 구매 시 적립된 포인트의 유효기간은 적립일로부터 3년이며, 유효기간이 지나면 자동 소멸됩니다.
+                            </li>
+                            <li class="list-guide__item">부당한 방법으로 적립된 실적은 인정되지 않을 수 있습니다.</li>
+                            <li class="list-guide__item">제주항공 홈페이지, 모바일(웹/앱)에서 구매한 항공권의 경우 탑승 완료일 기준 2일 후부터 적립됩니다.
+                            </li>
+                            <li class="list-guide__item">여행사, 고객센터, 카운터 등에서 구매한 항공권의 경우 포인트 적립에 탑승 완료일 기준 최대 40일이
+                                걸립니다.
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="fixed-wrap fixed-wrap--multi-line border-none ">
+                        <!-- checkbox 없는 경우 border-none class 추가 -->
+                        <div class="button-wrap">
+                            <!-- 항공권 구매 -->
+                            <button type="button" rel="modal:close" class="button button--primary button--active"
+                                    onclick="location.href='ticket_reservation'"><span
+                                    class="button__text">항공권 구매</span></button>
+                        </div>
+                    </div>
+                    <a href="#" rel="modal:close" class="modal__close"><span class="blind">닫기</span></a>
+                </div>
+                <!-- // 항공권 구매 시 포인트 적립 안내 모달 -->
+
+
+                <!-- 탑승후 포인트 적립 안내 모달 -->
+                <div id="modalLayer02" class="modal modal-full modal-scroll">
+                    <div class="modal-header">
+                        <div class="modal-header__title">탑승후 포인트 적립 안내</div>
+                    </div>
+                    <div class="modal-content">
+                        <ul class="list-guide">
+                            <li class="list-guide__item">예약 발권 시 회원번호를 입력하지 않은 경우 포인트는 탑승 완료일로부터 6개월 이내에 적립신청이
+                                가능합니다.
+                            </li>
+                            <li class="list-guide__item">비회원의 경우 탑승 후 회원가입을 하시면 탑승 완료일로부터 6개월 이내에 적립신청이 가능 합니다.</li>
+                            <li class="list-guide__item">제주항공 홈페이지 [리프레시 포인트 &gt; 포인트 적립 &gt; 탑승후 포인트 적립]에서 신청하시기 바랍니다.
+                                (누락포인트를 적립하기 위해 탑승일, 편명, 항공권 번호를 입력해야 함)
+                            </li>
+                            <li class="list-guide__item">탑승 항공권의 성명과 회원정보의 성명이 같아야 누락포인트를 적립할 수 있습니다.</li>
+                            <li class="list-guide__item">누락포인트는 본인만 적립할 수 있습니다.</li>
+                            <li class="list-guide__item">항공권 예약번호는 홈페이지에서 본인이 예약했을 경우 예약조회 정보에서 확인할 수 있으며, 보관하고 계신
+                                예약발권확인서 및 항공권에서도 확인하실 수 있습니다.
+                            </li>
+                            <li class="list-guide__item">제주항공에서는 탑승 내역이 확인되지 않는 경우, 포인트 적립을 요청한 고객에게 포인트를 적립하고자 하는
+                                탑승 항공권의 사본 또는 원본을 제시해 주실 것을 요청할 수도 있습니다.
+                            </li>
+                            <li class="list-guide__item">제주항공 홈페이지, 모바일(웹/앱)에서 구매한 항공권의 경우 탑승 완료일 기준 2일 후부터 적립됩니다.
+                            </li>
+                            <li class="list-guide__item">여행사, 고객센터, 카운터 등에서 구매한 항공권의 경우 포인트 적립에 탑승 완료일 기준 40일이 소요 될
+                                수 있습니다.
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#" rel="modal:close" class="modal__close"><span class="blind">닫기</span></a>
+                </div>
+                <!-- // 탑승후 포인트 적립 안내 모달 -->
+            </main>
+        </div>
+
+
+    </div>
+</div>
+
+
+<!-- footer -->
+<div th:replace="/user/fragment/footer :: footer"></div>
+<!-- / footer 끝 -->
+
+<div id="ifmWrap"
+     style="height:100%; display:none; overflow:auto; text-align:center; -webkit-overflow-scrolling:touch;">
+    <iframe src="" width="100%" height="100%" name="popupChkApp"></iframe>
+</div>
+
+<!-- 공통 스크립트 선언 -->
+<script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
+<script type="text/javascript" src="/user/lib/js/common.js"></script>
+<script type="text/javascript" src="/user/lib/js/plugin.js"></script>
+
+</body>
+
+</html>

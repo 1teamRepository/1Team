@@ -1,0 +1,679 @@
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+
+
+<!--head-->
+<div th:replace="/user/fragment/head :: head"></div>
+<!--head 끝-->
+<body id="bookingLayoutBody" class="isPc vsc-initialized">
+
+
+<!--appAlert-->
+<div th:replace="/user/fragment/appAlert :: appAlert"></div>
+<!--appAlert 끝-->
+
+<!--header-->
+<div th:replace="/user/fragment/header :: header"></div>
+<!--header 끝-->
+
+
+<div id="body">
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD2BQQ4" height="0" width="0"
+                style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="wrap wrap--booking NA_1_B step-ui">
+
+
+        <div class="content" id="content">
+            <main id="main" class="main ">
+
+
+                <div class="page-title-wrap pc-only">
+                    <div class="page-title">결제</div><!-- 결제 -->
+                </div>
+
+
+                <div class="section-wrap">
+
+
+                    <!-- 항목별 운임 상세 -->
+                    <!-- 예상 결제금액 -->
+
+
+                    <div class="pc-pay-layout pc-30">
+                        <div class="layout-left">
+                            <div class="section-title">항목별 운임 상세</div>
+                        </div>
+                        <div class="layout-right">
+                            <div class="container--small">
+                                <div data-element="toggle" class="toggle-item pay">
+                                    <div class="toggle-item__title">
+                                        <button type="button" id="btnSummary" data-element="toggle__anchor"
+                                                class="toggle-item__anchor is-active" aria-controls="toggle-2"
+                                                aria-expanded="true">
+                                            <div class="payment-amount">
+                                                <div class="payment-amount__title">예상 결제금액</div>
+                                                <p class="payment-amount__sum">
+
+
+                                                    <span class="price_txt">408,400</span>
+                                                    <span class="unit">원</span>
+
+
+                                                </p>
+                                            </div>
+                                        </button>
+                                    </div>
+                                    <div data-element="toggle__panel" class="toggle-item__content" id="toggle-2"
+                                         style="display: block;">
+                                        <div class="itemize__item itemize__item--payment">
+
+
+                                            <div class="group">
+                                                <div class="group__title">항공 운송료</div><!-- 항공 운송료 -->
+                                                <div class="group__info">
+                                                    <div class="flex-text">
+                                                        <div class="flex-text__title">항공운임</div><!-- 항공운임 -->
+                                                        <div class="flex-text__additional">
+
+
+                                                            <span class="price_txt">238,000</span>
+                                                            <span class="unit">원</span>
+
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-text">
+                                                        <div class="flex-text__title">유류할증료</div><!-- 유류할증료 -->
+                                                        <div class="flex-text__additional">
+
+
+                                                            <span class="price_txt">117,400</span>
+                                                            <span class="unit">원</span>
+
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-text">
+                                                        <div class="flex-text__title">
+
+
+                                                            <div class="link-wrap--left">
+                                                                <a href="javascript:void(0)" id="taxInfo"
+                                                                   class="link-wrap__underline link-wrap__underline--gray"><span>공항시설 사용료</span></a>
+                                                                <!-- 공항시설 사용료 -->
+                                                            </div>
+
+
+                                                        </div>
+                                                        <div class="flex-text__additional">
+
+
+                                                            <span class="price_txt">53,000</span>
+                                                            <span class="unit">원</span>
+
+
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="guide-info guide-info--gray">
+                                    <p class="guide-info__text">구매일 및 환율에 따라 차이가 있을 수 있으며, 일부 해외카드 결제수수료로 인해 실제 청구금액은 최종
+                                        결제금액과 다를 수 있습니다. 자세한 사항은 해당 카드사를 통해 확인하시기 바랍니다.</p>
+                                    <!-- 구매일 및 환율에 따라 차이가 있을 수 있으며, 일부 해외카드 결제수수료로 인해 실제 청구금액은 최종 결제금액과 다를 수 있습니다. 자세한 사항은 해당 카드사를 통해 확인하시기 바랍니다. -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="booking-sticky booking-sticky--reservation pc-only">
+                    <div class="reservation-container">
+                        <div class="booking-sticky__top payment">
+                            <div class="toggle-wrap toggle-wrap--button">
+                                <div class="label no-icon">
+                                    <span style="line-height: 2em;">총 결제금액</span><!-- 총 결제금액 -->
+                                </div>
+
+
+                                <div class="summary no-icon">
+					<span class="cost">
+
+
+						<span class="price_txt">408,400</span>
+<span class="unit">원</span>
+
+
+
+					</span>
+                                </div>
+
+
+                            </div>
+                            <button name="btnNext" type="button" class="button button--primary pc-only button--active">
+                                <span class="button__text">결제하기</span><!-- 결제하기 -->
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="paymentLoading" style="display: none;">
+                    <div class="loading payment_loading" style="z-index: 4;">
+                        <div class="loading__img">
+                            <img src="https://static.jejuair.net/hpgg/resources/images/etc/img_loading.gif" alt="">
+                            <div class="loading__text">요청하신 서비스를 처리 중입니다. 잠시만 기다려 주세요.</div>
+                            <!-- 요청하신 서비스를 처리 중입니다. 잠시만 기다려 주세요. -->
+                            <div class="loading__text-sub">데이터 처리 중 창을 닫거나 새로고침 또는 뒤로가기를 하시면 결제 정보를 처음부터 다시 입력하셔야 합니다.
+                            </div><!-- 데이터 처리 중 창을 닫거나 '새로고침' 또는 '뒤로가기'를 하시면 결제 정보를 처음부터 다시 입력하셔야 합니다. -->
+                        </div>
+                    </div>
+                    <div class="fixed-wrap pc-40">
+                        <div class="button-wrap button-wrap--stick">
+                            <button type="button" id="btnPrev" class="button button--primary button--black"
+                                    data-type="prev"><span class="button__text">이전 페이지로 가기</span></button>
+                            <!-- 이전 페이지로 가기 -->
+                            <button type="button" id="btnComplete" class="button button--primary button--active"
+                                    data-type="complete"><span class="button__text">결제완료</span></button><!--  결제완료 -->
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="cardSelectLayer" class="modal modal-full modal--fixed-multi modal-scroll">
+                    <div class="modal-header">
+                        <div class="modal-header__title">카드 선택</div><!-- 카드 선택 -->
+                    </div>
+                    <div class="modal-content">
+                        <div class="card-select-wrap first-margin">
+
+                            <div class="card-select">
+                                <input type="radio" class="card-select__item" id="cardSelect01" name="cardSelect">
+                                <label for="cardSelect01" class="card-select__button">
+                                    <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-bank-01.png"
+                                         alt="하나(외환)">
+                                    <span class="name">하나(외환)</span>
+                                </label>
+                            </div>
+
+                            <div class="card-select">
+                                <input type="radio" class="card-select__item" id="cardSelect03" name="cardSelect">
+                                <label for="cardSelect03" class="card-select__button">
+                                    <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-bank-03.png"
+                                         alt="롯데">
+                                    <span class="name">롯데</span>
+                                </label>
+                            </div>
+
+                            <div class="card-select">
+                                <input type="radio" class="card-select__item" id="cardSelect04" name="cardSelect">
+                                <label for="cardSelect04" class="card-select__button">
+                                    <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-bank-04.png"
+                                         alt="현대">
+                                    <span class="name">현대</span>
+                                </label>
+                            </div>
+
+                            <div class="card-select">
+                                <input type="radio" class="card-select__item" id="cardSelect06" name="cardSelect">
+                                <label for="cardSelect06" class="card-select__button">
+                                    <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-bank-06.png"
+                                         alt="국민">
+                                    <span class="name">국민</span>
+                                </label>
+                            </div>
+
+                            <div class="card-select">
+                                <input type="radio" class="card-select__item" id="cardSelect11" name="cardSelect">
+                                <label for="cardSelect11" class="card-select__button">
+                                    <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-bank-11.png"
+                                         alt="BC">
+                                    <span class="name">BC</span>
+                                </label>
+                            </div>
+
+                            <div class="card-select">
+                                <input type="radio" class="card-select__item" id="cardSelect12" name="cardSelect">
+                                <label for="cardSelect12" class="card-select__button">
+                                    <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-bank-12.png"
+                                         alt="삼성">
+                                    <span class="name">삼성</span>
+                                </label>
+                            </div>
+
+                            <div class="card-select">
+                                <input type="radio" class="card-select__item" id="cardSelect14" name="cardSelect">
+                                <label for="cardSelect14" class="card-select__button">
+                                    <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-bank-14.png"
+                                         alt="신한">
+                                    <span class="name">신한</span>
+                                </label>
+                            </div>
+
+                            <div class="card-select">
+                                <input type="radio" class="card-select__item" id="cardSelect32" name="cardSelect">
+                                <label for="cardSelect32" class="card-select__button">
+                                    <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-bank-32.png"
+                                         alt="광주">
+                                    <span class="name">광주</span>
+                                </label>
+                            </div>
+
+                            <div class="card-select">
+                                <input type="radio" class="card-select__item" id="cardSelect33" name="cardSelect">
+                                <label for="cardSelect33" class="card-select__button">
+                                    <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-bank-33.png"
+                                         alt="전북">
+                                    <span class="name">전북</span>
+                                </label>
+                            </div>
+
+                            <div class="card-select">
+                                <input type="radio" class="card-select__item" id="cardSelect34" name="cardSelect">
+                                <label for="cardSelect34" class="card-select__button">
+                                    <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-bank-34.png"
+                                         alt="하나">
+                                    <span class="name">하나</span>
+                                </label>
+                            </div>
+
+                            <div class="card-select">
+                                <input type="radio" class="card-select__item" id="cardSelect35" name="cardSelect">
+                                <label for="cardSelect35" class="card-select__button">
+                                    <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-bank-35.png"
+                                         alt="산업">
+                                    <span class="name">산업</span>
+                                </label>
+                            </div>
+
+                            <div class="card-select">
+                                <input type="radio" class="card-select__item" id="cardSelect41" name="cardSelect">
+                                <label for="cardSelect41" class="card-select__button">
+                                    <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-bank-41.png"
+                                         alt="NH">
+                                    <span class="name">NH</span>
+                                </label>
+                            </div>
+
+                            <div class="card-select">
+                                <input type="radio" class="card-select__item" id="cardSelect43" name="cardSelect">
+                                <label for="cardSelect43" class="card-select__button">
+                                    <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-bank-43.png"
+                                         alt="씨티">
+                                    <span class="name">씨티</span>
+                                </label>
+                            </div>
+
+                            <div class="card-select">
+                                <input type="radio" class="card-select__item" id="cardSelect38" name="cardSelect">
+                                <label for="cardSelect38" class="card-select__button">
+                                    <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-bank-38.png"
+                                         alt="우리">
+                                    <span class="name">우리</span>
+                                </label>
+                            </div>
+
+                            <div class="card-select">
+                                <input type="radio" class="card-select__item" id="cardSelect48" name="cardSelect">
+                                <label for="cardSelect48" class="card-select__button">
+                                    <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-bank-48.png"
+                                         alt="신협체크">
+                                    <span class="name">신협체크</span>
+                                </label>
+                            </div>
+
+                            <div class="card-select">
+                                <input type="radio" class="card-select__item" id="cardSelect51" name="cardSelect">
+                                <label for="cardSelect51" class="card-select__button">
+                                    <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-bank-51.png"
+                                         alt="수협">
+                                    <span class="name">수협</span>
+                                </label>
+                            </div>
+
+                            <div class="card-select">
+                                <input type="radio" class="card-select__item" id="cardSelect52" name="cardSelect">
+                                <label for="cardSelect52" class="card-select__button">
+                                    <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-bank-52.png"
+                                         alt="제주">
+                                    <span class="name">제주</span>
+                                </label>
+                            </div>
+
+                            <div class="card-select">
+                                <input type="radio" class="card-select__item" id="cardSelect55" name="cardSelect">
+                                <label for="cardSelect55" class="card-select__button">
+                                    <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-bank-55.png"
+                                         alt="케이뱅크">
+                                    <span class="name">케이뱅크</span>
+                                </label>
+                            </div>
+
+                            <div class="card-select">
+                                <input type="radio" class="card-select__item" id="cardSelect56" name="cardSelect">
+                                <label for="cardSelect56" class="card-select__button">
+                                    <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-bank-56.png"
+                                         alt="카카오뱅크">
+                                    <span class="name">카카오뱅크</span>
+                                </label>
+                            </div>
+
+                            <div class="card-select">
+                                <input type="radio" class="card-select__item" id="cardSelect71" name="cardSelect">
+                                <label for="cardSelect71" class="card-select__button">
+                                    <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-bank-71.png"
+                                         alt="우체국체크">
+                                    <span class="name">우체국체크</span>
+                                </label>
+                            </div>
+
+                            <div class="card-select">
+                                <input type="radio" class="card-select__item" id="cardSelect95" name="cardSelect">
+                                <label for="cardSelect95" class="card-select__button">
+                                    <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-bank-95.png"
+                                         alt="저축은행체크">
+                                    <span class="name">저축은행체크</span>
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="fixed-wrap fixed-wrap--multi-line border-none">
+                        <div class="button-wrap">
+                            <button type="button" id="btnSelect" class="button">
+                                <span class="button__text">선택완료</span><!-- 선택완료 -->
+                            </button>
+                        </div>
+                    </div>
+                    <a href="javascript:void(0)" rel="modal:close" class="modal__close"><span
+                            class="blind">닫기</span></a><!-- 닫기 -->
+                </div>
+
+
+                <div id="JAAgreeLayer" class="modal modal-full modal-scroll modal--fixed-multi">
+                    <div class="modal-header">
+                        <div class="modal-header__title">현금결제</div><!-- 현금결제 -->
+                    </div>
+                    <div class="modal-content">
+                        <ul class="list-guide">
+                            <li class="list-guide__item">현금 결제는 편의점, 우체국 ATM, 인터넷 뱅킹 결제에서 선택할 수 있습니다.</li>
+                            <!-- 현금 결제는 편의점, 우체국 ATM, 인터넷 뱅킹 결제에서 선택할 수 있습니다. -->
+                            <li class="list-guide__item">안내된 기간까지 입금이 확인되지 않으면 자동으로 예약이 취소되므로 반드시 결제 기간까지 입금하시기 바랍니다.
+                            </li><!-- 안내된 기간까지 입금이 확인되지 않으면 자동으로 예약이 취소되므로 반드시 결제 기간까지 입금하시기 바랍니다.-->
+                            <li class="list-guide__item">구간, 일정 변경이 있을 경우 다시 예약하셔야 합니다.(공석이 있는 경우에 한함)</li>
+                            <!-- 구간, 일정 변경이 있을 경우 다시 예약하셔야 합니다.(공석이 있는 경우에 한함) -->
+                        </ul>
+                        <div class="gray-box pay_box">
+                            <span>결제금액 JPY <strong class="color--org">408,400</strong></span>
+                            <!-- 결제금액 JPY <strong class="color--org">{0}</strong> -->
+                        </div>
+                        <div class="check-wrap pc-20 container--small">
+			<span class="checkbox checkbox--small">
+				<input type="checkbox" id="chkJAAgree" class="checkbox__input">
+				<label for="chkJAAgree" class="checkbox__label">
+					<i aria-hidden="true" class="checkbox__ico"></i>
+					<span>위 사항에 동의하셔야 결제할 수 있습니다.</span><!-- 위 사항에 동의하셔야 결제할 수 있습니다. -->
+				</label>
+			</span>
+                        </div>
+                    </div>
+                    <div class="fixed-wrap fixed-wrap--multi-line border-none">
+                        <div class="button-wrap">
+                            <button id="btnJAConfirm" type="button" class="button button--primary">
+                                <span class="button__text">확인</span><!-- 확인 -->
+                            </button>
+                        </div>
+                    </div>
+                    <a href="javascript:void(0)" rel="modal:close" class="modal__close"><span
+                            class="blind">닫기</span></a><!-- 닫기 -->
+                </div>
+                <div style="display: none;"><a href="javascript:void(0);" data-element="modal_anchor" id="sessionLayer"
+                                               data-target="#sessionLayerForm" data-modal-type="default"></a></div>
+                <div id="sessionLayerForm" class="modal modal--simple modal-layer NA_1_23"></div>
+
+
+                <div id="taxInfoModalLayer" class="modal modal-full modal-scroll modal--fixed-multi">
+                    <div class="modal-header">
+                        <div class="modal-header__title">공항시설 사용료 안내</div><!-- 공항시설 사용료 안내 -->
+                    </div>
+
+
+                    <div class="modal-content">
+                        <div class="first-margin">
+                            <!--인천출발 (일본 도착)-->
+                            <div class="table-horizontal">
+                                <table>
+                                    <caption>공항시설 사용료 안내 항목, 요금</caption>
+                                    <colgroup>
+                                        <col style="width: 65%">
+                                        <col>
+                                    </colgroup>
+                                    <thead class="table-horizontal__thead">
+                                    <tr>
+                                        <th scope="col" class="table-horizontal__th">항목</th><!-- 항목 -->
+                                        <th scope="col" class="table-horizontal__td align--center text--bold">요금</th>
+                                        <!-- 요금 -->
+                                    </tr>
+                                    </thead>
+                                    <tbody class="table-horizontal__tbody">
+
+
+                                    <tr>
+                                        <th scope="row" class="table-horizontal__th"><span class="color--org">*</span>INTL
+                                            PSC DEP TAX &amp; GLOBAL DISEASE ERADICATION(BP)
+                                        </th>
+                                        <td class="table-horizontal__td vertical--middle align--right">
+                                            <span class="price_txt">28,000</span>
+                                            <span class="unit">원</span>
+                                        </td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <th scope="row" class="table-horizontal__th"><span class="color--org"></span>PASSENGER
+                                            SECURITY SERVICE CHARGE(OI)
+                                        </th>
+                                        <td class="table-horizontal__td vertical--middle align--right">
+                                            <span class="price_txt">5,200</span>
+                                            <span class="unit">원</span>
+                                        </td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <th scope="row" class="table-horizontal__th"><span class="color--org"></span>PASSENGER
+                                            SERVICE FACILITIES CHARGE(SW)
+                                        </th>
+                                        <td class="table-horizontal__td vertical--middle align--right">
+                                            <span class="price_txt">10,100</span>
+                                            <span class="unit">원</span>
+                                        </td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <th scope="row" class="table-horizontal__th"><span class="color--org"></span>INTERNATIONAL
+                                            TOURIST TAX(TK)
+                                        </th>
+                                        <td class="table-horizontal__td vertical--middle align--right">
+                                            <span class="price_txt">9,700</span>
+                                            <span class="unit">원</span>
+                                        </td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <th scope="row" class="table-horizontal__th">총 합계</th><!-- 총 합계 -->
+                                        <td class="table-horizontal__td vertical--middle align--right text--bold">
+                                            <span class="price_txt">53,000</span>
+                                            <span class="unit">원</span>
+                                        </td>
+                                    </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="container--small pc-40">
+                                <div class="section-title">
+                                    <span class="color--org">*</span> 한국 출발 세금(BP)<!-- 한국 출발 세금(BP) -->
+                                </div>
+                                <div class="table-horizontal">
+                                    <table>
+                                        <caption>인천,김포공항, 기타공항, 국제여객항공이용료, 출국 납부금, 국제빈곤 퇴치 기여금, 총합계 정보</caption>
+                                        <colgroup>
+                                            <col>
+                                            <col>
+                                            <col>
+                                        </colgroup>
+                                        <thead class="table-horizontal__thead">
+                                        <tr>
+                                            <th scope="col" class="table-horizontal__th">항목</th><!-- 항목 -->
+                                            <th scope="col" class="table-horizontal__td align--center text--bold">인천, 김포
+                                                공항
+                                            </th><!-- 인천, 김포공항 -->
+                                            <th scope="col" class="table-horizontal__td align--center text--bold">기타
+                                                공항
+                                            </th><!-- 기타공항 -->
+                                        </tr>
+                                        </thead>
+                                        <tbody class="table-horizontal__tbody">
+
+
+                                        <tr>
+                                            <th scope="row" class="table-horizontal__th">국제 여객항공이용료</th>
+                                            <td class="table-horizontal__td vertical--middle align--right">
+                                                <span class="price_txt">17,000</span>
+                                                <span class="unit">원</span>
+                                            </td>
+                                            <td class="table-horizontal__td vertical--middle align--right">
+                                                <span class="price_txt">12,000</span>
+                                                <span class="unit">원</span>
+                                            </td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <th scope="row" class="table-horizontal__th">출국납부금</th>
+                                            <td class="table-horizontal__td vertical--middle align--right">
+                                                <span class="price_txt">10,000</span>
+                                                <span class="unit">원</span>
+                                            </td>
+                                            <td class="table-horizontal__td vertical--middle align--right">
+                                                <span class="price_txt">10,000</span>
+                                                <span class="unit">원</span>
+                                            </td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <th scope="row" class="table-horizontal__th">국제 빈곤퇴치기여금</th>
+                                            <td class="table-horizontal__td vertical--middle align--right">
+                                                <span class="price_txt">1,000</span>
+                                                <span class="unit">원</span>
+                                            </td>
+                                            <td class="table-horizontal__td vertical--middle align--right">
+                                                <span class="price_txt">1,000</span>
+                                                <span class="unit">원</span>
+                                            </td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <th scope="row" class="table-horizontal__th">총 합계</th><!-- 총 합계 -->
+                                            <td class="table-horizontal__td vertical--middle align--right text--bold">
+                                                <span class="price_txt">28,000</span>
+                                                <span class="unit">원</span>
+                                            </td>
+                                            <td class="table-horizontal__td vertical--middle align--right text--bold">
+                                                <span class="price_txt">23,000</span>
+                                                <span class="unit">원</span>
+                                            </td>
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--공통안내문구-->
+                        <div class="guide-info guide-info--org">
+                            <p class="guide-info__text">공항시설 사용료는 선택하신 여정 종류에 따라 금액이 변동될 수 있습니다.</p>
+                            <!-- 공항시설 사용료는 선택하신 여정 종류에 따라 금액이 변동될 수 있습니다. -->
+                        </div>
+                        <div class="fixed-wrap fixed-wrap--multi-line border-none ">
+                            <div class="button-wrap">
+                                <button type="button" id="taxButton" rel="modal:close"
+                                        class="button button--primary button--active"><span
+                                        class="button__text">확인</span></button><!-- 확인 -->
+                            </div>
+                        </div>
+                        <a href="javascript:void(0)" rel="modal:close" class="modal__close"><span
+                                class="blind">닫기</span></a>
+                    </div>
+                </div>
+                <button type="button" id="btnModalOpen" data-element="modal_anchor" style="display: none;"></button>
+                <form role="form" method="post" id="form">
+                    <input type="hidden" id="pnrData" name="pnrData" value="">
+                    <input type="hidden" id="productTypeCode" name="productTypeCode" value="RSV">
+                    <input type="hidden" id="saleTypeCd" name="saleTypeCd" value="NOR">
+                    <input type="hidden" id="tripType" name="tripType" value="RT">
+                    <input type="hidden" id="bookType" name="bookType" value="Common">
+                    <input type="hidden" id="processType" name="processType" value="">
+                    <input type="hidden" id="orderId" name="orderId" value="">
+                    <input type="hidden" id="deadline" name="deadline" value="">
+                    <input type="hidden" id="reserveId" name="reserveId" value="">
+                    <input type="hidden" id="analyticsData" name="analyticsData" value="">
+                    <input type="hidden" id="payTypeCd" name="payTypeCd" value="">
+                    <input type="hidden" id="payAmount" name="payAmount" value="">
+
+
+                    <input type="hidden" id="resvDetailReq" name="resvDetailReq" value="">
+                    <input type="hidden" id="seatData" name="seatData" value="">
+                    <input type="hidden" id="cartData" name="cartData" value="">
+                    <input type="hidden" id="cultureCode" name="cultureCode" value="">
+                    <input type="hidden" id="GAProducts" name="GAProducts" value="">
+                </form>
+            </main>
+        </div>
+    </div>
+</div>
+
+
+<!-- footer -->
+<div th:replace="/user/fragment/footer :: footer"></div>
+<!-- / footer 끝 -->
+
+
+<div id="ifmWrap"
+     style="height:100%; display:none; overflow:auto; text-align:center; -webkit-overflow-scrolling:touch;">
+    <iframe src="" width="100%" height="100%" name="popupChkApp"></iframe>
+</div>
+
+
+<!-- 공통 스크립트 선언 -->
+<script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
+<script type="text/javascript" src="/user/lib/js/common.js"></script>
+<script type="text/javascript" src="/user/lib/js/plugin.js"></script>
+
+</body>
+
+</html>

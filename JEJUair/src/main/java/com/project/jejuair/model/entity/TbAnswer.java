@@ -38,7 +38,7 @@ public class TbAnswer {
     private LocalDateTime ansAnswerRegDate; // 답변일
     private Long ansMemIdx;           // memIdx
 
-    @ManyToOne
-
-    private TbMember tbMember;
+//    @ManyToOne
+//
+//    private TbMember tbMember;
 }

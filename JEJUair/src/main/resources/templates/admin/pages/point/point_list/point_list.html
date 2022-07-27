@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
 
 <head>
     <meta charset="UTF-8">
@@ -8,6 +10,9 @@
     <title>제주항공 | 포인트</title>
     <link rel="stylesheet" type="text/css" href="/admin/lib/css/common.css">
     <link rel="icon" href="/admin/lib/images/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
 </head>
 
 <script>
@@ -310,6 +315,7 @@
         <div class="containerbody">
             <!-- main -->
             <div class="main">
+                <div id="category" value="point"></div>
                 <div class="details">
                     <!-- order details list -->
                     <div class="recentOrders">
@@ -336,7 +342,7 @@
                         </div>
                         <table>
                             <thead>
-                                <tr class="topbanner" onclick="location.href='/point/point_settings/point_settings.html'">
+                                <tr class="topbanner">
                                     <td class="airplaneName">NO</td>
                                     <td class="departureTime">내용</td>
                                     <td class="departureLocation">금액(P)</td>
@@ -346,141 +352,18 @@
                                 </tr>
                             </thead>
 
-                            <tbody>
-                                <tr class="topbanner" onclick="location.href='/point/point_settings/point_settings.html'">
-                                    <td class="airplaneName">10</td>
-                                    <td class="departureTime">신규가입보너스</td>
-                                    <td class="departureLocation">2,000</td>
-                                    <td class="departureTime">user01</td>
-                                    <td class="arriveTime">적립</td>
-                                    <td class="arriveTime">도착시간</td>
+                            <tbody id="itemList">
+                                <tr class="topbanner" v-for="dto in itemList"><!--onclick="location.href='/point/point_settings/point_settings.html'" -->
+                                    <td class="airplaneName">{{dto.pntIdx}}</td>
+                                    <td class="departureTime">{{dto.pntContent}}</td>
+                                    <td class="departureLocation">{{dto.pntAmount}}</td>
+                                    <td class="departureTime">{{dto.pntMemIdx}}</td>
+                                    <td class="arriveTime">{{dto.pntStatus}}</td>
+                                    <td class="arriveTime">{{dto.pntRegdate}}</td>
                                 </tr>
-
-                                <tr class="topbanner" onclick="location.href='/point/point_settings/point_settings.html'">
-                                    <td class="airplaneName">9</td>
-                                    <td class="departureTime">신규가입보너스</td>
-                                    <td class="departureLocation">2,000</td>
-                                    <td class="departureTime">user01</td>
-                                    <td class="arriveTime">적립</td>
-                                    <td class="arriveTime">도착시간</td>
-                                </tr>
-                                <tr class="topbanner" onclick="location.href='/point/point_settings/point_settings.html'">
-                                    <td class="airplaneName">8</td>
-                                    <td class="departureTime">신규가입보너스</td>
-                                    <td class="departureLocation">2,000</td>
-                                    <td class="departureTime">user01</td>
-                                    <td class="arriveTime">적립</td>
-                                    <td class="arriveTime">도착시간</td>
-                                </tr>
-
-                                <tr class="topbanner" onclick="location.href='/point/point_settings/point_settings.html'">
-                                    <td class="airplaneName">7</td>
-                                    <td class="departureTime">신규가입보너스</td>
-                                    <td class="departureLocation">2,000</td>
-                                    <td class="departureTime">user01</td>
-                                    <td class="arriveTime">적립</td>
-                                    <td class="arriveTime">도착시간</td>
-                                </tr>
-                                <tr class="topbanner" onclick="location.href='/point/point_settings/point_settings.html'">
-                                    <td class="airplaneName">6</td>
-                                    <td class="departureTime">신규가입보너스</td>
-                                    <td class="departureLocation">2,000</td>
-                                    <td class="departureTime">user01</td>
-                                    <td class="arriveTime">적립</td>
-                                    <td class="arriveTime">도착시간</td>
-                                </tr>
-                                <tr class="topbanner" onclick="location.href='/point/point_settings/point_settings.html'">
-                                    <td class="airplaneName">5</td>
-                                    <td class="departureTime">신규가입보너스</td>
-                                    <td class="departureLocation">2,000</td>
-                                    <td class="departureTime">user01</td>
-                                    <td class="arriveTime">적립</td>
-                                    <td class="arriveTime">도착시간</td>
-                                </tr>
-                                <tr class="topbanner" onclick="location.href='/point/point_settings/point_settings.html'">
-                                    <td class="airplaneName">4</td>
-                                    <td class="departureTime">신규가입보너스</td>
-                                    <td class="departureLocation">2,000</td>
-                                    <td class="departureTime">user01</td>
-                                    <td class="arriveTime">적립</td>
-                                    <td class="arriveTime">도착시간</td>
-                                </tr>
-                                <tr class="topbanner" onclick="location.href='/point/point_settings/point_settings.html'">
-                                    <td class="airplaneName">3</td>
-                                    <td class="departureTime">신규가입보너스</td>
-                                    <td class="departureLocation">2,000</td>
-                                    <td class="departureTime">user01</td>
-                                    <td class="arriveTime">적립</td>
-                                    <td class="arriveTime">도착시간</td>
-                                </tr>
-                                <tr class="topbanner" onclick="location.href='/point/point_settings/point_settings.html'">
-                                    <td class="airplaneName">2</td>
-                                    <td class="departureTime">신규가입보너스</td>
-                                    <td class="departureLocation">2,000</td>
-                                    <td class="departureTime">user01</td>
-                                    <td class="arriveTime">적립</td>
-                                    <td class="arriveTime">도착시간</td>
-                                </tr>
-                                <tr class="topbanner" onclick="location.href='/point/point_settings/point_settings.html'">
-                                    <td class="airplaneName">1</td>
-                                    <td class="departureTime">신규가입보너스</td>
-                                    <td class="departureLocation">2,000</td>
-                                    <td class="departureTime">user01</td>
-                                    <td class="arriveTime">적립</td>
-                                    <td class="arriveTime">도착시간</td>
-                                </tr>
-                                
                             </tbody>
                         </table>
-
-                        <div class="paging">
-                            <div class="page_btn">
-                                <a href="#" class="firstpage_btn">First</a>
-                            </div>
-
-                            <div class="page_btn">
-                                <a href="#" class="prevpage_btn">Prev</a>
-                            </div>
-
-                            <div class="page_btn2 current_btn">
-                                <a href="#" class="pagenum">1</a>
-                            </div>
-                            <div class="page_btn2">
-                                <a href="#" class="pagenum">2</a>
-                            </div>
-                            <div class="page_btn2">
-                                <a href="#" class="pagenum">3</a>
-                            </div>
-                            <div class="page_btn2">
-                                <a href="#" class="pagenum">4</a>
-                            </div>
-                            <div class="page_btn2">
-                                <a href="#" class="pagenum">5</a>
-                            </div>
-                            <div class="page_btn2">
-                                <a href="#" class="pagenum">6</a>
-                            </div>
-                            <div class="page_btn2">
-                                <a href="#" class="pagenum">7</a>
-                            </div>
-                            <div class="page_btn2">
-                                <a href="#" class="pagenum">8</a>
-                            </div>
-                            <div class="page_btn2">
-                                <a href="#" class="pagenum">9</a>
-                            </div>
-                            <div class="page_btn2">
-                                <a href="#" class="pagenum">10</a>
-                            </div>
-
-                            <div class="page_btn">
-                                <a href="#" class="prevpage_btn">Next</a>
-                            </div>
-
-                            <div class="page_btn">
-                                <a href="#" class="firstpage_btn">End</a>
-                            </div>
-                        </div>
+                        <div class="paging" id="pageNum">
                     </div>
                 </div>
             </div>
@@ -514,6 +397,71 @@
                 }
             }
         }
+
+        $(function(){
+
+            let showPage = new Vue({
+                el: '#showPage',
+                data: {
+                    totalElements: {},
+                    currentPage: {}
+                }
+            });
+
+            let itemList = new Vue({
+                el: '#itemList',
+                data: {
+                    itemList: {}
+                }
+            });
+
+
+            searchStart(0);
+
+            function searchStart(index){
+                let category = document.getElementById("category").getAttribute("value");
+                $.get("/api/"+category+"?page="+index, function(response){
+
+                    console.log(response);
+
+                    let pagination = response.pagination;
+                    showPage.totalPages = pagination.totalPages;
+                    showPage.currentPage = pagination.currentPage + 1;
+
+                    itemList.itemList = response.data;
+
+                    let lastPage = response.pagination.totalPages;
+
+                    let pageStr = "";
+                    if(lastPage != 0){
+                        pageStr += "<div class='page_btn'><a id='firstpage_btn'>First</a></div>";
+                    }
+                    for(let i = 0; i < lastPage; i++){
+                        pageStr += "<div class='page_btn2'><a class='pagenum pages' id='" + i + "'>" + (i+1) +"</a></div>"
+
+                    }
+                    if(lastPage != 0){
+                        pageStr += "<div class='page_btn'><a id='lastpage_btn'>End</a></div>";
+                    }
+                    $('#pageNum').html(pageStr);
+                });
+            }
+
+            $(document).on('click', '.pages', function(){
+                this.parentElement.classList.add('current_btn');
+                let pageId = this.id;
+                searchStart(pageId);
+            });
+
+            $(document).on('click', '#firstpage_btn', function(){
+                searchStart(0);
+            });
+
+            $(document).on('click', '#lastpage_btn', function(){
+                searchStart(showPage.totalPages-1);
+            });
+
+        });
 
     </script>
 

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/reservation")
 @RequiredArgsConstructor
 public class TbReservationApiController extends CrudController<TbReservationRequest, TbReservationResponse, TbReservation> {
 

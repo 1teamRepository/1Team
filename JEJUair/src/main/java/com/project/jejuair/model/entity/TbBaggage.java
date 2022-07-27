@@ -29,6 +29,6 @@ public class TbBaggage {
     private Long bagPrice;
     private String bagWeight;
 
-    @OneToOne
-    private TbExtraService tbExtraService;
+//    @OneToOne
+//    private TbExtraService tbExtraService;
 }

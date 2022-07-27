@@ -1,0 +1,258 @@
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+
+<div class="containerMenu" th:fragment="menu">
+    <div class="navigation">
+        <div class="homelogo">
+            <a href="/admin">
+                <span class="logo"><img src="/admin/lib/images/Jejuair_logo.png"></span>
+            </a>
+        </div>
+        <ul>
+            <li>
+                <a href="#" onclick="dropdown(0)">
+                            <span class="icon">
+                                <ion-icon name="calendar-outline"></ion-icon>
+                            </span>
+                    <span class="title">운항스케줄</span>
+                </a>
+                <ol>
+                    <li class="drop0">
+                        <a href="/admin/flight_schedule/list">
+                            o  <span class="sub-title" value="0-1">운항스케줄 조회</span>
+                        </a>
+                    </li>
+                    <li class="drop0">
+                        <a href="/admin/flight_schedule/regist">
+                            o  <span class="sub-title" value="0-2">운항스케줄 등록</span>
+                        </a>
+                    </li>
+                    <li class="drop0">
+                        <a href="/admin/aircraft/list">
+                            o  <span class="sub-title" value="0-3">항공기 정보 조회</span>
+                        </a>
+                    </li>
+                    <li class="drop0">
+                        <a href="/admin/aircraft/regist">
+                            o  <span class="sub-title" value="0-4">항공기 신규 등록</span>
+                        </a>
+                    </li>
+                    <li class="drop0">
+                        <a href="/admin/destination/list">
+                            o  <span class="sub-title" value="0-5">취항지 정보 조회</span>
+                        </a>
+                    </li>
+                    <li class="drop0">
+                        <a href="/admin/destination/regist">
+                            o  <span class="sub-title" value="0-6">취항지 신규 등록</span>
+                        </a>
+                    </li>
+                </ol>
+            </li>
+
+            <li>
+                <a href="#" onclick="dropdown(1)">
+                            <span class="icon">
+                                <ion-icon name="people-outline"></ion-icon>
+                            </span>
+                    <span class="title" value="1">고객조회</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#" onclick="dropdown(2)">
+                            <span class="icon">
+                                <ion-icon name="document-text-outline"></ion-icon>
+                            </span>
+                    <span class="title">예약조회</span>
+                </a>
+                <ol>
+                    <li class="drop2">
+                        <a href="/admin/reservation/list">
+                            ㅇ  <span class="sub-title" value="2-1">운항별 예약자 조회</span>
+                        </a>
+                    </li>
+                    <li class="drop2">
+                        <a href="/admin/reservation/namelist">
+                            ㅇ  <span class="sub-title" value="2-2">예약자명 조회</span>
+                        </a>
+                    </li>
+                </ol>
+            </li>
+
+            <li>
+                <a href="#" onclick="dropdown(3)">
+                            <span class="icon">
+                                <ion-icon name="ticket-outline"></ion-icon>
+                            </span>
+                    <span class="title">쿠폰</span>
+                </a>
+                <ol>
+                    <li class="drop3">
+                        <a href="/admin/coupon/list">
+                            ㅇ  <span class="sub-title" value="3-1">쿠폰 조회</span>
+                        </a>
+                    </li>
+                    <li class="drop3">
+                        <a href="/admin/coupon/regist">
+                            ㅇ  <span class="sub-title" value="3-2">쿠폰 등록</span>
+                        </a>
+                    </li>
+                </ol>
+            </li>
+
+            <li>
+                <a href="/admin/point/list" onclick="dropdown(4)">
+                            <span class="icon">
+                                <ion-icon name="color-wand-outline"></ion-icon>
+                            </span>
+                    <span class="title" value="4">포인트</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="/admin/payment/list" onclick="dropdown(5)">
+                            <span class="icon">
+                                <ion-icon name="card-outline"></ion-icon>
+                            </span>
+                    <span class="title" value="5">결제조회</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="dropdown(6)">
+                            <span class="icon">
+                                <ion-icon name="gift-outline"></ion-icon>
+                            </span>
+                    <span class="title">이벤트</span>
+                </a>
+                <ol>
+                    <li class="drop6">
+                        <a href="/admin/event/list">
+                            ㅇ <span class="sub-title" value="6-1">이벤트 목록</span>
+                        </a>
+                    </li>
+                    <li class="drop6">
+                        <a href="/admin/event/regist">
+                            ㅇ  <span class="sub-title" value="6-2">이벤트 등록</span>
+                        </a>
+                    </li>
+                </ol>
+            </li>
+
+            <li>
+                <a href="#" onclick="dropdown(7)">
+                            <span class="icon">
+                                <ion-icon name="book-outline"></ion-icon>
+                            </span>
+                    <span class="title">문의</span>
+                </a>
+                <ol>
+                    <li class="drop7">
+                        <a href="/admin/inquiry/personal">
+                            ㅇ  <span class="sub-title" value="7-1">1:1문의 목록</span>
+                        </a>
+                    </li>
+                    <li class="drop7">
+                        <a href="/admin/inquiry/faqlist">
+                            ㅇ <span class="sub-title" value="7-2">FAQ 목록</span>
+                        </a>
+                    </li>
+                </ol>
+            </li>
+
+            <li>
+                <a href="#" onclick="dropdown(8)">
+                            <span class="icon">
+                                <ion-icon name="basket-outline"></ion-icon>
+                            </span>
+                    <span class="title">유실물 관리</span>
+                </a>
+                <ol>
+                    <li class="drop8">
+                        <a href="/admin/lost_item/list">
+                            ㅇ  <span class="sub-title" value="8-1">유실물 목록</span>
+                        </a>
+                    </li>
+                    <li class="drop8">
+                        <a href="/admin/lost_item/regist">
+                            ㅇ  <span class="sub-title" value="8-2">유실물 등록</span>
+                        </a>
+                    </li>
+                </ol>
+            </li>
+
+            <li>
+                <a href="#" onclick="dropdown(9)">
+                            <span class="icon">
+                                <ion-icon name="pizza-outline"></ion-icon>
+                            </span>
+                    <span class="title">기내식 관리</span>
+                </a>
+                <ol>
+                    <li class="drop9">
+                        <a href="/admin/food/list">
+                            ㅇ  <span class="sub-title" value="9-1">기내식 목록</span>
+                        </a>
+                    </li>
+                    <li class="drop9">
+                        <a href="/admin/food/regist">
+                            ㅇ  <span class="sub-title" value="9-2">기내식 등록</span>
+                        </a>
+                    </li>
+                </ol>
+            </li>
+
+            <li>
+                <a href="#" onclick="dropdown(10)">
+                            <span class="icon">
+                                <ion-icon name="person-outline"></ion-icon>
+                            </span>
+                    <span class="title">관리자 관리</span>
+                </a>
+                <ol>
+                    <li class="drop10">
+                        <a href="/admin/adminuser/list">
+                            ㅇ  <span class="sub-title" value="10-1">관리자 목록</span>
+                        </a>
+                    </li>
+                    <li class="drop10">
+                        <a href="/admin/adminuser/regist">
+                            ㅇ  <span class="sub-title" value="10-2">관리자 등록</span>
+                        </a>
+                    </li>
+                </ol>
+            </li>
+
+            <li>
+                <a href="#" onclick="dropdown(11)">
+                            <span class="icon">
+                                <ion-icon name="settings-outline"></ion-icon>
+                            </span>
+                    <span class="title">메인페이지 관리</span>
+                </a>
+                <ol>
+                    <li class="drop11">
+                        <a href="/admin/recommended/list">
+                            ㅇ  <span class="sub-title" value="11-1">추천 항공권 목록</span>
+                        </a>
+                    </li>
+                    <li class="drop11">
+                        <a href="/admin/recommended/regist">
+                            ㅇ  <span class="sub-title" value="11-2">추천 항공권 등록</span>
+                        </a>
+                    </li>
+                </ol>
+            </li>
+
+            <li>
+                <a href="/admin/login" onclick="dropdown(12)">
+                            <span class="icon">
+                                <ion-icon name="log-out-outline"></ion-icon>
+                            </span>
+                    <span class="title" value="12">로그아웃</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

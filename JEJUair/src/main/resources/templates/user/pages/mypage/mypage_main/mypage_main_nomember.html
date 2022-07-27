@@ -1,0 +1,235 @@
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+
+<!--head-->
+<div th:replace="/user/fragment/head :: head"></div>
+<!--head 끝-->
+
+<body id="subLayoutBody">
+
+<!--appAlert-->
+<div th:replace="/user/fragment/appAlert :: appAlert"></div>
+<!--appAlert 끝-->
+
+<!-- //남은시간 연장 및 공지바 노출 -->
+<!--header-->
+<div th:replace="/user/fragment/header :: header"></div>
+<!--header 끝-->
+
+
+<div id="body">
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD2BQQ4" height="0" width="0"
+                style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="wrap main-gd pc-small">
+
+
+        <div id="breadcrumb" class="breadcrumb pc-only" aria-label="breadcrumb">
+            <nav class="breadcrumb__inner">
+                <div class="breadcrumb__item">
+                    <a href="javascript:;" class="breadcrumb__link" style="cursor: default;">홈</a>
+                </div>
+
+
+                <div class="breadcrumb__item">
+                    <a href="javascript:;" class="breadcrumb__link" style="cursor: default;">마이페이지</a>
+                </div>
+
+
+                <div class="breadcrumb__item breadcrumb__item--current" aria-current="page" data-element="toggle"
+                     data-options="{&quot;mode&quot;: &quot;slide&quot;, &quot;speed&quot;: 100, &quot;clickToClose&quot;: true}">
+
+
+                    <button type="button" class="breadcrumb__link breadcrumb__link--list" data-element="toggle__anchor"
+                            aria-controls="toggle-2" aria-expanded="false">마이페이지 메인
+                    </button>
+
+
+                    <div class="breadcrumb__siblings-list" data-element="toggle__panel" id="toggle-2">
+
+
+                        <a href="javascript:void(0);" class="item"
+                           onclick="URL_LINK.getI18Url('/member/mypage/myFlightList.do')">나의 탑승 내역</a>
+
+
+                        <a href="javascript:void(0);" class="item"
+                           onclick="URL_LINK.getI18Url('/member/mypage/viewMyGiftTicketList.do')">나의 기프티켓</a>
+
+
+                        <a href="javascript:void(0);" class="item"
+                           onclick="URL_LINK.getI18Url('/member/mypage/memberInfoModify.do')">회원정보 수정</a>
+
+
+                        <a href="javascript:void(0);" class="item"
+                           onclick="URL_LINK.getI18Url('/ibe/mypage/viewReservationList.do')">나의 예약 현황</a>
+
+
+                    </div>
+                </div>
+
+
+            </nav>
+        </div>
+
+
+        <div class="content" id="content">
+            <main id="main" class="main ">
+
+                <div class="page-title-wrap  pc-only">
+                    <div class="page-title">마이페이지</div>
+                    <div class="page-sub-title">로그인하시고 각종 회원 혜택을 받아 보세요.</div>
+                </div>
+
+                <div class="section-wrap">
+                    <div class="carousel carousel--full carousel--mypage swiper-container swiper-container-fade swiper-container-initialized swiper-container-horizontal"
+                         data-carousel="fullItemAuto">
+                        <div class="carousel__item swiper-wrapper" style="transition-duration: 0ms;">
+                            <div class="carousel__list swiper-slide n1 swiper-slide-prev"
+                                 onclick="URL_LINK.getI18Url('#')"
+                                 style="width: 360px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                                <div class="carousel__contents">
+                                    <div class="mypage-title">
+                                        회원가입 즉시<br>
+                                        <strong class="point">리프레시 포인트 1,000P적립</strong>
+                                    </div>
+                                    <img src="https://static.jejuair.net/cms/images/banner_image/20220714083347595.png"
+                                         alt="">
+                                </div>
+                            </div>
+                            <div class="carousel__list swiper-slide n2 swiper-slide-active"
+                                 onclick="URL_LINK.getI18Url('#')"
+                                 style="width: 360px; opacity: 1; transform: translate3d(-360px, 0px, 0px); transition-duration: 0ms;">
+                                <div class="carousel__contents">
+                                    <div class="mypage-title">
+                                        APP전용<br>
+                                        <strong class="point">국제선 성인운임 5% 할인</strong>
+                                    </div>
+                                    <img src="https://static.jejuair.net/cms/images/banner_image/20220714083445805.png"
+                                         alt="">
+                                </div>
+                            </div>
+                            <div class="carousel__list swiper-slide n3 swiper-slide-next"
+                                 onclick="URL_LINK.getI18Url('#')"
+                                 style="width: 360px; opacity: 0; transform: translate3d(-720px, 0px, 0px); transition-duration: 0ms;">
+                                <div class="carousel__contents">
+                                    <div class="mypage-title">
+                                        APP전용<br>
+                                        <strong class="point">국내선 성인운임 7% 할인</strong>
+                                    </div>
+                                    <img src="https://static.jejuair.net/cms/images/banner_image/20220714083546075.png"
+                                         alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel__pagination swiper-pagination-clickable swiper-pagination-bullets"><span
+                                class="swiper-pagination-bullet" tabindex="0" role="button"
+                                aria-label="Go to slide 1"></span><span
+                                class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0"
+                                role="button" aria-label="Go to slide 2"></span><span class="swiper-pagination-bullet"
+                                                                                      tabindex="0" role="button"
+                                                                                      aria-label="Go to slide 3"></span>
+                        </div>
+                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+                </div>
+                <div class="section-wrap pb30">
+                    <div class="button-wrap button-flex">
+                        <button type="button" class="button button--secondary" data-action="menu" data-menu-name="join">
+                            <span class="button__text">회원가입</span></button>
+                        <button type="button" class="button button--secondary button--active" data-action="menu"
+                                data-menu-name="login"><span class="button__text">로그인</span></button>
+                    </div>
+                    <div class="link-wrap sub-box">
+                        <a href="javascript:URL_LINK.getI18Url('/ibe/mypage/viewOnOffReservationList.do');"
+                           class="link-wrap__underline"><span>다른 곳에서 예약 하셨나요?</span></a>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+
+        <div class="quick-menu mobile-only">
+            <!-- D : 활성화 클래스 on -->
+            <a href="javascript:void(0);" class="quick-menu__item n1 "
+               onclick="URL_LINK.getI18Url('/main/base/index.do')">
+
+
+                <img src="https://static.jejuair.net/hpgg/resources/images/upload/icon_bottombar_home_off_56x2.png"
+                     alt="홈" loading="lazy">
+
+
+                <!--2021-04-13 이미지로 변경-->
+                <span>홈</span> <!-- 홈 -->
+            </a>
+            <a href="javascript:void(0);" class="quick-menu__item n2 "
+               onclick="URL_LINK.getI18Url('/ibe/booking/Availability.do')">
+
+
+                <img src="https://static.jejuair.net/hpgg/resources/images/upload/icon_bottom	bar_reservation_off_56x2.png"
+                     alt="항공권예매" loading="lazy">
+
+
+                <!--2021-04-13 이미지로 변경-->
+                <span>예매</span> <!-- 항공권예매 -->
+            </a>
+            <a href="javascript:void(0);" class="quick-menu__item n3 "
+               onclick="URL_LINK.getI18Url('/ibe/checkin/viewCheckin.do')">
+
+
+                <img src="https://static.jejuair.net/hpgg/resources/images/upload/icon_bottombar_mboardingpass_off_56x2.png"
+                     alt="모바일 탑승권" loading="lazy">
+
+
+                <!--2021-04-13 이미지로 변경-->
+                <span>모바일 탑승권</span> <!-- 모바일 탑승권 -->
+            </a>
+            <a href="javascript:void(0);" class="quick-menu__item n4 "
+               onclick="URL_LINK.getI18Url('/additionalService/service/main.do')">
+
+
+                <img src="https://static.jejuair.net/hpgg/resources/images/upload/icon_bottombar_service_off_56x2.png"
+                     alt="부가서비스" loading="lazy">
+
+
+                <!--2021-04-13 이미지로 변경-->
+                <span>부가서비스</span> <!-- 부가서비스 -->
+            </a>
+            <a href="javascript:void(0);" class="quick-menu__item n5 on"
+               onclick="URL_LINK.getI18Url('/member/mypage/main.do')">
+
+
+                <img src="https://static.jejuair.net/hpgg/resources/images/upload/icon_bottombar_mypage_on_56x2.png"
+                     alt="마이페이지" loading="lazy">
+
+
+                <!--2021-04-13 이미지로 변경-->
+                <span>마이페이지</span> <!-- 마이페이지 -->
+            </a>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- footer -->
+<div th:replace="/user/fragment/footer :: footer"></div>
+<!-- / footer 끝 -->
+
+<div id="ifmWrap"
+     style="height:100%; display:none; overflow:auto; text-align:center; -webkit-overflow-scrolling:touch;">
+    <iframe src="" width="100%" height="100%" name="popupChkApp"></iframe>
+</div>
+
+<!-- 공통 스크립트 선언 -->
+<script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
+<script type="text/javascript" src="/user/lib/js/common.js"></script>
+<script type="text/javascript" src="/user/lib/js/plugin.js"></script>
+
+</body>
+
+</html>

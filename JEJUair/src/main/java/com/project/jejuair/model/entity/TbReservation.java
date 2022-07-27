@@ -51,18 +51,18 @@ public class TbReservation {
     private LocalDateTime resRegDate;
     private Long resMemIdx;
 
-    @ManyToOne
-//    @JoinColumn(name = "memIdx", referencename ="memIdx")
-    private TbMember tbMember;
-
-    @OneToOne
-    private TbPayment tbPayment;
-
-    @OneToOne
-    private TbFlightSchedule tbFlightSchedule;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tbReservation")
-    private List<TbExtraService> tbExtraServiceList;
+//    @ManyToOne
+////    @JoinColumn(name = "memIdx", referencename ="memIdx")
+//    private TbMember tbMember;
+//
+//    @OneToOne
+//    private TbPayment tbPayment;
+//
+//    @OneToOne
+//    private TbFlightSchedule tbFlightSchedule;
+//
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tbReservation")
+//    private List<TbExtraService> tbExtraServiceList;
 
 
 }

@@ -1,0 +1,143 @@
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+
+<!--head-->
+<div th:replace="/user/fragment/head :: head"></div>
+<!--head 끝-->
+
+<body id="subLayoutBody" class="isPc" style="height: 938.5px;">
+
+
+<!--appAlert-->
+<div th:replace="/user/fragment/appAlert :: appAlert"></div>
+<!--appAlert 끝-->
+
+<!--header-->
+<div th:replace="/user/fragment/header :: header"></div>
+<!--header 끝-->
+
+
+<div id="body">
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD2BQQ4" height="0" width="0"
+                style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="wrap wrap--button MO">
+
+
+        <div class="content" id="content">
+            <main id="main" class="main ">
+
+
+                <form id="mainform" name="mainform" action="https://jejuair.secure.force.com/vone" method="post"
+                      target="iframe">
+                    <input type="hidden" name="language" value="ko">
+                    <input type="hidden" name="userNo" value="089464461">
+                    <input type="hidden" name="userID" value="migi707">
+                    <input type="hidden" name="userNm" value="이미지">
+                    <input type="hidden" name="phone" value="82-010-8654-1225">
+                    <input type="hidden" name="email" value="migi707@naver.com">
+                    <input type="hidden" name="agentId" value="sys_web.kr">
+                </form>
+
+
+                <input type="hidden" id="active" name="active" value="prod">
+                <div class="iframe_help">
+                    <iframe id="iframe" name="iframe" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"
+                            style="height: 563.5px;"></iframe>
+                </div>
+            </main>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- footer -->
+<div th:replace="/user/fragment/footer :: footer"></div>
+<!-- / footer 끝 -->
+
+<!-- 공통 스크립트 선언 -->
+
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/lib/lib.min.js"></script>
+
+<script type="text/javascript"
+        src="https://static.jejuair.net/hpgg/resources/js/lib/moment-with-locales.min.js"></script>
+
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/lib/jquery.i18n.js"></script>
+<script type="text/javascript"
+        src="https://static.jejuair.net/hpgg/resources/js/lib/jquery.i18n.messagestore.js"></script>
+<!-- 메인페이지 스크립트 에러 발생으로 이전 소스로 변경합니다.
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/booking/plugin.js"></script>
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/booking/common.js"></script>
+-->
+<script>
+    $(document).ready(function () {
+
+        $.ajaxSetup({
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('tcode', '0000000613');
+                xhr.setRequestHeader('cname', USER_DEVICE.getName());
+            }
+        });
+
+
+        //BOOKING LAYOUT상태서 sub로 바뀔경우
+        $(document).off('changeLayout').on('changeLayout', function (e, type) {
+            if (type === 'sub') {
+                $('.bookingType').hide();
+                $('.subType').show();
+            } else if (type === 'booking') {
+                $('.subType').hide();
+                $('.bookingType').show();
+            }
+        });
+
+        //breadcrumbs cursor default
+        $('.breadcrumb__item > a').css('cursor', 'default');
+    });
+
+    //타이틀 설정
+    $('header.mobile-only h2.header__page-name').text($('#main div.page-title').eq(0).text());
+</script>
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/plugin.js"></script>
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/common.js"></script>
+
+<!--필요시만 로드-->
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/vendor/lodash.min.js"></script>
+<!--사용되지 않음-->
+<!--<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/vendor/localforage.min.js"></script>-->
+<script type="text/javascript"
+        src="https://static.jejuair.net/hpgg/resources/js/vendor/handlebars.min-v4.7.6.js"></script>
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/handlebars.helpers.js"></script>
+
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/util/sUtil.js"></script>
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/util/dUtil.js"></script>
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/util/utils.js"></script>
+
+<!--필요시만 로드-->
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/amcharts/amcharts.core.js"></script>
+
+
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/bizjs/commons/bizCommons.js"></script>
+<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/jj.helpers.js"></script>
+
+
+<script type="text/javascript"
+        src="https://static.jejuair.net/hpgg/resources/bizjs/customerService/csCenter/qnaFormList.js"></script>
+
+
+<div id="ifmWrap"
+     style="height:100%; display:none; overflow:auto; text-align:center; -webkit-overflow-scrolling:touch;">
+    <iframe src="" width="100%" height="100%" name="popupChkApp"></iframe>
+</div>
+<script type="text/javascript" src="/8G0gTi2Ww3eJK9jzak8OzLlw/1t1YkcS2aDik/IntzETIaAwk/I0QI/TCoQKh0"></script>
+
+
+</body>
+</html>

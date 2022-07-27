@@ -50,7 +50,7 @@ public class TbFlightSchedule {
     private SchFood schFood;
     private LocalDateTime schRegDate;
 
-    @OneToOne
-    private TbReservation tbReservation;
+//    @OneToOne
+//    private TbReservation tbReservation;
 
 }
