@@ -38,6 +38,7 @@ public class TbDestinationApiController extends CrudController<TbDestinationRequ
     @Override
     @PutMapping("")
     public Header<TbDestinationResponse> update(@RequestBody Header<TbDestinationRequest> request) {
+        System.out.println("dd");
         return tbDestinationApiLogicService.update(request);
     }
 
@@ -48,7 +49,7 @@ public class TbDestinationApiController extends CrudController<TbDestinationRequ
     }
 
     @GetMapping("")
-    public Header<List<TbDestinationResponse>> findAll(@PageableDefault(sort = {""}, direction = Sort.Direction.DESC) Pageable pageable){     //paging할수있는 객체 생성함
+    public Header<List<TbDestinationResponse>> findAll(@PageableDefault(sort = {"desIdx"}, direction = Sort.Direction.DESC) Pageable pageable){     //paging할수있는 객체 생성함
         return tbDestinationApiLogicService.search(pageable);
     }
 }

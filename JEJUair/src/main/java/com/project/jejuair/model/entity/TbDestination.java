@@ -17,8 +17,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @SequenceGenerator(
-        name="seq_extraservice",
-        sequenceName = "seq_extraservice",
+        name="seq_destination",
+        sequenceName = "seq_destination",
         initialValue = 1,
         allocationSize = 1
 )
@@ -26,7 +26,7 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 public class TbDestination {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_extraservice")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_destination")
     private Long desIdx;                // 번호
     @Enumerated(EnumType.STRING)
     private DesContinent desContinent;  // 대륙구분
