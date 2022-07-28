@@ -49,7 +49,7 @@ public class TbAircraftApiController extends CrudController<TbAircraftRequest, T
     }
 
     @GetMapping("")
-    public Header<List<TbAircraftResponse>> findAll(@PageableDefault(sort = {""}, direction = Sort.Direction.DESC) Pageable pageable){     //paging할수있는 객체 생성함
+    public Header<List<TbAircraftResponse>> findAll(@PageableDefault(sort = {"acftIdx"}, direction = Sort.Direction.DESC) Pageable pageable){     //paging할수있는 객체 생성함
         return tbAircraftApiLogicService.search(pageable);
     }
 }

@@ -23,6 +23,7 @@ public class TbDestinationApiLogicService extends BaseService<TbDestinationReque
 
     private TbDestinationResponse response(TbDestination tbDestination){
         TbDestinationResponse tbDestinationResponse = TbDestinationResponse.builder()
+                .desIdx(tbDestination.getDesIdx())
                 .desContinent(tbDestination.getDesContinent())
                 .desDestination(tbDestination.getDesDestination())
                 .desAirportCode(tbDestination.getDesAirportCode())

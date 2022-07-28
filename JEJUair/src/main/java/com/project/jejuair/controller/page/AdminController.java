@@ -79,6 +79,26 @@ public class AdminController {
         return new ModelAndView("/admin/pages/flight_schedule/aircraft_list/aircraft_list");
     }
 
+    @RequestMapping("/aircraft/view/{acftIdx}")
+    public ModelAndView aircraftView(HttpServletRequest request, @PathVariable(name="acftIdx") Long acftIdx){
+        HttpSession session = request.getSession();
+        if(session.getAttribute("name") != null) {
+            return new ModelAndView("/admin/pages/flight_schedule/aircraft_list/aircraft_info");
+        }else {
+            return new ModelAndView("/admin/pages/login");
+        }
+    }
+
+    @RequestMapping("/aircraft/edit/{acftIdx}")
+    public ModelAndView aircraftEdit(HttpServletRequest request, @PathVariable(name="acftIdx") Long acftIdx){
+        HttpSession session = request.getSession();
+        if(session.getAttribute("name") != null) {
+            return new ModelAndView("/admin/pages/flight_schedule/aircraft_list/aircraft_edit");
+        }else {
+            return new ModelAndView("/admin/pages/login");
+        }
+    }
+
     @RequestMapping("/aircraft/regist")
     public ModelAndView aircraftRegist(){
         return new ModelAndView("/admin/pages/flight_schedule/aircraft_regist/aircraft_regist");
@@ -87,6 +107,26 @@ public class AdminController {
     @RequestMapping("/destination/list")
     public ModelAndView destinationList(){
         return new ModelAndView("/admin/pages/flight_schedule/destination_list/destination_list");
+    }
+
+    @RequestMapping("/destination/view/{desIdx}")
+    public ModelAndView destinationView(HttpServletRequest request, @PathVariable(name="desIdx") Long desIdx){
+        HttpSession session = request.getSession();
+        if(session.getAttribute("name") != null) {
+            return new ModelAndView("/admin/pages/flight_schedule/destination_list/destination_info");
+        }else {
+            return new ModelAndView("/admin/pages/login");
+        }
+    }
+
+    @RequestMapping("/destination/edit/{desIdx}")
+    public ModelAndView destinationEdit(HttpServletRequest request, @PathVariable(name="desIdx") Long desIdx){
+        HttpSession session = request.getSession();
+        if(session.getAttribute("name") != null) {
+            return new ModelAndView("/admin/pages/flight_schedule/destination_list/destination_edit");
+        }else {
+            return new ModelAndView("/admin/pages/login");
+        }
     }
 
     @RequestMapping("/destination/regist")
