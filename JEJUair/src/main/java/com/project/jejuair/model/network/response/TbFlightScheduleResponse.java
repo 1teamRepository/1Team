@@ -21,10 +21,10 @@ public class TbFlightScheduleResponse {
     private String schAircraftName;
     private String schDeparture;
     private String schArrival;
-    private LocalDateTime schDepartureDate;
-    private LocalDateTime schArrivalDate;
-    private LocalTime schDepartureTime;
-    private LocalTime schArrivalTime;
+    private String schDepartureDate;
+    private String schArrivalDate;
+    private String schDepartureTime;
+    private String schArrivalTime;
     private Long schBizLitePrice;
     private Integer schBizLiteDiscount;
     private Long schFlexPrice;

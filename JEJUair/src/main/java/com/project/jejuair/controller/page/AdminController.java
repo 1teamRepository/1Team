@@ -69,6 +69,26 @@ public class AdminController {
         return new ModelAndView("/admin/pages/flight_schedule/flight_schedule_list/flight_schedule_list");
     }
 
+    @RequestMapping("/flight_schedule/view/{schIdx}")
+    public ModelAndView flightScheduleView(HttpServletRequest request, @PathVariable(name="schIdx") Long schIdx){
+        HttpSession session = request.getSession();
+        if(session.getAttribute("name") != null) {
+            return new ModelAndView("/admin/pages/flight_schedule/flight_schedule_list/flight_schedule_info");
+        }else {
+            return new ModelAndView("/admin/pages/login");
+        }
+    }
+
+    @RequestMapping("/flight_schedule/edit/{schIdx}")
+    public ModelAndView flightScheduleEdit(HttpServletRequest request, @PathVariable(name="schIdx") Long schIdx){
+        HttpSession session = request.getSession();
+        if(session.getAttribute("name") != null) {
+            return new ModelAndView("/admin/pages/flight_schedule/flight_schedule_list/flight_schedule_edit");
+        }else {
+            return new ModelAndView("/admin/pages/login");
+        }
+    }
+
     @RequestMapping("/flight_schedule/regist")
     public ModelAndView flightScheduleRegist(){
         return new ModelAndView("/admin/pages/flight_schedule/flight_schedule_regist/flight_schedule_regist");
