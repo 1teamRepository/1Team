@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제주항공 | 유실물 목록</title>
+    <link rel="stylesheet" type="text/css" href="/admin/lib/css/common.css">
+    <link rel="icon" href="/admin/lib/images/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+</head>
+
+<style>
+    button.file{width: 60px; height: 30px; border-radius: 6px; border: none; background-color: var(--orange); color: var(--white); font-size: 15px; margin-left: 10px;}
+    .textBox3{border: 1px solid #d9d9d9; height: 30px; width: 230px; border-radius: 7px; text-align: center;}
+
+</style>
+
+<body>
+<div class="container">
+    <div th:replace="/admin/fragment/menu :: menu"></div>
+
+    <!-- main -->
+    <div class="containerbody" id="view">
+        <div id="category" value="customer"></div>
+        <div class="main">
+            <!-- 본문 -->
+            <div class="bodytext_area box_inner">
+                <dl class="myinfo">
+                    <form action="#" class="regForm">
+                        <div class="tableBorder">
+                            <div class="pageTitle">
+                                <h2>유실물 목록 - 상세</h2>
+                            </div>
+                            <ul class="leg_list">
+                                <li class="clear">
+                                    <span class="tit_lbl">관리번호</span>
+                                    <div class="reg_content"><input type="text" class="textBox" :value=`${view.lostIdx}` readonly style="color: #9b9a9a;"></div>
+                                </li>
+
+                                <li class="clear">
+                                    <span class="tit_lbl">습득편명</span>
+                                    <div class="reg_content"><input type="text" class="textBox" :value=`${view.lostAcqAirName}` readonly></div>
+                                </li>
+
+                                <li class="clear">
+                                    <span class="tit_lbl">습득 날짜</span>
+                                    <div class="reg_content"><input type="text" class="textBox" :value=`${view.lostAcqDate}` readonly></div>
+                                </li>
+
+                                <li class="clear">
+                                    <span class="tit_lbl">보관 장소</span>
+                                    <div class="reg_content"><input type="text" class="textBox" :value=`${view.lostStoragePlace}` readonly></div>
+                                </li>
+
+                                <li class="clear">
+                                    <span class="tit_lbl">폐기 날짜</span>
+                                    <div class="reg_content"><input type="text" class="textBox" :value=`${view.lostDisDate}` readonly></div>
+                                </li>
+
+                                <li class="clear">
+                                    <span class="tit_lbl">색상</span>
+                                    <div class="reg_content"><input type="text" class="textBox" :value=:value=`${view.lostColor}` readonly></div>
+                                </li>
+                                <li class="clear">
+                                    <span class="tit_lbl">품목</span>
+                                    <div class="reg_content"><input type="text" class="textBox" :value=:value=`${view.lostItem}` readonly></div>
+                                </li>
+                                <li class="clear">
+                                    <span class="tit_lbl">상세 설명</span>
+                                    <div class="reg_content"><input type="text" class="textBox" :value=:value=`${view.lostExplain}` readonly></div>
+                                </li>
+                                <li class="clear">
+                                    <span class="tit_lbl">좌석번호</span>
+                                    <div class="reg_content"><input type="text" class="textBox" :value=:value=`${view.lostSeatNum}` readonly></div>
+                                </li>
+                                <li class="clear">
+                                    <span class="tit_lbl">상태</span>
+                                    <div class="reg_content"><input type="text" class="textBox" :value=:value=`${view.lostStatus}` readonly></div>
+                                </li>
+                                <li class="clear">
+                                    <span class="tit_lbl">이미지 첨부</span>
+                                    <div class="reg_content"><input type="text" class="textBox" :value=:value=`${view.lostImg}` readonly></div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="buttonArea">
+                            <button type="button" class="button list margin_bottom_20" value="목록" onclick="location.href='/admin/lost_item/list'">목록</button>
+                            <div class="button edit margin_bottom_20" value="수정"><a :href=`/admin/lost_item/edit/${view.lostIdx}`>수정</a></div>
+                            <button type="button" id="delete" class="button delete margin_bottom_20" value="삭제" onclick="delete_view()">삭제</button>
+                        </div>
+                    </form>
+                </dl>
+            </div>
+
+            <!-- 본문 끝 -->
+        </div>
+    </div>
+
+</div>
+
+<!--아이콘 사용을 위한 설치 스크립트-->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+<script src="/admin/lib/js/common.js"> </script>
+<script src="/admin/lib/js/admin/admin_view.js"></script>
+
+</body>
+
+</html>
