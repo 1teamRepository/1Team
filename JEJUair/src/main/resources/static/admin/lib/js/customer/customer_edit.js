@@ -1,48 +1,64 @@
 $(function(){
     $(document).on('click', '#sendit', function(){
         let category = document.getElementById("category").getAttribute("value");
-        if(!$('#admAdminId').val()){
+        if(!$('#memUserid').val()){
             alert('아이디를 입력하세요');
-            $('#admAdminId').focus();
+            $('#memUserid').focus();
             return false;
         }
 
-        if(!$('#admAdminPw').val()) {
+        if(!$('#memUserpw').val()) {
             alert('비밀번호를 입력하세요');
-            $('#admAdminPw').focus();
+            $('#memUserpw').focus();
             return false;
         }
 
-        if(!$('#admKorN ame').val()){
+        if(!$('#memKoLastname').val()){
             alert('이름을 입력하세요');
-            $('#admKorName').focus();
+            $('#memKoLastname').focus();
             return false;
         }
 
-        if(!$('#admEngName').val()){
+        if(!$('#memKoFirstname').val()){
             alert('이름을 입력하세요');
-            $('#admEngName').focus();
+            $('#memKoFirstname').focus();
             return false;
         }
 
-        if(!$('#admEmployee').val()){
-            alert('사번을 입력하세요');
-            $('#admEmployee').focus();
+        if(!$('#memEngLastname').val()){
+            alert('이름을 입력하세요');
+            $('#memEngLastname').focus();
             return false;
         }
-        if(!$('#admAdminHp').val()){
-            alert('휴대전화번호를 입력하세요');
-            $('#admAdminHp').focus();
+        if(!$('#memEngFirstname').val()){
+            alert('이름을 입력하세요');
+            $('#memEngFirstname').focus();
             return false;
         }
-        if(!$('#admDeparture').val()){
-            alert('직무를 입력하세요');
+        if(!$('#memGender').val()){
+            alert('성별을 입력하세요');
             $('#admDeparture').focus();
             return false;
         }
-        if(!$('#admEmail').val()){
+        if(!$('#memEmail').val()){
             alert('이메일을 입력하세요');
             $('#admEmail').focus();
+            return false;
+        }
+        if(!$('#memSsn').val()){
+            alert('생년월일을 입력하세요');
+            $('#admEmail').focus();
+            return false;
+        }
+        if(!$('#memHp').val()){
+            alert('휴대폰번호를 입력하세요');
+            $('#memHp').focus();
+            return false;
+        }
+
+        if(!$('#memPoint').val()){
+            alert('포인트를 입력하세요');
+            $('#memPoint').focus();
             return false;
         }
 
@@ -64,15 +80,19 @@ $(function(){
             resultCode:"ok",
             description:"ok",
             data:{
-                admIdx: $('#admIdx').val(),
-                admAdminId: $('#admAdminId').val(),
-                admAdminPw: $('#admAdminPw').val(),
-                admEmployee: $('#admEmployee').val(),
-                admAdminHp: $('#admAdminHp').val(),
-                admDeparture: $('#admDeparture').val(),
-                admKorName: $('#admKorName').val(),
-                admEngName: $('#admEngName').val(),
-                admEmail: $('#admEmail').val()
+                memIdx: $('#memIdx').val(),
+                memUserid: $('#memUserid').val(),
+                memUserpw: $('#memUserpw').val(),
+                memKoLastname: $('#memKoLastname').val(),
+                memKoFirstname: $('#memKoFirstname').val(),
+                memEngLastname: $('#memEngLastname').val(),
+                memEngFirstname: $('#memEngFirstname').val(),
+                memGender: $('#memGender').val(),
+                memEmail: $('#memEmail').val(),
+                memSsn: $('#memSsn').val(),
+                memHp: $('#memHp').val(),
+                memPoint: $('#memPoint').val()
+
             }
         }
 

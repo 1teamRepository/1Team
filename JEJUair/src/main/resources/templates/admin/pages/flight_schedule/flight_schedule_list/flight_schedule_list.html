@@ -19,7 +19,7 @@
     <div class="container" value="0-1">
         <div th:replace="/admin/fragment/menu :: menu"></div>
 
-        <div class="containerbody" >
+        <div class="containerbody">
             <!-- main -->
             <div id="category" value="flight_schedule"></div>
             <div class="main">
@@ -34,10 +34,11 @@
                                 <div class="wrapper">
                                     <fieldset class="selectDiv">
                                         <select name="menu" id="menu-select">
-                                            <option value="all">전체</option>
-                                            <option value="aircraft">항공기명</option>
-                                            <option value="destination">출발지</option>
-                                            <option value="arrival">도착지</option>
+                                            <option value="">전체</option>
+                                            <option value="dog">전체</option>
+                                            <option value="cat">항공기명</option>
+                                            <option value="hamster">출발지</option>
+                                            <option value="parrot">도착지</option>
                                         </select>
                                         <input type="text" class="searchBox" title="검색어를 입력하세요"
                                             placeholder="검색어를 입력하세요">
@@ -49,31 +50,25 @@
                         <table>
                             <thead>
                                 <tr class="topbanner">
-                                    <td class="no">NO</td>
                                     <td class="airplaneName">항공기명</td>
                                     <td class="departureTime">출발일자</td>
-                                    <td class="departureTime">출발시간</td>
                                     <td class="departureLocation">출발지</td>
-                                    <td class="arrivalTime">도착일자</td>
-                                    <td class="arrivalLocation">도착지</td>
+                                    <td class="departureTime">출발시간</td>
+                                    <td class="arriveTime">도착지</td>
                                     <td class="arriveTime">도착시간</td>
-                                    <td class="regdate">등록일시</td>
                                 </tr>
                             </thead>
 
                             <tbody id="itemList">
                                 <tr v-for="(dto,i) in itemList"
                                     :key="i"
-                                    @click="location.href=`/admin/flight_schedule/view/${dto.schIdx}`">
-                                    <td class="sch_idx"><a :href=`/admin/flight_schedule/view/${dto.schIdx}`>{{dto.schIdx}}</a></td>
-                                    <td class="sch_aircraft_name">{{dto.schAircraftName}}</td>
+                                    @click="location.href=`/flight_schedule/list/view/${dto.schIdx}`">
+                                    <td class="sch_aircraft_name"><a :href=`/flight_schedule/list/view/${dto.schIdx}`>{{dto.schAircraftName}}</a></td>
                                     <td class="sch_departure_date">{{dto.schDepartureDate}}</td>
-                                    <td class="sch_departure_time">{{dto.schDepartureTime}}</td>
                                     <td class="sch_departure">{{dto.schDeparture}}</td>
-                                    <td class="sch_arrival_date">{{dto.schArrivalDate}}</td>
-                                    <td class="sch_arrival_time">{{dto.schArrivalTime}}</td>
+                                    <td class="sch_departure_time">{{dto.schDepartureTime}}</td>
                                     <td class="sch_arrival">{{dto.schArrival}}</td>
-                                    <td class="sch_reg_date">{{dto.schRegDate}}</td>
+                                    <td class="sch_arrival_time">{{dto.schArrivalTime}}</td>
                                 </tr>
 
                             </tbody>

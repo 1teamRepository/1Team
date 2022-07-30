@@ -22,14 +22,12 @@ public class TbFlightScheduleApiLogicService extends BaseService<TbFlightSchedul
 
     private TbFlightScheduleResponse response(TbFlightSchedule tbFlightSchedule){
         TbFlightScheduleResponse tbFlightScheduleResponse = TbFlightScheduleResponse.builder()
-                .schIdx(tbFlightSchedule.getSchIdx())
                 .schAircraftType(tbFlightSchedule.getSchAircraftType())
                 .schDomesticOverseas(tbFlightSchedule.getSchDomesticOverseas())
                 .schAircraftName(tbFlightSchedule.getSchAircraftName())
                 .schDeparture(tbFlightSchedule.getSchDeparture())
                 .schArrival(tbFlightSchedule.getSchArrival())
                 .schDepartureDate(tbFlightSchedule.getSchDepartureDate())
-                .schDepartureTime(tbFlightSchedule.getSchDepartureTime())
                 .schArrivalDate(tbFlightSchedule.getSchArrivalDate())
                 .schArrivalTime(tbFlightSchedule.getSchArrivalTime())
                 .schBizLitePrice(tbFlightSchedule.getSchBizLitePrice())
@@ -70,8 +68,7 @@ public class TbFlightScheduleApiLogicService extends BaseService<TbFlightSchedul
                 .schFood(tbFlightScheduleRequest.getSchFood())
                 .schRegDate(LocalDateTime.now())
                 .build();
-        TbFlightSchedule newTbflightschedule = baseRepository.save(tbFlightSchedule);
-        return Header.OK(response(newTbflightschedule));
+        return null;
     }
 
     @Override
