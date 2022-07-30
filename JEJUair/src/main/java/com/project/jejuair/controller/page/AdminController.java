@@ -159,6 +159,27 @@ public class AdminController {
         return new ModelAndView("/admin/pages/customer/customer_list/customer_list");
     }
 
+    @RequestMapping("/customer/view/{memIdx}")
+    public ModelAndView customerView(HttpServletRequest request, @PathVariable(name="memIdx") Long memIdx){
+        HttpSession session = request.getSession();
+        if(session.getAttribute("name") != null) {
+            return new ModelAndView("/admin/pages/customer/customer_list/customer_view");
+        }else {
+            return new ModelAndView("/admin/pages/login");
+        }
+    }
+
+    @RequestMapping("/customer/edit/{memIdx}")
+    public ModelAndView customerEdit(HttpServletRequest request, @PathVariable(name="memIdx") Long memIdx){
+        HttpSession session = request.getSession();
+        if(session.getAttribute("name") != null) {
+            return new ModelAndView("/admin/pages/customer/customer_list/customer_edit");
+        }else {
+            return new ModelAndView("/admin/pages/login");
+        }
+    }
+
+
 
     @RequestMapping("/reservation/list")
     public ModelAndView reservationList(){
@@ -215,11 +236,30 @@ public class AdminController {
         return new ModelAndView("/admin/pages/lost_item/lost_item_list/lost_item_list");
     }
 
+    @RequestMapping("/lost_item/view/{lostIdx}")
+    public ModelAndView lostItemView(HttpServletRequest request, @PathVariable(name="lostIdx") Long lostIdx){
+        HttpSession session = request.getSession();
+        if(session.getAttribute("name") != null) {
+            return new ModelAndView("/admin/pages/lost_item/lost_item_list/lost_item_view");
+        }else {
+            return new ModelAndView("/admin/pages/login");
+        }
+    }
+
+    @RequestMapping("/lost_item/edit/{lostIdx}")
+    public ModelAndView lostItemEdit(HttpServletRequest request, @PathVariable(name="lostIdx") Long lostIdx){
+        HttpSession session = request.getSession();
+        if(session.getAttribute("name") != null) {
+            return new ModelAndView("/admin/pages/lost_item/lost_item_list/lost_item_edit");
+        }else {
+            return new ModelAndView("/admin/pages/login");
+        }
+    }
+
     @RequestMapping("/lost_item/regist")
     public ModelAndView lostItemRegist(){
         return new ModelAndView("/admin/pages/lost_item/lost_item_register/lost_item_register");
     }
-
 
 
     @RequestMapping("/food/list")
@@ -227,16 +267,30 @@ public class AdminController {
         return new ModelAndView("/admin/pages/airline_food_/airline_food_list/airline_food_list");
     }
 
-    @RequestMapping("/food/view")
-    public ModelAndView foodView(){
-        return new ModelAndView("/admin/pages/airline_food_/airline_food_list/airline_food_view");
+    @RequestMapping("/food/view/{foodIdx}")
+    public ModelAndView foodView(HttpServletRequest request, @PathVariable(name="foodIdx") Long foodIdx){
+        HttpSession session = request.getSession();
+        if(session.getAttribute("name") != null) {
+            return new ModelAndView("/admin/pages/airline_food_/airline_food_list/airline_food_view");
+        }else {
+            return new ModelAndView("/admin/pages/login");
+        }
+    }
+
+    @RequestMapping("/food/edit/{foodIdx}")
+    public ModelAndView foodEdit(HttpServletRequest request, @PathVariable(name="foodIdx") Long foodIdx){
+        HttpSession session = request.getSession();
+        if(session.getAttribute("name") != null) {
+            return new ModelAndView("/admin/pages/airline_food_/airline_food_list/airline_food_edit");
+        }else {
+            return new ModelAndView("/admin/pages/login");
+        }
     }
 
     @RequestMapping("/food/regist")
     public ModelAndView foodRegist(){
         return new ModelAndView("/admin/pages/airline_food_/airline_food_register/airline_food_regist");
     }
-
 
     @RequestMapping("/adminuser/list")
     public ModelAndView adminList(){
