@@ -32,177 +32,94 @@
                                     <h2>운항스케줄 등록</h2>
                                 </div>
                                 <ul class="leg_list">
-                                    <li class="clear">
-                                        <span class="tit_lbl">항공기타입</span>
-                                        <div class="reg_content">
-                                            <select class="textBox selectBox">
-                                                <option value="항공기타입">항공기타입1</option>
-                                                <option value="항공기타입">항공기타입1</option>
-                                            </select>
-                                        </div>
-                                    </li>
+
                                     <li class="clear">
                                         <span class="tit_lbl">국내/국외</span>
                                         <div class="reg_content">
-                                            <select class="textBox selectBox">
-                                                <option value="국내">국내</option>
-                                                <option value="국외">국외</option>
+                                            <select class="textBox selectBox" name="schDomesticOverseas" id="schDomesticOverseas" >
+                                                <option value="DOMESTIC">국내</option>
+                                                <option value="OVERSEAS">국외</option>
                                             </select>
                                         </div>
                                     </li>
                                     <li class="clear">
                                         <span class="tit_lbl">항공기명</span>
                                         <div class="reg_content">
-                                            <select class="textBox selectBox">
-                                                <option value="항공기명">항공기명1</option>
-                                                <option value="항공기명">항공기명2</option>
+                                            <select class="textBox selectBox" id="acftAircraftName">
+                                                <option value=""></option>
                                             </select>
                                         </div>
                                     </li>
 
                                     <li class="clear">
                                         <span class="tit_lbl">출발지</span>
-                                        <div class="reg_content">
-                                            <select class="textBox selectBox">
-                                                <option value="인천">서울(인천) ICN</option>
-                                                <option value="김포">서울(김포) GMP</option>
-                                                <option value="부산">부산 PUS</option>
-                                                <option value="제주">제주 CJU</option>
-                                                <option value="광주">광주 KWJ</option>
-                                                <option value="여수">여수 RSU</option>
-                                                <option value="군산">군산 KUV</option>
-                                                <option value="청주">청주 CJJ</option>
-                                                <option value="대구">대구 TAE</option>
-                                                <option value="도쿄">도쿄(나리타) NRT</option>
-                                                <option value="오사카">오사카(간사이) KIX</option>
-                                                <option value="후쿠오카">후쿠오카 FUK</option>
-                                                <option value="웨이하이">웨이하이 WEH</option>
-                                                <option value="하얼빈">하얼빈 HRB</option>
-                                                <option value="울란바타르">울란바타르 UBN</option>
-                                                <option value="하노이">하노이 HAN</option>
-                                                <option value="호찌민">호찌민 SGN</option>
-                                                <option value="다낭">다낭 DAD</option>
-                                                <option value="나트랑">나트랑/냐짱 CXR</option>
-                                                <option value="방콕">방콕 BKK</option>
-                                                <option value="마닐라">마닐라 MNL</option>
-                                                <option value="세부">세부 CEB</option>
-                                                <option value="보홀">보홀 TAG</option>
-                                                <option value="클락">클락 CRK</option>
-                                                <option value="싱가포르">싱가포르 SIN</option>
-                                                <option value="코타키나발라">코타키나발라 BKI</option>
-                                                <option value="괌">괌 GUM</option>
-                                                <option value="사이판">사이판 SPN</option>
+                                        <div class="reg_content" >
+                                            <select class="textBox selectBox desDestination" id="departure">
+                                                <option value=""></option>
                                             </select>
                                         </div>
                                     </li>
                                     <li class="clear">
                                         <span class="tit_lbl">도착지</span>
-                                        <div class="reg_content">
-                                            <select class="textBox selectBox">
-                                                <option value="인천">서울(인천) ICN</option>
-                                                <option value="김포">서울(김포) GMP</option>
-                                                <option value="부산">부산 PUS</option>
-                                                <option value="제주">제주 CJU</option>
-                                                <option value="광주">광주 KWJ</option>
-                                                <option value="여수">여수 RSU</option>
-                                                <option value="군산">군산 KUV</option>
-                                                <option value="청주">청주 CJJ</option>
-                                                <option value="대구">대구 TAE</option>
-                                                <option value="도쿄">도쿄(나리타) NRT</option>
-                                                <option value="오사카">오사카(간사이) KIX</option>
-                                                <option value="후쿠오카">후쿠오카 FUK</option>
-                                                <option value="웨이하이">웨이하이 WEH</option>
-                                                <option value="하얼빈">하얼빈 HRB</option>
-                                                <option value="울란바타르">울란바타르 UBN</option>
-                                                <option value="하노이">하노이 HAN</option>
-                                                <option value="호찌민">호찌민 SGN</option>
-                                                <option value="다낭">다낭 DAD</option>
-                                                <option value="나트랑">나트랑/냐짱 CXR</option>
-                                                <option value="방콕">방콕 BKK</option>
-                                                <option value="마닐라">마닐라 MNL</option>
-                                                <option value="세부">세부 CEB</option>
-                                                <option value="보홀">보홀 TAG</option>
-                                                <option value="클락">클락 CRK</option>
-                                                <option value="싱가포르">싱가포르 SIN</option>
-                                                <option value="코타키나발라">코타키나발라 BKI</option>
-                                                <option value="괌">괌 GUM</option>
-                                                <option value="사이판">사이판 SPN</option>
+                                        <div class="reg_content" >
+                                            <select class="textBox selectBox desDestination" id="arrival">
+                                                <option value=""></option>
                                             </select>
                                         </div>
                                     </li>
                                     <li class="clear">
-                                        <span class="tit_lbl">출발 일시</span>
-                                        <div class="reg_content"><input type="date" name="startday"
-                                                class="textBox selectBox"></div>
+                                        <span class="tit_lbl">출발일</span>
+                                        <div class="reg_content"><input type="date"
+                                                class="textBox selectBox"  name="schDepartureDate" id="schDepartureDate"></div>
                                     </li>
                                     <li class="clear">
-                                        <span class="tit_lbl">도착 일시</span>
-                                        <div class="reg_content"><input type="date" name="startday"
-                                                class="textBox selectBox"></div>
+                                        <span class="tit_lbl">도착일</span>
+                                        <div class="reg_content"><input type="date"
+                                                class="textBox selectBox" name="schArrivalDate" id="schArrivalDate"></div>
                                     </li>
                                     <li class="clear">
                                         <span class="tit_lbl">출발 시간</span>
                                         <div class="reg_content">
-                                            <input type="time" name="timeset" class="textBox selectBox">
+                                            <input type="time" class="textBox selectBox"  name="schDepartureTime" id="schDepartureTime">
                                         </div>
                                     </li>
                                     <li class="clear">
                                         <span class="tit_lbl">도착 시간</span>
                                         <div class="reg_content">
-                                            <input type="time" name="timeset" class="textBox selectBox">
+                                            <input type="time" class="textBox selectBox" name="schArrivalTime" id="schArrivalTime">
                                         </div>
                                     </li>
                                     <li class="clear">
                                         <span class="tit_lbl">BIZ-LITE 가격</span>
-                                        <div class="reg_content"><input type="text" class="textBox"></div>
+                                        <div class="reg_content"><input type="text" class="textBox" name="schBizLitePrice" id="schBizLitePrice" value=""></div>
                                     </li>
                                     <li class="clear">
                                         <span class="tit_lbl">BIZ-LITE 적립율</span>
-                                        <div class="reg_content"><input type="text" class="textBox2"> %</div>
-                                    </li>
-                                    <li class="clear">
-                                        <span class="tit_lbl">FLEX 가격</span>
-                                        <div class="reg_content"><input type="text" class="textBox"></div>
-                                    </li>
-                                    <li class="clear">
-                                        <span class="tit_lbl">FLEX 적립율</span>
-                                        <div class="reg_content"><input type="text" class="textBox2"> %</div>
-                                    </li>
-                                    <li class="clear">
-                                        <span class="tit_lbl">FLY-BAG 가격</span>
-                                        <div class="reg_content"><input type="text" class="textBox"></div>
-                                    </li>
-                                    <li class="clear">
-                                        <span class="tit_lbl">FLY-BAG 적립율</span>
-                                        <div class="reg_content"><input type="text" class="textBox2"> %</div>
+                                        <div class="reg_content"><input type="text" class="textBox2" name="schBizLiteDiscount" id="schBizLiteDiscount" value=""> %</div>
                                     </li>
                                     <li class="clear">
                                         <span class="tit_lbl">FLY 가격</span>
-                                        <div class="reg_content"><input type="text" class="textBox"></div>
+                                        <div class="reg_content"><input type="text" class="textBox" name="schFlyPrice" id="schFlyPrice" value=""></div>
                                     </li>
                                     <li class="clear">
                                         <span class="tit_lbl">FLY 적립율</span>
-                                        <div class="reg_content"><input type="text" class="textBox2"> %</div>
+                                        <div class="reg_content"><input type="text" class="textBox2" name="schFlyDiscount" id="schFlyDiscount" value=""> %</div>
                                     </li>
                                     <li class="clear">
                                         <span class="tit_lbl">기내식 유무</span>
                                         <div class="reg_content">
-                                            <input type="radio" class="css-radio" id="mmm_lbl" name="meal"
-                                                value="포함"><label for="mmm_lbl">포함</label>
-
-                                            <input type="radio" class="css-radio" id="www_lbl" name="meal"
-                                                value="불포함"><label for="www_lbl">불포함</label>
+                                            <select class="textBox selectBox" name="schFood" id="schFood">
+                                                <option value="YES">포함</option>
+                                                <option value="No">불포함</option>
+                                            </select>
                                         </div>
                                     </li>
-                                    <li class="clear">
-                                        <span class="tit_lbl">반려동물</span>
-                                        <div class="reg_content"><input type="text" class="textBox2"> / 5</div>
-                                    </li>
+
                                 </ul>
                             </div>
                             <div class="buttonArea">
-                                <button type="button" class="button cancel" value="목록" onclick="location.href='/flight_schedule/flight_schedule_list/flight_schedule_list.html'" >목록</button>
-                                <button type="submit" class="button register" value="등록">등록</button>
+                                <button type="button" class="button list margin_bottom_20" value="목록" onclick="location.href='/admin/flight_schedule/list'">목록</button>
+                                <button type="button" class="button register margin_bottom_20" value="등록" id="sendit">등록</button>
                             </div>
                         </form>
                     </dl>
@@ -212,41 +129,15 @@
             </div>
         </div>
 
-    </div>
+    </div>  
 
     <!--아이콘 사용을 위한 설치 스크립트-->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="/admin/lib/js/common.js"> </script>
+    <script src="/admin/lib/js/flight_schedule/aircraft_name.js"></script>
+    <script src="/admin/lib/js/flight_schedule/flight_schedule_regist.js"></script>
 
-
-    <script>
-        console.log("헬로우")
-        console.log(document.title.substr(7));
-        var name2 = document.title.substr(7);
-        var span = document.querySelectorAll('.navigation span');
-        var regex = /[^0-9]/g;
-        for(var i=0; i<span.length; i++){
-            if(span[i].innerHTML == name2){
-                console.log("같은게 들어옴 " + i + "번")
-                var li = span[i].parentElement.parentElement
-                var num;
-                var str;
-                if(li.className.substr(0, 4) == 'drop'){
-                    str = li.parentElement.parentElement.firstElementChild.getAttribute("onclick");
-                    num = str.replace(regex, "");
-                    dropdown(num);
-                    li.classList.add('thispage');
-                    li.parentElement.parentElement.classList.add('thispage');
-                }else{
-                    str = li.firstElementChild.getAttribute("onclick");
-                    num = str.replace(regex, "");
-                    dropdown(num);
-                    li.classList.add('thispage');
-                }
-            }
-        }
-
-    </script>
 </body>
 
 </html>
