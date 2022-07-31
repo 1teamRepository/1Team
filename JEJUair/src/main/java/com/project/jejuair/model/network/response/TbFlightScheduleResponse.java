@@ -16,7 +16,6 @@ import java.time.LocalTime;
 @Builder
 public class TbFlightScheduleResponse {
     private Long schIdx;
-    private String schAircraftType;
     private DomesticOverseas schDomesticOverseas;
     private String schAircraftName;
     private String schDeparture;
@@ -27,13 +26,8 @@ public class TbFlightScheduleResponse {
     private String schArrivalTime;
     private Long schBizLitePrice;
     private Integer schBizLiteDiscount;
-    private Long schFlexPrice;
-    private Integer schFlexDiscount;
-    private Long schFlyBagPrice;
-    private Integer schFlyBagDiscount;
     private Long schFlyPrice;
     private Integer schFlyDiscount;
     private SchFood schFood;
-    private String schPet;
     private LocalDateTime schRegDate;
 }
