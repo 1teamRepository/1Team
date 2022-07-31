@@ -221,6 +221,22 @@ public class AdminController {
         return new ModelAndView("/admin/pages/payment/payment_list/payment_list");
     }
 
+
+    @RequestMapping("/payment/info")
+    public ModelAndView paymentInfoList(){
+        return new ModelAndView("/admin/pages/payment/payment_settings/payment_settings_multi");
+    }
+
+    @RequestMapping("/payment/view/{payIdx}")
+    public ModelAndView paymentView(HttpServletRequest request, @PathVariable(name="payIdx") Long payIdx){
+        HttpSession session = request.getSession();
+        if(session.getAttribute("name") != null) {
+            return new ModelAndView("/admin/pages/payment/payment_settings/payment_settings_multi");
+        }else {
+            return new ModelAndView("/admin/pages/login");
+        }
+    }
+
     @RequestMapping("/event/list")
     public ModelAndView eventList(){
         return new ModelAndView("/admin/pages/event/event_list/event_list");
