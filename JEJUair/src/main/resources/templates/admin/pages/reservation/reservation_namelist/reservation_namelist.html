@@ -63,14 +63,12 @@
 
                                                 <tbody id="itemList">
                                                     <tr class="lists"
-                                                        v-for="(dto,i) in itemList"
-                                                        :key="i"
-                                                        @click="location.href=`/admin/reservation/namelist/view/${dto.resIdx}`">
+                                                        v-for="dto in itemList">
                                                         <td class="res_idx"><a :href=`/admin/reservation/namelist/view/${dto.resIdx}`>{{dto.resIdx}}</a></td>
-                                                        <td class="res_ko_name">{{dto.resKoName}}</td>
-                                                        <td class="res_email">{{dto.resEmail}}</td>
-                                                        <td class="res_hp">{{dto.resHp}}</td>
-                                                        <td><span class="res_status">{{dto.res_status}}</span></td>
+                                                        <td class="res_ko_name">{{dto.memKoFirstname}}{{dto.memKoLastname}}</td>
+                                                        <td class="res_email">{{dto.memEmail}}</td>
+                                                        <td class="res_hp">{{dto.memHp}}</td>
+                                                        <td><span class="res_status">{{dto.resStatus}}</span></td>
                                                     </tr>
                                                 </tbody>
                                             </table>

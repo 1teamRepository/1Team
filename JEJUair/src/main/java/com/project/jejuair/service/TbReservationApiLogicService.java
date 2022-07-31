@@ -1,9 +1,6 @@
 package com.project.jejuair.service;
 
 
-import com.project.jejuair.ifs.CrudInterface;
-import com.project.jejuair.model.entity.TbFlightSchedule;
-import com.project.jejuair.model.entity.TbMember;
 import com.project.jejuair.model.entity.TbReservation;
 import com.project.jejuair.model.enumclass.reservation.ResStatus;
 import com.project.jejuair.model.network.Header;
@@ -40,6 +37,7 @@ public class TbReservationApiLogicService extends BaseService<TbReservationReque
                 .tbMemberMemIdx(tbReservation.getTbMember().getMemIdx())
                 .memKoFirstname(tbReservation.getTbMember().getMemKoFirstname())
                 .memKoLastname(tbReservation.getTbMember().getMemKoLastname())
+                .memUserid(tbReservation.getTbMember().getMemUserid())
                 .memHp(tbReservation.getTbMember().getMemHp())
                 .memEmail(tbReservation.getTbMember().getMemEmail())
 
@@ -73,12 +71,10 @@ public class TbReservationApiLogicService extends BaseService<TbReservationReque
         return Header.OK(response(newTbReservation));
     }
 
-    @Override
     public Header<TbReservationResponse> read(Long resIdx) {
         return baseRepository.findById(resIdx).map(tbReservation -> response(tbReservation))
                 .map(Header::OK).orElseGet(() -> Header.ERROR("데이터 없음"));
     }
-    
     @Override
     public Header<TbReservationResponse> update(Header<TbReservationRequest> request) {
         TbReservationRequest tbReservationRequest = request.getData();
@@ -91,7 +87,6 @@ public class TbReservationApiLogicService extends BaseService<TbReservationReque
                 }).map(newTbReservation -> baseRepository.save(newTbReservation))
                 .map(newTbReservation -> response(newTbReservation)).map(Header::OK).orElseGet(()->Header.ERROR("데이터 없음"));
     }
-    
     @Override
     public Header delete(Long resIdx) {
         Optional<TbReservation> tbReservation = baseRepository.findById(resIdx);
@@ -114,6 +109,5 @@ public class TbReservationApiLogicService extends BaseService<TbReservationReque
                 .build();
         return Header.OK(tbReservationResponseList, pagination);
     }
-
 
 }

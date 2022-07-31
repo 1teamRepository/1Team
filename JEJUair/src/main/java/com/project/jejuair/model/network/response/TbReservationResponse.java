@@ -2,7 +2,7 @@ package com.project.jejuair.model.network.response;
 
 import com.project.jejuair.model.entity.TbFlightSchedule;
 import com.project.jejuair.model.entity.TbMember;
-import com.project.jejuair.model.enumclass.common.Gender;
+import com.project.jejuair.model.entity.TbPassenger;
 import com.project.jejuair.model.enumclass.reservation.ResRoute;
 import com.project.jejuair.model.enumclass.reservation.ResStatus;
 import lombok.AllArgsConstructor;
@@ -11,6 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Data
@@ -23,14 +24,13 @@ public class TbReservationResponse {
     private LocalDateTime resRegDate;
     private ResRoute resRoute;
 
-    private TbMember tbMember;
     private Long tbMemberMemIdx;
+    private String memUserid;
     private String memKoLastname;
     private String memKoFirstname;
     private String memHp;
     private String memEmail;
 
-    private TbFlightSchedule tbFlightSchedule;
     private Long tbFlightScheduleSchIdx;
     private String schAircraftName;
     private String schDeparture;
@@ -40,4 +40,5 @@ public class TbReservationResponse {
     private String schDepartureTime;
     private String schArrivalTime;
 
+    private List<TbPassengerResponse> tbPassengerResponseList;
 }
