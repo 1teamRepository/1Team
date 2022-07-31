@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/member")
+@RequestMapping("api/customer")
 @RequiredArgsConstructor
 public class TbMemberApiController extends CrudController <TbMemberRequest, TbMemberResponse, TbMember> {
 

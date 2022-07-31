@@ -18,255 +18,138 @@
 
 
 <body>
-    <div class="container" value="2-2">
-        <div th:replace="/admin/fragment/menu :: menu"></div>
+<div class="container" value="2-2">
+    <div th:replace="/admin/fragment/menu :: menu"></div>
 
 
-            <!-- main -->
-        <div class="containerbody" id="view">
-            <div id="category" value="reservation"></div>
-            <div class="main">
-                <div class="details">
-                    <div class="bodytext_area box_inner">
-                        <dl class="myinfo">
-                            <form class="regForm" id="reservation" method="post">
-                                <div class="tableBorder">
-                                    <div class="pageTitle">
-                                        <h2>예약 상세 정보</h2>
-                                    </div>
-
-                                    <ul class="leg_list">
-
-                                        <li class="clear">
-                                            <span class="tit_lbl">고유번호</span>
-                                            <div class="reg_content"><input type="text" class="textBox" value="10" disabled></div>
-                                        </li>
-
-                                        <li class="clear">
-                                            <span class="tit_lbl">예약자명</span>
-                                            <div class="reg_content"><input type="text" class="textBox" value="반하나" disabled></div>
-                                        </li>
-
-                                        <li class="clear">
-                                            <span class="tit_lbl">예약자 ID</span>
-                                            <div class="reg_content"><input type="text" class="textBox" value="반하나" disabled></div>
-                                        </li>
-
-                                        <li class="clear">
-                                            <span class="tit_lbl">이메일</span>
-                                            <div class="reg_content"><input type="text" class="textBox" value="JEJU@JEJU.com" disabled></div>
-                                        </li>
-
-                                        <li class="clear">
-                                            <span class="tit_lbl">연락처</span>
-                                            <div class="reg_content"><input type="text" class="textBox" value="010-1111-1111" disabled></div>
-                                        </li>
-
-                                        <li class="clear">
-                                            <span class="tit_lbl">예약상태</span>
-                                            <div class="reg_content"><input type="text" class="textBox" value="예약 대기" disabled></div>
-                                        </li>
-
-                                        <li class="clear">
-                                            <span class="tit_lbl">결제일</span>
-                                            <div class="reg_content"><input type="text" class="textBox" value="2022-02-14" disabled></div>
-                                        </li>
-
-                                        <li class="clear">
-                                            <span class="tit_lbl">항공권 유형</span>
-                                            <div class="reg_content"><input type="text" class="textBox" value="왕복" disabled></div>
-                                        </li>
-
-                                    </ul>
+    <!-- main -->
+    <div class="containerbody" id="view">
+        <div id="category" value="reservation"></div>
+        <div class="main">
+            <div class="details">
+                <div class="bodytext_area box_inner">
+                    <dl class="myinfo">
+                        <form class="regForm" id="reservation" method="post">
+                            <div class="tableBorder">
+                                <div class="pageTitle">
+                                    <h2>예약 상세 정보</h2>
                                 </div>
 
-                                <div class="tableBorder">
-                                    <div class="pageTitle">
-                                        <h2>여행 정보(가는편)</h2>
-                                    </div>
+                                <ul class="leg_list">
 
-                                    <ul class="leg_list">
-                                        <li class="clear">
-                                            <span class="tit_lbl">예매번호</span>
-                                            <div class="reg_content"><input type="text" class="textBox" value="10" disabled></div>
-                                        </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">예매번호</span>
+                                        <div class="reg_content"><input type="text" class="textBox" disabled :value=`${view.resIdx}`></div>
+                                    </li>
 
-                                        <li class="clear">
-                                            <span class="tit_lbl">항공기명</span>
-                                            <div class="reg_content"><input type="text" class="textBox"
-                                                                            value="JEJU123" disabled></div>
-                                        </li>
-                                        <li class="clear">
-                                            <span class="tit_lbl">출발일자</span>
-                                            <div class="reg_content"><input type="text" class="textBox"
-                                                                            value="2022-06-10" disabled></div>
-                                        </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">예약자명</span>
+                                        <div class="reg_content"><input type="text" class="textBox" disabled :value=`${view.memKoFirstname}${view.memKoLastname}`> </div>
+                                    </li>
 
-                                        <li class="clear">
-                                            <span class="tit_lbl">출발시간</span>
-                                            <div class="reg_content"><input type="text" class="textBox"
-                                                                            value="22:10" disabled></div>
-                                        </li>
-                                        <li class="clear">
-                                            <span class="tit_lbl">출발지</span>
-                                            <div class="reg_content"><input type="text" class="textBox"
-                                                                            value="서울 - 인천" disabled></div>
-                                        </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">예약자 ID</span>
+                                        <div class="reg_content"><input type="text" class="textBox" :value=`${view.memUserid}` disabled></div>
+                                    </li>
 
-                                        <li class="clear">
-                                            <span class="tit_lbl">도착일자</span>
-                                            <div class="reg_content"><input type="text" class="textBox"
-                                                                            value="2022-06-10" disabled></div>
-                                        </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">이메일</span>
+                                        <div class="reg_content"><input type="text" class="textBox" :value=`${view.memEmail}` disabled></div>
+                                    </li>
 
-                                        <li class="clear">
-                                            <span class="tit_lbl">도착시간</span>
-                                            <div class="reg_content"><input type="text" class="textBox"
-                                                                            value="22:10" disabled></div>
-                                        </li>
-                                        <li class="clear">
-                                            <span class="tit_lbl">도착지</span>
-                                            <div class="reg_content"><input type="text" class="textBox"
-                                                                            value="일본 - 도쿄" disabled></div>
-                                        </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">연락처</span>
+                                        <div class="reg_content"><input type="text" class="textBox" :value=`${view.memHp}` disabled></div>
+                                    </li>
 
-                                    </ul>
-                                </div>
-                                <div class="tableBorder">
-                                    <div class="pageTitle">
-                                        <h2>탑승객 상세 정보(가는편)</h2>
-                                    </div>
+                                    <li class="clear">
+                                        <span class="tit_lbl">예약상태</span>
+                                        <div class="reg_content"><input type="text" class="textBox" :value=`${view.resStatus}` disabled></div>
+                                    </li>
 
-                                    <ul class="leg_list">
-                                        <li class="clear">
-                                            <span class="tit_lbl">NO</span>
-                                            <div class="reg_content"><input type="text" class="textBox" value="10" disabled></div>
-                                        </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">결제일</span>
+                                        <div class="reg_content"><input type="text" class="textBox" :value=`${view.resRegDate}` disabled></div>
+                                    </li>
 
-                                        <li class="clear">
-                                            <span class="tit_lbl">탑승객명(KOR)</span>
-                                            <div class="reg_content"><input type="text" class="textBox"
-                                                                            value="BAN HANA" disabled></div>
-                                        </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">항공권 유형</span>
+                                        <div class="reg_content"><input type="text" class="textBox" :value=`${view.resRoute}` disabled></div>
+                                    </li>
 
-                                        <li class="clear">
-                                            <span class="tit_lbl">생년월일</span>
-                                            <div class="reg_content"><input type="text" class="textBox"
-                                                                            value="950214" disabled></div>
-                                        </li>
+                                </ul>
+                            </div>
 
-                                        <li class="clear">
-                                            <span class="tit_lbl">탑승객 성별</span>
-                                            <div class="reg_content"><input type="text" class="textBox"
-                                                                            value="여성" disabled></div>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                                <div class="tableBorder">
-                                    <div class="pageTitle">
-                                        <h2>여행 정보(오는편)</h2>
-                                    </div>
-
-                                    <ul class="leg_list">
-
-                                        <li class="clear">
-                                            <span class="tit_lbl">NO</span>
-                                            <div class="reg_content"><input type="text" class="textBox" value="10" disabled></div>
-                                        </li>
-
-                                        <li class="clear">
-                                            <span class="tit_lbl">항공기명</span>
-                                            <div class="reg_content"><input type="text" class="textBox"
-                                                                            value="JEJU123" disabled></div>
-                                        </li>
-                                        <li class="clear">
-                                            <span class="tit_lbl">출발일자</span>
-                                            <div class="reg_content"><input type="text" class="textBox"
-                                                                            value="2022-06-10" disabled></div>
-                                        </li>
-
-                                        <li class="clear">
-                                            <span class="tit_lbl">출발시간</span>
-                                            <div class="reg_content"><input type="text" class="textBox"
-                                                                            value="22:10" disabled></div>
-                                        </li>
-                                        <li class="clear">
-                                            <span class="tit_lbl">출발지</span>
-                                            <div class="reg_content"><input type="text" class="textBox"
-                                                                            value="서울 - 인천" disabled></div>
-                                        </li>
-
-                                        <li class="clear">
-                                            <span class="tit_lbl">도착일자</span>
-                                            <div class="reg_content"><input type="text" class="textBox"
-                                                                            value="2022-06-10" disabled></div>
-                                        </li>
-
-                                        <li class="clear">
-                                            <span class="tit_lbl">도착시간</span>
-                                            <div class="reg_content"><input type="text" class="textBox"
-                                                                            value="22:10" disabled></div>
-                                        </li>
-                                        <li class="clear">
-                                            <span class="tit_lbl">도착지</span>
-                                            <div class="reg_content"><input type="text" class="textBox"
-                                                                            value="일본 - 도쿄" disabled></div>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                                <div class="tableBorder">
-                                    <div class="pageTitle">
-                                        <h2>탑승객 상세 정보(오는편)</h2>
-                                    </div>
-
-                                    <ul class="leg_list">
-                                        <li class="clear">
-                                            <span class="tit_lbl">예매번호</span>
-                                            <div class="reg_content"><input type="text" class="textBox" value="10" disabled></div>
-                                        </li>
-
-                                        <li class="clear">
-                                            <span class="tit_lbl">탑승객명(KOR)</span>
-                                            <div class="reg_content"><input type="text" class="textBox"
-                                                                            value="BAN HANA" disabled></div>
-                                        </li>
-
-                                        <li class="clear">
-                                            <span class="tit_lbl">생년월일</span>
-                                            <div class="reg_content"><input type="text" class="textBox"
-                                                                            value="950214" disabled></div>
-                                        </li>
-
-                                        <li class="clear">
-                                            <span class="tit_lbl">탑승객 성별</span>
-                                            <div class="reg_content"><input type="text" class="textBox"
-                                                                            value="여성" disabled></div>
-                                        </li>
-
-                                    </ul>
+                            <div class="tableBorder">
+                                <div class="pageTitle">
+                                    <h2>여행 정보(가는편)</h2>
                                 </div>
 
-                                <div class="buttonArea">
-                                    <button type="button" class="button list" value="목록" style="width: 80px;" onclick="location.href='/reservation/reservation_namelist/reservation_namelist.html'">목록</button>
-                                    <button type="submit" class="button cancel" value="예약취소" style="width: 80px;">예약취소</button>
-                                    <button type="submit" class="button register" value="예약확정" style="width: 80px;">예약확정</button>
-                                </div>
-                            </form>
-                        </dl>
-                    </div>
+                                <ul class="leg_list">
+                                    <li class="clear">
+                                        <span class="tit_lbl">항공편번호</span>
+                                        <div class="reg_content"><input type="text" class="textBox" :value=`${view.tbFlightScheduleSchIdx}` disabled></div>
+                                    </li>
 
+                                    <li class="clear">
+                                        <span class="tit_lbl">항공기명</span>
+                                        <div class="reg_content"><input type="text" class="textBox" :value=`${view.schAircraftName}` disabled></div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">출발일자</span>
+                                        <div class="reg_content"><input type="text" class="textBox" :value=`${view.schDepartureDate}` disabled></div>
+                                    </li>
+
+                                    <li class="clear">
+                                        <span class="tit_lbl">출발시간</span>
+                                        <div class="reg_content"><input type="text" class="textBox" :value=`${view.schDepartureTime}` disabled></div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">출발지</span>
+                                        <div class="reg_content"><input type="text" class="textBox" :value=`${view.schDeparture}` disabled></div>
+                                    </li>
+
+                                    <li class="clear">
+                                        <span class="tit_lbl">도착일자</span>
+                                        <div class="reg_content"><input type="text" class="textBox" :value=`${view.schArrivalDate}` disabled></div>
+                                    </li>
+
+                                    <li class="clear">
+                                        <span class="tit_lbl">도착시간</span>
+                                        <div class="reg_content"><input type="text" class="textBox" :value=`${view.schArrivalTime}` disabled></div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">도착지</span>
+                                        <div class="reg_content"><input type="text" class="textBox" :value=`${view.schArrival}` disabled></div>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <div class="tableBorder" id="passList">
+                                <div class="pageTitle">
+                                    <h2>탑승객 상세 정보(가는편)</h2>
+                                </div>
+                            </div>
+
+                            <div class="buttonArea">
+                                <button type="button" class="button list" value="목록" style="width: 80px;" onclick="location.href='admin/reservation/namelist'">목록</button>
+                                <button type="submit" class="button cancel" value="예약취소" style="width: 80px;">예약취소</button>
+                                <button type="submit" class="button register" value="예약확정" style="width: 80px;">예약확정</button>
+                            </div>
+                        </form>
+                    </dl>
                 </div>
+
             </div>
         </div>
     </div>
-    <!--아이콘 사용을 위한 설치 스크립트-->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="/admin/lib/js/common.js"> </script>
-    <script src="/admin/lib/js/admin/admin_view.js"></script>
+</div>
+<!--아이콘 사용을 위한 설치 스크립트-->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
+<script src="/admin/lib/js/common.js"> </script>
+<script src="/admin/lib/js/reservation/reservation_view.js"></script>
 </body>
 
 </html>

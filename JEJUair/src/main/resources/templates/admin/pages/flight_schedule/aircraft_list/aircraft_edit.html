@@ -33,6 +33,12 @@
                                     <h2>항공기 상세페이지 수정</h2>
                                 </div>
                                 <ul class="leg_list">
+
+                                    <li class="clear" hidden>
+                                        <span class="tit_lbl">IDX</span>
+                                        <div class="reg_content"><input type="text"  name="acftIdx" id="acftIdx" class="textBox" :value=`${view.acftIdx}` ></div>
+                                    </li>
+
                                     <li class="clear">
                                         <span class="tit_lbl">항공기타입</span>
                                         <div class="reg_content">
@@ -94,7 +100,7 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="/admin/lib/js/common.js"> </script>
     <script src="/admin/lib/js/admin/admin_view.js"></script>
-    <script src="/admin/lib/js/flight_schedule/aircraft_regist.js"></script>
+    <script src="/admin/lib/js/flight_schedule/aircraft_edit.js"></script>
 </body>
 
 </html>
