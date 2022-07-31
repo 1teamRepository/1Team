@@ -23,7 +23,6 @@ public class TbFlightScheduleApiLogicService extends BaseService<TbFlightSchedul
     private TbFlightScheduleResponse response(TbFlightSchedule tbFlightSchedule){
         TbFlightScheduleResponse tbFlightScheduleResponse = TbFlightScheduleResponse.builder()
                 .schIdx(tbFlightSchedule.getSchIdx())
-                .schAircraftType(tbFlightSchedule.getSchAircraftType())
                 .schDomesticOverseas(tbFlightSchedule.getSchDomesticOverseas())
                 .schAircraftName(tbFlightSchedule.getSchAircraftName())
                 .schDeparture(tbFlightSchedule.getSchDeparture())
@@ -34,9 +33,6 @@ public class TbFlightScheduleApiLogicService extends BaseService<TbFlightSchedul
                 .schArrivalTime(tbFlightSchedule.getSchArrivalTime())
                 .schBizLitePrice(tbFlightSchedule.getSchBizLitePrice())
                 .schBizLiteDiscount(tbFlightSchedule.getSchBizLiteDiscount())
-                .schFlexPrice(tbFlightSchedule.getSchFlexPrice())
-                .schFlexDiscount(tbFlightSchedule.getSchFlexDiscount())
-                .schFlyBagPrice(tbFlightSchedule.getSchFlyBagPrice())
                 .schFlyDiscount(tbFlightSchedule.getSchFlyDiscount())
                 .schFlyPrice(tbFlightSchedule.getSchFlyPrice())
                 .schFlyDiscount(tbFlightSchedule.getSchFlyDiscount())
@@ -50,7 +46,6 @@ public class TbFlightScheduleApiLogicService extends BaseService<TbFlightSchedul
     public Header<TbFlightScheduleResponse> create(Header<TbFlightScheduleRequest> request) {
         TbFlightScheduleRequest tbFlightScheduleRequest = request.getData();
         TbFlightSchedule tbFlightSchedule = TbFlightSchedule.builder()
-                .schAircraftType(tbFlightScheduleRequest.getSchAircraftType())
                 .schDomesticOverseas(tbFlightScheduleRequest.getSchDomesticOverseas())
                 .schAircraftName(tbFlightScheduleRequest.getSchAircraftName())
                 .schDeparture(tbFlightScheduleRequest.getSchDeparture())
@@ -61,10 +56,6 @@ public class TbFlightScheduleApiLogicService extends BaseService<TbFlightSchedul
                 .schArrivalTime(tbFlightScheduleRequest.getSchArrivalTime())
                 .schBizLitePrice(tbFlightScheduleRequest.getSchBizLitePrice())
                 .schBizLiteDiscount(tbFlightScheduleRequest.getSchBizLiteDiscount())
-                .schFlexPrice(tbFlightScheduleRequest.getSchFlexPrice())
-                .schFlexDiscount(tbFlightScheduleRequest.getSchFlexDiscount())
-                .schFlyBagPrice(tbFlightScheduleRequest.getSchFlyBagPrice())
-                .schFlyBagDiscount(tbFlightScheduleRequest.getSchFlyBagDiscount())
                 .schFlyPrice(tbFlightScheduleRequest.getSchFlyPrice())
                 .schFlyDiscount(tbFlightScheduleRequest.getSchFlyDiscount())
                 .schFood(tbFlightScheduleRequest.getSchFood())
@@ -86,7 +77,6 @@ public class TbFlightScheduleApiLogicService extends BaseService<TbFlightSchedul
         Optional<TbFlightSchedule> tbFlightSchedule = baseRepository.findById(tbFlightScheduleRequest.getSchIdx());
         return tbFlightSchedule.map(
                 newTbFlightSchedule -> {
-                    newTbFlightSchedule.setSchAircraftType(tbFlightScheduleRequest.getSchAircraftType());
                     newTbFlightSchedule.setSchDomesticOverseas(tbFlightScheduleRequest.getSchDomesticOverseas());
                     newTbFlightSchedule.setSchAircraftName(tbFlightScheduleRequest.getSchAircraftName());
                     newTbFlightSchedule.setSchDeparture(tbFlightScheduleRequest.getSchDeparture());
@@ -97,10 +87,6 @@ public class TbFlightScheduleApiLogicService extends BaseService<TbFlightSchedul
                     newTbFlightSchedule.setSchArrivalTime(tbFlightScheduleRequest.getSchArrivalTime());
                     newTbFlightSchedule.setSchBizLitePrice(tbFlightScheduleRequest.getSchBizLitePrice());
                     newTbFlightSchedule.setSchBizLiteDiscount(tbFlightScheduleRequest.getSchBizLiteDiscount());
-                    newTbFlightSchedule.setSchFlexPrice(tbFlightScheduleRequest.getSchFlexPrice());
-                    newTbFlightSchedule.setSchFlexDiscount(tbFlightScheduleRequest.getSchFlexDiscount());
-                    newTbFlightSchedule.setSchFlyBagPrice(tbFlightScheduleRequest.getSchFlyBagPrice());
-                    newTbFlightSchedule.setSchFlyBagDiscount(tbFlightScheduleRequest.getSchFlyBagDiscount());
                     newTbFlightSchedule.setSchFood(tbFlightScheduleRequest.getSchFood());
                     return newTbFlightSchedule;
                 }).map(newTbFlightSchedule -> baseRepository.save(newTbFlightSchedule))

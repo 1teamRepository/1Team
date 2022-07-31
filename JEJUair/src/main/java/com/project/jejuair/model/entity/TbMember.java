@@ -51,8 +51,9 @@ public class TbMember {
     @Enumerated(EnumType.STRING)
     private Consent memSnsPush;
 
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tbMember")
-//    private List<TbReservation> tbReservationList;
+    @OneToMany
+    private List<TbReservation> tbReservationList;
+
 //
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tbMember")
 //    private List<TbPayment> tbPaymentList;

@@ -1,8 +1,7 @@
 package com.project.jejuair.model.entity;
 
-import com.project.jejuair.model.enumclass.common.Consent;
 import com.project.jejuair.model.enumclass.common.Gender;
-import com.project.jejuair.model.enumclass.reservation.ResPosition;
+import com.project.jejuair.model.enumclass.reservation.ResRoute;
 import com.project.jejuair.model.enumclass.reservation.ResStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,7 +12,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -31,29 +29,21 @@ public class TbReservation {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_reservation")
     private Long resIdx;
-    private String resEmail;
-    private String resKoName;
-    private String resHp;
-    private String resEngName;
-    @Enumerated(EnumType.STRING)
-    private ResPosition resPosition;
-    @Enumerated(EnumType.STRING)
-    private Gender resGender;
-    @Enumerated(EnumType.STRING)
-    private Consent resCheckIn;
-    private String resSsn;
     @Enumerated(EnumType.STRING)
     private ResStatus resStatus;
-    private String resNationality;
-    private String resCoupon;
-    private String resSeatNum;
     @CreatedDate
     private LocalDateTime resRegDate;
-    private Long resMemIdx;
 
-//    @ManyToOne
-////    @JoinColumn(name = "memIdx", referencename ="memIdx")
-//    private TbMember tbMember;
+    @Enumerated(EnumType.STRING)
+    private ResRoute resRoute;
+
+    @ManyToOne
+    private TbMember tbMember;
+
+    @ManyToOne
+    private TbFlightSchedule tbFlightSchedule;
+
+
 //
 //    @OneToOne
 //    private TbPayment tbPayment;

@@ -1,8 +1,9 @@
 package com.project.jejuair.model.network.response;
 
-import com.project.jejuair.model.enumclass.common.Consent;
+import com.project.jejuair.model.entity.TbFlightSchedule;
+import com.project.jejuair.model.entity.TbMember;
 import com.project.jejuair.model.enumclass.common.Gender;
-import com.project.jejuair.model.enumclass.reservation.ResPosition;
+import com.project.jejuair.model.enumclass.reservation.ResRoute;
 import com.project.jejuair.model.enumclass.reservation.ResStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,18 +19,25 @@ import java.time.LocalDateTime;
 @Builder
 public class TbReservationResponse {
     private Long resIdx;
-    private String resEmail;
-    private String resKoName;
-    private String resHp;
-    private String resEngName;
-    private ResPosition resPosition;
-    private Gender resGender;
-    private Consent resCheckIn;
-    private String resSsn;
     private ResStatus resStatus;
-    private String resNationality;
-    private String resCoupon;
-    private String resSeatNum;
     private LocalDateTime resRegDate;
-    private Long resMemIdx;
+    private ResRoute resRoute;
+
+    private TbMember tbMember;
+    private Long tbMemberMemIdx;
+    private String memKoLastname;
+    private String memKoFirstname;
+    private String memHp;
+    private String memEmail;
+
+    private TbFlightSchedule tbFlightSchedule;
+    private Long tbFlightScheduleSchIdx;
+    private String schAircraftName;
+    private String schDeparture;
+    private String schArrival;
+    private String schDepartureDate;
+    private String schArrivalDate;
+    private String schDepartureTime;
+    private String schArrivalTime;
+
 }
