@@ -122,7 +122,7 @@ body{
 
 .navigation{
     width: 200px;
-    height: 170%;
+    height: 200%;
     background-color: var(--darkgrey);
     transition: 1s;
     overflow: hidden;
