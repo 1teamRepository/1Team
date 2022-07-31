@@ -190,6 +190,16 @@ public class AdminController {
     public ModelAndView reservationNamelist(){
         return new ModelAndView("/admin/pages/reservation/reservation_namelist/reservation_namelist");
     }
+    
+        @RequestMapping("/reservation/namelist/view/{resIdx}")
+    public ModelAndView reservationView(HttpServletRequest request, @PathVariable(name="resIdx") Long resIdx){
+        HttpSession session = request.getSession();
+        if(session.getAttribute("name") != null) {
+            return new ModelAndView("/admin/pages/reservation/reservation_namelist/reservation_detail_byname");
+        }else {
+            return new ModelAndView("/admin/pages/login");
+        }
+    }
 
     @RequestMapping("/coupon/list")
     public ModelAndView couponList(){
