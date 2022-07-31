@@ -51,4 +51,6 @@ public class TbReservationApiController extends CrudController<TbReservationRequ
     public Header<List<TbReservationResponse>> findAll(@PageableDefault(sort = {"resIdx"}, direction = Sort.Direction.DESC) Pageable pageable){
         return tbReservationApiLogicService.search(pageable);
     }
+
+
 }
