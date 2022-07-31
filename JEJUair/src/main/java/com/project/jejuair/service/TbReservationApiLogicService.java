@@ -73,10 +73,12 @@ public class TbReservationApiLogicService extends BaseService<TbReservationReque
         return Header.OK(response(newTbReservation));
     }
 
+    @Override
     public Header<TbReservationResponse> read(Long resIdx) {
         return baseRepository.findById(resIdx).map(tbReservation -> response(tbReservation))
                 .map(Header::OK).orElseGet(() -> Header.ERROR("데이터 없음"));
     }
+    
     @Override
     public Header<TbReservationResponse> update(Header<TbReservationRequest> request) {
         TbReservationRequest tbReservationRequest = request.getData();
@@ -89,6 +91,7 @@ public class TbReservationApiLogicService extends BaseService<TbReservationReque
                 }).map(newTbReservation -> baseRepository.save(newTbReservation))
                 .map(newTbReservation -> response(newTbReservation)).map(Header::OK).orElseGet(()->Header.ERROR("데이터 없음"));
     }
+    
     @Override
     public Header delete(Long resIdx) {
         Optional<TbReservation> tbReservation = baseRepository.findById(resIdx);
