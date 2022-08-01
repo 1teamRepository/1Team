@@ -44,6 +44,19 @@ $(function(){
 
         let color = document.getElementById("lostColor");
         let lostColor = color.options[color.selectedIndex].value;
+        let lostColorList = "";
+        for (let i=0; i<lostColor.length; i++){
+            if (lostColor[i].checked){
+                if(lostColorList == ""){
+                    lostColorList += lostColor[i].getAttribute("value")
+                }else{
+                    lostColorList += ', ' + lostColor[i].getAttribute("value");
+                }
+            }
+        }
+
+        let item = document.getElementById("lostItem");
+        let lostItem = item.options[item.selectedIndex].value;
 
         let status = document.getElementById("lostStatus");
         let lostStatus = status.options[status.selectedIndex].value;
@@ -68,7 +81,7 @@ $(function(){
             description:"ok",
             data:{
                 lostIdx: $('#lostIdx').val(),
-                lostItem: $('#lostItem').val(),
+                lostItem: lostItem,
                 lostAcqAirName: $('#lostAcqAirName').val(),
                 lostAcqDate: $('#lostAcqDate').val(),
                 lostStoragePlace: lostStoragePlace,

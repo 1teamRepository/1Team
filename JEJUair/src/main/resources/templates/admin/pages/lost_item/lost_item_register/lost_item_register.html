@@ -40,7 +40,7 @@
                             <ul class="leg_list">
                                 <li class="clear">
                                     <span class="tit_lbl">관리번호</span>
-                                    <div class="reg_content"><input name="lostIdx" id="lostIdx" type="text" class="textBox" value="관리자 번호 자동 등록" readonly style="color: #9b9a9a;"></div>
+                                    <div class="reg_content"><input name="lostIdx" id="lostIdx" type="text" class="textBox" value="" readonly style="color: #9b9a9a;"></div>
                                 </li>
 
                                 <li class="clear">
@@ -50,14 +50,15 @@
 
                                 <li class="clear">
                                     <span class="tit_lbl">습득 날짜</span>
-                                    <div class="reg_content"><input name="lostAcqDate" id="lostAcqDate" type="date" name="startday"
+                                    <div class="reg_content"><input name="lostAcqDate" id="lostAcqDate" type="date"
                                                                     class="textBox selectBox"></div>
                                 </li>
 
                                 <li class="clear">
                                     <span class="tit_lbl">보관 장소</span>
                                     <div class="reg_content">
-                                        <select class="textBox selectBox" id="lostStoragePlace">
+                                        <select  name="lostStoragePlace" class="textBox selectBox" id="lostStoragePlace">
+                                            <option value="전체">전체</option>
                                             <option value="인천">서울(인천) ICN</option>
                                             <option value="김포">서울(김포) GMP</option>
                                             <option value="부산">부산 PUS</option>
@@ -79,7 +80,7 @@
 
                                 <li class="clear">
                                     <span class="tit_lbl">색상</span>
-                                    <select class="textBox selectBox" id="lostColor">
+                                    <select name="lostColor" class="textBox selectBox" id="lostColor">
                                         <option value="전체">전체</option>
                                         <option value="화이트">흰색(화이트)</option>
                                         <option value="블랙">검정색(블랙)</option>
@@ -97,7 +98,8 @@
                                 <li class="clear">
                                     <span class="tit_lbl">품목</span>
                                     <div class="reg_content" >
-                                        <select class="textBox selectBox" id="lostItem">
+                                        <select name="lostItem" class="textBox selectBox" id="lostItem">
+                                            <option value="선택">선택</option>
                                             <option value="핸드폰">핸드폰</option>
                                             <option value="책">책</option>
                                             <option value="안경">안경</option>
@@ -124,10 +126,10 @@
                                 <li class="clear">
                                     <span class="tit_lbl">상태</span>
                                     <div class="reg_content">
-                                        <select class="textBox selectBox" id="lostStatus">
-                                            <option value="보관중">보관중</option>
-                                            <option value="수령완료">수령완료</option>
-                                            <option value="폐기">폐기</option>
+                                        <select name="lostStatus" class="textBox selectBox" id="lostStatus">
+                                            <option value="STORAGE">보관중</option>
+                                            <option value="FIND">수령완료</option>
+                                            <option value="DISUSE">폐기</option>
                                         </select>
                                     </div>
                                 </li>
@@ -139,8 +141,8 @@
                             </ul>
                         </div>
                         <div class="buttonArea">
-                            <button type="submit" class="button cancel" value="취소">목록</button>
-                            <button type="submit" class="button register" id="sendit" value="등록">등록</button>
+                            <button type="button" class="button cancel" value="취소">목록</button>
+                            <button type="button" class="button register" id="sendit" value="등록">등록</button>
                         </div>
                     </form>
                 </dl>

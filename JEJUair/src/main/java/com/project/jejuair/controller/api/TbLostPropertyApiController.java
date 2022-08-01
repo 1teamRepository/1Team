@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/lost")
+@RequestMapping("/api/lost_item")
 @RequiredArgsConstructor
 
 public class TbLostPropertyApiController extends CrudController<TbLostPropertyRequest, TbLostPropertyResponse, TbLostProperty> {
@@ -48,7 +48,7 @@ public class TbLostPropertyApiController extends CrudController<TbLostPropertyRe
     }
 
     @GetMapping("")
-    public Header<List<TbLostPropertyResponse>> findAll(@PageableDefault(sort = {""}, direction = Sort.Direction.DESC) Pageable pageable){     //paging할수있는 객체 생성함
+    public Header<List<TbLostPropertyResponse>> findAll(@PageableDefault(sort = {"lostIdx"}, direction = Sort.Direction.DESC) Pageable pageable){     //paging할수있는 객체 생성함
         return tbLostPropertyApiLogicService.search(pageable);
     }
 }

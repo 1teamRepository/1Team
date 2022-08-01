@@ -8,7 +8,7 @@ $(function(){
         }
 
         if(!$('#lostAcqAirName').val()) {
-            alert('습득편명을 입력하세요');
+            alert('습득편명을 입력하세요' );
             $('#lostAcqAirName').focus();
             return false;
         }
@@ -45,30 +45,21 @@ $(function(){
         let color = document.getElementById("lostColor");
         let lostColor = color.options[color.selectedIndex].value;
 
+        let item = document.getElementById("lostItem");
+        let lostItem = item.options[item.selectedIndex].value;
+
         let status = document.getElementById("lostStatus");
         let lostStatus = status.options[status.selectedIndex].value;
 
 
-        /*
-                    {
-                        "transaction_time":"2022-07-12",
-                        "resultCode":"ok",
-                        "description":"ok",
-                        "data":{
-                            "userid":"ryu",
-                            "userpw":"1111",
-                            "name":"류"
-                        }
-                    }
-         */
+
 
         let jsonData = {
             transaction_time: new Date(),
             resultCode:"ok",
             description:"ok",
             data:{
-                admAdminId: $('#admAdminId').val(),
-                lostItem: $('#lostItem').val(),
+                lostItem: lostItem,
                 lostAcqAirName: $('#lostAcqAirName').val(),
                 lostAcqDate: $('#lostAcqDate').val(),
                 lostStoragePlace: lostStoragePlace,
@@ -81,6 +72,8 @@ $(function(){
 
             }
         }
+        console.log(jsonData);
+
 
         $.post({
             url: '/api/'+category,

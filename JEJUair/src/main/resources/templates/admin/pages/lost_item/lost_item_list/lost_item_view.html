@@ -28,7 +28,7 @@
 
     <!-- main -->
     <div class="containerbody" id="view">
-        <div id="category" value="customer"></div>
+        <div id="category" value="lost_item"></div>
         <div class="main">
             <!-- 본문 -->
             <div class="bodytext_area box_inner">
@@ -41,52 +41,52 @@
                             <ul class="leg_list">
                                 <li class="clear">
                                     <span class="tit_lbl">관리번호</span>
-                                    <div class="reg_content"><input type="text" class="textBox" :value=`${view.lostIdx}` readonly style="color: #9b9a9a;"></div>
+                                    <div class="reg_content"><input name="lostIdx" id="lostIdx" type="text" class="textBox" :value=`${view.lostIdx}` disabled style="color: #9b9a9a;"></div>
                                 </li>
 
                                 <li class="clear">
                                     <span class="tit_lbl">습득편명</span>
-                                    <div class="reg_content"><input type="text" class="textBox" :value=`${view.lostAcqAirName}` readonly></div>
+                                    <div class="reg_content"><input name="lostAcqAirName" id="lostAcqAirName" type="text" class="textBox" :value=`${view.lostAcqAirName}` disabled></div>
                                 </li>
 
                                 <li class="clear">
                                     <span class="tit_lbl">습득 날짜</span>
-                                    <div class="reg_content"><input type="text" class="textBox" :value=`${view.lostAcqDate}` readonly></div>
+                                    <div class="reg_content"><input name="lostAcqDate" id="lostAcqDate" type="text" class="textBox" :value=`${view.lostAcqDate}` disabled></div>
                                 </li>
 
                                 <li class="clear">
                                     <span class="tit_lbl">보관 장소</span>
-                                    <div class="reg_content"><input type="text" class="textBox" :value=`${view.lostStoragePlace}` readonly></div>
+                                    <div class="reg_content"><input id="lostStoragePlace" name="lostStoragePlace" type="text" class="textBox" :value=`${view.lostStoragePlace}` disabled></div>
                                 </li>
 
                                 <li class="clear">
                                     <span class="tit_lbl">폐기 날짜</span>
-                                    <div class="reg_content"><input type="text" class="textBox" :value=`${view.lostDisDate}` readonly></div>
+                                    <div class="reg_content"><input name="lostDisDate" id="lostDisDate" type="text" class="textBox" :value=`${view.lostDisDate}` disabled></div>
                                 </li>
 
                                 <li class="clear">
                                     <span class="tit_lbl">색상</span>
-                                    <div class="reg_content"><input type="text" class="textBox" :value=:value=`${view.lostColor}` readonly></div>
+                                    <div class="reg_content"><input id="lostColor" name="lostColor" type="text" class="textBox" :value=`${view.lostColor}` disabled></div>
                                 </li>
                                 <li class="clear">
                                     <span class="tit_lbl">품목</span>
-                                    <div class="reg_content"><input type="text" class="textBox" :value=:value=`${view.lostItem}` readonly></div>
+                                    <div class="reg_content"><input id="lostItem" name="lostItem" type="text" class="textBox" :value=`${view.lostItem}` disabled></div>
                                 </li>
                                 <li class="clear">
                                     <span class="tit_lbl">상세 설명</span>
-                                    <div class="reg_content"><input type="text" class="textBox" :value=:value=`${view.lostExplain}` readonly></div>
+                                    <div class="reg_content"><input name="lostExplain" id="lostExplain" type="text" class="textBox" :value=`${view.lostExplain}` disabled></div>
                                 </li>
                                 <li class="clear">
                                     <span class="tit_lbl">좌석번호</span>
-                                    <div class="reg_content"><input type="text" class="textBox" :value=:value=`${view.lostSeatNum}` readonly></div>
+                                    <div class="reg_content"><input name="lostSeatNum" id="lostSeatNum" type="text" class="textBox" :value=`${view.lostSeatNum}` disabled></div>
                                 </li>
                                 <li class="clear">
                                     <span class="tit_lbl">상태</span>
-                                    <div class="reg_content"><input type="text" class="textBox" :value=:value=`${view.lostStatus}` readonly></div>
+                                    <div class="reg_content"><input name="lostStatus" id="lostStatus" type="text" class="textBox" :value=`${view.lostStatus}` disabled></div>
                                 </li>
                                 <li class="clear">
                                     <span class="tit_lbl">이미지 첨부</span>
-                                    <div class="reg_content"><input type="text" class="textBox" :value=:value=`${view.lostImg}` readonly></div>
+                                    <div class="reg_content"><input name="lostImg" id="lostImg" type="text" class="textBox" :value=`${view.lostImg}` disabled></div>
                                 </li>
                             </ul>
                         </div>
