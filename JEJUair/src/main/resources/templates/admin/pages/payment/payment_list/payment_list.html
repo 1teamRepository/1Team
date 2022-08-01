@@ -49,7 +49,6 @@
                             <thead>
                                 <tr class="topbanner">
                                     <td class="airplaneName">NO</td>
-                                    <td class="departureTime">내용</td>
                                     <td class="departureLocation">금액(P)</td>
                                     <td class="departureTime">아이디</td>
                                     <td class="arriveTime">상태</td>
@@ -62,11 +61,10 @@
                                 :key="i"
                                 @click="location.href=`/admin/payment/view/${dto.payIdx}`">
                                     <td class="pay_idx"><a :href=`/admin/payment/view/${dto.payIdx}`>{{dto.payIdx}}</a></td>
-                                    <td class="pay_content">{{dto.payContent}}</td>
-                                    <td class="pay_amount">{{dto.payAmount}}</td>
+                                    <td class="pay_amount">{{dto.payAmount}} 원</td>
                                     <td class="pay_userid">{{dto.payUserid}}</td>
                                     <td class="pay_status">{{dto.payStatus}}</td>
-                                    <td class="pay_date">{{dto.payDate}}</td>
+                                    <td class="pay_date">{{dto.payRegDate}}</td>
                                 </tr>
 
                             </tbody>

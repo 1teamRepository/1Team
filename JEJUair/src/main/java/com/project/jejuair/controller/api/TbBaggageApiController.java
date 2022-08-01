@@ -24,6 +24,13 @@ public class TbBaggageApiController extends CrudController<TbBaggageRequest, TbB
 
 
     @Override
+    @PostMapping("")
+    public Header<TbBaggageResponse> create(@RequestBody Header<TbBaggageRequest> request) {
+        return tbBaggageApiLogicService.create(request);
+    }
+
+
+    @Override
     @GetMapping("{idx}")
     public Header<TbBaggageResponse> read(@PathVariable (name = "idx") Long idx) {
         return tbBaggageApiLogicService.read(idx);

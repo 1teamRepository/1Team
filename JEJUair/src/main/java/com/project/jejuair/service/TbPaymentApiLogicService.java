@@ -1,11 +1,16 @@
 package com.project.jejuair.service;
 
 
+import com.project.jejuair.model.entity.TbMember;
 import com.project.jejuair.model.entity.TbPayment;
+import com.project.jejuair.model.entity.TbReservation;
+import com.project.jejuair.model.enumclass.payment.PayStatus;
 import com.project.jejuair.model.network.Header;
 import com.project.jejuair.model.network.Pagination;
 import com.project.jejuair.model.network.request.TbPaymentRequest;
 import com.project.jejuair.model.network.response.TbPaymentResponse;
+import com.project.jejuair.repository.TbMemberRepository;
+import com.project.jejuair.repository.TbReservationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,15 +25,22 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class TbPaymentApiLogicService extends BaseService<TbPaymentRequest, TbPaymentResponse, TbPayment> {
 
+
+    private final TbReservationRepository tbReservationRepository;
+
+
     private TbPaymentResponse response(TbPayment tbPayment){
+
         TbPaymentResponse tbPaymentResponse = TbPaymentResponse.builder()
                 .payIdx(tbPayment.getPayIdx())
-                .payUserid(tbPayment.getPayUserid())
-                .payContent(tbPayment.getPayContent())
                 .payAmount(tbPayment.getPayAmount())
                 .payStatus(tbPayment.getPayStatus())
-                .payMethod(tbPayment.getPayMethod())
+                .payUserid(tbPayment.getPayUserid())
+                .payRegDate(tbPayment.getPayRegDate())
+
+                .tbReservationResIdx(tbPayment.getTbReservation().getResIdx())
                 .build();
+
         return tbPaymentResponse;
     }
 
@@ -36,12 +48,11 @@ public class TbPaymentApiLogicService extends BaseService<TbPaymentRequest, TbPa
     public Header<TbPaymentResponse> create(Header<TbPaymentRequest> request) {
         TbPaymentRequest tbPaymentRequest = request.getData();
         TbPayment tbPayment = TbPayment.builder()
-                .payUserid(tbPaymentRequest.getPayUserid())
-                .payContent(tbPaymentRequest.getPayContent())
                 .payAmount(tbPaymentRequest.getPayAmount())
-                .payStatus(tbPaymentRequest.getPayStatus())
-                .payMethod(tbPaymentRequest.getPayMethod())
-                .payDate(LocalDateTime.now())
+                .payStatus(PayStatus.COMPLETE)
+                .payRegDate(LocalDateTime.now())
+                .payUserid(tbPaymentRequest.getPayUserid())
+                .tbReservation(tbReservationRepository.findByResIdx(tbPaymentRequest.getTbReservationResIdx()).get())
                 .build();
         TbPayment newTbPayment = baseRepository.save(tbPayment);
         return Header.OK(response(newTbPayment));
@@ -59,12 +70,8 @@ public class TbPaymentApiLogicService extends BaseService<TbPaymentRequest, TbPa
         Optional<TbPayment> tbPayment = baseRepository.findById(tbPaymentRequest.getPayIdx());
         return tbPayment.map(
                 newTbPayment -> {
-                    newTbPayment.setPayUserid(tbPaymentRequest.getPayUserid());
-                    newTbPayment.setPayContent(tbPaymentRequest.getPayContent());
                     newTbPayment.setPayAmount(tbPaymentRequest.getPayAmount());
                     newTbPayment.setPayStatus(tbPaymentRequest.getPayStatus());
-                    newTbPayment.setPayMethod(tbPaymentRequest.getPayMethod());
-                    newTbPayment.setPayDate(tbPaymentRequest.getPayDate());
                     return newTbPayment;
                 }).map(newTbPayment -> baseRepository.save(newTbPayment))
                 .map(newTbPayment -> response(newTbPayment))

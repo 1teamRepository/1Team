@@ -5,6 +5,8 @@ import com.project.jejuair.model.network.Header;
 import com.project.jejuair.model.network.Pagination;
 import com.project.jejuair.model.network.request.TbPassengerRequest;
 import com.project.jejuair.model.network.response.TbPassengerResponse;
+import com.project.jejuair.repository.TbAirlineFoodRepository;
+import com.project.jejuair.repository.TbBaggageRepository;
 import com.project.jejuair.repository.TbPassengerRepository;
 import com.project.jejuair.repository.TbReservationRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +27,10 @@ public class TbPassengerApiLogicService extends BaseService<TbPassengerRequest, 
 
     private final TbPassengerRepository tbPassengerRepository;
 
+    private final TbAirlineFoodRepository tbAirlineFoodRepository;
+
+    private final TbBaggageRepository tbBaggageRepository;
+
     public static TbPassengerResponse response(TbPassenger tbPassenger){
         TbPassengerResponse tbPassengerResponse = TbPassengerResponse.builder()
                 .pasIdx(tbPassenger.getPasIdx())
@@ -33,10 +39,20 @@ public class TbPassengerApiLogicService extends BaseService<TbPassengerRequest, 
                 .pasBirthDate(tbPassenger.getPasBirthDate())
                 .pasGender(tbPassenger.getPasGender())
                 .pasRegDate(tbPassenger.getPasRegDate())
+                .pasSeat(tbPassenger.getPasSeat())
                 .tbReservationResIdx(tbPassenger.getTbReservation().getResIdx())
+
+                .tbAirlineFoodFoodIdx(tbPassenger.getTbAirlineFood().getFoodIdx())
+                .foodKorName(tbPassenger.getTbAirlineFood().getFoodKorName())
+                .foodKrwPrice(tbPassenger.getTbAirlineFood().getFoodKrwPrice())
+
+                .tbBaggageBagIdx(tbPassenger.getTbBaggage().getBagIdx())
+                .bagPrice(tbPassenger.getTbBaggage().getBagPrice())
+                .bagWeight(tbPassenger.getTbBaggage().getBagWeight())
                 .build();
         return tbPassengerResponse;
     }
+
 
     @Override
     public Header<TbPassengerResponse> create(Header<TbPassengerRequest> request) {
@@ -46,8 +62,11 @@ public class TbPassengerApiLogicService extends BaseService<TbPassengerRequest, 
                 .pasLastname(tbPassengerRequest.getPasLastname())
                 .pasBirthDate(tbPassengerRequest.getPasBirthDate())
                 .pasGender(tbPassengerRequest.getPasGender())
+                .pasSeat(tbPassengerRequest.getPasSeat())
                 .pasRegDate(LocalDateTime.now())
                 .tbReservation(tbReservationRepository.findByResIdx(tbPassengerRequest.getTbReservationResIdx()).get())
+                .tbAirlineFood(tbAirlineFoodRepository.findByFoodIdx(tbPassengerRequest.getTbAirlineFoodFoodIdx()).get())
+                .tbBaggage(tbBaggageRepository.findByBagIdx(tbPassengerRequest.getTbBaggageBagIdx()).get())
                 .build();
         TbPassenger newPassenger = baseRepository.save(tbPassenger);
         return Header.OK(response(newPassenger));

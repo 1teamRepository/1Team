@@ -40,9 +40,15 @@ public class TbPassenger {
     private String pasBirthDate;
     @Enumerated(EnumType.STRING)
     private Gender pasGender;
+    private String pasSeat;
 
     @ManyToOne
     private TbReservation tbReservation;
 
+    @ManyToOne
+    private TbAirlineFood tbAirlineFood;
+
+    @ManyToOne
+    private TbBaggage tbBaggage;
 
 }
