@@ -33,23 +33,24 @@
                                 <ul class="leg_list">
                                     <li class="clear">
                                         <span class="tit_lbl">관리번호</span>
-                                        <div class="reg_content"><input type="text" class="textBox" :value=`${view.lostIdx}` readonly style="color: #9b9a9a;"></div>
+                                        <div class="reg_content"><input name="lostIdx" id="lostIdx" type="text" class="textBox" :value=`${view.lostIdx}` disabled style="color: #9b9a9a;"></div>
                                     </li>
 
                                     <li class="clear">
                                         <span class="tit_lbl">습득편명</span>
-                                        <div class="reg_content"><input type="text" class="textBox" :value=`${view.lostAcqAirName}` ></div>
+                                        <div class="reg_content"><input name="lostAcqAirName" id="lostAcqAirName" type="text" class="textBox" :value=`${view.lostAcqAirName}` ></div>
                                     </li>
 
                                     <li class="clear">
                                         <span class="tit_lbl">습득 날짜</span>
-                                        <div class="reg_content"><input type="date" name="startday"
+                                        <div class="reg_content"><input name="lostAcqDate" id="lostAcqDate" type="date"
                                             class="textBox selectBox" :value=`${view.lostAcqDate}`></div>
                                     </li>
 
                                     <li class="clear">
                                         <span class="tit_lbl">보관 장소</span>
-                                        <select class="textBox selectBox">
+                                        <select id="lostStoragePlace" name="lostStoragePlace" class="textBox selectBox">
+                                            <option value="선택">선택</option>
                                             <option value="인천">서울(인천) ICN</option>
                                             <option value="김포">서울(김포) GMP</option>
                                             <option value="부산">부산 PUS</option>
@@ -64,14 +65,14 @@
 
                                     <li class="clear">
                                         <span class="tit_lbl">폐기 날짜</span>
-                                        <div class="reg_content"><input type="date" name="startday"
+                                        <div class="reg_content"><input name="lostDisDate" id="lostDisDate" type="date"
                                             class="textBox selectBox" :value=`${view.lostDisDate}`></div>
                                     </li>
 
                                     <li class="clear">
                                         <span class="tit_lbl">색상</span>
-                                        <select class="textBox selectBox">
-                                            <option value="전체">전체</option>
+                                        <select id="lostColor" name="lostColor" class="textBox selectBox">
+                                            <option value="선택">선택</option>
                                             <option value="화이트">흰색(화이트)</option>
                                             <option value="블랙">검정색(블랙)</option>
                                             <option value="레드">빨간색(레드)</option>
@@ -88,7 +89,8 @@
                                     <li class="clear">
                                         <span class="tit_lbl">품목</span>
                                         <div class="reg_content">
-                                            <select class="textBox selectBox">
+                                            <select id="lostItem" name="lostItem" class="textBox selectBox">
+                                                <option value="선택">선택</option>
                                                 <option value="핸드폰">핸드폰</option>
                                                 <option value="책">책</option>
                                                 <option value="안경">안경</option>
@@ -106,25 +108,32 @@
                                     </li>
                                     <li class="clear">
                                         <span class="tit_lbl">상세 설명</span>
-                                        <div class="reg_content"><input type="text" class="textBox" :value=`${view.lostExplain}` ></div>
+                                        <div class="reg_content"><input name="lostExplain" id="lostExplain" type="text" class="textBox" :value=`${view.lostExplain}` ></div>
                                     </li>
                                     <li class="clear">
                                         <span class="tit_lbl">좌석번호</span>
-                                        <div class="reg_content"><input type="text" class="textBox" :value=`${view.lostSeatNum}` ></div>
+                                        <div class="reg_content"><input name="lostSeatNum" id="lostSeatNum" type="text" class="textBox" :value=`${view.lostSeatNum}` ></div>
                                     </li>
                                     <li class="clear">
                                         <span class="tit_lbl">상태</span>
-                                        <div class="reg_content"><input type="text" class="textBox" :value=`${view.lostSeatNum}` ></div>
+                                        <div class="reg_content">
+                                            <select name="lostStatus" class="textBox selectBox" id="lostStatus">
+                                                <option value="상태">상태</option>
+                                                <option value="STORAGE">보관중</option>
+                                                <option value="FIND">수령완료</option>
+                                                <option value="DISUSE">폐기</option>
+                                            </select>
+                                        </div>
                                     </li>
                                     <li class="clear">
                                         <span class="tit_lbl">이미지 첨부</span>
-                                        <div class="reg_content"><input type="text" class="textBox" :value=`${view.lostImg}` ></div>
+                                        <div class="reg_content"><input name="lostImg" id="lostImg" type="text" class="textBox" :value=`${view.lostImg}` ></div>
                                     </li>
                                 </ul>
                             </div>
                             <div class="buttonArea">
                                 <button type="button" class="button cancel" value="목록" onclick="location.href='/admin/lost_item/list'">목록</button>
-                                <button type="submit" class="button register" value="등록" id="sendit">등록</button>
+                                <button type="button" class="button register" value="수정" id="sendit">수정</button>
                             </div>
                         </form>
                     </dl>
