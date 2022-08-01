@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/answer")
+@RequestMapping("/api/inquiry")
 @RequiredArgsConstructor
 public class TbAnswerApiController extends CrudController<TbAnswerRequest, TbAnswerResponse, TbAnswer> {
 

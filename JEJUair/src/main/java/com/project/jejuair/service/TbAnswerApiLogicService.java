@@ -21,9 +21,11 @@ public class TbAnswerApiLogicService extends BaseService<TbAnswerRequest, TbAnsw
 
     private TbAnswerResponse response(TbAnswer tbAnswer){
         TbAnswerResponse tbAnswerResponse = TbAnswerResponse.builder()
+                .ansIdx(tbAnswer.getAnsIdx())
                 .ansInquiryContent(tbAnswer.getAnsInquiryContent())
                 .ansUserid(tbAnswer.getAnsUserid())
                 .ansAnswerCheck(tbAnswer.getAnsAnswerCheck())
+                .ansInquiryTitle(tbAnswer.getAnsInquiryTitle())
                 .ansAnswerContent(tbAnswer.getAnsAnswerContent())
                 .ansInquiryRegDate(tbAnswer.getAnsInquiryRegDate())
                 .ansAnswerRegDate(tbAnswer.getAnsAnswerRegDate())
@@ -39,6 +41,7 @@ public class TbAnswerApiLogicService extends BaseService<TbAnswerRequest, TbAnsw
                 .ansInquiryContent(tbAnswerRequest.getAnsInquiryContent())
                 .ansUserid(tbAnswerRequest.getAnsUserid())
                 .ansAnswerCheck(tbAnswerRequest.getAnsAnswerCheck())
+                .ansInquiryTitle(tbAnswerRequest.getAnsInquiryTitle())
                 .ansAnswerContent(tbAnswerRequest.getAnsAnswerContent())
                 .ansInquiryRegDate(LocalDateTime.now())
                 .ansAnswerRegDate(tbAnswerRequest.getAnsAnswerRegDate())
@@ -60,13 +63,14 @@ public class TbAnswerApiLogicService extends BaseService<TbAnswerRequest, TbAnsw
         Optional<TbAnswer> tbAnswer = baseRepository.findById(tbAnswerRequest.getAnsIdx());
         return tbAnswer.map(
                 newTbAnswer -> {
+                 newTbAnswer.setAnsInquiryContent(tbAnswerRequest.getAnsInquiryTitle());
                  newTbAnswer.setAnsInquiryContent(tbAnswerRequest.getAnsInquiryContent());
                  newTbAnswer.setAnsUserid(tbAnswerRequest.getAnsUserid());
                  newTbAnswer.setAnsAnswerCheck(tbAnswerRequest.getAnsAnswerCheck());
                  newTbAnswer.setAnsAnswerContent(tbAnswerRequest.getAnsAnswerContent());
                  newTbAnswer.setAnsInquiryRegDate(tbAnswerRequest.getAnsInquiryRegDate());
-                 newTbAnswer.setAnsAnswerRegDate(tbAnswerRequest.getAnsAnswerRegDate());
-                 newTbAnswer.setAnsMemIdx(tbAnswerRequest.getAnsMemIdx());
+                 newTbAnswer.setAnsAnswerRegDate(LocalDateTime.now());
+
                  return newTbAnswer;
                 }).map(newTbAnswer -> baseRepository.save(newTbAnswer))
                 .map(newTbAnswer -> response(newTbAnswer)).map(Header::OK)

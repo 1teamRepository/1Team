@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @Builder
 public class TbAnswerResponse {
     private Long ansIdx;
+    private String ansInquiryTitle;
     private String ansInquiryContent;
     private String ansUserid;
     private Check ansAnswerCheck;
