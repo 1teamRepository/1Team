@@ -28,6 +28,7 @@ public class TbAnswer {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_answer")
     private Long ansIdx;                // 번호
+    private String ansInquiryTitle;     // 문의 제목
     private String ansInquiryContent;   // 문의 내용
     private String ansUserid;           // 작성자
     @Enumerated(EnumType.STRING)

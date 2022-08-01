@@ -190,8 +190,8 @@ public class AdminController {
     public ModelAndView reservationNamelist(){
         return new ModelAndView("/admin/pages/reservation/reservation_namelist/reservation_namelist");
     }
-    
-        @RequestMapping("/reservation/namelist/view/{resIdx}")
+
+    @RequestMapping("/reservation/namelist/view/{resIdx}")
     public ModelAndView reservationView(HttpServletRequest request, @PathVariable(name="resIdx") Long resIdx){
         HttpSession session = request.getSession();
         if(session.getAttribute("name") != null) {
@@ -201,15 +201,6 @@ public class AdminController {
         }
     }
 
-    @RequestMapping("/coupon/list")
-    public ModelAndView couponList(){
-        return new ModelAndView("/admin/pages/coupon/coupon_list/coupon_list");
-    }
-
-    @RequestMapping("/coupon/regist")
-    public ModelAndView couponRegist(){
-        return new ModelAndView("/admin/pages/coupon/coupon_regist/coupon_reg");
-    }
 
     @RequestMapping("/point/list")
     public ModelAndView pointList(){
@@ -247,15 +238,6 @@ public class AdminController {
         return new ModelAndView("/admin/pages/event/event_regist/event_regist");
     }
 
-    @RequestMapping("/inquiry/personal")
-    public ModelAndView inquiryPersonal(){
-        return new ModelAndView("/admin/pages/inquiry/personal_inquiry list/personal_inquiry list");
-    }
-
-    @RequestMapping("/inquiry/faqlist")
-    public ModelAndView inquiryFaq(){
-        return new ModelAndView("/admin/pages/inquiry/FAQ_list/FAQ_list");
-    }
 
     @RequestMapping("/lost_item/list")
     public ModelAndView lostItemList(){
@@ -359,7 +341,33 @@ public class AdminController {
     }
 
 
+    @RequestMapping("/coupon/list") //localhost:10000/admin/coupon/list
+    public ModelAndView couponList(){
+        return new ModelAndView("/admin/pages/coupon/coupon_list/coupon_list");
+    }
 
+    @RequestMapping("/coupon/view/{copIdx}")
+    public ModelAndView couponView(@PathVariable(name="copIdx") Long copIdx){
+        return new ModelAndView("/admin/pages/coupon/coupon_list/coupon_detail");
+    }
+
+    @RequestMapping("/coupon/edit/{copIdx}")
+    public ModelAndView couponEdit(@PathVariable(name="copIdx") Long copIdx){
+        return new ModelAndView("/admin/pages/coupon/coupon_list/coupon_edit");
+    }
+
+    @RequestMapping("/coupon/regist") //localhost:10000/admin/coupon/regist
+    public ModelAndView couponRegist(){return new ModelAndView("/admin/pages/coupon/coupon_regist/coupon_reg");}
+
+    @RequestMapping("/inquiry/list")
+    public ModelAndView inquiryPersonal(){
+        return new ModelAndView("/admin/pages/inquiry/personal_inquiry list/personal_inquiry list");
+    }
+
+    @RequestMapping("/inquiry/view/{ansIdx}")
+    public ModelAndView inquiryInfo(@PathVariable(name="ansIdx") Long ansIdx){
+        return new ModelAndView("/admin/pages/inquiry/personal_inquiry list/personal_inquiry_info");
+    }
 
 
 }
