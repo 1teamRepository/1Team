@@ -32,42 +32,42 @@
                                 </div>
                                 <ul class="leg_list">
                                     <li class="clear">
-                                        <span class="tit_lbl">고유번호</span>
+                                        <span class="tit_lbl">결제번호</span>
                                         <div class="reg_content">
-                                            <input type="text" class="textBox" value="10" readonly>
+                                            <input type="text" class="textBox" :value=`${view.payIdx}` disabled>
                                         </div>
                                     </li>
                                     <li class="clear">
                                         <span class="tit_lbl">결제일시</span>
                                         <div class="reg_content">
-                                            <input type="text" class="textBox" value="2022-07-04" readonly>
+                                            <input type="text" class="textBox" :value=`${view.payRegDate}` disabled>
                                         </div>
                                     </li>
                                     <li class="clear">
                                         <span class="tit_lbl">아이디</span>
                                         <div class="reg_content">
-                                            <input type="text" class="textBox" value="user01" readonly>
+                                            <input type="text" class="textBox" :value=`${view.payUserid}` disabled>
                                         </div>
                                     </li>
 
                                     <li class="clear">
-                                        <span class="tit_lbl">내용</span>
+                                        <span class="tit_lbl">예약번호</span>
                                         <div class="reg_content">
-                                            <input type="text" class="textBox" value="항공권 및 부가서비스 결제" readonly>
+                                            <input type="text" class="textBox" :value=`${view.tbReservationResIdx}` disabled>
                                         </div>
                                     </li>
 
                                     <li class="clear">
                                         <span class="tit_lbl">금액</span>
                                         <div class="reg_content">
-                                            <input type="text" class="textBox" value="199,000 KRW" readonly>
+                                            <input type="text" class="textBox" :value=`${view.payAmount}` disabled> 원
                                         </div>
                                     </li>
 
                                     <li class="clear">
                                         <span class="tit_lbl">상태</span>
                                         <div class="reg_content">
-                                            <input type="text" class="textBox" value="결제완료" readonly>
+                                            <input type="text" class="textBox" :value=`${view.payStatus}` disabled>
                                         </div>
                                     </li>
                                 </ul>
@@ -84,37 +84,12 @@
                 <div class="bodytext_area box_inner">
                     <dl class="myinfo">
                         <form action="#" class="regForm">
-                            <div class="tableBorder">
+                            <div class="tableBorder" id="extraService">
                                 
                                 <div class="pageTitle">
                                     <h2>부가서비스 내역</h2>
                                 </div>
-                                <ul class="leg_list">
-                                    <li class="clear">
-                                        <span class="tit_lbl">부가서비스 타입</span>
-                                        <div class="reg_content">
-                                            <input type="text" class="textBox" value="사전 기내식 주문" readonly>
-                                        </div>
-                                    </li>
-                                    <li class="clear">
-                                        <span class="tit_lbl">부가서비스 상세</span>
-                                        <div class="reg_content">
-                                            <input type="text" class="textBox" value="구름 위에 샌드위치" readonly>
-                                        </div>
-                                    </li>
-                                    <li class="clear">
-                                        <span class="tit_lbl">결제금액</span>
-                                        <div class="reg_content">
-                                            <input type="text" class="textBox" value="10,000 KRW" readonly>
-                                        </div>
-                                    </li>
-                                    <li class="clear">
-                                        <span class="tit_lbl"></span>
-                                        <div class="reg_content">
-                                            
-                                        </div>
-                                    </li>
-                                </ul>
+
                             </div>
                             
                         </form>
@@ -123,17 +98,14 @@
             </div>
             <!--부가서비스 끝-->
 
-
-
         </div>
-
     </div>
 
     <!--아이콘 사용을 위한 설치 스크립트-->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="/admin/lib/js/common.js"> </script>
-    <script src="/admin/lib/js/admin/admin_view.js"></script>
+    <script src="/admin/lib/js/payment/payment_view.js"></script>
     
 </body>
 

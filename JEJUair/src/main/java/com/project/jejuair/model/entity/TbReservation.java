@@ -49,9 +49,6 @@ public class TbReservation {
 
 //
 //    @OneToOne
-//    private TbPayment tbPayment;
-//
-//    @OneToOne
 //    private TbFlightSchedule tbFlightSchedule;
 //
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tbReservation")

@@ -24,7 +24,15 @@ public class TbPassengerRequest {
     private String pasLastname;
     private String pasBirthDate;
     private Gender pasGender;
+    private String pasSeat;
 
     private Long tbReservationResIdx;
 
+    private Long tbAirlineFoodFoodIdx;
+    private String foodKorName;
+    private Integer foodKrwPrice;
+
+    private Long tbBaggageBagIdx;
+    private Long bagPrice;
+    private String bagWeight;
 }
