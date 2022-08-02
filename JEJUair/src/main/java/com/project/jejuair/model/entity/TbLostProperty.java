@@ -30,9 +30,9 @@ public class TbLostProperty {
     private Long lostIdx;               // 번호
     private String lostItem;            // 품목
     private String lostAcqAirName;      // 습득편명
-    private LocalDateTime lostAcqDate;  // 습득날짜
+    private String lostAcqDate;  // 습득날짜
     private String lostStoragePlace;    // 보관장소
-    private LocalDateTime lostDisDate;  // 폐기날짜
+    private String lostDisDate;  // 폐기날짜
     private String lostColor;           // 색상
     private String lostExplain;         // 상세설명
     private String lostSeatNum;         // 좌석번호
@@ -42,11 +42,4 @@ public class TbLostProperty {
     @CreatedDate
     private LocalDateTime lostRegDate;  // 등록날짜
 
-    @Enumerated(EnumType.STRING)
-    private ExtServiceType extServiceType;
-    private String extServiceDetail;
-    @CreatedDate
-    private LocalDateTime extRegDate;
-    private Integer extPrice;
-    private Long choiceIdx;
 }

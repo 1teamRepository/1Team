@@ -44,6 +44,9 @@ $(function(){
                     }
          */
 
+        let couponType = document.getElementById("copType");
+        let selectedcopType = couponType.options[couponType.selectedIndex].value;
+
         let jsonData = {
             transaction_time: new Date(),
             resultCode:"ok",
@@ -53,7 +56,7 @@ $(function(){
                 copCode: $('#copCode').val(),
                 copName: $('#copName').val(),
                 copStartDate: $('#copStartDate').val(),
-                copType: "MONEY",
+                copType: selectedcopType,
                 copEndDate: $('#copEndDate').val(),
                 copSale: $('#copSale').val()
             }

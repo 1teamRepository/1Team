@@ -61,12 +61,24 @@
             </li>
 
             <li>
-                <a href="/admin/reservation/list" onclick="dropdown(2)">
+                <a href="#" onclick="dropdown(2)">
                             <span class="icon">
                                 <ion-icon name="document-text-outline"></ion-icon>
                             </span>
-                    <span class="title" value="2">예약조회</span>
+                    <span class="title">예약조회</span>
                 </a>
+                <ol>
+                    <li class="drop2">
+                        <a href="/admin/reservation/list">
+                            ㅇ  <span class="sub-title" value="2-1">운항별 예약자 조회</span>
+                        </a>
+                    </li>
+                    <li class="drop2">
+                        <a href="/admin/reservation/namelist">
+                            ㅇ  <span class="sub-title" value="2-2">예약자명 조회</span>
+                        </a>
+                    </li>
+                </ol>
             </li>
 
             <li>
@@ -137,13 +149,8 @@
                 </a>
                 <ol>
                     <li class="drop7">
-                        <a href="/admin/inquiry/personal">
+                        <a href="/admin/inquiry/list">
                             ㅇ  <span class="sub-title" value="7-1">1:1문의 목록</span>
-                        </a>
-                    </li>
-                    <li class="drop7">
-                        <a href="/admin/inquiry/faqlist">
-                            ㅇ <span class="sub-title" value="7-2">FAQ 목록</span>
                         </a>
                     </li>
                 </ol>

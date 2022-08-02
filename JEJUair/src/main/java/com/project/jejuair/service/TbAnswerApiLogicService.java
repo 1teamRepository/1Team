@@ -1,6 +1,7 @@
 package com.project.jejuair.service;
 
 import com.project.jejuair.model.entity.TbAnswer;
+import com.project.jejuair.model.enumclass.common.Check;
 import com.project.jejuair.model.network.Header;
 import com.project.jejuair.model.network.Pagination;
 import com.project.jejuair.model.network.request.TbAnswerRequest;
@@ -40,7 +41,7 @@ public class TbAnswerApiLogicService extends BaseService<TbAnswerRequest, TbAnsw
         TbAnswer tbAnswer = TbAnswer.builder()
                 .ansInquiryContent(tbAnswerRequest.getAnsInquiryContent())
                 .ansUserid(tbAnswerRequest.getAnsUserid())
-                .ansAnswerCheck(tbAnswerRequest.getAnsAnswerCheck())
+                .ansAnswerCheck(Check.No)
                 .ansInquiryTitle(tbAnswerRequest.getAnsInquiryTitle())
                 .ansAnswerContent(tbAnswerRequest.getAnsAnswerContent())
                 .ansInquiryRegDate(LocalDateTime.now())
@@ -50,6 +51,7 @@ public class TbAnswerApiLogicService extends BaseService<TbAnswerRequest, TbAnsw
         TbAnswer newTbAnswer = baseRepository.save(tbAnswer);
         return Header.OK(response(newTbAnswer));
     }
+
 
     @Override
     public Header<TbAnswerResponse> read(Long ansIdx) {

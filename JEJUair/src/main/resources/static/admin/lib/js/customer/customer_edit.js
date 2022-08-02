@@ -1,11 +1,6 @@
 $(function(){
     $(document).on('click', '#sendit', function(){
         let category = document.getElementById("category").getAttribute("value");
-        if(!$('#memUserid').val()){
-            alert('아이디를 입력하세요');
-            $('#memUserid').focus();
-            return false;
-        }
 
         if(!$('#memUserpw').val()) {
             alert('비밀번호를 입력하세요');
@@ -13,15 +8,15 @@ $(function(){
             return false;
         }
 
-        if(!$('#memKoLastname').val()){
-            alert('이름을 입력하세요');
-            $('#memKoLastname').focus();
+        if(!$('#memEngLastname').val()){
+            alert('성(영문)을 입력하세요');
+            $('#memEngLastname').focus();
             return false;
         }
 
-        if(!$('#memKoFirstname').val()){
-            alert('이름을 입력하세요');
-            $('#memKoFirstname').focus();
+        if(!$('#memEngFirstname').val()){
+            alert('이름(영문)을 입력하세요');
+            $('#memEngFirstname').focus();
             return false;
         }
 
@@ -30,37 +25,17 @@ $(function(){
             $('#memEngLastname').focus();
             return false;
         }
-        if(!$('#memEngFirstname').val()){
-            alert('이름을 입력하세요');
-            $('#memEngFirstname').focus();
-            return false;
-        }
-        if(!$('#memGender').val()){
-            alert('성별을 입력하세요');
-            $('#admDeparture').focus();
-            return false;
-        }
         if(!$('#memEmail').val()){
             alert('이메일을 입력하세요');
-            $('#admEmail').focus();
-            return false;
-        }
-        if(!$('#memSsn').val()){
-            alert('생년월일을 입력하세요');
-            $('#admEmail').focus();
+            $('#memEmail').focus();
             return false;
         }
         if(!$('#memHp').val()){
-            alert('휴대폰번호를 입력하세요');
+            alert('연락처를 입력하세요');
             $('#memHp').focus();
             return false;
         }
 
-        if(!$('#memPoint').val()){
-            alert('포인트를 입력하세요');
-            $('#memPoint').focus();
-            return false;
-        }
 
         /*
                     {
@@ -92,7 +67,6 @@ $(function(){
                 memSsn: $('#memSsn').val(),
                 memHp: $('#memHp').val(),
                 memPoint: $('#memPoint').val()
-
             }
         }
 
