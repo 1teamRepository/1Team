@@ -2,39 +2,6 @@ $(function(){
     $(document).on('click', '#sendit', function(){
         let category = document.getElementById("category").getAttribute("value");
 
-        if(!$('#memUserpw').val()) {
-            alert('비밀번호를 입력하세요');
-            $('#memUserpw').focus();
-            return false;
-        }
-
-        if(!$('#memEngLastname').val()){
-            alert('성(영문)을 입력하세요');
-            $('#memEngLastname').focus();
-            return false;
-        }
-
-        if(!$('#memEngFirstname').val()){
-            alert('이름(영문)을 입력하세요');
-            $('#memEngFirstname').focus();
-            return false;
-        }
-
-        if(!$('#memEngLastname').val()){
-            alert('이름을 입력하세요');
-            $('#memEngLastname').focus();
-            return false;
-        }
-        if(!$('#memEmail').val()){
-            alert('이메일을 입력하세요');
-            $('#memEmail').focus();
-            return false;
-        }
-        if(!$('#memHp').val()){
-            alert('연락처를 입력하세요');
-            $('#memHp').focus();
-            return false;
-        }
 
 
         /*
@@ -49,7 +16,7 @@ $(function(){
                         }
                     }
          */
-
+        console.log("들어옴")
         let jsonData = {
             transaction_time: new Date(),
             resultCode:"ok",
@@ -67,8 +34,12 @@ $(function(){
                 memSsn: $('#memSsn').val(),
                 memHp: $('#memHp').val(),
                 memPoint: $('#memPoint').val()
+
             }
         }
+        debugger
+        console.log($('#memIdx').val())
+        console.log(jsonData);
 
         $.ajax({
             url: '/api/'+category,

@@ -8,7 +8,7 @@ $(function(){
         }
 
         if(!$('#lostAcqAirName').val()) {
-            alert('습득편명을 입력하세요');
+            alert('습득편명을 입력하세요' );
             $('#lostAcqAirName').focus();
             return false;
         }
@@ -19,11 +19,42 @@ $(function(){
             return false;
         }
 
+        let storage = document.getElementById("lostStoragePlace");
+        let lostStoragePlace = storage.options[storage.selectedIndex].value;
+        if(lostStoragePlace == "null" || lostStoragePlace == undefined){
+            alert('보관장소를 선택하세요');
+            $('#lostStoragePlace').focus();
+            return false;
+        }
+
+        if(!$('#lostStoragePlace').val()){
+            alert('보관장소를 선택하세요');
+            $('#lostStoragePlace').focus();
+        }
+
         if(!$('#lostDisDate').val()){
             alert('폐기날짜를 입력하세요');
             $('#lostDisDate').focus();
             return false;
         }
+
+        let color = document.getElementById("lostColor");
+        let lostColor = color.options[color.selectedIndex].value;
+        if(lostColor == "null" || lostColor == undefined){
+            alert('색상을 선택하세요');
+            $('#lostColor').focus();
+            return false;
+        }
+
+
+        let item = document.getElementById("lostItem");
+        let lostItem = item.options[item.selectedIndex].value;
+        if(lostItem == "null" || lostItem == undefined){
+            alert('품목을 선택하세요');
+            $('#lostItem').focus();
+            return false;
+        }
+
 
         if(!$('#lostExplain').val()){
             alert('상세설명을 입력하세요');
@@ -37,30 +68,19 @@ $(function(){
             return false;
         }
 
-
-
-        let storage = document.getElementById("lostStoragePlace");
-        let lostStoragePlace = storage.options[storage.selectedIndex].value;
-
-        let color = document.getElementById("lostColor");
-        let lostColor = color.options[color.selectedIndex].value;
-        let lostColorList = "";
-        for (let i=0; i<lostColor.length; i++){
-            if (lostColor[i].checked){
-                if(lostColorList == ""){
-                    lostColorList += lostColor[i].getAttribute("value")
-                }else{
-                    lostColorList += ', ' + lostColor[i].getAttribute("value");
-                }
-            }
-        }
-
-        let item = document.getElementById("lostItem");
-        let lostItem = item.options[item.selectedIndex].value;
-
         let status = document.getElementById("lostStatus");
         let lostStatus = status.options[status.selectedIndex].value;
+        if(lostStatus == "null" || lostStatus == undefined){
+            alert('상태를 선택하세요');
+            $('#lostStatus').focus();
+            return false;
+        }
 
+        if(!$('#lostImg').val()){
+            alert("사진을 등록하세요");
+            $('#lostImg').focus();
+            return false;
+        }
 
         /*
                     {

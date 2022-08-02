@@ -63,11 +63,11 @@
                             :key="i"
                             @click="location.href=`/admin/customer/view/${dto.memIdx}`">
                             <td class="mem_idx"><a :href=`/admin/customer/view/${dto.memIdx}`>{{dto.memIdx}}</a></td>
-                            <td class="mem_userid">{{dto.memUserid}}</td>
-                            <td class="mem_name">{{dto.memKoLastname}}{{dto.memKoFirstname}}</td>
-                            <td class="mem_ssn">{{dto.memSsn}}</td>
-                            <td class="mem_hp">{{dto.memHp}}</td>
-                            <td class="mem_regDate">{{dto.memRegDate}}</td>
+                            <td class="mem_userid"><a :href=`/admin/customer/view/${dto.memIdx}`>{{dto.memUserid}}</a></td>
+                            <td class="mem_name"><a :href=`/admin/customer/view/${dto.memIdx}`>{{dto.memKoLastname}}{{dto.memKoFirstname}}</a></td>
+                            <td class="mem_birth"><a :href=`/admin/customer/view/${dto.memIdx}`>{{dto.memSsn}}</a></td>
+                            <td class="mem_hp"><a :href=`/admin/customer/view/${dto.memIdx}`>{{dto.memHp}}</a></td>
+                            <td class="mem_regDate"><a :href=`/admin/customer/view/${dto.memIdx}`>{{dto.memRegDate}}</a></td>
                         </tr>
                         </tbody>
                     </table>
