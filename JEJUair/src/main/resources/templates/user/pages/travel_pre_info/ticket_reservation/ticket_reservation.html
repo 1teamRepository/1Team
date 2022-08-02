@@ -1,6 +1,4 @@
-<html lang="ko"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org/">
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
 
 <!--head-->
 <div th:replace="/user/fragment/head :: head"></div>
@@ -8,6 +6,7 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
 <body id="subLayoutBody">
 
 <!--appAlert-->
@@ -57,7 +56,6 @@
         <div class="content" id="content">
             <main id="main" class="main ">
 
-                <form id="availSearchForm"><input type="hidden" id="availSearchData" name="availSearchData"></form>
                 <div class="page-title-wrap pc-only">
                     <div class="page-title">항공권 예매</div><!-- 항공권 예매 -->
                 </div>
@@ -65,60 +63,65 @@
                     <div class="main-ticketing open">
                         <div class="ticketing-in content-guide">
                             <ul class="ticketing-type">
-                                <li class="item selected" data-tripType="RT"><a href="#"
-                                                                                class="item-btn">왕복</a></li> <!-- 왕복 -->
+                                <li class="item selected" data-tripType="RT"><a href="#" class="item-btn">왕복</a>
+                                </li> <!-- 왕복 -->
                                 <li class="item" data-tripType="OW"><a href="#" class="item-btn">편도</a>
                                 </li> <!-- 편도 -->
+
                             </ul>
 
                             <div class="ticketing-row-top single">
                                 <div class="ticketing-target">
                                     <button type="button" class="start js-target-pick"><span
-                                            class="txt before-select"
-                                            id="spanDepartureDesc">출발지</span></button> <!-- 출발지 -->
-                                    <input type="hidden" id="departureData">
+                                            class="txt before-select" id="spanDepartureDesc">출발지</span></button>
+                                    <!-- 출발지 -->
+
                                     <button type="button" class="target js-target-pick"><span
-                                            class="txt before-select"
-                                            id="spanArrivalDesc">도착지</span></button> <!-- 도착지 -->
-                                    <input type="hidden" id="arrivalData">
-                                    <button type="button" class="btn-open js-target-pick"
-                                            data-route="DEP" id="btnExchangeRoute1"><span
-                                            class="blind">열기</span></button>
+                                            class="txt before-select" id="spanArrivalDesc">도착지</span></button>
+                                    <!-- 도착지 -->
+
+                                    <button type="button" class="btn-open js-target-pick" data-route="DEP"
+                                            id="btnExchangeRoute1"><span class="blind">열기</span></button>
                                     <!--열기-->
                                 </div>
                                 <div class="ticketing-date">
                                     <div id="date-round" style="display : block" value="round">
-                                        <div
-                                                style=" display: flex; justify-content: center; margin-top: 10px;">
-                                            <input type="text" name="date-round"
-                                                   value="07/26/2022 - 07/30/2022"
+
+                                        <div style=" display: flex; justify-content: center; margin-top: 10px;">
+                                            <input type="text" name="cal-round" id="cal-round" value=""
                                                    style="height: 30px; border: 0px solid #FFF; width: 250px; text-align: center; font-size: 18px;" />
                                         </div>
                                         <script>
                                             $(function () {
-                                                $('input[name="date-round"]').daterangepicker({
+                                                $('input[name="cal-round"]').daterangepicker({
                                                     opens: 'left',
                                                     minDate: moment()
 
                                                 }, function (start, end, label) {
+                                                    document.getElementById("roundStart").setAttribute("value", start.format('YYYY-MM-DD'));
+                                                    document.getElementById("roundEnd").setAttribute("value", end.format('YYYY-MM-DD'));
+                                                    console.log(document.getElementById("roundStart"));
+                                                    console.log(document.getElementById("roundEnd"));
                                                     console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
                                                 });
                                             });
                                         </script>
                                     </div>
                                     <div id="date-one-way" style="display : none" value="one-way">
-                                        <div
-                                                style=" display: flex; justify-content: center; margin-top: 10px;">
-                                            <input type="text" name="date-one-way" value="07/26/2022"
+
+                                        <div style=" display: flex; justify-content: center; margin-top: 10px;">
+                                            <input type="text" name="cal-one-way" id="cal-one-way" value=""
                                                    style="height: 30px; border: 0px solid #FFF; width: 250px; text-align: center; font-size: 18px;" />
                                         </div>
                                         <script>
                                             $(function () {
-                                                $('input[name="date-one-way"]').daterangepicker({
+                                                $('input[name="cal-one-way"]').daterangepicker({
                                                     singleDatePicker: true,
                                                     showDropdowns: true,
                                                     minDate: moment()
                                                 }, function (start, end, label) {
+                                                    document.getElementById("onewayStart").setAttribute("value", start.format('YYYY-MM-DD'));
+                                                    console.log(document.getElementById("onewayStart"));
                                                     var years = moment().diff(start, 'years');
                                                 });
                                             });
@@ -130,10 +133,8 @@
                             <div class="ticketing-row-hidden single">
                                 <div class="flight-layer flight-start" id="depAirportLayer">
                                     <div class="layer-header">
-                                        <div class="header__input-wrap input is-focus"
-                                             data-element="form">
-                                            <button type="button" class="header__button"
-                                                    name="header_btn"><span
+                                        <div class="header__input-wrap input is-focus" data-element="form">
+                                            <button type="button" class="header__button" name="header_btn"><span
                                                     class="hidden">이전으로</span></button> <!-- 이전으로 -->
                                             <button type="button" class="header__input-search"><img
                                                     src="https://static.jejuair.net/hpgg/resources/images/icon/icon-header-search.png"
@@ -144,76 +145,104 @@
                                             <p class="map-list-txt" id="mapDEPAirport">어디에서 출발하세요?</p>
                                             <!-- 어디에서 출발하세요? -->
                                             <button type="button" data-element="remove"
-                                                    class="input__remove-button"><span
-                                                    class="hidden">삭제</span></button> <!-- 삭제 -->
+                                                    class="input__remove-button"><span class="hidden">삭제</span></button>
+                                            <!-- 삭제 -->
                                         </div>
-                                        <div id="divDEPAirportAC" name="search_auto"
-                                             target="txtDepAirport"></div>
+                                        <div id="divDEPAirportAC" name="search_auto" target="txtDepAirport"></div>
                                     </div>
                                     <div class="txt-list">
 
                                         <div class="main--destination-select">
                                             <hr class="booking-line">
-                                            <div data-element="tab"
-                                                 class="tab tab--vertical tab--booking">
-                                                <div class="tab__buttons vertical_scroll_set"
-                                                     id="divDepArea">
-                                                    <div data-element="tab__list" class="tab__button" role="presentation">
-                                                        <button type="button" tabindex="" data-element="tab__anchor" role="tab" data-index="0"
-                                                                id="plugin-DEPtab-2" class="tab__anchor is-active" aria-selected="true" aria-expanded="true">대한민국</button>
+                                            <div data-element="tab" class="tab tab--vertical tab--booking">
+                                                <div class="tab__buttons vertical_scroll_set" id="divDepArea">
+                                                    <div data-element="tab__list" class="tab__button"
+                                                         role="presentation">
+                                                        <button type="button" tabindex="" data-element="tab__anchor"
+                                                                role="tab" data-index="0" id="plugin-DEPtab-2"
+                                                                class="tab__anchor is-active" aria-selected="true"
+                                                                aria-expanded="true">대한민국</button>
                                                     </div>
-                                                    <div data-element="tab__list" class="tab__button" role="presentation">
-                                                        <button type="button" tabindex="" data-element="tab__anchor" role="tab" data-index="1"
-                                                                id="plugin-DEPtab-3" class="tab__anchor" aria-selected="false" aria-expanded="false">동북아시아</button>
+                                                    <div data-element="tab__list" class="tab__button"
+                                                         role="presentation">
+                                                        <button type="button" tabindex="" data-element="tab__anchor"
+                                                                role="tab" data-index="1" id="plugin-DEPtab-3"
+                                                                class="tab__anchor" aria-selected="false"
+                                                                aria-expanded="false">동북아시아</button>
                                                     </div>
 
                                                 </div>
                                                 <div class="tab__panel-wrap scrollbar-inner"
                                                      data-element="tab__panel-wrap">
-                                                    <div data-element="tab__panel" class="tab__panel is-active" aria-labelledby="plugin-DEPtab-2" role="tabpanel" tabindex="0" style="display: block;">
+                                                    <div data-element="tab__panel" class="tab__panel is-active"
+                                                         aria-labelledby="plugin-DEPtab-2" role="tabpanel"
+                                                         tabindex="0" style="display: block;">
                                                         <div class="choise">
-                                                            <button type="button" class="choise__button" data-countrycode="KR" data-stationcode="ICN" data-stationtype="DEP" data-stationname="서울(인천)">
-                                                                <span class="stationName">서울(인천)</span><span class="airport">ICN</span>
+                                                            <button type="button" class="choise__button"
+                                                                    data-countrycode="KR" data-stationcode="ICN"
+                                                                    data-stationtype="DEP" data-stationname="서울(인천)">
+                                                                <span class="stationName">서울(인천)</span><span
+                                                                    class="airport">ICN</span>
                                                             </button>
                                                         </div>
                                                         <div class="choise">
-                                                            <button type="button" class="choise__button" data-countrycode="KR" data-stationcode="PUS" data-stationtype="DEP" data-stationname="부산">
-                                                                <span class="stationName">부산</span><span class="airport">PUS</span>
+                                                            <button type="button" class="choise__button"
+                                                                    data-countrycode="KR" data-stationcode="PUS"
+                                                                    data-stationtype="DEP" data-stationname="부산">
+                                                                <span class="stationName">부산</span><span
+                                                                    class="airport">PUS</span>
                                                             </button>
                                                         </div>
                                                         <div class="choise">
-                                                            <button type="button" class="choise__button" data-countrycode="KR" data-stationcode="CJU" data-stationtype="DEP" data-stationname="제주">
-                                                                <span class="stationName">제주</span><span class="airport">CJU</span>
+                                                            <button type="button" class="choise__button"
+                                                                    data-countrycode="KR" data-stationcode="CJU"
+                                                                    data-stationtype="DEP" data-stationname="제주">
+                                                                <span class="stationName">제주</span><span
+                                                                    class="airport">CJU</span>
                                                             </button>
                                                         </div>
                                                         <div class="choise">
-                                                            <button type="button" class="choise__button" data-countrycode="KR" data-stationcode="TAE" data-stationtype="DEP" data-stationname="대구">
-                                                                <span class="stationName">대구</span><span class="airport">TAE</span>
+                                                            <button type="button" class="choise__button"
+                                                                    data-countrycode="KR" data-stationcode="TAE"
+                                                                    data-stationtype="DEP" data-stationname="대구">
+                                                                <span class="stationName">대구</span><span
+                                                                    class="airport">TAE</span>
                                                             </button>
                                                         </div>
                                                     </div>
-                                                    <div data-element="tab__panel" class="tab__panel" aria-labelledby="plugin-DEPtab-3" role="tabpanel" tabindex="0" style="display: none;">
+                                                    <div data-element="tab__panel" class="tab__panel"
+                                                         aria-labelledby="plugin-DEPtab-3" role="tabpanel"
+                                                         tabindex="0" style="display: none;">
                                                         <div class="choise">
-                                                            <button type="button" class="choise__button" data-countrycode="JP" data-stationcode="NRT" data-stationtype="DEP" data-stationname="도쿄(나리타)">
-                                                                <span class="stationName">도쿄(나리타)</span><span class="airport">NRT</span>
+                                                            <button type="button" class="choise__button"
+                                                                    data-countrycode="JP" data-stationcode="NRT"
+                                                                    data-stationtype="DEP" data-stationname="도쿄(나리타)">
+                                                                <span class="stationName">도쿄(나리타)</span><span
+                                                                    class="airport">NRT</span>
                                                             </button>
                                                         </div>
                                                         <div class="choise">
-                                                            <button type="button" class="choise__button" data-countrycode="JP" data-stationcode="FUK" data-stationtype="DEP" data-stationname="후쿠오카">
-                                                                <span class="stationName">후쿠오카</span><span class="airport">FUK</span>
+                                                            <button type="button" class="choise__button"
+                                                                    data-countrycode="JP" data-stationcode="FUK"
+                                                                    data-stationtype="DEP" data-stationname="후쿠오카">
+                                                                <span class="stationName">후쿠오카</span><span
+                                                                    class="airport">FUK</span>
                                                             </button>
                                                         </div>
                                                         <div class="choise">
-                                                            <button type="button" class="choise__button" data-countrycode="JP" data-stationcode="HRB" data-stationtype="DEP" data-stationname="하얼빈">
-                                                                <span class="stationName">하얼빈</span><span class="airport">HRB</span>
+                                                            <button type="button" class="choise__button"
+                                                                    data-countrycode="JP" data-stationcode="HRB"
+                                                                    data-stationtype="DEP" data-stationname="하얼빈">
+                                                                <span class="stationName">하얼빈</span><span
+                                                                    class="airport">HRB</span>
                                                             </button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <!--<button type="button" class="floating-button btn-map" onclick="viewTabMap('start','map')">
-                                             <span class="hidden">지도보기</span>
-                                         </button>-->
+                                         <span class="hidden">지도보기</span>
+                                     </button>-->
                                         </div>
                                     </div>
                                     <div class="map-list">
@@ -237,10 +266,8 @@
                                 </div>
                                 <div class="flight-layer flight-target" id="arrAirportLayer">
                                     <div class="layer-header">
-                                        <div class="header__input-wrap input is-focus"
-                                             data-element="form">
-                                            <button type="button" class="header__button"
-                                                    name="header_btn"><span
+                                        <div class="header__input-wrap input is-focus" data-element="form">
+                                            <button type="button" class="header__button" name="header_btn"><span
                                                     class="hidden">이전으로</span></button> <!-- 이전으로 -->
                                             <button type="button" class="header__input-search"><img
                                                     src="https://static.jejuair.net/hpgg/resources/images/icon/icon-header-search.png"
@@ -251,75 +278,103 @@
                                             <p class="map-list-txt" id="mapARRAirport">어디로 여행가세요?</p>
                                             <!-- 어디로 여행가세요? -->
                                             <button type="button" data-element="remove"
-                                                    class="input__remove-button"><span
-                                                    class="hidden">삭제</span></button> <!-- 삭제 -->
+                                                    class="input__remove-button"><span class="hidden">삭제</span></button>
+                                            <!-- 삭제 -->
                                         </div>
-                                        <div id="divARRAirportAC" name="search_auto"
-                                             target="txtArrAirport"></div>
+                                        <div id="divARRAirportAC" name="search_auto" target="txtArrAirport"></div>
                                     </div>
                                     <div class="txt-list">
                                         <div class="main--destination-select">
                                             <hr class="booking-line">
-                                            <div data-element="tab"
-                                                 class="tab tab--vertical tab--booking">
-                                                <div class="tab__buttons vertical_scroll_set"
-                                                     id="divArrArea">
-                                                    <div data-element="tab__list" class="tab__button" role="presentation">
-                                                        <button type="button" tabindex="" data-element="tab__anchor" role="tab" data-index="0"
-                                                                id="plugin-ARRtab-2" class="tab__anchor is-active" aria-selected="true" aria-expanded="true">대한민국</button>
+                                            <div data-element="tab" class="tab tab--vertical tab--booking">
+                                                <div class="tab__buttons vertical_scroll_set" id="divArrArea">
+                                                    <div data-element="tab__list" class="tab__button"
+                                                         role="presentation">
+                                                        <button type="button" tabindex="" data-element="tab__anchor"
+                                                                role="tab" data-index="0" id="plugin-ARRtab-2"
+                                                                class="tab__anchor is-active" aria-selected="true"
+                                                                aria-expanded="true">대한민국</button>
                                                     </div>
-                                                    <div data-element="tab__list" class="tab__button" role="presentation">
-                                                        <button type="button" tabindex="" data-element="tab__anchor" role="tab" data-index="1"
-                                                                id="plugin-ARRtab-3" class="tab__anchor" aria-selected="false" aria-expanded="false">동북아시아</button>
+                                                    <div data-element="tab__list" class="tab__button"
+                                                         role="presentation">
+                                                        <button type="button" tabindex="" data-element="tab__anchor"
+                                                                role="tab" data-index="1" id="plugin-ARRtab-3"
+                                                                class="tab__anchor" aria-selected="false"
+                                                                aria-expanded="false">동북아시아</button>
                                                     </div>
                                                 </div>
                                                 <div class="tab__panel-wrap scrollbar-inner"
                                                      data-element="tab__panel-wrap">
-                                                    <div data-element="tab__panel" class="tab__panel is-active" aria-labelledby="plugin-DEPtab-2" role="tabpanel" tabindex="0" style="display: block;">
+                                                    <div data-element="tab__panel" class="tab__panel is-active"
+                                                         aria-labelledby="plugin-ARRtab-2" role="tabpanel"
+                                                         tabindex="0" style="display: block;">
                                                         <div class="choise">
-                                                            <button type="button" class="choise__button" data-countrycode="KR" data-stationcode="ICN" data-stationtype="ARR" data-stationname="서울(인천)">
-                                                                <span class="stationName">서울(인천)</span><span class="airport">ICN</span>
+                                                            <button type="button" class="choise__button"
+                                                                    data-countrycode="KR" data-stationcode="ICN"
+                                                                    data-stationtype="ARR" data-stationname="서울(인천)">
+                                                                <span class="stationName">서울(인천)</span><span
+                                                                    class="airport">ICN</span>
                                                             </button>
                                                         </div>
                                                         <div class="choise">
-                                                            <button type="button" class="choise__button" data-countrycode="KR" data-stationcode="PUS" data-stationtype="ARR" data-stationname="부산">
-                                                                <span class="stationName">부산</span><span class="airport">PUS</span>
+                                                            <button type="button" class="choise__button"
+                                                                    data-countrycode="KR" data-stationcode="PUS"
+                                                                    data-stationtype="ARR" data-stationname="부산">
+                                                                <span class="stationName">부산</span><span
+                                                                    class="airport">PUS</span>
                                                             </button>
                                                         </div>
                                                         <div class="choise">
-                                                            <button type="button" class="choise__button" data-countrycode="KR" data-stationcode="CJU" data-stationtype="ARR" data-stationname="제주">
-                                                                <span class="stationName">제주</span><span class="airport">CJU</span>
+                                                            <button type="button" class="choise__button"
+                                                                    data-countrycode="KR" data-stationcode="CJU"
+                                                                    data-stationtype="ARR" data-stationname="제주">
+                                                                <span class="stationName">제주</span><span
+                                                                    class="airport">CJU</span>
                                                             </button>
                                                         </div>
                                                         <div class="choise">
-                                                            <button type="button" class="choise__button" data-countrycode="KR" data-stationcode="TAE" data-stationtype="ARR" data-stationname="대구">
-                                                                <span class="stationName">대구</span><span class="airport">TAE</span>
+                                                            <button type="button" class="choise__button"
+                                                                    data-countrycode="KR" data-stationcode="TAE"
+                                                                    data-stationtype="ARR" data-stationname="대구">
+                                                                <span class="stationName">대구</span><span
+                                                                    class="airport">TAE</span>
                                                             </button>
                                                         </div>
                                                     </div>
 
-                                                    <div data-element="tab__panel" class="tab__panel" aria-labelledby="plugin-DEPtab-3" role="tabpanel" tabindex="0" style="display: none;">
+                                                    <div data-element="tab__panel" class="tab__panel"
+                                                         aria-labelledby="plugin-ARRtab-3" role="tabpanel"
+                                                         tabindex="0" style="display: none;">
                                                         <div class="choise">
-                                                            <button type="button" class="choise__button" data-countrycode="JP" data-stationcode="NRT" data-stationtype="DEP" data-stationname="도쿄(나리타)">
-                                                                <span class="stationName">도쿄(나리타)</span><span class="airport">NRT</span>
+                                                            <button type="button" class="choise__button"
+                                                                    data-countrycode="JP" data-stationcode="NRT"
+                                                                    data-stationtype="DEP" data-stationname="도쿄(나리타)">
+                                                                <span class="stationName">도쿄(나리타)</span><span
+                                                                    class="airport">NRT</span>
                                                             </button>
                                                         </div>
                                                         <div class="choise">
-                                                            <button type="button" class="choise__button" data-countrycode="JP" data-stationcode="FUK" data-stationtype="DEP" data-stationname="후쿠오카">
-                                                                <span class="stationName">후쿠오카</span><span class="airport">FUK</span>
+                                                            <button type="button" class="choise__button"
+                                                                    data-countrycode="JP" data-stationcode="FUK"
+                                                                    data-stationtype="DEP" data-stationname="후쿠오카">
+                                                                <span class="stationName">후쿠오카</span><span
+                                                                    class="airport">FUK</span>
                                                             </button>
                                                         </div>
                                                         <div class="choise">
-                                                            <button type="button" class="choise__button" data-countrycode="JP" data-stationcode="HRB" data-stationtype="DEP" data-stationname="하얼빈">
-                                                                <span class="stationName">하얼빈</span><span class="airport">HRB</span>
+                                                            <button type="button" class="choise__button"
+                                                                    data-countrycode="JP" data-stationcode="HRB"
+                                                                    data-stationtype="DEP" data-stationname="하얼빈">
+                                                                <span class="stationName">하얼빈</span><span
+                                                                    class="airport">HRB</span>
                                                             </button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <!--<button type="button" class="floating-button btn-map" onclick="viewTabMap('target','map')">
-                                             <span class="hidden">지도보기</span>
-                                         </button>-->
+                                         <span class="hidden">지도보기</span>
+                                     </button>-->
                                         </div>
                                     </div>
                                     <div class="map-list">
@@ -359,15 +414,15 @@
                                             </div>
                                         </div>
                                         <!-- <div class="picker picker--full">
-                                            <div class="info-wrap"><span class="info">1인 편도 운임
-                                                    기준</span><span class="currency"
-                                                    name="currency"></span></div>
-                                            <input type="text" class="picker__input" id="selectDate"
-                                                data-picker="range" data-text="1인 편도 운임 기준"
-                                                data-locale="ko" data-min-date="today"
-                                                data-format="Y.m.d (D)" data-selected=''
-                                                data-range-text='{"start": "가는 날", "end": "오는날", "current": "왕복"}'>
-                                        </div> -->
+                                        <div class="info-wrap"><span class="info">1인 편도 운임
+                                                기준</span><span class="currency"
+                                                name="currency"></span></div>
+                                        <input type="text" class="picker__input" id="selectDate"
+                                            data-picker="range" data-text="1인 편도 운임 기준"
+                                            data-locale="ko" data-min-date="today"
+                                            data-format="Y.m.d (D)" data-selected=''
+                                            data-range-text='{"start": "가는 날", "end": "오는날", "current": "왕복"}'>
+                                    </div> -->
 
 
 
@@ -377,8 +432,7 @@
                                                     data-station="DEP" data-reset-date="#selectDate">
                                                 <span class="button__text">초기화</span> <!-- 초기화 -->
                                             </button>
-                                            <button type="button"
-                                                    class="button button--primary button--active"
+                                            <button type="button" class="button button--primary button--active"
                                                     data-select-date="#selectDate" rel="modal:close">
                                                 <span class="button__text">선택</span> <!-- 선택 -->
                                             </button>
@@ -389,8 +443,8 @@
                                 </div>
                                 <div class="customer-layer" id="customerLayer">
                                     <div class="layer-header">
-                                        <button type="button" class="header__button"
-                                                name="header_btn"><span class="hidden">이전으로</span></button>
+                                        <button type="button" class="header__button" name="header_btn"><span
+                                                class="hidden">이전으로</span></button>
                                         <!-- 이전으로 -->
                                         <h2 class="customer-layer__title">누구와 함께 떠나세요?</h2>
                                         <!-- 누구와 함께 떠나세요? -->
@@ -399,34 +453,29 @@
                                         <div class="booking-trip">
                                             <div class="booking-trip__from" id="divFromPas"><span
                                                     class="location"></span></div>
-                                            <span class="booking-trip__switch"><span
-                                                    class="hidden">에서</span></span> <!-- 에서 -->
+                                            <span class="booking-trip__switch"><span class="hidden">에서</span></span>
+                                            <!-- 에서 -->
                                             <div class="booking-trip__to" id="divToPax"><span
                                                     class="location"></span></div>
                                         </div>
                                         <hr class="section-spacer">
                                         <div class="booking-members">
                                             <div class="input-wrap input--line">
-                                                <div
-                                                        class="input-row input-row--number input-row--icon">
-                                                    <label for="adtCount"
-                                                           class="input__label">성인</label> <!-- 성인 -->
-                                                    <div data-element="form"
-                                                         class="input input--number">
-                                                        <button type="button"
-                                                                data-element="number__button"
+                                                <div class="input-row input-row--number input-row--icon">
+                                                    <label for="adtCount" class="input__label">성인</label>
+                                                    <!-- 성인 -->
+                                                    <div data-element="form" class="input input--number">
+                                                        <button type="button" data-element="number__button"
                                                                 data-type="decrease"
                                                                 class="input__number input__number-minus"
                                                                 aria-label="빼기" disabled></button>
                                                         <!-- 빼기 -->
-                                                        <input type="text" id="adtCount"
-                                                               placeholder="숫자입력"
-                                                               data-element="number__input" value="1"
-                                                               data-max="9" data-min="1"
-                                                               data-string-number="" class="input__number">
+                                                        <input type="text" id="adtCount" name="adtCount" placeholder="숫자입력"
+                                                               data-element="number__input" value="1" data-max="9"
+                                                               data-min="1" data-string-number=""
+                                                               class="input__number">
                                                         <!-- 숫자입력 -->
-                                                        <button type="button"
-                                                                data-element="number__button"
+                                                        <button type="button" data-element="number__button"
                                                                 data-type="increase"
                                                                 class="input__number input__number-plus"
                                                                 aria-label="더하기"></button> <!-- 더하기 -->
@@ -441,7 +490,7 @@
                                         <div class="button-wrap">
                                             <button type="button" class="button button--active" id="btnSetPassenger"
                                                     name="btnSetPassenger"><span class="button__text">선택
-                                                                    완료</span></button> <!-- 선택 완료 -->
+                                                        완료</span></button> <!-- 선택 완료 -->
                                         </div>
                                     </div>
                                     <a href="#a" class="layer-close"><span class="blind">닫기</span></a>
@@ -457,10 +506,18 @@
                                     </div>
                                 </div>
                                 <div class="ticketing-row-sub">
-                                    <button type="button" id="searchFlight"
-                                            onclick="javascript:setSearchAvailParam(true);"
-                                            class="btn-flight-sch-again" disabled>항공권 검색</button>
+                                    <form id="availSearchForm" action="/user/avail_search_form" method="post">
+                                        <input type="hidden" id="availSearchData" name="availSearchData">
+                                        <input type="hidden" id="reserveRoute" name="reserveRoute" value="round">
+                                        <input type="hidden" id="departureData" name="departureData">
+                                        <input type="hidden" id="arrivalData" name="arrivalData">
+                                        <input type="hidden" id="onewayStart" name="onewayStart">
+                                        <input type="hidden" id="roundStart" name="roundStart">
+                                        <input type="hidden" id="roundEnd" name="roundEnd">
+                                        <input type="hidden" id="passengerNum" name="passengerNum" value="1">
+                                        <button type="submit" id="searchFlight" class="btn-flight-sch-again" disabled>항공권 검색</button>
                                     <!-- 항공권  검색 -->
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -472,8 +529,7 @@
                         <p class="alert-text"></p>
                     </div>
                     <div class="modal__button-area button-wrap">
-                        <button type="button"
-                                class="button button--secondary button--active" rel="modal:close"
+                        <button type="button" class="button button--secondary button--active" rel="modal:close"
                                 onclick="javascript:closeCurrentModal(this);">
                             <span class="button__text">확인</span></button>
                     </div><!-- 확인 -->
@@ -522,7 +578,8 @@
                         <div class="first-margin">
                             <p class="section-title">포인트 결제</p>
                             <ul class="list-guide large list-guide--narrow">
-                                <li class="list-guide__item">보유하고 있는 포인트로 항공권 예매가 가능하며, 부족한 포인트는 구매 후 사용할 수 있습니다.</li>
+                                <li class="list-guide__item">보유하고 있는 포인트로 항공권 예매가 가능하며, 부족한 포인트는 구매 후 사용할 수 있습니다.
+                                </li>
                                 <li class="list-guide__item">유류할증료 및 공항이용료는 포인트로 결제하실 수 없습니다.</li>
                             </ul>
                         </div>
@@ -532,7 +589,8 @@
                             <p class="section-title">기프티켓 결제</p>
                             <ul class="list-guide large list-guide--narrow">
                                 <li class="list-guide__item">사전에 등록된 기프티켓이 있으면 선택하여 사용 가능합니다.</li>
-                                <li class="list-guide__item">기프티켓은 항공권 운임에만 적용되며, 유류할증료 및 공항이용료와 부가서비스는 별도 결제가 필요합니다.
+                                <li class="list-guide__item">기프티켓은 항공권 운임에만 적용되며, 유류할증료 및 공항이용료와 부가서비스는 별도 결제가
+                                    필요합니다.
                                 </li>
                             </ul>
                         </div>
@@ -654,11 +712,11 @@
         passCnt(this);
     })
 
-    $(document).on('click', '.tab__anchor', function(){
+    $(document).on('click', '.tab__anchor', function () {
         selectCountry(this);
     })
 
-    $(document).on('click', '.choise__button', function(){
+    $(document).on('click', '.choise__button', function () {
         selectAirport(this);
     })
 
@@ -687,6 +745,11 @@
     const searchFlight = document.getElementById('searchFlight');
 
 
+    //hidden input
+    let departureData = document.querySelector("#departureData");
+    let arrivalData = document.querySelector("#arrivalData");
+
+
     function selectTrip(item) {
         let li = item.parentNode;										//<li class="item selected" data-tripType="RT"><a href="#" class="item-btn">왕복</a></li>
         let mainTicketing_item = item.parentNode.parentNode.parentNode.parentNode;
@@ -694,27 +757,40 @@
 
         closeLayer();
         for (let i = 0; i < tripBtn.length; i++) {
-            console.log(tripBtn[i].parentElement);
             tripBtn[i].parentElement.classList.remove('selected');
         }
 
-        console.log(mainTicketing_item);
         li.classList.add('selected');
         mainTicketing.classList.remove('one-way');
         mainTicketing.classList.remove('round');
-        mainTicketing.classList.remove('multi');
-
 
         if (trip_type == 'OW') {
             mainTicketing_item.classList.add("one-way");
             dateOneWay.style.display = "block";
             dateRound.style.display = "none";
+            document.getElementById('reserveRoute').setAttribute("value", "oneway");
+
+            console.log("====oneway====")
+            console.log(document.getElementById('reserveRoute'));
+            console.log(document.getElementById('departureData'));
+            console.log(document.getElementById('arrivalData'));
+            console.log(document.getElementById('onewayStart'));
+            console.log(document.getElementById('passengerNum'));
+
         } else if (trip_type == 'RT') {
             mainTicketing_item.classList.add("round");
             dateRound.style.display = "block";
             dateOneWay.style.display = "none";
-        } else {
-            mainTicketing_item.classList.add("multi");
+            document.getElementById('reserveRoute').setAttribute("value", "round");
+
+            console.log("====round====")
+            console.log(document.getElementById('reserveRoute'));
+            console.log(document.getElementById('departureData'));
+            console.log(document.getElementById('arrivalData'));
+            console.log(document.getElementById('roundStart'));
+            console.log(document.getElementById('roundEnd'));
+            console.log(document.getElementById('passengerNum'));
+
         }
     }
 
@@ -722,12 +798,14 @@
         closeLayer();
         departureDesc.parentElement.classList.add('on');
         departureLayer.style.display = "block";
+        document.querySelector("[aria-labelledby='plugin-DEPtab-2']").classList.add("is-active");
     }
 
     function selectTarget() {
         closeLayer();
         arrivalDesc.parentElement.classList.add('on');
         targetLayer.style.display = "block";
+        document.querySelector("[aria-labelledby='plugin-ARRtab-2']").classList.add("is-active");
     }
 
     function selectPassengers() {
@@ -749,23 +827,25 @@
     function inputNumberMinus(select) {
         const inputBox = select.nextElementSibling;
         $(inputBox).attr('value', Number(inputBox.value) - 1);
+        document.getElementById("passengerNum").setAttribute("value", $(inputBox).attr('value'));
         btnAble();
     }
 
     function inputNumberPlus(select) {
         const inputBox = select.previousElementSibling;
         $(inputBox).attr('value', Number(inputBox.value) + 1);
+        document.getElementById("passengerNum").setAttribute("value", $(inputBox).attr('value'));
         btnAble();
     }
 
-    function passCnt(select){
+    function passCnt(select) {
         let passText = btnPassengers.firstChild;
         passText.innerHTML = "성인" + adtCount.value;
         closeLayer();
     }
 
     function btnAble() {
-        if (Number(adtCount.value) >= 9) {
+        if (Number(adtCount.value) >= 4) {
             $(adtCount.nextElementSibling).attr('disabled', true);
         } else if (Number(adtCount.value) <= 1) {
             $(adtCount.previousElementSibling).attr('disabled', true);
@@ -775,22 +855,20 @@
         }
     }
 
-    function selectCountry(select){
+    function selectCountry(select) {
         for (let i = 0; i < tabAnchor.length; i++) {
             tabAnchor[i].classList.remove('is-active');
-            $(tabAnchor[i]).attr('aria-selected',false);
+            $(tabAnchor[i]).attr('aria-selected', false);
             $(tabAnchor[i]).attr('aria-expanded', false);
         }
 
         for (let i = 0; i < tabPanel.length; i++) {
             tabPanel[i].classList.remove('is-active');
             tabPanel[i].style.display = "none";
-            console.log($(tabPanel[i]).attr('aria-labelledby'));
-            if($(tabPanel[i]).attr('aria-labelledby')==$(select).attr('id')){
-                tabPanel[i].style.display="block";
+            if ($(tabPanel[i]).attr('aria-labelledby') == $(select).attr('id')) {
+                tabPanel[i].style.display = "block";
             }
         }
-        console.log($(select).attr('id'));
 
         select.classList.add('is-active');
         $(select).attr('aria-selected', true);
@@ -800,29 +878,27 @@
     }
 
 
-    function selectAirport(select){
-        let station=$(select).attr('data-stationname');
+    function selectAirport(select) {
+        let station = $(select).attr('data-stationname');
         console.log(station);
-        if($(select).attr('data-stationtype') == "DEP"){
+        if ($(select).attr('data-stationtype') == "DEP") {
             selectTarget();
-            departureDesc.innerText=station;
-            console.log(departureDesc.innerText);
+            departureDesc.innerText = station;
+            departureData.setAttribute("value", station);
+            document.querySelector("[aria-labelledby='plugin-ARRtab-2']").classList.add("is-active");
 
-        }else if($(select).attr('data-stationtype') == "ARR"){
+        } else if ($(select).attr('data-stationtype') == "ARR") {
             selectPassengers();
-            arrivalDesc.innerText=station;
-            console.log(arrivalDesc.innerText);
-            console.log(searchFlight);
+            arrivalDesc.innerText = station;
             $(searchFlight).attr('disabled', false);
+            arrivalData.setAttribute("value", station);
         }
     }
 
 
 
-
-
+//왕복 or 편도 : reserveRoute // 출발지 : departureData // 도착지 : arrivalData // 왕복 날짜 : onewayStart // 왕복 날짜 : roundStart, roundEnd // 성인 승객 수 : adtCount
 </script>
-
 
 
 <!-- 공통 스크립트 선언 -->
@@ -830,6 +906,6 @@
 <!--<script type="text/javascript" src="/user/lib/js/common.js"></script>-->
 <!--<script type="text/javascript" src="/user/lib/js/plugin.js"></script>-->
 
-
 </body>
+
 </html>

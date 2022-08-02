@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제주항공 | 기내식 등록</title>
+    <link rel="stylesheet" type="text/css" href="/admin/lib/css/common.css">
+    <link rel="icon" href="/admin/lib/images/favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <div class="container" value="9-2">
+        <div th:replace="/admin/fragment/menu :: menu"></div>
+
+        <!-- main -->
+        <div class="containerbody">
+            <div id="category" value="food"></div>
+
+            <div class="main">
+                
+                <!-- 본문 -->
+                <div class="bodytext_area box_inner">
+                    <dl class="myinfo">
+                        <form id="regForm" class="regForm">
+                            <div class="tableBorder">
+                                <div class="pageTitle">
+                                    <h2>기내식 등록</h2>
+                                </div>
+                                <ul class="leg_list">
+                                    <li class="clear">
+                                        <span class="tit_lbl">고유번호</span>
+                                        <div class="reg_content"><input name="foodIdx" id="foodIdx" type="text" class="textBox" value="" disabled></div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">가격(KRW)</span>
+                                        <div class="reg_content"><input name="foodKrwPrice" id="foodKrwPrice" type="text" class="textBox" value=""></div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">기내식명(KOR)</span>
+                                        <div class="reg_content"><input name="foodKorName" id="foodKorName" type="text" class="textBox" value=""></div>
+                                    </li>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">가격(USD)</span>
+                                        <div class="reg_content"><input name="foodUsdPrice" id="foodUsdPrice" type="text" class="textBox" value=""></div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">기내식명(ENG)</span>
+                                        <div class="reg_content"><input name="foodEngName" id="foodEngName" type="text" class="textBox" value=""></div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">가격(JPY)</span>
+                                        <div class="reg_content"><input name="foodJpyPrice" id="foodJpyPrice" type="text" class="textBox" value=""></div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">할인</span>
+                                        <div class="reg_content"><input name="foodDiscount" id="foodDiscount" type="text" class="textBox2" value=""> %</div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">첨부사진</span>
+                                        <div class="reg_content"><input name="foodPicture" id="foodPicture" type="text" class="textBox3" value=""><button class="button file">선택</button></div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">출발지</span>
+                                        <div class="reg_content multicheck" >
+                                            <div id="starting_point_open" class="invis">
+                                                <p class="multitext" onclick="openCheck('starting_point_open')">열기</p>
+                                            </div>
+                                            <div id="starting_point_close" class="vis">
+                                                <p class="multitext" onclick="closeCheck('starting_point_close')">닫기</p>
+                                                <div class="vis_list">
+                                                    <label><input type="checkbox" name="foodStartingPoint" id="check_start1" value="인천/부산">인천/부산</label>
+                                                    <label><input type="checkbox" name="foodStartingPoint" id="check_start2" value="김포">김포</label>
+                                                    <label><input type="checkbox" name="foodStartingPoint" id="check_start3" value="대구">대구</label>
+                                                    <label><input type="checkbox" name="foodStartingPoint" id="check_start4" value="청주">청주</label>
+                                                    <label><input type="checkbox" name="foodStartingPoint" id="check_start5" value="무안">무안</label>
+                                                    <label><input type="checkbox" name="foodStartingPoint" id="check_start6" value="제주">제주</label>
+                                                    <label><input type="checkbox" name="foodStartingPoint" id="check_start7" value="괌/사이판">괌/사이판</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="clear">
+                                        <span class="tit_lbl">특이사항</span>
+                                        <div class="reg_content multicheck" >
+                                            <div id="specific_open" class="invis">
+                                                <p class="multitext" onclick="openCheck('specific_open')">열기</p>
+                                            </div>
+                                            <div id="specific_close" class="vis">
+                                                <p class="multitext" onclick="closeCheck('specific_close')">닫기</p>
+                                                <div class="vis_list">
+                                                    <label><input type="checkbox" name="foodSpecific" id="specific1" value="조리시간 소요되는">조리시간 소요되는</label>
+                                                    <label><input type="checkbox" name="foodSpecific" id="specific2" value="알레르기 주의">알레르기 주의</label>
+                                                    <label><input type="checkbox" name="foodSpecific" id="specific3" value="뜨거운 음식">뜨거운 음식</label>
+                                                    <label><input type="checkbox" name="foodSpecific" id="specific4" value="성인전용">성인전용</label>
+                                                    <label><input type="checkbox" name="foodSpecific" id="specific6" value="어린이메뉴">어린이메뉴</label>
+                                                    <label><input type="checkbox" name="foodSpecific" id="specific7" value="메뉴 유동적">메뉴 유동적</label>
+                                                    <label><input type="checkbox" name="foodSpecific" id="specific8" value="신메뉴">신메뉴</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                
+                                <div class="description">
+                                    <input type="text" name="foodTitle" id="fo_title" value="">
+                                    <textarea class="content" name="foodContent" id="fo_content"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="buttonArea">
+                                <button type="button" class="button list" value="목록" onclick="location.href='/airline_food_/airline_food_list/airline_food_list.html'">목록</button>
+                                <button type="button" class="button register" form="regForm" id="regist" value="등록">등록</button>
+                            </div>
+                        </form>
+                    </dl>
+                </div>
+                <!-- 본문 끝 -->
+            </div>
+        </div>
+
+    </div>
+
+
+    <!--아이콘 사용을 위한 설치 스크립트-->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <script>
+        function openCheck(category){
+            const open = document.getElementById(category);
+                open.style.display="none";
+                open.nextSibling.nextSibling.style.display="block";
+        }
+
+
+        function closeCheck(category){
+            const close = document.getElementById(category);
+                close.style.display="none";
+                close.previousSibling.previousSibling.style.display="block";
+        }
+
+
+        // //닫기
+        // $(document).mouseup(function (e){
+        //     var close = $(".vis");
+        //     if (close.has(e.target).length === 0){
+        //         close.style.display="none"
+        //         close.previousSibling.previousSibling.style.display="block";
+        //     }
+        // });
+        $(document).mouseup(function (e){
+            var close = $(".vis");
+            if (close.has(e.target).length === 0){
+                close.css('display','none');
+                $(".invis").css("display", "block")
+            }
+        });
+
+        function regist_view(){
+            const yn = confirm("게시물을 등록하시겠습니까?");
+            if(yn){
+                location.href = "";
+            }
+        }
+
+    </script>
+    <script src="/admin/lib/js/common.js"> </script>
+    <script src="/admin/lib/js/food/food_regist.js"></script>
+</body>
+
+</html>

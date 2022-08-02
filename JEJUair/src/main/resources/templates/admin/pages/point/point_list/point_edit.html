@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제주항공 | 포인트</title>
+    <link rel="stylesheet" type="text/css" href="/admin/lib/css/common.css">
+    <link rel="icon" href="/admin/lib/images/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+
+
+<body>
+<div class="container" value="4-1">
+    <div th:replace="/admin/fragment/menu :: menu"></div>
+
+    <!-- main -->
+    <div class="containerbody" id="view">
+        <div id="category" value="point"></div>
+        <div class="main">
+            <!-- 본문 -->
+            <div class="bodytext_area box_inner">
+                <dl class="myinfo">
+                    <form class="regForm">
+                        <div class="tableBorder">
+                            <div class="pageTitle">
+                                <h2>포인트 내역</h2>
+                            </div>
+                            <ul class="leg_list">
+                                <li class="clear">
+                                    <span class="tit_lbl">NO</span>
+                                    <div class="reg_content">
+                                        <input type="text" class="textBox" name="pntIdx"  id="pntIdx" readonly :value=`${view.pntIdx}`
+                                               disabled>
+                                    </div>
+                                </li>
+                                <li class="clear">
+                                    <span class="tit_lbl">아이디</span>
+                                    <div class="reg_content">
+                                        <input type="text" class="textBox" name="pntUserid"  id="pntUserid"  :value=`${view.pntUserid}`>
+                                    </div>
+                                </li>
+                                <li class="clear">
+                                    <span class="tit_lbl">사용금액(P)</span>
+                                    <div class="reg_content">
+                                        <input type="text" class="textBox" vname="pntAmount"  id="pntAmount"  :value=`${view.pntAmount}`>
+                                    </div>
+                                </li>
+
+                                <li class="clear">
+                                    <span class="tit_lbl">내용</span>
+                                    <div class="reg_content">
+                                        <input type="text" class="textBox" name="pntContent"  id="pntContent"  :value=`${view.pntContent}`>
+                                    </div>
+                                </li>
+
+                                <li class="clear">
+                                    <span class="tit_lbl">상태</span>
+                                    <div class="reg_content">
+                                        <input type="text" class="textBox" name="pntStatus"  id="pntStatus"  :value=`${view.pntStatus}`>
+                                    </div>
+                                </li>
+
+                                <li class="clear">
+                                    <span class="tit_lbl">일시</span>
+                                    <div class="reg_content">
+                                        <input type="text" class="textBox" name="pntRegdate"  id="pntRegdate" readonly :value=`${view.pntRegdate}`
+                                               disabled>
+                                    </div>
+                                </li>
+
+
+                            </ul>
+                        </div>
+                        <div class="buttonArea">
+                            <button type="button" class="button back" value="목록"
+                                    onclick="location.href='/admin/point/list'">목록
+                            </button>
+                            <button type="button" class="button register margin_bottom_20" value="등록" id="sendit">
+                                등록
+                            </button>
+                        </div>
+                    </form>
+                </dl>
+            </div>
+
+            <!-- 본문 끝 -->
+        </div>
+    </div>
+
+</div>
+
+<!--아이콘 사용을 위한 설치 스크립트-->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="/admin/lib/js/common.js"></script>
+<script src="/admin/lib/js/admin/admin_view.js"></script>
+<script src="/admin/lib/js/point/point_edit.js"></script>
+
+</body>
+
+</html>

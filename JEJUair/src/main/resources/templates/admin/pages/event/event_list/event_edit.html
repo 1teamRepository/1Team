@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제주항공 | 이벤트 목록</title>
+    <link rel="stylesheet" type="text/css" href="/admin/lib/css/common.css">
+    <link rel="icon" href="/admin/lib/images/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+</head>
+
+<script src="/admin/lib/images/ckeditor.js"></script>
+<script src="/admin/lib/images/translations/ko.js"></script>
+<style>
+    .classic_title {
+        position: relative;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .ck.ck-editor {
+        /* max-width: 90%;  */
+        position: relative;
+        width: 100%;
+    }
+
+    .ck-editor__editable {
+        min-height: 500px;
+    }
+</style>
+
+<body>
+<div class="container" value="6-1">
+    <div th:replace="/admin/fragment/menu :: menu"></div>
+
+    <div class="containerbody" id="view">
+        <div id="category" value="event"></div>
+        <!-- main -->
+        <div class="main">
+            <div class="details">
+                <!-- order details list -->
+                <div class="recentOrders">
+                    <div class="calheader">
+                        <h2>이벤트 목록</h2>
+                    </div>
+                    <div class="scheduleSearch">
+                        <form class="regForm" id="event_regist" method="post">
+                            <div class="wrapper1">
+
+                                <h3>이벤트 기간</h3>
+                                <input type="date" class="searchBox1" name="evtStartDate" id="evtStartDate"
+                                       :value=`${view.evtStartDate}` title="검색어를 입력하세요"
+                                       placeholder="2022.06.08" dir="ltr"> ~
+                                <input type="date" class="searchBox1" name="evtEndDate" id="evtEndDate"
+                                       :value=`${view.evtEndDate}` title="검색어를 입력하세요"
+                                       placeholder="2022.06.19">
+                                <h4 style="text-align: left;"></h4>
+
+                            </div>
+
+
+                            <table>
+                                <thead>
+                                <tr class="topbanner" style="color: var(--black2);">
+
+                                    <td class="clear" hidden>
+                                        <span class="tit_lbl">IDX</span>
+                                        <div class="reg_content"><input type="text"  name="evtIdx" id="evtIdx" class="textBox" :value=`${view.evtIdx}` ></div>
+                                    </td>
+                                    <td>
+                                        <input class="airplaneName" type="text" name="evtTitle" id="evtTitle"
+                                               :value=`${view.evtTitle}`
+                                               style="text-align: center; border: none; background-color: rgb(231, 231, 231); width: 100%">
+                                    </td>
+                                </tr>
+                                </thead>
+
+                            </table>
+                            <textarea name="evtContent" id="evtContent" :value=`${view.evtContent}`>
+
+
+
+                        </textarea>
+
+
+                            <div class="buttonArea">
+                                <button type="button" class="button back" value="목록"
+                                        onclick="location.href='/admin/event/list'">목록
+                                </button>
+                                <button type="button" class="button register margin_bottom_20" value="등록" id="sendit">
+                                    등록
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!--아이콘 사용을 위한 설치 스크립트-->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="/admin/lib/js/common.js"></script>
+<script src="/admin/lib/js/admin/admin_view.js"></script>
+<script src="/admin/lib/js/event/event_edit.js"></script>
+
+</body>
+</html>
