@@ -48,7 +48,7 @@ public class TbEventApiController extends CrudController<TbEventRequest, TbEvent
     }
 
     @GetMapping("")
-    public Header<List<TbEventResponse>> findAll(@PageableDefault(sort = {""}, direction = Sort.Direction.DESC) Pageable pageable){     //paging할수있는 객체 생성함
+    public Header<List<TbEventResponse>> findAll(@PageableDefault(sort = {"evtIdx"}, direction = Sort.Direction.DESC) Pageable pageable){     //paging할수있는 객체 생성함
         return tbEventApiLogicService.search(pageable);
     }
 }

@@ -15,7 +15,7 @@
 </head>
 
 <body>
-<div class="container" value="10-1">
+<div class="container">
     <div th:replace="/admin/fragment/menu :: menu"></div>
     <!-- main -->
     <div class="containerbody" id="view">
@@ -82,9 +82,7 @@
                             <button type="button" class="button list"
                                     onclick='location.href="/admin/coupon/list"'>목록
                             </button>
-                            <button type="button" class="button edit"
-                                    onclick="location.href=`/admin/coupon/edit/${view.copIdx}`">수정
-                            </button>
+                            <div class="button edit margin_bottom_20" value="수정"><a :href=`/admin/coupon/edit/${view.copIdx}`>수정</a></div>
                             <button class="button delete" id="delete">삭제</button>
                         </div>
 

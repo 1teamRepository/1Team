@@ -22,7 +22,7 @@ $(function (){
             contentType: 'application/json',
             success: function(){
                 alert('예매가 확정되었습니다!');
-                location.href='/admin/reservation/list';
+                location.href='/admin/reservation/namelist';
             },
             error: function(){
                 alert('변경실패!');
@@ -55,7 +55,7 @@ $(function (){
             contentType: 'application/json',
             success: function(){
                 alert('예매가 취소되었습니다!');
-                location.href='/admin/reservation/list';
+                location.href='/admin/reservation/namelist';
             },
             error: function(){
                 alert('변경실패!');

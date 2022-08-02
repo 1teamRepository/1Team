@@ -79,18 +79,18 @@ public class TbMemberApiLogicService extends BaseService<TbMemberRequest, TbMemb
         return tbMember.map(
                 newTbMember -> {
                     newTbMember.setMemUserpw(tbMemberRequest.getMemUserpw());
-                    newTbMember.setMemKoLastname(tbMemberRequest.getMemKoLastname());
-                    newTbMember.setMemKoFirstname(tbMemberRequest.getMemKoFirstname());
+//                    newTbMember.setMemKoLastname(tbMemberRequest.getMemKoLastname());
+//                    newTbMember.setMemKoFirstname(tbMemberRequest.getMemKoFirstname());
                     newTbMember.setMemEngLastname(tbMemberRequest.getMemEngLastname());
                     newTbMember.setMemEngFirstname(tbMemberRequest.getMemEngFirstname());
                     newTbMember.setMemGender(tbMemberRequest.getMemGender());
                     newTbMember.setMemHp(tbMemberRequest.getMemHp());
                     newTbMember.setMemEmail(tbMemberRequest.getMemEmail());
-                    System.out.println(tbMemberRequest.getMemEmail() + " 1");
+//                    System.out.println(tbMemberRequest.getMemEmail() + " 1");
                     newTbMember.setMemMarketing(tbMemberRequest.getMemMarketing());
-                    System.out.println(tbMemberRequest.getMemMarketing() + " 2");
+//                    System.out.println(tbMemberRequest.getMemMarketing() + " 2");
                     newTbMember.setMemSnsPush(tbMemberRequest.getMemSnsPush());
-                    System.out.println(tbMemberRequest.getMemMarketing() +" 3");
+//                    System.out.println(tbMemberRequest.getMemMarketing() +" 3");
                     return newTbMember;
                 }).map(newTbMember -> baseRepository.save(newTbMember))
                 .map(newTbMember -> response(newTbMember))

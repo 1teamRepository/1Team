@@ -15,7 +15,7 @@
 </head>
 
 <body>
-<div class="container" value="10-1">
+<div class="container" value="3-1">
     <div th:replace="/admin/fragment/menu :: menu"></div>
 
     <div class="containerbody">
@@ -62,7 +62,7 @@
                         <tr v-for="(dto, i) in itemList"
                             :key="i"
                             onclick='location.href="/admin/coupon/view/${dto.copIdx}"'>
-                            <td class="coupon_number">{{dto.copIdx}}</a></td>
+                            <td class="coupon_number"><a :href=`/admin/coupon/view/${dto.copIdx}`>{{dto.copIdx}}</a></td>
                             <td class="coupon_name">{{dto.copName}}</td>
                             <td class="discount">{{dto.copSale}}</td>
                             <td class="coupon_code">{{dto.copCode}}</td>

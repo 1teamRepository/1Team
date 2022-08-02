@@ -180,7 +180,7 @@ public class AdminController {
     }
 
 
-    @RequestMapping("/reservation/list")
+    @RequestMapping("/reservation/namelist")
     public ModelAndView reservationNamelist(){
         return new ModelAndView("/admin/pages/reservation/reservation_namelist/reservation_namelist");
     }

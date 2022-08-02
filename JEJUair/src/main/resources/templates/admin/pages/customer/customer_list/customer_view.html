@@ -19,7 +19,7 @@
 </head>
 
 <body>
-<div class="container">
+<div class="container" value="1">
     <div th:replace="/admin/fragment/menu :: menu"></div>
     <!-- main -->
     <div class="containerbody" id="view">
@@ -28,7 +28,7 @@
             <!-- 본문 -->
             <div class="bodytext_area box_inner">
                 <dl class="myinfo">
-                    <form action="#" class="regForm">
+                    <form class="regForm" id="customer" method="post">
                         <div class="tableBorder">
                             <div class="pageTitle">
                                 <h2>고객 상세 조회</h2>
@@ -36,7 +36,7 @@
                             <ul class="leg_list">
                                 <li class="clear">
                                     <span class="tit_lbl">고유 번호</span>
-                                    <div class="reg_content"><input type="text" class="textBox" disabled :value=`${view.memIdx}`></div>
+                                    <div class="reg_content"><input type="text" class="textBox" name="memIdx" id="memIdx" disabled :value=`${view.memIdx}`></div>
                                 </li>
 
                                 <li class="clear">
@@ -46,92 +46,67 @@
 
                                 <li class="clear">
                                     <span class="tit_lbl">아이디</span>
-                                    <div class="reg_content"><input type="text" class="textBox" disabled :value=`${view.memUserid}`></div>
-                                </li>
-
-                                <li class="clear">
-                                    <span class="tit_lbl">우편번호</span>
-                                    <div class="reg_content"><input type="text" class="textBox" disabled :value=`${view.memSsn}`></div>
+                                    <div class="reg_content"><input type="text" class="textBox" name="memUserid" id="memUserid"  disabled :value=`${view.memUserid}`></div>
                                 </li>
 
                                 <li class="clear">
                                     <span class="tit_lbl">비밀번호</span>
-                                    <div class="reg_content"><input type="text" class="textBox" disabled :value=`${view.memUserpw}`></div>
+                                    <div class="reg_content"><input type="password" class="textBox" name="memUserpw" id="memUserpw" disabled :value=`${view.memUserpw}`></div>
                                 </li>
 
                                 <li class="clear">
-                                    <span class="tit_lbl">주소</span>
-                                    <div class="reg_content"><input type="text" class="textBox" disabled :value=`${view.memSsn}`></div>
+                                    <span class="tit_lbl">성(KOR)</span>
+                                    <div class="reg_content"><input type="text" class="textBox" name="memKoLastname" id="memKoLastname" disabled :value=`${view.memKoLastname}`></div>
                                 </li>
 
                                 <li class="clear">
-                                    <span class="tit_lbl">성명(KOR)</span>
-                                    <div class="reg_content"><input type="text" class="textBox" disabled :value=`${view.memKoLastname}`></div>
+                                    <span class="tit_lbl">이름(KOR)</span>
+                                    <div class="reg_content"><input type="text" class="textBox" name="memKoFirstname" id="memKoFirstname" disabled :value=`${view.memKoFirstname}`></div>
                                 </li>
 
                                 <li class="clear">
-                                    <span class="tit_lbl">상세주소</span>
-                                    <div class="reg_content"><input type="text" class="textBox" disabled value="104호"></div>
+                                    <span class="tit_lbl">성(ENG)</span>
+                                    <div class="reg_content"><input type="text" class="textBox" name="memEngLastname" id="memEngLastname" disabled :value=`${view.memEngLastname}`></div>
                                 </li>
 
                                 <li class="clear">
-                                    <span class="tit_lbl">성명(ENG)</span>
-                                    <div class="reg_content"><input type="text" class="textBox" disabled :value=`${view.memEngLastname}`></div>
+                                    <span class="tit_lbl">이름(ENG)</span>
+                                    <div class="reg_content"><input type="text" class="textBox" name="memEngFirstname" id="memEngFirstname" disabled :value=`${view.memEngFirstname}`></div>
                                 </li>
 
                                 <li class="clear">
                                     <span class="tit_lbl">가입일자</span>
-                                    <div class="reg_content"><input type="text" class="textBox" disabled :value=`${view.memRegDate}`></div>
+                                    <div class="reg_content"><input type="text" class="textBox" name="memRegDate" id="memRegDate" disabled :value=`${view.memRegDate}`></div>
                                 </li>
 
                                 <li class="clear">
                                     <span class="tit_lbl">성별</span>
-                                    <div class="reg_content"><input type="text" class="textBox" disabled :value=`${view.memGender}`></div>
+                                    <div class="reg_content"><input type="text" class="textBox" name="memGender" id="memGender" disabled :value=`${view.memGender}`></div>
                                 </li>
 
                                 <li class="clear">
                                     <span class="tit_lbl">이메일</span>
-                                    <div class="reg_content"><input type="text" class="textBox" disabled :value=`${view.memEmail}`></div>
+                                    <div class="reg_content"><input type="text" class="textBox" name="memEmail" id="memEmail" disabled :value=`${view.memEmail}`></div>
                                 </li>
 
                                 <li class="clear">
                                     <span class="tit_lbl">생년월일</span>
-                                    <div class="reg_content"><input type="text" class="textBox" disabled value="19900101"></div>
-                                </li>
-
-                                <li class="clear">
-                                    <span class="tit_lbl">이메일 수신동의</span>
-                                    <div class="reg_content"><input type="text" class="textBox" disabled :value=`${view.memSnsPush}`></div>
-                                </li>
-
-                                <li class="clear">
-                                    <span class="tit_lbl">국적</span>
-                                    <div class="reg_content"><input type="text" class="textBox" disabled value="대한민국"></div>
-                                </li>
-
-                                <li class="clear">
-                                    <span class="tit_lbl">SNS/앱푸시 동의</span>
-                                    <div class="reg_content"><input type="text" class="textBox" disabled value="동의"></div>
-                                </li>
-
-                                <li class="clear">
-                                    <span class="tit_lbl">거주 국가</span>
-                                    <div class="reg_content"><input type="text" class="textBox" disabled value="대한민국"></div>
+                                    <div class="reg_content"><input type="text" class="textBox" name="memSsn" id="memSsn" disabled :value=`${view.memSsn}`></div>
                                 </li>
 
                                 <li class="clear">
                                     <span class="tit_lbl">포인트</span>
-                                    <div class="reg_content"><input type="text" class="textBox" disabled :value=`${view.memPoint}`></div>
+                                    <div class="reg_content"><input type="text" class="textBox" name="memPoint" id="memPoint" disabled :value=`${view.memPoint}`></div>
                                 </li>
 
                                 <li class="clear">
                                     <span class="tit_lbl">연락처</span>
-                                    <div class="reg_content"><input type="text" class="textBox" disabled :value=`${view.memHp}`></div>
+                                    <div class="reg_content"><input type="text" class="textBox" name="memHp" id="memHp" disabled :value=`${view.memHp}`></div>
                                 </li>
 
                                 <li class="clear">
-                                    <span class="tit_lbl">쿠폰</span>
-                                    <div class="reg_content"><input type="text" class="textBox" disabled value="-"></div>
+                                    <span class="tit_lbl">회원상태</span>
+                                    <div class="reg_content"><input type="text" class="textBox" name="memStatus" id="memStatus" disabled :value=`${view.memStatus}`></div>
                                 </li>
 
                             </ul>
@@ -147,124 +122,6 @@
 
             <!-- 본문 끝 -->
         </div>
-        <div class="main">
-            <div class="details">
-                <!-- order details list -->
-                <div class="recentOrders">
-                    <div class="calheader">
-                        <h2 style="text-align: center;">예매 내역</h2>
-                    </div>
-                    <table>
-                        <thead>
-                        <tr class="topbanner">
-                            <td class="index">NO</td>
-                            <td class="reserveNUum">예약 번호</td>
-                            <td class="name">성명</td>
-                            <td class="schedule">출도착</td>
-                            <td class="status">상태</td>
-                            <td class="paymentDate">결제일자</td>
-                        </tr>
-                        </thead>
-
-                        <tbody>
-                        <tr>
-                            <td class="index">1</td>
-                            <td class="reserveNUum">NF49G0</td>
-                            <td class="name">반하나</td>
-                            <td class="schedule">서울 인천(ICN) - 도쿄 나리타(NRT)</td>
-                            <td class="status">예약확정</td>
-                            <td class="paymentDate">2022-06-11</td>
-                        </tr>
-
-                        <tr>
-                            <td class="index">1</td>
-                            <td class="reserveNUum">NF49G0</td>
-                            <td class="name">반하나</td>
-                            <td class="schedule">서울 인천(ICN) - 도쿄 나리타(NRT)</td>
-                            <td class="status">예약확정</td>
-                            <td class="paymentDate">2022-06-11</td>
-                        </tr>
-
-                        <tr>
-                            <td class="index">1</td>
-                            <td class="reserveNUum">NF49G0</td>
-                            <td class="name">반하나</td>
-                            <td class="schedule">서울 인천(ICN) - 도쿄 나리타(NRT)</td>
-                            <td class="status">예약확정</td>
-                            <td class="paymentDate">2022-06-11</td>
-                        </tr>
-
-                        <tr>
-                            <td class="index">1</td>
-                            <td class="reserveNUum">NF49G0</td>
-                            <td class="name">반하나</td>
-                            <td class="schedule">서울 인천(ICN) - 도쿄 나리타(NRT)</td>
-                            <td class="status">예약확정</td>
-                            <td class="paymentDate">2022-06-11</td>
-                        </tr>
-
-                        <tr>
-                            <td class="index">1</td>
-                            <td class="reserveNUum">NF49G0</td>
-                            <td class="name">반하나</td>
-                            <td class="schedule">서울 인천(ICN) - 도쿄 나리타(NRT)</td>
-                            <td class="status">예약확정</td>
-                            <td class="paymentDate">2022-06-11</td>
-                        </tr>
-                        </tbody>
-                    </table>
-
-                    <div class="paging">
-                        <div class="page_btn">
-                            <a href="#" class="firstpage_btn">First</a>
-                        </div>
-
-                        <div class="page_btn">
-                            <a href="#" class="prevpage_btn">Prev</a>
-                        </div>
-
-                        <div class="page_btn2 current_btn">
-                            <a href="#" class="pagenum">1</a>
-                        </div>
-                        <div class="page_btn2">
-                            <a href="#" class="pagenum">2</a>
-                        </div>
-                        <div class="page_btn2">
-                            <a href="#" class="pagenum">3</a>
-                        </div>
-                        <div class="page_btn2">
-                            <a href="#" class="pagenum">4</a>
-                        </div>
-                        <div class="page_btn2">
-                            <a href="#" class="pagenum">5</a>
-                        </div>
-                        <div class="page_btn2">
-                            <a href="#" class="pagenum">6</a>
-                        </div>
-                        <div class="page_btn2">
-                            <a href="#" class="pagenum">7</a>
-                        </div>
-                        <div class="page_btn2">
-                            <a href="#" class="pagenum">8</a>
-                        </div>
-                        <div class="page_btn2">
-                            <a href="#" class="pagenum">9</a>
-                        </div>
-                        <div class="page_btn2">
-                            <a href="#" class="pagenum">10</a>
-                        </div>
-
-                        <div class="page_btn">
-                            <a href="#" class="prevpage_btn">Next</a>
-                        </div>
-
-                        <div class="page_btn">
-                            <a href="#" class="firstpage_btn">End</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
 </div>
@@ -272,8 +129,6 @@
 <!--아이콘 사용을 위한 설치 스크립트-->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-
 <script src="/admin/lib/js/common.js"> </script>
 <script src="/admin/lib/js/admin/admin_view.js"></script>
 </body>

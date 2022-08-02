@@ -22,7 +22,7 @@
 </head>
 
 <body>
-<div class="container">
+<div class="container" value="1">
     <div th:replace="/admin/fragment/menu :: menu"></div>
 
     <!-- main -->
@@ -40,114 +40,82 @@
                             <ul class="leg_list">
                                 <li class="clear">
                                     <span class="tit_lbl">고유 번호</span>
-                                    <div class="reg_content"><input type="text" class="textBox" readonly :value=`${view.memIdx}`  style="color: #ccc;"></div>
+                                    <div class="reg_content"><input type="text" class="textBox" name="memIdx" id="memIdx" disabled :value=`${view.memIdx}`></div>
                                 </li>
 
                                 <li class="clear">
                                     <span class="tit_lbl">가입 유형</span>
-                                    <div class="reg_content"><input type="text" class="textBox" readonly value="일반회원"  style="color: #ccc;"></div>
+                                    <div class="reg_content"><input type="text" class="textBox" disabled value="일반회원"></div>
                                 </li>
 
                                 <li class="clear">
                                     <span class="tit_lbl">아이디</span>
-                                    <div class="reg_content"><input type="text" class="textBox" readonly :value=`${view.memUserid}`  style="color: #ccc;"></div>
-                                </li>
-
-                                <li class="clear">
-                                    <span class="tit_lbl">우편번호</span>
-                                    <div class="reg_content"><input type="text" class="textBox" value="12345"></div>
+                                    <div class="reg_content"><input type="text" class="textBox" name="memUserid" id="memUserid"  disabled :value=`${view.memUserid}`></div>
                                 </li>
 
                                 <li class="clear">
                                     <span class="tit_lbl">비밀번호</span>
-                                    <div class="reg_content"><input type="text" class="textBox" readonly :value=`${view.memUserpw}`  style="color: #ccc;"></div>
+                                    <div class="reg_content"><input type="password" class="textBox" name="memUserpw" id="memUserpw" :value=`${view.memUserpw}`></div>
                                 </li>
 
                                 <li class="clear">
-                                    <span class="tit_lbl">주소</span>
-                                    <div class="reg_content"><input type="text" class="textBox" value="서울특별시 강남구 도산대로 204"></div>
+                                    <span class="tit_lbl">성(KOR)</span>
+                                    <div class="reg_content"><input type="text" class="textBox" name="memKoLastname" id="memKoLastname" disabled :value=`${view.memKoLastname}`></div>
                                 </li>
 
                                 <li class="clear">
-                                    <span class="tit_lbl">성명(KOR)</span>
-                                    <div class="reg_content"><input type="text" class="textBox" readonly :value=`${view.memKoLastname}`  style="color: #ccc;"></div>
+                                    <span class="tit_lbl">이름(KOR)</span>
+                                    <div class="reg_content"><input type="text" class="textBox" name="memKoFirstname" id="memKoFirstname" disabled :value=`${view.memKoFirstname}`></div>
                                 </li>
 
                                 <li class="clear">
-                                    <span class="tit_lbl">상세주소</span>
-                                    <div class="reg_content"><input type="text" class="textBox" value="104호"></div>
+                                    <span class="tit_lbl">성(ENG)</span>
+                                    <div class="reg_content"><input type="text" class="textBox" name="memEngLastname" id="memEngLastname" :value=`${view.memEngLastname}`></div>
                                 </li>
 
                                 <li class="clear">
-                                    <span class="tit_lbl">성명(ENG)</span>
-                                    <div class="reg_content"><input type="text" class="textBox" :value=`${view.memEngLastname}`></div>
+                                    <span class="tit_lbl">이름(ENG)</span>
+                                    <div class="reg_content"><input type="text" class="textBox" name="memEngFirstname" id="memEngFirstname" :value=`${view.memEngFirstname}`></div>
                                 </li>
 
                                 <li class="clear">
                                     <span class="tit_lbl">가입일자</span>
-                                    <div class="reg_content"><input type="text" class="textBox" readonly :value=`${view.memRegDate}`  style="color: #ccc;"></div>
+                                    <div class="reg_content"><input type="text" class="textBox" name="memRegDate" id="memRegDate" disabled :value=`${view.memRegDate}`></div>
                                 </li>
 
                                 <li class="clear">
                                     <span class="tit_lbl">성별</span>
-                                    <div class="reg_content"><input type="text" class="textBox" readonly :value=`${view.memGender}`  style="color: #ccc;"></div>
+                                    <div class="reg_content">
+                                        <select class="textBox selectBox" name="memGender" id="memGender" :value=`${view.memGender}`>
+                                            <option value="MAN">MAN</option>
+                                            <option value="WOMAN">WOMAN</option>
+                                        </select>
+                                    </div>
                                 </li>
 
                                 <li class="clear">
                                     <span class="tit_lbl">이메일</span>
-                                    <div class="reg_content"><input type="text" class="textBox" :value=`${view.memEmail}`></div>
+                                    <div class="reg_content"><input type="text" class="textBox" name="memEmail" id="memEmail" :value=`${view.memEmail}`></div>
                                 </li>
 
                                 <li class="clear">
                                     <span class="tit_lbl">생년월일</span>
-                                    <div class="reg_content"><input type="text" class="textBox" readonly :value=`${view.memSsn}`  style="color: #ccc;"></div>
-                                </li>
-
-                                <li class="clear">
-                                    <span class="tit_lbl">이메일 수신동의</span>
-                                    <div class="reg_content">
-                                        <input type="radio" class="css-radio" id="mmm_lbl1" name="이메일수신동의"
-                                               value="동의"><label for="mmm_lbl1">동의</label>
-
-                                        <input type="radio" class="css-radio" id="www_lbl1" name="이메일수신동의"
-                                               value="비동의"><label for="www_lbl1">비동의</label>
-                                    </div>
-                                </li>
-
-                                <li class="clear">
-                                    <span class="tit_lbl">국적</span>
-                                    <div class="reg_content"><input type="text" class="textBox" value="대한민국"></div>
-                                </li>
-
-                                <li class="clear">
-                                    <span class="tit_lbl">SNS/앱푸시 동의</span>
-                                    <div class="reg_content">
-                                        <input type="radio" class="css-radio" id="mmm_lbl" name="SNS/앱푸시수신동의"
-                                               value="동의"><label for="mmm_lbl">동의</label>
-
-                                        <input type="radio" class="css-radio" id="www_lbl" name="SNS/앱푸시수신동의"
-                                               value="비동의"><label for="www_lbl">비동의</label>
-                                    </div>
-                                </li>
-
-                                <li class="clear">
-                                    <span class="tit_lbl">거주 국가</span>
-                                    <div class="reg_content"><input type="text" class="textBox" value="대한민국"></div>
+                                    <div class="reg_content"><input type="text" class="textBox" name="memSsn" id="memSsn" disabled :value=`${view.memSsn}`></div>
                                 </li>
 
                                 <li class="clear">
                                     <span class="tit_lbl">포인트</span>
-                                    <div class="reg_content"><input type="text" class="textBox" readonly :value=`${view.memPoint}` style="color: #ccc;"></div>
+                                    <div class="reg_content"><input type="text" class="textBox" name="memPoint" id="memPoint" disabled :value=`${view.memPoint}`></div>
                                 </li>
 
                                 <li class="clear">
                                     <span class="tit_lbl">연락처</span>
-                                    <div class="reg_content"><input type="text" class="textBox" :value=`${view.memHp}`></div>
+                                    <div class="reg_content"><input type="text" class="textBox" name="memHp" id="memHp" :value=`${view.memHp}`></div>
                                 </li>
 
                                 <li class="clear">
-                                    <span class="tit_lbl">쿠폰</span>
-                                    <div class="reg_content"><input type="text" class="textBox" readonly value="-"  style="color: #ccc;"></div>
+                                    <span class="tit_lbl">회원상태</span>
+                                    <div class="reg_content"><input type="text" class="textBox" name="memStatus" id="memStatus" disabled :value=`${view.memStatus}`></div>
                                 </li>
 
                             </ul>
@@ -171,7 +139,7 @@
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <script src="/admin/lib/js/common.js"> </script>
 <script src="/admin/lib/js/admin/admin_view.js"></script>
-<script src="/admin/lib/js/admin/admin_edit.js"></script>
+<script src="/admin/lib/js/customer/customer_edit.js"></script>
 
 </body>
 

@@ -43,7 +43,32 @@
     }
 
     .tableBorder{
-        height: 1200px !important;
+        height: 1100px !important;
+    }
+
+    #table_container{
+        padding-bottom: 0px;
+    }
+
+    #ansInquiryContent{
+        width: 100% !important;
+        text-align: left;
+        margin-top: 5px;
+        height: 300px;
+        padding: 30px;
+    }
+
+    #ansAnswerContent{
+        width: 100% !important;
+        text-align: left;
+        margin-top: 5px;
+        height: 300px;
+        padding: 30px;
+    }
+
+    #sendit{
+        width: 70px !important;
+        line-height: 40px;
     }
 </style>
 
@@ -64,7 +89,7 @@
                                 <h2>1:1 문의 세부 내용</h2>
                             </div>
 
-                            <ul class="leg_list">
+                            <ul class="leg_list" id="table_container">
                                 <li class="clear">
                                     <span class="tit_lbl">번호</span>
                                     <div class="reg_content">
@@ -97,16 +122,16 @@
                                     </div>
                                 </li>
 
-                                <li class="clear" style="all: unset; width: 80%; margin: 0 auto">
+                                <li class="clear" style="all: unset; width: 83%; margin: 0 auto">
                                     <span class="tit_lbl" style="border: 1px solid #d9d9d9; width:100%; height: 40px; border-radius: 7px; line-height: 40px; margin-top: 30px">질문 내용</span>
-                                    <textarea class="textBox" name="ansInquiryContent" id="ansInquiryContent" :value=`${view.ansInquiryContent}` disabled style="width: 100% !important; text-align: left; margin-top: 20px; height: 300px; padding: 30px">
+                                    <textarea class="textBox" name="ansInquiryContent" id="ansInquiryContent" :value=`${view.ansInquiryContent}` disabled>
                                         </textarea>
                                 </li>
                             </ul>
 
-                            <div class="textBox3" style="width: 76%; margin: 0 auto;">
+                            <div class="textBox3" style="width: 76%; margin: 0 auto; height: 40px !important; line-height: 40px">
                                 <span class="tit_lbl" style="height: 50px !important; font-size: 16px !important; font-weight: bold">답변</span>
-                                <textarea class="textBox" name="ansInquiryContent" id="ansAnswerContent" :value=`${view.ansAnswerContent}` style="width: 100% !important; text-align: left; margin-top: 20px; height: 300px; padding: 30px">
+                                <textarea class="textBox" name="ansAnswerContent" id="ansAnswerContent" :value=`${view.ansAnswerContent}`>
                                         </textarea>
                             </div>
                         </div>
@@ -115,7 +140,7 @@
                             <button type="button" class="button list"
                                     onclick="location.href='/admin/inquiry/list'">목록
                             </button>
-                            <button class="button edit" id="sendit" style="width: 70px !important;">답변 등록</button>
+                            <button class="button edit" id="sendit">답변 등록</button>
                             <button class="button delete" id="delete">삭제</button>
                         </div>
 
@@ -130,11 +155,9 @@
 <!--아이콘 사용을 위한 설치 스크립트-->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-<!-- 할인율 적용, 할인 금액 적용에 자동 단위 삽입 -->
+
 <script src="/admin/lib/js/common.js"> </script>
 <script src="/admin/lib/js/answer/answer_view.js"></script>
 <script src="/admin/lib/js/answer/answer_regist.js"></script>
 </body>
-
-
 </html>

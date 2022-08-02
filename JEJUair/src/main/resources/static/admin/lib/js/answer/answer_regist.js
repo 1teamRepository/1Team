@@ -1,21 +1,11 @@
 $(function(){
 
     let category = document.getElementById("category").getAttribute("value");
-    $(document).on('click', '#sendit', function(){
+    $(document).on('click', '#sendit', function() {
+        sendit();
+    });
 
-        /*
-                    {
-                        "transaction_time":"2022-07-12",
-                        "resultCode":"ok",
-                        "description":"ok",
-                        "data":{
-                            "userid":"ryu",
-                            "userpw":"1111",
-                            "name":"류"
-                        }
-                    }
-         */
-
+    function sendit(){
         let jsonData = {
             transaction_time: new Date(),
             resultCode:"ok",
@@ -25,7 +15,7 @@ $(function(){
                 ansInquiryTitle: $('#ansInquiryTitle').val(),
                 ansInquiryContent: $('#ansInquiryContent').val(),
                 ansUserid: $('#ansUserid').val(),
-                ansAnswerCheck: $('#ansAnswerCheck').val(),
+                ansAnswerCheck: 'YES',
                 ansAnswerContent: $('#ansAnswerContent').val(),
                 ansInquiryRegDate: $('#ansInquiryRegDate').val()
             }
@@ -47,5 +37,5 @@ $(function(){
             }
         });
 
-    });
+    }
 });

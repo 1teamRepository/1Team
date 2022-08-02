@@ -51,10 +51,14 @@
                                         <input type="text" class="textBox" name="copStartDate" id="copStartDate" :value=`${view.copStartDate}`>
                                     </div>
                                 </li>
+
                                 <li class="clear">
                                     <span class="tit_lbl">타입</span>
                                     <div class="reg_content">
-                                        <input type="text" class="textBox" name="copType" id="copType" :value=`${view.copType}`>
+                                        <select name="쿠폰타입" id="copType" class="textBox">
+                                            <option value="DISCOUNT">할인율 적용</option>
+                                            <option value="MONEY">할인 금액 적용</option>
+                                        </select>
                                     </div>
                                 </li>
 
@@ -64,6 +68,7 @@
                                         <input type="text" class="textBox" name="copEndDate" id="copEndDate" :value=`${view.copEndDate}`>
                                     </div>
                                 </li>
+
                                 <li class="clear">
                                     <span class="tit_lbl">할인 금액</span>
                                     <div class="reg_content">
