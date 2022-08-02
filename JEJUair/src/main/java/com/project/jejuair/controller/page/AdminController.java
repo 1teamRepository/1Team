@@ -180,18 +180,12 @@ public class AdminController {
     }
 
 
-
     @RequestMapping("/reservation/list")
-    public ModelAndView reservationList(){
-        return new ModelAndView("/admin/pages/reservation/reservation_list_byflight/reservation_list_byflight");
-    }
-
-    @RequestMapping("/reservation/namelist")
     public ModelAndView reservationNamelist(){
         return new ModelAndView("/admin/pages/reservation/reservation_namelist/reservation_namelist");
     }
 
-    @RequestMapping("/reservation/namelist/view/{resIdx}")
+    @RequestMapping("/reservation/list/view/{resIdx}")
     public ModelAndView reservationView(HttpServletRequest request, @PathVariable(name="resIdx") Long resIdx){
         HttpSession session = request.getSession();
         if(session.getAttribute("name") != null) {
@@ -202,10 +196,6 @@ public class AdminController {
     }
 
 
-    @RequestMapping("/point/list")
-    public ModelAndView pointList(){
-        return new ModelAndView("/admin/pages/point/point_list/point_list");
-    }
 
     @RequestMapping("/payment/list")
     public ModelAndView paymentList(){
@@ -228,15 +218,71 @@ public class AdminController {
         }
     }
 
+
+
+    // 우재 포인트 시작
+    @RequestMapping("/point/list")
+    public ModelAndView pointList(){
+        return new ModelAndView("/admin/pages/point/point_list/point_list");
+    }
+
+    @RequestMapping("/point/view/{pntIdx}")
+    public ModelAndView pointView(HttpServletRequest request, @PathVariable(name="pntIdx") Long pntIdx){
+        HttpSession session = request.getSession();
+        if(session.getAttribute("name") != null) {
+            return new ModelAndView("/admin/pages/point/point_list/point_view");
+        }else {
+            return new ModelAndView("/admin/pages/login");
+        }
+    }
+
+    @RequestMapping("/point/edit/{pntIdx}")
+    public ModelAndView pointEdit(HttpServletRequest request, @PathVariable(name="pntIdx") Long pntIdx){
+        HttpSession session = request.getSession();
+        if(session.getAttribute("name") != null) {
+            return new ModelAndView("/admin/pages/point/point_list/point_edit");
+        }else {
+            return new ModelAndView("/admin/pages/login");
+        }
+    }
+
+    @RequestMapping("/point/regist")
+    public ModelAndView pointRegist(){
+        return new ModelAndView("/admin/pages/point/point_regist/point_regist");
+    }
+
+    // 우재 이벤트  // http://localhost:10000/admin/event/list
     @RequestMapping("/event/list")
     public ModelAndView eventList(){
         return new ModelAndView("/admin/pages/event/event_list/event_list");
     }
 
+    @RequestMapping("/event/view/{evtIdx}")
+    public ModelAndView eventView(HttpServletRequest request, @PathVariable(name="evtIdx") Long evtIdx){
+        HttpSession session = request.getSession();
+        if(session.getAttribute("name") != null) {
+            return new ModelAndView("/admin/pages/event/event_list/event_view");
+        }else {
+            return new ModelAndView("/admin/pages/login");
+        }
+    }
+
+    @RequestMapping("/event/edit/{evtIdx}")
+    public ModelAndView eventEdit(HttpServletRequest request, @PathVariable(name="evtIdx") Long evtIdx){
+        HttpSession session = request.getSession();
+        if(session.getAttribute("name") != null) {
+            return new ModelAndView("/admin/pages/event/event_list/event_edit");
+        }else {
+            return new ModelAndView("/admin/pages/login");
+        }
+    }
+    // http://localhost:10000/admin/event/regist
     @RequestMapping("/event/regist")
     public ModelAndView eventRegist(){
         return new ModelAndView("/admin/pages/event/event_regist/event_regist");
     }
+    // 이벤트 끝
+
 
 
     @RequestMapping("/lost_item/list")
@@ -297,7 +343,7 @@ public class AdminController {
 
     @RequestMapping("/food/regist")
     public ModelAndView foodRegist(){
-        return new ModelAndView("/admin/pages/airline_food_/airline_food_register/airline_food_regist");
+        return new ModelAndView("/admin/pages/airline_food_/airline_food_regist/airline_food_regist");
     }
 
     @RequestMapping("/adminuser/list")

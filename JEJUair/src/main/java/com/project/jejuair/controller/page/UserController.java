@@ -1,8 +1,13 @@
 package com.project.jejuair.controller.page;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/user")
@@ -143,10 +148,36 @@ public class UserController {
         return new ModelAndView("/user/pages/travel_pre_info/inter_price/inter_price");
     }
 
+//    예매 페이지 시작
+
     @RequestMapping("/ticket_reservation") //메인에서 해결 후 가져오기
     public ModelAndView ticket_reservation() {
         return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/ticket_reservation");
     }
+
+    @PostMapping("/avail_search_form")
+    public ModelAndView get_avail_search_form(
+            HttpServletRequest request, HttpServletResponse response,
+            @RequestParam(value = "reserveRoute") String reserveRoute,
+            @RequestParam(value = "departureData") String departureData,
+            @RequestParam(value = "arrivalData") String arrivalData,
+            @RequestParam(value = "onewayStart") String onewayStart,
+            @RequestParam(value = "roundStart") String roundStart,
+            @RequestParam(value = "roundEnd") String roundEnd,
+            @RequestParam(value = "passengerNum") int passengerNum)
+    {
+        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/avail_search")
+                .addObject("reserveRoute", reserveRoute)
+                .addObject("departureData", departureData)
+                .addObject("arrivalData", arrivalData)
+                .addObject("onewayStart", onewayStart)
+                .addObject("roundStart", roundStart)
+                .addObject("roundEnd", roundEnd)
+                .addObject("passengerNum", passengerNum);
+    }
+
+
+
 
     @RequestMapping("/avail_search") //되는데 허접,,데이터 필요
     public ModelAndView avail_search() {
@@ -154,37 +185,76 @@ public class UserController {
     }
 
 
-
-    @RequestMapping("/view_passenger_input")
-    public ModelAndView view_passenger_input() {
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/view_passenger_input");
+//    편도노선
+    @RequestMapping("/oneway/view_passenger_input")
+    public ModelAndView oneway_view_passenger_input() {
+        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/oneway/view_passenger_input");
     }
 
-    @RequestMapping("/seat_select") //데이터 넣어야..
-    public ModelAndView seat_select() {
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/seat_select");
+    @RequestMapping("/oneway/seat_select")
+    public ModelAndView oneway_seat_select() {
+        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/oneway/seat_select_ow");
     }
 
-    @RequestMapping("/baggage_select") //우재가 집가서 해결 불가능,,,스크립트 지우고 다시 작성
-    public ModelAndView baggage_select() {
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/baggage_select");
+    @RequestMapping("/oneway/baggage_select")
+    public ModelAndView oneway_baggage_select() {
+        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/oneway/baggage_select_ow");
     }
 
-    @RequestMapping("/ancillary_gate")
-    public ModelAndView ancillary_gate() {
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/ancillary_gate");
+    @RequestMapping("/oneway/meal_select")
+    public ModelAndView oneway_meal_select() {
+        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/oneway/meal_select_ow");
     }
 
-    @RequestMapping("/view_confirm")
-    public ModelAndView view_confirm() {
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/view_confirm");
+    @RequestMapping("/oneway/view_confirm")
+    public ModelAndView oneway_view_confirm() {
+        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/oneway/view_confirm_ow");
     }
 
-    @RequestMapping("/view_payment")
-    public ModelAndView view_payment() {
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/view_payment");
+    @RequestMapping("/oneway/view_payment")
+    public ModelAndView oneway_view_payment() {
+        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/oneway/view_payment_ow");
     }
 
+//    왕복노선
+
+    @RequestMapping("/round/view_passenger_input")
+    public ModelAndView round_view_passenger_input() {
+        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/round/view_passenger_input");
+    }
+
+    @RequestMapping("/round/seat_select1")
+    public ModelAndView round_seat_select1() {
+        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/round/seat_select_ro1");
+    }
+
+    @RequestMapping("/round/seat_select2")
+    public ModelAndView round_seat_select2() {
+        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/round/seat_select_ro2");
+    }
+
+
+    @RequestMapping("/round/baggage_select")
+    public ModelAndView round_baggage_select() {
+        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/round/baggage_select_ro");
+    }
+
+    @RequestMapping("/round/meal_select")
+    public ModelAndView round_meal_select() {
+        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/round/meal_select_ro");
+    }
+
+    @RequestMapping("/round/view_confirm")
+    public ModelAndView round_view_confirm() {
+        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/round/view_confirm_ro");
+    }
+
+    @RequestMapping("/round/view_payment")
+    public ModelAndView round_view_payment() {
+        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/round/view_payment_ro");
+    }
+
+    //    예매 페이지 끝
 
     //은비 테스트 끝
 

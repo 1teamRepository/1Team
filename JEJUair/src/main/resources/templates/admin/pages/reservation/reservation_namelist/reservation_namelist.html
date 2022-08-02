@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <div class="container" value="2-2">
+    <div class="container" value="2">
         <div th:replace="/admin/fragment/menu :: menu"></div>
 
         <div class="containerbody">
@@ -64,7 +64,7 @@
                                                 <tbody id="itemList">
                                                     <tr class="lists"
                                                         v-for="dto in itemList">
-                                                        <td class="res_idx"><a :href=`/admin/reservation/namelist/view/${dto.resIdx}`>{{dto.resIdx}}</a></td>
+                                                        <td class="res_idx"><a :href=`/admin/reservation/list/view/${dto.resIdx}`>{{dto.resIdx}}</a></td>
                                                         <td class="res_ko_name">{{dto.memKoFirstname}}{{dto.memKoLastname}}</td>
                                                         <td class="res_email">{{dto.memEmail}}</td>
                                                         <td class="res_hp">{{dto.memHp}}</td>

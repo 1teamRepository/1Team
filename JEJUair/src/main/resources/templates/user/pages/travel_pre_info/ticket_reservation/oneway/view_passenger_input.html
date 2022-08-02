@@ -1,0 +1,623 @@
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+
+<!--head-->
+<div th:replace="/user/fragment/head :: head"></div>
+<!--head 끝-->
+
+<body id="bookingLayoutBody">
+
+<!--appAlert-->
+<div th:replace="/user/fragment/appAlert :: appAlert"></div>
+<!--appAlert 끝-->
+
+<!--header-->
+<div th:replace="/user/fragment/header :: header"></div>
+<!--header 끝-->
+
+<div id="body">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD2BQQ4" height="0" width="0"
+                style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="wrap wrap--booking NA_1_51 step-ui">
+
+        <div class="content" id="content">
+            <main id="main" class="main ">
+
+                <form id="frmSkip" name="frmSkip" method="post">
+                    <input type="hidden" id="pnrData" name="pnrData" value="">
+                    <input type="hidden" id="payType" name="payType" value="">
+                    <input type="hidden" id="bookType" name="bookType" value="">
+                    <input type="hidden" id="tripType" name="tripType" value="">
+                    <input type="hidden" id="domIntType" name="domIntType" value="">
+                    <input type="hidden" id="saleTypeCd" name="saleTypeCd" value="">
+                    <input type="hidden" id="productTypeCode" name="productTypeCode" value="">
+                    <input type="hidden" name="rpnr" value="">
+                </form>
+                <form id="frmForAncillary" name="frmForAncillary" method="post">
+                    <input type="hidden" name="pnrData" value="">
+                    <input type="hidden" name="rpnr" value="">
+                    <input type="hidden" name="payType" value="">
+                    <input type="hidden" name="bookType" value="">
+                    <input type="hidden" name="tripType" value="">
+                    <input type="hidden" name="inflType" value="B">
+                    <input type="hidden" name="domIntType" value="">
+                    <input type="hidden" name="cultureCode" value="">
+                </form>
+                <form id="frmForPayment" name="frmForPayment" method="post">
+                    <input type="hidden" name="pnrData" value="">
+                    <input type="hidden" name="tlAmount" value="">
+                    <input type="hidden" name="tlType" value="">
+                    <input type="hidden" name="tlCode" value="">
+                    <input type="hidden" name="paymentData" value="">
+                    <input type="hidden" name="domIntType" value="">
+                    <input type="hidden" name="tripType" value="">
+                    <input type="hidden" name="saleTypeCd" value="NOR">
+                    <input type="hidden" name="productTypeCode" value="LAT">
+                    <input type="hidden" name="bookType" value="">
+                </form>
+                <div class="page-title-wrap">
+                    <div id="divSubTitle" class="page-sub-title">신분증 정보와 동일하게 입력해 주세요.</div>
+                </div>
+
+                <div class="section-wrap">
+                    <div id="divPsgr" class="tab tab--scroll tab--icon tab--icon-large tab__scroll"
+                         data-element="tab" data-options='{"tabType": "scroll"}' style="height: 500px">
+                        <div class="sticky-wrap">
+                            <div class="sticky__inner" data-sticky>
+                                <div class="tab__inner">
+                                    <button class="button tab__scroll-left" data-tab-direction="prev">
+                                        <span class="hidden">왼쪽 탭으로 이동</span>
+                                    </button>
+                                    <button class="button tab__scroll-right" data-tab-direction="next">
+                                        <span class="hidden">오른쪽 탭으로 이동</span>
+                                    </button>
+                                    <div class="tab__scroll-wrap tab__scroll-wrap--full"
+                                         data-element="tab__scroll-wrap">
+                                        <div id="divTabs" class="tab__buttons" data-element="tab__scroll">
+                                            <div id="psgrTab0" class="tab__button" data-element="tab__list">
+                                                <button id="psgrBtn0" class="tab__anchor" type="button"
+                                                        data-element="tab__anchor">
+														<span class="passenger">
+															<span class="type">성인1</span><strong id="tabName0"
+                                                                                                 class="name"></strong>
+														</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="psgrContainer0" class="tab__panel" data-element="tab__panel"
+                             data-passengerkey="MCFBRFQ-" data-passenger-type="ADT">
+                            <div class="booking-check-box h-auto">
+                                <div id="divChkSelf" class="checkbox checkbox--small pb30">
+                                    <input type="checkbox" id="chkSelf" class="checkbox__input none-check"
+                                           data-toggle="toggle__anchor">
+                                    <label for="chkSelf" class="checkbox__label"><i aria-hidden="true"
+                                                                                    class="checkbox__ico"></i><span>본인이 탑승하지 않을 경우 체크해 주세요.</span></label>
+                                </div>
+                                <div class="passenger-info-box">
+                                    <div class="passenger-info">탑승객 정보</div>
+                                    <div class="button-wrap right"></div>
+                                </div>
+                            </div>
+                            <div class="sub-section">
+                                <input type="hidden" id="hidMemberGrade0" name="hidMemberGrade">
+                                <input type="hidden" id="hidEnrollDate0" name="hidEnrollDate">
+                                <input type="hidden" id="hidMemberId0" name="hidMemberId">
+                                <input type="hidden" id="hidFriendNo0" name="hidFriendNo">
+                                <input type="hidden" id="hidFfpNo0" name="hidFfpNo">
+                                <div class="input-wrap input--line pc-col pc-col-2">
+                                    <div id="divName0" class="input-row pc-row-100">
+                                        <div id="txtLastName0_div" class="input-item">
+                                            <div class="input-box"><label for="txtLastName0"
+                                                                          class="input__label">성<span title="required"
+                                                                                                      class="input__label-asterisk">*</span></label>
+                                                <div data-element="form" class="input">
+                                                    <input type="text" data-element="input" id="txtLastName0"
+                                                           name="txtLastName" class="input__text input_required"
+                                                           style="text-transform :uppercase;">
+                                                    <button type="button" data-element="remove"
+                                                            class="input__remove-button"><span
+                                                            class="hidden">삭제</span></button>
+                                                </div>
+                                            </div>
+                                            <p tabindex="0" class="input__error">성을 입력해 주세요.</p>
+                                        </div>
+                                        <div id="txtFirstName0_div" class="input-item">
+                                            <div class="input-box">
+                                                <label for="txtFirstName0" class="input__label">이름<span
+                                                        title="required"
+                                                        class="input__label-asterisk">*</span></label>
+                                                <div data-element="form" class="input">
+                                                    <input type="text" data-element="input" id="txtFirstName0"
+                                                           name="txtFirstName" class="input__text input_required"
+                                                           style="text-transform :uppercase;">
+                                                    <button type="button" data-element="remove"
+                                                            class="input__remove-button"><span
+                                                            class="hidden">삭제</span></button>
+                                                </div>
+                                            </div>
+                                            <p tabindex="0" class="input__error">이름을 입력해 주세요.</p>
+                                        </div>
+                                    </div>
+                                    <div class="input-row pc-mgl-0 boarding__gender">
+                                        <div class="radio-wrapper">
+                                            <p class="radio__text">성별<span title="required"
+                                                                           class="input__label-asterisk">*</span></p>
+                                            <div class="radio-wrap">
+													<span class="radio">
+														<input type="radio" id="rdoGenderM0" name="rdoGender0" value="1"
+                                                               class="radio__input" checked>
+														<label for="rdoGenderM0" class="radio__label"> <i
+                                                                aria-hidden="true"
+                                                                class="radio__ico"></i><span>남자</span></label>
+													</span>
+                                                <span class="radio">
+														<input type="radio" id="rdoGenderW0" name="rdoGender0" value="2"
+                                                               class="radio__input">
+														<label for="rdoGenderW0" class="radio__label"> <i
+                                                                aria-hidden="true"
+                                                                class="radio__ico"></i><span>여자</span></label>
+													</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="divBirth0" class="input-row input-row--label boarding__column">
+                                        <div id="birth0_div" class="boarding__birth">
+                                            <div class="input-label label-top">생년월일<span title="required"
+                                                                                         class="input__label-asterisk">*</span>
+                                            </div>
+                                            <div class="input-item" data-element="form">
+                                                <div class="input-flex">
+                                                    <div class="input-box label-active">
+                                                        <div class="input" data-element="form">
+                                                            <input type="text"
+                                                                   class="input__text input__text--placeholder input_required"
+                                                                   id="txtYear0" name="txtYear" maxlength="4"
+                                                                   data-element="input" title="연도 입력" placeholder="년">
+                                                            <button type="button" data-element="remove"
+                                                                    class="input__remove-button">삭제
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-box">
+                                                        <div class="select-wrap select-wrap--line"
+                                                             style="border-bottom: 0px solid black">
+                                                            <select class="select-wrap__select input_required"
+                                                                    id="selMonth0" name="selMonth" title="월 선택">
+                                                                <option value="">월</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-box">
+                                                        <div class="select-wrap select-wrap--line"
+                                                             style="border-bottom: 0px solid black">
+                                                            <select class="select-wrap__select input_required"
+                                                                    id="selDate0" name="selDate" title="일 선택">
+                                                                <option value="">일</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <p tabindex="0" class="input__error">생년월일을 정확히 입력해 주세요.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-row">
+                                        <div class="input-label label-top">국적 (여권)<span title="required"
+                                                                                        class="input__label-asterisk">*</span>
+                                        </div>
+                                        <div class="input-box ">
+                                            <div class="select-wrap select-wrap--line">
+                                                <input type="text" id="hidNationality0" class="input_required"
+                                                       name="hidNationality" style="display:none">
+                                                <button class="select-wrap__button active" type="button"
+                                                        id="btnNationality0" name="btnNationality">대한민국(KOREA, REPUBLIC
+                                                    OF)
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-section">
+                                <div class="checkbox checkbox--small">
+                                    <input type="checkbox" id="chkSave0" data-element="checkbox"
+                                           class="checkbox__input" checked>
+                                    <label for="chkSave0" class="checkbox__label"> <i aria-hidden="true"
+                                                                                      class="checkbox__ico"></i> <span>탑승객 정보 저장</span></label>
+                                </div>
+                                <span data-element="tooltip" role="tooltip" class="tooltip"
+                                      data-set="{'width': '600', 'left':'-100', 'arrow' : '100'}">
+										<button type="button" class="tooltip__button" aria-label="탑승객 정보 저장 툴팁 열기"
+                                                data-element="tooltip__anchor"></button>
+										<span class="tooltip__panel" data-element="tooltip__panel"><span
+                                                class="tooltip-arrow" aria-hidden="true"></span>
+											<span class="tooltip-desc">박스에 체크하시면 다음 예매할 때 따로 입력하지 않아도 정보를 불러올 수
+												있어요!</span>
+										</span>
+									</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="divContact" class="section-wrap">
+                    <div class="section-title">대표 연락처 정보</div>
+                    <div class="section-sub-txt">기상악화 등에 따른 항공편 지연/결항 시 알려 드립니다. 휴대전화번호와 이메일을 입력해 주세요.</div>
+                    <div class="input-wrap input--line pc-col pc-col-2">
+                        <div class="input-row input-row--label">
+                            <div class="input-label label-top">휴대전화번호<span title="required"
+                                                                           class="input__label-asterisk">*</span></div>
+                            <div id="txtContactPhone_div" class="input-item">
+                                <div class="input-flex">
+                                    <div class="input-box input-box--tel">
+                                        <div class="select-wrap select-wrap--line">
+                                            <button class="select-wrap__button active" id="btnCountryCode"
+                                                    name="btnCountryCode" type="button">+82
+                                            </button>
+                                            <input type="hidden" id="hidCountryCode" class="input_contact"
+                                                   value="82">
+                                        </div>
+                                    </div>
+                                    <div class="input-box">
+                                        <div data-element="form" class="input">
+                                            <input type="text" data-element="input" id="txtContactPhone"
+                                                   class="input__text input_contact input_required"
+                                                   name="txtContactPhone">
+                                            <button type="button" data-element="remove"
+                                                    class="input__remove-button">
+                                                <span class="hidden">삭제</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p tabindex="0" class="input__error">휴대전화번호 오류입니다. 다시 확인해 주세요.</p>
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div id="txtContactEmail_div" class="input-item">
+                                <div class="input-box">
+                                    <label for="txtContactEmail" class="input__label">이메일<span title="required"
+                                                                                               class="input__label-asterisk">*</span></label>
+                                    <div data-element="form" class="input">
+                                        <input type="text" data-element="email" id="txtContactEmail"
+                                               class="input__text input_contact input_required" maxlength="266">
+                                        <button type="button" data-element="remove"
+                                                class="input__remove-button"><span class="hidden">삭제</span></button>
+                                    </div>
+                                </div>
+                                <p class="input__sub-text">예) kimjeju@jejuair.com</p>
+                                <p tabindex="0" class="input__error">이메일을 입력해 주세요.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="booking-sticky booking-sticky--reservation" data-element="toggle"
+                     data-options='{"mode": "slide"}'>
+                    <div class="reservation-container">
+                        <div class="booking-sticky__top ">
+                            <div id="divBottomSheetTop" class="toggle-wrap toggle-wrap--button toggle-wrap--height">
+                                <div class="label label--point" style="margin-top: 10px">
+                                    <span>예상 결제금액</span>
+                                </div>
+                                <button type="button" class="summary" data-element="toggle__anchor">
+                                    <span id="spanCost" class="cost"></span>
+                                    <span class="point" style="display: none;">
+											<span class="cost"></span>
+										</span>
+                                </button>
+                            </div>
+                            <button id="btnOK" name="btnNext" type="button" class="button button--primary pc-only"
+                                    disabled>
+                                <span class="button__text">부가서비스 선택하기</span>
+                            </button>
+                        </div>
+                        <div id="divBottomSheet" class="booking-sticky__bottom -limitH"
+                             data-element="toggle__panel">
+                            <div class="title">
+                                <h3 class="title__section title__section--small">항목별 운임 상세</h3>
+                            </div>
+                            <h4 class="text__default text--exbold">항공 운송료</h4>
+                            <div class="itemize__item">
+                                <div id="divFare" class="flex-text">
+                                    <div class="flex-text__title">항공운임</div>
+                                    <div class="flex-text__additional"></div>
+                                </div>
+                                <div id="divTax" class="flex-text">
+                                    <div class="flex-text__title">공항시설 사용료</div>
+                                    <div class="flex-text__additional"></div>
+                                </div>
+                                <div id="divFuel" class="flex-text">
+                                    <div class="flex-text__title">유류할증료</div>
+                                    <div class="flex-text__additional"></div>
+                                </div>
+                            </div>
+                            <h4 class="text__default text--exbold pc-60 bottomSsr" style="display: none;">부가서비스</h4>
+                            <div id="divbtSsr" class="itemize__item bottomSsr" style="display: none;"></div>
+                        </div>
+                        <div class="button-wrap mobile-only">
+                            <button name="btnNext" type="button" class="button button--primary" disabled>
+                                <span class="button__text">부가서비스 선택하기</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="modalFriendsList" class="modal modal-full modal-scroll modal--fixed-multi"></div>
+                <div id="modalPartnerCardInfo" class="modal modal-full modal-scroll NA_1_31"></div>
+                <div id="modalAgeCalc" class="modal modal-full modal-scroll"></div>
+                <div id="modalPayLater" class="modal modal-full modal-scroll modal--fixed-multi"></div>
+                <div id="modalDiscountInfo" class="modal modal-full modal-scroll">
+                    <div class="modal-header">
+                        <div class="modal-header__title">국내선 할인조건</div>
+                    </div>
+                    <div class="modal-content h_70">
+
+                        <div class="first-margin">
+                            <!-- 20210513 여백 clss추가, 수정 -->
+                            <div class="accordion">
+                            </div>
+                        </div>
+
+                        <!-- 유의사항 -->
+                        <div class="section-wrap">
+                            <div class="notice-box">
+                                <h5 class="notice-box__title">유의사항</h5>
+                            </div>
+                        </div>
+                        <!-- //유의사항 -->
+
+                    </div>
+                    <a href="#" rel="modal:close" class="modal__close"><span class="blind">닫기</span></a>
+                </div>
+                <div id="modalAgeInfo" class="modal modal--simple">
+                    <div class="modal-content">
+                        <h2 class="alert-title">유아/소아 나이 변경 안내</h2>
+                        <p class="alert-text">
+                            여정 도중 유아의 나이가 소아의 나이로 변경되는 경우, 오는 편은 별도로 예약하시기 바랍니다.<br><br>
+                            예) 가는 편이 성인1, 유아1인 경우 오는 편은 성인1, 소아1로 예약<br>
+                            예) 가는 편/오는 편 모두 성인1, 유아1인 경우 오는 편은 성인1, 소아1로 예약<br>
+                        </p>
+                    </div>
+                    <div class="modal__button-area button-wrap">
+                        <button type="button" class="button button--secondary button--active"
+                                onclick="closeCurrentModal(this)">
+                            <span class="button__text">확인</span>
+                        </button>
+                    </div>
+                    <a href="javascript:void(0)" onclick="closeCurrentModal(this)" class="modal__close"><span
+                            class="blind">닫기</span></a>
+                </div>
+                <div id="modalInfantCheck" class="modal modal--simple">
+                    <!-- 컨텐츠 시작 타이틀 추가 -->
+                    <div class="modal-content mt50">
+                        <h2 class="alert-text infantMsgArea">입력하신 {0} 소아 고객님의 생년월일이 출발일 기준 유아에 적용 됩니다.</h2>
+                        <p class="alert-text mt20">
+                            좌석 점유 유아 항공권을 구매하기 원하실 경우, 고객센터(1599-1500) 로 문의하시기 바랍니다. </p>
+                    </div>
+                    <!-- 컨텐츠 끝 -->
+                    <div class="modal__button-area button-wrap">
+                        <button type="button" id="btnNext" class="button button--secondary button--active"
+                                onclick="closeModalInfantAgeInfo(this)">
+                            <span class="button__text">확인</span>
+                        </button>
+                        <!-- button 활성화 시 button--active class 추가 -->
+                    </div>
+                    <a href="javascript:void(0)" onclick="closeCurrentModal(this)" class="modal__close"><span
+                            class="blind">닫기</span></a>
+                </div>
+                <div id="sessionLayerForm" class="modal modal--simple modal-layer NA_1_23"></div>
+                <div style="display: none;"><a href="javascript:void(0)" data-element="modal_anchor"
+                                               id="sessionLayer" data-target="#sessionLayerForm"
+                                               data-modal-type="default"></a></div>
+            </main>
+        </div>
+    </div>
+</div>
+
+<!-- footer -->
+<div th:replace="/user/fragment/footer :: footer"></div>
+<!-- / footer 끝 -->
+
+
+<script>
+    // 승객 수
+    let passengerNum = 3;
+
+    const span = document.getElementById('spanCost');
+    let divFare = 55000;
+    let divTax = 5000;
+    let divFuel = 20000;
+
+    $('#divFare').find('.flex-text__additional')[0].innerHTML = divFare + ' 원';
+    $('#divTax').find('.flex-text__additional')[0].innerHTML = divTax + ' 원';
+    $('#divFuel').find('.flex-text__additional')[0].innerHTML = divFuel + ' 원';
+    span.innerHTML = '<span className="price_txt">' + Number(divFare + divTax + divFuel) + '</span><span className="unit"> 원</span>';
+
+    let divTabs = $('#divTabs');
+    let divPsgr = $('#divPsgr');
+
+    for (let i = 1; i < passengerNum; i++) {
+        let divTabsHTML = '<div id="psgrTab' + i + '" class="tab__button" data-element="tab__list">'
+            + '<button id="psgrBtn0' + i + '" class="tab__anchor" type="button" data-element="tab__anchor">'
+            + '<span class="passenger"><span class="type">성인' + Number(i + 1) + '</span><strong id="tabName' + i + '" class="name"></strong>'
+            + '</span></button></div></div>'
+
+        let divPsgrHTML = '<div id="psgrContainer' + i + '" class="tab__panel" data-element="tab__panel" data-passengerkey="MCFBRFQ-" data-passenger-type="ADT" style="display: none;">\n' +
+            '<div class="booking-check-box h-auto">\n' +
+            '<div class="passenger-info-box"><div class="passenger-info">탑승객 정보</div><div class="button-wrap right"></div></div>\n' +
+            '</div>\n' +
+            '<div class="sub-section">\n' +
+            '<input type="hidden" id="hidMemberGrade' + i + '" name="hidMemberGrade">\n' +
+            '<input type="hidden" id="hidEnrollDate' + i + '" name="hidEnrollDate">\n' +
+            '<input type="hidden" id="hidMemberId' + i + '" name="hidMemberId">\n' +
+            '<input type="hidden" id="hidFriendNo' + i + '" name="hidFriendNo">\n' +
+            '<input type="hidden" id="hidFfpNo' + i + '" name="hidFfpNo">\n' +
+            '<div class="input-wrap input--line pc-col pc-col-2">\n' +
+            '<div id="divName' + i + '" class="input-row pc-row-100">\n' +
+            '<div id="txtLastName' + i + '_div" class="input-item">\n' +
+            '<div class="input-box"><label for="txtLastName' + i + '" class="input__label">성<span title="required" class="input__label-asterisk">*</span></label>\n' +
+            '<div data-element="form" class="input">\n' +
+            '<input type="text" data-element="input" id="txtLastName' + i + '" name="txtLastName" class="input__text input_required" style="text-transform :uppercase;">\n' +
+            '<button type="button" data-element="remove" class="input__remove-button"><span class="hidden">삭제</span></button>\n' +
+            '</div>\n' +
+            '</div>\n' +
+            '<p tabindex="' + i + '" class="input__error">성을 입력해 주세요.</p>\n' +
+            '</div>\n' +
+            '<div id="txtFirstName' + i + '_div" class="input-item">\n' +
+            '<div class="input-box">\n' +
+            '<label for="txtFirstName' + i + '" class="input__label">이름<span title="required" class="input__label-asterisk">*</span></label>\n' +
+            '<div data-element="form" class="input">\n' +
+            '<input type="text" data-element="input" id="txtFirstName' + i + '" name="txtFirstName" class="input__text input_required" style="text-transform :uppercase;">\n' +
+            '<button type="button" data-element="remove" class="input__remove-button"><span class="hidden">삭제</span></button>\n' +
+            '</div>\n' +
+            '</div>\n' +
+            '<p tabindex="' + i + '" class="input__error">이름을 입력해 주세요.</p>\n' +
+            '</div>\n' +
+            '</div>\n' +
+            '<div class="input-row pc-mgl-0 boarding__gender">\n' +
+            '<div class="radio-wrapper">\n' +
+            '<p class="radio__text">성별<span title="required" class="input__label-asterisk">*</span></p>\n' +
+            '<div class="radio-wrap">\n' +
+            '<span class="radio">\n' +
+            '<input type="radio" id="rdoGenderM' + i + '" name="rdoGender' + i + '" value="1" class="radio__input" checked>\n' +
+            '<label for="rdoGenderM' + i + '" class="radio__label"> <i aria-hidden="true" class="radio__ico"></i><span>남자</span></label>\n' +
+            '</span>\n' +
+            '<span class="radio">\n' +
+            '<input type="radio" id="rdoGenderW' + i + '" name="rdoGender' + i + '" value="2" class="radio__input">\n' +
+            '<label for="rdoGenderW' + i + '" class="radio__label"> <i aria-hidden="true" class="radio__ico"></i><span>여자</span></label>\n' +
+            '</span>\n' +
+            '</div>\n' +
+            '</div>\n' +
+            '</div>\n' +
+            '<div id="divBirth' + i + '" class="input-row input-row--label boarding__column">\n' +
+            '<div id="birth' + i + '_div" class="boarding__birth">\n' +
+            '<div class="input-label label-top">생년월일<span title="required" class="input__label-asterisk">*</span></div>\n' +
+            '<div class="input-item" data-element="form">\n' +
+            '<div class="input-flex">\n' +
+            '<div class="input-box label-active">\n' +
+            '<div class="input" data-element="form">\n' +
+            '<input type="text"\n' +
+            'class="input__text input__text--placeholder input_required" id="txtYear' + i + '" name="txtYear" maxlength="4" data-element="input" title="연도 입력" placeholder="년">\n' +
+            '<button type="button" data-element="remove" class="input__remove-button">삭제</button>\n' +
+            '</div>\n' +
+            '</div>\n' +
+            '<div class="input-box">\n' +
+            '<div class="select-wrap select-wrap--line" style="border-bottom: 0px solid black">\n' +
+            '<select class="select-wrap__select input_required" id="selMonth' + i + '" name="selMonth" title="월 선택"><option value="">월</option></select>\n' +
+            '</div>\n' +
+            '</div>\n' +
+            '<div class="input-box">\n' +
+            '<div class="select-wrap select-wrap--line" style="border-bottom: 0px solid black">\n' +
+            '<select class="select-wrap__select input_required" id="selDate' + i + '" name="selDate" title="일 선택"><option value="">일</option></select>\n' +
+            '</div>\n' +
+            '</div>\n' +
+            '</div>\n' +
+            '<p tabindex="' + i + '" class="input__error">생년월일을 정확히 입력해 주세요.</p>\n' +
+            '</div>\n' +
+            '</div>\n' +
+            '</div>\n' +
+            '<div class="input-row">\n' +
+            '<div class="input-label label-top">국적 (여권)<span title="required" class="input__label-asterisk">*</span></div>\n' +
+            '<div class="input-box ">\n' +
+            '<div class="select-wrap select-wrap--line">\n' +
+            '<input type="text" id="hidNationality' + i + '" class="input_required" name="hidNationality" style="display:none">\n' +
+            '<button class="select-wrap__button active" type="button" id="btnNationality' + i + '" name="btnNationality">대한민국(KOREA, REPUBLIC OF)</button>\n' +
+            '</div>\n' +
+            '</div>\n' +
+            '</div>\n' +
+            '</div>\n' +
+            '</div>\n' +
+            '<div class="sub-section">\n' +
+            '<div class="checkbox checkbox--small">\n' +
+            '<input type="checkbox" id="chkSave' + i + '" data-element="checkbox" class="checkbox__input" checked>\n' +
+            '<label for="chkSave' + i + '" class="checkbox__label"> <i aria-hidden="true" class="checkbox__ico"></i> <span>탑승객 정보 저장</span></label>\n' +
+            '</div>\n' +
+            '<span data-element="tooltip" role="tooltip" class="tooltip" data-set="{\'width\': \'600\', \'left\':\'-100\', \'arrow\' : \'100\'}">\n' +
+            '<button type="button" class="tooltip__button" aria-label="탑승객 정보 저장 툴팁 열기" data-element="tooltip__anchor"></button>\n' +
+            '<span class="tooltip__panel" data-element="tooltip__panel"><span class="tooltip-arrow" aria-hidden="true"></span>\n' +
+            '<span class="tooltip-desc">박스에 체크하시면 다음 예매할 때 따로 입력하지 않아도 정보를 불러올 수 있어요!</span>\n' +
+            '</span>\n' +
+            '</span>\n' +
+            '</div>\n' +
+            '</div>'
+
+        divTabs.append(divTabsHTML);
+        divPsgr.append(divPsgrHTML);
+    }
+
+    for (let i = 0; i < passengerNum; i++) {
+
+        for (let j = 1; j <= 12; j++) {
+            let selM = '#selMonth' + i;
+            let option = document.createElement('option');
+            option.innerText = String(j);
+            option.value = String(j);
+            $(selM).append(option);
+        }
+        for (let j = 1; j <= 31; j++) {
+            let selD = '#selDate' + i;
+            let option = document.createElement('option');
+            option.innerText = String(j);
+            option.value = String(j);
+            $(selD).append(option);
+        }
+    }
+
+    $(document.body).on("change", checkEmpty);
+
+    function checkEmpty() {
+        let totalCnt = 2 + passengerNum;
+        let filledCnt = 0;
+        let txtContactPhone = $('#txtContactPhone').val() == 0 ? 0 : 1;
+        let txtContactEmail = $('#txtContactEmail').val() == 0 ? 0 : 1;
+        let txtCnt = new Array();
+        for (let i = 0; i < passengerNum; i++) {
+            let txtLN = '#txtLastName' + i;
+            let txtFN = '#txtFirstName' + i;
+            let txtY = '#txtYear' + i;
+            selM = '#selMonth' + i;
+            selD = '#selDate' + i;
+
+            let txtLastName = $(txtLN).val() == 0 ? 0 : 1;
+            let txtFirstName = $(txtFN).val() == 0 ? 0 : 1;
+            let txtYear = $(txtY).val() == 0 ? 0 : 1;
+            let selMonth = $(selM).val() == 0 ? 0 : 1;
+            let selDate = $(selD).val() == 0 ? 0 : 1;
+            txtCnt[i] = txtLastName + txtFirstName + txtYear + selMonth + selDate != 5 ? 0 : 1;
+        }
+        filledCnt += txtContactEmail + txtContactPhone;
+        for (let i = 0; i < passengerNum; i++) {
+            filledCnt += txtCnt[i];
+        }
+        if (filledCnt >= totalCnt) {
+            $('#btnOK').attr('disabled', false);
+            document.getElementById("btnOK").classList.add('button--active');
+        } else {
+            $('#btnOK').attr('disabled', true);
+            document.getElementById("btnOK").classList.remove('button--active');
+        }
+    }
+
+</script>
+
+<div id="ifmWrap"
+     style="height:100%; display:none; overflow:auto; text-align:center; -webkit-overflow-scrolling:touch;">
+    <iframe src="" width="100%" height="100%" name="popupChkApp"></iframe>
+</div>
+
+
+<!-- 공통 스크립트 선언 -->
+<script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
+<script type="text/javascript" src="/user/lib/js/common.js"></script>
+<script type="text/javascript" src="/user/lib/js/plugin.js"></script>
+
+</body>
+
+</html>

@@ -102,7 +102,7 @@ $(function(){
             contentType: 'application/json',
             success: function(){
                 alert("등록 성공!");
-                location.href='/admin/food/view';
+                location.href='/admin/food/list';
             },
             error: function(){
                 alert("등록 실패!");

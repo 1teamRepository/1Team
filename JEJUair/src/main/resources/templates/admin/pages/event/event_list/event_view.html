@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제주항공 | 이벤트 목록</title>
+    <link rel="stylesheet" type="text/css" href="/admin/lib/css/common.css">
+    <link rel="icon" href="/admin/lib/images/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+</head>
+
+<script src="/admin/lib/images/ckeditor.js"></script>
+<script src="/admin/lib/images/translations/ko.js"></script>
+<style>
+    .classic_title {
+        position: relative;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .ck.ck-editor {
+        /* max-width: 90%;  */
+        position: relative;
+        width: 100%;
+    }
+
+    .ck-editor__editable {
+        min-height: 500px;
+    }
+</style>
+
+
+<body>
+<div class="container" value="6-1">
+    <div th:replace="/admin/fragment/menu :: menu"></div>
+
+    <div class="containerbody" id="view">
+        <div id="category" value="event"></div>
+        <!-- main -->
+        <div class="main">
+            <div class="details">
+                <!-- order details list -->
+                <div class="recentOrders">
+                    <div class="calheader">
+                        <h2>이벤트 목록</h2>
+                    </div>
+                    <div class="scheduleSearch">
+                        <form action="#" class="regForm">
+                            <div class="wrapper1">
+
+                                <h3>이벤트 기간</h3>
+                                <input type="date" class="searchBox1" name="evtStartDate" id="evtStartDate" title="검색어를 입력하세요"
+                                       placeholder="2022.06.08" dir="ltr" readonly :value=`${view.evtStartDate}`
+                                       disabled> ~
+                                <input type="date" class="searchBox1" name="evtEndDate" id="evtEndDate" title="검색어를 입력하세요"
+                                       placeholder="2022.06.19" readonly :value=`${view.evtEndDate}` disabled>
+
+                            </div>
+                            <table>
+                                <thead>
+                                <tr class="topbanner" style="color: var(--black2);">
+                                    <td>
+                                        <input class="airplaneName" style="text-align: center; border: none" type="text" name="evtTitle" id="evtTitle" readonly :value=`${view.evtTitle}` disabled>
+                                    </td>
+                                </tr>
+                                </thead>
+
+                            </table>
+                            <textarea name="evtContent" id="evtContent" readonly :value=`${view.evtContent}` disabled>
+
+
+
+                            </textarea>
+
+<!--                            <div class="event_btn">-->
+                                <div class="buttonArea">
+                                    <button type="button" class="button list margin_bottom_20" value="목록"
+                                            onclick="location.href='/admin/event/list'">목록
+                                    </button>
+                                    <div class="button edit margin_bottom_20" value="수정"><a
+                                            :href=`/admin/event/edit/${view.evtIdx}`>수정</a></div>
+                                    <button type="button" id="delete" class="button delete margin_bottom_20" value="삭제"
+                                            onclick="delete_view()">삭제
+                                    </button>
+                                </div>
+<!--                            </div>-->
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--아이콘 사용을 위한 설치 스크립트-->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="/admin/lib/js/common.js"></script>
+<script src="/admin/lib/js/event/event.view.js"></script>
+
+</body>
+</html>

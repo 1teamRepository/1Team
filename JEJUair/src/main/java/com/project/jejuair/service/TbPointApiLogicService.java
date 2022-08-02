@@ -26,7 +26,7 @@ public class TbPointApiLogicService extends BaseService<TbPointRequest, TbPointR
                 .pntContent(tbPoint.getPntContent())
                 .pntAmount(tbPoint.getPntAmount())
                 .pntStatus(tbPoint.getPntStatus())
-                .pntRegdate(tbPoint.getPntRegdate())
+                .pntRegDate(tbPoint.getPntRegDate())
                 .pntMemIdx(tbPoint.getPntMemIdx())
                 .build();
         return tbPointResponse;
@@ -40,7 +40,7 @@ public class TbPointApiLogicService extends BaseService<TbPointRequest, TbPointR
                 .pntContent(tbPointRequest.getPntContent())
                 .pntAmount(tbPointRequest.getPntAmount())
                 .pntStatus(tbPointRequest.getPntStatus())
-                .pntRegdate(LocalDateTime.now())
+                .pntRegDate(LocalDateTime.now())
                 .pntMemIdx(tbPointRequest.getPntMemIdx())
                 .build();
         TbPoint newTbPoint = baseRepository.save(tbPoint);
@@ -58,13 +58,13 @@ public class TbPointApiLogicService extends BaseService<TbPointRequest, TbPointR
         TbPointRequest tbPointRequest = request.getData();
         Optional<TbPoint> tbPoint = baseRepository.findById(tbPointRequest.getPntIdx());
         return tbPoint.map(
-                newTbPoint -> {
-                    newTbPoint.setPntUserid(tbPointRequest.getPntUserid());
-                    newTbPoint.setPntContent(tbPointRequest.getPntContent());
-                    newTbPoint.setPntAmount(tbPointRequest.getPntAmount());
-                    newTbPoint.setPntStatus(tbPointRequest.getPntStatus());
-                    return newTbPoint;
-                }).map(newTbPoint -> baseRepository.save(newTbPoint)).map(newTbPoint -> response(newTbPoint))
+                        newTbPoint -> {
+                            newTbPoint.setPntUserid(tbPointRequest.getPntUserid());
+                            newTbPoint.setPntContent(tbPointRequest.getPntContent());
+                            newTbPoint.setPntAmount(tbPointRequest.getPntAmount());
+                            newTbPoint.setPntStatus(tbPointRequest.getPntStatus());
+                            return newTbPoint;
+                        }).map(newTbPoint -> baseRepository.save(newTbPoint)).map(newTbPoint -> response(newTbPoint))
                 .map(Header::OK).orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 

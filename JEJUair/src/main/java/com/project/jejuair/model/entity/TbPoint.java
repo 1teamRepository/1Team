@@ -34,8 +34,8 @@ public class TbPoint {
     @Enumerated(EnumType.STRING)
     private PntStatus pntStatus;           // 상태
     @CreatedDate
-    private LocalDateTime pntRegdate;   // 등록일
-    private String pntMemIdx;           // MemIdx
+    private LocalDateTime pntRegDate;   // 등록일
+    private Long pntMemIdx;           // MemIdx
 
 //    @ManyToOne
 //    private TbMember tbMember;

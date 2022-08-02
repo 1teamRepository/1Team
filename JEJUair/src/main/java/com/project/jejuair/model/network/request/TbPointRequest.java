@@ -18,6 +18,6 @@ public class TbPointRequest {
     private String pntContent;
     private Integer pntAmount;
     private PntStatus pntStatus;
-    private LocalDateTime pntRegdate;
-    private String pntMemIdx;
+    private LocalDateTime pntRegDate;
+    private Long pntMemIdx;
 }
