@@ -1,42 +1,43 @@
 $(function(){
     let category = document.getElementById("category").getAttribute("value");
-    $(document).on('click', '#sendit', function(){
-        if(!$('#lostItem').val()){
-            alert('분실물을 입력하세요');
-            $('#lostItem').focus();
+    $(document).on('click', '#sendit', function() {
+        if (!$('#lostExplain').val()) {
+            alert('유실물명을 입력하세요');
+            $('#lostExplain').focus();
             return false;
         }
 
-        if(!$('#lostAcqAirName').val()) {
-            alert('습득편명을 입력하세요' );
+        if (!$('#lostAcqAirName').val()) {
+            alert('습득편명을 입력하세요');
             $('#lostAcqAirName').focus();
             return false;
         }
 
-        if(!$('#lostAcqDate').val()){
+        if (!$('#lostAcqDate').val()) {
             alert('습득날짜를 입력하세요');
             $('#lostAcqDate').focus();
             return false;
         }
 
-        if(!$('#lostDisDate').val()){
-            alert('폐기날짜를 입력하세요');
+
+        if (!$('#lostDisDate').val()) {
+            alert('폐기날짜 입력하세요');
             $('#lostDisDate').focus();
             return false;
         }
 
-        if(!$('#lostExplain').val()){
+
+        if (!$('#lostItem').val()) {
             alert('상세설명을 입력하세요');
-            $('#lostExplain').focus();
+            $('#lostItem').focus();
             return false;
         }
 
-        if(!$('#lostSeatNum').val()){
-            alert('좌석번호를 입력하세요');
+        if (!$('#lostSeatNum').val()) {
+            alert('좌석번호 입력하세요');
             $('#lostSeatNum').focus();
             return false;
         }
-
 
 
         let storage = document.getElementById("lostStoragePlace");

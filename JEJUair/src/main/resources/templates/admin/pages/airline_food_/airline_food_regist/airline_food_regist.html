@@ -59,7 +59,7 @@
                                         <div class="reg_content"><input name="foodJpyPrice" id="foodJpyPrice" type="text" class="textBox" value=""></div>
                                     </li>
                                     <li class="clear">
-                                        <span class="tit_lbl">할인</span>
+                                        <span class="tit_lbl">할인율</span>
                                         <div class="reg_content"><input name="foodDiscount" id="foodDiscount" type="text" class="textBox2" value=""> %</div>
                                     </li>
                                     <li class="clear">
@@ -115,7 +115,7 @@
                             </div>
 
                             <div class="buttonArea">
-                                <button type="button" class="button list" value="목록" onclick="location.href='/airline_food_/airline_food_list/airline_food_list.html'">목록</button>
+                                <button type="button" class="button list" value="목록" onclick="location.href='/admin/food/list'">목록</button>
                                 <button type="button" class="button register" form="regForm" id="regist" value="등록">등록</button>
                             </div>
                         </form>
@@ -132,6 +132,7 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
+    <!--열기/닫기 스크립트-->
     <script>
         function openCheck(category){
             const open = document.getElementById(category);
@@ -146,15 +147,6 @@
                 close.previousSibling.previousSibling.style.display="block";
         }
 
-
-        // //닫기
-        // $(document).mouseup(function (e){
-        //     var close = $(".vis");
-        //     if (close.has(e.target).length === 0){
-        //         close.style.display="none"
-        //         close.previousSibling.previousSibling.style.display="block";
-        //     }
-        // });
         $(document).mouseup(function (e){
             var close = $(".vis");
             if (close.has(e.target).length === 0){
@@ -162,15 +154,8 @@
                 $(".invis").css("display", "block")
             }
         });
-
-        function regist_view(){
-            const yn = confirm("게시물을 등록하시겠습니까?");
-            if(yn){
-                location.href = "";
-            }
-        }
-
     </script>
+
     <script src="/admin/lib/js/common.js"> </script>
     <script src="/admin/lib/js/food/food_regist.js"></script>
 </body>

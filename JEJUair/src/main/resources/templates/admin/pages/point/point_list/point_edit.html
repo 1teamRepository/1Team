@@ -17,7 +17,7 @@
 
 
 <body>
-<div class="container" value="4-1">
+<div class="container" value="4">
     <div th:replace="/admin/fragment/menu :: menu"></div>
 
     <!-- main -->
@@ -49,7 +49,7 @@
                                 <li class="clear">
                                     <span class="tit_lbl">사용금액(P)</span>
                                     <div class="reg_content">
-                                        <input type="text" class="textBox" vname="pntAmount"  id="pntAmount"  :value=`${view.pntAmount}`>
+                                        <input type="text" class="textBox" name="pntAmount"  id="pntAmount"  :value=`${view.pntAmount}`>
                                     </div>
                                 </li>
 
@@ -63,7 +63,11 @@
                                 <li class="clear">
                                     <span class="tit_lbl">상태</span>
                                     <div class="reg_content">
-                                        <input type="text" class="textBox" name="pntStatus"  id="pntStatus"  :value=`${view.pntStatus}`>
+                                        <select  class="textBox selectBox"  id="pntStatus"  :value=`${view.pntStatus}`>
+                                            <option value="null">선택</option>
+                                            <option value="USE">사용</option>
+                                            <option value="SAVE">적립</option>
+                                        </select>
                                     </div>
                                 </li>
 

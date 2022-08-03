@@ -21,25 +21,18 @@ $(function(){
         }
 
         if(!$('#pntStatus').val()){
-            alert('0, 1중 선택하세요 (0=USE, 1=SAVE)');
+            alert('상태를 선택하세요');
             $('#pntStatus').focus();
             return false;
         }
 
-
-
-        /*
-                    {
-                        "transaction_time":"2022-07-12",
-                        "resultCode":"ok",
-                        "description":"ok",
-                        "data":{
-                            "userid":"ryu",
-                            "userpw":"1111",
-                            "name":"류"
-                        }
-                    }
-         */
+        let Status = document.getElementById("pntStatus");
+        let pntStatus = Status.options[Status.selectedIndex].value;
+        if(pntStatus == "null" || pntStatus == undefined){
+            alert('상태를 선택하세요');
+            $('#pntStatus').focus();
+            return false;
+        }
 
         let jsonData = {
             transaction_time: new Date(),
@@ -49,9 +42,10 @@ $(function(){
                 pntUserid: $('#pntUserid').val(),
                 pntAmount: $('#pntAmount').val(),
                 pntContent: $('#pntContent').val(),
-                pntStatus: $('#pntStatus').val()
+                pntStatus: pntStatus
             }
         }
+        console.log(jsonData);
 
         $.post({
             url: '/api/'+category,

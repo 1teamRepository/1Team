@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>제주항공 | 기내식 목록</title>
+    <title>제주항공 | 기내식 상세</title>
     <link rel="stylesheet" type="text/css" href="/admin/lib/css/common.css">
     <link rel="icon" href="/admin/lib/images/favicon.ico">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -58,8 +58,8 @@
                                     <div class="reg_content"><input name="fo_price_jpy" type="text" class="textBox" disabled :value=`${view.foodJpyPrice}`></div>
                                 </li>
                                 <li class="clear">
-                                    <span class="tit_lbl">할인</span>
-                                    <div class="reg_content"><input name="fo_discount" type="text" class="textBox2" disabled :value=`${view.foodDiscount}`>%</div>
+                                    <span class="tit_lbl">할인율</span>
+                                    <div class="reg_content"><input name="fo_discount" type="text" class="textBox2" disabled :value=`${view.foodDiscount}`> %</div>
                                 </li>
                                 <li class="clear">
                                     <span class="tit_lbl">첨부사진</span>
@@ -67,74 +67,48 @@
                                 </li>
                                 <li class="clear">
                                     <span class="tit_lbl">출발지</span>
-                                    <div class="reg_content multicheck" >
-                                        <div id="starting_point_open" class="invis">
-                                            <p class="multitext" onclick="openCheck('starting_point_open')">열기</p>
-                                        </div>
-                                        <div id="starting_point_close" class="vis">
-                                            <p class="multitext" onclick="closeCheck('starting_point_close')">닫기</p>
-                                            <div class="vis_list">
-                                                <label><input type="checkbox" name="check_start" id="check_start1" value="인천/부산" checked disabled>인천/부산</label>
-                                                <label><input type="checkbox" name="check_start" id="check_start2" value="김포" disabled>김포</label>
-                                                <label><input type="checkbox" name="check_start" id="check_start3" value="대구" disabled>대구</label>
-                                                <label><input type="checkbox" name="check_start" id="check_start4" value="청주" disabled>청주</label>
-                                                <label><input type="checkbox" name="check_start" id="check_start5" value="무안" disabled>무안</label>
-                                                <label><input type="checkbox" name="check_start" id="check_start6" value="제주" disabled>제주</label>
-                                                <label><input type="checkbox" name="check_start" id="check_start7" value="괌/사이판" disabled>괌/사이판</label>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <div class="reg_content"><input name="fo_startingPoint" type="text" class="textBox" disabled :value=`${view.foodStartingPoint}`></div>
                                 </li>
+
                                 <li class="clear">
                                     <span class="tit_lbl">특이사항</span>
-                                    <div class="reg_content multicheck" >
+                                    <div class="reg_content multicheck">
                                         <div id="specific_open" class="invis">
                                             <p class="multitext" onclick="openCheck('specific_open')">열기</p>
                                         </div>
                                         <div id="specific_close" class="vis">
                                             <p class="multitext" onclick="closeCheck('specific_close')">닫기</p>
                                             <div class="vis_list">
-                                                <label><input type="checkbox" name="specific" id="specific1" value="조리시간 소요되는" checked disabled>조리시간 소요되는</label>
-                                                <label><input type="checkbox" name="specific" id="specific2" value="알레르기 주의" checked disabled>알레르기 주의</label>
-                                                <label><input type="checkbox" name="specific" id="specific3" value="뜨거운 음식" disabled>뜨거운 음식</label>
-                                                <label><input type="checkbox" name="specific" id="specific4" value="성인전용" disabled>성인전용</label>
-                                                <label><input type="checkbox" name="specific" id="specific5" value="인천,부산,괌/사이판,김포,무안" disabled>인천,부산,괌/사이판,김포,무안</label>
-                                                <label><input type="checkbox" name="specific" id="specific6" value="어린이메뉴" disabled>어린이메뉴</label>
-                                                <label><input type="checkbox" name="specific" id="specific7" value="메뉴 유동적" disabled>메뉴 유동적</label>
-                                                <label><input type="checkbox" name="specific" id="specific8" value="신메뉴" disabled>신메뉴</label>
+                                                <label><input type="checkbox" name="foodSpecific" id="specific1" value="조리시간 소요되는"  disabled>조리시간 소요되는</label>
+                                                <label><input type="checkbox" name="foodSpecific" id="specific2" value="알레르기 주의"  disabled>알레르기 주의</label>
+                                                <label><input type="checkbox" name="foodSpecific" id="specific3" value="뜨거운 음식" disabled>뜨거운 음식</label>
+                                                <label><input type="checkbox" name="foodSpecific" id="specific4" value="성인전용" disabled>성인전용</label>
+                                                <label><input type="checkbox" name="foodSpecific" id="specific5" value="인천,부산,괌/사이판,김포,무안" disabled>인천,부산,괌/사이판,김포,무안</label>
+                                                <label><input type="checkbox" name="foodSpecific" id="specific6" value="어린이메뉴" disabled>어린이메뉴</label>
+                                                <label><input type="checkbox" name="foodSpecific" id="specific7" value="메뉴 유동적" disabled>메뉴 유동적</label>
+                                                <label><input type="checkbox" name="foodSpecific" id="specific8" value="신메뉴" disabled>신메뉴</label>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
+
+                                <li class="clear" style="display: none">
+                                    <span class="tit_lbl">특이사항</span>
+                                    <div class="reg_content"><input name="fo_foodSpecific" id="fo_foodSpecific" type="text" class="textBox" :value=`${view.foodSpecific}`></div>
+                                </li>
+
                             </ul>
 
                             <div class="description">
-                                <input type="text" name="fo_title" id="fo_title" :value=`${view.foodContent}` disabled>
-                                <textarea class="content" name="fo_content" id="fo_content" disabled >
-
-    유의사항
-
-    · 괌, 사이판, 방콕, 부산, 제주 출발편은 현지에서 생산된 햄치즈 샌드위치가 제공됩니다.
-
-    구성
-
-    · 햄치즈샌드위치, 닭가슴살 샌드위치
-
-    주재료
-
-    · 훈제치킨, 호밀식빵, 계란, 참치캔, 햄, 치즈, 할라피뇨, 마요네즈(유제품 포함)
-
-    알러지 유의사항
-
-    · 알류, 콩류, 밀, 닭고기, 유제품, 돼지고기, 토마토, 쇠고기
-                                    </textarea>
+                                <input type="text" name="fo_title" id="fo_title" :value=`${view.foodTitle}` disabled>
+                                <textarea class="content" name="fo_content" id="fo_content" :value=`${view.foodContent}` disabled></textarea>
                             </div>
                         </div>
 
                         <div class="buttonArea">
                             <button type="button" class="button list" value="목록" onclick="location.href='/admin/food/list'">목록</button>
                             <button type="button" class="button edit" value="수정" ><a :href=`/admin/food/edit/${view.foodIdx}`>수정</a></button>
-                            <button type="button" class="button delete" value="삭제" onclick="delete_view()">삭제</button>
+                            <button type="button" class="button delete" value="삭제" id="delete">삭제</button>
                         </div>
                     </form>
                 </dl>
@@ -149,10 +123,23 @@
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-
 <script src="/admin/lib/js/common.js"> </script>
-<script src="/admin/lib/js/admin/admin_view.js"></script>
 
+<script src="/admin/lib/js/food/food_view.js"></script>
+<script>
+    function openCheck(category){
+        const open = document.getElementById(category);
+        open.style.display="none";
+        open.nextSibling.nextSibling.style.display="block";
+    }
+
+
+    function closeCheck(category){
+        const close = document.getElementById(category);
+        close.style.display="none";
+        close.previousSibling.previousSibling.style.display="block";
+    }
+</script>
 </body>
 
 </html>

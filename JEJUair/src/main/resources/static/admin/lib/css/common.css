@@ -800,7 +800,10 @@ button, a, label, .containerbody .main .details tbody td {
 
 
 /* 기내식 정보/수정/작성 공통 */
-
+#fo_content{
+    padding: 20px;
+    margin-bottom: 50px !important;
+}
 
 .regForm .leg_list li .reg_content.multicheck{
     line-height: 0px;

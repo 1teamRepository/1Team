@@ -27,24 +27,6 @@ $(function(){
         }
 
 
-
-        /*
-                    {
-                        "transaction_time":"2022-07-12",
-                        "resultCode":"ok",
-                        "description":"ok",
-                        "data":{
-                            "userid":"ryu",
-                            "userpw":"1111",
-                            "name":"류"
-                        }
-                    }
-                    evtStartDate: document.getElementById("evtStartDate").val(),
-
-                     // evtStartDate: $('#evtStartDate').val().add("T00:00:00"),
-                // evtEndDate: $('#evtEndDate').val().add("T00:00:00"),
-         */
-
         let jsonData = {
             transaction_time: new Date(),
             resultCode:"ok",

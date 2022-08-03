@@ -23,7 +23,7 @@
 </style>
 
 <body>
-<div class="container">
+<div class="container" value="8-1">
     <div th:replace="/admin/fragment/menu :: menu"></div>
 
     <!-- main -->
@@ -42,6 +42,10 @@
                                 <li class="clear">
                                     <span class="tit_lbl">관리번호</span>
                                     <div class="reg_content"><input name="lostIdx" id="lostIdx" type="text" class="textBox" :value=`${view.lostIdx}` disabled style="color: #9b9a9a;"></div>
+                                </li>
+                                <li class="clear">
+                                    <span class="tit_lbl">유실물명</span>
+                                    <div class="reg_content"><input name="lostExplain" id="lostExplain" type="text" class="textBox" :value=`${view.lostExplain}` disabled></div>
                                 </li>
 
                                 <li class="clear">
@@ -71,10 +75,6 @@
                                 <li class="clear">
                                     <span class="tit_lbl">품목</span>
                                     <div class="reg_content"><input id="lostItem" name="lostItem" type="text" class="textBox" :value=`${view.lostItem}` disabled></div>
-                                </li>
-                                <li class="clear">
-                                    <span class="tit_lbl">상세 설명</span>
-                                    <div class="reg_content"><input name="lostExplain" id="lostExplain" type="text" class="textBox" :value=`${view.lostExplain}` disabled></div>
                                 </li>
                                 <li class="clear">
                                     <span class="tit_lbl">좌석번호</span>

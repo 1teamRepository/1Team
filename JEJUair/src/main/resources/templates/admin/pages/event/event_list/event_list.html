@@ -15,69 +15,69 @@
 </head>
 
 <body>
-    <div class="container" value="6-1">
-        <div th:replace="/admin/fragment/menu :: menu"></div>
+<div class="container" value="6-1">
+    <div th:replace="/admin/fragment/menu :: menu"></div>
 
-        <div class="containerbody">
-            <!-- main -->
-            <div id="category" value="event"></div>
-            <div class="main">
-                <div class="details">
-                    <!-- order details list -->
-                    <div class="recentOrders">
-                        <div class="calheader">
-                            <h2>이벤트 목록</h2>
-                        </div>
-                        <div class="scheduleSearch">
-                            <form action="#">
-                                <div class="wrapper">
-                                    <fieldset class="selectDiv">
-                                        <select id="menu-select">
-                                            <option value="event_ing">진행중인 이벤트</option>
-                                            <option value="event_end">종료된 이벤트</option>
-                                            <option value="event_winner">당첨자 발표</option>
-                                        </select>
-
-                                        <input type="text" class="searchBox" title="검색어를 입력하세요"
-                                            placeholder="검색어를 입력하세요">
-                                            <button type="submit" class="button search" value="검색">검색</button>
-                                    </fieldset>
-                                </div>
-                            </form>
-                        </div>
-                        <table>
-                            <thead>
-                                <tr class="topbanner">
-                                    <td class="event_idx">번호</td>
-                                    <td class="event_title">제목</td>
-                                    <td class="event_date">이벤트 기간</td>
-                                    <td class="event_regdate">등록일</td>
-                                </tr>
-                            </thead>
-
-                            <tbody id="itemList">
-                                <tr v-for="(dto, i) in itemList"
-                                    :key="i"
-                                    @onclick="location.href='/admin/event/view/${dto.evtIdx}'">
-                                    <td class="event_idx"><a :href=`/admin/event/view/${dto.evtIdx}`>{{dto.evtIdx}}</a></td>
-                                    <td class="event_title">{{dto.evtTitle}}</td>
-                                    <td class="event_date">{{dto.evtStartDate}} ~ {{dto.evtEndDate}}</td>
-                                    <td class="event_regdate">{{dto.evtRegDate}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="paging" id="pageNum"></div>
-                        </div>
+    <div class="containerbody">
+        <!-- main -->
+        <div id="category" value="event"></div>
+        <div class="main">
+            <div class="details">
+                <!-- order details list -->
+                <div class="recentOrders">
+                    <div class="calheader">
+                        <h2>이벤트 목록</h2>
                     </div>
+                    <div class="scheduleSearch">
+                        <form action="#">
+                            <div class="wrapper">
+                                <fieldset class="selectDiv">
+                                    <select id="menu-select">
+                                        <option value="event_ing">진행중인 이벤트</option>
+                                        <option value="event_end">종료된 이벤트</option>
+                                        <option value="event_winner">당첨자 발표</option>
+                                    </select>
+
+                                    <input type="text" class="searchBox" title="검색어를 입력하세요"
+                                           placeholder="검색어를 입력하세요">
+                                    <button type="submit" class="button search" value="검색">검색</button>
+                                </fieldset>
+                            </div>
+                        </form>
+                    </div>
+                    <table>
+                        <thead>
+                        <tr class="topbanner">
+                            <td class="event_idx">번호</td>
+                            <td class="event_title">제목</td>
+                            <td class="event_date">이벤트 기간</td>
+                            <td class="event_regdate">등록일</td>
+                        </tr>
+                        </thead>
+
+                        <tbody id="itemList">
+                        <tr v-for="(dto, i) in itemList"
+                            :key="i"
+                            @onclick="location.href='/admin/event/view/${dto.evtIdx}'">
+                            <td class="event_idx"><a :href=`/admin/event/view/${dto.evtIdx}`>{{dto.evtIdx}}</a></td>
+                            <td class="event_title">{{dto.evtTitle}}</td>
+                            <td class="event_date">{{dto.evtStartDate}} ~ {{dto.evtEndDate}}</td>
+                            <td class="event_regdate">{{dto.evtRegDate}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="paging" id="pageNum"></div>
                 </div>
             </div>
         </div>
     </div>
-    <!--아이콘 사용을 위한 설치 스크립트-->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="/admin/lib/js/common.js"> </script>
-    <script src="/admin/lib/js/pagination.js"></script>
+</div>
+</div>
+<!--아이콘 사용을 위한 설치 스크립트-->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="/admin/lib/js/common.js"> </script>
+<script src="/admin/lib/js/pagination.js"></script>
 </body>
 
 </html>

@@ -14,10 +14,10 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-</head>
 
-<script src="/admin/lib/images/ckeditor.js"></script>
-<script src="/admin/lib/images/translations/ko.js"></script>
+
+<script src="/admin/lib/js/ckeditor.js"></script>
+<script src="/admin/lib/js/translations/ko.js"></script>
 <style>
     .classic_title {
         position: relative;
@@ -36,7 +36,7 @@
     }
 </style>
 
-
+</head>
 <body>
 <div class="container" value="6-1">
     <div th:replace="/admin/fragment/menu :: menu"></div>
@@ -67,30 +67,31 @@
                                 <thead>
                                 <tr class="topbanner" style="color: var(--black2);">
                                     <td>
-                                        <input class="airplaneName" style="text-align: center; border: none" type="text" name="evtTitle" id="evtTitle" readonly :value=`${view.evtTitle}` disabled>
+                                        <input class="airplaneName" style="text-align:center; border: none; background-color: rgb(231, 231, 231); width: 100%" type="text" name="evtTitle" id="evtTitle" readonly :value=`${view.evtTitle}` disabled>
                                     </td>
                                 </tr>
                                 </thead>
 
                             </table>
+
                             <textarea name="evtContent" id="evtContent" readonly :value=`${view.evtContent}` disabled>
 
 
 
                             </textarea>
 
-<!--                            <div class="event_btn">-->
-                                <div class="buttonArea">
-                                    <button type="button" class="button list margin_bottom_20" value="목록"
-                                            onclick="location.href='/admin/event/list'">목록
-                                    </button>
-                                    <div class="button edit margin_bottom_20" value="수정"><a
-                                            :href=`/admin/event/edit/${view.evtIdx}`>수정</a></div>
-                                    <button type="button" id="delete" class="button delete margin_bottom_20" value="삭제"
-                                            onclick="delete_view()">삭제
-                                    </button>
-                                </div>
-<!--                            </div>-->
+                            <!--                            <div class="event_btn">-->
+                            <div class="buttonArea">
+                                <button type="button" class="button list margin_bottom_20" value="목록"
+                                        onclick="location.href='/admin/event/list'">목록
+                                </button>
+                                <div class="button edit margin_bottom_20" value="수정"><a
+                                        :href=`/admin/event/edit/${view.evtIdx}`>수정</a></div>
+                                <button type="button" id="delete" class="button delete margin_bottom_20" value="삭제"
+                                        onclick="delete_view()">삭제
+                                </button>
+                            </div>
+                            <!--                            </div>-->
                         </form>
                     </div>
                 </div>
@@ -104,5 +105,11 @@
 <script src="/admin/lib/js/common.js"></script>
 <script src="/admin/lib/js/event/event.view.js"></script>
 
+<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
+<script>
+    ClassicEditor.create( document.querySelector( '.editor' ), {
+        language: "ko"
+    } );
 </body>
 </html>

@@ -1,7 +1,7 @@
 $(function(){
     $(document).on('click', '#regist', function(){
         if(!$('#foodKrwPrice').val()){
-            alert("가격(KOR)을 입력하세요");
+            alert("가격(KRW)을 입력하세요");
             $('#foodKrwPrice').focus();
             return false;
         }
@@ -23,34 +23,25 @@ $(function(){
             $('#foodEngName').focus();
             return false;
         }
+
         if(!$('#foodJpyPrice').val()){
             alert("가격(JPY) 입력하세요");
             $('#foodJpyPrice').focus();
             return false;
         }
+
         if(!$('#foodDiscount').val()){
             alert("할인율을 입력하세요");
             $('#foodDiscount').focus();
             return false;
         }
+
         if(!$('#foodPicture').val()){
             alert("사진을 등록하세요");
             $('#foodPicture').focus();
             return false;
         }
-        /*
-                    {
-                        "transaction_time":"2022-07-12",
-                        "resultCode":"ok",
-                        "description":"ok",
-                        "data":{
-                            "userid":"ryu",
-                            "userpw":"1111",
-                            "email":"ryu@naver.com",
-                            "hp":"010-1111-1111"
-                        }
-                    }
-         */
+
         let foodStartingPoints = document.getElementsByName("foodStartingPoint");
         let foodStartingPointList = "";
         for (let i=0; i<foodStartingPoints.length; i++){
@@ -62,6 +53,7 @@ $(function(){
                 }
             }
         }
+
 
         let foodSpecifics = document.getElementsByName("foodSpecific");
         let foodSpecificList = "";
@@ -75,12 +67,20 @@ $(function(){
             }
         }
 
+        if(foodSpecificList = ""){
+            alert("특이사항을 선택하세요");
+            $('#specific_open').focus();
+            return false;
+        }
+
+
         //    javascript 객체로 json 형태를 만든거. json 자체는 아님
         let jsonData = {
             transaction_time: new Date(),
             resultCode:"ok",
             description:"ok",
             data:{
+                foodIdx: $('#fo_idx').val(),
                 foodKrwPrice: $('#foodKrwPrice').val(),
                 foodKorName:$('#foodKorName').val(),
                 foodUsdPrice:$('#foodUsdPrice').val(),
