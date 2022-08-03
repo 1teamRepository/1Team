@@ -1,6 +1,21 @@
 
 $(function(){
+    aircraftNameList();
     DepartureDestinationList();
+
+    function aircraftNameList(){
+        $.get("/api/aircraft", function (response){
+            response.data.map(function(val, index){
+                let name = val['acftAircraftName'];
+                let aircraftName = $('#acftAircraftName');
+
+                let option = document.createElement('option');
+                option.innerText = name;
+                option.value = name;
+                aircraftName.append(option);
+            });
+        });
+    };
 
     function DepartureDestinationList(){
         $.get("/api/destination", function (response){
@@ -24,20 +39,5 @@ $(function(){
         });
     }
 
-    aircraftNameList();
-
-    function aircraftNameList(){
-        $.get("/api/aircraft", function (response){
-            response.data.map(function(val, index){
-                let name = val['acftAircraftName'];
-                let aircraftName = $('#acftAircraftName');
-
-                let option = document.createElement('option');
-                option.innerText = name;
-                option.value = name;
-                aircraftName.append(option);
-            });
-        });
-    };
 
 });

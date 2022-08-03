@@ -85,6 +85,8 @@ public class TbFlightScheduleApiLogicService extends BaseService<TbFlightSchedul
                     newTbFlightSchedule.setSchArrivalDate(tbFlightScheduleRequest.getSchArrivalDate());
                     newTbFlightSchedule.setSchDepartureTime(tbFlightScheduleRequest.getSchDepartureTime());
                     newTbFlightSchedule.setSchArrivalTime(tbFlightScheduleRequest.getSchArrivalTime());
+                    newTbFlightSchedule.setSchFlyPrice(tbFlightScheduleRequest.getSchFlyPrice());
+                    newTbFlightSchedule.setSchFlyDiscount(tbFlightScheduleRequest.getSchFlyDiscount());
                     newTbFlightSchedule.setSchBizLitePrice(tbFlightScheduleRequest.getSchBizLitePrice());
                     newTbFlightSchedule.setSchBizLiteDiscount(tbFlightScheduleRequest.getSchBizLiteDiscount());
                     newTbFlightSchedule.setSchFood(tbFlightScheduleRequest.getSchFood());
