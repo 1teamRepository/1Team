@@ -17,7 +17,7 @@
 
 
 <body>
-<div class="container" value="4-1">
+<div class="container" value="4">
   <div th:replace="/admin/fragment/menu :: menu"></div>
 
   <!-- main -->
@@ -50,7 +50,7 @@
                 <li class="clear">
                   <span class="tit_lbl">사용금액(P)</span>
                   <div class="reg_content">
-                    <input type="text" class="textBox" vname="pntAmount"  id="pntAmount" readonly :value=`${view.pntAmount}`
+                    <input type="text" class="textBox" name="pntAmount"  id="pntAmount" readonly :value=`${view.pntAmount}`
                            disabled>
                   </div>
                 </li>

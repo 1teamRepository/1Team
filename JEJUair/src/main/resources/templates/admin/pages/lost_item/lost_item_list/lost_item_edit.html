@@ -15,7 +15,7 @@
 
 </head>
 <body>
-    <div class="container">
+    <div class="container" value="8-1">
         <div th:replace="/admin/fragment/menu :: menu"></div>
 
         <!-- main -->
@@ -37,6 +37,11 @@
                                     </li>
 
                                     <li class="clear">
+                                        <span class="tit_lbl">유실물명</span>
+                                        <div class="reg_content"><input name="lostExplain" id="lostExplain" type="text" class="textBox" :value=`${view.lostExplain}` ></div>
+                                    </li>
+
+                                    <li class="clear">
                                         <span class="tit_lbl">습득편명</span>
                                         <div class="reg_content"><input name="lostAcqAirName" id="lostAcqAirName" type="text" class="textBox" :value=`${view.lostAcqAirName}` ></div>
                                     </li>
@@ -49,8 +54,7 @@
 
                                     <li class="clear">
                                         <span class="tit_lbl">보관 장소</span>
-                                        <select id="lostStoragePlace" name="lostStoragePlace" class="textBox selectBox">
-                                            <option value="선택">선택</option>
+                                        <select id="lostStoragePlace" name="lostStoragePlace" class="textBox selectBox" :value=`${view.lostStoragePlace}`>
                                             <option value="인천">서울(인천) ICN</option>
                                             <option value="김포">서울(김포) GMP</option>
                                             <option value="부산">부산 PUS</option>
@@ -71,8 +75,7 @@
 
                                     <li class="clear">
                                         <span class="tit_lbl">색상</span>
-                                        <select id="lostColor" name="lostColor" class="textBox selectBox">
-                                            <option value="선택">선택</option>
+                                        <select id="lostColor" name="를" class="textBox selectBox" :value=`${view.lostColor}`>
                                             <option value="화이트">흰색(화이트)</option>
                                             <option value="블랙">검정색(블랙)</option>
                                             <option value="레드">빨간색(레드)</option>
@@ -89,8 +92,7 @@
                                     <li class="clear">
                                         <span class="tit_lbl">품목</span>
                                         <div class="reg_content">
-                                            <select id="lostItem" name="lostItem" class="textBox selectBox">
-                                                <option value="선택">선택</option>
+                                            <select id="lostItem" name="lostItem" class="textBox selectBox" :value=`${view.lostItem}`>
                                                 <option value="핸드폰">핸드폰</option>
                                                 <option value="책">책</option>
                                                 <option value="안경">안경</option>
@@ -107,18 +109,13 @@
                                         </div>
                                     </li>
                                     <li class="clear">
-                                        <span class="tit_lbl">상세 설명</span>
-                                        <div class="reg_content"><input name="lostExplain" id="lostExplain" type="text" class="textBox" :value=`${view.lostExplain}` ></div>
-                                    </li>
-                                    <li class="clear">
                                         <span class="tit_lbl">좌석번호</span>
                                         <div class="reg_content"><input name="lostSeatNum" id="lostSeatNum" type="text" class="textBox" :value=`${view.lostSeatNum}` ></div>
                                     </li>
                                     <li class="clear">
                                         <span class="tit_lbl">상태</span>
                                         <div class="reg_content">
-                                            <select name="lostStatus" class="textBox selectBox" id="lostStatus">
-                                                <option value="상태">상태</option>
+                                            <select name="를" class="textBox selectBox" id="lostStatus" :value=`${view.lostStatus}`>
                                                 <option value="STORAGE">보관중</option>
                                                 <option value="FIND">수령완료</option>
                                                 <option value="DISUSE">폐기</option>
