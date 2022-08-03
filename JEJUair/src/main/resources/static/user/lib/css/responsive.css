@@ -272,7 +272,7 @@
   /* **********************
   responsive etc
   ********************** */
-  .pc-small .content { width: 360px; } 
+  .pc-small .content { width: 360px; }
   .pc-small .button--primary { width: 100%; } 
   .pc-small [data-element="bottomContent"] { padding: 0; } 
   .pc-small .finish-item-wrap { height: auto; margin-top: 0; padding-top:40px; } 
