@@ -98,6 +98,21 @@ public class UserController {
         return new ModelAndView("/user/pages/mypage/info_edit/info_edit");
     }
 
+    @RequestMapping("/info_edit_password")
+    public ModelAndView info_edit_password() {
+        return new ModelAndView("/user/pages/mypage/info_edit/info_edit_password");
+    }
+
+    @RequestMapping("/info_edit_mypage")
+    public ModelAndView info_edit_mypage() {
+        return new ModelAndView("/user/pages/mypage/info_edit/info_edit_mypage");
+    }
+
+    @RequestMapping("/password_edit")
+    public ModelAndView password_edit() {
+        return new ModelAndView("/user/pages/mypage/info_edit/password_edit");
+    }
+
     @RequestMapping("/my_history")
     public ModelAndView my_history() {
         return new ModelAndView("/user/pages/mypage/my_history/my_history");
