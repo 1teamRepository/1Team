@@ -39,7 +39,7 @@
                 <!--//20210519 title영역 수정-->
                 <input type="hidden" id="bookType" value="">
                 <div class="login">
-                    <form id="frm" action="/user/loginOk" method="post">
+                    <form id="frm" action="/user/loginOk" method="POST">
                         <input type="hidden" name="apiRequestType" id="apiRequestType">
                         <input type="hidden" name="targetUrl" id="targetUrl" value="">
                         <input type="hidden" name="nonTargetUrl" id="nonTargetUrl" value="">
@@ -213,6 +213,7 @@
 -->
 
 <script>
+    console.log("들어옴")
     $(function () {
         $('.button').on('click', function(){
             isLogin();
@@ -225,6 +226,11 @@
             }
         }
     });
+</script>
+
+<script>
+
+
 </script>
 <!-- 공통 스크립트 선언 -->
 

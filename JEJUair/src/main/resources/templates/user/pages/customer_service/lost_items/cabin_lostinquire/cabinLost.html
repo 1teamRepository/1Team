@@ -236,9 +236,32 @@
                             <p class="search-result__header-title">조회 결과</p>
                             <span class="search-result__total">총 <strong class="totalCnt"> 0</strong>개</span>
                         </div>
-                        <div class="search-result__contents list-card-st">
+                        <div class="search-result__contents list-card-st" id="itemList">
                             <div class="list-card list-card--lost" id="resultsList">
+                                <!--데이터-->
+                                <div class="list-card__item"
+                                     v-for="(dto,i) in itemList"
+                                     :key="i">          <!--vue로 반복문 돌리기-->
+                                    <div class="list-card__image">
+                                        <!--                                        <img src="/ko/customerService/cabinLost/getAttachThumFileSrcOne.json?attachfileNo=20220804000000077873" alt="분실품">-->
+                                        {{dto.lostImg}}
+                                        <div class="label-wrap label-wrap--lost">
+                                            <span class="label-wrap__item label-wrap__item--type3">보관</span>
+                                            <input type="hidden" id="lostpropId" value="CAB0003822">
+                                        </div>
+                                    </div>
+                                    <div class="list-card__info">
+                                        <div class="list-card--lost__info-date">{{dto.lostRegDate}}</div>
+                                        <strong class="list-card__title">{{dto.lostItem}}</strong>
+                                        <div class="list-card--lost__info-list">
+                                            <span class="flight">{{dto.lostSeatNum}}/</span>
+                                            <span class="location">{{dto.lostAcqAirName}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--데이터끝-->
                             </div>
+
                             <!-- 데이터 없을때 -->
                             <div class="finish-item-wrap">
                                 <div class="finish-item">
@@ -508,176 +531,180 @@
 <!-- 공통 스크립트 선언 -->
 
 <!--<div th:replace="/user/fragment/js :: js"></div>-->
-<script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<script type="text/javascript" src="/user/lib/js/userJs/lostItem/lostList.js"></script>
+<!--<script type="text/javascript" src="/user/lib/js/lib.min.js"></script>-->
 <script type="text/javascript" src="/user/lib/js/common.js"></script>
 <script type="text/javascript" src="/user/lib/js/plugin.js"></script>
+
 
 <!-- 공통 스크립트 선언 끝 -->
 
 
-<script type="text/javascript"
-        src="/user/lib/js/cabinLost.js"></script>
+<!--<script type="text/javascript"-->
+<!--        src="/user/lib/js/cabinLost.js"></script>-->
 
 
-<script id="listTemplate" type="text/x-handlebars-template">
-    {{#each datas}}
-    <div class="list-card__item" data-element="modal_anchor" data-target="#modalLayer02" data-modal-type="full"
-         id="modalPop">
-        <div class="list-card__image">
-            <img src="/ko/customerService/cabinLost/getAttachThumFileSrcOne.json?attachfileNo={{imageAttachFileNo}}"
-                 alt="분실품">
-            <div class="label-wrap label-wrap--lost">
-                {{#compare keepingStatCd '==' "01"}}
-                <span class="label-wrap__item label-wrap__item--type3">{{keepingStatCdNm}}</span>
-                {{/compare}}
-                {{#compare keepingStatCd '==' "02"}}
-                <span class="label-wrap__item label-wrap__item--type2">{{keepingStatCdNm}}</span>
-                {{/compare}}
-                <input type="hidden" id="lostpropId" value={{lostpropId}}>
-            </div>
-        </div>
-        <div class="list-card__info">
-            <div class="list-card--lost__info-date">{{pickupDt}}</div>
-            <strong class="list-card__title">{{itemCd}}</strong>
-            <div class="list-card--lost__info-list">
-                <span class="flight">{{pickupSpotCont}}</span>
-                <span class="location">{{regBranchId}}</span>
-            </div>
-        </div>
-    </div><!--//list-card__item-->
-    {{/each}}
-</script>
+<!--<script id="listTemplate" type="text/x-handlebars-template">-->
+<!--    {{#each datas}}-->
+<!--    <div class="list-card__item" data-element="modal_anchor" data-target="#modalLayer02" data-modal-type="full"-->
+<!--         id="modalPop">-->
+<!--        <div class="list-card__image">-->
+<!--            <img src="/ko/customerService/cabinLost/getAttachThumFileSrcOne.json?attachfileNo={{imageAttachFileNo}}"-->
+<!--                 alt="분실품">-->
+<!--            <div class="label-wrap label-wrap&#45;&#45;lost">-->
+<!--                {{#compare keepingStatCd '==' "01"}}-->
+<!--                <span class="label-wrap__item label-wrap__item&#45;&#45;type3">{{keepingStatCdNm}}</span>-->
+<!--                {{/compare}}-->
+<!--                {{#compare keepingStatCd '==' "02"}}-->
+<!--                <span class="label-wrap__item label-wrap__item&#45;&#45;type2">{{keepingStatCdNm}}</span>-->
+<!--                {{/compare}}-->
+<!--                <input type="hidden" id="lostpropId" value={{lostpropId}}>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="list-card__info">-->
+<!--            <div class="list-card&#45;&#45;lost__info-date">{{pickupDt}}</div>-->
+<!--            <strong class="list-card__title">{{itemCd}}</strong>-->
+<!--            <div class="list-card&#45;&#45;lost__info-list">-->
+<!--                <span class="flight">{{pickupSpotCont}}</span>-->
+<!--                <span class="location">{{regBranchId}}</span>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>&lt;!&ndash;//list-card__item&ndash;&gt;-->
+<!--    {{/each}}-->
+<!--</script>-->
 
-<script id="answerTemplate" type="text/x-handlebars-template">
-    {{#each datas}}
-    {{#compare inquiryAnswerSeno '===' 1}}
-    <div class="accordion__item" data-element="accordion__item" id="accordion_{{inquiryId}}">
-        <a href="#" class="accordion__anchor" data-element="accordion__anchor" data-id="{{inquiryId}}"
-           data-seno="{{inquiryAnswerSeno}}"
-           onclick="CUSTOMERSERVICE_CABINLOST_SCRIPT.expended('{{inquiryId}}','{{inquiryAnswerSeno}}');">
-            <div class="accordion__item-header">
-                {{#compare inquiryStatCd '==' "1"}}
-                <span class="label01">미답변</span>
-                {{/compare}}
-                {{#compare inquiryStatCd '==' "2"}}
-                <span class="label02">답변완료</span>
-                {{/compare}}
-            </div>
-            <strong class="accordion__title">유실물</strong>
-            <div class="accordion__text no-line-clamp">{{inquiryAnswerCont}}</div>
-        </a>
-        <div class="accordion__item-sub-info">
-            <div class="date">{{inquiryRegDt}}</div>
-            {{#compare inquiryStatCd '==' "1"}}
-            <div class="btn-wrap">
-                <button type="button" class="btn-wrap__button btn-wrap__button--revise" data-element="modal_anchor"
-                        data-target="#modalLayer07" data-modal-type="full"
-                        onclick="CUSTOMERSERVICE_CABINLOST_SCRIPT.modify('{{inquiryId}}');"><span>수정</span></button>
-                <button type="button" class="btn-wrap__button btn-wrap__button--delete"
-                        onclick="CUSTOMERSERVICE_CABINLOST_SCRIPT.del('{{inquiryId}}');"><span>삭제</span></button>
-            </div>
-            {{/compare}}
-        </div>
+<!--<script id="answerTemplate" type="text/x-handlebars-template">-->
+<!--    {{#each datas}}-->
+<!--    {{#compare inquiryAnswerSeno '===' 1}}-->
+<!--    <div class="accordion__item" data-element="accordion__item" id="accordion_{{inquiryId}}">-->
+<!--        <a href="#" class="accordion__anchor" data-element="accordion__anchor" data-id="{{inquiryId}}"-->
+<!--           data-seno="{{inquiryAnswerSeno}}"-->
+<!--           onclick="CUSTOMERSERVICE_CABINLOST_SCRIPT.expended('{{inquiryId}}','{{inquiryAnswerSeno}}');">-->
+<!--            <div class="accordion__item-header">-->
+<!--                {{#compare inquiryStatCd '==' "1"}}-->
+<!--                <span class="label01">미답변</span>-->
+<!--                {{/compare}}-->
+<!--                {{#compare inquiryStatCd '==' "2"}}-->
+<!--                <span class="label02">답변완료</span>-->
+<!--                {{/compare}}-->
+<!--            </div>-->
+<!--            <strong class="accordion__title">유실물</strong>-->
+<!--            <div class="accordion__text no-line-clamp">{{inquiryAnswerCont}}</div>-->
+<!--        </a>-->
+<!--        <div class="accordion__item-sub-info">-->
+<!--            <div class="date">{{inquiryRegDt}}</div>-->
+<!--            {{#compare inquiryStatCd '==' "1"}}-->
+<!--            <div class="btn-wrap">-->
+<!--                <button type="button" class="btn-wrap__button btn-wrap__button&#45;&#45;revise" data-element="modal_anchor"-->
+<!--                        data-target="#modalLayer07" data-modal-type="full"-->
+<!--                        onclick="CUSTOMERSERVICE_CABINLOST_SCRIPT.modify('{{inquiryId}}');"><span>수정</span></button>-->
+<!--                <button type="button" class="btn-wrap__button btn-wrap__button&#45;&#45;delete"-->
+<!--                        onclick="CUSTOMERSERVICE_CABINLOST_SCRIPT.del('{{inquiryId}}');"><span>삭제</span></button>-->
+<!--            </div>-->
+<!--            {{/compare}}-->
+<!--        </div>-->
 
-    </div>
-    {{/compare}}
-    {{/each}}
-</script>
+<!--    </div>-->
+<!--    {{/compare}}-->
+<!--    {{/each}}-->
+<!--</script>-->
 
-<script id="subAnswerTemplate" type="text/x-handlebars-template">
-    {{#each datas}}
-    <div class="accordion__text">
-        <p class="text">{{inquiryAnswerCont}}</p>
-        {{#if isFlag}}
-        <div class="link-wrap link-wrap link-wrap--left">
-            <a href="javascript:;" class="link-wrap__underline openModalLayer07" data-element="modal_anchor"
-               data-target="#modalLayer07" data-modal-type="full" data-id="{{inquiryId}}"><span>추가 문의</span></a>
-        </div>
-        {{/if}}
-        <p class="date">{{inquiryRegDt}}</p>
-    </div>
-    {{/each}}
-</script>
-</body>
+<!--<script id="subAnswerTemplate" type="text/x-handlebars-template">-->
+<!--    {{#each datas}}-->
+<!--    <div class="accordion__text">-->
+<!--        <p class="text">{{inquiryAnswerCont}}</p>-->
+<!--        {{#if isFlag}}-->
+<!--        <div class="link-wrap link-wrap link-wrap&#45;&#45;left">-->
+<!--            <a href="javascript:;" class="link-wrap__underline openModalLayer07" data-element="modal_anchor"-->
+<!--               data-target="#modalLayer07" data-modal-type="full" data-id="{{inquiryId}}"><span>추가 문의</span></a>-->
+<!--        </div>-->
+<!--        {{/if}}-->
+<!--        <p class="date">{{inquiryRegDt}}</p>-->
+<!--    </div>-->
+<!--    {{/each}}-->
+<!--</script>-->
+<!--</body>-->
 
-</html>
+<!--</html>-->
 
-<script id="listTemplate" type="text/x-handlebars-template">
-    {{#each datas}}
-    <div class="list-card__item" data-element="modal_anchor" data-target="#modalLayer02" data-modal-type="full"
-         id="modalPop">
-        <div class="list-card__image">
-            <img src="/ko/customerService/cabinLost/getAttachThumFileSrcOne.json?attachfileNo={{imageAttachFileNo}}"
-                 alt="분실품">
-            <div class="label-wrap label-wrap--lost">
-                {{#compare keepingStatCd '==' "01"}}
-                <span class="label-wrap__item label-wrap__item--type3">{{keepingStatCdNm}}</span>
-                {{/compare}}
-                {{#compare keepingStatCd '==' "02"}}
-                <span class="label-wrap__item label-wrap__item--type2">{{keepingStatCdNm}}</span>
-                {{/compare}}
-                <input type="hidden" id="lostpropId" value={{lostpropId}}>
-            </div>
-        </div>
-        <div class="list-card__info">
-            <div class="list-card--lost__info-date">{{pickupDt}}</div>
-            <strong class="list-card__title">{{itemCd}}</strong>
-            <div class="list-card--lost__info-list">
-                <span class="flight">{{pickupSpotCont}}</span>
-                <span class="location">{{regBranchId}}</span>
-            </div>
-        </div>
-    </div><!--//list-card__item-->
-    {{/each}}
-</script>
+<!--<script id="listTemplate" type="text/x-handlebars-template">-->
+<!--    {{#each datas}}-->
+<!--    <div class="list-card__item" data-element="modal_anchor" data-target="#modalLayer02" data-modal-type="full"-->
+<!--         id="modalPop">-->
+<!--        <div class="list-card__image">-->
+<!--            <img src="/ko/customerService/cabinLost/getAttachThumFileSrcOne.json?attachfileNo={{imageAttachFileNo}}"-->
+<!--                 alt="분실품">-->
+<!--            <div class="label-wrap label-wrap&#45;&#45;lost">-->
+<!--                {{#compare keepingStatCd '==' "01"}}-->
+<!--                <span class="label-wrap__item label-wrap__item&#45;&#45;type3">{{keepingStatCdNm}}</span>-->
+<!--                {{/compare}}-->
+<!--                {{#compare keepingStatCd '==' "02"}}-->
+<!--                <span class="label-wrap__item label-wrap__item&#45;&#45;type2">{{keepingStatCdNm}}</span>-->
+<!--                {{/compare}}-->
+<!--                <input type="hidden" id="lostpropId" value={{lostpropId}}>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="list-card__info">-->
+<!--            <div class="list-card&#45;&#45;lost__info-date">{{pickupDt}}</div>-->
+<!--            <strong class="list-card__title">{{itemCd}}</strong>-->
+<!--            <div class="list-card&#45;&#45;lost__info-list">-->
+<!--                <span class="flight">{{pickupSpotCont}}</span>-->
+<!--                <span class="location">{{regBranchId}}</span>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>&lt;!&ndash;//list-card__item&ndash;&gt;-->
+<!--    {{/each}}-->
+<!--</script>-->
 
-<script id="answerTemplate" type="text/x-handlebars-template">
-    {{#each datas}}
-    {{#compare inquiryAnswerSeno '===' 1}}
-    <div class="accordion__item" data-element="accordion__item" id="accordion_{{inquiryId}}">
-        <a href="#" class="accordion__anchor" data-element="accordion__anchor" data-id="{{inquiryId}}"
-           data-seno="{{inquiryAnswerSeno}}"
-           onclick="CUSTOMERSERVICE_CABINLOST_SCRIPT.expended('{{inquiryId}}','{{inquiryAnswerSeno}}');">
-            <div class="accordion__item-header">
-                {{#compare inquiryStatCd '==' "1"}}
-                <span class="label01">미답변</span>
-                {{/compare}}
-                {{#compare inquiryStatCd '==' "2"}}
-                <span class="label02">답변완료</span>
-                {{/compare}}
-            </div>
-            <strong class="accordion__title">유실물</strong>
-            <div class="accordion__text no-line-clamp">{{inquiryAnswerCont}}</div>
-        </a>
-        <div class="accordion__item-sub-info">
-            <div class="date">{{inquiryRegDt}}</div>
-            {{#compare inquiryStatCd '==' "1"}}
-            <div class="btn-wrap">
-                <button type="button" class="btn-wrap__button btn-wrap__button--revise" data-element="modal_anchor"
-                        data-target="#modalLayer07" data-modal-type="full"
-                        onclick="CUSTOMERSERVICE_CABINLOST_SCRIPT.modify('{{inquiryId}}');"><span>수정</span></button>
-                <button type="button" class="btn-wrap__button btn-wrap__button--delete"
-                        onclick="CUSTOMERSERVICE_CABINLOST_SCRIPT.del('{{inquiryId}}');"><span>삭제</span></button>
-            </div>
-            {{/compare}}
-        </div>
+<!--<script id="answerTemplate" type="text/x-handlebars-template">-->
+<!--    {{#each datas}}-->
+<!--    {{#compare inquiryAnswerSeno '===' 1}}-->
+<!--    <div class="accordion__item" data-element="accordion__item" id="accordion_{{inquiryId}}">-->
+<!--        <a href="#" class="accordion__anchor" data-element="accordion__anchor" data-id="{{inquiryId}}"-->
+<!--           data-seno="{{inquiryAnswerSeno}}"-->
+<!--           onclick="CUSTOMERSERVICE_CABINLOST_SCRIPT.expended('{{inquiryId}}','{{inquiryAnswerSeno}}');">-->
+<!--            <div class="accordion__item-header">-->
+<!--                {{#compare inquiryStatCd '==' "1"}}-->
+<!--                <span class="label01">미답변</span>-->
+<!--                {{/compare}}-->
+<!--                {{#compare inquiryStatCd '==' "2"}}-->
+<!--                <span class="label02">답변완료</span>-->
+<!--                {{/compare}}-->
+<!--            </div>-->
+<!--            <strong class="accordion__title">유실물</strong>-->
+<!--            <div class="accordion__text no-line-clamp">{{inquiryAnswerCont}}</div>-->
+<!--        </a>-->
+<!--        <div class="accordion__item-sub-info">-->
+<!--            <div class="date">{{inquiryRegDt}}</div>-->
+<!--            {{#compare inquiryStatCd '==' "1"}}-->
+<!--            <div class="btn-wrap">-->
+<!--                <button type="button" class="btn-wrap__button btn-wrap__button&#45;&#45;revise" data-element="modal_anchor"-->
+<!--                        data-target="#modalLayer07" data-modal-type="full"-->
+<!--                        onclick="CUSTOMERSERVICE_CABINLOST_SCRIPT.modify('{{inquiryId}}');"><span>수정</span></button>-->
+<!--                <button type="button" class="btn-wrap__button btn-wrap__button&#45;&#45;delete"-->
+<!--                        onclick="CUSTOMERSERVICE_CABINLOST_SCRIPT.del('{{inquiryId}}');"><span>삭제</span></button>-->
+<!--            </div>-->
+<!--            {{/compare}}-->
+<!--        </div>-->
 
-    </div>
-    {{/compare}}
-    {{/each}}
-</script>
+<!--    </div>-->
+<!--    {{/compare}}-->
+<!--    {{/each}}-->
+<!--</script>-->
 
-<script id="subAnswerTemplate" type="text/x-handlebars-template">
-    {{#each datas}}
-    <div class="accordion__text">
-        <p class="text">{{inquiryAnswerCont}}</p>
-        {{#if isFlag}}
-        <div class="link-wrap link-wrap link-wrap--left">
-            <a href="javascript:;" class="link-wrap__underline openModalLayer07" data-element="modal_anchor"
-               data-target="#modalLayer07" data-modal-type="full" data-id="{{inquiryId}}"><span>추가 문의</span></a>
-        </div>
-        {{/if}}
-        <p class="date">{{inquiryRegDt}}</p>
-    </div>
-    {{/each}}
-</script>
+<!--<script id="subAnswerTemplate" type="text/x-handlebars-template">-->
+<!--    {{#each datas}}-->
+<!--    <div class="accordion__text">-->
+<!--        <p class="text">{{inquiryAnswerCont}}</p>-->
+<!--        {{#if isFlag}}-->
+<!--        <div class="link-wrap link-wrap link-wrap&#45;&#45;left">-->
+<!--            <a href="javascript:;" class="link-wrap__underline openModalLayer07" data-element="modal_anchor"-->
+<!--               data-target="#modalLayer07" data-modal-type="full" data-id="{{inquiryId}}"><span>추가 문의</span></a>-->
+<!--        </div>-->
+<!--        {{/if}}-->
+<!--        <p class="date">{{inquiryRegDt}}</p>-->
+<!--    </div>-->
+<!--    {{/each}}-->
+<!--</script>-->

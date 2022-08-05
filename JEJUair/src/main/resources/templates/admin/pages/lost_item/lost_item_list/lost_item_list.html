@@ -18,85 +18,85 @@
 
 
 <body>
-    <div class="container" value="8-1">
-        <div th:replace="/admin/fragment/menu :: menu"></div>
+<div class="container" value="8-1">
+    <div th:replace="/admin/fragment/menu :: menu"></div>
 
-        <div class="containerbody">
-            <!-- main -->
-            <div id="category" value="lost_item"></div>
-            <div class="main">
-                <div class="details">
-                    <!-- order details list -->
-                    <div class="recentOrders">
-                        <div class="calheader">
-                            <h2>유실물 목록</h2>
-                        </div>
-                        <div class="scheduleSearch">
-                            <form action="#">
-                                <div class="wrapper">
-                                    <fieldset class="selectDiv">
-                                        <select name="menu" id="menu-select">
-                                            <option value="전체">전체</option>
-                                            <option value="핸드폰">핸드폰</option>
-                                            <option value="책">책</option>
-                                            <option value="안경">안경</option>
-                                            <option value="베게">베게</option>
-                                            <option value="의류">의류</option>
-                                            <option value="전자제품">전자제품</option>
-                                            <option value="지갑">지갑</option>
-                                            <option value="서류">서류</option>
-                                            <option value="악세서리">악세서리</option>
-                                            <option value="가방류">가방류</option>
+    <div class="containerbody">
+        <!-- main -->
+        <div id="category" value="lost_item"></div>
+        <div class="main">
+            <div class="details">
+                <!-- order details list -->
+                <div class="recentOrders">
+                    <div class="calheader">
+                        <h2>유실물 목록</h2>
+                    </div>
+                    <div class="scheduleSearch">
+                        <form action="#">
+                            <div class="wrapper">
+                                <fieldset class="selectDiv">
+                                    <select name="menu" id="menu-select">
+                                        <option value="전체">전체</option>
+                                        <option value="핸드폰">핸드폰</option>
+                                        <option value="책">책</option>
+                                        <option value="안경">안경</option>
+                                        <option value="베게">베게</option>
+                                        <option value="의류">의류</option>
+                                        <option value="전자제품">전자제품</option>
+                                        <option value="지갑">지갑</option>
+                                        <option value="서류">서류</option>
+                                        <option value="악세서리">악세서리</option>
+                                        <option value="가방류">가방류</option>
 
-                                        </select>
-                                        <input type="text" class="searchBox" title="검색어를 입력하세요"
-                                            placeholder="검색어를 입력하세요">
-                                            <button type="submit" class="button search" value="검색">검색</button>
-                                    </fieldset>
-                                </div>
-                            </form>
-                        </div>
-                        <table>
-                            <thead>
-                                <tr class="topbanner">
-                                    <td class="index">NO</td>
-                                    <td class="title">유실물명</td>
-                                    <td class="category">품목</td>
-                                    <td class="color">색상</td>
-                                    <td class="getWhere">습득편명</td>
-                                    <td class="seatNum">좌석번호</td>
-                                    <td class="regDate">등록일</td>
-                                </tr>
-                            </thead>
+                                    </select>
+                                    <input type="text" class="searchBox" title="검색어를 입력하세요"
+                                           placeholder="검색어를 입력하세요">
+                                    <button type="submit" class="button search" value="검색">검색</button>
+                                </fieldset>
+                            </div>
+                        </form>
+                    </div>
+                    <table>
+                        <thead>
+                        <tr class="topbanner">
+                            <td class="index">NO</td>
+                            <td class="title">유실물명</td>
+                            <td class="category">품목</td>
+                            <td class="color">색상</td>
+                            <td class="getWhere">습득편명</td>
+                            <td class="seatNum">좌석번호</td>
+                            <td class="regDate">등록일</td>
+                        </tr>
+                        </thead>
 
-                            <tbody id="itemList">
-                            <tr v-for="(dto,i) in itemList"
-                                :key="i"
-                                @click="location.href=`/admin/lost_item/view/${dto.lostIdx}`">
-                                    <td class="lost_idx"><a :href=`/admin/lost_item/view/${dto.lostIdx}`>{{dto.lostIdx}}</a></td>
-                                    <td class="lost_explain">{{dto.lostExplain}}</a></td>
-                                    <td class="lost_item">{{dto.lostItem}}</a></td>
-                                    <td class="lost_color">{{dto.lostColor}}</a></td>
-                                    <td class="lost_acq_air_name">{{dto.lostAcqAirName}}</a></td>
-                                    <td class="lost_seatNum">{{dto.lostSeatNum}}</a></td>
-                                    <td class="lost_regDate">{{dto.lostRegDate}}</a></td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <tbody id="itemList">
+                        <tr v-for="(dto,i) in itemList"
+                            :key="i"
+                            @click="location.href=`/admin/lost_item/view/${dto.lostIdx}`">
+                            <td class="lost_idx"><a :href=`/admin/lost_item/view/${dto.lostIdx}`>{{dto.lostIdx}}</a></td>
+                            <td class="lost_explain"><a :href=`/admin/lost_item/view/${dto.lostIdx}`>{{dto.lostExplain}}</a></td>
+                            <td class="lost_item"><a :href=`/admin/lost_item/view/${dto.lostIdx}`>{{dto.lostItem}}</a></td>
+                            <td class="lost_color"><a :href=`/admin/lost_item/view/${dto.lostIdx}`>{{dto.lostColor}}</a></td>
+                            <td class="lost_acq_air_name"><a :href=`/admin/lost_item/view/${dto.lostIdx}`>{{dto.lostAcqAirName}}</a></td>
+                            <td class="lost_seatNum"><a :href=`/admin/lost_item/view/${dto.lostIdx}`>{{dto.lostSeatNum}}</a></td>
+                            <td class="lost_regDate"><a :href=`/admin/lost_item/view/${dto.lostIdx}`>{{dto.lostRegDate}}</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
 
-                        <div class="paging" id="pageNum">
-                        </div>
+                    <div class="paging" id="pageNum">
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!--아이콘 사용을 위한 설치 스크립트-->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</div>
+<!--아이콘 사용을 위한 설치 스크립트-->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-    <script src="/admin/lib/js/common.js"> </script>
-    <script src="/admin/lib/js/pagination.js"></script>
+<script src="/admin/lib/js/common.js"> </script>
+<script src="/admin/lib/js/pagination.js"></script>
 </body>
 
 </html>

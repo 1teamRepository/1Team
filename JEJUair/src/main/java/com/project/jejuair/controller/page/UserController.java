@@ -1,5 +1,9 @@
 package com.project.jejuair.controller.page;
 
+import com.project.jejuair.model.network.response.TbMemberResponse;
+import com.project.jejuair.service.TbMemberApiLogicService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,12 +12,46 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/user")
+@RequiredArgsConstructor
 public class UserController {
 
     // http://localhost:10000/user
+    @Autowired
+    private final TbMemberApiLogicService tbMemberApiLogicService;
+
+    //로그인페이지
+
+    @RequestMapping("/login")
+    public String Logout(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        session.invalidate();
+        return "/user/pages/login/login";
+    }
+
+
+    //로그인 검증
+    @PostMapping("/loginOk")
+    public ModelAndView LoginOk(HttpServletRequest request, String memUserid, String memUserpw) throws Exception{
+        TbMemberResponse tbMemberResponse = tbMemberApiLogicService.pwCheck(memUserid, memUserpw).getData();
+        if(tbMemberResponse != null){
+            HttpSession session = request.getSession();
+            String name = tbMemberResponse.getMemKoLastname();
+            session.setAttribute("name", name);
+            session.setAttribute("id", memUserid);
+            System.out.println("로그인 성공");
+            return new ModelAndView("redirect:/user/");
+        }else{
+            System.out.println("로그인 실패");
+            return new ModelAndView("/user/pages/login/login")
+                    .addObject("message", "fail");
+        }
+    }
+
+
     @RequestMapping("")
     public ModelAndView index() {
         return new ModelAndView("/user/pages/index");
@@ -124,8 +162,15 @@ public class UserController {
     }
 
     @RequestMapping("/mypage_main_member")
-    public ModelAndView mypage_main_member() {
-        return new ModelAndView("/user/pages/mypage/mypage_main/mypage_main_member");
+    public ModelAndView mypage_main_member(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("name") != null) {
+            return new ModelAndView("/user/pages/mypage/mypage_main/mypage_main_member");
+
+        } else {
+            return new ModelAndView("/user/pages/login/login");
+        }
+
     }
 
     @RequestMapping("/mypage_main_nomember")
@@ -134,18 +179,33 @@ public class UserController {
     }
 
     @RequestMapping("/reserve_info")
-    public ModelAndView reserve_info() {
-        return new ModelAndView("/user/pages/mypage/reserve_info/reserve_info");
+    public ModelAndView reserve_info(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("name") != null) {
+            return new ModelAndView("/user/pages/mypage/reserve_info/reserve_info");
+        } else {
+            return new ModelAndView("/user/pages/login/login");
+        }
     }
 
     @RequestMapping("/qna_list")
-    public ModelAndView qna_list() {
-        return new ModelAndView("/user/pages/mypage/mypage_main/qna_list/qna_list");
+    public ModelAndView qna_list(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("name") != null) {
+            return new ModelAndView("/user/pages/mypage/mypage_main/qna_list/qna_list");
+        } else {
+            return new ModelAndView("/user/pages/login/login");
+        }
     }
 
     @RequestMapping("/qna_form") //우재가 하기로함
-    public ModelAndView qna_form() {
+    public ModelAndView qna_form(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("name") != null) {
         return new ModelAndView("/user/pages/mypage/mypage_main/qna_list/qna_form/qna_form");
+        } else {
+            return new ModelAndView("/user/pages/login/login");
+        }
     }
 
     @RequestMapping("/domestic_price")
@@ -451,10 +511,6 @@ public class UserController {
 
     // login/login
     // http://localhost:10000/user/login
-    @RequestMapping("/login")
-    public ModelAndView login() {
-        return new ModelAndView("/user/pages/login/login");
-    }
 
     //우재 테스트 끝
 
