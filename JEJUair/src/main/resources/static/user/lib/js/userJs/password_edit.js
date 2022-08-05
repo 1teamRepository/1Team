@@ -36,3 +36,23 @@ function checkInput() {
         });
     });
 
+$(function() {
+
+    let view = new Vue({
+        el: '#view',
+        data: {
+            view: {}
+        }
+    });
+    let category = document.getElementById("category").getAttribute("value");
+    let str = $(location).attr('href').split('/').reverse();
+
+    readView(str[0]);
+
+    function readView(index) {
+
+        $.get("/api/" + category + "/" + index, function (response) {
+            view.view = response.data;
+        });
+    }
+});
