@@ -4,7 +4,9 @@
 
 <!--head-->
 <div th:replace="/user/fragment/head :: head"></div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <!--head 끝-->
+
 
 <body id="subLayoutBody">
 
@@ -45,21 +47,18 @@
                             <div class="input-row">
                                 <div class="input-item">
                                     <div class="input-box">
-                                        <label for="inp-01" class="input__label">아이디<span title="required" class="input__label-asterisk">*</span></label>
+                                        <label for="memUserid" class="input__label">아이디<span title="required" class="input__label-asterisk">*</span></label>
                                         <div data-element="form" class="input">
-                                            <input type="text" id="inp-01" class="input__text">
+                                            <input type="text" id="memUserid" class="input__text" name="memUserid" check_result="fail">
                                             <button type="button" data-element="remove" class="input__remove-button"><span class="hidden">삭제</span></button>
                                         </div>
+                                        <input type="button" name="btn" id="idCheck" value="CHECK" class="admin_register_btn"
+                                               style="background-color: #FF5000; border: none; border-radius: 3px; color: white; height: 35px; width: 80px; margin-left: 5px;" >
                                     </div>
                                     <!-- 에러메세지 노출 텍스트 -->
 
                                     <p tabindex="0" class="input__error" id="txtIdChk1" style="display: none;">이미 사용 중인 아이디입니다.</p>
-
-
-                                    <p tabindex="0" class="input__error" id="txtIdChk2" style="display: none;">영문 소문자와 숫자 6자 이상을 조합해 주세요.</p>
-
-
-
+                                    <p tabindex="0" class="input__error" id="txtIdChk2" style="display: none;">사용가능한 아이디입니다.</p>
                                     <p tabindex="0" class="input__error" id="txtIdChk3" style="display: none;">탈퇴 이력이 있는 아이디로 사용할 수 없습니다.</p>
 
                                     <!-- //에러메세지 노출 텍스트 -->
@@ -68,9 +67,9 @@
                             <div class="input-row input-row--password">
                                 <div class="input-item">
                                     <div class="input-box">
-                                        <label for="inp-02" class="input__label">비밀번호<span title="required" class="input__label-asterisk">*</span></label>
+                                        <label for="memUserpw" class="input__label">비밀번호<span title="required" class="input__label-asterisk">*</span></label>
                                         <div data-element="form" class="input">
-                                            <input type="password" class="input__text" id="inp-02">
+                                            <input type="password" class="input__text" id="memUserpw" name="memUserpw">
                                             <button type="button" data-element="remove" class="input__remove-button"><span class="hidden">삭제</span></button>
                                             <button type="button" data-element="toggleShow" class="input__show-button" aria-label="비밀번호 보기"></button>
                                         </div>
@@ -98,9 +97,9 @@
                             <div class="input-row input-row--password">
                                 <div class="input-item">
                                     <div class="input-box">
-                                        <label for="inp-03" class="input__label">비밀번호 확인<span title="required" class="input__label-asterisk">*</span></label>
+                                        <label for="memUserpwCheck" class="input__label">비밀번호 확인<span title="required" class="input__label-asterisk">*</span></label>
                                         <div data-element="form" class="input">
-                                            <input type="password" class="input__text" data-element="input" id="inp-03">
+                                            <input type="password" class="input__text" data-element="input" id="memUserpwCheck" name="memUserpwCheck">
                                             <button type="button" data-element="remove" class="input__remove-button"><span class="hidden">삭제</span></button>
                                             <button type="button" data-element="toggleShow" class="input__show-button" aria-label="비밀번호 보기"></button>
                                         </div>
@@ -112,14 +111,59 @@
                             </div>
                         </div>
 
-                            <div class="input-wrap input--line">
+                        <div class="input-wrap input--line">
+                            <div class="input-row">
+                                <div class="input-item">
+                                    <label for="memSsn" class="input-label label-top">생년월일
+                                        <span title="required" class="input__label-asterisk">*</span></label>
+                                    <div id="SsnDiv" class="input-box">
+                                        <div data-element="form" class="input">
+                                            <div class="eac-input-wrap" style="display: block; position: relative; font-size: 14px;">
+                                                <input type="email" data-element="email" id="memSsn" name="memSsn" class="input__text" autocomplete="off">
+                                                <span class="hp-auto" style="display: block; box-sizing: content-box; font-family: SpoqaHanSansNeo, roboto, sans-serif, Arial; font-weight: 400; letter-spacing: 0px;"></span><span class="eac-cval" style="visibility: hidden; position: absolute; display: inline-block; font-family: SpoqaHanSansNeo, roboto, sans-serif, Arial; font-weight: 400; letter-spacing: 0px;"></span></div>
+                                            <button type="button" data-element="remove" class="input__remove-button"><span class="hidden">삭제</span></button>
+                                        </div>
+                                    </div>
+                                    <p class="input__sub-text">주민등록번호 앞 6자리를 입력해주세요 </p>
+                                    <p tabindex="0" class="input__error">에러메세지</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input-wrap input--line">
+                            <div class="input-row">
+                                <div class="input-item">
+                                    <label for="memGender" class="input-label label-top">성별
+                                        <span title="required" class="input__label-asterisk">*</span></label>
+                                    <div id="generDiv" class="input-box">
+                                        <div data-element="form" class="input">
+                                            <div class="eac-input-wrap" style="display: block; position: relative; font-size: 14px;">
+                                                <select id="memGender" class="input__text" autocomplete="off">
+                                                    <option value="NULL" class="email-auto" style="display: block; box-sizing: content-box; font-family: SpoqaHanSansNeo, roboto, sans-serif, Arial; font-weight: 400; letter-spacing: 0px;">선택해주세요</option>
+                                                    <option value="MAN" class="email-auto" style="display: block; box-sizing: content-box; font-family: SpoqaHanSansNeo, roboto, sans-serif, Arial; font-weight: 400; letter-spacing: 0px;">남성</option>
+                                                    <option value="WOMAN" class="eac-cval" style="visibility: hidden; position: absolute; display: inline-block; font-family: SpoqaHanSansNeo, roboto, sans-serif, Arial; font-weight: 400; letter-spacing: 0px;">여성</option>
+                                                </select>
+                                            </div>
+                                            <button type="button" data-element="remove" class="input__remove-button"><span class="hidden">삭제</span></button>
+                                        </div>
+                                    </div>
+                                    <p tabindex="0" class="input__error">에러메세지</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input-wrap input--line">
                                 <div class="input-row">
                                     <div class="input-item">
-                                        <label for="inputEmail1" class="input-label label-top">이메일
+                                        <label for="memEmail" class="input-label label-top">이메일
                                             <span title="required" class="input__label-asterisk">*</span></label>
                                         <div id="emailDiv" class="input-box">
                                             <div data-element="form" class="input">
-                                                <div class="eac-input-wrap" style="display: block; position: relative; font-size: 14px;"><input type="email" data-element="email" id="inputEmail1" class="input__text" autocomplete="off"><span class="email-auto" style="display: block; box-sizing: content-box; font-family: SpoqaHanSansNeo, roboto, sans-serif, Arial; font-weight: 400; letter-spacing: 0px;"></span><span class="eac-cval" style="visibility: hidden; position: absolute; display: inline-block; font-family: SpoqaHanSansNeo, roboto, sans-serif, Arial; font-weight: 400; letter-spacing: 0px;"></span></div>
+                                                <div class="eac-input-wrap" style="display: block; position: relative; font-size: 14px;">
+                                                    <input type="email" data-element="email" id="memEmail" class="input__text" autocomplete="off">
+                                                    <span class="email-auto" style="display: block; box-sizing: content-box; font-family: SpoqaHanSansNeo, roboto, sans-serif, Arial; font-weight: 400; letter-spacing: 0px;"></span>
+                                                    <span class="eac-cval" style="visibility: hidden; position: absolute; display: inline-block; font-family: SpoqaHanSansNeo, roboto, sans-serif, Arial; font-weight: 400; letter-spacing: 0px;"></span>
+                                                </div>
                                                 <button type="button" data-element="remove" class="input__remove-button"><span class="hidden">삭제</span></button>
                                             </div>
                                         </div>
@@ -131,11 +175,13 @@
                         <div class="input-wrap input--line">
                             <div class="input-row">
                                 <div class="input-item">
-                                    <label for="inputEmail1" class="input-label label-top">휴대전화번호
+                                    <label for="memHp" class="input-label label-top">휴대전화번호
                                         <span title="required" class="input__label-asterisk">*</span></label>
                                     <div id="HpDiv" class="input-box">
                                         <div data-element="form" class="input">
-                                            <div class="eac-input-wrap" style="display: block; position: relative; font-size: 14px;"><input type="email" data-element="email" id="inputHp" class="input__text" autocomplete="off"><span class="hp-auto" style="display: block; box-sizing: content-box; font-family: SpoqaHanSansNeo, roboto, sans-serif, Arial; font-weight: 400; letter-spacing: 0px;"></span><span class="eac-cval" style="visibility: hidden; position: absolute; display: inline-block; font-family: SpoqaHanSansNeo, roboto, sans-serif, Arial; font-weight: 400; letter-spacing: 0px;"></span></div>
+                                            <div class="eac-input-wrap" style="display: block; position: relative; font-size: 14px;">
+                                                <input type="email" data-element="email" id="memHp" name="memHp" class="input__text" autocomplete="off">
+                                                <span class="hp-auto" style="display: block; box-sizing: content-box; font-family: SpoqaHanSansNeo, roboto, sans-serif, Arial; font-weight: 400; letter-spacing: 0px;"></span><span class="eac-cval" style="visibility: hidden; position: absolute; display: inline-block; font-family: SpoqaHanSansNeo, roboto, sans-serif, Arial; font-weight: 400; letter-spacing: 0px;"></span></div>
                                             <button type="button" data-element="remove" class="input__remove-button"><span class="hidden">삭제</span></button>
                                         </div>
                                     </div>
@@ -150,10 +196,10 @@
                             <div class="input-row">
                                 <div class="input-item">
                                     <div id="korLastNameDiv" class="input-box label-active">
-                                        <label for="korLastName" class="input__label">성(한글)<span title="required"
-                                                                                                 class="input__label-asterisk">*</span></label>
+                                        <label for="memKoLastname" class="input__label">성(한글)
+                                            <span title="required" class="input__label-asterisk">*</span></label>
                                         <div data-element="form" class="input">
-                                            <input type="text" data-element="input" id="korLastName" name="korLastName"
+                                            <input type="text" data-element="input" id="memKoLastname" name="memKoLastname"
                                                    class="input__text" maxlength="32">
                                             <button type="button" data-element="remove" class="input__remove-button">
                                                 <span class="hidden">삭제</span></button>
@@ -168,11 +214,11 @@
                                 <div class="input__mark"></div>
                                 <div class="input-item">
                                     <div id="korFirstNameDiv" class="input-box label-active">
-                                        <label for="korFirstName" class="input__label">이름(한글)<span title="required"
-                                                                                                   class="input__label-asterisk">*</span></label>
+                                        <label for="memKoFirstname" class="input__label">이름(한글)
+                                            <span title="required" class="input__label-asterisk">*</span></label>
                                         <div data-element="form" class="input">
-                                            <input type="text" data-element="input" id="korFirstName"
-                                                   name="korFirstName" class="input__text" maxlength="32">
+                                            <input type="text" data-element="input" id="memKoFirstname"
+                                                   name="memKoFirstname" class="input__text" maxlength="32">
                                             <button type="button" data-element="remove" class="input__remove-button">
                                                 <span class="hidden">삭제</span></button>
                                         </div>
@@ -187,10 +233,10 @@
                             <div class="input-row">
                                 <div class="input-item">
                                     <div class="input-box">
-                                        <label for="engLastName" class="input__label">성(영문)<span title="required"
-                                                                                                 class="input__label-asterisk">*</span></label>
+                                        <label for="memEngLastname" class="input__label">성(영문)
+                                            <span title="required" class="input__label-asterisk">*</span></label>
                                         <div data-element="form" class="input">
-                                            <input type="text" data-element="input" id="engLastName" name="engLastName"
+                                            <input type="text" data-element="input" id="memEngLastname" name="memEngLastname"
                                                    class="input__text" maxlength="32">
                                             <button type="button" data-element="remove" class="input__remove-button">
                                                 <span class="hidden">삭제</span></button>
@@ -202,11 +248,11 @@
                                 <div class="input__mark"></div>
                                 <div class="input-item">
                                     <div class="input-box">
-                                        <label for="engFirstName" class="input__label">이름(영문)<span title="required"
-                                                                                                   class="input__label-asterisk">*</span></label>
+                                        <label for="memEngFirstname" class="input__label">이름(영문)
+                                            <span title="required" class="input__label-asterisk">*</span></label>
                                         <div data-element="form" class="input">
-                                            <input type="text" data-element="input" id="engFirstName"
-                                                   name="engFirstName" class="input__text" maxlength="32">
+                                            <input type="text" data-element="input" id="memEngFirstname"
+                                                   name="memEngFirstname" class="input__text" maxlength="32">
                                             <button type="button" data-element="remove" class="input__remove-button">
                                                 <span class="hidden">삭제</span></button>
                                         </div>
@@ -224,58 +270,9 @@
 
                     <div class="button-wrap section-wrap"><!--20210519 class명 변경-->
                         <!-- 버튼 활성화 클래스 button--active -->
-                        <button type="button" class="button button--primary" id="sendit" onclick="send()"><span
-                                class="button__text">다음</span></button>
+                        <button type="button" class="button button--primary" id="sendit">
+                            <span class="button__text">다음</span></button>
                     </div>
-                    <input type="hidden" id="joinGubun" name="status" value="normal">
-                    <input type="hidden" id="email" name="email" value="">
-                    <input type="hidden" id="test" name="test" value="">
-                    <input type="hidden" id="lang" name="lang" value="ko">
-
-                    <input type="hidden" name="act" value="agree">
-                    <input type="hidden" name="network_id" value="">
-                    <input type="hidden" name="CHL" value="HOMEPAGE">
-                    <input type="hidden" name="language_type" value="">
-                    <input type="hidden" name="foreYN" value="N">
-                    <input type="hidden" name="birthYear" value="1996">
-                    <input type="hidden" name="birthMon" value="03">
-                    <input type="hidden" name="birthDay" value="16">
-                    <!-- 본인인증을 위해 필요한 정보   -->
-                    <input type="hidden" name="ipinNo" value=""> <!-- 아이핀인증번호 -->
-                    <input type="hidden" id="SendInfo" name="SendInfo">
-                    <!--	내/외국인 구분을 설정하십시오. ( '1'-내국인, '2'-외국인 )	-->
-                    <input type="hidden" id="foreigner" name="foreigner" value="">
-                    <!--	조회사유를 설정하십시오. ( '10'-회원가입, '20'-기존회원 확인, '30'-성인인증, '40'-비회원 확인, '90'-기타 사유 )	-->
-                    <input type="hidden" id="inqRsn" name="inqRsn" value="10">
-                    <input type="hidden" name="lastname" value="박">
-                    <input type="hidden" name="firstname" value="우재">
-                    <input type="hidden" name="sex" value="M">
-                    <input type="hidden" name="ipinYN" value="Y">
-                    <input type="hidden" name="dupeInfo"
-                           value="MC0GCCqGSIb3DQIJAyEAEpOC0N5YqBzjNVY3iMppknwvjJsuSLW8DdPhprdyYNM=">
-                    <input type="hidden" name="coInfo"
-                           value="vIZQ4R3cWS9S0ftZFhJz13gPbm2+wOxIup/TiHloqjR8bOopYTiZsdCuzfwBexqmeQRWZDdtpVy/NhIN9pHblA==">
-                    <input type="hidden" name="mobileNo" value="82-010-8654-1225">
-
-                    <input type="hidden" id="apiRequestType" name="apiRequestType" value="1111">
-                    <input type="hidden" id="apiRequestNm" name="apiRequestNm" value="CHECKPLUS">
-                    <input type="hidden" id="memberList" name="memberList" value="">
-                    <input type="hidden" id="korName" name="korName" value="">
-                    <input type="hidden" id="userId" name="userId" value="">
-                    <input type="hidden" id="enrollDate" name="enrollDate" value="">
-                    <input type="hidden" id="snsType" name="snsType" value="">
-
-                    <input type="hidden" id="snsId" name="snsId" value="">
-
-                    <input type="hidden" id="parentName" name="parentName" value="">
-                    <input type="hidden" id="parentMobileNo" name="parentMobileNo" value="">
-                    <input type="hidden" id="parentCiNo" name="parentCiNo" value="">
-                    <input type="hidden" id="joinType" name="joinType" value="NOR">
-                    <input type="hidden" name="cardYn" value="">
-                    <input type="hidden" name="ffpNo" value="">
-
-                    <input type="hidden" id="mobileNoDuplicateYn" name="mobileNoDuplicateYn" value="">
-                    <input type="hidden" id="emailDuplicateYn" name="emailDuplicateYn" value="N">
 
                 </form>
             </main>
@@ -299,103 +296,11 @@
 
 <!--<div th:replace="/user/fragment/js :: js"></div>-->
 
-<script>
-    function send(){
-        $(document).on('click', '#sendit', function(){
-            // if(!$('#admAdminId').val()){
-            //     alert('아이디를 입력하세요');
-            //     $('#admAdminId').focus();
-            //     return false;
-            // }
-            //
-            // if(!$('#admAdminPw').val()) {
-            //     alert('비밀번호를 입력하세요');
-            //     $('#admAdminPw').focus();
-            //     return false;
-            // }
-            //
-            // if(!$('#admKorName').val()){
-            //     alert('이름을 입력하세요');
-            //     $('#admKorName').focus();
-            //     return false;
-            // }
-            //
-            // if(!$('#admEngName').val()){
-            //     alert('이름을 입력하세요');
-            //     $('#admEngName').focus();
-            //     return false;
-            // }
-            //
-            // if(!$('#admEmployee').val()){
-            //     alert('사번을 입력하세요');
-            //     $('#admEmployee').focus();
-            //     return false;
-            // }
-            // if(!$('#admAdminHp').val()){
-            //     alert('휴대전화번호를 입력하세요');
-            //     $('#admAdminHp').focus();
-            //     return false;
-            // }
-            // if(!$('#admDeparture').val()){
-            //     alert('직무를 입력하세요');
-            //     $('#admDeparture').focus();
-            //     return false;
-            // }
-            // if(!$('#admEmail').val()){
-            //     alert('이메일을 입력하세요');
-            //     $('#admEmail').focus();
-            //     return false;
-            // }
-
-            /*
-                        {
-                            "transaction_time":"2022-07-12",
-                            "resultCode":"ok",
-                            "description":"ok",
-                            "data":{
-                                "userid":"ryu",
-                                "userpw":"1111",
-                                "name":"류"
-                            }
-                        }
-             */
-
-            let jsonData = {
-                transaction_time: new Date(),
-                resultCode:"ok",
-                description:"ok",
-                data:{
-                    memUserid: $('#inp-01').val(),
-                    memUserpw: $('#inp-03').val(),
-                    memEmail: $('#inputEmail1').val(),
-                    memHp: $('#inputHp').val(),
-                    memKoLastname: $('#korLastName').val(),
-                    memKoFirstname: $('#korFirstName').val(),
-                    memEngLastname: $('#engLastName').val(),
-                    memEngFirstname: $('#engFirstName').val()
-                }
-            }
-
-            $.post({
-                url: '/api/member',
-                data: JSON.stringify(jsonData),
-                dataType: 'json',
-                contentType: 'application/json',
-                success: function(){
-                    alert('가입성공!');
-                    location.href='/user/login';
-                },
-                error: function(){
-                    alert('가입실패!');
-                    location.reload();
-                }
-            });
-        });
-    };
-</script>
 <script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
 <script type="text/javascript" src="/user/lib/js/common.js"></script>
 <script type="text/javascript" src="/user/lib/js/plugin.js"></script>
+<!--<script type="text/javascript" src="/user/lib/js/join/join.js"></script>-->
+<script type="text/javascript" src="/user/lib/js/join/join2.js"></script>
 <!-- 공통 스크립트 선언 끝 -->
 
 <!--body, html 주석은 위치 고정-->

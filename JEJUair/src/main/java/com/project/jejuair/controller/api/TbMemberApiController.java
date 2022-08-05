@@ -53,4 +53,14 @@ public class TbMemberApiController extends CrudController <TbMemberRequest, TbMe
     public Header<List<TbMemberResponse>> findAll(@PageableDefault(sort = {"memIdx"}, direction = Sort.Direction.DESC) Pageable pageable){
         return tbMemberApiLogicService.search(pageable);
     }
+
+    @PostMapping("/userIdCheck")
+    @ResponseBody
+    public int userIdCheck(@RequestParam("memUserid") String memUserid){
+        System.out.println("아무거나");
+        int cnt = tbMemberApiLogicService.IdCheck(memUserid);
+        System.out.println(cnt);
+        return cnt;
+    }
+
 }
