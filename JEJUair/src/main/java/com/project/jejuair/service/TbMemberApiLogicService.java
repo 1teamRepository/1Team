@@ -139,4 +139,10 @@ public class TbMemberApiLogicService extends BaseService<TbMemberRequest, TbMemb
         return Header.OK(tbMemberResponseList, pagination);
     }
 
+
+    public Header<TbMemberResponse> pwCheck(String memUserid, String memUserpw){
+        return tbMemberRepository.findByMemUseridAndMemUserpw(memUserid, memUserpw)
+                .map(user -> response(user)).map(Header::OK)
+                .orElseGet(() -> Header.ERROR(("데이터 없음")));
+    }
 }
