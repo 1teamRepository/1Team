@@ -5,6 +5,7 @@ import com.project.jejuair.service.TbMemberApiLogicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -138,6 +139,11 @@ public class UserController {
 
     @RequestMapping("/info_edit_password")
     public ModelAndView info_edit_password() {
+        return new ModelAndView("/user/pages/mypage/info_edit/info_edit_password");
+    }
+
+    @RequestMapping("/info_edit_password/{memIdx}")
+    public ModelAndView info_edit_password_member(@PathVariable(name = "memIdx") Long memIdx) {
         return new ModelAndView("/user/pages/mypage/info_edit/info_edit_password");
     }
 
