@@ -52,6 +52,22 @@ public class UserController {
         }
     }
 
+    @PostMapping("/pwCheckOK")
+    public ModelAndView pwCheckOK(HttpServletRequest request, String memUserpw)  throws Exception{
+        HttpSession session = request.getSession();
+        String memUserid = (String)session.getAttribute("id");
+        System.out.println(memUserid);
+
+        TbMemberResponse tbMemberResponse = tbMemberApiLogicService.pwCheck(memUserid, memUserpw).getData();
+        if(tbMemberResponse != null) {
+            return new ModelAndView("redirect:/user/info_edit_mypage");
+        }else {
+            return new ModelAndView("/user/pages/mypage/info_edit/info_edit_password")
+                    .addObject("message", "fail");
+        }
+    }
+
+
 
     @RequestMapping("")
     public ModelAndView index() {
@@ -137,15 +153,21 @@ public class UserController {
         return new ModelAndView("/user/pages/mypage/info_edit/info_edit");
     }
 
+//    @RequestMapping("/info_edit_password")
+//    public ModelAndView info_edit_password() {
+//        return new ModelAndView("/user/pages/mypage/info_edit/info_edit_password");
+//    }
+
     @RequestMapping("/info_edit_password")
-    public ModelAndView info_edit_password() {
-        return new ModelAndView("/user/pages/mypage/info_edit/info_edit_password");
+    public ModelAndView userIndex(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        if(session.getAttribute("name") != null) {
+            return new ModelAndView("/user/pages/mypage/info_edit/info_edit_password");
+        }else {
+            return new ModelAndView("/user/pages/login/login");
+        }
     }
 
-    @RequestMapping("/info_edit_password/{memIdx}")
-    public ModelAndView info_edit_password_member(@PathVariable(name = "memIdx") Long memIdx) {
-        return new ModelAndView("/user/pages/mypage/info_edit/info_edit_password");
-    }
 
     @RequestMapping("/info_edit_mypage")
     public ModelAndView info_edit_mypage() {

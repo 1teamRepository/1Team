@@ -88,8 +88,10 @@
                                 </p>
                                 <!-- //등록되지 않은 아이디 or 아이디/비밀번호 불일치 시 -->
                             </div>
+
                         </div>
                         <div class="login__check">
+                        <div th:if="${message =='fail'}"><span style="font-size: 14px; color: #FF5000; margin-top: 20px; text-align: left;">아이디, 비밀번호를 확인하세요.</span></div>
 				<span class="checkbox checkbox--small">
 					<input type="checkbox" class="checkbox__input" name="userIdSave" id="userIdSave"
                            data-element="checkbox">
