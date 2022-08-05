@@ -6,7 +6,9 @@ import com.project.jejuair.model.network.Header;
 import com.project.jejuair.model.network.Pagination;
 import com.project.jejuair.model.network.request.TbMemberRequest;
 import com.project.jejuair.model.network.response.TbMemberResponse;
+import com.project.jejuair.repository.TbMemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,9 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class TbMemberApiLogicService extends BaseService<TbMemberRequest, TbMemberResponse, TbMember>{
+
+    @Autowired
+    private TbMemberRepository tbMemberRepository;
 
     private TbMemberResponse response(TbMember tbMember){
         TbMemberResponse tbMemberResponse = TbMemberResponse.builder()
@@ -105,6 +110,20 @@ public class TbMemberApiLogicService extends BaseService<TbMemberRequest, TbMemb
             return Header.OK();
         }).orElseGet(() -> Header.ERROR("데이터 없음"));
     }
+
+    public int IdCheck(String memUserid) {
+        int result = 1; //기본값
+
+        if (memUserid.equals("")){
+            result = 2;
+        }
+        else if (tbMemberRepository.findByMemUserid(memUserid).isEmpty()) {
+            result = 0; //아이디가 사용가능할떄
+        }else{ result = 1;}
+        System.out.println(result);
+        return result;
+    }
+
 
     public Header<List<TbMemberResponse>> search(Pageable pageable){
         Page<TbMember> tbMember = baseRepository.findAll(pageable);
