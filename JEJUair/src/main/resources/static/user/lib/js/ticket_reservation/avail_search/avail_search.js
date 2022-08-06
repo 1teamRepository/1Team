@@ -22,7 +22,7 @@ $(function(){
 
     console.log(searchDate)
     function dateCal(date, num , cal){
-        console.log('들어옴 /dateCal')
+        // console.log('들어옴 /dateCal')
         let newDate;
         if(cal == 'sum'){
             newDate = new Date(
@@ -41,13 +41,13 @@ $(function(){
     }
 
     function findDayOfWeek(date){
-        console.log('들어옴 /findDayOfWeek')
+        // console.log('들어옴 /findDayOfWeek')
         let week = ['일', '월', '화', '수', '목', '금', '토'];
         return week[date.getDay()];
     }
 
     function sumZero(data){
-        console.log('들어옴 /sumZero')
+        // console.log('들어옴 /sumZero')
         if(data < 10){
             data = '0' + data
         }
@@ -55,7 +55,7 @@ $(function(){
     }
     console.log(startDate)
     for(let i=0; i<7; i++){
-        console.log('들어옴 /for')
+        // console.log('들어옴 /for')
         dateWeek = dateCal(startDate, i, 'sum');
         let data1 = sumZero(dateWeek.getMonth())
         let data2 = sumZero(dateWeek.getDate())
@@ -85,9 +85,11 @@ $(function(){
     let arrivalData = document.querySelector("#arrivalData").getAttribute("value");
     let roundStartDate = roundStartArr[0]+"-"+roundStartArr[1]+"-"+roundStartArr[2];
     let onewayStartDate = onewayStartArr[0]+"-"+onewayStartArr[1]+"-"+onewayStartArr[2];
+    let reserveRoute = document.getElementById('reserveRoute').getAttribute("value")
     console.log(departureData)
     console.log(arrivalData)
     console.log(roundStartDate)
+    console.log(reserveRoute)
 
 
 
@@ -115,22 +117,48 @@ $(function(){
             console.log(schdata)
             schdata = total()
 
+            route()
+
+            function route(){
+                if(reserveRoute == 'oneway'){
+
+                    console.log(reserveRoute == 'oneway')
+                    document.getElementById('route').innerText = "가는 편";
+                }if(reserveRoute == 'round'){
+                    document.getElementById('route').innerText = "왕복 가는 편";
+                    if(false){
+                        document.getElementById('route').innerHTML = "";
+
+                    }
+                }
+            }
+
             function choiceSchedule(){
                 console.log('choiceSchedule 들어옴')
-                let reserveRoute = 1 //document.getElementById('#reserveRoute')
-                if(reserveRoute == 1){
-                    exdata.forEach((item)=>{
+                exdata.forEach((item)=>{
+                    if(reserveRoute == 'round'){
                         if(roundStartDate == `${item.schArrivalDate}` &&
                             departureData == `${item.schDeparture}` &&
                             arrivalData == `${item.schArrival}`){
                             console.log(item)
                             schdata.push(item)
                         }
-                        // console.log(`${item.schArrivalDate}`)
-                        // console.log(`${item.schDeparture}`)
-                        // console.log(`${item.schArrival}`)
-                    })
-                }
+
+                    }if(reserveRoute == 'oneway') {
+                        if (onewayStartDate == `${item.schArrivalDate}` &&
+                            departureData == `${item.schDeparture}` &&
+                            arrivalData == `${item.schArrival}`) {
+                            console.log(item)
+                            schdata.push(item)
+                        }
+                    }
+
+
+                    // console.log(`${item.schArrivalDate}`)
+                    // console.log(`${item.schDeparture}`)
+                    // console.log(`${item.schArrival}`)
+                })
+
             }
 
 
@@ -150,27 +178,10 @@ $(function(){
 
                 return `${hour}시간${min}분`;
             }
-
             flightList.flyScheduleList = schdata;
-
-
-
         });
     }
-
-
-
-
-
-
 });
-
-
-
-
-
-
-
 // $(function(){
 //     console.log('들어왓숑')
 //
@@ -289,12 +300,15 @@ const tabPanel = document.getElementsByClassName('tab__panel');
 
 const searchFlight = document.getElementById('searchFlight');
 
-const span = document.getElementById('spanCost');
 //hidden input
 const departureData = document.querySelector("#departureData");
 const arrivalData = document.querySelector("#arrivalData");
 const passengerNum = document.getElementById("passengerNum").getAttribute("value");
 
+const gradeDefault = document.querySelectorAll(".tab-btn");
+
+
+reserveProgress();
 btnAble();
 
 //편도, 왕복 선택
@@ -496,17 +510,55 @@ function fareCal(select){
     const divFare = fare*passengerNum;
     const divTax = 4000*passengerNum;
     const divFuel = 22000*passengerNum;
+    const schIdx = select.parentElement.parentElement.firstElementChild.firstElementChild.firstElementChild;
+    const schedules = document.querySelectorAll(".schIdx");
 
     for (let i = 0; i < gradeDefault.length; i++) {
         gradeDefault[i].classList.remove("active");
     }
+    for (let i = 0; i < schedules.length; i++) {
+        schedules[i].classList.remove("select_schIdx");
+    }
 
+    schIdx.classList.add("select_schIdx");
     select.classList.add("active");
-    $('#divFare').find('.flex-text__additional')[0].innerHTML = divFare + ' 원';
-    $('#divTax').find('.flex-text__additional')[0].innerHTML = divTax + ' 원';
-    $('#divFuel').find('.flex-text__additional')[0].innerHTML = divFuel + ' 원';
-    span.innerHTML = '<span className="price_txt">' + Number(divFare + divTax + divFuel) + '</span><span className="unit"> 원</span>';
+
+    $('#divFare').find('.flight__cost')[0].innerHTML = divFare;
+    $('#divTax').find('.flight__cost')[0].innerHTML = divTax;
+    $('#divFuel').find('.flight__cost')[0].innerHTML = divFuel;
+    $('#spanCost').find('.flight__cost')[0].innerHTML =  Number(divFare + divTax + divFuel);
 }
 
+function reserveProgress(){
+    if(document.querySelector("#route").getAttribute("value") === "oneway"){
+        document.getElementById("spanNextPC").firstElementChild.innerHTML = "다음";
+        document.getElementById("btnNextPC").classList.add("onewayPage");
+    }else{
+        document.getElementById("spanNextPC").firstElementChild.innerHTML = "오는 편 선택하기";
+        document.getElementById("btnNextPC").classList.add("roundPage");
+    }
+}
 
+$(document).on('click', '.onewayPage', function () {
+    let tripJson = {
+        resRoute: $('#route').val(),
+        schDeparture: $('#depData').val(),
+        schArrival: $('#arrData').val(),
+        schDepartureDate: $('#owStart').val(),
+        schPassengerNum: Number($('#pasNum').val()),
+        seatValue: document.querySelector(".tab-btn.active").getAttribute("value"),
+        divFare: Number($('#divFare').find('.flight__cost')[0].innerHTML),
+        divTax: Number($('#divTax').find('.flight__cost')[0].innerHTML),
+        divFuel: Number($('#divFuel').find('.flight__cost')[0].innerHTML),
+        spanCost: Number($('#spanCost').find('.flight__cost')[0].innerHTML),
+        schIdx: $('.select_schidx').val()
+    }
+
+    localStorage.setItem("tripJson", JSON.stringify(tripJson));
+    location.href="/user/oneway/view_passenger_input";
+})
+
+$(document).on('click', '.roundPage', function () {
+
+})
 

@@ -6,13 +6,20 @@ $(function(){
     function aircraftNameList(){
         $.get("/api/aircraft", function (response){
             response.data.map(function(val, index){
+                let idx = val['acftIdx'];
                 let name = val['acftAircraftName'];
                 let aircraftName = $('#acftAircraftName');
+                let acftIdx = $('#acftIdx');
 
                 let option = document.createElement('option');
                 option.innerText = name;
                 option.value = name;
                 aircraftName.append(option);
+
+                option = document.createElement('option');
+                option.innerText = idx;
+                option.value = idx;
+                acftIdx.append(option);
             });
         });
     };

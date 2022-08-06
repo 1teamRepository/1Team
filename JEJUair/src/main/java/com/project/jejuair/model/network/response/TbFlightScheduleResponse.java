@@ -30,4 +30,9 @@ public class TbFlightScheduleResponse {
     private Integer schFlyDiscount;
     private SchFood schFood;
     private LocalDateTime schRegDate;
+
+    private Long tbAircraftAcftIdx;
+    private String acftAircraftName;
+    private Integer acftBizLiteSeats;
+    private Integer acftNomalSeats;
 }

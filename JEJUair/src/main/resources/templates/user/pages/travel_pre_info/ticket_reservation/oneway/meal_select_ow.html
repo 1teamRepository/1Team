@@ -14,7 +14,21 @@
 <!--header 끝-->
 
 <div id="body">
+    <script >
+        console.log("================jsonparse=============")
 
+        const passJson = JSON.parse(localStorage.getItem("passJson"))
+        console.log("passJson");
+        console.log(passJson);
+        const tripJson = JSON.parse(localStorage.getItem("tripJson"))
+        console.log("tripJson");
+        console.log(tripJson);
+        const schIdx = Number(tripJson["schIdx"]);
+
+
+        console.log("================jsonparse=============")
+
+    </script>
     <!-- Google Tag Manager (noscript) -->
     <noscript>
         <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD2BQQ4" height="0" width="0"
