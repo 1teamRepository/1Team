@@ -40,9 +40,27 @@ public class UserController {
         TbMemberResponse tbMemberResponse = tbMemberApiLogicService.pwCheck(memUserid, memUserpw).getData();
         if(tbMemberResponse != null){
             HttpSession session = request.getSession();
-            String name = tbMemberResponse.getMemKoLastname();
-            session.setAttribute("name", name);
-            session.setAttribute("id", memUserid);
+            Long memIdx = tbMemberResponse.getMemIdx();
+            String koLastname = tbMemberResponse.getMemKoLastname();
+            String koFirstname = tbMemberResponse.getMemKoFirstname();
+            String engLastname = tbMemberResponse.getMemEngLastname();
+            String engFirstname = tbMemberResponse.getMemEngFirstname();
+            String ssn = tbMemberResponse.getMemSsn();
+            String gender = String.valueOf(tbMemberResponse.getMemGender());
+            String hp = tbMemberResponse.getMemHp();
+            String email = tbMemberResponse.getMemEmail();
+
+            session.setAttribute("idx", memIdx);
+            session.setAttribute("userid", memUserid);
+            session.setAttribute("koLastname", koLastname);
+            session.setAttribute("koFirstname", koFirstname);
+            session.setAttribute("engLastname", engLastname);
+            session.setAttribute("engFirstname", engFirstname);
+            session.setAttribute("ssn", ssn);
+            session.setAttribute("gender", gender);
+            session.setAttribute("hp", hp);
+            session.setAttribute("email", email);
+
             System.out.println("로그인 성공");
             return new ModelAndView("redirect:/user/");
         }else{
@@ -53,19 +71,39 @@ public class UserController {
     }
 
     @PostMapping("/pwCheckOK")
-    public ModelAndView pwCheckOK(HttpServletRequest request, String memUserpw)  throws Exception{
+    public ModelAndView pwCheckOK(HttpServletRequest request, String memUserpw, String newmemUserpw, String againmemUserpw)  throws Exception{
         HttpSession session = request.getSession();
-        String memUserid = (String)session.getAttribute("id");
+        String memUserid = (String)session.getAttribute("userid");
         System.out.println(memUserid);
+        System.out.println(memUserpw);
+        System.out.println(newmemUserpw);
 
         TbMemberResponse tbMemberResponse = tbMemberApiLogicService.pwCheck(memUserid, memUserpw).getData();
         if(tbMemberResponse != null) {
-            return new ModelAndView("redirect:/user/info_edit_mypage");
+            if(newmemUserpw.equals(againmemUserpw)){
+                tbMemberApiLogicService.pwUpdate(memUserid, newmemUserpw);
+                return new ModelAndView("redirect:/user/info_edit_mypage");
+            }else {
+                return new ModelAndView("/user/pages/mypage/info_edit/password_edit")
+                        .addObject("message1", "fail1");
+            }
         }else {
-            return new ModelAndView("/user/pages/mypage/info_edit/info_edit_password")
-                    .addObject("message", "fail");
+            return new ModelAndView("/user/pages/mypage/info_edit/password_edit")
+                    .addObject("message2", "fail2");
         }
     }
+
+
+    @RequestMapping("/password_edit")
+    public ModelAndView password_edit(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if(session.getAttribute("userid") != null) {
+            return new ModelAndView("/user/pages/mypage/info_edit/password_edit");
+        }else {
+            return new ModelAndView("/user/pages/login/login");
+        }
+    }
+
 
 
 
@@ -170,14 +208,33 @@ public class UserController {
 
 
     @RequestMapping("/info_edit_mypage")
-    public ModelAndView info_edit_mypage() {
-        return new ModelAndView("/user/pages/mypage/info_edit/info_edit_mypage");
+    public ModelAndView info_edit_mypage(HttpServletRequest request){
+        HttpSession session = request.getSession();
+
+        if(session.getAttribute("idx") != null) {
+            return new ModelAndView("/user/pages/mypage/info_edit/info_edit_mypage")
+                    .addObject("idx", session.getAttribute("idx"))
+                    .addObject("userid", session.getAttribute("userid"))
+                    .addObject("koLastname", session.getAttribute("koLastname"))
+                    .addObject("koFirstname", session.getAttribute("koFirstname"))
+                    .addObject("engLastname", session.getAttribute("engLastname"))
+                    .addObject("engFirstname", session.getAttribute("engFirstname"))
+                    .addObject("ssn", session.getAttribute("ssn"))
+                    .addObject("gender", session.getAttribute("gender"))
+                    .addObject("hp", session.getAttribute("hp"))
+                    .addObject("email", session.getAttribute("email"));
+        }else {
+            return new ModelAndView("/user/pages/login/login");
+        }
     }
 
-    @RequestMapping("/password_edit")
-    public ModelAndView password_edit() {
-        return new ModelAndView("/user/pages/mypage/info_edit/password_edit");
-    }
+
+
+
+//    @RequestMapping("/password_edit")
+//    public ModelAndView password_edit() {
+//        return new ModelAndView("/user/pages/mypage/info_edit/password_edit");
+//    }
 
     @RequestMapping("/my_history")
     public ModelAndView my_history() {
@@ -541,5 +598,28 @@ public class UserController {
     // http://localhost:10000/user/login
 
     //우재 테스트 끝
+
+
+    //항공권 결제 후 예매 확인 및 취소
+    @RequestMapping("/viewReservationList")
+    public ModelAndView viewReservationList() {
+        return new ModelAndView("/user/pages/mypage/afterpayment/viewReservationList");
+    }
+
+    @RequestMapping("/viewReservationDetail")
+    public ModelAndView viewReservationDetail() {
+        return new ModelAndView("/user/pages/mypage/afterpayment/viewReservationDetail");
+    }
+
+
+    @RequestMapping("/viewPnrCancelComplete")
+    public ModelAndView viewPnrCancelComplete() {
+        return new ModelAndView("/user/pages/mypage/afterpayment/viewPnrCancelComplete");
+    }
+
+    @RequestMapping("/viewPaymentComplete")
+    public ModelAndView viewPaymentComplete() {
+        return new ModelAndView("/user/pages/mypage/afterpayment/viewPaymentComplete");
+    }
 
 }

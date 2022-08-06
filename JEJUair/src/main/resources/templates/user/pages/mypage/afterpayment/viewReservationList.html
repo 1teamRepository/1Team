@@ -1,0 +1,304 @@
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+
+<!--head-->
+<div th:replace="/user/fragment/head :: head"></div>
+<!--head 끝-->
+
+<body id="subLayoutBody">
+
+<!--appAlert-->
+<div th:replace="/user/fragment/appAlert :: appAlert"></div>
+<!--appAlert 끝-->
+
+
+<!--header-->
+<div th:replace="/user/fragment/header :: header"></div>
+<!--header 끝-->
+
+<div id="body">
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD2BQQ4" height="0" width="0"
+                style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="wrap wrap--no-pab GD">
+
+
+        <div id="breadcrumb" class="breadcrumb pc-only" aria-label="breadcrumb">
+            <nav class="breadcrumb__inner">
+                <div class="breadcrumb__item">
+                    <a href="javascript:;" class="breadcrumb__link" style="cursor: default;">홈</a>
+                </div>
+
+
+                <div class="breadcrumb__item">
+                    <a href="javascript:;" class="breadcrumb__link" style="cursor: default;">마이페이지</a>
+                </div>
+
+
+                <div class="breadcrumb__item breadcrumb__item--current" aria-current="page" data-element="toggle"
+                     data-options="{&quot;mode&quot;: &quot;slide&quot;, &quot;speed&quot;: 100, &quot;clickToClose&quot;: true}">
+
+
+                    <button type="button" class="breadcrumb__link breadcrumb__link--list" data-element="toggle__anchor"
+                            aria-controls="toggle-2" aria-expanded="false">나의 예약 현황
+                    </button>
+
+
+                    <div class="breadcrumb__siblings-list" data-element="toggle__panel" id="toggle-2">
+
+
+                        <a href="javascript:void(0);" class="item"
+                           onclick="URL_LINK.getI18Url('/member/mypage/myFlightList.do')">나의 탑승 내역</a>
+
+
+                        <a href="javascript:void(0);" class="item"
+                           onclick="URL_LINK.getI18Url('/member/mypage/viewMyGiftTicketList.do')">나의 기프티켓</a>
+
+
+                        <a href="javascript:void(0);" class="item"
+                           onclick="URL_LINK.getI18Url('/member/mypage/viewMyPartnerCoupon.do')">나의 제휴처 쿠폰</a>
+
+
+                        <a href="javascript:void(0);" class="item"
+                           onclick="URL_LINK.getI18Url('/member/mypage/memberInfoModify.do')">회원정보 수정</a>
+
+
+                        <a href="javascript:void(0);" class="item"
+                           onclick="URL_LINK.getI18Url('/member/mypage/main.do')">마이페이지 메인</a>
+
+
+                    </div>
+                </div>
+
+
+            </nav>
+        </div>
+
+
+        <div class="content" id="content">
+            <main id="main" class="main ">
+
+
+                <form id="formDetail" name="formDetail" method="post" target="_self">
+                    <input type="hidden" name="resvDetailReq" value="">
+                    <input type="hidden" name="domIntType" value="">
+                    <input type="hidden" name="rpnr" value="">
+                </form>
+
+                <form id="formExchange" name="formExchange" method="post" target="_self">
+                    <input type="hidden" name="pnrData" value="">
+                    <input type="hidden" name="processType" value="">
+                    <input type="hidden" name="tripType" value="">
+                    <input type="hidden" name="domIntType" value="">
+                    <input type="hidden" name="rpnr" value="">
+                </form>
+
+                <form id="formCheckin" name="formCheckin" method="post" target="_self">
+                    <input type="hidden" name="checkinReq" value="">
+                </form>
+
+                <form id="formAutoBoardingPass" name="formAutoBoardingPass" method="post" target="_self">
+                    <input type="hidden" name="resvDetailReq" value="">
+                    <input type="hidden" name="domIntType" value="">
+                    <input type="hidden" name="viewFlag" value="">
+                    <input type="hidden" name="passengerObj" value="">
+                </form>
+                <div class="page-title-wrap pc-only">
+                    <div class="page-title">예약현황</div>
+                </div>
+                <div class="pc-position mb-15">
+                    <div class="link-wrap--arrow pb0">
+                        <div class="link-wrap--arrow pb0">
+                            <a href="viewOnOffReservationList.do" class="link-wrap__text"><span>여행사/고객센터/공항구매 조회</span></a>
+                        </div>
+                    </div>
+                    <div class="right mo-30 pb0" id="sortRadio" style="">
+                        <div class="radio-flex radio-flex--default">
+                            <div class="radio">
+				<span class="radio"> <input type="radio" id="departureSort" name="inputRadio" class="radio__input"
+                                            onclick="getReservationList('1','Y')" value="D">
+					<label for="departureSort" class="radio__label"> <i aria-hidden="true" class="radio__ico"></i><span>출발일순</span></label>
+				</span>
+                            </div>
+                            <div class="radio">
+				<span class="radio"> <input type="radio" id="arrivalSort" name="inputRadio" class="radio__input"
+                                            checked="" onclick="getReservationList('1','Y')" value="R">
+					<label for="arrivalSort" class="radio__label"> <i aria-hidden="true" class="radio__ico"></i><span>예약일순</span></label>
+				</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container--small pc-15" style="" id="divResvList">
+                    <div class="pc-flex1 pc-flex--boarding1 boarding-list-pc" id="reservationList"
+                         style="height: fit-content;">
+                        <div class="boarding-wrap" style="border: 1px solid #ddd; border-radius: 6px;"><input
+                                type="hidden" id="resvListData" data-epnr="UDJ2GH"
+                                value="{&quot;bookedDday&quot;:-59,&quot;passengersInfo&quot;:[{&quot;passengerTypeCode&quot;:&quot;ADT&quot;,&quot;count&quot;:1}],&quot;journeys&quot;:[{&quot;segments&quot;:[{&quot;designator&quot;:{&quot;destination&quot;:&quot;CJU&quot;,&quot;departure&quot;:&quot;2022-10-04T18:55:00&quot;,&quot;arrival&quot;:&quot;2022-10-04T20:05:00&quot;,&quot;origin&quot;:&quot;GMP&quot;,&quot;originName&quot;:&quot;서울(김포)&quot;,&quot;destinationName&quot;:&quot;제주&quot;},&quot;identifier&quot;:{&quot;identifier&quot;:&quot;137&quot;,&quot;carrierCode&quot;:&quot;7C&quot;},&quot;changeReasonCode&quot;:&quot;NoChange&quot;,&quot;passengerSegment&quot;:{&quot;MCFBRFQ-&quot;:{&quot;seats&quot;:[{&quot;unitKey&quot;:&quot;N0MhMTM3ISAhNjM4MDA1MDY1MDAwMDAwMDAwIUdNUCFDSlUhMzJGIVk-&quot;,&quot;unitDesignator&quot;:&quot;32F&quot;}],&quot;liftStatus&quot;:&quot;Default&quot;}},&quot;fares&quot;:[{&quot;fareBasisCode&quot;:&quot;GV3&quot;}],&quot;legs&quot;:[{&quot;designator&quot;:{&quot;destination&quot;:&quot;CJU&quot;,&quot;departure&quot;:&quot;2022-10-04T18:55:00&quot;,&quot;arrival&quot;:&quot;2022-10-04T20:05:00&quot;,&quot;origin&quot;:&quot;GMP&quot;,&quot;originName&quot;:&quot;서울(김포)&quot;,&quot;destinationName&quot;:&quot;제주&quot;},&quot;legInfo&quot;:{&quot;departureTime&quot;:&quot;2022-10-04T18:55:00&quot;,&quot;changeOfDirection&quot;:false,&quot;departureTerminal&quot;:&quot;D&quot;,&quot;departureTimeVariant&quot;:540,&quot;arrivalTimeUtc&quot;:&quot;2022-10-04T11:05:00Z&quot;,&quot;adjustedCapacity&quot;:189,&quot;backMoveDays&quot;:0,&quot;equipmentType&quot;:&quot;738&quot;,&quot;capacity&quot;:189,&quot;arrivalTimeVariant&quot;:540,&quot;arrivalTime&quot;:&quot;2022-10-04T20:05:00&quot;,&quot;irop&quot;:false,&quot;departureTimeUtc&quot;:&quot;2022-10-04T09:55:00Z&quot;,&quot;codeShareIndicator&quot;:&quot;NonCodeShare&quot;,&quot;status&quot;:&quot;Normal&quot;}}]}]}],&quot;domIntType&quot;:&quot;D&quot;,&quot;passengerAlternateKeys&quot;:[{&quot;passengerAlternateKey&quot;:&quot;MTYwMjU0OTM-&quot;,&quot;passengerTypeCode&quot;:&quot;ADT&quot;}],&quot;untk&quot;:false,&quot;sortFlightDate&quot;:&quot;2022-10-04T18:55:00&quot;,&quot;breakdown&quot;:{&quot;balanceDue&quot;:0},&quot;recordLocator&quot;:&quot;UDJ2GH&quot;,&quot;numericRecordLocator&quot;:&quot;060719221315&quot;,&quot;bookedDateCurrTime&quot;:&quot;2022-08-06T22:41:14.01Z&quot;,&quot;queues&quot;:[],&quot;bookingKey&quot;:&quot;MTIwOTg4NDkhVURKMkdIIWZhbHNl&quot;,&quot;pointYn&quot;:&quot;N&quot;,&quot;info&quot;:{&quot;paidStatus&quot;:&quot;PaidInFull&quot;,&quot;status&quot;:&quot;Confirmed&quot;,&quot;bookedDate&quot;:&quot;2022-08-06T13:41:14.01Z&quot;}}">
+                            <div class="boarding-box">
+                                <div class="boarding">
+                                    <div class="boarding__header">
+                                        <div class="boarding__header--item1"><span>예약번호</span> : <span>UDJ2GH</span>
+                                        </div>
+                                        <div class="boarding__header--item2">
+                                            <button type="button" aria-label="<span>내보내기" class="button-share2"
+                                                    data-element="sns_share" data-url=""
+                                                    onclick="shareReservation(this, &quot;UDJ2GH&quot;, &quot;20221004185500&quot;);"></button>
+                                        </div>
+                                    </div>
+                                    <div class="boarding__info-wrap">
+                                        <div class="boarding__info--top">
+                                            <div class="boarding__info--top-item1"><span>7C137</span></div>
+                                            <div class="boarding__info--top-item2">
+                                                <div class="boarding__info-date">2022.10.04 (화) 18:55</div>
+                                                <div class="label label-blue">D-59</div>
+                                            </div>
+                                        </div>
+                                        <a href="javascript:void(0)"
+                                           onclick="goReservationDetail(&quot;UDJ2GH&quot;, &quot;20221004185500&quot;);">
+                                            <div class="boarding__info">
+                                                <div class="boarding__info-before">
+                                                    <div class="boarding__info-title">서울</div>
+                                                    <div class="boarding__info-text">김포</div>
+                                                </div>
+                                                <div aria-label="one-way" class="icon-mark one-way"></div>
+                                                <div class="boarding__info-after">
+                                                    <div class="boarding__info-title">제주</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="boarding__info--bot line--solid">
+                                            <div class="boarding__info--bot-wrap">
+                                                <div class="boarding__info--bot-item1 person">
+                                                    <div class="person__item"><i ar="" ia-label="성인"
+                                                                                 class="icon adult"></i><span>1</span><span
+                                                            class="hidden">명</span></div>
+                                                </div>
+                                                <div class="boarding__info--bot-item2"><span class="text c-gray --bold">예약완료</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="button-wrap3-row">
+                                            <div class="button-wrap">
+                                                <button type="button" class="button" id="modifyBtn_0"
+                                                        data-record-locator="UDJ2GH" data-dep-date="2022-10-04"
+                                                        data-trip-type="OW" data-dom-int-type="D">예약변경
+                                                </button>
+                                                <button type="button" class="button" id="cancelBtn_0"
+                                                        data-record-locator="UDJ2GH" data-dep-date="2022-10-04"
+                                                        data-trip-type="OW" data-dom-int-type="D">예약취소
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="boarding_end"></div>
+                            </div>
+                            <div class="button-wrap2" id="checkinBtnSection_00"></div>
+                        </div>
+                        <div class="boarding-wrap" style="border: 1px solid #ddd; border-radius: 6px;"><input
+                                type="hidden" id="resvListData" data-epnr="R3Q5XI"
+                                value="{&quot;bookedDday&quot;:0,&quot;passengersInfo&quot;:[{&quot;passengerTypeCode&quot;:&quot;ADT&quot;,&quot;count&quot;:1}],&quot;journeys&quot;:[{&quot;segments&quot;:[{&quot;designator&quot;:{&quot;departure&quot;:&quot;1800-01-01T00:00:00&quot;}}]}],&quot;passengerAlternateKeys&quot;:[{&quot;passengerAlternateKey&quot;:&quot;MTYwMjQ0MTY-&quot;,&quot;passengerTypeCode&quot;:&quot;ADT&quot;}],&quot;untk&quot;:false,&quot;sortFlightDate&quot;:&quot;1800-01-01T00:00:00&quot;,&quot;breakdown&quot;:{&quot;balanceDue&quot;:0},&quot;recordLocator&quot;:&quot;R3Q5XI&quot;,&quot;numericRecordLocator&quot;:&quot;352433281217&quot;,&quot;queues&quot;:[],&quot;bookingKey&quot;:&quot;MTIwOTgyMzYhUjNRNVhJIWZhbHNl&quot;,&quot;pointYn&quot;:&quot;N&quot;,&quot;info&quot;:{&quot;paidStatus&quot;:&quot;PaidInFull&quot;,&quot;status&quot;:&quot;Closed&quot;,&quot;bookedDate&quot;:&quot;2022-08-06T13:06:45.177Z&quot;}}">
+                            <div class="boarding-box">
+                                <div class="boarding">
+                                    <div class="boarding__header">
+                                        <div class="boarding__header--item1"><span>예약번호</span> : <span>R3Q5XI</span>
+                                        </div>
+                                    </div>
+                                    <div class="boarding__info-wrap">
+                                        <div class="boarding__info--top">
+                                            <div class="boarding__info--top-item1"><span>R3Q5XI</span></div>
+                                            <div class="boarding__info--top-item2"></div>
+                                        </div>
+                                        <a href="javascript:void(0)"
+                                           onclick="goReservationDetail(&quot;R3Q5XI&quot;, &quot;18000101000000&quot;);">
+                                            <div class="boarding__info"><span class="cancel_text">취소된 예약입니다.</span>
+                                            </div>
+                                        </a>
+                                        <div class="boarding__info--bot line--solid">
+                                            <div class="boarding__info--bot-wrap">
+                                                <div class="boarding__info--bot-item1 person">
+                                                    <div class="person__item"><i ar="" ia-label="성인"
+                                                                                 class="icon adult"></i><span>1</span><span
+                                                            class="hidden">명</span></div>
+                                                </div>
+                                                <div class="boarding__info--bot-item2"><span class="text c-gray --bold">예약취소</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="boarding_end"></div>
+                            </div>
+                            <div class="button-wrap2" id="checkinBtnSection_10"></div>
+                        </div>
+                    </div>
+                </div>
+                <div data-show="true" class="more-wrap -page-none">
+                    <button type="button" class="more__button" onclick="moreResvList();" id="resvListBtnMore"
+                            style="display: none;"><span class="more__button-text"><span>더보기</span></span></button>
+                </div>
+
+                <div class="finish-item-wrap" style="display: none;" id="divResvNoList">
+                    <div class="finish-item nodata">
+                        <div class="finish-item__img">
+                            <img src="/resources/images/icon/icon-nodata-03.png" alt="">
+                        </div>
+                        <p class="finish-item__title">예매하신 여정이 없습니다.</p>
+                        <div class="container--large pc-40">
+                            <div class="button-wrap button-wrap--center">
+                                <button type="button" class="button button--secondary button--active"
+                                        onclick="location.href='../booking/Availability.do'">
+                                    <span class="button__text">항공권 조회</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" id="btnModalOpen" data-element="modal_anchor" style="display: none;"></button>
+
+                <div id="alertModalLayer" class="modal modal--simple">
+                    <div class="modal-content"><p class="alert-text"></p></div>
+                    <div class="modal__button-area button-wrap">
+                        <button type="button" class="button button--secondary button--active" rel="modal:close"
+                                onclick="javascript:closeCurrentModal(this);"><span class="button__text">확인</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="untkForm" class="modal modal-full modal-scroll" data-width="910">
+                    <div class="modal-header">
+                        <div class="modal-header__title"><span>항공편 스케줄 변경 안내</span></div>
+                    </div>
+                    <div class="modal-content"></div>
+                </div>
+            </main>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- footer -->
+<div th:replace="/user/fragment/footer :: footer"></div>
+<!-- / footer 끝 -->
+
+<div id="ifmWrap"
+     style="height:100%; display:none; overflow:auto; text-align:center; -webkit-overflow-scrolling:touch;">
+    <iframe src="" width="100%" height="100%" name="popupChkApp"></iframe>
+</div>
+
+<!-- 공통 스크립트 선언 -->
+<script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
+<script type="text/javascript" src="/user/lib/js/common.js"></script>
+<script type="text/javascript" src="/user/lib/js/plugin.js"></script>
+<script type="text/javascript" src="/user/lib/js/userJs/password_edit.js"></script>
+</body>
+</html>

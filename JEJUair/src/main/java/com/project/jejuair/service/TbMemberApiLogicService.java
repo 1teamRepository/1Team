@@ -145,4 +145,20 @@ public class TbMemberApiLogicService extends BaseService<TbMemberRequest, TbMemb
                 .map(user -> response(user)).map(Header::OK)
                 .orElseGet(() -> Header.ERROR(("데이터 없음")));
     }
+
+
+    public Header<TbMemberResponse> pwUpdate(String memUserid, String memUserpw) {
+
+        Optional<TbMember> tbMember = tbMemberRepository.findByMemUserid(memUserid);
+        return tbMember.map(
+                        newTbMember -> {
+                            newTbMember.setMemUserpw(memUserpw);
+                            return newTbMember;
+                        }).map(newTbMember -> baseRepository.save(newTbMember))
+                .map(newTbMember -> response(newTbMember))
+                .map(Header::OK).orElseGet(() -> Header.ERROR("데이터 없음"));
+    }
+
+
+
 }
