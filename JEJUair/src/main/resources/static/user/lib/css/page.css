@@ -4462,7 +4462,7 @@ html {overflow-x: hidden;}
 
 .input--search.input--search-big .input__text {padding:0 55px 0 18px; border: solid 2px #020202;background-color: #fff;font-size: 16px;caret-color: #ff5000;}
 .boarding-slide { overflow: hidden;  }
-.boarding-wrap { width: 100%; margin-bottom: 16px; position: relative; height:100%; flex-shrink: 0;}
+.boarding-wrap { width: 100%; margin-bottom: 30px; position: relative; height:100%; flex-shrink: 0;}
 .boarding-wrap.swiper-slide {margin-bottom:16px;}
 .boarding-wrap:last-child {margin-bottom: 0;}
 .boarding-box { width: 100%;}

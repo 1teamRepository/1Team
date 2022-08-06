@@ -57,7 +57,6 @@ public class TbMemberApiController extends CrudController <TbMemberRequest, TbMe
     @PostMapping("/userIdCheck")
     @ResponseBody
     public int userIdCheck(@RequestParam("memUserid") String memUserid){
-        System.out.println("아무거나");
         int cnt = tbMemberApiLogicService.IdCheck(memUserid);
         System.out.println(cnt);
         return cnt;

@@ -54,7 +54,7 @@
                                     <!-- <label for="userId" class="input__label">아이디 <span title="required" class="input__label-asterisk">*</span></label> -->
                                     <!--20210427 label 추가-->
                                     <input type="text" data-element="input" id="memUserid" name="memUserid"
-                                           class="input__text" tabindex="1" placeholder="아이디">
+                                           class="input__text input__Userid" tabindex="1" placeholder="아이디">
                                     <!--placeholder 삭제-->
                                     <button type="button" data-element="remove" class="input__remove-button"><span
                                             class="hidden">삭제</span></button>
@@ -75,7 +75,7 @@
                                     <!-- <label for="userPwd" class="input__label">비밀번호 <span title="required" class="input__label-asterisk">*</span></label> -->
                                     <!--20210427 label 추가-->
                                     <input type="password" data-element="input" id="memUserpw" name="memUserpw"
-                                           class="input__text" tabindex="2" placeholder="비밀번호">
+                                           class="input__text input__password" tabindex="2" placeholder="비밀번호">
                                     <!--placeholder 삭제-->
                                     <button type="button" data-element="remove" class="input__remove-button"><span
                                             class="hidden">삭제</span></button>
@@ -107,48 +107,17 @@
                                     <span class="button__text">로그인</span></button>
                             </div>
 
-                            <!--한국-->
-
-                            <!--                            <div class="button-wrap advertise">-->
-                            <!--                                <span class="advertisement">광고</span>-->
-                            <!--                                <button type="button" class="button button&#45;&#45;option " data-action="loginAd"><span-->
-                            <!--                                        class="button__text button__icon button__icon&#45;&#45;phone">휴대폰 번호로 로그인</span>-->
-                            <!--                                </button>&lt;!&ndash;20211027 오픈 후 추가&ndash;&gt;-->
-                            <!--                            </div>-->
-                            <!--                            <div class="button-wrap">-->
-                            <!--                                <button type="button" class="button button&#45;&#45;option" data-action="snsNaverLogin"><span-->
-                            <!--                                        class="button__text button__icon">네이버 로그인</span></button>-->
-                            <!--                            </div>-->
-
                             <div class="button-wrap">
                                 <button type="button" class="button button--option" data-action="snsKakaoLogin"><span
                                         class="button__text button__icon button__icon--kakao">카카오 로그인</span></button>
                             </div>
-
-                            <!--                            <div class="button-wrap">-->
-                            <!--                                <button type="button" class="button button&#45;&#45;option apple-black"-->
-                            <!--                                        data-action="snsAppleLogin"><span-->
-                            <!--                                        class="button__text button__icon button__icon&#45;&#45;apple"><em class="en">애플</em> <em-->
-                            <!--                                        class="txt">로그인</em></span></button>-->
-                            <!--                            </div>-->
-
-                            <!--한국외 기타-->
 
 
                             <div class="button-wrap">
                                 <button type="button" class="button button--option" data-action="nonUserLogin"><span
                                         class="button__text">비회원&nbsp;로그인</span></button>
                             </div>
-                            <!--20210519 class명 변경-->
-                            <!-- D : MO-004-030 | 다른방법 로그인 백드롭 -->
-                            <!--
 
-                                <div class="link-wrap sub-box">
-
-                                    <button type="button" class="link-wrap__underline" data-action="nonUserLogin"><span>다른 방법으로 로그인</span></button>
-                                </div>
-
-                            -->
                         </div>
                         <div class="guide-info guide-info--login">
 
@@ -228,6 +197,25 @@
             }
         }
     });
+
+    $('.input__Userid').on('input', checkInput);
+    $('.input__password').on('input', checkInput);
+
+    function checkInput() {
+        let inputMemUserId = $('.input__Userid').val();
+        let inputMemUserPassword = $('.input__password').val();
+        let button = $('.button--primary');
+
+        if (inputMemUserId === '' || inputMemUserPassword === '') {
+            // 기본 로그인 버튼 색상
+            button.removeClass('button--active');
+        } else {
+            // ID 비밀번호 입력 시에 로그인 버튼 배경색 변경
+            button.addClass('button--active');
+        }
+    }
+
+
 </script>
 
 <script>

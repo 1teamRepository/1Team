@@ -1,0 +1,86 @@
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+
+<!--head-->
+<div th:replace="/user/fragment/head :: head"></div>
+<!--head 끝-->
+
+
+<body id="subLayoutBody">
+
+<!--appAlert-->
+<div th:replace="/user/fragment/appAlert :: appAlert"></div>
+<!--appAlert 끝-->
+
+
+<!--header-->
+<div th:replace="/user/fragment/header :: header"></div>
+<!--header 끝-->
+
+<div id="body">
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD2BQQ4" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <div class="wrap wrap GD wrap--button-fixed half-button">
+
+
+
+
+    <div class="content" id="content">
+      <main id="main" class="main ">
+
+        <div class="finish-item-wrap">
+          <div class="finish-item complete">
+            <p class="finish-item__title">예약취소가 완료되었습니다.</p>
+            <p class="finish-item__text">제주항공을 이용해 주셔서 감사합니다.</p>
+          </div>
+        </div>
+
+
+        <div class="section-wrap">
+          <div class="notice-box">
+            <p class="notice-box__text">선택하신 예약이 모두 취소되었으며, 정상적으로 환불처리가 요청되었습니다.</p>
+            <p class="notice-box__text">신용카드로 결제한 경우 환불일자는 신용카드사 규정에 따라 차이가 있습니다. 정확한 환불일자는 일정 기간(영업일 기준 최소 3일)이 지난 후 신용카드사로 문의해 주세요.</p>
+            <p class="notice-box__text">계좌이체로 결제한 경우 환불금은 요청하신 날로부터 해당 영업일 기준 다음날에 결제하신 은행계좌로 자동 입금됩니다.</p>
+            <p class="notice-box__text">포인트로 결제한 경우 예약 취소 후 즉시 환불된 포인트가 다시 적립됩니다.</p>
+            <p class="notice-box__text">기타 문의사항은 고객센터(1599-1500)로 연락해 주세요.</p>
+          </div>
+        </div>
+
+        <div class="fixed-wrap section-wrap ">
+          <div class="button-wrap button-wrap--stick pc-center">
+            <button type="button" class="button button--primary button--black" data-action="menu" data-menu-name="main">
+              <span class="button__text">메인</span>
+            </button>
+            <button id="btnGoList" type="button" class="button button--primary button--active">
+              <span class="button__text">나의 예약현황</span>
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- footer -->
+<div th:replace="/user/fragment/footer :: footer"></div>
+<!-- / footer 끝 -->
+
+<div id="ifmWrap"
+     style="height:100%; display:none; overflow:auto; text-align:center; -webkit-overflow-scrolling:touch;">
+  <iframe src="" width="100%" height="100%" name="popupChkApp"></iframe>
+</div>
+
+<!-- 공통 스크립트 선언 -->
+<script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
+<script type="text/javascript" src="/user/lib/js/common.js"></script>
+<script type="text/javascript" src="/user/lib/js/plugin.js"></script>
+<script type="text/javascript" src="/user/lib/js/userJs/password_edit.js"></script>
+</body>
+
+</html>

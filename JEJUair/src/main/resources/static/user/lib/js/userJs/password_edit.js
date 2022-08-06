@@ -36,23 +36,35 @@ function checkInput() {
         });
     });
 
-$(function() {
 
-    let view = new Vue({
-        el: '#view',
-        data: {
-            view: {}
+
+$(function(){
+    $(document).on('click', '#btnChangePw', function(){
+
+        if(!$('#memUserpw').val()){
+            alert('현재 비밀번호를 입력하세요');
+            $('#memUserpw').focus();
+            return false;
         }
+
+        if(!$('#newmemUserpw').val()) {
+            alert('새로운 비밀번호를 입력하세요');
+            $('#newmemUserpw').focus();
+            return false;
+        }
+
+        if(!$('#againmemUserpw').val()){
+            alert('비밀번호 재확인을 입력하세요');
+            $('#againmemUserpw').focus();
+            return false;
+        }
+
+        if(!$('#againmemUserpw').val() == $('#newmemUserpw').val){
+            alert('비밀번호가 일치하지 않습니다. 다시 입력해주세요');
+            $('#againmemUserpw').focus();
+            return false;
+        }
+
+
     });
-    let category = document.getElementById("category").getAttribute("value");
-    let str = $(location).attr('href').split('/').reverse();
-
-    readView(str[0]);
-
-    function readView(index) {
-
-        $.get("/api/" + category + "/" + index, function (response) {
-            view.view = response.data;
-        });
-    }
 });
