@@ -17,6 +17,21 @@
 
 
 <div id="body">
+    <script >
+        console.log("================jsonparse=============")
+
+        const passJson = JSON.parse(localStorage.getItem("passJson"))
+        console.log(passJson);
+        const tripJson = JSON.parse(localStorage.getItem("tripJson"))
+        console.log(tripJson);
+        const schIdx = Number(tripJson["schIdx"]);
+
+
+        console.log("================jsonparse=============")
+
+        let bizSeats = 0;
+        let ecoSeats = 0;
+    </script>
 
     <!-- Google Tag Manager (noscript) -->
     <noscript>
@@ -230,8 +245,10 @@
                                 </div>
 
                                 <button id="btnSummary" type="button" class="summary" data-element="toggle__anchor">
-                                    <span id="spanCost" class="cost"></span>
-                                    <span id="spanPoint" class="point" style="display: none">+</span>
+                                    <span id="spanCost" class="cost">
+                                        <span class="price_txt flight__cost"></span>
+                                        <span class="unit">원</span>
+                                    </span>
                                 </button>
                             </div>
 
@@ -242,8 +259,7 @@
 
                             <button type="button" class="button button--primary pc-only button--active pc-only"
                                     id="btnNextPC">
-                                    <span id="spanNextPC" class="button__text"><a
-                                            href="../seat_select/seat_select.html">다음</a></span>
+                                    <span id="spanNextPC" class="button__text"><a>다음</a></span>
                             </button>
                         </div>
 
@@ -253,17 +269,26 @@
                             </div>
                             <h4 class="text__default text--bold">항공 운송료</h4><!-- 항공 운송료 -->
                             <div id="airFreightCharges" class="itemize__item">
-                                <div class="flex-text" id="divFare">
-                                    <div class="flex-text__title">항공운임</div><!-- 항공운임 -->
-                                    <div class="flex-text__additional"></div>
+                                <div id="divFare" class="flex-text">
+                                    <div class="flex-text__title">항공운임</div>
+                                    <div class="flex-text__additional">
+                                        <span class="price_txt flight__cost"></span>
+                                        <span class="unit">원</span>
+                                    </div>
                                 </div>
-                                <div class="flex-text" id="divTax">
-                                    <div class="flex-text__title">공항시설 사용료</div><!-- 공항시설 사용료 -->
-                                    <div class="flex-text__additional"></div>
+                                <div id="divTax" class="flex-text">
+                                    <div class="flex-text__title">공항시설 사용료</div>
+                                    <div class="flex-text__additional">
+                                        <span class="price_txt flight__cost"></span>
+                                        <span class="unit">원</span>
+                                    </div>
                                 </div>
-                                <div class="flex-text" id="divFuel">
-                                    <div class="flex-text__title">유류할증료</div><!-- 유류할증료 -->
-                                    <div class="flex-text__additional"></div>
+                                <div id="divFuel" class="flex-text">
+                                    <div class="flex-text__title">유류할증료</div>
+                                    <div class="flex-text__additional">
+                                        <span class="price_txt flight__cost"></span>
+                                        <span class="unit">원</span>
+                                    </div>
                                 </div>
                             </div>
 
@@ -272,7 +297,10 @@
                                 <div class="itemize__item">
                                     <div class="flex-text" id="divSeat">
                                         <div class="flex-text__title">좌석 선택</div><!-- 좌석 선택 -->
-                                        <div class="flex-text__additional" id="divSeatFee"></div>
+                                        <div class="flex-text__additional" id="divSeatFee">
+                                            <span class="price_txt flight__cost"></span>
+                                            <span class="unit">원</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -451,45 +479,108 @@
 <script type="text/javascript" src="/user/lib/js/plugin.js"></script>
 
 <script>
-    let seatValue = "eco";
+    // 승객 수
+    let passengerNum = Number(tripJson["schPassengerNum"]);
+    const divFare = Number(tripJson["divFare"]);
+    const divTax = Number(tripJson["divTax"]);
+    const divFuel = Number(tripJson["divFuel"]);
+    let seatValue = tripJson["seatValue"];
     let bizO = "";
     let bizX = document.getElementById("divBusinessLite");
+
+    let passengerNames = []
+    for (let i = 0; i < passengerNum; i++) {
+        passengerNames[i] = passJson["passLastName"+i]+passJson["passFirstName"+i]
+        console.log(passengerNames[i])
+    }
+
 
     if (seatValue == "biz") {
         bizX.style.display = "block";
         bizO = "disabled";
     }
 
-    const passengerNum = 4;
-    let selectNum = 0;
     const ColArr = ['A', 'B', 'C', 'D', 'E', 'F'];
 
-    let bizSeats = 12;
     let bizSeatMapHTML = "";
     let bizSeatLineHTML = "";
     let bizEmptyHTML = "";
     let bizSeatLineNum = 1;
 
-    let ecoSeats = 135;
     let ecoSeatMapHTML = "";
     let ecoSeatLineHTML = "";
     let ecoEmptyHTML = "";
     let ecoSeatLineNum = 1;
 
-    const seatPos = $('.seat-pos')[0];
-
-    const span = document.getElementById('spanCost');
-    const divSeatFee = document.getElementById('divSeatFee');
     let ecoPrice = 5000;
-    let bizPrice = 30000;
-    let divFare = 55000;
-    let divTax = 5000;
-    let divFuel = 20000;
+    let bizPrice = 10000;
 
-    $('#divFare').find('.flex-text__additional')[0].innerHTML = divFare + ' 원';
-    $('#divTax').find('.flex-text__additional')[0].innerHTML = divTax + ' 원';
-    $('#divFuel').find('.flex-text__additional')[0].innerHTML = divFuel + ' 원';
-    span.innerHTML = '<span className="price_txt">' + Number(divFare + divTax + divFuel) + '</span><span className="unit"> 원</span>';
+    $('#divFare').find('.flight__cost')[0].innerHTML = divFare;
+    $('#divTax').find('.flight__cost')[0].innerHTML = divTax;
+    $('#divFuel').find('.flight__cost')[0].innerHTML = divFuel;
+    $('#spanCost').find('.flight__cost')[0].innerHTML =  Number(divFare) + Number(divTax) + Number(divFuel);
+
+
+    $.get("/api/flight_schedule/"+schIdx, function(response){
+        let schRead = response.data;
+        console.log(schRead);
+        console.log("tbAircraftAcftIdx : " + schRead["tbAircraftAcftIdx"]);
+        console.log("acftBizLiteSeats :" + schRead["acftBizLiteSeats"]);
+        console.log("acftBizLiteSeats : "+schRead["acftNomalSeats"]);
+        bizSeats = Number(schRead["acftBizLiteSeats"]);
+        ecoSeats = Number(schRead["acftNomalSeats"]);
+
+
+        for (let i = 0; i < bizSeats + 2*(bizSeatLineNum-1); i++) {
+            const designator = i % 6 == 0 ? "BIZ" + bizSeatLineNum + ColArr[i % 6] : "BIZ" + (bizSeatLineNum - 1) + ColArr[i % 6];
+            bizSeatMapHTML = '<button type="button" class="select-seat__seat seat-challenger" data-seat="" designator="' + designator + '" passenger-num=""><span class="selected"></span></button>';
+            bizEmptyHTML = '<button type="button" class="select-seat__seat" data-seat="" designator="' + designator + '"></button>'
+            bizSeatLineHTML = '<div class="number-wrap"><span class="number"><span data-seat="row">' + bizSeatLineNum + '</span></span></div>'
+
+            let dataColumn = $('.bizseat')[i % 6];
+            $(dataColumn).append(bizSeatMapHTML);
+            if (i % 6 == 0) {
+                $('.column--numbers--premium').append(bizSeatLineHTML);
+                bizSeatLineNum++;
+            }
+        }
+
+        for (let i = 0; i < ecoSeats + 3; i++) {
+            const designator = i % 6 == 0 ? ecoSeatLineNum + ColArr[i % 6] : (ecoSeatLineNum - 1) + ColArr[i % 6];
+            ecoSeatMapHTML = '<button type="button" ' + bizO + ' class="select-seat__seat seat-master" data-seat="" designator="' + designator + '" passenger-num=""><span class="selected"></span></button>';
+            ecoEmptyHTML = '<div data-seat="name" designator="' + designator + '" style="height: 38px; width: 36px; margin-top: 16px"></div>'
+            ecoSeatLineHTML = '<div class="number-wrap"><span class="number"><span data-seat="row">' + ecoSeatLineNum + '</span></span></div>'
+            //클래스 column을 선택자로, attr로 data-column을 지정
+
+            if (i >= 3 && i < 6) {
+                let dataColumn = $('.economyseat1')[i % 6];
+                $(dataColumn).append(ecoEmptyHTML);
+            } else if (i < 78) {
+                let dataColumn = $('.economyseat1')[i % 6];
+                $(dataColumn).append(ecoSeatMapHTML);
+                if (i % 6 == 0) {
+                    $('.econum1').append(ecoSeatLineHTML);
+                    ecoSeatLineNum++;
+                }
+            } else if (i < 84) {
+                let dataColumn = $('.economyseat2')[i % 6];
+                $(dataColumn).append(ecoSeatMapHTML);
+                if (i % 6 == 0) {
+                    $('.econum2').append(ecoSeatLineHTML);
+                    ecoSeatLineNum++;
+                }
+            } else {
+                let dataColumn = $('.economyseat3')[i % 6];
+                $(dataColumn).append(ecoSeatMapHTML);
+                if (i % 6 == 0) {
+                    $('.econum3').append(ecoSeatLineHTML);
+                    ecoSeatLineNum++;
+                }
+            }
+        }
+
+    });
+
 
     $(document).on('click', '.select-seat__seat', function () {
         selectSeat(this);
@@ -534,11 +625,9 @@
             }
         }
         let totalSeatPrice = ecoSelected * ecoPrice + bizSelected * bizPrice;
-        let spanCost = divFare + divTax + divFuel + totalSeatPrice;
 
-
-        span.innerHTML = '<span className="price_txt">' + spanCost + '</span><span className="unit"> 원</span>';
-        divSeatFee.innerHTML = '<span className="price_txt">' + totalSeatPrice + '</span><span className="unit"> 원</span>';
+        $('#spanCost').find('.flight__cost')[0].innerHTML =  Number(divFare) + Number(divTax) + Number(divFuel) + totalSeatPrice;
+        $('#divSeat').find('.flight__cost')[0].innerHTML = totalSeatPrice;
 
         if (ecoSelected + bizSelected != 0) {
             document.getElementById('extraServiceFee').style.display = "block";
@@ -547,59 +636,10 @@
         }
     }
 
-    for (let i = 0; i < bizSeats + 6; i++) {
-        const designator = i % 6 == 0 ? "BIZ" + bizSeatLineNum + ColArr[i % 6] : "BIZ" + (bizSeatLineNum - 1) + ColArr[i % 6];
-        bizSeatMapHTML = '<button type="button" class="select-seat__seat seat-challenger" data-seat="" designator="' + designator + '" passenger-num=""><span class="selected"></span></button>';
-        bizEmptyHTML = '<button type="button" class="select-seat__seat" data-seat="" designator="' + designator + '"></button>'
-        bizSeatLineHTML = '<div class="number-wrap"><span class="number"><span data-seat="row">' + bizSeatLineNum + '</span></span></div>'
-
-        let dataColumn = $('.bizseat')[i % 6];
-        $(dataColumn).append(bizSeatMapHTML);
-        if (i % 6 == 0) {
-            $('.column--numbers--premium').append(bizSeatLineHTML);
-            bizSeatLineNum++;
-        }
-    }
-
-    for (let i = 0; i < ecoSeats + 3; i++) {
-        const designator = i % 6 == 0 ? ecoSeatLineNum + ColArr[i % 6] : (ecoSeatLineNum - 1) + ColArr[i % 6];
-        ecoSeatMapHTML = '<button type="button" ' + bizO + ' class="select-seat__seat seat-master" data-seat="" designator="' + designator + '" passenger-num=""><span class="selected"></span></button>';
-        ecoEmptyHTML = '<div data-seat="name" designator="' + designator + '" style="height: 38px; width: 36px; margin-top: 16px"></div>'
-        ecoSeatLineHTML = '<div class="number-wrap"><span class="number"><span data-seat="row">' + ecoSeatLineNum + '</span></span></div>'
-        //클래스 column을 선택자로, attr로 data-column을 지정
-
-        if (i >= 3 && i < 6) {
-            let dataColumn = $('.economyseat1')[i % 6];
-            $(dataColumn).append(ecoEmptyHTML);
-        } else if (i < 78) {
-            let dataColumn = $('.economyseat1')[i % 6];
-            $(dataColumn).append(ecoSeatMapHTML);
-            if (i % 6 == 0) {
-                $('.econum1').append(ecoSeatLineHTML);
-                ecoSeatLineNum++;
-            }
-        } else if (i < 84) {
-            let dataColumn = $('.economyseat2')[i % 6];
-            $(dataColumn).append(ecoSeatMapHTML);
-            if (i % 6 == 0) {
-                $('.econum2').append(ecoSeatLineHTML);
-                ecoSeatLineNum++;
-            }
-        } else {
-            let dataColumn = $('.economyseat3')[i % 6];
-            $(dataColumn).append(ecoSeatMapHTML);
-            if (i % 6 == 0) {
-                $('.econum3').append(ecoSeatLineHTML);
-                ecoSeatLineNum++;
-            }
-        }
-    }
-
     for (let i = 0; i < passengerNum; i++) {
-        let passengerHTML = '<div class="tab__button" data-element="tab__list" role="presentation"><button class="tab__anchor" type="button" data-element="tab__anchor" onclick="btnMember_Click(this);" data-index="' + i + '" id="passenger"' + i + 'role="tab" tabindex="" select-seat="" aria-selected="true" aria-expanded="true"><span class="passenger"><span class="num">' + (i + 1) + '</span><strong class="name">임/성호</strong><span name="passengerTypeCode" style="display: none">ADT</span> <span name="passengerKey" style="display: none" value="' + i + '"></span><span name="unitKey" style="display: none"></span><span name="seat" class="seat" ></span><span name="variant" style="display: none"></span></span></button></div>'
+        let passengerHTML = '<div class="tab__button" data-element="tab__list" role="presentation"><button class="tab__anchor" type="button" data-element="tab__anchor" onclick="btnMember_Click(this);" data-index="' + i + '" id="passenger"' + i + 'role="tab" tabindex="" select-seat="" aria-selected="true" aria-expanded="true"><span class="passenger"><span class="num">' + (i + 1) + '</span><strong class="name"> ' + passengerNames[i] + '  </strong><span name="passengerTypeCode" style="display: none">ADT</span> <span name="passengerKey" style="display: none" value="' + i + '"></span><span name="unitKey" style="display: none"></span><span name="seat" class="seat selected_seat" ></span><span name="variant" style="display: none"></span></span></button></div>'
         $('#divMember').append(passengerHTML);
     }
-
 
     window.onscroll = function () {
         scrollFunction()
@@ -612,6 +652,22 @@
             document.getElementsByClassName('seat-nav')[0].classList.remove("on");
         }
     }
+
+
+    $(document).on('click', '#btnNextPC', function () {
+
+        for (let i = 0; i < Number(tripJson["schPassengerNum"]); i++) {
+            console.log(document.querySelectorAll(".selected_seat")[i]);
+            passJson["pasSeat"+i] = document.querySelectorAll(".selected_seat")[i].innerHTML;
+            console.log(document.querySelectorAll(".selected_seat")[i].innerHTML);
+        }
+
+        tripJson["divSeat"] = Number($('#divSeat').find('.flight__cost')[0].innerHTML);
+        tripJson["spanCost"] = tripJson["divSeat"]+divFare + divTax + divFuel;
+        localStorage.setItem("passJson", JSON.stringify(passJson));
+        localStorage.setItem("tripJson", JSON.stringify(tripJson));
+        location.href="/user/oneway/baggage_select";
+    })
 
 
 </script>

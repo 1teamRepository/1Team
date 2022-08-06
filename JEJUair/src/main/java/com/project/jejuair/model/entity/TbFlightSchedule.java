@@ -46,6 +46,9 @@ public class TbFlightSchedule {
     private SchFood schFood;
     private LocalDateTime schRegDate;
 
+    @ManyToOne
+    private TbAircraft tbAircraft;
+
     @OneToMany
     private List<TbReservation> tbReservationList;
 

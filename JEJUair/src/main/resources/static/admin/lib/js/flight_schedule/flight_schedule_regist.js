@@ -8,6 +8,12 @@ $(function(){
             return false;
         }
 
+        if(!$('#acftIdx').val()){
+            alert('항공기번호를 선택해주세요');
+            $('#acftIdx').focus();
+            return false;
+        }
+
         if(!$('#departure').val()){
             alert('출발지를 선택해주세요');
             $('#departure').focus();
@@ -79,6 +85,9 @@ $(function(){
         let aircraftName = aircraft.options[aircraft.selectedIndex].value;
         console.log(aircraftName)
 
+        let aircraftIdx = document.getElementById("acftIdx");
+        let acftIdx = aircraftIdx.options[aircraftIdx.selectedIndex].value;
+
         let departure = document.getElementById("departure");
         let departureName = departure.options[departure.selectedIndex].value;
 
@@ -92,6 +101,7 @@ $(function(){
             data:{
                 schDomesticOverseas: $('#schDomesticOverseas').val(),
                 schAircraftName: aircraftName,
+                tbAircraftAcftIdx: acftIdx,
                 schDeparture: departureName,
                 schArrival: arrivalName,
                 schDepartureDate: $('#schDepartureDate').val(),

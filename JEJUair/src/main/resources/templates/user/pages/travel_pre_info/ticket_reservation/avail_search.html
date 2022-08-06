@@ -592,6 +592,7 @@
                                 :key="i">
                                 <div class="list-summary">
                                     <div class="head">
+                                        <input type="hidden" class="schIdx" name="schIdx" :value=`${dto.schIdx}`>
                                         <span class="tk-num">{{dto.schAircraftName}}</span>
                                         <div class="chips"><span class="chip lowest">최저가</span></div>
                                         <ul class="util-menu">
@@ -618,7 +619,7 @@
                                     </div>
                                 </div>
                                 <div class="fare-pare-tab">
-                                    <a class="tab-btn grade-default">
+                                    <a class="tab-btn grade-default" value="eco">
                                         <div class="tab-btn-in">
                                             <span class="grade fly">FLY</span>
                                             <span class="price" >
@@ -630,7 +631,7 @@
                                                 9석</span>
                                         </div>
                                     </a>
-                                    <a class="tab-btn new-class">
+                                    <a class="tab-btn new-class" value="biz">
                                         <div class="tab-btn-in">
                                             <span class="grade new-class">BIZ LITE</span>
                                             <span class="price">
@@ -702,8 +703,10 @@
                                 </div>
 
                                 <button id="btnSummary" type="button" class="summary" data-element="toggle__anchor">
-                                    <span id="spanCost" class="cost"></span>
-                                    <span id="spanPoint" class="point" style="display: none">+</span>
+                                    <span id="spanCost" class="cost">
+                                        <span class="price_txt flight__cost"></span>
+                                        <span class="unit">원</span>
+                                    </span>
                                 </button>
                             </div>
 
@@ -711,12 +714,17 @@
                                     id="btnPrevPC" style="display: none">
                                 <span class="button__text">이전</span><!-- 이전 -->
                             </button>
-                            <form>
-                                <button type="button" class="button button--primary pc-only button--active pc-only"
-                                        id="btnNextPC">
-                                        <span id="spanNextPC" class="button__text"><a>다음</a></span>
-                                </button>
-                            </form>
+                            <input type="hidden" id="route" name="route" th:value="${reserveRoute}">
+                            <input type="hidden" id="depData" name="depData" th:value="${departureData}">
+                            <input type="hidden" id="arrData" name="arrData" th:value="${arrivalData}">
+                            <input type="hidden" id="owStart" name="owStart" th:value="${onewayStart}">
+                            <input type="hidden" id="rtStart" name="rtStart" th:value="${roundStart}">
+                            <input type="hidden" id="rtEnd" name="rtEnd" th:value="${roundEnd}">
+                            <input type="hidden" id="pasNum" name="pasNum" th:value="${passengerNum}">
+                            <button type="button" class="button button--primary pc-only button--active pc-only"
+                                    id="btnNextPC">
+                                    <span id="spanNextPC" class="button__text"><a>다음</a></span>
+                            </button>
                         </div>
 
                         <div class="booking-sticky__bottom line -limitH" data-element="toggle__panel" id="toggle-2">
@@ -727,40 +735,30 @@
                             <div id="airFreightCharges" class="itemize__item">
                                 <div class="flex-text" id="divFare">
                                     <div class="flex-text__title">항공운임</div><!-- 항공운임 -->
-                                    <div class="flex-text__additional"></div>
+                                    <div class="flex-text__additional">
+                                        <span class="price_txt flight__cost"></span>
+                                        <span class="unit">원</span>
+                                    </div>
                                 </div>
                                 <div class="flex-text" id="divTax">
                                     <div class="flex-text__title">공항시설 사용료</div><!-- 공항시설 사용료 -->
-                                    <div class="flex-text__additional"></div>
+                                    <div class="flex-text__additional">
+                                        <span class="price_txt flight__cost"></span>
+                                        <span class="unit">원</span>
+                                    </div>
                                 </div>
                                 <div class="flex-text" id="divFuel">
                                     <div class="flex-text__title">유류할증료</div><!-- 유류할증료 -->
-                                    <div class="flex-text__additional"></div>
-                                </div>
-                            </div>
-
-                            <div id="extraServiceFee" class="conatinaer--default pc-20" style="display: none">
-                                <h4 class="text__default text--bold">부가서비스</h4><!-- 부가서비스 -->
-                                <div class="itemize__item">
-                                    <div class="flex-text" id="divSeat">
-                                        <div class="flex-text__title">좌석 선택</div><!-- 좌석 선택 -->
-                                        <div class="flex-text__additional" id="divSeatFee"></div>
+                                    <div class="flex-text__additional">
+                                        <span class="price_txt flight__cost"></span>
+                                        <span class="unit">원</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="button-wrap mobile-only">
-                            <button type="button" class="button button--primary button--black" id="btnPrevMobile"
-                                    style="display: none">
-                                <span class="button__text">이전</span><!-- 이전 -->
-                            </button>
 
-                            <button type="button" class="button button--primary button--active" id="btnNextMobile">
-                                    <span id="spanNextMobile" class="button__text"><a
-                                            href="../seat_select/seat_select.html">오는 편 좌석 선택하기</a></span>
-                                <!-- 오는 편 좌석 선택하기 -->
-                            </button>
                         </div>
                     </div>
                 </div>

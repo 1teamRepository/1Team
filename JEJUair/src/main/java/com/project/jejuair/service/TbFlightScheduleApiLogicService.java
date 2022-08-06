@@ -6,6 +6,7 @@ import com.project.jejuair.model.network.Header;
 import com.project.jejuair.model.network.Pagination;
 import com.project.jejuair.model.network.request.TbFlightScheduleRequest;
 import com.project.jejuair.model.network.response.TbFlightScheduleResponse;
+import com.project.jejuair.repository.TbAircraftRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +20,8 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class TbFlightScheduleApiLogicService extends BaseService<TbFlightScheduleRequest, TbFlightScheduleResponse, TbFlightSchedule> {
+
+    private final TbAircraftRepository tbAircraftRepository;
 
     private TbFlightScheduleResponse response(TbFlightSchedule tbFlightSchedule){
         TbFlightScheduleResponse tbFlightScheduleResponse = TbFlightScheduleResponse.builder()
@@ -38,6 +41,11 @@ public class TbFlightScheduleApiLogicService extends BaseService<TbFlightSchedul
                 .schFlyDiscount(tbFlightSchedule.getSchFlyDiscount())
                 .schFood(tbFlightSchedule.getSchFood())
                 .schRegDate(tbFlightSchedule.getSchRegDate())
+
+                .tbAircraftAcftIdx(tbFlightSchedule.getTbAircraft().getAcftIdx())
+                .acftAircraftName(tbFlightSchedule.getTbAircraft().getAcftAircraftName())
+                .acftBizLiteSeats(tbFlightSchedule.getTbAircraft().getAcftBizLiteSeats())
+                .acftNomalSeats(tbFlightSchedule.getTbAircraft().getAcftNomalSeats())
                 .build();
         return tbFlightScheduleResponse;
     }
@@ -60,6 +68,7 @@ public class TbFlightScheduleApiLogicService extends BaseService<TbFlightSchedul
                 .schFlyDiscount(tbFlightScheduleRequest.getSchFlyDiscount())
                 .schFood(tbFlightScheduleRequest.getSchFood())
                 .schRegDate(LocalDateTime.now())
+                .tbAircraft(tbAircraftRepository.findByAcftIdx(tbFlightScheduleRequest.getTbAircraftAcftIdx()).get())
                 .build();
         TbFlightSchedule newTbflightschedule = baseRepository.save(tbFlightSchedule);
         return Header.OK(response(newTbflightschedule));
