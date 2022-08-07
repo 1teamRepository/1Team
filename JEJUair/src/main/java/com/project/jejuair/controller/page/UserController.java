@@ -74,9 +74,6 @@ public class UserController {
     public ModelAndView pwCheckOK(HttpServletRequest request, String memUserpw, String newmemUserpw, String againmemUserpw)  throws Exception{
         HttpSession session = request.getSession();
         String memUserid = (String)session.getAttribute("userid");
-        System.out.println(memUserid);
-        System.out.println(memUserpw);
-        System.out.println(newmemUserpw);
 
         TbMemberResponse tbMemberResponse = tbMemberApiLogicService.pwCheck(memUserid, memUserpw).getData();
         if(tbMemberResponse != null) {
@@ -99,6 +96,37 @@ public class UserController {
         HttpSession session = request.getSession();
         if(session.getAttribute("userid") != null) {
             return new ModelAndView("/user/pages/mypage/info_edit/password_edit");
+        }else {
+            return new ModelAndView("/user/pages/login/login");
+        }
+    }
+
+    @PostMapping("/nameChangeOK")
+    public ModelAndView nameChangeOK(HttpServletRequest request, String memEngLastname, String memEngFirstname)  throws Exception{
+        HttpSession session = request.getSession();
+        String memUserid = (String)session.getAttribute("userid");
+
+        TbMemberResponse tbMemberResponse = tbMemberApiLogicService.nameChange(memUserid, memEngLastname, memEngFirstname).getData();
+            if(tbMemberResponse != null){
+                tbMemberApiLogicService.nameChange(memUserid, memEngLastname, memEngFirstname);
+                String engLastname = tbMemberResponse.getMemEngLastname();
+                String engFirstname = tbMemberResponse.getMemEngFirstname();
+
+                session.setAttribute("engLastname", engLastname);
+                session.setAttribute("engFirstname", engFirstname);
+                return new ModelAndView("redirect:/user/info_edit_mypage");
+            }else {
+                return new ModelAndView("/user/pages/mypage/info_edit/nameChange")
+                        .addObject("message1", "fail1");
+            }
+
+    }
+
+    @RequestMapping("/nameChange")
+    public ModelAndView nameChange(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if(session.getAttribute("idx") != null) {
+            return new ModelAndView("/user/pages/mypage/info_edit/nameChange");
         }else {
             return new ModelAndView("/user/pages/login/login");
         }
@@ -199,7 +227,7 @@ public class UserController {
     @RequestMapping("/info_edit_password")
     public ModelAndView userIndex(HttpServletRequest request){
         HttpSession session = request.getSession();
-        if(session.getAttribute("name") != null) {
+        if(session.getAttribute("idx") != null) {
             return new ModelAndView("/user/pages/mypage/info_edit/info_edit_password");
         }else {
             return new ModelAndView("/user/pages/login/login");
@@ -229,12 +257,6 @@ public class UserController {
     }
 
 
-
-
-//    @RequestMapping("/password_edit")
-//    public ModelAndView password_edit() {
-//        return new ModelAndView("/user/pages/mypage/info_edit/password_edit");
-//    }
 
     @RequestMapping("/my_history")
     public ModelAndView my_history() {
