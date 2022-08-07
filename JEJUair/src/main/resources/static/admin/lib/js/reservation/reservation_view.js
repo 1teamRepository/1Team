@@ -28,9 +28,8 @@ $(function(){
             for (let i = 0; i < lst.length; i++) {
 
                 let pasHTML = '<ul class="leg_list"><li class="clear"><span class="tit_lbl">NO</span><div class="reg_content"><input type="text" class="textBox" disabled value="'+lst[i]["pasIdx"]+'"></div></li>\n' +
-                    '<li class="clear"><span class="tit_lbl">탑승객명(KOR)</span><div class="reg_content"><input type="text" class="textBox" disabled value="'+lst[i]["pasFirstname"]+lst[i]["pasLastname"]+'"></div></li>\n' +
+                    '<li class="clear"><span class="tit_lbl">탑승객명(KOR)</span><div class="reg_content"><input type="text" class="textBox" disabled value="'+lst[i]["pasLastname"]+lst[i]["pasFirstname"]+'"></div></li>\n' +
                     '<li class="clear"><span class="tit_lbl">생년월일</span><div class="reg_content"><input type="text" class="textBox" disabled value="'+lst[i]["pasBirthDate"]+'"></div></li>\n' +
-                    '<li class="clear"><span class="tit_lbl">탑승객 성별</span><div class="reg_content"><input type="text" class="textBox" disabled value="'+lst[i]["pasGender"]+'"></div></li>\n' +
                     '<li class="clear"><span class="tit_lbl">수하물 무게</span><div class="reg_content"><input type="text" class="textBox" disabled value="'+lst[i]["bagWeight"]+'"></div></li>\n' +
                     '<li class="clear"><span class="tit_lbl">좌석</span><div class="reg_content"><input type="text" class="textBox" disabled value="'+lst[i]["pasSeat"]+'"></div></li></ul>';
 

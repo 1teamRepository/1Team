@@ -23,8 +23,7 @@ public class TbPassengerRequest {
     private String pasFirstname;
     private String pasLastname;
     private String pasBirthDate;
-    private Gender pasGender;
-    private String pasSeat;
+
 
     private Long tbReservationResIdx;
 
@@ -35,4 +34,9 @@ public class TbPassengerRequest {
     private Long tbBaggageBagIdx;
     private Long bagPrice;
     private String bagWeight;
+
+    private Long tbAircraftAcftIdx;
+    private String pasSeat;
+    private String acftAircraftName;
+
 }

@@ -26,14 +26,14 @@ $(function(){
                         let foodHTML = '<ul class="leg_list"><li class="clear"><span class="tit_lbl">부가서비스 타입</span><div class="reg_content"><input type="text" class="textBox" disabled value="사전 기내식"></div></li>\n' +
                             '<li class="clear"><span class="tit_lbl">기내식명</span><div class="reg_content"><input type="text" class="textBox" disabled value="'+lst[i]["foodKorName"]+'"></div></li>\n' +
                             '<li class="clear"><span class="tit_lbl">결제금액</span><div class="reg_content"><input type="text" class="textBox" disabled value="'+lst[i]["foodKrwPrice"]+'"></div></li>\n' +
-                            '<li class="clear"><span class="tit_lbl">탑승객</span><div class="reg_content"><input type="text" class="textBox" disabled value="'+lst[i]["pasFirstname"]+lst[i]["pasLastname"]+'"></div></li></ul>';
+                            '<li class="clear"><span class="tit_lbl">탑승객</span><div class="reg_content"><input type="text" class="textBox" disabled value="'+lst[i]["pasLastname"]+lst[i]["pasFirstname"]+'"></div></li></ul>';
 
                         $('#extraService').append(foodHTML);
                     }if(lst[i]["tbBaggageBagIdx"] != 21){   //21번은 수하물 디비에 저장된 "없음"
                         let bagHTML = '<ul class="leg_list"><li class="clear"><span class="tit_lbl">부가서비스 타입</span><div class="reg_content"><input type="text" class="textBox" disabled value="사전 수하물"></div></li>\n' +
                             '<li class="clear"><span class="tit_lbl">수하물 무게</span><div class="reg_content"><input type="text" class="textBox" disabled value="'+lst[i]["bagWeight"]+'"></div></li>\n' +
                             '<li class="clear"><span class="tit_lbl">결제금액</span><div class="reg_content"><input type="text" class="textBox" disabled value="'+lst[i]["bagPrice"]+'"></div></li>\n' +
-                            '<li class="clear"><span class="tit_lbl">탑승객</span><div class="reg_content"><input type="text" class="textBox" disabled value="'+lst[i]["pasFirstname"]+lst[i]["pasLastname"]+'"></div></li></ul>';
+                            '<li class="clear"><span class="tit_lbl">탑승객</span><div class="reg_content"><input type="text" class="textBox" disabled value="'+lst[i]["pasLastname"]+lst[i]["pasFirstname"]+'"></div></li></ul>';
 
                         $('#extraService').append(bagHTML);
                     }

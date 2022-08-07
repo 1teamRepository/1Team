@@ -25,7 +25,7 @@ public class TbReservationApiController extends CrudController<TbReservationRequ
 
     @Override
     @PostMapping("")
-    public Header create(@RequestBody Header<TbReservationRequest> request) {
+    public Header<TbReservationResponse> create(@RequestBody Header<TbReservationRequest> request) {
         return tbReservationApiLogicService.create(request);
     }
 
