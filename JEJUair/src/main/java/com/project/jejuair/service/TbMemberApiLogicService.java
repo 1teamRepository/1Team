@@ -173,6 +173,17 @@ public class TbMemberApiLogicService extends BaseService<TbMemberRequest, TbMemb
                 .map(Header::OK).orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 
-
+    public Header<TbMemberResponse> pointUpdate(Header<TbMemberRequest> request) {
+        TbMemberRequest tbMemberRequest = request.getData();
+        Optional<TbMember> tbMember = baseRepository.findById(tbMemberRequest.getMemIdx());
+        Integer existingPoint = tbMember.get().getMemPoint();
+        return tbMember.map(
+                        newTbMember -> {
+                            newTbMember.setMemPoint(existingPoint+tbMemberRequest.getMemPoint());
+                            return newTbMember;
+                        }).map(newTbMember -> baseRepository.save(newTbMember))
+                .map(newTbMember -> response(newTbMember))
+                .map(Header::OK).orElseGet(() -> Header.ERROR("데이터 없음"));
+    }
 
 }

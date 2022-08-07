@@ -57,4 +57,9 @@ public class TbPassengerApiController extends CrudController<TbPassengerRequest,
         return tbPassengerApiLogicService.reservation(idx);
     }
 
+    @GetMapping("/seatFind/{idx}")
+    public Header<List<TbPassengerResponse>> seatFind(@PathVariable Long idx){
+        return tbPassengerApiLogicService.seatFind(idx);
+    }
+
 }

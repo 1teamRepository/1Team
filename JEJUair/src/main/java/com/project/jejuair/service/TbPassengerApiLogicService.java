@@ -1,14 +1,12 @@
 package com.project.jejuair.service;
 
+import com.project.jejuair.model.entity.TbAircraft;
 import com.project.jejuair.model.entity.TbPassenger;
 import com.project.jejuair.model.network.Header;
 import com.project.jejuair.model.network.Pagination;
 import com.project.jejuair.model.network.request.TbPassengerRequest;
 import com.project.jejuair.model.network.response.TbPassengerResponse;
-import com.project.jejuair.repository.TbAirlineFoodRepository;
-import com.project.jejuair.repository.TbBaggageRepository;
-import com.project.jejuair.repository.TbPassengerRepository;
-import com.project.jejuair.repository.TbReservationRepository;
+import com.project.jejuair.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -31,13 +29,14 @@ public class TbPassengerApiLogicService extends BaseService<TbPassengerRequest, 
 
     private final TbBaggageRepository tbBaggageRepository;
 
+    private final TbAircraftRepository tbAircraftRepository;
+
     public static TbPassengerResponse response(TbPassenger tbPassenger){
         TbPassengerResponse tbPassengerResponse = TbPassengerResponse.builder()
                 .pasIdx(tbPassenger.getPasIdx())
                 .pasFirstname(tbPassenger.getPasFirstname())
                 .pasLastname(tbPassenger.getPasLastname())
                 .pasBirthDate(tbPassenger.getPasBirthDate())
-                .pasGender(tbPassenger.getPasGender())
                 .pasRegDate(tbPassenger.getPasRegDate())
                 .pasSeat(tbPassenger.getPasSeat())
                 .tbReservationResIdx(tbPassenger.getTbReservation().getResIdx())
@@ -49,6 +48,9 @@ public class TbPassengerApiLogicService extends BaseService<TbPassengerRequest, 
                 .tbBaggageBagIdx(tbPassenger.getTbBaggage().getBagIdx())
                 .bagPrice(tbPassenger.getTbBaggage().getBagPrice())
                 .bagWeight(tbPassenger.getTbBaggage().getBagWeight())
+
+                .tbAircraftAcftIdx(tbPassenger.getTbAircraft().getAcftIdx())
+                .acftAircraftName(tbPassenger.getTbAircraft().getAcftAircraftName())
                 .build();
         return tbPassengerResponse;
     }
@@ -61,12 +63,12 @@ public class TbPassengerApiLogicService extends BaseService<TbPassengerRequest, 
                 .pasFirstname(tbPassengerRequest.getPasFirstname())
                 .pasLastname(tbPassengerRequest.getPasLastname())
                 .pasBirthDate(tbPassengerRequest.getPasBirthDate())
-                .pasGender(tbPassengerRequest.getPasGender())
                 .pasSeat(tbPassengerRequest.getPasSeat())
                 .pasRegDate(LocalDateTime.now())
                 .tbReservation(tbReservationRepository.findByResIdx(tbPassengerRequest.getTbReservationResIdx()).get())
                 .tbAirlineFood(tbAirlineFoodRepository.findByFoodIdx(tbPassengerRequest.getTbAirlineFoodFoodIdx()).get())
                 .tbBaggage(tbBaggageRepository.findByBagIdx(tbPassengerRequest.getTbBaggageBagIdx()).get())
+                .tbAircraft(tbAircraftRepository.findByAcftIdx(tbPassengerRequest.getTbAircraftAcftIdx()).get())
                 .build();
         TbPassenger newPassenger = baseRepository.save(tbPassenger);
         return Header.OK(response(newPassenger));
@@ -88,7 +90,6 @@ public class TbPassengerApiLogicService extends BaseService<TbPassengerRequest, 
                     newTbPassenger.setPasFirstname(tbPassengerRequest.getPasFirstname());
                     newTbPassenger.setPasLastname(tbPassengerRequest.getPasLastname());
                     newTbPassenger.setPasBirthDate(tbPassengerRequest.getPasBirthDate());
-                    newTbPassenger.setPasGender(tbPassengerRequest.getPasGender());
                     return newTbPassenger;
                 }).map(newTbPassenger -> baseRepository.save(newTbPassenger))
                 .map(newTbPassenger -> response(newTbPassenger))
@@ -126,5 +127,11 @@ public class TbPassengerApiLogicService extends BaseService<TbPassengerRequest, 
         return Header.OK(tbPassengerResponseList);
     }
 
+    public Header<List<TbPassengerResponse>> seatFind(Long id){
+        List<TbPassenger> tbPassengerList = tbPassengerRepository.findByTbAircraftAcftIdx(id);
+        List<TbPassengerResponse> tbPassengerResponseList = tbPassengerList.stream()
+                .map(tbPassengers -> response(tbPassengers)).collect(Collectors.toList());
+        return Header.OK(tbPassengerResponseList);
+    }
 
 }

@@ -11,4 +11,6 @@ import java.util.Optional;
 public interface TbPassengerRepository extends JpaRepository<TbPassenger, Long> {
     Optional<TbPassenger> findByPasIdx(Long pasIdx);
     List<TbPassenger> findByTbReservationResIdx(Long tbReservationResIdx);
+
+    List<TbPassenger> findByTbAircraftAcftIdx(Long tbAircraftAcftIdx);
 }

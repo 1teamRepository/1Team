@@ -62,4 +62,9 @@ public class TbMemberApiController extends CrudController <TbMemberRequest, TbMe
         return cnt;
     }
 
+    @PutMapping("/save")
+    public Header<TbMemberResponse> pointUpdate(@RequestBody Header<TbMemberRequest> request) {
+        return tbMemberApiLogicService.pointUpdate(request);
+    }
+
 }

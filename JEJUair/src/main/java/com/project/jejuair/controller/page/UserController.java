@@ -340,8 +340,13 @@ public class UserController {
 //    예매 페이지 시작
 
     @RequestMapping("/ticket_reservation") //메인에서 해결 후 가져오기
-    public ModelAndView ticket_reservation() {
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/ticket_reservation");
+    public ModelAndView ticket_reservation(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("userid") != null) {
+            return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/ticket_reservation");
+        } else {
+            return new ModelAndView("/user/pages/login/login");
+        }
     }
 
     @PostMapping("/avail_search_form")
@@ -355,17 +360,22 @@ public class UserController {
             @RequestParam(value = "roundEnd") String roundEnd,
             @RequestParam(value = "passengerNum") int passengerNum)
     {
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/avail_search")
-                .addObject("reserveRoute", reserveRoute)
-                .addObject("departureData", departureData)
-                .addObject("arrivalData", arrivalData)
-                .addObject("onewayStart", onewayStart)
-                .addObject("roundStart", roundStart)
-                .addObject("roundEnd", roundEnd)
-                .addObject("passengerNum", passengerNum);
+        HttpSession session = request.getSession();
+        if (session.getAttribute("userid") != null) {
+            return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/avail_search")
+                    .addObject("reserveRoute", reserveRoute)
+                    .addObject("departureData", departureData)
+                    .addObject("arrivalData", arrivalData)
+                    .addObject("onewayStart", onewayStart)
+                    .addObject("roundStart", roundStart)
+                    .addObject("roundEnd", roundEnd)
+                    .addObject("passengerNum", passengerNum)
+                    .addObject("idx",session.getAttribute("idx"))
+                    .addObject("userid",session.getAttribute("userid"));
+        } else {
+            return new ModelAndView("/user/pages/login/login");
+        }
     }
-
-
 
 
     @RequestMapping("/avail_search") //되는데 허접,,데이터 필요
@@ -374,10 +384,27 @@ public class UserController {
     }
 
 
-//    편도노선
+
+
+    //    편도노선
     @RequestMapping("/oneway/view_passenger_input")
-    public ModelAndView oneway_view_passenger_input() {
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/oneway/view_passenger_input");
+    public ModelAndView oneway_view_passenger_input(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("userid") != null) {
+            return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/oneway/view_passenger_input")
+                    .addObject("idx", session.getAttribute("idx"))
+                    .addObject("userid", session.getAttribute("userid"))
+                    .addObject("koLastname", session.getAttribute("koLastname"))
+                    .addObject("koFirstname", session.getAttribute("koFirstname"))
+                    .addObject("engLastname", session.getAttribute("engLastname"))
+                    .addObject("engFirstname", session.getAttribute("engFirstname"))
+                    .addObject("ssn", session.getAttribute("ssn"))
+                    .addObject("gender", session.getAttribute("gender"))
+                    .addObject("hp", session.getAttribute("hp"))
+                    .addObject("email", session.getAttribute("email"));
+        } else {
+            return new ModelAndView("/user/pages/login/login");
+        }
     }
 
     @RequestMapping("/oneway/seat_select")
@@ -400,9 +427,21 @@ public class UserController {
         return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/oneway/view_confirm_ow");
     }
 
+//    @RequestMapping("/oneway/view_payment")
+//    public ModelAndView oneway_view_payment(HttpServletRequest request) {
+//        HttpSession session = request.getSession();
+//        if (session.getAttribute("userid") != null) {
+//            return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/oneway/view_payment_complete_ow")
+//                    .addObject("idx",session.getAttribute("idx"))
+//                    .addObject("userid",session.getAttribute("userid"));
+//        } else {
+//            return new ModelAndView("/user/pages/login/login");
+//        }
+//    }
+
     @RequestMapping("/oneway/view_payment")
     public ModelAndView oneway_view_payment() {
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/oneway/view_payment_ow");
+        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/oneway/view_payment_complete_ow");
     }
 
 //    왕복노선

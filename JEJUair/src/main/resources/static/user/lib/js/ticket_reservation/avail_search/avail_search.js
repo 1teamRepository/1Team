@@ -311,6 +311,7 @@ const gradeDefault = document.querySelectorAll(".tab-btn");
 reserveProgress();
 btnAble();
 
+
 //편도, 왕복 선택
 function selectTrip(item) {
     console.log(item);
@@ -551,7 +552,9 @@ $(document).on('click', '.onewayPage', function () {
         divTax: Number($('#divTax').find('.flight__cost')[0].innerHTML),
         divFuel: Number($('#divFuel').find('.flight__cost')[0].innerHTML),
         spanCost: Number($('#spanCost').find('.flight__cost')[0].innerHTML),
-        schIdx: $('.select_schidx').val()
+        schIdx: $('.select_schidx').val(),
+        memIdx: idx,
+        memUserid: userid
     }
 
     localStorage.setItem("tripJson", JSON.stringify(tripJson));

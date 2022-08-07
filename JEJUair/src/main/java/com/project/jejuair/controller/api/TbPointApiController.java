@@ -50,4 +50,6 @@ public class TbPointApiController extends CrudController<TbPointRequest, TbPoint
     public Header<List<TbPointResponse>> findAll(@PageableDefault(sort = {"pntIdx"}, direction = Sort.Direction.DESC) Pageable pageable){
         return tbPointApiLogicService.search(pageable);
     }
+
+
 }
