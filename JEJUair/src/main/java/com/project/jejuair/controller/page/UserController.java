@@ -269,21 +269,19 @@ public class UserController {
     }
 
     @RequestMapping("/mypage_main_member")
-    public ModelAndView mypage_main_member(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        if (session.getAttribute("idx") != null) {
-            return new ModelAndView("/user/pages/mypage/mypage_main/mypage_main_member");
+    public ModelAndView mypage_main_member(HttpServletRequest request){
 
-        } else {
+        HttpSession session = request.getSession();
+        Long memIdx= (Long) session.getAttribute("idx");
+
+        if (session.getAttribute("idx") != null) {
+            return new ModelAndView("/user/pages/mypage/mypage_main/mypage_main_member")
+                    .addObject("idx", memIdx);
+        }else{
             return new ModelAndView("/user/pages/login/login");
         }
-
     }
 
-    @RequestMapping("/mypage_main_nomember")
-    public ModelAndView mypage_main_nomember() {
-        return new ModelAndView("/user/pages/mypage/mypage_main/mypage_main_nomember");
-    }
 
     @RequestMapping("/reserve_info")
     public ModelAndView reserve_info(HttpServletRequest request) {
@@ -298,18 +296,27 @@ public class UserController {
     @RequestMapping("/qna_list")
     public ModelAndView qna_list(HttpServletRequest request) {
         HttpSession session = request.getSession();
+        Long memIdx= (Long) session.getAttribute("idx");
+
         if (session.getAttribute("idx") != null) {
-            return new ModelAndView("/user/pages/mypage/mypage_main/qna_list/qna_list");
+            return new ModelAndView("/user/pages/mypage/mypage_main/qna_list/qna_list")
+                    .addObject("idx", memIdx);
         } else {
             return new ModelAndView("/user/pages/login/login");
         }
     }
 
-    @RequestMapping("/qna_form") //우재가 하기로함
+    @RequestMapping("/qna_form")
     public ModelAndView qna_form(HttpServletRequest request) {
+
         HttpSession session = request.getSession();
+        Long memIdx= (Long) session.getAttribute("idx");
+        String memUserid= (String) session.getAttribute("id");
+        System.out.println("id: "+ memUserid);
+
         if (session.getAttribute("idx") != null) {
-        return new ModelAndView("/user/pages/mypage/mypage_main/qna_list/qna_form/qna_form");
+            return new ModelAndView("/user/pages/mypage/mypage_main/qna_list/qna_form/qna_form")
+                    .addObject("id", memUserid);
         } else {
             return new ModelAndView("/user/pages/login/login");
         }
@@ -609,15 +616,6 @@ public class UserController {
         return new ModelAndView("/user/pages/join/join_form");
     }
 
-    // login/nonuser_login/nonuser_login
-    // http://localhost:10000/user/login/nonuser_login
-    @RequestMapping("/login/nonUserLogin")
-    public ModelAndView nonuser_login() {
-        return new ModelAndView("/user/pages/login/nonUserLogin");
-    }
-
-    // login/login
-    // http://localhost:10000/user/login
 
     //우재 테스트 끝
 

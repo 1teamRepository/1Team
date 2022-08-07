@@ -5,6 +5,14 @@
 <!--head-->
 <div th:replace="/user/fragment/head :: head"></div>
 <!--head 끝-->
+<style>
+    .accordion__panel{
+        max-height: 0;
+        transition: all .35s;
+        overflow: hidden;
+        background-color: #333333;
+    }
+</style>
 
 <body id="subLayoutBody" class="isPc" style="height: 938.5px;">
 
@@ -19,41 +27,107 @@
 
 
 <div id="body">
-
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD2BQQ4" height="0" width="0"
-                style="display:none;visibility:hidden"></iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
+    <input id="memIdx" th:value="${idx}" style="display: none">
     <div class="wrap wrap--button MO">
-
-
         <div class="content" id="content">
-            <main id="main" class="main ">
+            <div id="category" value="inquiry"></div>
+            <main class="main help_tab" id="main">
+                <div class="page-title-wrap pc-only">
+                    <div class="page-title">1:1 문의하기</div>
+                </div>
+                <div class="accordion accordion--inquire section-wrap">
+                    <div class="accordion__header" style="border-bottom: 1px solid #333333">
+                        <div class="section-title">나의 문의/답변 내역</div>
+                    </div>
+                    <span id="itemList">
+                            <div class="accordion__group" v-for="(dto,i) in itemList"
+                                 :key="i"
+                                 style="border-top: none">
+                                <div class="accordion__item" style="cursor: pointer">
+                                    <div for="answer01" class="accordion__anchor" id="clickArea1">
+                                            <div class="accordion__item-header" >
+                                                <span class="label101" style="background-color: #888888; color: #FFFFFF; font-size: 13px">답변 여부: {{dto.ansAnswerCheck}}</span>
+                                            </div>
+                                            <strong class="accordion__title">
+                                                {{dto.ansInquiryTitle}}
+                                            </strong>
 
+                                            <div class="accordion__text">
+                                                {{dto.ansInquiryContent}}
+                                            </div>
+                                    </div>
+                                    <div class="accordion__item-sub-info">
+                                        <span class="date" style="color: #888888; font-size: 16px">{{dto.ansInquiryRegdate}}</span>
+                                        <div class="btn-wrap">
+                                            <label>
+                                                <button class="btn-wrap__button btn-wrap__button--delete" type="button"
+                                                        id="delete">
+                                                    <span>삭제하기</span>
+                                                </button>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!-- 답변 div -->
+                                    <div aria-labelledby="plugin-accordion-4" class="accordion__panel answerHidden"
+                                         style="background: #f5f5f5; position: relative; padding: 20px 34px 15px 40px; font-size: 16px;box-sizing: border-box;
+                                                   min-height: 100px; max-height: 100px; display: none">
+                                        <div class="accordion__text" style="font-size: 14px">
+                                            {{dto.ansAnswerContent}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="page-center">
+                                    <div class="paging" style="margin-top: 30px; font-size: 0; text-align: center">
+                                        <span id="page-first" class="page-last" style="transform: rotate(180deg);">
+                                            <a href="#"></a>
+                                        </span>
+                                        <span id="page-prev" class="page-next" style="transform: rotate(180deg);">
+                                            <a href="#"></a>
+                                        </span>
+                                        <span id="pagination">
+                                            <span class="page-num on">
+                                                <a href="#">1</a>
+                                            </span>
+                                        </span>
+                                        <span id="page-next" class="page-next">
+                                            <a href="#"></a>
+                                        </span>
+                                        <span id="page-last" class="page-last">
+                                            <a href="#"></a>
+                                        </span>
+                                    </div>
+                                </div>
+                        </span>
+                </div>
 
-                <form id="mainform" name="mainform" action="https://jejuair.secure.force.com/vone" method="post"
-                      target="iframe">
-                    <input type="hidden" name="language" value="ko">
-                    <input type="hidden" name="userNo" value="089464461">
-                    <input type="hidden" name="userID" value="migi707">
-                    <input type="hidden" name="userNm" value="이미지">
-                    <input type="hidden" name="phone" value="82-010-8654-1225">
-                    <input type="hidden" name="email" value="migi707@naver.com">
-                    <input type="hidden" name="agentId" value="sys_web.kr">
-                </form>
-
-
-                <input type="hidden" id="active" name="active" value="prod">
-                <div class="iframe_help">
-                    <iframe id="iframe" name="iframe" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"
-                            style="height: 563.5px;"></iframe>
+                <div class="sub-section">
+                    <div class="guide-info guide-info--gray customer-bottom-info" style="margin-bottom: 20px;">
+                        <p class="guide-info__text">
+                            더 자세한 문의는 고객센터를 이용해 주세요.
+                            <span>전화 1599-1500 |</span>
+                            <span> 상담시간 평일(월-금) 09:00 ~ 19:00</span>
+                        </p>
+                    </div>
                 </div>
             </main>
+            <div class="button-wrap customer_list_button" data-element="bottomContent">
+                <button class="button button--primary button--active" type="button"
+                        onclick="location.href='/user/qna_form'"><span
+                        class="button__text">1:1 문의 작성하기</span></button>
+            </div>
         </div>
+    </div>
+</div>
 
+
+<div class="modalWrap" id="loginWrap" style="display:none;">
+    <div class="modal modal--simple modalDiv" id="loginDiv">
+        <div class="modal-content">
+            <p class="alert-text">
+                You have go log in for 1:1 inquiry. Please log in first.
+            </p>
+        </div>
     </div>
 </div>
 
@@ -63,81 +137,33 @@
 <!-- / footer 끝 -->
 
 <!-- 공통 스크립트 선언 -->
-
-<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/lib/lib.min.js"></script>
-
-<script type="text/javascript"
-        src="https://static.jejuair.net/hpgg/resources/js/lib/moment-with-locales.min.js"></script>
-
-<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/lib/jquery.i18n.js"></script>
-<script type="text/javascript"
-        src="https://static.jejuair.net/hpgg/resources/js/lib/jquery.i18n.messagestore.js"></script>
-<!-- 메인페이지 스크립트 에러 발생으로 이전 소스로 변경합니다.
-<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/booking/plugin.js"></script>
-<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/booking/common.js"></script>
--->
+<!-- 공통 스크립트 선언 -->
+<script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
+<script type="text/javascript" src="/user/lib/js/common.js"></script>
+<script type="text/javascript" src="/user/lib/js/plugin.js"></script>
+<script type="text/javascript" src="/user/lib/js/mypage/inquiry_list.js"></script>
 <script>
-    $(document).ready(function () {
+    $(document).on("click",".accordion__anchor", function (){
+        dropdown(this)
+    })
 
-        $.ajaxSetup({
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader('tcode', '0000000613');
-                xhr.setRequestHeader('cname', USER_DEVICE.getName());
-            }
-        });
+    function dropdown(select){
+        const block = select.parentElement.querySelector(".accordion__panel")
+        const arrow = select.parentElement.querySelector(".accordion__title")
 
-
-        //BOOKING LAYOUT상태서 sub로 바뀔경우
-        $(document).off('changeLayout').on('changeLayout', function (e, type) {
-            if (type === 'sub') {
-                $('.bookingType').hide();
-                $('.subType').show();
-            } else if (type === 'booking') {
-                $('.subType').hide();
-                $('.bookingType').show();
-            }
-        });
-
-        //breadcrumbs cursor default
-        $('.breadcrumb__item > a').css('cursor', 'default');
-    });
-
-    //타이틀 설정
-    $('header.mobile-only h2.header__page-name').text($('#main div.page-title').eq(0).text());
+        if(block.classList.contains("answerHidden")){
+            block.style.display = "block"
+            block.classList.remove("answerHidden");
+            arrow.style.transform("rotate(315deg)")
+            //block.style.transform("all .2s")
+        }else{
+            block.style.display = "none"
+            block.classList.add("answerHidden")
+            arrow.style.transform("rotate(135deg)")
+            //block.style.transform("all .2s")
+        }
+    }
 </script>
-<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/plugin.js"></script>
-<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/common.js"></script>
-
-<!--필요시만 로드-->
-<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/vendor/lodash.min.js"></script>
-<!--사용되지 않음-->
-<!--<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/vendor/localforage.min.js"></script>-->
-<script type="text/javascript"
-        src="https://static.jejuair.net/hpgg/resources/js/vendor/handlebars.min-v4.7.6.js"></script>
-<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/handlebars.helpers.js"></script>
-
-<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/util/sUtil.js"></script>
-<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/util/dUtil.js"></script>
-<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/util/utils.js"></script>
-
-<!--필요시만 로드-->
-<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/amcharts/amcharts.core.js"></script>
-
-
-<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/bizjs/commons/bizCommons.js"></script>
-<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/jj.helpers.js"></script>
-
-
-<script type="text/javascript"
-        src="https://static.jejuair.net/hpgg/resources/bizjs/customerService/csCenter/qnaFormList.js"></script>
-
-
-<div id="ifmWrap"
-     style="height:100%; display:none; overflow:auto; text-align:center; -webkit-overflow-scrolling:touch;">
-    <iframe src="" width="100%" height="100%" name="popupChkApp"></iframe>
-</div>
-<script type="text/javascript" src="/8G0gTi2Ww3eJK9jzak8OzLlw/1t1YkcS2aDik/IntzETIaAwk/I0QI/TCoQKh0"></script>
-
-
 </body>
+
 </html>
