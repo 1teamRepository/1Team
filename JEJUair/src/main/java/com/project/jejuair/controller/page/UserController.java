@@ -249,7 +249,7 @@ public class UserController {
     @RequestMapping("/mypage_main_member")
     public ModelAndView mypage_main_member(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        if (session.getAttribute("name") != null) {
+        if (session.getAttribute("idx") != null) {
             return new ModelAndView("/user/pages/mypage/mypage_main/mypage_main_member");
 
         } else {
@@ -266,7 +266,7 @@ public class UserController {
     @RequestMapping("/reserve_info")
     public ModelAndView reserve_info(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        if (session.getAttribute("name") != null) {
+        if (session.getAttribute("idx") != null) {
             return new ModelAndView("/user/pages/mypage/reserve_info/reserve_info");
         } else {
             return new ModelAndView("/user/pages/login/login");
@@ -276,7 +276,7 @@ public class UserController {
     @RequestMapping("/qna_list")
     public ModelAndView qna_list(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        if (session.getAttribute("name") != null) {
+        if (session.getAttribute("idx") != null) {
             return new ModelAndView("/user/pages/mypage/mypage_main/qna_list/qna_list");
         } else {
             return new ModelAndView("/user/pages/login/login");
@@ -286,7 +286,7 @@ public class UserController {
     @RequestMapping("/qna_form") //우재가 하기로함
     public ModelAndView qna_form(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        if (session.getAttribute("name") != null) {
+        if (session.getAttribute("idx") != null) {
         return new ModelAndView("/user/pages/mypage/mypage_main/qna_list/qna_form/qna_form");
         } else {
             return new ModelAndView("/user/pages/login/login");
@@ -619,7 +619,7 @@ public class UserController {
 
     @RequestMapping("/viewPaymentComplete")
     public ModelAndView viewPaymentComplete() {
-        return new ModelAndView("/user/pages/mypage/afterpayment/viewPaymentComplete");
+        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/viewPaymentComplete");
     }
 
 }
