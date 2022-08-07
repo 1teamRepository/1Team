@@ -17,46 +17,247 @@
 <div th:replace="/user/fragment/header :: header"></div>
 <!--header 끝-->
 
+<style>
+    :lang(ja) body, :lang(ja) button, :lang(ja) input, :lang(ja) select, :lang(ja) textarea {
+        font-family: SpoqaHanSansNeo, Meiryo, "Yu Gothic UI", "ＭＳ Ｐゴシック", Osaka, "Open Sans", Verdana, Arial, Helvetica, sans-serif;
+    }
+
+    .inquiry_area {
+        width: 82px;
+        position: absolute;
+        top: 35px;
+        left: 1020px;
+    }
+
+    .inquiry_area a strong {
+        margin-top: 5px;
+        display: block;
+        font-size: 13px;
+        color: #01a7e1;
+    }
+
+    @media (max-width: 1080px) {
+        .inquiry_area {
+            width: 55px;
+            position: absolute;
+            top: 80px;
+            right: 4%;
+            left: initial;
+        }
+
+        .inquiry_area a strong {
+            display: none
+        }
+    }
+
+    .checkboxCSS {
+        background-color: initial;
+        cursor: default !important;
+        appearance: auto;
+        box-sizing: border-box;
+        margin: 3px 3px 3px 4px !important;
+        padding: initial;
+        border: initial;
+        opacity: initial !important;
+        position: initial !important;
+        width: initial !important;
+        height: initial !important;
+        -webkit-appearance: checkbox;
+        -webkit-border-radius: 0;
+    }
+
+    .reserWrap {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        background-color: rgba(0, 0, 0, 0.4);
+        text-align: center;
+    }
+
+    .modalDiv {
+        display: inline-block;
+        background-color: #fff;
+        padding: 20px;
+        vertical-align: middle;
+        min-height: auto;
+        border: 1px solid #ddd;
+    }
+
+    .blank {
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+    }
+
+    @media (min-width: 1080px) {
+        .modalDiv {
+            display: inline-block;
+            background-color: #fff;
+            padding: 20px;
+            vertical-align: top;
+            min-height: auto;
+            border: 1px solid #ddd;
+            margin-top: 115px
+        }
+    }
+
+    .file__images {
+        position: relative;
+        width: 62px;
+        height: 62px;
+        background: #f0f0f0;
+        border-radius: 4px;
+    }
+
+    .ndiv {
+        display: none !important;
+    }
+
+    .regFileNameDiv {
+        font-size: 10px;
+        white-space: initial;
+        padding: 2px;
+        word-break: break-all;
+        margin-top: 7px;
+    }
+
+    .modalWrap {
+        width: 100%;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        background-color: rgba(0, 0, 0, 0.4);
+        text-align: center;
+    }
+
+    .selectBorder {
+        border-color: #ff5000
+    }
+
+    .checkpoint__list-item2 {
+        position: relative;
+        padding-left: 12px;
+        color: #666;
+    }
+
+    .checkpoint__list-item2 ~ .checkpoint__list-item2 {
+        margin-top: 3px;
+    }
+
+    .checkpoint__list-item ~ .checkpoint__list-item {
+        margin-top: 3px;
+    }
+
+    .btnOrange {
+        background-color: #ff5000
+    }
+
+    .noImg {
+        top: 34% !important;
+        left: 35% !important;
+    }
+</style>
 
 <div id="body">
-
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD2BQQ4" height="0" width="0"
-                style="display:none;visibility:hidden"></iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
-    <div class="wrap wrap--button MO">
-
-
+    <div id="category" value="inquiry"></div>
+    <div class="wrap MO wrap--no-pab">
         <div class="content" id="content">
-            <main id="main" class="main ">
+
+            <main class="main" id="main">
+                <div class="page-title-wrap">
+                    <div class="page-title">1:1 문의 작성하기</div>
+                </div>
+
+                <div class="section-wrap">
+                    <div class="sub-section">
+                        <div class="sub-section">
+                            <div class="input-wrap input--line input-flex  pc-col pc-col-2">
+
+                                <div class="input-row">
+                                    <div class="input-item">
+                                        <div class="input-box label-active">
+                                            <label class="input__label">ID<span class="input__label-asterisk"
+                                                                                  title="required">*</span></label>
+                                            <div class="input" data-element="form">
+                                                <input id="ansUserid" type="text" name="j_id0:mainFrm:cus_name2" class="input__text cus_name" th:value="${id}" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="input-row">
+                                    <div class="input-item">
+                                        <div class="input-box label-active">
+                                            <label class="input__label">제목<span class="input__label-asterisk"
+                                                                                   title="required">*</span></label>
+                                            <div class="input" data-element="form">
+                                                <input id="ansInquiryTitle" type="text" name="j_id0:mainFrm:cus_phone2" class="input__text cus_phone"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
-                <form id="mainform" name="mainform" action="https://jejuair.secure.force.com/wone" method="post"
-                      target="iframe">
-                    <input type="hidden" name="language" value="ko">
-                    <input type="hidden" name="userNo" value="089464461">
-                    <input type="hidden" name="userID" value="migi707">
-                    <input type="hidden" name="userNm" value="이미지">
-                    <input type="hidden" name="phone" value="82-010-8654-1225">
-                    <input type="hidden" name="email" value="migi707@naver.com">
-                    <input type="hidden" name="agentId" value="sys_web.kr">
-                    <input type="hidden" name="caseNo" value="undefined">
-                </form>
+                <div class="section-wrap">
+                    <div class="section-title">문의 작성<span class="text-asterisk">*</span></div>
+                    <div class="section-sub-txt">
+                        주민등록번호와 같은 중요한 개인 정보는 기재하지 마세요.
+                    </div>
+                    <div class="textarea-wrap sub-box">
+                        <div class="textarea" data-element="form">
+                            <textarea id="ansInquiryContent" name="j_id0:mainFrm:cus_text" class="textarea__input" rows="5" placeholder=""></textarea>
+                        </div>
+                    </div>
+                </div>
 
 
-                <input type="hidden" id="active" name="active" value="prod">
-                <div class="iframe_help">
-                    <iframe id="iframe" name="iframe" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"
-                            style="height: 1473.6px;"></iframe>
+                <div class="section-wrap">
+                    <div class="check-wrap">
+                              <span class="checkbox checkbox--small">
+                                <input class="checkbox__input" data-element="checkbox" id="agreeChk" type="checkbox"/>
+                                <label class="checkbox__label" for="agreeChk">
+                                  <i aria-hidden="true" class="checkbox__ico"></i>
+                                  <span>개인정보 수집, 이용 문의</span>
+                                </label>
+                              </span>
+                    </div>
+                </div>
+
+                <div class="sub-section" style="margin-top: 10px;margin-bottom: 24px;">
+                    <dl class="checkpoint" id="agreeSection">
+
+                        <dd class="checkpoint__list" style="margin-top:0;">
+                            <p class="checkpoint__list-item2 ">1. 개인정보의 수집/이용 목적: 1:1문의 고객응대</p>
+                            <p class="checkpoint__list-item2 ">2. 수집하는 개인정보의 항목</p>
+                            <p class="checkpoint__list-item2 ">&nbsp;&nbsp;&nbsp;&nbsp;1) 필수 항목: 이름, 전화번호, 이메일, 문의내용</p>
+                            <p class="checkpoint__list-item2 ">&nbsp;&nbsp;&nbsp;&nbsp;2) 문의유형 별 추가항목</p>
+                            <p class="checkpoint__list-item2 ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 항공권 영문 정정 : 예약번호, 탑승자명, 변경할 영문성명</p>
+                            <p class="checkpoint__list-item2 ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 수하물파손 : 출발지, 도착지, 탑승일</p>
+                            <p class="checkpoint__list-item2 ">3. 개인정보의 보유 및 이용 기간 : 관련 법령에 따름</p>
+                            <p class="checkpoint__list-item2 ">4. 동의를 거부할 수 있으며, 거부하실 경우 1:1문의가 불가합니다.</p>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="button-wrap pc-right pull-up btnWrap" style="margin-top : 10px;">
+                    <button type="button" id="sendit" class="button button--primary button--active" href="#self" style="color:#ffffff;">나문희 하기</button>
                 </div>
             </main>
         </div>
-
     </div>
 </div>
+
+</body>
+</form>
+</html>
 
 
 <!-- footer -->
@@ -65,79 +266,10 @@
 
 
 <!-- 공통 스크립트 선언 -->
-<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/lib/lib.min.js"></script>
-
-<script type="text/javascript"
-        src="https://static.jejuair.net/hpgg/resources/js/lib/moment-with-locales.min.js"></script>
-
-<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/lib/jquery.i18n.js"></script>
-<script type="text/javascript"
-        src="https://static.jejuair.net/hpgg/resources/js/lib/jquery.i18n.messagestore.js"></script>
-<!-- 메인페이지 스크립트 에러 발생으로 이전 소스로 변경합니다.
-<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/booking/plugin.js"></script>
-<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/booking/common.js"></script>
--->
-<script>
-    $(document).ready(function () {
-
-        $.ajaxSetup({
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader('tcode', '0000000615');
-                xhr.setRequestHeader('cname', USER_DEVICE.getName());
-            }
-        });
-
-
-        //BOOKING LAYOUT상태서 sub로 바뀔경우
-        $(document).off('changeLayout').on('changeLayout', function (e, type) {
-            if (type === 'sub') {
-                $('.bookingType').hide();
-                $('.subType').show();
-            } else if (type === 'booking') {
-                $('.subType').hide();
-                $('.bookingType').show();
-            }
-        });
-
-        //breadcrumbs cursor default
-        $('.breadcrumb__item > a').css('cursor', 'default');
-    });
-
-    //타이틀 설정
-    $('header.mobile-only h2.header__page-name').text($('#main div.page-title').eq(0).text());
-</script>
-<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/plugin.js"></script>
-<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/common.js"></script>
-
-<!--필요시만 로드-->
-<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/vendor/lodash.min.js"></script>
-<!--사용되지 않음-->
-<!--<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/vendor/localforage.min.js"></script>-->
-<script type="text/javascript"
-        src="https://static.jejuair.net/hpgg/resources/js/vendor/handlebars.min-v4.7.6.js"></script>
-<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/handlebars.helpers.js"></script>
-
-<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/util/sUtil.js"></script>
-<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/util/dUtil.js"></script>
-<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/util/utils.js"></script>
-
-<!--필요시만 로드-->
-<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/amcharts/amcharts.core.js"></script>
-
-
-<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/bizjs/commons/bizCommons.js"></script>
-<script type="text/javascript" src="https://static.jejuair.net/hpgg/resources/js/jj.helpers.js"></script>
-
-
-<script type="text/javascript"
-        src="https://static.jejuair.net/hpgg/resources/bizjs/customerService/csCenter/qnaForm.js"></script>
-
-
-<div id="ifmWrap"
-     style="height:100%; display:none; overflow:auto; text-align:center; -webkit-overflow-scrolling:touch;">
-    <iframe src="" width="100%" height="100%" name="popupChkApp"></iframe>
-</div>
-<script type="text/javascript" src="/8G0gTi2Ww3eJK9jzak8OzLlw/1t1YkcS2aDik/IntzETIaAwk/I0QI/TCoQKh0"></script>
+<script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
+<script type="text/javascript" src="/user/lib/js/common.js"></script>
+<script type="text/javascript" src="/user/lib/js/plugin.js"></script>
+<script type="text/javascript" src="/user/lib/js/mypage/inquiry_regist.js"></script>
 
 
 </body>

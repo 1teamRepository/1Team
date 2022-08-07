@@ -99,7 +99,7 @@ $(function () {
             return false;
         }
         if(!expUserpw.test(memUserpw.value)){
-            alert('비밀번호 형식을 확인해주세요');
+            alert('비밀번호는 문자, 숫자, 특수문자의 조합으로 8 이상 입력해주세요');
             memUserpw.focus();
             return false;
         }

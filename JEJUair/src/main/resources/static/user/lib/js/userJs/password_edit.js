@@ -39,7 +39,11 @@ function checkInput() {
 
 
 $(function(){
+
+    const expUserpw = RegExp(/([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~])|([!,@,#,$,%,^,&,*,?,_,~].*[a-zA-Z0-9])/);
+
     $(document).on('click', '#btnChangePw', function(){
+        const memUserpw = document.getElementById('memUserpw');
 
         if(!$('#memUserpw').val()){
             alert('현재 비밀번호를 입력하세요');
@@ -56,6 +60,12 @@ $(function(){
         if(!$('#againmemUserpw').val()){
             alert('비밀번호 재확인을 입력하세요');
             $('#againmemUserpw').focus();
+            return false;
+        }
+
+        if(!expUserpw.test(newmemUserpw.value)){
+            alert('비밀번호는 문자, 숫자, 특수문자의 조합으로 8 이상 입력해주세요');
+            newmemUserpw.focus();
             return false;
         }
 
