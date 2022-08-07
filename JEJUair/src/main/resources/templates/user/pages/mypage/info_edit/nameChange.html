@@ -1,0 +1,157 @@
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+
+<!--head-->
+<div th:replace="/user/fragment/head :: head"></div>
+<!--head 끝-->
+<!--<script th:inline="javascript">-->
+<!--  console.log("[[${memIdx}]]");-->
+<!--  loadInfo();-->
+<!--  console.log();-->
+
+<!--  function loadInfo(){-->
+<!--    $.get("/api/customer/"${memIdx}, function(response){-->
+<!--      console.log(response);-->
+<!--    })-->
+<!--  }-->
+<!--</script>-->
+
+<body id="subLayoutBody">
+
+<!--appAlert-->
+<div th:replace="/user/fragment/appAlert :: appAlert"></div>
+<!--appAlert 끝-->
+
+
+<!--header-->
+<div th:replace="/user/fragment/header :: header"></div>
+<!--header 끝-->
+
+<div id="body">
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD2BQQ4" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <div class="wrap wrap--button pc-small">
+
+
+
+
+    <div class="content" id="content">
+      <main id="main" class="main ">
+
+        <form id="frm" name="frm" method="POST" action="/user/nameChangeOK">
+
+
+
+        <!-- 국외인 경우 -->
+        <div class="page-title-wrap">
+          <div class="page-title">영문 성명 변경</div>
+          <div class="page-sub-title">변경하실 영문 성명을  입력해 주세요.</div>
+        </div>
+
+        <div class="section-wrap">
+          <div class="input-wrap input--line">
+            <div class="input-row">
+              <div class="input-item">
+                <div class="input-box">
+                  <label for="memEngLastname" class="input__label">성(영문)</label>
+                  <div data-element="form" class="input">
+                    <input type="text" data-element="input" id="memEngLastname" name="memEngLastname" class="input__text" title="성(영문) 입력">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="input-row">
+              <div class="input-item">
+                <div class="input-box">
+                  <label for="memEngFirstname" class="input__label">이름(영문)</label>
+                  <div data-element="form" class="input">
+                    <input type="text" data-element="input" id="memEngFirstname" name="memEngFirstname" class="input__text" title="이름(영문) 입력">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div th:if="${message1 =='fail1'}"><span style="font-size: 14px; color: #FF5000; margin-top: 20px; text-align: left;">아이디, 비밀번호를 확인하세요.</span></div>
+
+            <div class="guide-info guide-info--gray">
+              <p class="guide-info__text">
+                여권상의(또는 여권에 사용할) 성명을 입력해 주세요. <br>
+                영문 성명은 1년에 1회만 변경할 수 있습니다.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- //국외인 경우 -->
+
+
+
+
+        <div class="button-wrap section-wrap" data-element="bottomContent">
+          <!-- 활성화 클래스 : button--active -->
+
+
+          <!-- 국외인 경우 -->
+          <button type="submit" id="btnChangeName" class="button button--primary"><span class="button__text">영문 성명 변경하기</span></button>
+
+
+
+        </div>
+
+
+<!--        <form method="post" id="frm" name="frm" target="">-->
+<!--          <input type="hidden" id="pageDivision" name="pageDivision" value="eng">-->
+<!--          <input type="hidden" id="lang" name="lang" value="ko">-->
+<!--          <input type="hidden" id="redirectUrl" name="redirectUrl" value="">-->
+
+<!--          <input type="hidden" id="apiRequestType" name="apiRequestType" value="">-->
+<!--          <input type="hidden" id="ffpNo" name="ffpNo" value="060007812">-->
+<!--          <input type="hidden" id="userId" name="userId" value="dmsql0486">-->
+<!--          <input type="hidden" id="newId" name="newId" value="">-->
+<!--          <input type="hidden" id="email" name="email" value="">-->
+<!--          <input type="hidden" id="userPassword" name="userPassword" value="">-->
+<!--          <input type="hidden" id="newPassword" name="newPassword" value="">-->
+<!--          <input type="hidden" id="korLastName" name="korLastName" value="">-->
+<!--          <input type="hidden" id="korFirstName" name="korFirstName" value="">-->
+<!--          <input type="hidden" id="engLastName" name="engLastName" value="">-->
+<!--          <input type="hidden" id="engFirstName" name="engFirstName" value="">-->
+<!--          <input type="hidden" id="foreignerYn" name="foreignerYn" value="">-->
+
+<!--          <input type="hidden" id="countryCode" name="countryCode" value="">-->
+<!--          <input type="hidden" id="ciNo" name="ciNo" value="">-->
+<!--          <input type="hidden" id="parentCiNo" name="parentCiNo" value="">-->
+<!--          <input type="hidden" id="diNo" name="diNo" value="">-->
+<!--          <input type="hidden" id="parentConfirmYn" name="parentConfirmYn" value="">-->
+<!--          <input type="hidden" id="parentName" name="parentName" value="">-->
+<!--          <input type="hidden" id="requestChannelId" name="requestChannelId" value="HOMEPAGE">-->
+<!--          <input type="hidden" id="requestUserId" name="requestUserId" value="dmsql0486">-->
+<!--          <input type="hidden" id="auth" name="auth" value="success">-->
+<!--          <input type="hidden" id="deleteCi" name="deleteCi" value="">-->
+<!--          <input type="hidden" id="ciFullName" value="">-->
+<!--        </form>-->
+      </main>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- footer -->
+<div th:replace="/user/fragment/footer :: footer"></div>
+<!-- / footer 끝 -->
+
+<div id="ifmWrap"
+     style="height:100%; display:none; overflow:auto; text-align:center; -webkit-overflow-scrolling:touch;">
+  <iframe src="" width="100%" height="100%" name="popupChkApp"></iframe>
+</div>
+
+<!-- 공통 스크립트 선언 -->
+<script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
+<script type="text/javascript" src="/user/lib/js/common.js"></script>
+<script type="text/javascript" src="/user/lib/js/plugin.js"></script>
+
+</body>
+</html>

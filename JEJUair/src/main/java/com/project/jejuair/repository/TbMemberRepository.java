@@ -15,5 +15,4 @@ public interface TbMemberRepository extends JpaRepository<TbMember, Long> {
 
     Optional<TbMember> findByMemUseridAndMemUserpw(String memUserid, String memUserpw);
 
-
 }
