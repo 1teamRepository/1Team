@@ -29,7 +29,7 @@ public class TbPassengerApiLogicService extends BaseService<TbPassengerRequest, 
 
     private final TbBaggageRepository tbBaggageRepository;
 
-    private final TbAircraftRepository tbAircraftRepository;
+    private final TbFlightScheduleRepository tbFlightScheduleRepository;
 
     public static TbPassengerResponse response(TbPassenger tbPassenger){
         TbPassengerResponse tbPassengerResponse = TbPassengerResponse.builder()
@@ -49,8 +49,7 @@ public class TbPassengerApiLogicService extends BaseService<TbPassengerRequest, 
                 .bagPrice(tbPassenger.getTbBaggage().getBagPrice())
                 .bagWeight(tbPassenger.getTbBaggage().getBagWeight())
 
-                .tbAircraftAcftIdx(tbPassenger.getTbAircraft().getAcftIdx())
-                .acftAircraftName(tbPassenger.getTbAircraft().getAcftAircraftName())
+                .tbFlightScheduleSchIdx(tbPassenger.getTbFlightSchedule().getSchIdx())
                 .build();
         return tbPassengerResponse;
     }
@@ -68,7 +67,7 @@ public class TbPassengerApiLogicService extends BaseService<TbPassengerRequest, 
                 .tbReservation(tbReservationRepository.findByResIdx(tbPassengerRequest.getTbReservationResIdx()).get())
                 .tbAirlineFood(tbAirlineFoodRepository.findByFoodIdx(tbPassengerRequest.getTbAirlineFoodFoodIdx()).get())
                 .tbBaggage(tbBaggageRepository.findByBagIdx(tbPassengerRequest.getTbBaggageBagIdx()).get())
-                .tbAircraft(tbAircraftRepository.findByAcftIdx(tbPassengerRequest.getTbAircraftAcftIdx()).get())
+                .tbFlightSchedule(tbFlightScheduleRepository.findBySchIdx(tbPassengerRequest.getTbFlightScheduleSchIdx()).get())
                 .build();
         TbPassenger newPassenger = baseRepository.save(tbPassenger);
         return Header.OK(response(newPassenger));
@@ -128,7 +127,7 @@ public class TbPassengerApiLogicService extends BaseService<TbPassengerRequest, 
     }
 
     public Header<List<TbPassengerResponse>> seatFind(Long id){
-        List<TbPassenger> tbPassengerList = tbPassengerRepository.findByTbAircraftAcftIdx(id);
+        List<TbPassenger> tbPassengerList = tbPassengerRepository.findByTbFlightScheduleSchIdx(id);
         List<TbPassengerResponse> tbPassengerResponseList = tbPassengerList.stream()
                 .map(tbPassengers -> response(tbPassengers)).collect(Collectors.toList());
         return Header.OK(tbPassengerResponseList);

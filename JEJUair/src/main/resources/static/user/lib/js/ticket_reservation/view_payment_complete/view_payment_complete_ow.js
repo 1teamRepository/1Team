@@ -50,13 +50,13 @@ $.post({
     async: false,
     success: function(response){
         console.log("===== reservation response ====")
-        console.log(response);
+        console.log(response.data);
         console.log(response.data.resIdx);
         resIdx = response.data.resIdx;
     },
     error: function(){
-        alert('오류가 발생했습니다. 예매 시작화면으로 돌아갑니다.');
-        location.href = "/user/ticket_reservation"
+        alert('reservation 오류가 발생했습니다. 예매 시작화면으로 돌아갑니다.');
+        // location.href = "/user/ticket_reservation"
     }
 });
 
@@ -83,8 +83,8 @@ $.post({
         console.log(response.data);
     },
     error: function(){
-        alert('오류가 발생했습니다. 예매 시작화면으로 돌아갑니다.');
-        location.href = "/user/ticket_reservation"
+        alert('payment 오류가 발생했습니다. 예매 시작화면으로 돌아갑니다.');
+        // location.href = "/user/ticket_reservation"
     }
 });
 
@@ -114,7 +114,7 @@ $.post({
         console.log(response.data);
     },
     error: function(){
-        alert('오류가 발생했습니다. 예매 시작화면으로 돌아갑니다.');
+        alert('point 오류가 발생했습니다. 예매 시작화면으로 돌아갑니다.');
         // location.href = "/user/ticket_reservation"
     }
 });
@@ -143,12 +143,12 @@ $.post({
         console.log(response.data);
     },
     error: function(){
-        alert('오류가 발생했습니다. 예매 시작화면으로 돌아갑니다.');
+        alert('member 오류가 발생했습니다. 예매 시작화면으로 돌아갑니다.');
         // location.href = "/user/ticket_reservation"
     }
 });
-
-
+console.log("-------schIdx------")
+console.log(Number(tripJson["schIdx"]))
 //  passenger create
 
 for (let i = 0; i < tripJson.schPassengerNum; i++) {
@@ -161,7 +161,7 @@ for (let i = 0; i < tripJson.schPassengerNum; i++) {
             pasLastname: passJson["passLastName"+i],
             pasBirthDate: passJson["passYear"+i]+"-"+passJson["selMonth"+i]+"-"+passJson["selDate"+i],
             pasSeat: passJson["pasSeat"+i],
-            tbAircraftAcftIdx:acftIdx,
+            tbFlightScheduleSchIdx: Number(tripJson["schIdx"]),
             tbReservationResIdx: resIdx,
             tbAirlineFoodFoodIdx: 46,
             tbBaggageBagIdx: passJson["pasIdx"+i]
@@ -179,7 +179,7 @@ for (let i = 0; i < tripJson.schPassengerNum; i++) {
             console.log(response.data);
         },
         error: function(){
-            alert('오류가 발생했습니다. 예매 시작화면으로 돌아갑니다.');
+            alert('passenger 오류가 발생했습니다. 예매 시작화면으로 돌아갑니다.');
             // location.href = "/user/ticket_reservation"
         }
     });

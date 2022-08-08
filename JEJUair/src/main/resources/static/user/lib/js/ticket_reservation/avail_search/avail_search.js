@@ -137,7 +137,7 @@ $(function(){
                 console.log('choiceSchedule 들어옴')
                 exdata.forEach((item)=>{
                     if(reserveRoute == 'round'){
-                        if(roundStartDate == `${item.schArrivalDate}` &&
+                        if(roundStartDate == `${item.schDepartureDate}` &&
                             departureData == `${item.schDeparture}` &&
                             arrivalData == `${item.schArrival}`){
                             console.log(item)
@@ -145,7 +145,7 @@ $(function(){
                         }
 
                     }if(reserveRoute == 'oneway') {
-                        if (onewayStartDate == `${item.schArrivalDate}` &&
+                        if (onewayStartDate == `${item.schDepartureDate}` &&
                             departureData == `${item.schDeparture}` &&
                             arrivalData == `${item.schArrival}`) {
                             console.log(item)
@@ -364,19 +364,17 @@ function selectTrip(item) {
 // 출발지 선택 모달
 function selectDeparture() {
     closeLayer();
-    ticketingDisplay();
     departureDesc.parentElement.classList.add('on');
     departureLayer.style.display = "block";
-    document.querySelector("[aria-labelledby='plugin-DEPtab-2']").classList.add("is-active");
+    selectCountry(document.getElementById("plugin-DEPtab-2"));
 }
 
-// 도착지 선택 모달
+//도착지 선택 모달
 function selectTarget() {
     closeLayer();
-    ticketingDisplay();
     arrivalDesc.parentElement.classList.add('on');
     targetLayer.style.display = "block";
-    document.querySelector("[aria-labelledby='plugin-ARRtab-2']").classList.add("is-active");
+    selectCountry(document.getElementById("plugin-ARRtab-2"));
 }
 
 // 승객수 선택 모달
@@ -471,7 +469,6 @@ function selectAirport(select) {
         selectTarget();
         departureDesc.innerText = station;
         departureData.setAttribute("value", station);
-        document.querySelector("[aria-labelledby='plugin-ARRtab-2']").classList.add("is-active");
 
     } else if ($(select).attr('data-stationtype') == "ARR") {
         selectPassengers();

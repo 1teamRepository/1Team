@@ -55,7 +55,7 @@ $.get("/api/flight_schedule/"+schIdx, function(response){
     ecoSeats = Number(schRead["acftNomalSeats"]);
 
     $.get({
-        url: '/api/passenger/seatFind/'+schRead["tbAircraftAcftIdx"],
+        url: '/api/passenger/seatFind/'+schIdx,
         dataType : "json",
         contentType: 'application/json',
         async: false,
@@ -63,7 +63,6 @@ $.get("/api/flight_schedule/"+schIdx, function(response){
             console.log(response)
             console.log(response.data)
             console.log(response.data[0])
-            console.log(response.data[0].tbAircraftAcftIdx)
             existingSeatArray = response.data
 
         }

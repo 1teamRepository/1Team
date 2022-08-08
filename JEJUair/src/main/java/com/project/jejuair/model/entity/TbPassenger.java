@@ -41,7 +41,7 @@ public class TbPassenger {
     private String pasSeat;
 
     @ManyToOne
-    private TbAircraft tbAircraft;
+    private TbFlightSchedule tbFlightSchedule;
 
     @ManyToOne
     private TbReservation tbReservation;
