@@ -129,14 +129,14 @@ function selectDeparture() {
     closeLayer();
     departureDesc.parentElement.classList.add('on');
     departureLayer.style.display = "block";
-    document.querySelector("[aria-labelledby='plugin-DEPtab-2']").classList.add("is-active");
+    selectCountry(document.getElementById("plugin-DEPtab-2"));
 }
 
 function selectTarget() {
     closeLayer();
     arrivalDesc.parentElement.classList.add('on');
     targetLayer.style.display = "block";
-    document.querySelector("[aria-labelledby='plugin-ARRtab-2']").classList.add("is-active");
+    selectCountry(document.getElementById("plugin-ARRtab-2"));
 }
 
 function selectPassengers() {
@@ -208,7 +208,6 @@ function selectCountry(select) {
 
 }
 
-
 function selectAirport(select) {
     let station = $(select).attr('data-stationname');
     console.log(station);
@@ -216,7 +215,6 @@ function selectAirport(select) {
         selectTarget();
         departureDesc.innerText = station;
         departureData.setAttribute("value", station);
-        document.querySelector("[aria-labelledby='plugin-ARRtab-2']").classList.add("is-active");
 
     } else if ($(select).attr('data-stationtype') == "ARR") {
         selectPassengers();
@@ -228,3 +226,5 @@ function selectAirport(select) {
 
 
 //왕복 or 편도 : reserveRoute // 출발지 : departureData // 도착지 : arrivalData // 왕복 날짜 : onewayStart // 왕복 날짜 : roundStart, roundEnd // 성인 승객 수 : adtCount
+
+//왕복 노선은 출발지와 도착지가 바뀜!
