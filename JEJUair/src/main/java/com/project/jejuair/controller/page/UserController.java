@@ -578,8 +578,9 @@ public class UserController {
         @RequestMapping("/event/pastEvent") //localhost:10000/user/event/pastEvent
         public ModelAndView user_pastEvent() { return new ModelAndView("/user/pages/event/event_last/pastEvent");}
 
-        @RequestMapping("/event/eventDetail") //localhost:10000/user/event/eventDetail"
-        public ModelAndView user_eventDetail() { return new ModelAndView("/user/pages/event/event_now/event_detail/eventDetail");}
+        @RequestMapping("/event/eventDetail/{evtIdx}") //localhost:10000/user/event/eventDetail"
+        public ModelAndView user_eventDetail(HttpServletRequest request, @PathVariable(name="evtIdx") Long evtIdx) {
+            return new ModelAndView("/user/pages/event/event_now/event_detail/eventDetail");}
 
         @RequestMapping("/event/eventList") //localhost:10000/user/event/eventList
         public ModelAndView user_eventList() { return new ModelAndView("/user/pages/event/event_now/eventList");}
