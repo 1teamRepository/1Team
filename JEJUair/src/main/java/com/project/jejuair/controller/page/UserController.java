@@ -133,6 +133,16 @@ public class UserController {
     }
 
 
+    //로그아웃
+    @RequestMapping("/logout")
+    public ModelAndView logOut(HttpServletRequest request) throws Exception {
+        HttpSession session = request.getSession();
+        session.setAttribute("name", null);
+        session.setAttribute("id", null);
+        System.out.println("로그아웃");
+        return new ModelAndView("/user/pages/index");
+    }
+
 
 
     @RequestMapping("")
