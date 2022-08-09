@@ -2,7 +2,7 @@ $(function () {
     //회원등록 정규식
     const expUserid = RegExp(/[a-zA-Z0-9]/);
     const expUserpw = RegExp(/([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~])|([!,@,#,$,%,^,&,*,?,_,~].*[a-zA-Z0-9])/);
-    const expSsn = RegExp(/^\d{6}$/);
+    const expSsn = RegExp(/^\d{8}$/);
     const expKoLastname = RegExp(/[가-힣]/);
     const expKoFirstname = RegExp(/[가-힣]/);
     const expEngLastname = RegExp(/[A-Za-z]/);
@@ -99,7 +99,7 @@ $(function () {
             return false;
         }
         if(!expUserpw.test(memUserpw.value)){
-            alert('비밀번호는 문자, 숫자, 특수문자의 조합으로 8 이상 입력해주세요');
+            alert('비밀번호는 문자, 숫자, 특수문자의 조합으로 8자리 이상 입력해주세요');
             memUserpw.focus();
             return false;
         }

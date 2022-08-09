@@ -66,6 +66,7 @@ public class TbMemberApiLogicService extends BaseService<TbMemberRequest, TbMemb
                 .memStatus(MemberStatus.REGISTERED)
                 .memRegDate(LocalDateTime.now())
                 .memSnsPush(tbMemberRequest.getMemSnsPush())
+                .memPoint(0)
                 .build();
         TbMember newTbMember = baseRepository.save(tbMember);
         return Header.OK(response(newTbMember));

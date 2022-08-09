@@ -155,20 +155,11 @@ public class UserController {
         return new ModelAndView("/user/pages/member/find/findEmailUserInfo/findEmailUserInfo");
     }
 
-    @RequestMapping("/findPhoneUserInfo") //이메일로 변경 예정, 국가번호 선택 안됨
-    public ModelAndView findPhoneUserInfo() {
-        return new ModelAndView("/user/pages/member/find/findPhoneUserInfo/findPhoneUserInfo");
-    }
-
-    @RequestMapping("/findUserIdInfo")
-    public ModelAndView findUserIdInfo() {
-        return new ModelAndView("/user/pages/member/find/findUserIdInfo/findUserIdInfo");
-    }
-
-    @RequestMapping("/findUserInfo") //이메일로 변경 예정, 국가번호 선택 안됨
+    @RequestMapping("/findResult")
     public ModelAndView findUserInfo() {
-        return new ModelAndView("/user/pages/member/find/findUserInfo/findUserInfo");
+        return new ModelAndView("/user/pages/member/find/findResult/findResult");
     }
+
 
     @RequestMapping("/findUserInfoList")
     public ModelAndView findUserInfoList() {
@@ -578,8 +569,9 @@ public class UserController {
         @RequestMapping("/event/pastEvent") //localhost:10000/user/event/pastEvent
         public ModelAndView user_pastEvent() { return new ModelAndView("/user/pages/event/event_last/pastEvent");}
 
-        @RequestMapping("/event/eventDetail") //localhost:10000/user/event/eventDetail"
-        public ModelAndView user_eventDetail() { return new ModelAndView("/user/pages/event/event_now/event_detail/eventDetail");}
+        @RequestMapping("/event/eventDetail/{evtIdx}") //localhost:10000/user/event/eventDetail"
+        public ModelAndView user_eventDetail(HttpServletRequest request, @PathVariable(name="evtIdx") Long evtIdx) {
+            return new ModelAndView("/user/pages/event/event_now/event_detail/eventDetail");}
 
         @RequestMapping("/event/eventList") //localhost:10000/user/event/eventList
         public ModelAndView user_eventList() { return new ModelAndView("/user/pages/event/event_now/eventList");}

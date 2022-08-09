@@ -25,52 +25,50 @@ $(function(){
             pageNum.totalPages = pagination.totalPages;
             pageNum.currentPage = pagination.currentPage + 1;
 
-            itemList.itemList = response.data;
-            let answerData = [];
-            answerIdx();
-
-            // function answerIdx(){
-            //     itemList.itemList.forEach((item)=>{
-            //         if(){
-            //             answerData.push(item)
-            //         }
-            //     })
-            // }
-
 
         });
     }
 
+    let ssMemIdx = document.getElementById("memIdx").value;
+    searchIndex(ssMemIdx);
 
+    function searchIndex(index){
+        let category = document.getElementById("category").getAttribute("value");
+        $.get("/api/inquiry", function(response){
 
-    $(document).on('click', '.pages', function(){
-        let pageId = this.id.substring(3);
-        searchStart(pageId);
+            itemList.itemList = response.data;
+
     });
+}
 
-    $(document).on('click', '#page-first', function(){
-        searchStart(0);
-    });
+$(document).on('click', '.pages', function(){
+    let pageId = this.id.substring(3);
+    searchStart(pageId);
+});
 
-    $(document).on('click', '#page-last', function(){
-        searchStart(pageNum.totalPages-1);
-    });
+$(document).on('click', '#page-first', function(){
+    searchStart(0);
+});
 
-    let sessionIdx = document.getElementById("memIdx").getAttribute("value");
+$(document).on('click', '#page-last', function(){
+    searchStart(pageNum.totalPages-1);
+});
 
-    $("#delete").click(() => {
-        const yn = confirm("삭제하시겠습니까?");
-        if(yn){
-            deleteView(sessionIdx);
-            location.href = `/user/qna_list`;
-        }
-    })
+let sessionIdx = document.getElementById("memIdx").getAttribute("value");
 
-    function deleteView(sessionIdx){
-        $.ajax({
-            url: `/api/`+ category+`/`+sessionIdx,
-            method: "DELETE"
-        })
+$("#delete").click(() => {
+    const yn = confirm("삭제하시겠습니까?");
+    if(yn){
+        deleteView(sessionIdx);
+        location.href = `/user/qna_list`;
     }
+})
+
+function deleteView(sessionIdx){
+    $.ajax({
+        url: `/api/`+ category+`/`+sessionIdx,
+        method: "DELETE"
+    })
+}
 
 });
