@@ -1,0 +1,407 @@
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+
+<!--head-->
+<div th:replace="/user/fragment/head :: head"></div>
+<!--head 끝-->
+
+
+<body id="subLayoutBody" class="isPc">
+
+
+<!-- 개선 #1271286440
+<div id="skipNav" class="skip-nav">
+	<a href="#content" class="skip-nav__item">본문 바로가기</a>
+</div>
+-->
+<!-- 상단 띠배너 공지사항은 메인페이지만 표시합니다. -->
+
+
+<!-- appAlert -->
+<div th:replace="/user/fragment/appAlert :: appAlert"></div>
+<!-- //appAlert 끝 -->
+<!-- header -->
+<div th:replace="/user/fragment/header :: header"></div>
+<!-- //header 끝 -->
+
+
+<div id="body">
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD2BQQ4" height="0" width="0"
+                style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="wrap wrap--no-paddings">
+
+
+        <div id="breadcrumb" class="breadcrumb pc-only" aria-label="breadcrumb">
+            <nav class="breadcrumb__inner">
+                <div class="breadcrumb__item">
+                    <a href="javascript:;" class="breadcrumb__link" style="cursor: default;">홈</a>
+                </div>
+
+
+                <div class="breadcrumb__item">
+                    <a href="javascript:;" class="breadcrumb__link" style="cursor: default;">이벤트</a>
+                </div>
+
+
+                <div class="breadcrumb__item breadcrumb__item--current" aria-current="page" data-element="toggle"
+                     data-options="{&quot;mode&quot;: &quot;slide&quot;, &quot;speed&quot;: 100, &quot;clickToClose&quot;: true}">
+
+
+                    <button type="button" class="breadcrumb__link breadcrumb__link--list" data-element="toggle__anchor"
+                            aria-controls="toggle-2" aria-expanded="false">지난 이벤트
+                    </button>
+
+
+                    <div class="breadcrumb__siblings-list" data-element="toggle__panel" id="toggle-2">
+
+
+                        <a href="javascript:void(0);" class="item" onclick="location.href='/user/event/eventList';">진행중인
+                            이벤트</a>
+
+
+                    </div>
+                </div>
+
+
+            </nav>
+        </div>
+
+
+        <div class="content" id="content">
+            <main id="main" class="main ">
+
+                <div class="event-wrap">
+
+
+                    <div class="page-title-wrap pc-only">
+                        <div class="page-title">이벤트 상세</div>
+                    </div>
+
+
+                    <div class="event-page-banner">
+                        <div class="event-top-banner"
+                             style="background-image: url(https://static.jejuair.net/cms/images/event_scrn/20220415114716269.jpg)">
+                            <div class="event-banner-item">
+                                <div class="event-banner">
+                                    <span class="event-banner__text" style="color: ;">할인에 할인을 더하다!</span>
+
+
+                                    <p class="event-banner__title" style="color: ;">
+                                        카카오페이<br>바캉스 할인 쿠폰팩!
+                                    </p>
+
+
+                                    <div class="event-banner__bottom">
+                                        <span class="event-banner__date" style="color: ;">2022.07.04 ~ 2022.07.17</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-wrap">
+                        <div class="event-detail">
+
+
+                            <script src="https://static.jejuair.net/hpgg/resources/bizjs/event/eventView.js"></script>
+                            <input type="hidden" name="eventNo" value="0000000344">
+                            <input type="hidden" name="langCd" value="ko">
+                            <input type="hidden" name="isLogin" value="false">
+                            <input type="hidden" name="readonly" value="false">
+                            <input type="hidden" name="isApp" value="false">
+                            <!-- 타이틀영역 -->
+                            <div class="event-detail__contents-wrap" data-anchor="">
+
+
+                                <!-- 15. 이벤트 기간 -->
+                                <div class="section-wrap">
+
+                                    <div class="event-anchor-title" data-tab-anchor="프로모션 기간">프로모션 기간</div>
+
+                                    <div class="event-detail__period-item" data-tab-anchor="프로모션 기간">
+                                        <p class="event-detail__period-date">2022.07.04(월) ~ 2022.07.17(일)</p>
+                                    </div>
+                                </div>
+                                <!-- //15. 이벤트 기간 -->
+
+
+                                <!-- 텍스트 -->
+
+
+                                <div class="section-wrap">
+
+
+                                    <div class="event-anchor-title" data-tab-anchor="카카오페이 쿠폰 할인 적용 채널 ">카카오페이 쿠폰 할인 적용
+                                        채널
+                                    </div>
+
+                                    <div class="event-txt-wrap sub-section">
+                                        <strong class="event-section-title"></strong>
+                                        <p class="text__default">제주항공 공식 홈페이지 ,모바일웹 , 애플리케이션</p>
+                                    </div>
+
+                                </div>
+                                <!--// 텍스트 -->
+
+
+                                <!-- 텍스트 -->
+
+
+                                <div class="section-wrap">
+
+
+                                    <div class="event-anchor-title" data-tab-anchor="할인혜택">할인혜택</div>
+
+                                    <div class="event-txt-wrap sub-section">
+                                        <strong class="event-section-title"></strong>
+                                        <p class="text__default"> 카카오페이로 7만원 이상 결제 시 "5천원" 쿠폰적용 할인<br><br>※ 프로모션 기간 내 하단
+                                            카카오페이 바캉스쿠폰팩 발급 후 제주항공 결제 시 쿠폰 적용가능 합니다.<br>※ 카카오페이 쿠폰발급 (모바일접속) : 카카오톡&gt;
+                                            카카오페이 &gt; 메뉴&gt; 혜택 &gt;바캉스 혜택 &gt;쿠폰팩 다운로드 가능합니다.<br> ※ 기간 중, 각 업종별
+                                            (항공/면세, 숙박, 패션,아울렛)에서 택1하여 1회 사용 가능 합니다.<br> ※ 기간 중 선착순 진행으로 제휴사 사정으로 인해
+                                            사전고지 없이 조기 종료 될 수 있습니다. </p>
+                                    </div>
+
+                                </div>
+                                <!--// 텍스트 -->
+
+
+                                <!-- 1. 에어카페 쿠폰 -->
+
+
+                                <script src="https://static.jejuair.net/hpgg/resources/bizjs/event/componentViews/couponViewHandler.js"></script>
+                                <div class="section-wrap">
+                                    <div class="event-cupon-wrap">
+
+                                        <div class="event-cupon service">
+                                            <div class="event-cupon-top">
+                                                <div class="event-cupon-name"></div>
+
+                                                <div class="event-cupon-price"><span class="sub-big">5,000원</span><span
+                                                        class="sub-small"></span></div>
+
+
+                                                <p class="event-cupon-txt">결제 총액 7만원 이상 결제 시 적용</p>
+
+                                                <span class="badge service">카카오페이 결제전용</span>
+
+                                            </div>
+
+                                            <div class="event-cupon-bot">
+
+                                                <div class="list-item">- 카카오페이에서 "바캉스 쿠폰팩" 사전 다운로드 <br>- 제주항공 결제시 카카오페이
+                                                    선택 및 쿠폰적용
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!--// 1. 에어카페 쿠폰 -->
+
+
+                                <!-- 링크 버튼 -->
+
+                                <script src="https://static.jejuair.net/hpgg/resources/bizjs/event/componentViews/btnLinkViewHandler.js"></script>
+                                <div class="section-wrap">
+                                    <div class="button-wrap event-btn-wrap">
+                                        <button type="button" class="button button--event03"
+                                                onclick="btnLinkViewHandler.goUrl(this)" data-component-div-cd="btnLink"
+                                                data-web-url="http://kko.to/LKllLdFXS"
+                                                data-app-url="http://kko.to/LKllLdFXS" data-collection="Y">
+                                            <span class="button__text">카카오페이 쿠폰발급 (모바일 접속전용)</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <!--// 링크 버튼 -->
+
+
+                                <!-- 이미지+텍스트_원 -->
+                                <div class="section-wrap">
+
+                                    <div class="event-anchor-title" data-tab-anchor="Tip. 카카오페이 알차게 이용하는 방법!">Tip. 카카오페이
+                                        알차게 이용하는 방법!
+                                    </div>
+
+                                    <div class="event-image02-wrap">
+
+                                        <div class="event-image02-box">
+
+                                            <a href="">
+                                                <img class="event-image02"
+                                                     src="https://static.jejuair.net/cms/images/event_scrn/20220415114623795.jpg"
+                                                     alt="">
+                                            </a>
+                                            <div class="event-txt-wrap sub-section">
+                                                <strong class="text__default text--bold"></strong>
+                                                <p class="text__default">제주항공 회원이면 할인 OK !</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="event-image02-box">
+
+                                            <a href="">
+                                                <img class="event-image02"
+                                                     src="https://static.jejuair.net/cms/images/event_scrn/20220415114628295.jpg"
+                                                     alt="">
+                                            </a>
+                                            <div class="event-txt-wrap sub-section">
+                                                <strong class="text__default text--bold"></strong>
+                                                <p class="text__default">전 노선,성수기 할인 OK !</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="event-image02-box">
+
+                                            <a href="">
+                                                <img class="event-image02"
+                                                     src="https://static.jejuair.net/cms/images/event_scrn/20220415114525838.jpg"
+                                                     alt="">
+                                            </a>
+                                            <div class="event-txt-wrap sub-section">
+                                                <strong class="text__default text--bold"></strong>
+                                                <p class="text__default">부가서비스 결제 할인 OK !</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!--// 이미지+텍스트_원 -->
+
+
+                                <!-- 이미지+텍스트_원 -->
+                                <div class="section-wrap">
+
+                                    <div class="event-image02-wrap">
+
+                                        <div class="event-image02-box">
+
+                                            <a href="">
+                                                <img class="event-image02"
+                                                     src="https://static.jejuair.net/cms/images/event_scrn/20220415114638597.jpg"
+                                                     alt="">
+                                            </a>
+                                            <div class="event-txt-wrap sub-section">
+                                                <strong class="text__default text--bold"></strong>
+                                                <p class="text__default">프로모션 코드 중복 할인 OK !</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="event-image02-box">
+
+                                            <a href="">
+                                                <img class="event-image02"
+                                                     src="https://static.jejuair.net/cms/images/event_scrn/20220415114649714.jpg"
+                                                     alt="">
+                                            </a>
+                                            <div class="event-txt-wrap sub-section">
+                                                <strong class="text__default text--bold"></strong>
+                                                <p class="text__default">신규가입 회원 할인 중복 OK!</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="event-image02-box">
+
+                                            <a href="">
+                                                <img class="event-image02"
+                                                     src="https://static.jejuair.net/cms/images/event_scrn/20220415114546832.jpg"
+                                                     alt="">
+                                            </a>
+                                            <div class="event-txt-wrap sub-section">
+                                                <strong class="text__default text--bold"></strong>
+                                                <p class="text__default">리프레시포인트 기본 5% 적립OK !</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!--// 이미지+텍스트_원 -->
+
+
+                                <!-- 유의사항 -->
+
+                                <div class="section-wrap info-wrap">
+                                    <div class="service-information" data-element="toggle"
+                                         data-options="{&quot;mode&quot;: &quot;move scroll&quot;}">
+                                        <div class="service-information__title">
+                                            <button type="button" class="service-information__anchor"
+                                                    data-element="toggle__anchor" aria-controls="toggle-3"
+                                                    aria-expanded="false">카카오페이 쿠폰 프로모션 유의사항
+                                            </button>
+                                        </div>
+                                        <div class="service-information__content" data-element="toggle__panel"
+                                             id="toggle-3">
+                                            <p>· 카카오페이 즉시할인은 제주항공 홈페이지, 모바일 웹/앱을 통해서만 가능합니다.</p>
+                                            <p><span style="font-size: 14px;">· 카카오페이 쿠폰발급 시 제주항공 안드로이드 App사용자분께서는 최신버전의 App으로 업데이트 하신 후 쿠폰발급 바랍니다.&nbsp;</span><br>
+                                            </p>
+                                            <p><span style="font-size: 14px;">· 기간 내 1인당(카카오페이 서비스가입 기준) 1회 할인 적용 가능합니다.&nbsp;</span><br>
+                                            </p>
+                                            <p><span style="font-size: 14px;">· 쿠폰 사용시 각 쿠폰사용 대상 업종 (항공/면세, 숙박, 패션, 아울렛) 에서 택 1하여 쿠폰 사용이 가능합니다.&nbsp;</span><br>
+                                            </p>
+                                            <p><span style="font-size: 14px;">· 1회 결제기준 총 결제금액(프로모션코드, 신분할인 등 할인적용 금액)에 최종 할인 적용됩니다.&nbsp;</span><br>
+                                            </p>
+                                            <p><span style="font-size: 14px;">· 변경/취소 위약금 발생이 없는 전체 취소 후 재 결제 시에는 할인 적용 가능합니다.&nbsp;</span><br>
+                                            </p>
+                                            <p><span style="font-size: 14px;">· 변경/취소 위약금이 발생한 취소(부분 취소)후 재 결제 시에는 할인 적용 되지 않습니다.&nbsp;</span>
+                                            </p>
+                                            <p><span style="font-family: sans-serif; font-size: 14px;">· 신규회원가입 할인과 프로모션코드와 중복 적용가능하합니다. 단, 다른 결제 수단 전용 프로모션 코드 사용 시 카카오페이 쿠폰 할인과 중복 적용되지 않습니다.&nbsp;</span>
+                                            </p>
+                                            <p><span style="font-size: 14px;">· 쿠폰 사용 마감 기한은 쿠폰발급일로부터 22년 7월 17일 23시 59분 까지로 사용가능 기간 및 일시 경과 시 쿠폰 사용이 되지 않습니다.&nbsp;</span><span
+                                                    style="font-size: 14px;"><br></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- //유의사항 -->
+
+                            </div>
+                            <button type="button" data-element="modal_anchor" data-target="" class="hidden"></button>
+
+
+                        </div>
+                    </div>
+
+                    <div class="button-wrap pc-60" data-element="bottomContent" data-space="30">
+
+                        <a href="/ko/event/pastEvent.do" class="button button--primary button--active"><span
+                                class="button__text">다른 이벤트 보러가기</span></a>
+
+
+                    </div>
+                    <button type="button" class="button-top" aria-label="상단 이동" style=""></button><!--Top 버튼-->
+
+
+                </div>
+            </main>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- footer -->
+<div th:replace="user/fragment/footer :: footer"></div>
+<!-- / footer 끝 -->
+
+
+<!-- 공통 스크립트 선언 -->
+
+<!--<div th:replace="/user/fragment/js :: js"></div>-->
+<script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
+<script type="text/javascript" src="/user/lib/js/common.js"></script>
+<script type="text/javascript" src="/user/lib/js/plugin.js"></script>
+
+<!-- 공통 스크립트 선언 끝 -->
+
+<!--body, html 주석은 위치 고정-->
+</body>
+</html>
+<!--body, html 주석은 위치 고정 끝-->

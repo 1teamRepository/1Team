@@ -6,7 +6,7 @@ $(function(){
         },
         methods:{
             locate(index){
-                window.location.href=`/event/eventDetail/${index}`
+                window.location.href=`/user/event/eventDetail/${index}`
             }
         }
     });
@@ -14,6 +14,7 @@ $(function(){
     function searchList(index){
         $.get("/api/event?page="+index, function(response){
             itemList.itemList = response.data;
+            console.log(itemList.itemList.evtTitle)
         });
     }
 });

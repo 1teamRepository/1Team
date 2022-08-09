@@ -39,7 +39,7 @@
 							data-element="toggle__anchor">진행중인 이벤트</button>
 					<div class="breadcrumb__siblings-list" data-element="toggle__panel">
 						<a href="javascript:void(0);" class="item"
-						   onclick="URL_LINK.getI18Url('/event/pastEvent.do')">지난 이벤트</a>
+						   onclick="location.href='/user/event/pastEvent';">지난 이벤트</a>
 
 					</div>
 				</div>
@@ -49,26 +49,27 @@
 
 		<div class="content" id="content">
 			<!-- //이벤트 게시글 시작 -->
-			<main id="main" class="main ">
-				<div class="event-wrap">
+			<main id="main" class="main">
+				<div class="event-wrap" id="itemList">
+					<div id="category" value="event"></div>
 					<div class="page-title-wrap pc-only">
 						<div class="page-title">이벤트 상세</div>
 					</div>
 
-					<div class="event-page-banner" id="itemList">
+					<div class="event-page-banner">
 						<div class="event-top-banner"
 							 style="background-image: url(https://static.jejuair.net/cms/images/event_scrn/20220616180012301.jpg)">
 							<div class="event-banner-item">
 								<div class="event-banner">
-										<span class="event-banner__text" style="color: #000;" name="evtStartDate" id="evtStartDate" :value=`${view.evtStartDate}`></span>
+										<span class="event-banner__text" style="color: #000;"></span>
 
 									<p class="event-banner__title" style="color: #000;">
-										국내선 여름 성수기 증편<br />최대 7천원 할인
+										{{itemList.evtTitle}}
 									</p>
 
 									<div class="event-banner__bottom">
-											<span class="event-banner__date" style="color: #333;">2022.06.24 ~
-												2022.06.30</span>
+											<span class="event-banner__date" style="color: #333;">{{itemList.evtStartDate}} ~
+												{{itemList.evtEndDate}}</span>
 									</div>
 								</div>
 							</div>
@@ -93,7 +94,7 @@
 								<div class="section-wrap">
 									<div class="event-anchor-title" data-tab-anchor="■ 판매 기간">■ 판매 기간</div>
 									<div class="event-detail__period-item" data-tab-anchor="■ 판매 기간">
-										<p class="event-detail__period-date">2022.06.24(금) ~ 2022.06.30(목)</p>
+										<p class="event-detail__period-date">{{itemList.evtStartDate}} ~ {{itemList.evtEndDate}}</p>
 									</div>
 								</div>
 								<!-- //15. 이벤트 기간 -->
@@ -101,10 +102,10 @@
 								<!-- 6 탑승 기간 -->
 								<div class="section-wrap">
 
-									<div class="event-anchor-title" data-tab-anchor="■ 탑승 기간">■ 탑승 기간</div>
+									<div class="event-anchor-title" data-tab-anchor="■ 탑승 기간">■ 내용</div>
 
 									<div class="event-detail__period-item">
-										<p class="event-detail__period-date">2022.07.01(금) ~ 2022.07.31(일)</p>
+										<p class="event-detail__period-date">{{itemList.evtContent}}</p>
 									</div>
 								</div>
 								<!-- //6 탑승 기간 -->
@@ -333,11 +334,8 @@
 <script type="text/javascript" src="/user/lib/js/common.js"></script>
 <script type="text/javascript" src="/user/lib/js/plugin.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-<script type="text/javascript" src="/user/lib/js/userJs/event/eventList.js"></script>
+<script type="text/javascript" src="/user/lib/js/userJs/event/eventView.js"></script>
 <!-- 공통 스크립트 선언 끝 -->
-
-<script type="text/javascript" src="/user/lib/js/event.js"></script>
-
 
 <div id="ifmWrap"
 	 style="height:100%; display:none; overflow:auto; text-align:center; -webkit-overflow-scrolling:touch;">

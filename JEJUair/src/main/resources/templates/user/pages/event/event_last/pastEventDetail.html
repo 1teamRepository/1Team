@@ -1,0 +1,340 @@
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+<!--head-->
+<div th:replace="/user/fragment/head :: head"></div>
+<!--head 끝-->
+
+
+<body id="subLayoutBody" class="isPc">
+
+
+<!-- 개선 #1271286440
+<div id="skipNav" class="skip-nav">
+	<a href="#content" class="skip-nav__item">본문 바로가기</a>
+</div>
+-->
+<!-- 상단 띠배너 공지사항은 메인페이지만 표시합니다. -->
+
+
+<!-- appAlert -->
+<div th:replace="/user/fragment/appAlert :: appAlert"></div>
+<!-- //appAlert 끝 -->
+
+<!-- header -->
+<div th:replace="/user/fragment/header :: header"></div>
+<!-- //header 끝 -->
+
+
+<div id="body">
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD2BQQ4" height="0" width="0"
+                style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="wrap wrap--no-paddings">
+
+
+        <div id="breadcrumb" class="breadcrumb pc-only" aria-label="breadcrumb">
+            <nav class="breadcrumb__inner">
+                <div class="breadcrumb__item">
+                    <a href="javascript:;" class="breadcrumb__link" style="cursor: default;">홈</a>
+                </div>
+
+
+                <div class="breadcrumb__item">
+                    <a href="javascript:;" class="breadcrumb__link" style="cursor: default;">이벤트</a>
+                </div>
+
+
+                <div class="breadcrumb__item breadcrumb__item--current" aria-current="page" data-element="toggle"
+                     data-options="{&quot;mode&quot;: &quot;slide&quot;, &quot;speed&quot;: 100, &quot;clickToClose&quot;: true}">
+
+
+                    <button type="button" class="breadcrumb__link breadcrumb__link--list" data-element="toggle__anchor"
+                            aria-controls="toggle-2" aria-expanded="false">지난 이벤트
+                    </button>
+
+
+                    <div class="breadcrumb__siblings-list" data-element="toggle__panel" id="toggle-2">
+
+
+                        <a href="javascript:void(0);" class="item" onclick="location.href='/user/event/eventList';">진행중인
+                            이벤트</a>
+
+
+                    </div>
+                </div>
+
+
+            </nav>
+        </div>
+
+
+        <div class="content" id="content">
+            <main id="main" class="main ">
+
+                <div class="event-wrap">
+
+
+                    <div class="page-title-wrap pc-only">
+                        <div class="page-title">이벤트 상세</div>
+                    </div>
+
+
+                    <div class="event-page-banner">
+                        <div class="event-top-banner"
+                             style="background-image: url(https://static.jejuair.net/cms/images/event_scrn/20220518155338004.jpg)">
+                            <div class="event-banner-item">
+                                <div class="event-banner">
+                                    <span class="event-banner__text" style="color: ;">다시 돌아왔다! #시즌3</span>
+
+
+                                    <p class="event-banner__title" style="color: ;">
+                                        '여수' 여행가는 달<br>15,000원 할인
+                                    </p>
+
+
+                                    <div class="event-banner__bottom">
+                                        <span class="event-banner__date" style="color: ;">2022.07.06 ~ 2022.07.22</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-wrap">
+                        <div class="event-detail">
+
+
+                            <script src="https://static.jejuair.net/hpgg/resources/bizjs/event/eventView.js"></script>
+                            <input type="hidden" name="eventNo" value="0000000377">
+                            <input type="hidden" name="langCd" value="ko">
+                            <input type="hidden" name="isLogin" value="false">
+                            <input type="hidden" name="readonly" value="false">
+                            <input type="hidden" name="isApp" value="false">
+                            <!-- 타이틀영역 -->
+                            <div class="event-detail__contents-wrap" data-anchor="">
+
+
+                                <!-- 15. 이벤트 기간 -->
+                                <div class="section-wrap">
+
+                                    <div class="event-anchor-title" data-tab-anchor="■ 판매 기간">■ 판매 기간</div>
+
+                                    <div class="event-detail__period-item" data-tab-anchor="■ 판매 기간">
+                                        <p class="event-detail__period-date">2022.07.06(수) ~ 2022.07.22(금)</p>
+                                    </div>
+                                </div>
+                                <!-- //15. 이벤트 기간 -->
+
+
+                                <!-- 6 탑승 기간 -->
+                                <div class="section-wrap">
+
+                                    <div class="event-anchor-title" data-tab-anchor="■ 탑승 기간">■ 탑승 기간</div>
+
+                                    <div class="event-detail__period-item">
+                                        <p class="event-detail__period-date">2022.07.06(수) ~ 2022.07.22(금)</p>
+                                    </div>
+                                </div>
+                                <!-- //6 탑승 기간 -->
+
+
+                                <!-- 5 사용 기간 -->
+                                <div class="section-wrap">
+
+                                    <div class="event-anchor-title" data-tab-anchor="■ 아묻따! 역대급 할인 코드 #시즌3">■ 아묻따! 역대급
+                                        할인 코드 #시즌3
+                                    </div>
+
+                                    <div class="event-detail__period-item" data-tab-anchor="■ 아묻따! 역대급 할인 코드 #시즌3">
+                                        <p class="event-detail__period-date">2022.07.06(수) ~ 2022.07.22(금)</p>
+                                    </div>
+                                </div>
+                                <!-- //5 사용 기간 -->
+
+
+                                <!-- 1. 에어카페 쿠폰 -->
+
+
+                                <script src="https://static.jejuair.net/hpgg/resources/bizjs/event/componentViews/couponViewHandler.js"></script>
+                                <div class="section-wrap">
+                                    <div class="event-cupon-wrap">
+
+                                        <div class="event-cupon sale">
+                                            <div class="event-cupon-top">
+                                                <div class="event-cupon-name">여수여행가는달</div>
+
+                                                <div class="event-cupon-price"><span class="sub-big">15,000원</span><span
+                                                        class="sub-small"></span></div>
+
+
+                                                <p class="event-cupon-txt">김포 → 여수 </p>
+
+                                                <span class="badge sale">★제주항공 단독★</span>
+
+                                            </div>
+
+                                            <div class="event-cupon-bot">
+
+                                                <div class="list-item">- <font color="red">선착순 </font>할인! 망설이는 순간
+                                                    마감!<br>- <font color="red">선착순 마감 시 프로모션코드이벤트 종료 예정</font><br>-
+                                                    할인코드: 여수는제주항공3<br>- 항공운임 5만원 이하 할인적용 가능<br>- 김포출발 여수도착 구간 운임 15,000원
+                                                    할인<br>- 왕복/편도 사용시 김포→여수 구간 적용
+                                                </div>
+
+
+                                                <button type="button" class="copy-coupon" data-coupon-no="여수는제주항공3"
+                                                        onclick="eventView.showPastAlert()">프로모션 코드 복사
+                                                </button>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!--// 1. 에어카페 쿠폰 -->
+
+
+                                <!-- 2단 링크 버튼 -->
+
+                                <script src="https://static.jejuair.net/hpgg/resources/bizjs/event/componentViews/btnLinkViewHandler.js"></script>
+                                <div class="button-wrap event-btn-wrap">
+                                    <button type="button" class="button button--event02"
+                                            onclick="btnLinkViewHandler.goUrl(this)" data-component-div-cd="btn2Link"
+                                            data-web-url="https://www.jejuair.net/ko/ibe/booking/Availability.do?depStn=GMP&amp;arrStn=RSU&amp;depDate=2022-07-12&amp;arrDate=2022-07-22"
+                                            data-app-url="https://www.jejuair.net/ko/ibe/booking/Availability.do?depStn=GMP&amp;arrStn=RSU&amp;depDate=2022-07-12&amp;arrDate=2022-07-22"
+                                            data-collection="Y">
+                                        <span class="button__text">예매하기</span>
+                                    </button>
+                                    <button type="button" class="button button--event01"
+                                            onclick="btnLinkViewHandler.goUrl(this)" data-component-div-cd="btn2Link"
+                                            data-web-url="https://www.jejuair.net/ko/memberBenefit/memberBenefit.do?param=promotion"
+                                            data-app-url="https://www.jejuair.net/ko/memberBenefit/memberBenefit.do?param=promotion"
+                                            data-collection="Y">
+                                        <span class="button__text">프로모션코드 사용방법 보기</span>
+                                    </button>
+                                </div>
+                                <!--//2단 링크 버튼 -->
+
+
+                                <!-- 유의사항 -->
+
+                                <div class="section-wrap info-wrap">
+                                    <div class="service-information" data-element="toggle"
+                                         data-options="{&quot;mode&quot;: &quot;move scroll&quot;}">
+                                        <div class="service-information__title">
+                                            <button type="button" class="service-information__anchor"
+                                                    data-element="toggle__anchor" aria-controls="toggle-3"
+                                                    aria-expanded="false">제주항공 예매 유의사항
+                                            </button>
+                                        </div>
+                                        <div class="service-information__content" data-element="toggle__panel"
+                                             id="toggle-3">
+                                            <div style="line-height: 1.5;">
+                                                <div style="line-height: 1.5;">· 천재지변, 코로나 등으로 인한 정부정책으로 인하여 항공편 스케줄이 변경
+                                                    또는 취소될 수 있습니다.
+                                                </div>
+                                                <div style="line-height: 1.5;">· 유류할증료는 예약일 기준이며, 해외 공항시설사용료는 발권일, 환율 등에
+                                                    따라 변동될 수 있습니다.
+                                                </div>
+                                                <div style="line-height: 1.5;">· 예약은 제주항공 홈페이지, 모바일 웹/앱을 통해서만 가능합니다.
+                                                </div>
+                                                <div style="line-height: 1.5;">· 상기 운임은 항공운임, 유류할증료, 공항시설사용료를 포함한 '편도'
+                                                    총액입니다.
+                                                </div>
+                                                <div style="line-height: 1.5;">· 운임은 선착순 판매로 조기 소진될 수 있습니다.</div>
+                                                <div style="line-height: 1.5;">· 항공권 구매 시 예약 변경 및 환불 등에 대한 상세 안내를 반드시
+                                                    확인바랍니다.
+                                                </div>
+                                                <div style="line-height: 1.5;">· FLY 운임은 무료 수하물이 포함되지 않습니다</div>
+                                                <div style="line-height: 1.5;">· 문의: 제주항공 고객센터(1599-1500)</div>
+                                                <div style="line-height: 1.5;">· 국제선 항공권 구매 전, 입국과 관련된 세부 내용은 국가별 출입국
+                                                    제한사항 및 외교부 여행안전사이트 내 최신안전소식을 반드시 확인하시기 바랍니다.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- //유의사항 -->
+
+
+                                <!-- 유의사항 -->
+
+                                <div class="section-wrap info-wrap">
+                                    <div class="service-information" data-element="toggle"
+                                         data-options="{&quot;mode&quot;: &quot;move scroll&quot;}">
+                                        <div class="service-information__title">
+                                            <button type="button" class="service-information__anchor"
+                                                    data-element="toggle__anchor" aria-controls="toggle-4"
+                                                    aria-expanded="false">프로모션 코드 유의사항
+                                            </button>
+                                        </div>
+                                        <div class="service-information__content" data-element="toggle__panel"
+                                             id="toggle-4">
+                                            <p>· 제주항공의 프로모션 코드는 제주항공 회원 한정으로, 회원 본인 탑승 건에 한하여 로그인 후 사용이 가능합니다.</p>
+                                            <p>· 프로모션 코드 입력 후 항공권 예매 단계의 예상 결제금액을 통해 프로모션 코드 적용여부 및 할인 금액을 확인 할 수 있습니다.&nbsp;</p>
+                                            <p>· 프로모션 코드는 회원 로그인 후 일반결제 선택 시 사용 가능합니다. (포인트 결제 시 프로모션 코드 사용 불가)</p>
+                                            <p>· 프로모션 코드 할인은 항공 운임에만 적용되며, 부가서비스, 유류세 및 공항세 할인은 제외됩니다. (예, 할인코드 10만원이나
+                                                항공운임 1만원의 경우 = 1만원 할인)&nbsp;</p>
+                                            <p>· 프로모션 코드는 여정 변경 시에는 사용이 불가하며, 최초 예약에 한하여 사용 가능합니다.&nbsp;</p>
+                                            <p>· 타 프로모션 코드와 중복 사용이 불가능하나, 신규 회원 할인 및 신분 할인(국가유공자/제주도민 할인 등) 과의 중복 적용이
+                                                가능합니다. 단, 중복 적용 시 신분 할인 선 적용 후 프로모션 코드 할인이 적용되는 점 사전 확인 부탁드립니다.</p>
+                                            <p>· 프로모션 코드 할인은 결제 완료 순서로 조기 소진될 수 있으며, 소진 시 적용할 수 없는 프로모션 코드로 노출됩니다.</p>
+                                            <p>· 프로모션 코드는 일부 운임에는 사용이 제한되며, 선택하신 일자에 사용 가능한 운임이 없을 경우 ‘적용 할 수 없는 프로모션
+                                                코드’로 노출됩니다.<br></p>
+                                            <p>· 왕복 노선 구매 시 조건에 부합하는 편도 노선이 하나라도 있는 경우, 할인 코드는 해당 편도 노선에만 적용됩니다.</p>
+                                            <p>· 적용 가능 대상 : 성인(대인), 소아<br></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- //유의사항 -->
+
+                            </div>
+                            <button type="button" data-element="modal_anchor" data-target="" class="hidden"></button>
+
+
+                        </div>
+                    </div>
+
+                    <div class="button-wrap pc-60" data-element="bottomContent" data-space="30">
+
+                        <a href="/ko/event/pastEvent.do" class="button button--primary button--active"><span
+                                class="button__text">다른 이벤트 보러가기</span></a>
+
+
+                    </div>
+                    <button type="button" class="button-top" aria-label="상단 이동" style=""></button><!--Top 버튼-->
+
+
+                </div>
+            </main>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- footer -->
+<div th:replace="user/fragment/footer :: footer"></div>
+<!-- / footer 끝 -->
+
+
+<!-- 공통 스크립트 선언 -->
+
+<!--<div th:replace="/user/fragment/js :: js"></div>-->
+<script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
+<script type="text/javascript" src="/user/lib/js/common.js"></script>
+<script type="text/javascript" src="/user/lib/js/plugin.js"></script>
+
+<!-- 공통 스크립트 선언 끝 -->
+
+<!--body, html 주석은 위치 고정-->
+</body>
+</html>
+<!--body, html 주석은 위치 고정 끝-->
