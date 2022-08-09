@@ -85,30 +85,30 @@
                                     <div class="input-label">품목</div>
                                     <div class="input-box">
                                         <div class="select-wrap select-wrap--line">
-                                            <select id="itemCd" title="품목" class="select-wrap__select">
+                                            <select id="itemCd" title="품목" class="select-wrap__select" name="itemCd">
                                                 <option value="">전체</option>
 
-                                                <option value="01">핸드폰</option>
+                                                <option value="핸드폰">핸드폰</option>
 
-                                                <option value="02">책</option>
+                                                <option value="책">책</option>
 
-                                                <option value="03">안경</option>
+                                                <option value="안경">안경</option>
 
-                                                <option value="04">베개</option>
+                                                <option value="베개">베개</option>
 
-                                                <option value="05">의류</option>
+                                                <option value="의류">의류</option>
 
-                                                <option value="06">전자제품</option>
+                                                <option value="전자제품">전자제품</option>
 
-                                                <option value="07">지갑</option>
+                                                <option value="지갑">지갑</option>
 
-                                                <option value="08">서류</option>
+                                                <option value="서류">서류</option>
 
-                                                <option value="09">악세서리</option>
+                                                <option value="악세서리">악세서리</option>
 
-                                                <option value="10">가방류</option>
+                                                <option value="가방류">가방류</option>
 
-                                                <option value="11">기타</option>
+                                                <option value="기타">기타</option>
 
                                             </select>
                                         </div>
@@ -118,30 +118,30 @@
                                     <div class="input-label">색상</div>
                                     <div class="input-box">
                                         <div class="select-wrap select-wrap--line">
-                                            <select id="hueCd" title="색상" class="select-wrap__select">
+                                            <select id="hueCd" title="색상" class="select-wrap__select" name="hueCd">
                                                 <option value="">전체</option>
 
-                                                <option value="01">흰색(화이트)</option>
+                                                <option value="화이트">흰색(화이트)</option>
 
-                                                <option value="02">검정색(블랙)</option>
+                                                <option value="블랙">검정색(블랙)</option>
 
-                                                <option value="03">빨간색(레드)</option>
+                                                <option value="레드">빨간색(레드)</option>
 
-                                                <option value="04">주황색(오렌지)</option>
+                                                <option value="오렌지">주황색(오렌지)</option>
 
-                                                <option value="05">노랑색(옐로우)</option>
+                                                <option value="옐로우">노랑색(옐로우)</option>
 
-                                                <option value="06">초록색(그린)</option>
+                                                <option value="그린">초록색(그린)</option>
 
-                                                <option value="07">파란색(블루)</option>
+                                                <option value="블루">파란색(블루)</option>
 
-                                                <option value="08">갈색(브라운)</option>
+                                                <option value="브라운">갈색(브라운)</option>
 
-                                                <option value="09">보라색(바이올렛)</option>
+                                                <option value="바이올렛">보라색(바이올렛)</option>
 
-                                                <option value="10">분홍색(핑크)</option>
+                                                <option value="핑크">분홍색(핑크)</option>
 
-                                                <option value="11">기타</option>
+                                                <option value="기타">기타</option>
 
                                             </select>
                                         </div>
@@ -149,38 +149,38 @@
                                 </div>
                             </div>
                             <!--스크립트 pc:항상 오픈/모바일:접혀있게-->
-                            <div class="input-row toggle-row pc-25 pc-show">
-                                <div class="input-item">
-                                    <label for="inp3-1" class="input-label">항공편 명</label>
-                                    <div class="input-box">
-                                        <div data-element="form" data-change="true" class="input input-wraping">
-                                            <div class="default-text"><span>7</span><span>C</span></div>
-                                            <input type="tel" id="inp3-1" class="input__text" data-element="input"
-                                                   maxlength="4" placeholder="●●●●">
-                                        </div>
+                            <!-- <div class="input-row toggle-row pc-25 pc-show">
+                                 <div class="input-item">
+                                     <label for="inp3-1" class="input-label">항공편 명</label>
+                                     <div class="input-box">
+                                         <div data-element="form" data-change="true" class="input input-wraping">
+                                             <div class="default-text"><span>7</span><span>C</span></div>
+                                             <input type="tel" id="inp3-1" class="input__text" data-element="input"
+                                                    maxlength="4" placeholder="●●●●">
+                                         </div>
+                                     </div>
+                                     <p tabindex="0" class="input__error">편명을 입력해 주세요.</p>
+                                     <p class="input__sub-text">예) 1234</p>
+                                 </div>-->
+
+                            <!-- D : 에러시  input--error 클래스 추가 -->
+                            <!--<div class="input-item">
+                                <div class="input-box">
+                                    <label for="inp" class="input__label">좌석번호</label>
+                                    <div data-element="form" class="input">
+                                        <input type="text" data-element="input" id="pickupSeatNo"
+                                               class="input__text">
+                                        <button type="button" data-element="remove" class="input__remove-button">
+                                            <span class="hidden">삭제</span></button>
                                     </div>
-                                    <p tabindex="0" class="input__error">편명을 입력해 주세요.</p>
-                                    <p class="input__sub-text">예) 1234</p>
                                 </div>
-
-                                <!-- D : 에러시  input--error 클래스 추가 -->
-                                <div class="input-item">
-                                    <div class="input-box">
-                                        <label for="inp" class="input__label">좌석번호</label>
-                                        <div data-element="form" class="input">
-                                            <input type="text" data-element="input" id="pickupSeatNo"
-                                                   class="input__text">
-                                            <button type="button" data-element="remove" class="input__remove-button">
-                                                <span class="hidden">삭제</span></button>
-                                        </div>
-                                    </div>
-                                    <p tabindex="0" class="input__error">에러메세지</p>
-                                    <p class="input__sub-text">예) 10A</p>
-                                </div>
-
-                                <div class="input-item"></div>
-
+                                <p tabindex="0" class="input__error">에러메세지</p>
+                                <p class="input__sub-text">예) 10A</p>
                             </div>
+
+                            <div class="input-item"></div>
+
+                        </div>-->
                             <button type="button" class="btn-lost-more"></button>
 
                         </div>
@@ -188,8 +188,8 @@
 
                     <div class="sub-section">
                         <div class="button-wrap button-wrap--center">
-                            <button type="button" id="select_btn" class="button button--optional button--active"
-                                    data-type="search"><span class="button__text">조회</span></button>
+                            <button type="button" id="select_btn" class="button button--optional button--active">
+                                <span class="button__text">조회</span></button>
                         </div>
                     </div>
 
@@ -206,205 +206,228 @@
                                        data-range-text="{&quot;start&quot;: &quot;시작&quot;, &quot;end&quot;: &quot;종료&quot;, &quot;current&quot;: &quot;왕복&quot;}"
                                        data-locale="ko">
                             </div>
-                            <div class="booking-button cal-button">
-                                <button type="button" class="button button--primary button--black pc-only"
-                                        data-reset-date="#selectDate">
-                                    <span class="button__text">초기화</span>
-                                </button>
-                                <button type="button" class="button button--primary button--active"
-                                        data-select-date="#selectDate" rel="modal:close">
-                                    <span class="button__text">선택</span>
-                                </button>
+                            <div class="ticketing-date">
+                                <div id="date-round" style="display : block" value="round">
+
+                                    <div style=" display: flex; justify-content: center; margin-top: 10px;">
+                                        <input type="text" name="cal-round" id="cal-round" value=""
+                                               style="height: 30px; border: 0px solid #FFF; width: 250px; text-align: center; font-size: 18px;" />
+                                    </div>
+                                    <script>
+                                        $(function () {
+                                            $('input[name="cal-round"]').daterangepicker({
+                                                opens: 'left',
+                                                minDate: moment()
+
+                                            }, function (start, end, label) {
+                                                document.getElementById("roundStart").setAttribute("value", start.format('YYYY-MM-DD'));
+                                                document.getElementById("roundEnd").setAttribute("value", end.format('YYYY-MM-DD'));
+                                                console.log(document.getElementById("roundStart"));
+                                                console.log(document.getElementById("roundEnd"));
+                                                console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+                                            });
+                                        });
+                                    </script>
+                                </div>
+                                <div class="booking-button cal-button">
+                                    <button type="button" class="button button--primary button--black pc-only"
+                                            data-reset-date="#selectDate">
+                                        <span class="button__text">초기화</span>
+                                    </button>
+                                    <button type="button" class="button button--primary button--active"
+                                            data-select-date="#selectDate" rel="modal:close">
+                                        <span class="button__text">선택</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <a href="#" rel="modal:close" class="modal__close"><span class="blind">닫기</span></a>
+                        </div>
+                    </div>
+
+                    <div class="section-wrap">
+                        <div class="notice-box">
+                            <div class="notice-box__title">꼭 알아두세요</div>
+                            <p class="notice-box__text">유실물은 습득일로부터 1개월 후 주인이 나타나지 않으면 유실물은 자동 폐기됩니다.</p>
+                            <p class="notice-text--type2">단, 쉽게 부패하는 물품은 수시로 폐기됩니다.</p>
+                        </div>
+                    </div>
+
+                    <!-- 조회결과 -->
+                    <div class="section-wrap" id="rslt">
+                        <div class="search-result">
+                            <div class="search-result__header" id="search-result__header"  >
+                                <p class="search-result__header-title">조회 결과</p>
+                                <span class="search-result__total" id="totalC">총 <strong class="totalCnt">{{totalElements}}</strong>개</span>
+                            </div>
+                            <div class="search-result__contents list-card-st" id="itemList">
+                                <div class="list-card list-card--lost" id="resultsList">
+                                    <!--데이터-->
+                                    <div class="list-card__item" style="display: none;"
+                                         v-for="(dto,i) in itemList"
+                                         :key="i">          <!--vue로 반복문 돌리기-->
+                                        <div class="list-card__image">
+                                            <!--                                         <img src="/ko/customerService/cabinLost/getAttachThumFileSrcOne.json?attachfileNo=20220804000000077873" alt="분실품">-->
+                                            {{dto.lostImg}}
+                                            <div class="label-wrap label-wrap--lost">
+                                                <span class="label-wrap__item label-wrap__item--type3">보관</span>
+                                                <input type="hidden" id="lostpropId" value="CAB0003822">
+                                            </div>
+                                        </div>
+                                        <div class="list-card__info">
+                                            <div class="list-card--lost__info-date">{{dto.lostRegDate}}</div>
+                                            <strong class="list-card__title">{{dto.lostItem}}</strong>
+                                            <div class="list-card--lost__info-list">
+                                                <span class="flight">{{dto.lostSeatNum}}/</span>
+                                                <span class="location">{{dto.lostAcqAirName}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--데이터끝-->
+                                </div>
+
+                                <!-- 데이터 없을때 -->
+                                <div class="finish-item-wrap" style="display: none">
+                                    <div class="finish-item">
+                                        <div class="finish-item__img"><img
+                                                src="https://static.jejuair.net/hpgg/resources/images/icon/icon-nodata-02.png"
+                                                alt=""></div>
+                                        <p class="finish-item__title">조회된 유실물이 없습니다.</p>
+                                        <p class="finish-item__text">검색 조건을 바꿔서 다시 검색해 주세요.</p>
+                                    </div>
+                                </div>
+                                <!-- //데이터 없을때 -->
+                            </div>
+                            <div class="more-wrap" style="display: none;">
+                                <button type="button" class="more__button" id="moreBtn" data-type="more"><span
+                                        class="more__button-text">더보기 (<span class="more__button--color"
+                                                                             id="currentCnt">0</span>/<span
+                                        class="totalCnt">0</span>)</span></button>
                             </div>
                         </div>
+                    </div>
+                    <!-- //조회결과 -->
+
+                    <div class="section-wrap">
+                        <div class="notice-box">
+                            <div class="notice-box__title">유실물 문의</div>
+                            <p class="notice-box__text">찾으시는 물건이 없나요? <br class="mobile-only">1599-1500 위 번호로 연락주시길 바랍니다.</p>
+                        </div>
+                    </div>
+                    <!--<div class="section-wrap">
+                        <div class="button-wrap pc-center">
+                            <button type="button" onclick="CUSTOMERSERVICE_CABINLOST_SCRIPT.confirm();"
+                                    class="button--optional button--active"><span class="button__text">문의하기</span></button>
+                        </div>
+                    </div>-->
+                    <div id="modalLayer01" class="modal modal-full modal-scroll">
+                        <div class="modal-header">
+                            <div class="modal-header__title">유실물 센터 이용 방법</div>
+                        </div>
+                        <div class="modal-content">
+                            <!-- use-way -->
+                            <div class="use-way">
+                                <div class="section-wrap">
+                                    <div class="section-title">이용방법</div>
+                                    <div class="section-sub-txt">항공기에서 물건을 잃어버린 기간과 품목 등을 검색하여 유실물을 찾아 보세요.</div>
+                                </div>
+                                <div class="section-wrap">
+                                    <div class="section-title">이용절차</div>
+
+                                    <div class="list-card list-card--step cs">
+                                        <div class="list-card__item">
+                                            <div class="list-card__image">
+                                                <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-lost-step01.png"
+                                                     alt="이미지">
+                                            </div>
+                                            <div class="list-card__info">
+                                                <strong class="list-card__title">01.등록</strong>
+                                                <p class="list-card__text">기내 유실물은 습득 후 2~3일 이내에 유실물 센터에 등록됩니다.</p>
+                                            </div>
+                                        </div>
+                                        <div class="list-card__item">
+                                            <div class="list-card__image">
+                                                <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-lost-step02.png"
+                                                     alt="이미지">
+                                            </div>
+                                            <div class="list-card__info">
+                                                <strong class="list-card__title">02.보관</strong>
+                                                <p class="list-card__text">유실물은 습득일로부터 1개월 동안 보관됩니다.</p>
+                                                <ul class="list-guide list-guide--asterisk">
+                                                    <li class="list-guide__item">단, 쉽게 부패하는 물품은 수시로 폐기됩니다.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="list-card__item">
+                                            <div class="list-card__image">
+                                                <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-lost-step03.png"
+                                                     alt="이미지">
+                                            </div>
+                                            <div class="list-card__info">
+                                                <strong class="list-card__title">03.문의</strong>
+                                                <p class="list-card__text">유실물을 찾으시면 [문의하기]에서 수령 방법에 대한 안내를 받습니다. </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="list-card__item">
+                                            <div class="list-card__image">
+                                                <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-lost-step04.png"
+                                                     alt="이미지">
+                                            </div>
+                                            <div class="list-card__info">
+                                                <strong class="list-card__title">04.수령</strong>
+                                                <p class="list-card__text">방문 수령만 가능하며, 수령 시 신분증을 꼭 지참해 주세요.</p>
+                                                <ul class="list-guide list-guide--asterisk">
+                                                    <li class="list-guide__item">본인으로 확인되어야 수령할 수 있습니다.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="list-card__item">
+                                            <div class="list-card__image">
+                                                <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-lost-step05.png"
+                                                     alt="이미지">
+                                            </div>
+                                            <div class="list-card__info">
+                                                <strong class="list-card__title">05.폐기</strong>
+                                                <p class="list-card__text">습득일로부터 1개월 후 주인이 나타나지 않으면 유실물은 자동 폐기됩니다.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="section-wrap">
+                                    <div class="section-title">기타 유실물 기관</div>
+                                    <div class="section-sub-txt">항공기가 아닌 공항 시설에서 잃어버린 경우, 해당 공항의 유실물 관련 기관에 문의해 주세요.
+                                    </div>
+
+                                    <div class="lost_table_style">
+                                        <dl>
+                                            <dt>인천공항</dt>
+                                            <dd>032-741-3110</dd>
+                                            <dt>제주공항</dt>
+                                            <dd>064-797-2521</dd>
+                                            <dt>김포공항</dt>
+                                            <dd>02-2660-4097</dd>
+                                            <dt>청주공항</dt>
+                                            <dd>
+                                                <!-- 043-210-6440 CMS 테스트 해야됨 -->043-210-6440
+                                            </dd><!-- 청주공항 연락처 변경  -->
+                                            <dt>김해공항</dt>
+                                            <dd>051-974-3776</dd>
+                                            <dt>대구공항</dt>
+                                            <dd>053-980-5230</dd>
+                                        </dl>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- //use-way -->
+                        </div>
+
                         <a href="#" rel="modal:close" class="modal__close"><span class="blind">닫기</span></a>
                     </div>
-                </div>
-
-                <div class="section-wrap">
-                    <div class="notice-box">
-                        <div class="notice-box__title">꼭 알아두세요</div>
-                        <p class="notice-box__text">유실물은 습득일로부터 1개월 후 주인이 나타나지 않으면 유실물은 자동 폐기됩니다.</p>
-                        <p class="notice-text--type2">단, 쉽게 부패하는 물품은 수시로 폐기됩니다.</p>
-                    </div>
-                </div>
-
-                <!-- 조회결과 -->
-                <div class="section-wrap" id="rslt">
-                    <div class="search-result">
-                        <div class="search-result__header">
-                            <p class="search-result__header-title">조회 결과</p>
-                            <span class="search-result__total">총 <strong class="totalCnt"> 0</strong>개</span>
-                        </div>
-                        <div class="search-result__contents list-card-st" id="itemList">
-                            <div class="list-card list-card--lost" id="resultsList">
-                                <!--데이터-->
-                                <div class="list-card__item"
-                                     v-for="(dto,i) in itemList"
-                                     :key="i">          <!--vue로 반복문 돌리기-->
-                                    <div class="list-card__image">
-                                        <!--                                        <img src="/ko/customerService/cabinLost/getAttachThumFileSrcOne.json?attachfileNo=20220804000000077873" alt="분실품">-->
-                                        {{dto.lostImg}}
-                                        <div class="label-wrap label-wrap--lost">
-                                            <span class="label-wrap__item label-wrap__item--type3">보관</span>
-                                            <input type="hidden" id="lostpropId" value="CAB0003822">
-                                        </div>
-                                    </div>
-                                    <div class="list-card__info">
-                                        <div class="list-card--lost__info-date">{{dto.lostRegDate}}</div>
-                                        <strong class="list-card__title">{{dto.lostItem}}</strong>
-                                        <div class="list-card--lost__info-list">
-                                            <span class="flight">{{dto.lostSeatNum}}/</span>
-                                            <span class="location">{{dto.lostAcqAirName}}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--데이터끝-->
-                            </div>
-
-                            <!-- 데이터 없을때 -->
-                            <div class="finish-item-wrap">
-                                <div class="finish-item">
-                                    <div class="finish-item__img"><img
-                                            src="https://static.jejuair.net/hpgg/resources/images/icon/icon-nodata-02.png"
-                                            alt=""></div>
-                                    <p class="finish-item__title">조회된 유실물이 없습니다.</p>
-                                    <p class="finish-item__text">검색 조건을 바꿔서 다시 검색해 주세요.</p>
-                                </div>
-                            </div>
-                            <!-- //데이터 없을때 -->
-                        </div>
-                        <div class="more-wrap" style="display: none;">
-                            <button type="button" class="more__button" id="moreBtn" data-type="more"><span
-                                    class="more__button-text">더보기 (<span class="more__button--color"
-                                                                         id="currentCnt">0</span>/<span
-                                    class="totalCnt">0</span>)</span></button>
-                        </div>
-                    </div>
-                </div>
-                <!-- //조회결과 -->
-
-                <div class="section-wrap">
-                    <div class="notice-box">
-                        <div class="notice-box__title">유실물 문의</div>
-                        <p class="notice-box__text">찾으시는 물건이 없나요? <br class="mobile-only">문의하기로 유실물을 찾아 보세요</p>
-                    </div>
-                </div>
-                <div class="section-wrap">
-                    <div class="button-wrap pc-center">
-                        <button type="button" onclick="CUSTOMERSERVICE_CABINLOST_SCRIPT.confirm();"
-                                class="button--optional button--active"><span class="button__text">문의하기</span></button>
-                    </div>
-                </div>
-                <div id="modalLayer01" class="modal modal-full modal-scroll">
-                    <div class="modal-header">
-                        <div class="modal-header__title">유실물 센터 이용 방법</div>
-                    </div>
-                    <div class="modal-content">
-                        <!-- use-way -->
-                        <div class="use-way">
-                            <div class="section-wrap">
-                                <div class="section-title">이용방법</div>
-                                <div class="section-sub-txt">항공기에서 물건을 잃어버린 기간과 품목 등을 검색하여 유실물을 찾아 보세요.</div>
-                            </div>
-                            <div class="section-wrap">
-                                <div class="section-title">이용절차</div>
-
-                                <div class="list-card list-card--step cs">
-                                    <div class="list-card__item">
-                                        <div class="list-card__image">
-                                            <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-lost-step01.png"
-                                                 alt="이미지">
-                                        </div>
-                                        <div class="list-card__info">
-                                            <strong class="list-card__title">01.등록</strong>
-                                            <p class="list-card__text">기내 유실물은 습득 후 2~3일 이내에 유실물 센터에 등록됩니다.</p>
-                                        </div>
-                                    </div>
-                                    <div class="list-card__item">
-                                        <div class="list-card__image">
-                                            <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-lost-step02.png"
-                                                 alt="이미지">
-                                        </div>
-                                        <div class="list-card__info">
-                                            <strong class="list-card__title">02.보관</strong>
-                                            <p class="list-card__text">유실물은 습득일로부터 1개월 동안 보관됩니다.</p>
-                                            <ul class="list-guide list-guide--asterisk">
-                                                <li class="list-guide__item">단, 쉽게 부패하는 물품은 수시로 폐기됩니다.</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <div class="list-card__item">
-                                        <div class="list-card__image">
-                                            <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-lost-step03.png"
-                                                 alt="이미지">
-                                        </div>
-                                        <div class="list-card__info">
-                                            <strong class="list-card__title">03.문의</strong>
-                                            <p class="list-card__text">유실물을 찾으시면 [문의하기]에서 수령 방법에 대한 안내를 받습니다. </p>
-                                        </div>
-                                    </div>
-
-                                    <div class="list-card__item">
-                                        <div class="list-card__image">
-                                            <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-lost-step04.png"
-                                                 alt="이미지">
-                                        </div>
-                                        <div class="list-card__info">
-                                            <strong class="list-card__title">04.수령</strong>
-                                            <p class="list-card__text">방문 수령만 가능하며, 수령 시 신분증을 꼭 지참해 주세요.</p>
-                                            <ul class="list-guide list-guide--asterisk">
-                                                <li class="list-guide__item">본인으로 확인되어야 수령할 수 있습니다.</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <div class="list-card__item">
-                                        <div class="list-card__image">
-                                            <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-lost-step05.png"
-                                                 alt="이미지">
-                                        </div>
-                                        <div class="list-card__info">
-                                            <strong class="list-card__title">05.폐기</strong>
-                                            <p class="list-card__text">습득일로부터 1개월 후 주인이 나타나지 않으면 유실물은 자동 폐기됩니다.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="section-wrap">
-                                <div class="section-title">기타 유실물 기관</div>
-                                <div class="section-sub-txt">항공기가 아닌 공항 시설에서 잃어버린 경우, 해당 공항의 유실물 관련 기관에 문의해 주세요.
-                                </div>
-
-                                <div class="lost_table_style">
-                                    <dl>
-                                        <dt>인천공항</dt>
-                                        <dd>032-741-3110</dd>
-                                        <dt>제주공항</dt>
-                                        <dd>064-797-2521</dd>
-                                        <dt>김포공항</dt>
-                                        <dd>02-2660-4097</dd>
-                                        <dt>청주공항</dt>
-                                        <dd>
-                                            <!-- 043-210-6440 CMS 테스트 해야됨 -->043-210-6440
-                                        </dd><!-- 청주공항 연락처 변경  -->
-                                        <dt>김해공항</dt>
-                                        <dd>051-974-3776</dd>
-                                        <dt>대구공항</dt>
-                                        <dd>053-980-5230</dd>
-                                    </dl>
-                                </div>
-
-                            </div>
-                        </div>
-                        <!-- //use-way -->
-                    </div>
-
-                    <a href="#" rel="modal:close" class="modal__close"><span class="blind">닫기</span></a>
-                </div>
-                <!-- //유실물 센터 이용 방법 팝업 -->
+                    <!-- //유실물 센터 이용 방법 팝업 -->
             </main>
         </div>
     </div>
@@ -533,14 +556,20 @@
 <!--<div th:replace="/user/fragment/js :: js"></div>-->
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
-<script type="text/javascript" src="/user/lib/js/userJs/lostItem/lostList.js"></script>
-<!--<script type="text/javascript" src="/user/lib/js/lib.min.js"></script>-->
+<script type="text/javascript" src="/user/lib/js/lostItem/lostList.js"></script>
+<script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
 <script type="text/javascript" src="/user/lib/js/common.js"></script>
 <script type="text/javascript" src="/user/lib/js/plugin.js"></script>
 
 
 <!-- 공통 스크립트 선언 끝 -->
 
+
+<script>
+
+
+
+</script>
 
 <!--<script type="text/javascript"-->
 <!--        src="/user/lib/js/cabinLost.js"></script>-->
@@ -625,7 +654,7 @@
 <!--    </div>-->
 <!--    {{/each}}-->
 <!--</script>-->
-<!--</body>-->
+</body>
 
 <!--</html>-->
 

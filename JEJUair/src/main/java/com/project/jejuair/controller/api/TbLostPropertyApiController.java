@@ -51,4 +51,9 @@ public class TbLostPropertyApiController extends CrudController<TbLostPropertyRe
     public Header<List<TbLostPropertyResponse>> findAll(@PageableDefault(sort = {"lostIdx"}, direction = Sort.Direction.DESC) Pageable pageable){     //paging할수있는 객체 생성함
         return tbLostPropertyApiLogicService.search(pageable);
     }
+
+    @PostMapping("/search")
+    public Header<List<TbLostPropertyResponse>> findByAll(@PageableDefault(sort = {"lostIdx"}, direction = Sort.Direction.DESC) Pageable pageable, @RequestBody Header<TbLostPropertyRequest> request){
+        return tbLostPropertyApiLogicService.searchByAll(pageable, request);
+    }
 }
