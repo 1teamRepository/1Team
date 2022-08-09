@@ -10,37 +10,34 @@ $(document).on('click', '#select_btn', function () {
     console.log(searchTotal);
     console.log(searchTotal.style.display);
 
+    let lostItem = document.getElementById("itemCd")
+    let selectlostItem = lostItem.options[lostItem.selectedIndex].value;
     let lostColor = document.getElementById("hueCd");
     let selectlostColor = lostColor.options[lostColor.selectedIndex].value; //옵션에 설렉티드 밸류값을 가져옴
-    let lostItem = document.getElementById("itemCd")
-    let selectlostItem = lostItem.options[lostColor.selectedIndex].value;
 
-    console.log(lostColor);
+
     console.log(selectlostColor);
+    console.log(selectlostItem);
 
 //아이템과 컬러가 채워져있으면 searchByAll 실행, Elseif 데이터 없으면, searchList(0);
 
     if (selectlostColor != "" || selectlostItem != ""){
         console.log("if 들어옴");
-        searchByAll(selectlostColor,selectlostItem)
+        searchByAll(selectlostColor,selectlostItem, selected, searchTotal)
     } else {
         console.log("else 들어옴");
-        searchList(0);
-    }
-
-
-    searchTotal.children[1].style.display = "block";
-    console.log("style들어옴")
-    //여러개 리스트 있을때
-    for(let i=0; i<selected.length; i++) {
-        console.log(selected[i].style.display)
-        selected[i].style.display="block";
+        searchList(0, selected, searchTotal);
 
     }
+
+
+
 
 });
 
-function searchByAll(color,item){
+
+
+function searchByAll(color,item, selected, searchTotal){
 
 
     let jsonData = {
@@ -52,7 +49,7 @@ function searchByAll(color,item){
             lostItem: item
         }
     }
-
+    console.log(jsonData);
     let itemList = new Vue({
         el: '#itemList',            //아이디불러옴 vue 작동
         data: {
@@ -79,11 +76,24 @@ function searchByAll(color,item){
             itemList.itemList = response.data;
             console.log(response.data);
             totalCnt.totalElements = pagination.totalElements;
+
+
         },
         error: function (){
             alert('불러오기 실패')
         }
     });
+
+
+
+    searchTotal.children[1].style.display = "block";
+    console.log("style들어옴")
+    //여러개 리스트 있을때
+    for(let i=0; i<selected.length; i++) {
+        console.log(selected[i].style.display)
+        selected[i].style.display="block";
+
+    }
 
 }
 
@@ -104,7 +114,7 @@ function searchByAll(color,item){
 // }
 
 
-function searchList(index){
+function searchList(index, selected, searchTotal){
     console.log("들어옴2");
 
     let itemList = new Vue({
@@ -135,6 +145,16 @@ function searchList(index){
         totalCnt.totalElements = pagination.totalElements;
 
     });
+
+
+
+    searchTotal.children[1].style.display = "block";
+    console.log("style들어옴")
+    //여러개 리스트 있을때
+    for(let i=0; i<selected.length; i++) {
+        console.log(selected[i].style.display)
+        selected[i].style.display = "block";
+    }
 }
 
 // $(function(){
