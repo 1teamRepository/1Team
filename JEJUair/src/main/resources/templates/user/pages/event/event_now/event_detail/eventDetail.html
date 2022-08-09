@@ -16,310 +16,309 @@
 <div th:replace="/user/fragment/header :: header"></div>
 <!-- //header 끝 -->
 
-	<div id="body">
+<div id="body">
 
-		<!-- Google Tag Manager (noscript) -->
-		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD2BQQ4" height="0" width="0"
-				style="display:none;visibility:hidden"></iframe></noscript>
-		<!-- End Google Tag Manager (noscript) -->
-		<div class="wrap wrap--no-paddings">
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD2BQQ4" height="0" width="0"
+					  style="display:none;visibility:hidden"></iframe></noscript>
+	<!-- End Google Tag Manager (noscript) -->
+	<div class="wrap wrap--no-paddings">
 
-			<!-- //본문 상단 메뉴 시작 -->
-			<div id="breadcrumb" class="breadcrumb pc-only" aria-label="breadcrumb">
-				<nav class="breadcrumb__inner">
-					<div class="breadcrumb__item">
-						<a href="javascript:;" class="breadcrumb__link">홈</a>
-					</div>
-					<div class="breadcrumb__item">
-						<a href="javascript:;" class="breadcrumb__link">이벤트</a>
-					</div>
-					<div class="breadcrumb__item breadcrumb__item--current" aria-current="page" data-element="toggle"
-						data-options='{"mode": "slide", "speed": 100, "clickToClose": true}'>
-						<button type="button" class="breadcrumb__link breadcrumb__link--list"
+		<!-- //본문 상단 메뉴 시작 -->
+		<div id="breadcrumb" class="breadcrumb pc-only" aria-label="breadcrumb">
+			<nav class="breadcrumb__inner">
+				<div class="breadcrumb__item">
+					<a href="javascript:;" class="breadcrumb__link">홈</a>
+				</div>
+				<div class="breadcrumb__item">
+					<a href="javascript:;" class="breadcrumb__link">이벤트</a>
+				</div>
+				<div class="breadcrumb__item breadcrumb__item--current" aria-current="page" data-element="toggle"
+					 data-options='{"mode": "slide", "speed": 100, "clickToClose": true}'>
+					<button type="button" class="breadcrumb__link breadcrumb__link--list"
 							data-element="toggle__anchor">진행중인 이벤트</button>
-						<div class="breadcrumb__siblings-list" data-element="toggle__panel">
-							<a href="javascript:void(0);" class="item"
-								onclick="URL_LINK.getI18Url('/event/pastEvent.do')">지난 이벤트</a>
+					<div class="breadcrumb__siblings-list" data-element="toggle__panel">
+						<a href="javascript:void(0);" class="item"
+						   onclick="URL_LINK.getI18Url('/event/pastEvent.do')">지난 이벤트</a>
 
-						</div>
 					</div>
-				</nav>
-			</div>
-			<!-- //본문 상단 메뉴 끝 -->
+				</div>
+			</nav>
+		</div>
+		<!-- //본문 상단 메뉴 끝 -->
 
-			<div class="content" id="content">
-				<!-- //이벤트 게시글 시작 -->
-				<main id="main" class="main ">
-					<div class="event-wrap">
-						<div class="page-title-wrap pc-only">
-							<div class="page-title">이벤트 상세</div>
-						</div>
+		<div class="content" id="content">
+			<!-- //이벤트 게시글 시작 -->
+			<main id="main" class="main ">
+				<div class="event-wrap">
+					<div class="page-title-wrap pc-only">
+						<div class="page-title">이벤트 상세</div>
+					</div>
 
-						<div class="event-page-banner">
-							<div class="event-top-banner"
-								style="background-image: url(https://static.jejuair.net/cms/images/event_scrn/20220616180012301.jpg)">
-								<div class="event-banner-item">
-									<div class="event-banner">
-										<span class="event-banner__text" style="color: #000;">7월 특가 알림! (청주/군산/여수 ↔
-											제주)</span>
+					<div class="event-page-banner" id="itemList">
+						<div class="event-top-banner"
+							 style="background-image: url(https://static.jejuair.net/cms/images/event_scrn/20220616180012301.jpg)">
+							<div class="event-banner-item">
+								<div class="event-banner">
+										<span class="event-banner__text" style="color: #000;" name="evtStartDate" id="evtStartDate" :value=`${view.evtStartDate}`></span>
 
-										<p class="event-banner__title" style="color: #000;">
-											국내선 여름 성수기 증편<br />최대 7천원 할인
-										</p>
+									<p class="event-banner__title" style="color: #000;">
+										국내선 여름 성수기 증편<br />최대 7천원 할인
+									</p>
 
-										<div class="event-banner__bottom">
+									<div class="event-banner__bottom">
 											<span class="event-banner__date" style="color: #333;">2022.06.24 ~
 												2022.06.30</span>
-										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+					</div>
 
 
-						<div class="section-wrap">
-							<div class="event-detail">
+					<div class="section-wrap">
+						<div class="event-detail">
 
-								<script
+							<script
 									src="https://static.jejuair.net/hpgg/resources/bizjs/event/eventView.js"></script>
-								<input type="hidden" name="eventNo" value="0000000347" />
-								<input type="hidden" name="langCd" value="ko" />
-								<input type="hidden" name="isLogin" value="false" />
-								<input type="hidden" name="readonly" value="false" />
-								<input type="hidden" name="isApp" value="false" />
-								<!-- 타이틀영역 -->
-								<div class="event-detail__contents-wrap" data-anchor>
+							<input type="hidden" name="eventNo" value="0000000347" />
+							<input type="hidden" name="langCd" value="ko" />
+							<input type="hidden" name="isLogin" value="false" />
+							<input type="hidden" name="readonly" value="false" />
+							<input type="hidden" name="isApp" value="false" />
+							<!-- 타이틀영역 -->
+							<div class="event-detail__contents-wrap" data-anchor>
 
-									<!-- 15. 이벤트 기간 -->
-									<div class="section-wrap">
-										<div class="event-anchor-title" data-tab-anchor="■ 판매 기간">■ 판매 기간</div>
-										<div class="event-detail__period-item" data-tab-anchor="■ 판매 기간">
-											<p class="event-detail__period-date">2022.06.24(금) ~ 2022.06.30(목)</p>
-										</div>
+								<!-- 15. 이벤트 기간 -->
+								<div class="section-wrap">
+									<div class="event-anchor-title" data-tab-anchor="■ 판매 기간">■ 판매 기간</div>
+									<div class="event-detail__period-item" data-tab-anchor="■ 판매 기간">
+										<p class="event-detail__period-date">2022.06.24(금) ~ 2022.06.30(목)</p>
 									</div>
-									<!-- //15. 이벤트 기간 -->
+								</div>
+								<!-- //15. 이벤트 기간 -->
 
-									<!-- 6 탑승 기간 -->
-									<div class="section-wrap">
+								<!-- 6 탑승 기간 -->
+								<div class="section-wrap">
 
-										<div class="event-anchor-title" data-tab-anchor="■ 탑승 기간">■ 탑승 기간</div>
+									<div class="event-anchor-title" data-tab-anchor="■ 탑승 기간">■ 탑승 기간</div>
 
-										<div class="event-detail__period-item">
-											<p class="event-detail__period-date">2022.07.01(금) ~ 2022.07.31(일)</p>
-										</div>
+									<div class="event-detail__period-item">
+										<p class="event-detail__period-date">2022.07.01(금) ~ 2022.07.31(일)</p>
 									</div>
-									<!-- //6 탑승 기간 -->
+								</div>
+								<!-- //6 탑승 기간 -->
 
-									<!-- 운항 스케줄 -->
+								<!-- 운항 스케줄 -->
 
-									<div class="section-wrap">
+								<div class="section-wrap">
 
-										<div class="event-anchor-title" data-tab-anchor="■ 7월 성수기 증편 스케줄">■ 7월 성수기 증편
-											스케줄</div>
-										<div class="event-txt-wrap">
-											<strong class="text__default text--bold">: 청주/군산/여수 ↔ 제주</strong>
-										</div>
-
-										<table class="event-tbl">
-											<colgroup>
-												<col>
-												<col>
-											</colgroup>
-											<thead>
-												<tr>
-													<th class="event-tbl-head">노선</th>
-													<th class="event-tbl-head">시간</th>
-												</tr>
-											</thead>
-											<tbody>
-
-												<tr>
-													<td class="air-line">청주-제주</td>
-													<td class="time">청주→제주 7C881 21:10 (금, 일) <br> 제주→ 청주 7C882 22:20
-														(금,일)</td>
-												</tr>
-
-												<tr>
-													<td class="air-line">군산-제주</td>
-													<td class="time">군산→제주 7C623 (7/1~31) 18:00 (월화수목금일) / 18:20 (토)
-														<br>7C621 (7/1~14) 11:20 (매일)<br>제주→군산 7C624 (7/1~31) 15:25 (매일)
-														/ 7C622 (7/1~14) 09:30 (매일)</td>
-												</tr>
-
-												<tr>
-													<td class="air-line">여수-제주</td>
-													<td class="time">여수→제주 7C611 10:50 (월화수목금일) / 10:35 (토) <br>제주→여수
-														7C612 18:30(월화수목금일) / 19:45 (토)</td>
-												</tr>
-
-											</tbody>
-										</table>
+									<div class="event-anchor-title" data-tab-anchor="■ 7월 성수기 증편 스케줄">■ 7월 성수기 증편
+										스케줄</div>
+									<div class="event-txt-wrap">
+										<strong class="text__default text--bold">: 청주/군산/여수 ↔ 제주</strong>
 									</div>
-									<!--// 운항 스케줄 -->
 
-									<!-- 2. 운임_할인가 안내형 -->
+									<table class="event-tbl">
+										<colgroup>
+											<col>
+											<col>
+										</colgroup>
+										<thead>
+										<tr>
+											<th class="event-tbl-head">노선</th>
+											<th class="event-tbl-head">시간</th>
+										</tr>
+										</thead>
+										<tbody>
 
-									<div class="section-wrap">
-										<div class="event-anchor-title" data-tab-anchor="■ 성수기 증편 특별 할인">■ 성수기 증편 특별 할인
-										</div>
-										<table class="event-tbl">
-											<colgroup>
-												<col>
-												<col>
-											</colgroup>
-											<thead>
-												<tr>
-													<th class="event-tbl-head">노선</th>
-													<th class="event-tbl-head">편도총액</th>
-												</tr>
-											</thead>
-											<tbody>
+										<tr>
+											<td class="air-line">청주-제주</td>
+											<td class="time">청주→제주 7C881 21:10 (금, 일) <br> 제주→ 청주 7C882 22:20
+												(금,일)</td>
+										</tr>
 
-												<tr>
-													<td class="air-line">청주 - 제주</td>
-													<td class="price">
-														<span class="cancel"></span>
-														<span class="normal">38,500원~</span>
-													</td>
-												</tr>
+										<tr>
+											<td class="air-line">군산-제주</td>
+											<td class="time">군산→제주 7C623 (7/1~31) 18:00 (월화수목금일) / 18:20 (토)
+												<br>7C621 (7/1~14) 11:20 (매일)<br>제주→군산 7C624 (7/1~31) 15:25 (매일)
+												/ 7C622 (7/1~14) 09:30 (매일)</td>
+										</tr>
 
-												<tr>
-													<td class="air-line">군산 - 제주</td>
-													<td class="price">
-														<span class="cancel"></span>
-														<span class="normal">47,500원~</span>
-													</td>
-												</tr>
+										<tr>
+											<td class="air-line">여수-제주</td>
+											<td class="time">여수→제주 7C611 10:50 (월화수목금일) / 10:35 (토) <br>제주→여수
+												7C612 18:30(월화수목금일) / 19:45 (토)</td>
+										</tr>
 
-												<tr>
-													<td class="air-line">여수 - 제주</td>
-													<td class="price">
-														<span class="cancel"></span>
-														<span class="normal">67,000원~</span>
-													</td>
-												</tr>
-											</tbody>
-										</table>
+										</tbody>
+									</table>
+								</div>
+								<!--// 운항 스케줄 -->
+
+								<!-- 2. 운임_할인가 안내형 -->
+
+								<div class="section-wrap">
+									<div class="event-anchor-title" data-tab-anchor="■ 성수기 증편 특별 할인">■ 성수기 증편 특별 할인
 									</div>
-									<!--// 2. 운임_할인가 안내형 -->
-									<!-- 링크 버튼 -->
-									<script
+									<table class="event-tbl">
+										<colgroup>
+											<col>
+											<col>
+										</colgroup>
+										<thead>
+										<tr>
+											<th class="event-tbl-head">노선</th>
+											<th class="event-tbl-head">편도총액</th>
+										</tr>
+										</thead>
+										<tbody>
+
+										<tr>
+											<td class="air-line">청주 - 제주</td>
+											<td class="price">
+												<span class="cancel"></span>
+												<span class="normal">38,500원~</span>
+											</td>
+										</tr>
+
+										<tr>
+											<td class="air-line">군산 - 제주</td>
+											<td class="price">
+												<span class="cancel"></span>
+												<span class="normal">47,500원~</span>
+											</td>
+										</tr>
+
+										<tr>
+											<td class="air-line">여수 - 제주</td>
+											<td class="price">
+												<span class="cancel"></span>
+												<span class="normal">67,000원~</span>
+											</td>
+										</tr>
+										</tbody>
+									</table>
+								</div>
+								<!--// 2. 운임_할인가 안내형 -->
+								<!-- 링크 버튼 -->
+								<script
 										src="https://static.jejuair.net/hpgg/resources/bizjs/event/componentViews/btnLinkViewHandler.js"></script>
-									<div class="section-wrap">
-										<div class="button-wrap event-btn-wrap">
-											<button type="button" class="button button--event02"
+								<div class="section-wrap">
+									<div class="button-wrap event-btn-wrap">
+										<button type="button" class="button button--event02"
 												onclick="btnLinkViewHandler.goUrl(this)" data-component-div-cd="btnLink"
 												data-web-url="https://www.jejuair.net/ko/ibe/booking/Availability.do?depStn=KUV&amp;arrStn=CJU"
 												data-app-url="https://www.jejuair.net/ko/ibe/booking/Availability.do?depStn=KUV&amp;arrStn=CJU"
 												data-collection="Y">
-												<span class="button__text">예매하기</span>
-											</button>
-										</div>
+											<span class="button__text">예매하기</span>
+										</button>
 									</div>
-									<!--// 링크 버튼 -->
-									<!-- 1. 에어카페 쿠폰 -->
-									<script
-										src="https://static.jejuair.net/hpgg/resources/bizjs/event/componentViews/couponViewHandler.js"></script>
-									<div class="section-wrap">
-										<div class="event-cupon-wrap">
-											<div class="event-cupon sale">
-												<div class="event-cupon-top">
-													<div class="event-cupon-name">성수기 증편 할인코드</div>
-													<div class="event-cupon-price"><span class="sub-big">최대 7,000원
-															할인</span><span class="sub-small"></span></div>
-													<p class="event-cupon-txt">여름 여행 할인받고 떠나자!</p>
-													<span class="badge sale">마감 임박</span>
-												</div>
-												<div class="event-cupon-bot">
-													<div class="list-item">- 프로모션 코드:성수기증편할인<br />- 군산-제주: 최대 7천원
-														할인<br />- 청주/여수-제주: 최대 3천원 할인<br />- FLY, FLY BAG 적용 <br />-
-														일부운임은 적용되지 않습니다.</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<!--// 1. 에어카페 쿠폰 -->
-									<!-- 유의사항 -->
-
-									<div class="section-wrap info-wrap">
-										<div class="service-information" data-element="toggle"
-											data-options='{"mode": "move scroll"}'>
-											<div class="service-information__title">
-												<button type="button" class="service-information__anchor"
-													data-element="toggle__anchor">제주항공 예매 유의사항</button>
-											</div>
-											<div class="service-information__content" data-element="toggle__panel">
-												<div>· 천재지변, 코로나 등으로 인한 정부정책으로 인하여 항공편 스케줄이 변경 또는 취소될 수 있습니다.</div>
-												<div>· 유류할증료는 예약일 기준이며, 해외 공항시설사용료는 발권일, 환율 등에 따라 변동될 수 있습니다.</div>
-												<div>· 예약은 제주항공 홈페이지, 모바일 웹/앱을 통해서만 가능합니다.</div>
-												<div>· 상기 운임은 항공운임, 유류할증료, 공항시설사용료를 포함한 '편도' 총액입니다. (2022년 6월 기준)</div>
-												<div>· 운임은 선착순 판매로 조기 소진될 수 있습니다.</div>
-												<div>· 항공권 구매 시 예약 변경 및 환불 등에 대한 상세 안내를 반드시 확인바랍니다.</div>
-												<div>· FLY 운임은 무료 수하물이 포함되지 않습니다</div>
-												<div>· 문의: 제주항공 고객센터(1599-1500)</div>
-											</div>
-										</div>
-									</div>
-									<!-- //유의사항 -->
-
-									<!-- 유의사항 -->
-
-									<div class="section-wrap info-wrap">
-										<div class="service-information" data-element="toggle"
-											data-options='{"mode": "move scroll"}'>
-											<div class="service-information__title">
-												<button type="button" class="service-information__anchor"
-													data-element="toggle__anchor">프로모션 코드 유의사항</button>
-											</div>
-											<div class="service-information__content" data-element="toggle__panel">
-												<p>· 제주항공의 프로모션 코드는 제주항공 회원 한정으로, 회원 본인 탑승 건에 한하여 로그인 후 사용이 가능합니다.</p>
-												<p>· 프로모션 코드 입력 후 항공권 예매 단계의 예상 결제 금액을 통해 프로모션 코드 적용여부 및 할인금액을 확인 할 수
-													있습니다.</p>
-												<p>· 프로모션 코드는 회원 로그인 후 일반 결제 선택 시 사용 가능합니다. (포인트 결제 시 프로모션 코드 사용 불가)</p>
-												<p>· 프로모션 코드 할인은 항공 운임별 할인율이 다를 수 있으며, 부가서비스, 유류세 및 공항세 할인은 제외됩니다.</p>
-												<p>· 프로모션 코드는 여정 변경 시에는 사용이 불가하며, 최초 예약에 한하여 사용 가능합니다.</p>
-												<p>· 타 프로모션 코드와 중복 사용이 불가능하나, 신규 회원 할인 및 신분 할인(국가유공자/제주도민 할인 등) 과의 중복
-													적용이 가능합니다. 단, 중복 적용 시 신분 할인 선 적용 후 프로모션 코드 할인이 적용되는 점 사전 확인 부탁드립니다.
-												</p>
-												<p>· 군산-제주 7C 621~624편: 항공 운임 25,900원 7천원 할인 / 항공 운임 26,900원 ~ 56,900원
-													3천원 할인</p>
-												<p>· 청주-제주 7C 881~882편 : 항공 운임 10,900원 ~30,900원 3천원 할인 / 항공 운임 32,400원 ~
-													48,900원 2천원 할인</p>
-												<p>· 여수-제주 7C 611편 : 항공 운임 45,400원 ~ 46,900원 3천원 할인</p>
-												<p>· 프로모션 코드 할인은 결제 완료 순서로 조기 소진될 수 있으며, 소진 시 '적용할 수 없는 프로모션 코드'로 노출됩니다.
-												</p>
-												<p>· 프로모션 코드는 일부 운임에는 사용이 제한되며, 선택하신 일자에 사용 가능한 운임이 없을 경우 ‘적용 할 수 없는
-													프로모션 코드’로 노출됩니다.</p>
-												<p>· 왕복 노선 구매 시 조건에 부합하는 편도 노선이 하나라도 있는 경우, 할인 코드는 해당 편도 노선에만 적용됩니다.</p>
-												<p>· 적용 가능 대상 : 성인(대인), 소아</p>
-											</div>
-										</div>
-									</div>
-									<!-- //유의사항 -->
-
 								</div>
-								<button type="button" data-element="modal_anchor" data-target=""
-									class="hidden"></button>
+								<!--// 링크 버튼 -->
+								<!-- 1. 에어카페 쿠폰 -->
+								<script
+										src="https://static.jejuair.net/hpgg/resources/bizjs/event/componentViews/couponViewHandler.js"></script>
+								<div class="section-wrap">
+									<div class="event-cupon-wrap">
+										<div class="event-cupon sale">
+											<div class="event-cupon-top">
+												<div class="event-cupon-name">성수기 증편 할인코드</div>
+												<div class="event-cupon-price"><span class="sub-big">최대 7,000원
+															할인</span><span class="sub-small"></span></div>
+												<p class="event-cupon-txt">여름 여행 할인받고 떠나자!</p>
+												<span class="badge sale">마감 임박</span>
+											</div>
+											<div class="event-cupon-bot">
+												<div class="list-item">- 프로모션 코드:성수기증편할인<br />- 군산-제주: 최대 7천원
+													할인<br />- 청주/여수-제주: 최대 3천원 할인<br />- FLY, FLY BAG 적용 <br />-
+													일부운임은 적용되지 않습니다.</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!--// 1. 에어카페 쿠폰 -->
+								<!-- 유의사항 -->
+
+								<div class="section-wrap info-wrap">
+									<div class="service-information" data-element="toggle"
+										 data-options='{"mode": "move scroll"}'>
+										<div class="service-information__title">
+											<button type="button" class="service-information__anchor"
+													data-element="toggle__anchor">제주항공 예매 유의사항</button>
+										</div>
+										<div class="service-information__content" data-element="toggle__panel">
+											<div>· 천재지변, 코로나 등으로 인한 정부정책으로 인하여 항공편 스케줄이 변경 또는 취소될 수 있습니다.</div>
+											<div>· 유류할증료는 예약일 기준이며, 해외 공항시설사용료는 발권일, 환율 등에 따라 변동될 수 있습니다.</div>
+											<div>· 예약은 제주항공 홈페이지, 모바일 웹/앱을 통해서만 가능합니다.</div>
+											<div>· 상기 운임은 항공운임, 유류할증료, 공항시설사용료를 포함한 '편도' 총액입니다. (2022년 6월 기준)</div>
+											<div>· 운임은 선착순 판매로 조기 소진될 수 있습니다.</div>
+											<div>· 항공권 구매 시 예약 변경 및 환불 등에 대한 상세 안내를 반드시 확인바랍니다.</div>
+											<div>· FLY 운임은 무료 수하물이 포함되지 않습니다</div>
+											<div>· 문의: 제주항공 고객센터(1599-1500)</div>
+										</div>
+									</div>
+								</div>
+								<!-- //유의사항 -->
+
+								<!-- 유의사항 -->
+
+								<div class="section-wrap info-wrap">
+									<div class="service-information" data-element="toggle"
+										 data-options='{"mode": "move scroll"}'>
+										<div class="service-information__title">
+											<button type="button" class="service-information__anchor"
+													data-element="toggle__anchor">프로모션 코드 유의사항</button>
+										</div>
+										<div class="service-information__content" data-element="toggle__panel">
+											<p>· 제주항공의 프로모션 코드는 제주항공 회원 한정으로, 회원 본인 탑승 건에 한하여 로그인 후 사용이 가능합니다.</p>
+											<p>· 프로모션 코드 입력 후 항공권 예매 단계의 예상 결제 금액을 통해 프로모션 코드 적용여부 및 할인금액을 확인 할 수
+												있습니다.</p>
+											<p>· 프로모션 코드는 회원 로그인 후 일반 결제 선택 시 사용 가능합니다. (포인트 결제 시 프로모션 코드 사용 불가)</p>
+											<p>· 프로모션 코드 할인은 항공 운임별 할인율이 다를 수 있으며, 부가서비스, 유류세 및 공항세 할인은 제외됩니다.</p>
+											<p>· 프로모션 코드는 여정 변경 시에는 사용이 불가하며, 최초 예약에 한하여 사용 가능합니다.</p>
+											<p>· 타 프로모션 코드와 중복 사용이 불가능하나, 신규 회원 할인 및 신분 할인(국가유공자/제주도민 할인 등) 과의 중복
+												적용이 가능합니다. 단, 중복 적용 시 신분 할인 선 적용 후 프로모션 코드 할인이 적용되는 점 사전 확인 부탁드립니다.
+											</p>
+											<p>· 군산-제주 7C 621~624편: 항공 운임 25,900원 7천원 할인 / 항공 운임 26,900원 ~ 56,900원
+												3천원 할인</p>
+											<p>· 청주-제주 7C 881~882편 : 항공 운임 10,900원 ~30,900원 3천원 할인 / 항공 운임 32,400원 ~
+												48,900원 2천원 할인</p>
+											<p>· 여수-제주 7C 611편 : 항공 운임 45,400원 ~ 46,900원 3천원 할인</p>
+											<p>· 프로모션 코드 할인은 결제 완료 순서로 조기 소진될 수 있으며, 소진 시 '적용할 수 없는 프로모션 코드'로 노출됩니다.
+											</p>
+											<p>· 프로모션 코드는 일부 운임에는 사용이 제한되며, 선택하신 일자에 사용 가능한 운임이 없을 경우 ‘적용 할 수 없는
+												프로모션 코드’로 노출됩니다.</p>
+											<p>· 왕복 노선 구매 시 조건에 부합하는 편도 노선이 하나라도 있는 경우, 할인 코드는 해당 편도 노선에만 적용됩니다.</p>
+											<p>· 적용 가능 대상 : 성인(대인), 소아</p>
+										</div>
+									</div>
+								</div>
+								<!-- //유의사항 -->
 
 							</div>
-						</div>
-
-						<div class="button-wrap pc-60" data-element="bottomContent" data-space="30">
-
-							<a href="/ko/event/event.do" class="button button--primary button--active"><span
-									class="button__text">다른 이벤트 보러가기</span></a>
+							<button type="button" data-element="modal_anchor" data-target=""
+									class="hidden"></button>
 
 						</div>
-						<button type="button" class="button-top" aria-label="상단 이동"></button>
-						<!--Top 버튼-->
+					</div>
+
+					<div class="button-wrap pc-60" data-element="bottomContent" data-space="30">
+
+						<a href="/ko/event/event.do" class="button button--primary button--active"><span
+								class="button__text">다른 이벤트 보러가기</span></a>
 
 					</div>
-				</main>
-				<!-- //이벤트 게시글 끝 -->
-			</div>
+					<button type="button" class="button-top" aria-label="상단 이동"></button>
+					<!--Top 버튼-->
 
+				</div>
+			</main>
+			<!-- //이벤트 게시글 끝 -->
 		</div>
+
 	</div>
+</div>
 
 <!-- footer -->
 <div th:replace="user/fragment/footer :: footer"></div>
@@ -333,7 +332,8 @@
 <script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
 <script type="text/javascript" src="/user/lib/js/common.js"></script>
 <script type="text/javascript" src="/user/lib/js/plugin.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script type="text/javascript" src="/user/lib/js/userJs/event/eventList.js"></script>
 <!-- 공통 스크립트 선언 끝 -->
 
 <script type="text/javascript" src="/user/lib/js/event.js"></script>

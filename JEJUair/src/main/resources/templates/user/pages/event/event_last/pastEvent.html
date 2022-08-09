@@ -263,11 +263,11 @@
                             <div class="tab__buttons tab__buttons--event">
                                 <div class="tab__button">
                                     <button type="button" class="tab__anchor"
-                                            onclick="location.href='/ko/event/event.do';">진행중인 이벤트(<span>30</span>)
+                                            onclick="location.href='/user/event/eventList';">진행중인 이벤트
                                     </button>
                                 </div>
                                 <div class="tab__button">
-                                    <button type="button" class="tab__anchor is-active">지난 이벤트(<span>117</span>)
+                                    <button type="button" class="tab__anchor is-active">지난 이벤트
                                     </button>
                                 </div>
                             </div>
@@ -422,34 +422,6 @@
 
                             </div>
                         </div>
-                        <div class="paging-center">
-                            <div class="paging"><span class="page-first"><a href="javascript:;"
-                                                                            class="off">처음</a></span><span
-                                    class="page-prev"><a href="javascript:;" class="off">이전</a></span><span
-                                    class="page-num on"><a href="javascript:;">1</a></span><span class="page-num"><a
-                                    href="javascript:EVENT_PAST_EVENT_SCRIPT.loadPastEventPage(2, 20, 117);">2</a></span><span
-                                    class="page-num"><a
-                                    href="javascript:EVENT_PAST_EVENT_SCRIPT.loadPastEventPage(3, 20, 117);">3</a></span><span
-                                    class="page-num"><a
-                                    href="javascript:EVENT_PAST_EVENT_SCRIPT.loadPastEventPage(4, 20, 117);">4</a></span><span
-                                    class="page-num"><a
-                                    href="javascript:EVENT_PAST_EVENT_SCRIPT.loadPastEventPage(5, 20, 117);">5</a></span><span
-                                    class="page-num"><a
-                                    href="javascript:EVENT_PAST_EVENT_SCRIPT.loadPastEventPage(6, 20, 117);">6</a></span><span
-                                    class="page-next"><a
-                                    href="javascript:EVENT_PAST_EVENT_SCRIPT.loadPastEventPage(2, 20, 117);">다음</a></span><span
-                                    class="page-last"><a
-                                    href="javascript:EVENT_PAST_EVENT_SCRIPT.loadPastEventPage(6, 20, 117);">끝</a></span>
-                            </div>
-                        </div>
-
-                        <script src="https://static.jejuair.net/hpgg/resources/bizjs/commons/pagination.js"></script>
-                        <script>
-                            document.addEventListener("DOMContentLoaded", function () {
-                                pagination.createPagination('.paging-center', 'javascript:EVENT_PAST_EVENT_SCRIPT.loadPastEventPage({{pageNum}}, {{limit}}, {{totCnt}});',
-                                    20, 1, 117);
-                            });
-                        </script>
 
                     </div>
                 </div>
