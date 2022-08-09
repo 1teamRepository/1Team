@@ -36,280 +36,52 @@
                 <!--20210519 title영역 수정-->
                 <div class="page-title-wrap">
                     <div class="page-title">아이디/비밀번호 찾기</div>
-                    <div class="page-sub-title">입력하신 정보로 <br class="mobile-only">계정 <span class="color--org">
-
-
-								1
-
-
-
-							</span>건을 찾았어요.
+                    <div class="page-sub-title">입력하신 정보로 계정을 찾았어요.
                     </div>
-                    <div class="page-title-add">검색된 계정 중 본인의 아이디를 선택해 <br>새 비밀번호를 설정할 수 있습니다.</div>
+                    <div class="page-title-add">검색된 계정 중 본인의 아이디를 선택하면 <br>이메일로 등록하신 비밀번호를 보내드립니다.</div>
                     <!--20210519 class명 변경-->
                 </div>
 
                 <!-- 2022.05 개선  S 12231 dk -->
-                <div class="section-wrap">
+                <input type="text" id="category" value="customer" style="display: none">
+                <div class="section-wrap" id="view">
                     <div id="divIdList" class="radio-button-block radio-list">
 							<span class="radio-button checkbox--small">
 								<input type="radio" id="rdoId0" name="rdoId"
                                        class="radio-button__input checkbox__input">
-								<label for="rdoId0" class="radio-button__label delete-in checkbox__label">
+								<label for="rdoId0" class="radio-button__label delete-in checkbox__label" id="borderbox" onclick="changeBtn()">
 									<span class="dis-table">
 										<span class="radio-button__title type02">
 											<span>아이디</span>
 											<span class="color-org">
-
-
-												jeju
-												******
-
-
-
+                                                {{view.memUserid}}
 											</span>
 										</span>
 										<span class="radio-button__title type02">
 											<span>가입일</span>
-											<span>2022.06.11</span>
+											<span>
+                                                {{view.memRegDate}}
+                                            </span>
 										</span>
-										<i class="checkbox__ico right" aria-hidden="true"></i>
+                                        <input type="hidden" id="memEmail" :value="${view.memEmail}">
+										<i class="checkbox__ico right" id="checkbox"></i>
 									</span>
 								</label>
-
-								<input type="hidden" name="apiRequestType" value="3000">
-								<input type="hidden" name="ffpno" value="089551873">
-								<input type="hidden" name="userId" value="esk33784">
-								<input type="hidden" name="num" value="0">
-								<input type="hidden" name="email" value="esk3784@naver.com">
-								<input type="hidden" name="ciNo"
-                                       value="ia2F4r1IuugBmNYsPeSJp2GBhpclijS9FJhCS/UjW3NG/AdLlp5rnpRkNaIRK18L66VMOixtJN7Huf5CF/cDuw==">
-								<input type="hidden" name="mobileno" value="82-010-8911-6506">
 							</span>
 
                     </div>
                 </div>
-                <!-- 2022.05 개선  E -->
-
-                <form id="frm" method="post" action="/ko/member/setup/passwordInit.do">
-                    <input type="hidden" name="userId"/>
-                    <input type="hidden" name="ffpNo"/>
-                    <input type="hidden" name="isFlag" value="Y"/>
-                </form>
 
                 <!-- 버튼 테스트 s -->
                 <!-- 비밀번호 재설정  버튼 추가 -->
                 <div class="button-wrap section-wrap">
                     <button type="button" class="button button--primary" id="btnPwModify">
-                        <span class="button__text">비밀번호 재설정</span>
+                        <span class="button__text">이메일로 비밀번호 받기</span>
                     </button>
-
-
                     <!-- </button> -->
                     </a>
                 </div>
-                <!-- 이전으로 버튼 추가 -->
-                <div class="button-wrap button-wrap--login mt30">
-                    <div class="button-wrap left">
-                        <a href="history.back()">
-                            <button type="button" class="link-wrap__underline"><span class="button__text">이전으로</span>
-                            </button>
-                        </a>
-                    </div>
-                </div>
-                <!-- 버튼 테스트 e -->
 
-
-                <button id="btnSheet" data-target-open="sheet01" style="display: none;"></button>
-
-                <div data-target="sheet01" data-element="bottomSheet" class="bottom-sheet GB_0_33">
-                    <div class="bottom-sheet__top">
-                        <div class="title">
-                            <h2 class="title__main">비밀번호 재설정</h2>
-                        </div>
-                    </div>
-                    <div class="bottom-sheet__bot">
-                        <div class="list-option-reset">
-                            <ul class="list-option list-option--border-b">
-                                <li class="list-option__item">
-                                    <a href="../../login/emailSendGuide.html" class="list-card__item"
-                                       onclick="MEMBER_AUTH_FINDUSERINFOLIST_SCRIPT.sendEmail();">
-                                        <div class="list-card__image">
-                                            <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-email-mono-small.png"
-                                                 alt="">
-                                        </div>
-                                        <div class="list-card__info">
-                                            <div class="list-card__info-vertical">
-                                                <strong class="list-card__title">이메일로 링크 받고 재설정</strong>
-                                                <p class="list-card__text" id="email">je****@gmail.com</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <!--휴대폰 인증 사용 x -->
-                                <!--
-                                <li class="list-option__item">
-                                    <a href="javascript:;" class="list-card__item"
-                                        onclick="MEMBER_AUTH_FINDUSERINFOLIST_SCRIPT.goMobileSms();">
-                                        <div class="list-card__image">
-                                            <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-phone-mono-small.png"
-                                                alt="">
-                                        </div>
-                                        <div class="list-card__info">
-                                            <div class="list-card__info-vertical">
-                                                <strong class="list-card__title">휴대전화로 인증코드 받고 재설정</strong>
-                                                <p class="list-card__text" id="mobileNo">010-****-1234</p>
-                                            </div>
-                                        </div>
-                                        -->
-                                </a>
-                                </li>
-                                <li class="list-option__item">
-                                    <a href="javascript:;" class="list-card__item" data-action='goCtfCheck'>
-                                        <div class="list-card__image">
-                                            <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-phone-mono-small.png"
-                                                 alt="">
-                                        </div>
-                                        <div class="list-card__info">
-                                            <div class="list-card__info-vertical">
-                                                <strong class="list-card__title">본인 명의의 휴대전화 인증 후 재설정</strong>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="list-option__item">
-                                    <a href="javascript:;" class="list-card__item" data-action='goIDCheckIpin'>
-                                        <div class="list-card__image">
-                                            <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-ipin-mono-small.png"
-                                                 alt="">
-                                        </div>
-                                        <div class="list-card__info">
-                                            <div class="list-card__info-vertical">
-                                                <strong class="list-card__title">아이핀 인증 후 재설정</strong>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-
-                        <div class="section-wrap">
-                            <!--20210519 class명 변경-->
-                            <div class="section-title">고객센터에 문의하기</div>
-                            <!--20210519 class명 변경-->
-                            <div class="customer-inquiry pc-15">
-                                <div class="img-box">
-                                    <div class="img-box__item">
-                                        <a href="http://pf.kakao.com/_gxbqxhE" target="_blank">
-                                            <div class="img-box__img">
-                                                <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-kakao-sms.png"
-                                                     alt="">
-                                            </div>
-                                            <div class="img-box__text">
-                                                <strong>카카오톡 문의</strong>
-                                                <p>카카오톡에서 ‘제주항공 고객센터’를<br>검색하시면 상담사에게 문의할 수 있어요.</p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="img-box__item">
-                                        <a href="tel:1599-1500" title="전화연결">
-                                            <!--20210428 a 링크 추가-->
-                                            <div class="img-box__img">
-                                                <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-phone.png"
-                                                     alt="">
-                                            </div>
-                                            <div class="img-box__text">
-                                                <strong>전화 문의</strong>
-                                                <p>고객센터 : 1599-1500<br>운영시간(한국시간) : 09:00 ~ 19:00</p>
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <button type="button" data-element="bottomSheet__button-close" aria-label="하단시트 닫기"
-                            class="bottom-sheet__button-close"></button>
-                </div>
-
-                <form id="mobileSms" method="POST" action="/ko/member/setup/passwordInit.do">
-                    <input type="hidden" name="userId" value=""/>
-                    <input type="hidden" name="ffpNo" value=""/>
-                    <input type="hidden" name="mobileNo" value="">
-                </form>
-
-                <div id="modalLayer01" class="modal modal-full modal-scroll modal--fixed-multi">
-                    <div class="modal-header">
-                        <div class="modal-header__title">인증코드 입력</div>
-                    </div>
-                    <div class="modal-content">
-                        <div class="title">
-                            <div class="title__page "><span class="text--color-org" id="mobileSpan"></span>로<br
-                                    class="mobile-only"> 인증코드가 발송되었어요.
-                            </div>
-                        </div>
-
-                        <div class="section-wrap">
-
-                            <div class="input-wrap input--line">
-                                <div class="input-row">
-                                    <div class="input-item">
-                                        <div class="input-box">
-                                            <label for="inputnumber" class="input__label">인증코드 입력 (6자리)</label>
-                                            <div class="input" data-element="form">
-                                                <input type="tel" class="input__text" data-element="input"
-                                                       id="inpCertify" maxlength="6">
-                                                <button type="button" class="input__remove-button"
-                                                        data-element="remove">삭제
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <!-- 입력 필드 하단 ‘다시받기’ 버튼 선택 시 재발송 텍스트 안내 -->
-                                        <p class="input__error" tabindex="0" id="txtCertify">인증코드가 다시 발송됐습니다.</p>
-                                        <!-- //입력 필드 하단 ‘다시받기’ 버튼 선택 시 재발송 텍스트 안내 -->
-
-                                        <!-- 잘못된 인증코드 입력 시-->
-                                        <p class="input__error" tabindex="0" id="txtNoCertify">인증코드를 다시 확인해 주세요.</p>
-
-                                        <!-- 인증시간 초과 -->
-                                        <p class="input__error" tabindex="0" id="txtTmOver">유효시간이 초과하였습니다.<br>인증코드를
-                                            다시 받아 입력해주세요.</p>
-                                    </div>
-                                </div>
-
-                                <div class="input-item">
-                                    <div class="button-wrap button-wrap--between">
-                                        <!--.button-wrap--between class변경-->
-                                        <div class="sub-text date__text">유효시간 <span id="txtTimer"></span></div>
-                                        <button type="button" id="reSms" class="button button--small mt0">
-                                            <span class="button__text" id="btnCertify">다시받기</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="fixed-wrap fixed-wrap--multi-line border-none ">
-                        <div class="button-wrap">
-                            <button type="button" id="btnPopupNext" class="button button--primary">
-                                <span class="button__text">새 비밀번호 설정하기</span>
-                            </button>
-                            <!--가입한 아이디 안내 화면에서 호출 시 -->
-                            <!-- <span class="button__text">다음</span></button> -->
-                            <!--//가입한 아이디 안내 화면에서 호출 시 -->
-                        </div>
-                    </div>
-                    <a href="javascript:;" rel="modal:close" class="modal__close"><span class="blind">닫기</span></a>
-                </div>
-                <input type="hidden" id="modalLayer01Show" data-element="modal_anchor" data-target="#modalLayer01"
-                       data-modal-type="full"/>
             </main>
         </div>
 
@@ -322,99 +94,20 @@
 <!-- / footer 끝 -->
 </div>
 
-<input type="hidden" id="useType" value="findPid">
-
-<!-- 개인 인증 (휴대폰, 공인인증서, 신용카드)을 통하여 보호자의 실명확인 처리 - 최선혁 - 2013. 01. 07 -->
-<form id="reqIdentity" name="reqIdentity" method="post" action="">
-    <input type="hidden" name="m" value="checkplusSerivce"/><!-- 필수 데이타로, 누락하시면 안됩니다. -->
-    <input type="hidden" name="EncodeData"
-           value="AgAFRzI4ODfXc8PBbWdd9JoKjfK9D2IHi9HE830QB2xa6XvTuzT/JGRKPvoaXwiAY9H0mDGW+wQqQfI5q2nHN3WfdkSp+bbc0SykAo9YPXmvaV1kgGSFyLbEMbT36cAd+0wECfSJJTEv/WnQfWAEOQUEDn7tzxMDmo3V+ICJ36VB1EWcwkm8Cgs5OThdQiZY44XqMuRQ7JWi08alqKG20vOKuj7QjPmKcJFOGFCv/mun/xrq4CI/OUYcCyHyMZBGhth+NgSIqLaPv6y5WNXu4s1+ar49JxZvDEwUWsfcUlmYi0zGhgetUGEEaMrylhZXz3rFd8Sx+sbh9jSObTw3YBnq83a4nMPD3dTOnFqUXauNH88A0TAxfzRkc51p7TFa0/x1u/q14KLV+npefhsOo0JfpreutIM4LAeV/l68XbS9eAVsiq2MSoimP2ffB+7tqbMMoyJPyK8FPX2eI7Z8fex2Hdrr8G2t"/>
-    <!-- 위에서 업체정보를 암호화 한 데이타입니다. -->
-    <!-- 업체에서 응답받기 원하는 데이타를 설정하기 위해 사용할 수 있으며, 인증결과 응답시 해당 값을 그대로 송신합니다. 해당 파라미터는 추가하실 수 없습니다. -->
-    <input type="hidden" name="param_r1" class="useType" value=""/>
-    <input type="hidden" name="param_r2" value=""/>
-    <input type="hidden" name="param_r3" value=""/>
-</form>
-
-<form id="reqForm" name="reqForm" method="post" action="">
-    <input type="hidden" name="m" value="pubmain">
-    <input type="hidden" name="enc_data"
-           value="AgEETjAwN5loxiXgg2vjEXYVYe5yC6sfAr+3x+47blwAlqjO5SnsdupElzmVw/cKYIPlNccRVt1Iidk/4GzZgMaCWxiiZylGM6ycThN9wZwBln6RNfUbQ7IvsrIsapVtqtPAxkz5iggh21xNNgCaNK6N1rl/ecnXGN+JZpL0rEFFcyOayImG1bq79BY+MT557Ziq2CTmzoV2eCjpAl4A7wzJ92OIAVYZjPlK4/cQNFKQc3PMZuxo3OTSBt59iEDFNN5dodmFAwptNCZS6N0dNEPD0iSozvDa7/W46vRYuksJleu0XzCDnvkHB5MLoi/T9p0xt3qyZw==">
-    <!-- <input type="hidden" name="param_r1" class="useType" value="" />
-<input type="hidden" name="param_r2" value="4000" />
-<input type="hidden" name="param_r3" value="" /> -->
-</form>
-
-
-<form method="post" id="frmInfo_ipin" name="frmInfo_ipin">
-    <input type="hidden" id="joinGubun" name="status">
-    <input type="hidden" id="test" name="test">
-    <input type="hidden" id="lang" name="lang" value="">
-
-    <input type="hidden" name="act" value="agree"/>
-    <input type="hidden" name='network_id' value=''/>
-    <input type="hidden" name='CHL' value=''/>
-    <input type="hidden" name='language_type' value=''/>
-    <input type="hidden" name='foreYN' value='N'/>
-    <input type="hidden" name='birthYear' value=''/>
-    <input type="hidden" name='birthMon' value=''/>
-    <input type="hidden" name='birthDay' value=''/>
-    <!-- 본인인증을 위해 필요한 정보   -->
-    <input type="hidden" name='ipinNo' value=''/> <!-- 아이핀인증번호 -->
-    <input type="hidden" id="SendInfo" name='SendInfo'/>
-    <!--	내/외국인 구분을 설정하십시오. ( '1'-내국인, '2'-외국인 )	-->
-    <input type="hidden" id="foreigner" name="foreigner" value=""/>
-    <!--	조회사유를 설정하십시오. ( '10'-회원가입, '20'-기존회원 확인, '30'-성인인증, '40'-비회원 확인, '90'-기타 사유 )	-->
-    <input type="hidden" id="inqRsn" name="inqRsn" value="20"/>
-    <input type="hidden" name="lastname" value=''/>
-    <input type="hidden" name="firstname" value=''/>
-    <input type="hidden" name="sex" value=''/>
-    <input type="hidden" name="ipinYN" value='Y'/>
-    <input type="hidden" name="dupeInfo" value=''/>
-    <input type="hidden" name="coInfo" value=''/>
-    <input type="hidden" name="mobileNo" value=''/>
-
-    <input type="hidden" id="apiRequestType" name="apiRequestType" value=''/>
-    <input type="hidden" id="apiRequestNm" name="apiRequestNm" value=''/>
-    <input type="hidden" id="korName" name="korName" value=''/>
-    <input type="hidden" id="userId" name="userId" value=''/>
-    <input type="hidden" id="enrollDate" name="enrollDate" value=''/>
-    <input type="hidden" id="snsType" name="snsType" value=''/>
-    <input type="hidden" id="email" name="email" value=''/>
-    <input type="hidden" id="memberList" name="memberList" value=''/>
-
-    <input type="hidden" id="snsId" name="snsId" value=''/>
-    <input type="hidden" id="SS_NAVER_UI" name="SS_NAVER_UI" value=''/>
-    <input type="hidden" id="SS_KAKAO_UI" name="SS_KAKAO_UI" value=''/>
-    <input type="hidden" id="SS_GOOGLE_UI" name="SS_GOOGLE_UI" value=''/>
-    <input type="hidden" id="SS_FACEBOOK_UI" name="SS_FACEBOOK_UI" value=''/>
-    <input type="hidden" id="joinType" name="joinType" value=''/>
-</form>
-
-
-<!--이메일 인증위한 화면 이동-->
-<form method="post" id="nextEmailPage" name="nextEmailPage" action="emailSendGuide.do">
-    <input type="hidden" name="email" value=""/>
-</form>
-
-<!-- sns -->
-<form method="post" id="snsRequestAuthForm" name="snsRequestAuthForm" target="snsRequestAuth"
-      action="/member/memberJoin/snsRequestAuth.do">
-    <input type="hidden" id="hidSNSType" name="hidSNSType" value=""/>
-    <input type="hidden" id="requestType" name="requestType" class="useType" value=""/>
-    <input type="hidden" name="hidChannelType" value="HOMEPAGE"/>
-</form>
-
-<div id="ifmWrap"
-     style="height:100%; display:none; overflow:auto; text-align:center; -webkit-overflow-scrolling:touch;">
-    <iframe src="" width="100%" height="100%" name="popupChkApp"></iframe>
-</div>
 
 <!-- 공통 스크립트 선언 -->
 <script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
 <script type="text/javascript" src="/user/lib/js/common.js"></script>
 <script type="text/javascript" src="/user/lib/js/plugin.js"></script>
+<!--버튼 색상 변경 스크립트-->
+<script>
+    function changeBtn(){
+        let btn = document.getElementById("btnPwModify")
+        btn.style.backgroundColor ="FF5000"
+    }
+</script>
 
+<script type="text/javascript" src="/user/lib/js/find/pwSend.js"></script>
 </body>
 
 </html>

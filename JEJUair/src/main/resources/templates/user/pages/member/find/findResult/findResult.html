@@ -1,0 +1,100 @@
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+
+<!--head-->
+<div th:replace="/user/fragment/head :: head"></div>
+<!--head 끝-->
+<body id="subLayoutBody">
+
+<!--appAlert-->
+<div th:replace="/user/fragment/appAlert :: appAlert"></div>
+<!--appAlert 끝-->
+
+
+<!--header-->
+<div th:replace="/user/fragment/header :: header"></div>
+<!--header 끝-->
+
+
+<div id="body">
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD2BQQ4" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="wrap wrap--login pc-small" >
+
+
+                <div class="content" id="content">
+                    <main id="main" class="main">
+                        <div class="title">
+                            <div class="title__page mobile-only">인증 이메일이<br>발송되었어요.</div>
+                            <div class="title__wrap pc-only">
+                                <div class="title__page">이메일 발송 안내</div>
+                                <div class="title__additional">인증 이메일이 발송되었어요.</div>
+                            </div>
+                        </div>
+
+                        <div class="container--default pc-30">
+                            <div class="gray-box">
+                                <div class="text">
+                                    <p class="text__default text--bold pc-text-large">
+                                        <span class="text--color-org" id="spanEmailResult"> esk3784@naver.com </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="list-guide list-guide--color-gray pc-20">
+                            <li class="list-guide__item">이메일에 첨부된 링크에 접속하여 다음 단계를 진행해 주세요.</li>
+                            <li class="list-guide__item">이메일이 오지 않았을 경우 스팸메일함을 확인해 주세요.</li>
+                            <li class="list-guide__item">발송 시간은 메일에 따라 조금씩 달라질 수 있습니다. </li>
+                        </ul>
+
+                        <!--<div class="button-wrap pc-80" data-element="bottomContent">-->
+                        <div id="btnMainDiv" class="button-wrap pc-80" data-element="">
+                            <button id="mainBtn" type="button" class="button button--primary button--active" data-action="menu" data-menu-name="main"><span
+                                    class="button__text">메인</span></button>
+                        </div>
+                    </main>
+                </div>
+
+                <input type="hidden" id="ffpNo" value="089551873" />
+                <input type="hidden" id="url" value="/ko/member/setup/passwordInit.do" />
+                <input type="hidden" id="title" value="아이디/비밀번호 찾기" />
+                <input type="hidden" id="email" value="esk3784@naver.com" />
+                <form id="frm" name="frm" method="post" action="" >
+                    <input type="hidden" id="joinGubun" name="status" />
+                    <input type="hidden" id="test" name="test" />
+                    <input type="hidden" id="lang" name="lang" value="" />
+                </form>
+            </main>
+        </div>
+
+    </div>
+</div>
+
+
+    <!-- footer -->
+    <div th:replace="/user/fragment/footer :: footer"></div>
+    <!-- / footer 끝 -->
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- 공통 스크립트 선언 -->
+<!-- 공통 스크립트 선언 -->
+<script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
+<script type="text/javascript" src="/user/lib/js/common.js"></script>
+<script type="text/javascript" src="/user/lib/js/plugin.js"></script>
+
+</body>
+</html>

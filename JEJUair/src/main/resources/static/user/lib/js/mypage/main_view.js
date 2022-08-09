@@ -4,9 +4,12 @@ $(function(){
     let view = new Vue({
         el: '#view',
         data: {
-            view: {}
+            view: {
+                memPoint : 0
+            }
         }
     });
+
 
     let category = document.getElementById("category").getAttribute("value");
     let sessionIdx = document.getElementById("memIdx").getAttribute("value");
@@ -17,6 +20,10 @@ $(function(){
         $.get("/api/"+ category+ "/" + sessionIdx, function(response){
             view.view = response.data;
             memData = response.data;
+            if(view.view.memPoint == null){
+                view.view.memPoint = 0;
+            }
+            console.log(view.view.memPoint);
             memberGrade()
         });
     }

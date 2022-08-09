@@ -18,19 +18,13 @@
 
 
 <div id="body">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD2BQQ4" height="0" width="0"
-                style="display:none;visibility:hidden"></iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
 
     <div class="wrap wrap--login pc-small">
         <div class="content" id="content">
+            <input id="category" value="customer" style="display: none">
             <main id="main" class="main ">
-
-                <form name="frm" id="frm" method="post" action="../findUserInfoList/findUserInfoList.html">
-                    <input type="hidden" id="apiRequestType" name="apiRequestType" value=""/>
+                <form name="frm" id="view" method="post" action="/user/findEmailUserInfo">
+                    <input type="hidden" id="apiRequestType" name="apiRequestType" value="`${view.}"/>
                     <!--20210519 title영역 수정-->
                     <div class="page-title-wrap">
                         <div class="page-title">아이디/비밀번호 찾기</div>
@@ -43,17 +37,15 @@
                             <div id="input-box" class="input-row">
                                 <div class="input-item">
                                     <div class="input-box">
-                                        <label for="email" class="input__label">이메일</label>
                                         <!--20210428 필수 삭제-->
-                                        <div data-element="form" class="input">
-                                            <input type="text" id="email" name="email" class="input__text"
-                                                   data-element="input">
+                                        <div class="input">
+                                            <input type="text" id="email" name="email" class="input__text" PLACEHOLDER="이메일을 입력해주세요">
                                             <!--data-element="input" 추가-->
                                             <button type="button" data-element="remove"
                                                     class="input__remove-button"><span class="hidden">삭제</span></button>
                                         </div>
                                     </div>
-                                    <p class="input__error">입력하신 정보의 계정을 찾을 수 없어요. <br>다시 입력해주세요.</p>
+                                    <p class="input__error" id="input__error"></p>
                                 </div>
                             </div>
                         </div>
@@ -64,22 +56,18 @@
                     </div>
                 </form>
             </main>
-        </div>
     </div>
 </div>
-
 
 <!-- footer -->
 <div th:replace="/user/fragment/footer :: footer"></div>
 <!-- / footer 끝 -->
 </div>
 
-
 <script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
 <script type="text/javascript" src="/user/lib/js/common.js"></script>
 <script type="text/javascript" src="/user/lib/js/plugin.js"></script>
-
-
+<script type="text/javascript" src="/user/lib/js/find/pwView.js"></script>
 </body>
 
 </html>
