@@ -5,7 +5,9 @@ import com.project.jejuair.model.network.Header;
 import com.project.jejuair.model.network.Pagination;
 import com.project.jejuair.model.network.request.TbLostPropertyRequest;
 import com.project.jejuair.model.network.response.TbLostPropertyResponse;
+import com.project.jejuair.repository.TbLostPropertyRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -19,7 +21,11 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class TbLostPropertyApiLogicService extends BaseService<TbLostPropertyRequest, TbLostPropertyResponse, TbLostProperty> {
 
-    private TbLostPropertyResponse response(TbLostProperty tbLostProperty){
+
+    @Autowired
+    private final TbLostPropertyRepository tbLostPropertyRepository;
+
+    private TbLostPropertyResponse response(TbLostProperty tbLostProperty) {
         TbLostPropertyResponse tbLostPropertyResponse = TbLostPropertyResponse.builder()
                 .lostIdx(tbLostProperty.getLostIdx())
                 .lostItem(tbLostProperty.getLostItem())
@@ -69,19 +75,19 @@ public class TbLostPropertyApiLogicService extends BaseService<TbLostPropertyReq
         Optional<TbLostProperty> tbLostProperty = baseRepository.findById(tbLostPropertyRequest.getLostIdx());
 
         return tbLostProperty.map(
-                newTbLostProperty -> {
-                    newTbLostProperty.setLostItem(tbLostPropertyRequest.getLostItem());
-                    newTbLostProperty.setLostAcqAirName(tbLostPropertyRequest.getLostAcqAirName());
-                    newTbLostProperty.setLostAcqDate(tbLostPropertyRequest.getLostAcqDate());
-                    newTbLostProperty.setLostStoragePlace(tbLostPropertyRequest.getLostStoragePlace());
-                    newTbLostProperty.setLostDisDate(tbLostPropertyRequest.getLostDisDate());
-                    newTbLostProperty.setLostColor(tbLostPropertyRequest.getLostColor());
-                    newTbLostProperty.setLostExplain(tbLostPropertyRequest.getLostExplain());
-                    newTbLostProperty.setLostSeatNum(tbLostPropertyRequest.getLostSeatNum());
-                    newTbLostProperty.setLostStatus(tbLostPropertyRequest.getLostStatus());
-                    newTbLostProperty.setLostImg(tbLostPropertyRequest.getLostImg());
-                    return newTbLostProperty;
-                }).map(newTbLostProperty -> baseRepository.save(newTbLostProperty))
+                        newTbLostProperty -> {
+                            newTbLostProperty.setLostItem(tbLostPropertyRequest.getLostItem());
+                            newTbLostProperty.setLostAcqAirName(tbLostPropertyRequest.getLostAcqAirName());
+                            newTbLostProperty.setLostAcqDate(tbLostPropertyRequest.getLostAcqDate());
+                            newTbLostProperty.setLostStoragePlace(tbLostPropertyRequest.getLostStoragePlace());
+                            newTbLostProperty.setLostDisDate(tbLostPropertyRequest.getLostDisDate());
+                            newTbLostProperty.setLostColor(tbLostPropertyRequest.getLostColor());
+                            newTbLostProperty.setLostExplain(tbLostPropertyRequest.getLostExplain());
+                            newTbLostProperty.setLostSeatNum(tbLostPropertyRequest.getLostSeatNum());
+                            newTbLostProperty.setLostStatus(tbLostPropertyRequest.getLostStatus());
+                            newTbLostProperty.setLostImg(tbLostPropertyRequest.getLostImg());
+                            return newTbLostProperty;
+                        }).map(newTbLostProperty -> baseRepository.save(newTbLostProperty))
                 .map(newTbLostProperty -> response(newTbLostProperty))
                 .map(Header::OK).orElseGet(() -> Header.ERROR("데이터 없음"));
     }
@@ -95,7 +101,7 @@ public class TbLostPropertyApiLogicService extends BaseService<TbLostPropertyReq
         }).orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 
-    public Header<List<TbLostPropertyResponse>> search(Pageable pageable){
+    public Header<List<TbLostPropertyResponse>> search(Pageable pageable) {
         //  객체를 리스트 타입으로 변환해서 반환
         Page<TbLostProperty> tbLostProperty = baseRepository.findAll(pageable);
         List<TbLostPropertyResponse> tbLostPropertyResponseList = tbLostProperty.stream().map(
@@ -110,4 +116,21 @@ public class TbLostPropertyApiLogicService extends BaseService<TbLostPropertyReq
         return Header.OK(tbLostPropertyResponseList, pagination);
     }
 
+    public Header<List<TbLostPropertyResponse>> searchByAll(Pageable pageable, Header<TbLostPropertyRequest> request) {
+        TbLostPropertyRequest tbLostPropertyRequest = request.getData();
+        Page<TbLostProperty> tbLostProperty = tbLostPropertyRepository
+                .findByLostColorOrLostItem(tbLostPropertyRequest.getLostColor(), tbLostPropertyRequest.getLostItem(), pageable);
+        List<TbLostPropertyResponse> tbLostPropertyResponseList = tbLostProperty.stream().map(
+                newTbLostProperty -> response(newTbLostProperty)).collect(Collectors.toList());
+
+        Pagination pagination = Pagination.builder()
+                .totalPages(tbLostProperty.getTotalPages())
+                .totalElements(tbLostProperty.getTotalElements())
+                .currentPage(tbLostProperty.getNumber())
+                .currentElements(tbLostProperty.getNumberOfElements())
+                .build();
+        return Header.OK(tbLostPropertyResponseList, pagination);
+
+
+    }
 }
