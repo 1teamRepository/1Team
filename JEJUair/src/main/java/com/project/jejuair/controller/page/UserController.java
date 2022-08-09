@@ -155,20 +155,11 @@ public class UserController {
         return new ModelAndView("/user/pages/member/find/findEmailUserInfo/findEmailUserInfo");
     }
 
-    @RequestMapping("/findPhoneUserInfo") //이메일로 변경 예정, 국가번호 선택 안됨
-    public ModelAndView findPhoneUserInfo() {
-        return new ModelAndView("/user/pages/member/find/findPhoneUserInfo/findPhoneUserInfo");
-    }
-
-    @RequestMapping("/findUserIdInfo")
-    public ModelAndView findUserIdInfo() {
-        return new ModelAndView("/user/pages/member/find/findUserIdInfo/findUserIdInfo");
-    }
-
-    @RequestMapping("/findUserInfo") //이메일로 변경 예정, 국가번호 선택 안됨
+    @RequestMapping("/findResult")
     public ModelAndView findUserInfo() {
-        return new ModelAndView("/user/pages/member/find/findUserInfo/findUserInfo");
+        return new ModelAndView("/user/pages/member/find/findResult/findResult");
     }
+
 
     @RequestMapping("/findUserInfoList")
     public ModelAndView findUserInfoList() {
