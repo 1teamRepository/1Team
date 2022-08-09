@@ -2,7 +2,7 @@ $(function () {
     //회원등록 정규식
     const expUserid = RegExp(/[a-zA-Z0-9]/);
     const expUserpw = RegExp(/([a-zA-Z0-9].*[!,@,#,$,%,^,&,*,?,_,~])|([!,@,#,$,%,^,&,*,?,_,~].*[a-zA-Z0-9])/);
-    const expSsn = RegExp(/^\d{6}$/);
+    const expSsn = RegExp(/^\d{8}$/);
     const expKoLastname = RegExp(/[가-힣]/);
     const expKoFirstname = RegExp(/[가-힣]/);
     const expEngLastname = RegExp(/[A-Za-z]/);
