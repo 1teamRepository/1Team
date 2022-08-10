@@ -565,17 +565,36 @@ public class UserController {
         public ModelAndView user_notice() { return new ModelAndView("/user/pages/customer_service/notice/notice");}
         //customer_service 끝(응수)
 
-        //event 시작(응수)
         @RequestMapping("/event/pastEvent") //localhost:10000/user/event/pastEvent
-        public ModelAndView user_pastEvent() { return new ModelAndView("/user/pages/event/event_last/pastEvent");}
+        public ModelAndView user_pastEvent() {
+            return new ModelAndView("/user/pages/event/event_last/pastEvent");
+        }
 
-        @RequestMapping("/event/eventDetail/{evtIdx}") //localhost:10000/user/event/eventDetail"
-        public ModelAndView user_eventDetail(HttpServletRequest request, @PathVariable(name="evtIdx") Long evtIdx) {
-            return new ModelAndView("/user/pages/event/event_now/event_detail/eventDetail");}
+        @RequestMapping("/event/pastEventDetail") //localhost:10000/user/event/pastEventDetail
+        public ModelAndView user_pastEventDetail() {
+            return new ModelAndView("/user/pages/event/event_last/pastEventDetail");
+        }
 
-        @RequestMapping("/event/eventList") //localhost:10000/user/event/eventList
-        public ModelAndView user_eventList() { return new ModelAndView("/user/pages/event/event_now/eventList");}
-        //event 끝(응수)
+        @RequestMapping("/event/pastEventDetail1") //localhost:10000/user/event/pastEventDetail1
+        public ModelAndView user_pastEventDetail1() {
+            return new ModelAndView("/user/pages/event/event_last/pastEventDetail1");
+        }
+
+        @RequestMapping("/event/pastEventDetail2") //localhost:10000/user/event/pastEventDetail2
+        public ModelAndView user_pastEventDetail2() {
+            return new ModelAndView("/user/pages/event/event_last/pastEventDetail2");
+        }
+
+        @RequestMapping("/event/eventDetail/{evtIdx}") //localhost:10000/user/event/eventDetail
+        public ModelAndView user_eventDetail(HttpServletRequest request, @PathVariable(name = "evtIdx") Long evtIdx) {
+            return new ModelAndView("/user/pages/event/event_now/event_detail/eventDetail");
+        }
+
+
+    @RequestMapping("/event/eventList") //localhost:10000/user/event/eventList
+    public ModelAndView user_eventList() {
+        return new ModelAndView("/user/pages/event/event_now/eventList");
+    }
 
     //응수 테스트 끝
 
