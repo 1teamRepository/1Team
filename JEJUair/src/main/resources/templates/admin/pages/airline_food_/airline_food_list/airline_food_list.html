@@ -56,13 +56,13 @@
                         <tbody id="itemList">
                         <tr v-for="(dto,i) in itemList"
                             :key="i"
-                            @click="location.href=`/admin/food/view/${dto.foodIdx}`">
-                            <td class="fo_idx"><a :href=`/admin/food/view/${dto.foodIdx}`>{{dto.foodIdx}}</a></td>
-                            <td class="fo_name"><a :href=`/admin/food/view/${dto.foodIdx}`>{{dto.foodKorName}}</a></td>
-                            <td class="fo_price"><a :href=`/admin/food/view/${dto.foodIdx}`>{{dto.foodEngName}}</a></td>
-                            <td class="fo_food_num"><a :href=`/admin/food/view/${dto.foodIdx}`>{{dto.foodKrwPrice}}</a></td>
-                            <td class="fo_departure_location"><a :href=`/admin/food/view/${dto.foodIdx}`>{{dto.foodStartingPoint}}</a></td>
-                            <td class="fo_regist_date"><a :href=`/admin/food/view/${dto.foodIdx}`>{{dto.foodRegDate}}</a></td>
+                            @click='locate(dto.foodIdx)'>
+                            <td class="fo_idx">{{dto.foodIdx}}</td>
+                            <td class="fo_name">{{dto.foodKorName}}</td>
+                            <td class="fo_price">{{dto.foodEngName}}</td>
+                            <td class="fo_food_num">{{dto.foodKrwPrice}}</td>
+                            <td class="fo_departure_location">{{dto.foodStartingPoint}}</td>
+                            <td class="fo_regist_date">{{dto.foodRegDate}}</td>
                         </tr>
                         </tbody>
                     </table>

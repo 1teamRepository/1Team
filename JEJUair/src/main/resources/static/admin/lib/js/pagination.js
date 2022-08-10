@@ -1,6 +1,6 @@
 
 $(function(){
-
+    let category = document.getElementById("category").getAttribute("value");
     let pageNum = new Vue({
         el: '#pageNum',
         data: {
@@ -13,13 +13,18 @@ $(function(){
         el: '#itemList',
         data: {
             itemList: {}
+        },
+        methods:{
+            locate(index){
+                window.location.href=`/admin/${category}/view/${index}`
+            },
         }
     });
+
 
     searchStart(0);
 
     function searchStart(index){
-        let category = document.getElementById("category").getAttribute("value");
         $.get("/api/"+category+"?page="+index, function(response){
 
             let pagination = response.pagination;

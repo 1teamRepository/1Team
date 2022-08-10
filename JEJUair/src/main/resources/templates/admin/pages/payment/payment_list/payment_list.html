@@ -59,8 +59,8 @@
                             <tbody id="itemList">
                             <tr v-for="(dto,i) in itemList"
                                 :key="i"
-                                @click="location.href=`/admin/payment/view/${dto.payIdx}`">
-                                    <td class="pay_idx"><a :href=`/admin/payment/view/${dto.payIdx}`>{{dto.payIdx}}</a></td>
+                                @click='locate(dto.payIdx)'>
+                                    <td class="pay_idx">{{dto.payIdx}}</td>
                                     <td class="pay_amount">{{dto.payAmount}} 원</td>
                                     <td class="pay_userid">{{dto.payUserid}}</td>
                                     <td class="pay_status">{{dto.payStatus}}</td>

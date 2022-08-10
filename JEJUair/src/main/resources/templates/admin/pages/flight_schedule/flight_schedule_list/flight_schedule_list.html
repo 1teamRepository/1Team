@@ -62,10 +62,10 @@
                             </thead>
 
                             <tbody id="itemList">
-                                <tr v-for="(dto,i) in itemList"
-                                    :key="i"
-                                    @click="location.href=`/admin/flight_schedule/view/${dto.schIdx}`">
-                                    <td class="sch_idx"><a :href=`/admin/flight_schedule/view/${dto.schIdx}`>{{dto.schIdx}}</a></td>
+                            <tr v-for="(dto,i) in itemList"
+                                :key="i"
+                                @click='locate(dto.schIdx)'>
+                                    <td class="sch_idx">{{dto.schIdx}}</td>
                                     <td class="sch_aircraft_name">{{dto.schAircraftName}}</td>
                                     <td class="sch_departure_date">{{dto.schDepartureDate}}</td>
                                     <td class="sch_departure_time">{{dto.schDepartureTime}}</td>

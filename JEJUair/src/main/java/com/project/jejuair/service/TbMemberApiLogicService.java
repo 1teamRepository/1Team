@@ -97,6 +97,7 @@ public class TbMemberApiLogicService extends BaseService<TbMemberRequest, TbMemb
 //                    System.out.println(tbMemberRequest.getMemMarketing() + " 2");
                     newTbMember.setMemSnsPush(tbMemberRequest.getMemSnsPush());
 //                    System.out.println(tbMemberRequest.getMemMarketing() +" 3");
+                    newTbMember.setMemPoint(tbMemberRequest.getMemPoint());
                     return newTbMember;
                 }).map(newTbMember -> baseRepository.save(newTbMember))
                 .map(newTbMember -> response(newTbMember))
@@ -185,6 +186,22 @@ public class TbMemberApiLogicService extends BaseService<TbMemberRequest, TbMemb
                         }).map(newTbMember -> baseRepository.save(newTbMember))
                 .map(newTbMember -> response(newTbMember))
                 .map(Header::OK).orElseGet(() -> Header.ERROR("데이터 없음"));
+    }
+
+    public Header<List<TbMemberResponse>> searchByAll(Pageable pageable, Header<TbMemberRequest> request) {
+        TbMemberRequest tbMemberRequest = request.getData();
+        Page<TbMember> tbMember = tbMemberRepository
+                .findByMemUserid(tbMemberRequest.getMemUserid(), pageable);
+        List<TbMemberResponse> tbMemberResponseList = tbMember.stream().map(
+                newTbMember -> response(newTbMember)).collect(Collectors.toList());
+
+        Pagination pagination = Pagination.builder()
+                .totalPages(tbMember.getTotalPages())
+                .totalElements(tbMember.getTotalElements())
+                .currentPage(tbMember.getNumber())
+                .currentElements(tbMember.getNumberOfElements())
+                .build();
+        return Header.OK(tbMemberResponseList, pagination);
     }
 
 }

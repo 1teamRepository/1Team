@@ -58,10 +58,10 @@
 <!--                            :href=`/admin/adminsetting/view/${dto.admIdx}`-->
 
                             <tbody id="itemList">
-                                <tr v-for="(dto,i) in itemList"
-                                    :key="i"
-                                    @click="location.href=`/admin/adminuser/view/${dto.admIdx}`">
-                                    <td class="adm_idx"><a :href=`/admin/adminuser/view/${dto.admIdx}`>{{dto.admIdx}}</a></td>
+                            <tr v-for="(dto,i) in itemList"
+                                :key="i"
+                                @click='locate(dto.admIdx)'>
+                                    <td class="adm_idx">{{dto.admIdx}}</a></td>
                                     <td class="adm_adminid">{{dto.admAdminId}}</td>
                                     <td class="adm_name">{{dto.admKorName}}</td>
                                     <td class="adm_num">{{dto.admEmployee}}</td>
