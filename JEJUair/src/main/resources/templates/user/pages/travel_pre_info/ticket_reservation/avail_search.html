@@ -8,6 +8,7 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript" src="/user/lib/js/ticket_reservation/json_loading.js"></script>
 <!--head 끝-->
 <script th:inline="javascript">
     let reserveRoute = [[${reserveRoute}]];
@@ -717,7 +718,8 @@
                                 <input type="hidden" id="roundStart" name="roundStart" th:value="${roundStart}">
                                 <input type="hidden" id="roundEnd" name="roundEnd" th:value="${roundEnd}">
                                 <input type="hidden" id="passengerNum" name="passengerNum" th:value="${passengerNum}">
-                                <button type="submit" id="searchFlight" class="btn-flight-sch-again">항공권 검색</button>
+                                <input type="hidden" id="foreign" name="foreign" th:value="${foreign}">
+                                <button type="submit" id="searchFlight" class="btn-flight-sch-again">항공권 다시 검색</button>
                                 <!-- 항공권  검색 -->
                             </form>
                         </div>
@@ -932,6 +934,7 @@
                             <input type="hidden" id="rtStart" name="rtStart" th:value="${roundStart}">
                             <input type="hidden" id="rtEnd" name="rtEnd" th:value="${roundEnd}">
                             <input type="hidden" id="pasNum" name="pasNum" th:value="${passengerNum}">
+                            <input type="hidden" id="overseas" name="overseas" th:value="${foreign}">
                             <button type="button" class="button button--primary pc-only button--active pc-only"
                                     id="btnNextPC">
                                     <span id="spanNextPC" class="button__text"><a>다음</a></span>
@@ -1309,6 +1312,6 @@
      style="height:100%; display:none; overflow:auto; text-align:center; -webkit-overflow-scrolling:touch;">
     <iframe src="" width="100%" height="100%" name="popupChkApp"></iframe>
 </div>
-<script type="text/javascript" src="/user/lib/js/ticket_reservation/avail_search/avail_search.js"></script>
+<script type="text/javascript" src="/user/lib/js/ticket_reservation/avail_search.js"></script>
 </body>
 </html>

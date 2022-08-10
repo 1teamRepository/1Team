@@ -1,15 +1,22 @@
-const schIdx = Number(tripJson["schIdx"]);
 let memPoint = 0;
 
-loadSchInfo();
 
+
+let foodPrice = 0;
+let foodPrice2 = 0;
+
+loadSchInfo();
+console.log("/api/flight_schedule/" + tripJson["schIdx"]);
 function loadSchInfo() {
-    $.get("/api/flight_schedule/" + schIdx, function (response) {
+    $.get("/api/flight_schedule/" + tripJson["schIdx"], function (response) {
         const schInfo = response.data;
 
         let depDay = new Date(schInfo.schDepartureDate);
         let arrDay = new Date(schInfo.schArrivalDate);
         const weekday = ['(일)&nbsp', '(월)&nbsp', '(화)&nbsp', '(수)&nbsp', '(목)&nbsp', '(금)&nbsp', '(토)&nbsp'];
+        if(tripJson2.resRoute === "ROUNDBACK"){
+            document.getElementById("roundBackInfo").style.display = "flex";
+        }
 
         $.get({
             url: '/api/customer/'+tripJson["memIdx"],
@@ -23,11 +30,8 @@ function loadSchInfo() {
             }
         })
 
-        console.log(memPoint);
-
         console.log("===schInfo===")
         console.log(schInfo);
-        console.log(document.querySelector(".aircraft_name"));
         document.querySelector(".aircraft_name").innerHTML = schInfo.schAircraftName;
         document.querySelector(".marked--brand").innerHTML = tripJson["seatValue"] == "biz" ? "BIZ LITE" : "FLY";
         document.querySelector(".departure_date").innerHTML = schInfo.schDepartureDate + weekday[depDay.getDay()];
@@ -36,48 +40,70 @@ function loadSchInfo() {
         document.querySelector(".arrival_time").innerHTML = schInfo.schArrivalTime;
         document.querySelector(".departure_port").innerHTML = schInfo.schDeparture;
         document.querySelector(".arrival_port").innerHTML = schInfo.schArrival;
+
+        if(tripJson2.resRoute === "ROUNDBACK") {
+            $.get("/api/flight_schedule/" + tripJson2["schIdx"], function (response) {
+                const schInfo2 = response.data;
+                document.querySelectorAll(".aircraft_name")[1].innerHTML = schInfo2.schAircraftName;
+                document.querySelectorAll(".marked--brand")[1].innerHTML = tripJson2["seatValue"] == "biz" ? "BIZ LITE" : "FLY";
+                document.querySelectorAll(".departure_date")[1].innerHTML = schInfo2.schDepartureDate + weekday[depDay.getDay()];
+                document.querySelectorAll(".departure_time")[1].innerHTML = schInfo2.schDepartureTime;
+                document.querySelectorAll(".arrival_date")[1].innerHTML = schInfo2.schArrivalDate + " " + weekday[arrDay.getDay()];
+                document.querySelectorAll(".arrival_time")[1].innerHTML = schInfo2.schArrivalTime;
+                document.querySelectorAll(".departure_port")[1].innerHTML = schInfo2.schDeparture;
+                document.querySelectorAll(".arrival_port")[1].innerHTML = schInfo2.schArrival;
+            });
+        }
+
         document.querySelectorAll(".passengerNum")[0].innerHTML = String(tripJson["schPassengerNum"]);
         document.querySelectorAll(".passengerNum")[1].innerHTML = String(tripJson["schPassengerNum"]);
+        document.querySelectorAll(".passengerNum")[2].innerHTML = String(tripJson["schPassengerNum"]);
 
-        document.querySelector(".divFare").innerHTML = tripJson["divFare"];
-        document.querySelector(".divFuel").innerHTML = tripJson["divFuel"];
-        document.querySelector(".divTax").innerHTML = tripJson["divTax"];
-        document.querySelector(".divSeat").innerHTML = String(tripJson["divSeat"]);
-        document.querySelector(".divBaggageFee").innerHTML = String(tripJson.divBaggageFee);
-        document.querySelectorAll(".spanCost")[0].innerHTML = tripJson.spanCost;
+        document.querySelector(".divFare").innerHTML = String(tripJson.divFare + tripJson2.divFare);
+        document.querySelector(".divTax").innerHTML = String(tripJson.divTax + tripJson2.divTax) ;
+        document.querySelector(".divFuel").innerHTML = String(tripJson.divFuel + tripJson2.divFuel);
+        document.querySelector(".divSeat").innerHTML = String(tripJson.divSeat + tripJson2.divSeat);
+        document.querySelector(".divBaggageFee").innerHTML = String(tripJson.divBaggageFee + tripJson2.divBaggageFee);
+        document.querySelectorAll(".spanCost")[0].innerHTML =  tripJson.spanCost + tripJson2.spanCost;
+        document.querySelectorAll(".spanCost")[1].innerHTML = tripJson.spanCost + tripJson2.spanCost;
+        document.querySelector(".divTotalFare").innerHTML = String(tripJson.divFare + tripJson2.divFare+ tripJson.divTax + tripJson2.divTax + tripJson.divFuel + tripJson2.divFuel);
+        document.querySelector(".divTotalService").innerHTML = String(tripJson.divSeat + tripJson2.divSeat + tripJson.divBaggageFee + tripJson2.divBaggageFee); //+tripJson.divFood + tripJson2.divFood
 
-        document.querySelectorAll(".spanCost")[1].innerHTML = tripJson.spanCost;
-        document.querySelector(".divTotalFare").innerHTML = tripJson["divFare"] + tripJson["divFuel"] + tripJson["divTax"];
-        document.querySelector(".divTotalService").innerHTML = tripJson["divSeat"] + tripJson["divBaggageFee"]; //+tripJson["divFood"]
-
-        document.querySelector(".spanFinalCost").innerHTML = tripJson.spanCost;
+        document.querySelector(".spanFinalCost").innerHTML = tripJson.spanCost + tripJson2.spanCost;
 
         let passengerNum = tripJson["schPassengerNum"];
 
         document.getElementById("hasPoint").setAttribute("value", memPoint);
 
         for (let i = 0; i < passengerNum; i++) {
-            let passengerHTML = '                <dl class="line-list-item">\n' +
+
+            const seatPrice1 = passJson["pasSeat"+i] === "" ? 0 : (tripJson.seatValue === "eco" ? 5000 : 10000);
+            let seatPrice2 = 0;
+            if(tripJson2.resRoute === "ROUNDBACK"){
+                seatPrice2 = passJson["pasSeat"+i] === "" ? 0 : (tripJson2.seatValue === "eco" ? 5000 : 10000);
+            }
+
+            let passengerHTML = ' <dl class="line-list-item">\n' +
                 '                    <dt class="title">\n' +
                 '                        <div class="txt-left"> '+passJson["passLastName"+i]+passJson["passFirstName"+i]+'</div>\n' +
-                '                        <div class="price"><p><span class="price_txt">'+(Number(tripJson["divFare"]/passengerNum)+Number(tripJson["divFuel"]/passengerNum)+Number(tripJson["divTax"]/passengerNum)+Number(passJson["pasBaggagePrice"+i])+5000)+'</span>\n' +
+                '                        <div class="price"><p><span class="price_txt">'+(Number((tripJson["divFare"]+tripJson2["divFare"])/passengerNum)+Number((tripJson["divFuel"]+tripJson2["divFuel"])/passengerNum)+Number((tripJson["divTax"]+tripJson2["divTax"])/passengerNum)+Number(passJson["pasBaggagePrice"+i] + passJson2["pasBaggagePrice"+i])+seatPrice1+seatPrice2)+'</span>\n' +
                 '                            <span class="unit">&nbsp원</span></p></div>\n' +
                 '                    </dt>\n' +
                 '                    <dd class="list">\n' +
                 '                        <ul>\n' +
                 '                            <li>\n' +
                 '                                <div class="txt-left">항공운임</div>\n' +
-                '                                <div class="txt-right"><span class="price_txt">'+(tripJson["divFare"]/passengerNum)+'</span>\n' +
+                '                                <div class="txt-right"><span class="price_txt">'+Number((tripJson["divFare"]+tripJson2["divFare"])/passengerNum)+'</span>\n' +
                 '                                    <span class="unit">&nbsp원</span></div>\n' +
                 '                            </li>\n' +
                 '                            <li>\n' +
                 '                                <div class="txt-left">유류할증료</div>\n' +
-                '                                <div class="txt-right"><span class="price_txt">'+(tripJson["divFuel"]/passengerNum)+'</span>\n' +
+                '                                <div class="txt-right"><span class="price_txt">'+Number((tripJson["divFuel"]+tripJson2["divFuel"])/passengerNum)+'</span>\n' +
                 '                                    <span class="unit">&nbsp원</span></div>\n' +
                 '                            </li>\n' +
                 '                            <li>\n' +
                 '                                <div class="txt-left">공항시설 사용료</div>\n' +
-                '                                <div class="txt-right"><span class="price_txt">'+(tripJson["divTax"]/passengerNum)+'</span>\n' +
+                '                                <div class="txt-right"><span class="price_txt">'+Number((tripJson["divTax"]+tripJson2["divTax"])/passengerNum)+'</span>\n' +
                 '                                    <span class="unit">&nbsp원</span></div>\n' +
                 '                            </li>\n' +
                 '                        </ul>\n' +
@@ -105,8 +131,8 @@ function loadSchInfo() {
                 '                                        </td>\n' +
                 '                                        <td class="receipt_conts">\n' +
                 '                                            <ul>\n' +
-                '                                                <li><span class="item">생선요리와 화이트와인</span> <span\n' +
-                '                                                    class="price"><span class="price_txt">11,000</span><span class="unit">&nbsp&nbsp원</span></span>\n' +
+                '                                                <li><span class="item"></span> <span\n' +
+                '                                                    class="price"><span class="price_txt">0</span><span class="unit">&nbsp&nbsp원</span></span>\n' +
                 '                                                </li>\n' +
                 '                                            </ul>\n' +
                 '                                        </td>\n' +
@@ -117,7 +143,7 @@ function loadSchInfo() {
                 '                                        <td class="receipt_conts">\n' +
                 '                                            <ul>\n' +
                 '                                                <li><span class="item">'+passJson["pasSeat"+i]+'</span> <span class="price"><span\n' +
-                '                                                    class="price_txt">5000</span><span class="unit">&nbsp&nbsp원</span></span>\n' +
+                '                                                    class="price_txt">'+seatPrice1+'</span><span class="unit">&nbsp&nbsp원</span></span>\n' +
                 '                                                </li>\n' +
                 '                                            </ul>\n' +
                 '                                        </td>\n' +
@@ -126,9 +152,61 @@ function loadSchInfo() {
                 '                                </table>\n' +
                 '                            </div>\n' +
                 '                        </div>\n' +
+
+                '                        <div class="modal-receipt roundbackReceipt">\n' +
+                '                            <div class="payment-amount">\n' +
+                '                                <div class="payment-amount__title">오는 편</div>\n' +
+                '                            </div>\n' +
+                '                            <div class="payment-amount">\n' +
+                '                                <table class="tbl_receipt">\n' +
+                '                                    <tbody>\n' +
+                '                                    <tr>\n' +
+                '                                        <td class="receipt_title oneline"><span class="receipt_ti">사전 수하물</span>\n' +
+                '                                        </td>\n' +
+                '                                        <td class="receipt_conts">\n' +
+                '                                            <ul>\n' +
+                '                                                <li><span class="item">'+passJson2["pasBaggage"+i]+'</span> <span\n' +
+                '                                                    class="price"><span class="price_txt">'+passJson2["pasBaggagePrice"+i]+'</span><span class="unit">&nbsp&nbsp원</span></span>\n' +
+                '                                                </li>\n' +
+                '                                            </ul>\n' +
+                '                                        </td>\n' +
+                '                                    </tr>\n' +
+                '                                    <tr>\n' +
+                '                                        <td class="receipt_title oneline"><span class="receipt_ti">사전 기내식</span>\n' +
+                '                                        </td>\n' +
+                '                                        <td class="receipt_conts">\n' +
+                '                                            <ul>\n' +
+                '                                                <li><span class="item"></span> <span\n' +
+                '                                                    class="price"><span class="price_txt">0</span><span class="unit">&nbsp&nbsp원</span></span>\n' +
+                '                                                </li>\n' +
+                '                                            </ul>\n' +
+                '                                        </td>\n' +
+                '                                    </tr>\n' +
+                '                                    <tr>\n' +
+                '                                        <td class="receipt_title oneline"><span class="receipt_ti">사전 좌석</span>\n' +
+                '                                        </td>\n' +
+                '                                        <td class="receipt_conts">\n' +
+                '                                            <ul>\n' +
+                '                                                <li><span class="item">'+passJson2["pasSeat"+i]+'</span> <span class="price"><span\n' +
+                '                                                    class="price_txt">'+seatPrice2+'</span><span class="unit">&nbsp&nbsp원</span></span>\n' +
+                '                                                </li>\n' +
+                '                                            </ul>\n' +
+                '                                        </td>\n' +
+                '                                    </tr>\n' +
+                '                                    </tbody>\n' +
+                '                                </table>\n' +
+                '                            </div>\n' +
+                '                        </div>\n' +
+                
+                
+                
                 '                    </dd>\n' +
                 '                </dl>'
             $('#passengerFareList').append(passengerHTML);
+            if(tripJson.resRoute === "ONEWAY"){
+                document.querySelectorAll(".roundbackReceipt")[i].style.display = "none";
+            }
+
         }
 
         $(document).on('click', ".change_point", function(){
@@ -221,10 +299,10 @@ $(document).on('click', '#btnNext', function () {
             // location.href = "/user/ticket_reservation"
         }
     });
-    tripJson["spanCost"] = Number(document.querySelector(".spanFinalCost").innerHTML);
+    tripJson["spanFinalCost"] = Number(document.querySelector(".spanFinalCost").innerHTML);
 
     localStorage.setItem("passJson", JSON.stringify(passJson));
     localStorage.setItem("tripJson", JSON.stringify(tripJson));
 
-    location.href = "/user/oneway/view_payment";
+    location.href = "/user/view_payment";
 });

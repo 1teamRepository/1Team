@@ -338,6 +338,7 @@ public class UserController {
         return new ModelAndView("/user/pages/travel_pre_info/inter_price/inter_price");
     }
 
+
 //    예매 페이지 시작
 
     @RequestMapping("/ticket_reservation") //메인에서 해결 후 가져오기
@@ -359,7 +360,8 @@ public class UserController {
             @RequestParam(value = "onewayStart") String onewayStart,
             @RequestParam(value = "roundStart") String roundStart,
             @RequestParam(value = "roundEnd") String roundEnd,
-            @RequestParam(value = "passengerNum") int passengerNum)
+            @RequestParam(value = "passengerNum") int passengerNum,
+            @RequestParam(value = "foreign") String foreign)
     {
         HttpSession session = request.getSession();
         if (session.getAttribute("userid") != null) {
@@ -371,6 +373,7 @@ public class UserController {
                     .addObject("roundStart", roundStart)
                     .addObject("roundEnd", roundEnd)
                     .addObject("passengerNum", passengerNum)
+                    .addObject("foreign", foreign)
                     .addObject("idx",session.getAttribute("idx"))
                     .addObject("userid",session.getAttribute("userid"));
         } else {
@@ -385,14 +388,11 @@ public class UserController {
     }
 
 
-
-
-    //    편도노선
-    @RequestMapping("/oneway/view_passenger_input")
+    @RequestMapping("/view_passenger_input")
     public ModelAndView oneway_view_passenger_input(HttpServletRequest request) {
         HttpSession session = request.getSession();
         if (session.getAttribute("userid") != null) {
-            return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/oneway/view_passenger_input")
+            return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/view_passenger_input")
                     .addObject("idx", session.getAttribute("idx"))
                     .addObject("userid", session.getAttribute("userid"))
                     .addObject("koLastname", session.getAttribute("koLastname"))
@@ -408,24 +408,24 @@ public class UserController {
         }
     }
 
-    @RequestMapping("/oneway/seat_select")
+    @RequestMapping("/seat_select")
     public ModelAndView oneway_seat_select() {
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/oneway/seat_select_ow");
+        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/seat_select");
     }
 
-    @RequestMapping("/oneway/baggage_select")
+    @RequestMapping("/baggage_select")
     public ModelAndView oneway_baggage_select() {
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/oneway/baggage_select_ow");
+        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/baggage_select");
     }
 
-    @RequestMapping("/oneway/meal_select")
+    @RequestMapping("/meal_select")
     public ModelAndView oneway_meal_select() {
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/oneway/meal_select_ow");
+        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/meal_select");
     }
 
-    @RequestMapping("/oneway/view_confirm")
+    @RequestMapping("/view_confirm")
     public ModelAndView oneway_view_confirm() {
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/oneway/view_confirm_ow");
+        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/view_confirm");
     }
 
 //    @RequestMapping("/oneway/view_payment")
@@ -440,50 +440,12 @@ public class UserController {
 //        }
 //    }
 
-    @RequestMapping("/oneway/view_payment")
+    @RequestMapping("/view_payment")
     public ModelAndView oneway_view_payment() {
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/oneway/view_payment_complete_ow");
+        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/view_payment_complete");
     }
 
-//    왕복노선
-
-    @RequestMapping("/round/view_passenger_input")
-    public ModelAndView round_view_passenger_input() {
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/round/view_passenger_input");
-    }
-
-    @RequestMapping("/round/seat_select1")
-    public ModelAndView round_seat_select1() {
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/round/seat_select_ro1");
-    }
-
-    @RequestMapping("/round/seat_select2")
-    public ModelAndView round_seat_select2() {
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/round/seat_select_ro2");
-    }
-
-
-    @RequestMapping("/round/baggage_select")
-    public ModelAndView round_baggage_select() {
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/round/baggage_select_ro");
-    }
-
-    @RequestMapping("/round/meal_select")
-    public ModelAndView round_meal_select() {
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/round/meal_select_ro");
-    }
-
-    @RequestMapping("/round/view_confirm")
-    public ModelAndView round_view_confirm() {
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/round/view_confirm_ro");
-    }
-
-    @RequestMapping("/round/view_payment")
-    public ModelAndView round_view_payment() {
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/round/view_payment_ro");
-    }
-
-    //    예매 페이지 끝
+// 예매 페이지 끝
 
     //은비 테스트 끝
 

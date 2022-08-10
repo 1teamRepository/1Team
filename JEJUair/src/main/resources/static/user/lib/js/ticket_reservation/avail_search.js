@@ -1,7 +1,49 @@
 
 
+const tripBtn = document.querySelectorAll('.item-btn');			//<a href="#" class="item-btn">왕복</a>
+const ticketing = document.querySelector('.ticketing');
+const itemBtnOW = document.querySelector("[data-triptype='OW'] > .item-btn");
+const itemBtnRT = document.querySelector("[data-triptype='RT'] > .item-btn");
+
+const departureLayer = document.getElementById('depAirportLayer');	//<div class="flight-layer flight-start" id="depAirportLayer">
+const targetLayer = document.getElementById('arrAirportLayer');		//<div class="flight-layer flight-start" id="depAirportLayer">
+const customerLayer = document.getElementById('customerLayer'); 	//<div class="customer-layer" id="customerLayer">
+
+//달력
+const dateRound = document.getElementById('date-round');
+const dateOneWay = document.getElementById('date-one-way');
+
+const departureDesc = document.getElementById('spanDepartureDesc');
+const arrivalDesc = document.getElementById('spanArrivalDesc');
+
+const adtCount = document.getElementById('adtCount');
+const btnClose = document.getElementsByTagName('button');
+const btnPassengers = document.getElementsByClassName('btn-passengers')[0];
+
+const tabAnchor = document.getElementsByClassName('tab__anchor');
+const tabPanel = document.getElementsByClassName('tab__panel');
+
+const searchFlight = document.getElementById('searchFlight');
+
+const passengerNum = Number(document.getElementById("passengerNum").getAttribute("value"));
+const gradeDefault = document.querySelectorAll(".tab-btn");
+
+let departureData = document.querySelector("#departureData").getAttribute("value");
+let arrivalData = document.querySelector("#arrivalData").getAttribute("value");
+let roundStartDateRes = roundStartArr[0]+"-"+roundStartArr[1]+"-"+roundStartArr[2];
+let roundEndDateRes = roundEndArr[0]+"-"+roundEndArr[1]+"-"+roundEndArr[2];
+let onewayStartDateRes = onewayStartArr[0]+"-"+onewayStartArr[1]+"-"+onewayStartArr[2];
+let reserveRouteRes = document.getElementById('reserveRoute').getAttribute("value")
+
+console.log("======출발도착 정보======")
+console.log(departureData)
+console.log(arrivalData)
+console.log(roundStartDateRes)
+console.log(roundEndDateRes)
+console.log(reserveRouteRes)
+console.log("======출발도착 정보======")
+
 $(function(){
-    let roundStartDate = roundStartArr[1]+"/"+roundStartArr[2]+"/"+roundStartArr[0];
     const date = roundStartArr[0]+roundStartArr[1]+roundStartArr[2];
     const year = parseInt(date.substring(0, 4));
     const month = parseInt(date.substring(4, 6));
@@ -20,6 +62,7 @@ $(function(){
         }
     });
 
+    console.log("---searchDate---")
     console.log(searchDate)
     function dateCal(date, num , cal){
         // console.log('들어옴 /dateCal')
@@ -53,7 +96,7 @@ $(function(){
         }
         return data;
     }
-    console.log(startDate)
+    // console.log(startDate)
     for(let i=0; i<7; i++){
         // console.log('들어옴 /for')
         dateWeek = dateCal(startDate, i, 'sum');
@@ -61,9 +104,9 @@ $(function(){
         let data2 = sumZero(dateWeek.getDate())
         let data3 = findDayOfWeek(dateWeek)
         dateName[i] = `${data1}.${data2}(${data3})`;
-        console.log(dateName[i]);
+        // console.log(dateName[i]);
     }
-    console.log(dateName);
+    // console.log(dateName);
     topList.dateList = [
         { text: dateName[0], price:  '5000' },
         { text: dateName[1], price:  '5000' },
@@ -74,23 +117,7 @@ $(function(){
         { text: dateName[6], price:  '900' },
     ];
 
-    console.log(dateList)
-
-});
-
-
-$(function(){
-
-    let departureData = document.querySelector("#departureData").getAttribute("value");
-    let arrivalData = document.querySelector("#arrivalData").getAttribute("value");
-    let roundStartDate = roundStartArr[0]+"-"+roundStartArr[1]+"-"+roundStartArr[2];
-    let onewayStartDate = onewayStartArr[0]+"-"+onewayStartArr[1]+"-"+onewayStartArr[2];
-    let reserveRoute = document.getElementById('reserveRoute').getAttribute("value")
-    console.log(departureData)
-    console.log(arrivalData)
-    console.log(roundStartDate)
-    console.log(reserveRoute)
-
+    // console.log(dateList)
 
 
     let flightList = new Vue({
@@ -111,20 +138,19 @@ $(function(){
             // pageNum.totalPages = pagination.totalPages;
             // pageNum.currentPage = pagination.currentPage + 1;
             let exdata = response.data;
-            console.log(typeof exdata)
+            // console.log(typeof exdata)
             let schdata = [] ;
             choiceSchedule()
+            console.log("---schdata---")
             console.log(schdata)
             schdata = total()
 
             route()
 
             function route(){
-                if(reserveRoute == 'oneway'){
-
-                    console.log(reserveRoute == 'oneway')
+                if(reserveRouteRes == 'oneway'){
                     document.getElementById('route').innerText = "가는 편";
-                }if(reserveRoute == 'round'){
+                }if(reserveRouteRes == 'round'){
                     document.getElementById('route').innerText = "왕복 가는 편";
                     if(false){
                         document.getElementById('route').innerHTML = "";
@@ -134,31 +160,35 @@ $(function(){
             }
 
             function choiceSchedule(){
-                console.log('choiceSchedule 들어옴')
+                // console.log('choiceSchedule 들어옴')
                 exdata.forEach((item)=>{
-                    if(reserveRoute == 'round'){
-                        if(roundStartDate == `${item.schDepartureDate}` &&
+                    if(reserveRouteRes == 'oneway') {
+                        if (onewayStartDateRes == `${item.schDepartureDate}` &&
+                            departureData == `${item.schDeparture}` &&
+                            arrivalData == `${item.schArrival}`) {
+                            console.log("=== ONEWAY 스케줄 ===")
+                            console.log(item)
+                            schdata.push(item)
+                        }
+                    }if(reserveRouteRes == 'round'){
+                        if(roundStartDateRes == `${item.schDepartureDate}` &&
                             departureData == `${item.schDeparture}` &&
                             arrivalData == `${item.schArrival}`){
+                            console.log("===ROUNDGO 스케줄 ===")
                             console.log(item)
                             schdata.push(item)
                         }
 
-                    }if(reserveRoute == 'oneway') {
-                        if (onewayStartDate == `${item.schDepartureDate}` &&
-                            departureData == `${item.schDeparture}` &&
-                            arrivalData == `${item.schArrival}`) {
+                    }if(reserveRouteRes == 'roundback'){
+                        if(roundEndDateRes == `${item.schDepartureDate}` &&
+                            arrivalData == `${item.schDeparture}` &&
+                            departureData == `${item.schArrival}`){
+                            console.log("===ROUNDBACK 스케줄 ===")
                             console.log(item)
                             schdata.push(item)
                         }
                     }
-
-
-                    // console.log(`${item.schArrivalDate}`)
-                    // console.log(`${item.schDeparture}`)
-                    // console.log(`${item.schArrival}`)
                 })
-
             }
 
 
@@ -182,43 +212,6 @@ $(function(){
         });
     }
 });
-// $(function(){
-//     console.log('들어왓숑')
-//
-//
-//     let flightList = new Vue({
-//         el: '#flightList',
-//         data: {
-//             flyScheduleList: {}
-//         }
-//     });
-//
-//     flightList.flyScheduleList = [
-//         {aircraftName: "7C1402",
-//             departureTime: "09:35",
-//             arrivalTime: "11:00",
-//             totalTime: "1시간25분",
-//             flyPrice: "30,000",
-//             bizLItePrice: "51,000"},
-//         {aircraftName: "7B1392",
-//             departureTime: "11:35",
-//             arrivalTime: "13:00",
-//             totalTime: "1시간25분",
-//             flyPrice: "40,000",
-//             bizLItePrice: "62,000"},
-//         {aircraftName: "9B3391",
-//             departureTime: "14:35",
-//             arrivalTime: "16:00",
-//             totalTime: "1시간25분",
-//             flyPrice: "35,000",
-//             bizLItePrice: "52,000"}
-//     ];
-//
-//     // console.log(flyScheduleList);
-//
-//
-// });
-
 
 
 
@@ -227,10 +220,12 @@ $(document).on('click', '.item-btn', function () {
 });
 
 $(document).on('click', '.js-target-pick.start', function () {
+    ticketingDisplay();
     selectDeparture();
 })
 
 $(document).on('click', '.js-target-pick.target', function () {
+    ticketingDisplay();
     selectTarget();
 })
 
@@ -274,38 +269,9 @@ $(document).on('click', '.tab-btn', function () {
     fareCal(this);
 })
 
-//selectTrip
-const tripBtn = document.querySelectorAll('.item-btn');			//<a href="#" class="item-btn">왕복</a>
-const ticketing = document.querySelector('.ticketing');
-const itemBtnOW = document.querySelector("[data-triptype='OW'] > .item-btn");
-const itemBtnRT = document.querySelector("[data-triptype='RT'] > .item-btn");
-
-const departureLayer = document.getElementById('depAirportLayer');	//<div class="flight-layer flight-start" id="depAirportLayer">
-const targetLayer = document.getElementById('arrAirportLayer');		//<div class="flight-layer flight-start" id="depAirportLayer">
-const customerLayer = document.getElementById('customerLayer'); 	//<div class="customer-layer" id="customerLayer">
-
-//달력
-const dateRound = document.getElementById('date-round');
-const dateOneWay = document.getElementById('date-one-way');
-
-const departureDesc = document.getElementById('spanDepartureDesc');
-const arrivalDesc = document.getElementById('spanArrivalDesc');
-
-const adtCount = document.getElementById('adtCount');
-const btnClose = document.getElementsByTagName('button');
-const btnPassengers = document.getElementsByClassName('btn-passengers')[0];
-
-const tabAnchor = document.getElementsByClassName('tab__anchor');
-const tabPanel = document.getElementsByClassName('tab__panel');
-
-const searchFlight = document.getElementById('searchFlight');
-
-//hidden input
-const departureData = document.querySelector("#departureData");
-const arrivalData = document.querySelector("#arrivalData");
-const passengerNum = document.getElementById("passengerNum").getAttribute("value");
-
-const gradeDefault = document.querySelectorAll(".tab-btn");
+$(document).on('click', '.ticketing-date', function() {
+    ticketingDisplay();
+})
 
 
 reserveProgress();
@@ -314,13 +280,9 @@ btnAble();
 
 //편도, 왕복 선택
 function selectTrip(item) {
-    console.log(item);
     let li = item.parentNode;
-    console.log(li);//<li class="item selected" data-tripType="RT"><a href="#" class="item-btn">왕복</a></li>
     let ticketing_item = item.parentNode.parentNode.parentNode.parentNode;
-    console.log(ticketing_item);
     const trip_type = $(li).attr('data-triptype');  //ow, rt
-    console.log(trip_type);
 
     closeLayer();
     for (let i = 0; i < tripBtn.length; i++) {
@@ -337,27 +299,27 @@ function selectTrip(item) {
         dateRound.style.display = "none";
         document.getElementById('reserveRoute').setAttribute("value", "oneway");
 
-        console.log("====oneway====")
+        console.log("=======oneway=======")
         console.log(document.getElementById('reserveRoute'));
         console.log(document.getElementById('departureData'));
         console.log(document.getElementById('arrivalData'));
         console.log(document.getElementById('onewayStart'));
         console.log(document.getElementById('passengerNum'));
-
+        console.log("=======oneway=======")
     } else if (trip_type == 'RT') {
         ticketing_item.classList.add("round");
         dateRound.style.display = "block";
         dateOneWay.style.display = "none";
         document.getElementById('reserveRoute').setAttribute("value", "round");
 
-        console.log("====round====")
+        console.log("=======round=======")
         console.log(document.getElementById('reserveRoute'));
         console.log(document.getElementById('departureData'));
         console.log(document.getElementById('arrivalData'));
         console.log(document.getElementById('roundStart'));
         console.log(document.getElementById('roundEnd'));
         console.log(document.getElementById('passengerNum'));
-
+        console.log("=======round=======")
     }
 }
 
@@ -465,21 +427,28 @@ function ticketingDisplay(){
 function selectAirport(select) {
     let station = $(select).attr('data-stationname');
     console.log(station);
-    if ($(select).attr('data-stationtype') == "DEP") {
+    if ($(select).attr('data-stationtype') === "DEP") {
         selectTarget();
         departureDesc.innerText = station;
-        departureData.setAttribute("value", station);
-
-    } else if ($(select).attr('data-stationtype') == "ARR") {
+        departureDesc.setAttribute("data-countrycode", select.getAttribute("data-countrycode"));
+        document.querySelector("#departureData").setAttribute("value", station);
+    } else if ($(select).attr('data-stationtype') === "ARR") {
         selectPassengers();
+        $(searchFlight).attr('disabled', false);
         arrivalDesc.innerText = station;
-        arrivalData.setAttribute("value", station);
+        arrivalDesc.setAttribute("data-countrycode", select.getAttribute("data-countrycode"));
+        document.querySelector("#arrivalData").setAttribute("value", station);
+    }
+    if(departureDesc.getAttribute("data-countrycode")==="KR" && arrivalDesc.getAttribute("data-countrycode")==="KR"){
+        document.querySelector("#foreign").setAttribute("value", "false");
+    }else{
+        document.querySelector("#foreign").setAttribute("value", "true");
     }
 }
 
-if(reserveRoute == "round"){
+if(reserveRouteRes == "round"){
     selectTrip(itemBtnRT);
-}else if(reserveRoute =="oneway"){
+}else if(reserveRouteRes =="oneway"){
     selectTrip(itemBtnOW);
 }
 
@@ -503,7 +472,7 @@ function paymentModal(select){
 // 가격 계산 로직
 function fareCal(select){
     const gradeDefault = document.querySelectorAll(".tab-btn");
-    const fare = $(select).find(".price_txt")[0].innerText;
+    const fare = Number($(select).find(".price_txt")[0].innerText);
     // 가격
     const divFare = fare*passengerNum;
     const divTax = 4000*passengerNum;
@@ -521,44 +490,128 @@ function fareCal(select){
     schIdx.classList.add("select_schIdx");
     select.classList.add("active");
 
-    $('#divFare').find('.flight__cost')[0].innerHTML = divFare;
-    $('#divTax').find('.flight__cost')[0].innerHTML = divTax;
-    $('#divFuel').find('.flight__cost')[0].innerHTML = divFuel;
-    $('#spanCost').find('.flight__cost')[0].innerHTML =  Number(divFare + divTax + divFuel);
+    $('#divFare').find('.flight__cost')[0].innerHTML = tripJson.divFare + divFare;
+    $('#divTax').find('.flight__cost')[0].innerHTML = tripJson.divTax + divTax;
+    $('#divFuel').find('.flight__cost')[0].innerHTML = tripJson.divFuel + divFuel;
+    $('#spanCost').find('.flight__cost')[0].innerHTML =  tripJson.spanCost + divFare + divTax + divFuel;
+
+    $('#divFare').find('.flight__cost')[0].setAttribute("value", divFare);
+    $('#divTax').find('.flight__cost')[0].setAttribute("value", divTax);
+    $('#divFuel').find('.flight__cost')[0].setAttribute("value", divFuel);
+    $('#spanCost').find('.flight__cost')[0].setAttribute("value", divFare+divTax+divFuel);
 }
 
 function reserveProgress(){
     if(document.querySelector("#route").getAttribute("value") === "oneway"){
         document.getElementById("spanNextPC").firstElementChild.innerHTML = "다음";
         document.getElementById("btnNextPC").classList.add("onewayPage");
-    }else{
+    }else if(document.querySelector("#route").getAttribute("value") === "round"){
         document.getElementById("spanNextPC").firstElementChild.innerHTML = "오는 편 선택하기";
         document.getElementById("btnNextPC").classList.add("roundPage");
+    }else if(document.querySelector("#route").getAttribute("value") === "roundback"){
+        document.getElementById("spanNextPC").firstElementChild.innerHTML = "다음";
+        document.getElementById("btnNextPC").classList.add("roundbackPage");
     }
 }
 
 $(document).on('click', '.onewayPage', function () {
     let tripJson = {
-        resRoute: $('#route').val(),
+        resRoute: "ONEWAY",
         schDeparture: $('#depData').val(),
         schArrival: $('#arrData').val(),
         schDepartureDate: $('#owStart').val(),
         schPassengerNum: Number($('#pasNum').val()),
         seatValue: document.querySelector(".tab-btn.active").getAttribute("value"),
-        divFare: Number($('#divFare').find('.flight__cost')[0].innerHTML),
-        divTax: Number($('#divTax').find('.flight__cost')[0].innerHTML),
-        divFuel: Number($('#divFuel').find('.flight__cost')[0].innerHTML),
-        spanCost: Number($('#spanCost').find('.flight__cost')[0].innerHTML),
+        divFare: Number($('#divFare').find('.flight__cost')[0].getAttribute("value")),
+        divTax: Number($('#divTax').find('.flight__cost')[0].getAttribute("value")),
+        divFuel: Number($('#divFuel').find('.flight__cost')[0].getAttribute("value")),
+        divSeat: 0,
+        divBaggageFee: 0,
+        divMealFee: 0,
+        spanCost: Number($('#spanCost').find('.flight__cost')[0].getAttribute("value")),
         schIdx: $('.select_schidx').val(),
         memIdx: idx,
-        memUserid: userid
+        memUserid: userid,
+        foreign: $('#overseas').val()
     }
 
     localStorage.setItem("tripJson", JSON.stringify(tripJson));
-    location.href="/user/oneway/view_passenger_input";
+    location.href="/user/view_passenger_input";
 })
 
 $(document).on('click', '.roundPage', function () {
+    function sendPost(url, params) {
+        let form = document.createElement('form');
+        form.setAttribute('method', 'post');
+        form.setAttribute('action', url);
+        document.characterSet = "UTF-8";
 
+        for (let key in params) {
+            let hiddenField = document.createElement('input');
+            hiddenField.setAttribute('type', 'hidden');
+            hiddenField.setAttribute('name', key);
+            hiddenField.setAttribute('value', params[key]);
+            form.appendChild(hiddenField);
+        }
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+    let tripJson = {
+        resRoute: "ROUNDGO",
+        schDeparture: $('#depData').val(),
+        schArrival: $('#arrData').val(),
+        schDepartureDate: $('#rtStart').val(),
+        schPassengerNum: Number($('#pasNum').val()),
+        seatValue: document.querySelector(".tab-btn.active").getAttribute("value"),
+        divFare: Number($('#divFare').find('.flight__cost')[0].getAttribute("value")),
+        divTax: Number($('#divTax').find('.flight__cost')[0].getAttribute("value")),
+        divFuel: Number($('#divFuel').find('.flight__cost')[0].getAttribute("value")),
+        divSeat: 0,
+        divBaggageFee: 0,
+        divMealFee: 0,
+        spanCost: Number($('#spanCost').find('.flight__cost')[0].getAttribute("value")),
+        schIdx: $('.select_schidx').val(),
+        memIdx: idx,
+        memUserid: userid,
+        foreign: $('#overseas').val()
+    }
+    localStorage.setItem("tripJson", JSON.stringify(tripJson));
+
+    sendPost("/user/avail_search_form", {
+        reserveRoute : "roundback",
+        departureData: $('#depData').val(),
+        arrivalData: $('#arrData').val(),
+        onewayStart: $('#owStart').val(),
+        roundStart: $('#rtStart').val(),
+        roundEnd: $('#rtEnd').val(),
+        passengerNum: $('#pasNum').val(),
+        foreign: $('#overseas').val()
+    });
 })
 
+$(document).on('click', '.roundbackPage', function () {
+    let tripJson2 = {
+        resRoute: "ROUNDBACK",
+        schDeparture: $('#arrData').val(),
+        schArrival: $('#depData').val(),
+        schDepartureDate: $('#rtEnd').val(),
+        schPassengerNum: Number($('#pasNum').val()),
+        seatValue: document.querySelector(".tab-btn.active").getAttribute("value"),
+        divFare: Number($('#divFare').find('.flight__cost')[0].getAttribute("value")),
+        divTax: Number($('#divTax').find('.flight__cost')[0].getAttribute("value")),
+        divFuel: Number($('#divFuel').find('.flight__cost')[0].getAttribute("value")),
+        divSeat: 0,
+        divBaggageFee: 0,
+        divMealFee: 0,
+        spanCost: Number($('#spanCost').find('.flight__cost')[0].getAttribute("value")),
+        schIdx: $('.select_schidx').val(),
+        memIdx: idx,
+        memUserid: userid,
+        foreign: $('#overseas').val()
+    }
+
+    localStorage.setItem("tripJson2", JSON.stringify(tripJson2));
+    location.href="/user/view_passenger_input";
+})

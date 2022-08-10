@@ -1,16 +1,13 @@
 const schIdx = Number(tripJson["schIdx"]);
 let passengerNum = tripJson["schPassengerNum"];
-const divFare = tripJson["divFare"];
-const divTax = tripJson["divTax"];
-const divFuel = tripJson["divFuel"];
-const divSeat = tripJson["divSeat"];
-const spanCost = tripJson["spanCost"];
 
-$('#divFare').find('.flight__cost')[0].innerHTML = divFare;
-$('#divTax').find('.flight__cost')[0].innerHTML = divTax;
-$('#divFuel').find('.flight__cost')[0].innerHTML = divFuel;
-$('#divSeatFee').find('.flight__cost')[0].innerHTML = divSeat;
-$('#spanCost').find('.flight__cost')[0].innerHTML = spanCost;
+$('#divFare').find('.flight__cost')[0].innerHTML = tripJson.divFare + tripJson2.divFare;
+$('#divTax').find('.flight__cost')[0].innerHTML = tripJson.divTax + tripJson2.divTax ;
+$('#divFuel').find('.flight__cost')[0].innerHTML = tripJson.divFuel + tripJson2.divFuel;
+$('#divSeatFee').find('.flight__cost')[0].innerHTML = tripJson.divSeat + tripJson2.divSeat;
+$('#spanCost').find('.flight__cost')[0].innerHTML =  tripJson.spanCost + tripJson2.spanCost;
+
+reserveProgress();
 
 let passengerNames = []
 for (let i = 0; i < passengerNum; i++) {
@@ -28,7 +25,7 @@ for (let i = 0; i < passengerNum-1; i++) {
         '                         aria-labelledby="passenger'+(i+1)+'" role="tabpanel" tabindex="'+(i+1)+'">\n' +
         '                        <div class="sub-tab-wrap">\n' +
         '                            <div class="sub-tab" style="display: none;">\n' +
-        '                                <button name="btnjourneysName" class="sub-tab-btn on" type="button">가는 편</button>\n' +
+        '                                <button name="btnjourneysName" class="sub-tab-btn on" type="button"></button>\n' +
         '                            </div>\n' +
         '                            <div class="sub-tab__panel on">\n' +
         '                                <div name="divBag" class="sub-section">\n' +
@@ -120,27 +117,86 @@ function baggageSelect(select){
         totalBaggagePrice += Number(baggageCost);
     }
 
-    document.querySelector("#divBaggage .flight__cost").innerHTML = String(totalBaggagePrice);
-    $('#spanCost').find('.flight__cost')[0].innerHTML = divFare+divTax+divFuel+divSeat+totalBaggagePrice;
+    document.querySelector("#divBaggageFee .flight__cost").innerHTML = String(tripJson.divBaggageFee + totalBaggagePrice);
+    document.querySelector("#divBaggageFee .flight__cost").setAttribute("value", String(totalBaggagePrice));
+    $('#spanCost').find('.flight__cost')[0].innerHTML = tripJson.spanCost + tripJson2.spanCost + totalBaggagePrice;
 }
 
 
-$(document).on('click', '#btnNextPC', function () {
+function reserveProgress(){
+    if(tripJson.resRoute === "ONEWAY"){
+        document.querySelector(".page-title-add").innerHTML = "가는 편(편도)";
+        document.getElementById("spanNextPC").firstElementChild.innerHTML = "다음";
+        document.getElementById("btnNextPC").classList.add("onewayPage");
+    }else if(passJson["roundCheck"]==="false"){
+        document.querySelector(".page-title-add").innerHTML = "가는 편(왕복)";
+        document.getElementById("spanNextPC").firstElementChild.innerHTML = "오는 편 선택하기";
+        document.getElementById("btnNextPC").classList.add("roundPage");
+    }else if(passJson["roundCheck"]==="true"){
+        document.querySelector(".page-title-add").innerHTML = "오는 편(왕복)";
+        document.getElementById("spanNextPC").firstElementChild.innerHTML = "다음";
+        document.getElementById("btnNextPC").classList.add("roundbackPage");
+    }
+}
+
+
+$(document).on('click', '.onewayPage', function () {
 
     for (let i = 0; i < Number(tripJson["schPassengerNum"]); i++) {
         passJson["pasBaggagePrice"+i] = Number(document.querySelectorAll(".baggage_selected .baggage_cost")[i].innerHTML);
         passJson["pasBaggage"+i] = document.querySelectorAll(".baggage_selected .baggage_weight")[i].innerHTML;
-        passJson["pasIdx"+i] = document.querySelectorAll(".baggage_selected")[i].getAttribute("bagIdx");
-        console.log(document.querySelectorAll(".baggage_selected .baggage_cost")[i].innerHTML);
+        passJson["pasBagIdx"+i] = document.querySelectorAll(".baggage_selected")[i].getAttribute("bagIdx");
     }
 
-    tripJson["divBaggageFee"] = Number($('#divBaggageFee').find('.flight__cost')[0].innerHTML);
-    tripJson["spanCost"] = tripJson["divSeat"] + divFare + divTax + divFuel + tripJson["divBaggageFee"];
+    tripJson["divBaggageFee"] = Number($('#divBaggageFee').find('.flight__cost')[0].getAttribute("value"));
+    tripJson["spanCost"] = tripJson["spanCost"]+tripJson["divBaggageFee"];
     localStorage.setItem("passJson", JSON.stringify(passJson));
     localStorage.setItem("tripJson", JSON.stringify(tripJson));
 
-    console.log(passJson)
-    console.log(tripJson)
-    // location.href="/user/oneway/meal_select";
-    location.href="/user/oneway/view_confirm";
+    console.log(passJson);
+    console.log(tripJson);
+   // location.href="/user/meal_select";
+    location.href="/user/view_confirm";
+})
+
+$(document).on('click', '.roundPage', function () {
+
+    for (let i = 0; i < Number(tripJson["schPassengerNum"]); i++) {
+        passJson["pasBaggagePrice"+i] = Number(document.querySelectorAll(".baggage_selected .baggage_cost")[i].innerHTML);
+        passJson["pasBaggage"+i] = document.querySelectorAll(".baggage_selected .baggage_weight")[i].innerHTML;
+        passJson["pasBagIdx"+i] = document.querySelectorAll(".baggage_selected")[i].getAttribute("bagIdx");
+    }
+
+    tripJson["divBaggageFee"] = Number($('#divBaggageFee').find('.flight__cost')[0].getAttribute("value"));
+    tripJson["spanCost"] = tripJson["spanCost"]+tripJson["divBaggageFee"];
+    passJson["roundCheck"] = "true";
+    localStorage.setItem("passJson", JSON.stringify(passJson));
+    localStorage.setItem("tripJson", JSON.stringify(tripJson));
+
+    console.log(passJson);
+    console.log(tripJson);
+    location.href="/user/baggage_select";
+})
+
+
+$(document).on('click', '.roundbackPage', function () {
+
+    for (let i = 0; i < Number(tripJson["schPassengerNum"]); i++) {
+        passJson2["pasBaggagePrice"+i] = Number(document.querySelectorAll(".baggage_selected .baggage_cost")[i].innerHTML);
+        passJson2["pasBaggage"+i] = document.querySelectorAll(".baggage_selected .baggage_weight")[i].innerHTML;
+        passJson2["pasBagIdx"+i] = Number(document.querySelectorAll(".baggage_selected")[i].getAttribute("bagIdx"));
+        console.log(document.querySelectorAll(".baggage_selected .baggage_cost")[i].innerHTML);
+    }
+
+    tripJson2["divBaggageFee"] = Number($('#divBaggageFee').find('.flight__cost')[0].getAttribute("value"));
+    tripJson2["spanCost"] = tripJson2["spanCost"]+tripJson2["divBaggageFee"];
+    passJson["roundCheck"] = "true";
+    localStorage.setItem("passJson", JSON.stringify(passJson));
+    localStorage.setItem("passJson2", JSON.stringify(passJson2));
+    localStorage.setItem("tripJson2", JSON.stringify(tripJson2));
+
+    console.log(passJson2);
+    console.log(tripJson2);
+    // location.href="/user/meal_select";
+    location.href="/user/view_confirm";
 })

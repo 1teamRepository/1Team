@@ -185,7 +185,7 @@ public class AdminController {
         return new ModelAndView("/admin/pages/reservation/reservation_namelist/reservation_namelist");
     }
 
-    @RequestMapping("/reservation/list/view/{resIdx}")
+    @RequestMapping("/reservation/view/{resIdx}")
     public ModelAndView reservationView(HttpServletRequest request, @PathVariable(name="resIdx") Long resIdx){
         HttpSession session = request.getSession();
         if(session.getAttribute("name") != null) {

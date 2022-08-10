@@ -1,4 +1,30 @@
 
+window.localStorage.removeItem("passJson");
+window.localStorage.removeItem("tripJson");
+window.localStorage.removeItem("tripJson2");
+
+let tripJson = {
+    divFare: 0,
+    divTax: 0,
+    divFuel: 0,
+    divSeat: 0,
+    divBaggageFee: 0,
+    divMealFee: 0,
+    spanCost: 0
+}
+let tripJson2 = {
+    resRoute: "",
+    divFare: 0,
+    divTax: 0,
+    divFuel: 0,
+    divSeat: 0,
+    divBaggageFee: 0,
+    divMealFee: 0,
+    spanCost: 0
+}
+localStorage.setItem("tripJson", JSON.stringify(tripJson));
+localStorage.setItem("tripJson2", JSON.stringify(tripJson2));
+
 $(document).on('click', '.item-btn', function () {
     selectTrip(this);
 });
@@ -62,7 +88,7 @@ const tabAnchor = document.getElementsByClassName('tab__anchor');
 const tabPanel = document.getElementsByClassName('tab__panel');
 
 const searchFlight = document.getElementById('searchFlight');
-
+const isForeign = document.getElementById("foreign");
 
 //hidden input
 let reserveRoute = document.querySelector("#reserveRoute");
@@ -211,16 +237,22 @@ function selectCountry(select) {
 function selectAirport(select) {
     let station = $(select).attr('data-stationname');
     console.log(station);
-    if ($(select).attr('data-stationtype') == "DEP") {
+    if ($(select).attr('data-stationtype') === "DEP") {
         selectTarget();
         departureDesc.innerText = station;
+        departureDesc.setAttribute("data-countrycode", select.getAttribute("data-countrycode"));
         departureData.setAttribute("value", station);
-
-    } else if ($(select).attr('data-stationtype') == "ARR") {
+    } else if ($(select).attr('data-stationtype') === "ARR") {
         selectPassengers();
         $(searchFlight).attr('disabled', false);
         arrivalDesc.innerText = station;
+        arrivalDesc.setAttribute("data-countrycode", select.getAttribute("data-countrycode"));
         arrivalData.setAttribute("value", station);
+    }
+    if(departureDesc.getAttribute("data-countrycode")==="KR" && arrivalDesc.getAttribute("data-countrycode")==="KR"){
+        isForeign.setAttribute("value", "false");
+    }else{
+        isForeign.setAttribute("value", "true");
     }
 }
 

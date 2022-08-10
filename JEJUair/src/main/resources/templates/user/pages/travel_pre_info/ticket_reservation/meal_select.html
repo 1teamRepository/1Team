@@ -1,0 +1,595 @@
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+
+<!--head-->
+<div th:replace="/user/fragment/head :: head"></div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!--head 끝-->
+<script>
+    console.log("================jsonparse=============")
+
+    const passJson = JSON.parse(localStorage.getItem("passJson"))
+    console.log("passJson");
+    console.log(passJson);
+    const tripJson = JSON.parse(localStorage.getItem("tripJson"))
+    console.log("tripJson");
+    console.log(tripJson);
+    const schIdx = Number(tripJson["schIdx"]);
+
+
+    console.log("================jsonparse=============")
+
+</script>
+<body id="bookingLayoutBody">
+
+<!--appAlert-->
+<div th:replace="/user/fragment/appAlert :: appAlert"></div>
+<!--appAlert 끝-->
+
+<!--header-->
+<div th:replace="/user/fragment/header :: header"></div>
+<!--header 끝-->
+
+<div id="body">
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD2BQQ4" height="0" width="0"
+                style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="wrap wrap--booking NA_1_94 step-ui">
+
+        <div class="content" id="content">
+            <main id="main" class="main ">
+
+                <form id="frmNext" name="frmNext" method="post">
+                    <input type="hidden" id="pnrData" name="pnrData" value="">
+                    <input type="hidden" id="rpnr" name="rpnr" value="">
+                    <input type="hidden" id="payType" name="payType" value="">
+                    <input type="hidden" id="bookType" name="bookType" value="">
+                    <input type="hidden" id="tripType" name="tripType" value="">
+                    <input type="hidden" id="inflType" name="inflType" value="">
+                    <input type="hidden" id="domIntType" name="domIntType" value="">
+                    <input type="hidden" id="cultureCode" name="cultureCode" value="">
+                    <input type="hidden" id="cartData" name="cartData" value="">
+                    <input type="hidden" id="seatData" name="seatData" value="">
+                    <input type="hidden" id="GAProducts" name="GAProducts" value="">
+                    <input type="hidden" id="originData" name="originData" value="">
+                    <input type="hidden" id="selectedJourneys" name="selectedJourneys" value="">
+                    <input type="hidden" id="totalPoint" name="totalPoint" value=""/>
+                    <input type="hidden" id="isBizLiteClass" name="isBizLiteClass" value=""/>
+                    <input type="hidden" id="resvDetailReq" name="resvDetailReq" value=""/>
+                    <input type="hidden" id="ssrAgentId" name="ssrAgentId" value=""/>
+                </form>
+
+
+                <div class="page-title-wrap">
+                    <div class="page-sub-title">하늘 위에서 즐기는 <br class="mobile-only">한끼</div>
+                    <!-- 하늘 위에서 즐기는 <br class="mobile-only">한끼 -->
+                    <div class="default-message default-message--sub" style="width: 320px;">
+                        <i class="default-message__arrow" aria-hidden="true" style="left: 45px;"></i>
+                        <p class="default-message__text">더 편하고 풍족한 여행을 위해 준비했어요!</p><!-- 더 편하고 풍족한 여행을 위해 준비했어요! -->
+                        <button type="button" id="subClose" class="default-message__close" aria-label="닫기" ></button>
+                    </div>
+                </div>
+
+                <div class="section-wrap">
+                    <div id="divMealList"
+                         class="list-product list-product--type2 pc-col pc-col-3">
+
+
+
+                        <div class="list-product__item"
+                             v-for="(dto,i) in mealList"
+                             :key="i">
+                            <a href="javascript:void(0)" class="list-product__inner" data-element="modal_anchor"
+                               data-target="#mealDetailLayer" data-modal-type="full">
+                                <div class="list-product__image">
+                                    <img src="https://static.jejuair.net/cms/images/aircafe_prod/20211012141828420.jpg" data-src="https://static.jejuair.net/cms/images/aircafe_prod/20211012141828420.jpg" alt="오색비빔밥">
+                                    <div class="label-wrap">
+                                        <span class="label-wrap__item label-wrap__item" style="background-color: #17b4a4; color : #fff">BEST</span>
+                                        <span class="label-wrap__item label-wrap__item--sale">SALE</span>
+                                    </div>
+                                </div>
+                                <div class="list-product__info">
+                                    <div class="list-product__title">
+                                        <span class="title">{{dto.foodKorName}}</span>
+                                    </div>
+
+                                    <div class="cost-wrap">
+                                        <div class="cost-wrap__before">
+                                            <span aria-label="할인" class="discount">26%할인</span>
+                                            <del class="del">
+                                                <span class="price_txt">15,000</span>
+                                                <span class="unit">원</span>
+                                            </del>
+                                        </div>
+                                        <div class="cost-wrap__after">
+                                            <span class="cost">
+                                                <span class="price_txt">{{dto.foodKrwPrice}}</span>
+                                                <span class="unit">원</span>
+                                            </span>
+                                        </div>
+                                        <div style="display: none">
+                                            <span name="paxKey">MCFBRFQ-</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="add-cart">
+                                <button type="button" class="button button--small button--small-cart selected" :value=`${dto.foodIdx}`>
+                                    <span class="button__text button__icon icon-cart">담기</span>
+                                </button>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+                    <!-- 더보기 -->
+                    <div id="divMore" class="more-wrap mobile-only">
+                        <button type="button" class="more__button">
+                            <span class="more__button-text">더보기</span><!-- 더보기 -->
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="booking-sticky booking-sticky--reservation" data-element="toggle"
+                     data-options='{"mode": "slide"}'>
+                    <div class="reservation-container">
+                        <div class="booking-sticky__top">
+                            <div class="toggle-wrap toggle-wrap--button">
+                                <div class="label" style="display: flex; align-items: center">
+                                    <span>예상 결제금액</span><!-- 예상 결제금액 -->
+                                </div>
+
+
+                                <button id="btnSummary" type="button" class="summary" data-element="toggle__anchor">
+                                    <span id="spanCost" class="cost">
+                                        <span class="price_txt flight__cost"></span>
+                                        <span class="unit">원</span>
+                                    </span>
+                                    <span id="spanPoint" class="point" style="display: none">+</span>
+                                </button>
+                            </div>
+                            <button type="button" id="btnCartPC" class="button button--primary button--black pc-only">
+                                <span class="button__text">담은 상품 (0)</span><!-- 담은 상품 -->
+                            </button>
+                            <button type="button" id="btnNextPC" class="button button--primary button--active pc-only">
+                                <span class="button__text">선택 완료</span><!-- 선택 완료 -->
+                            </button>
+                        </div>
+
+
+                        <div class="booking-sticky__bottom line -limitH" data-element="toggle__panel">
+                            <div class="title">
+                                <h3 class="title__section title__section--small">항목별 운임 상세</h3><!-- 항목별 운임 상세 -->
+                            </div>
+                            <h4 class="text__default text--bold">항공 운송료</h4><!-- 항공 운송료 -->
+                            <div id="airFreightCharges" class="itemize__item">
+                                <div id="divFare" class="flex-text">
+                                    <div class="flex-text__title">항공운임</div>
+                                    <div class="flex-text__additional">
+                                        <span class="price_txt flight__cost"></span>
+                                        <span class="unit">원</span>
+                                    </div>
+                                </div>
+                                <div id="divTax" class="flex-text">
+                                    <div class="flex-text__title">공항시설 사용료</div>
+                                    <div class="flex-text__additional">
+                                        <span class="price_txt flight__cost"></span>
+                                        <span class="unit">원</span>
+                                    </div>
+                                </div>
+                                <div id="divFuel" class="flex-text">
+                                    <div class="flex-text__title">유류할증료</div>
+                                    <div class="flex-text__additional">
+                                        <span class="price_txt flight__cost"></span>
+                                        <span class="unit">원</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="extraServiceFee" class="conatinaer--default pc-20" style="display: block">
+                                <h4 class="text__default text--bold">부가서비스</h4><!-- 부가서비스 -->
+                                <div class="itemize__item">
+                                    <div class="flex-text" id="divSeat">
+                                        <div class="flex-text__title">좌석 선택</div><!-- 좌석 선택 -->
+                                        <div class="flex-text__additional" id="divSeatFee">
+                                            <span class="price_txt flight__cost"></span>
+                                            <span class="unit">원</span>
+                                        </div>
+                                    </div>
+                                    <div id="divBaggage" class="flex-text">
+                                        <div class="flex-text__title">수하물</div><!-- 수하물 -->
+                                        <div class="flex-text__additional" id="divBaggageFee">
+                                            <span class="price_txt flight__cost"></span>
+                                            <span class="unit">원</span>
+                                        </div>
+                                    </div>
+                                    <div id="divMeal" class="flex-text">
+                                        <div class="flex-text__title">기내식</div><!-- 기내식 -->
+                                        <div class="flex-text__additional" id="divMealFee">
+                                            <span class="price_txt flight__cost"></span>
+                                            <span class="unit">원</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="button-wrap button-wrap--stick mobile-only">
+                            <button type="button" id="btnCartMobile" class="button button--primary button--black">
+                                <span class="button__text">담은 상품 (0)</span><!-- 담은 상품 -->
+                            </button>
+                            <button type="button" id="btnNextMobile" class="button button--primary button--active">
+                                <span class="button__text">선택 완료</span><!-- 선택 완료 -->
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 공통 컨펌(내용) -->
+                <div id="divModalConfirmEx" class="modal modal--simple">
+                    <div class="modal-content">
+                        <h2 id="hText" class="alert-title"></h2>
+                    </div>
+                    <div class="modal__button-area button-wrap">
+                        <button id="btnConfirmDisAgree" type="button" class="button button--secondary">
+                            <span class="button__text">아니요</span><!-- 아니요 -->
+                        </button>
+                        <button id="btnConfirmAgree" type="button"
+                                class="button button--secondary button--active add--ml-10">
+                            <span class="button__text">예</span><!-- 예 -->
+                        </button>
+                    </div>
+                    <a href="javascript:void(0)" rel="modal:close" class="modal__close">
+                        <span class="blind">닫기</span>
+                    </a>
+                </div>
+                <!-- // 공통 컨펌(내용) -->
+
+                <!-- 기내식 상세 보기 레이어 -->
+                <div id="mealDetailLayer" class="modal modal-full modal-scroll modal-layer">
+                    <div class="modal-header">
+                        <div id="divModalTitle" class="modal-header__title">구름 위의 샌드위치</div>
+                    </div>
+                    <div class="modal-content" style="height: 552px;">
+                        <div class="first-margin">
+                            <div class="list-product">
+                                <div class="list-product__item type01">
+                                    <div id="divModalImage" class="list-product__image">
+                                        <img src="https://static.jejuair.net/cms/images/aircafe_prod/20211012134308825.jpg" alt="SANDWICH ON THE CLOUD">
+                                        <div class="label-wrap">
+                                            <span class="label-wrap__item" style="background-color:#17b4a4; color:#fff">BEST</span>
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                    <div class="list-product__info pc-info">
+
+                                        <div class="container--small">
+                                            <div class="list-product__title">구름 위에서 즐기는 햄치즈/참치마요 닭가슴살 클럽 샌드위치</div>
+                                        </div>
+                                        <div class="list-product__sub-text2"></div>
+                                        <div class="container--xsmall">
+                                            <div class="cost-wrap cost-wrap--no-pdb">
+
+
+                                                <div class="cost-wrap__amount">
+								<span class="cost">
+									<span class="price_txt pd0">9,000</span>
+<span class="unit">원</span>
+								</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="icon-list icon-list--image">
+
+                            <li class="icon-list__item">
+				<span class="icon">
+					<img src="https://static.jejuair.net/cms/images/aircafe_menu_expln/20211012142009019.png" alt="">
+				</span><span class="text">조리시간 소요되는</span>
+                            </li>
+
+
+                            <li class="icon-list__item">
+				<span class="icon">
+					<img src="https://static.jejuair.net/cms/images/aircafe_menu_expln/20211012142014151.png" alt="">
+				</span><span class="text">알레르기 주의</span>
+                            </li>
+
+
+
+
+                        </ul>
+                        <div id="divEditorCont" class="sub-section"><p class="text--bold"><br></p><p class="text--bold">유의사항</p>
+                            <ul class="list-guide list-guide--small">
+                                <li class="list-guide__item">괌, 사이판, 방콕, 부산, 제주 출발편은 현지에서 생산된 햄치즈 샌드위치가 제공됩니다.
+                                </li>
+                            </ul>
+                            <br>
+                            <p class="text--bold">구성</p>
+                            <ul class="list-guide list-guide--small">
+                                <li class="list-guide__item">햄치즈샌드위치, 닭가슴살 샌드위치
+                                </li>
+                            </ul>
+                            <br>
+                            <p class="text--bold">주재료</p>
+                            <ul class="list-guide list-guide--small">
+                                <li class="list-guide__item">훈제치킨, 호밀식빵, 계란, 참치캔, 햄, 치즈, 할라피뇨, 마요네즈(유제품 포함)
+                                </li>
+                            </ul>
+                            <br>
+                            <p class="text--bold">알러지 유의사항</p>
+                            <ul class="list-guide list-guide--small">
+                                <li class="list-guide__item">알류, 콩류, 밀, 닭고기, 유제품, 돼지고기, 토마토, 쇠고기
+                                </li>
+                            </ul>
+                            <br></div>
+                    </div>
+                    <a href="javascript:void(0)" rel="modal:close" class="modal__close">
+                        <span class="blind">닫기</span>
+                    </a></div>
+
+
+                <!-- 제휴카드 할인 레이어 -->
+                <div id="partnerCardDiscountLayer" class="modal modal-full modal-scroll NA_1_31"></div>
+
+                <a href="javascript:void(0)" id="mealDetail" data-element="modal_anchor" data-target="#mealDetailLayer"
+                   style="display: none">
+                    기내식 상세 보기
+                </a>
+
+                <a href="javascript:void(0)" id="mealPaxSelect" data-element="modal_anchor"
+                   data-target-open="paxSelectLayer" style="display: none">
+                    기내식 선택 승객 선택
+                </a>
+
+                <a href="javascript:void(0)" id="ancillaryPassengerCart" data-element="modal_anchor"
+                   data-target="#ancillaryPassengerCartLayer" data-modal-type="full" style="display: none">
+                    담은 상품 1명
+                </a>
+
+                <a href="javascript:void(0)" id="ancillaryCart" data-element="modal_anchor"
+                   data-target="#ancillaryCartLayer" data-modal-type="full" style="display: none">
+                    담은 상품 2명 이상
+                </a>
+
+                <a href="javascript:void(0)" id="commonConfirm" data-element="modal_anchor"
+                   data-target="#divModalConfirmEx" style="display: none">
+                    공통 confirm
+                </a>
+
+                <!-- alert 팝업 -->
+                <div id="divAlertModalLayer" class="modal modal--simple">
+                    <div class="modal-content"><p id="alertText" class="alert-text"></p></div>
+                    <div class="modal__button-area button-wrap">
+                        <button id="btnAlert" type="button" class="button button--secondary button--active"
+                                rel="modal:close" onclick="javascript:closeCurrentModal(this);"><span
+                                class="button__text">확인</span></button>
+                    </div><!-- 확인 -->
+                </div>
+                <div style="display: none;"><a href="#" data-element="modal_anchor" id="sessionLayer"
+                                               data-target="#sessionLayerForm" data-modal-type="default"></a></div>
+
+                <div id="sessionLayerForm" class="modal modal--simple modal-layer NA_1_23"></div>
+            </main>
+        </div>
+    </div>
+</div>
+
+<!-- footer -->
+<div th:replace="/user/fragment/footer :: footer"></div>
+<!-- / footer 끝 -->
+
+
+<!-- 공통 스크립트 선언 -->
+<script type="text/javascript" src="/user/lib/js/ticket_reservation/meal_select.js"></script>
+<!--<script type="text/javascript" src="/user/lib/js/lib.min.js"></script>-->
+<!--<script type="text/javascript" src="/user/lib/js/common.js"></script>-->
+<script type="text/javascript" src="/user/lib/js/plugin.js"></script>
+
+<!-- //기내식 담을 승객 선택 -->
+<div id="selectMeal" class="jquery-modal blocker current" style="display: none">
+    <div id="paxSelectLayer" class="bottom-sheet bottom-sheet-scroll bottomSheet-modal modal-layer" style="display: inline-block; margin-bottom: 60px;">
+        <div class="bottom-sheet__top">
+            <div class="title">
+                <h2 class="title__main">담을 승객을 선택해 주세요.</h2> <!-- 담을 승객을 선택해 주세요. -->
+            </div>
+        </div>
+        <div class="bottom-sheet__bot bottom-sheet__tab bottom-sheet__bot--amount">
+            <div id="divPaxSelect" data-element="tab" class="tab tab--default tab--fixed">
+                <div id="divTabButton" class="tab__buttons">
+                    <div class="tab__button" data-element="tab__list" role="presentation">
+                        <button name="btnTabName" class="tab__anchor is-active" type="button">가는 편</button>
+                    </div>
+                    <div id="roundOut" class="tab__button" data-element="tab__list" role="presentation" style="display: none">
+                        <button name="btnTabName" class="tab__anchor" type="button">오는 편</button>
+                    </div>
+                </div>
+                <div data-element="tab__panel" class="tab__panel is-active" name="divPaxSelectTab" aria-labelledby="plugin-tab-4" role="tabpanel" tabindex="0">
+                    <div class="list-card list-card--basket basket-thum">
+                        <div class="list-card__item" style=" margin-left: 20px; ">
+                            <div class="list-card__item-inner">
+                                <div class="list-card__image">
+                                    <img src="https://static.jejuair.net/cms/images/aircafe_prod/20211012134308825.jpg" alt="SANDWICH ON THE CLOUD">
+                                </div>
+                                <div class="list-card__info">
+                                    <strong class="list-card__title" id="foodName"></strong>
+                                    <p class="list-card__text">
+                                        <span class="price_txt" id="foodPrice"></span>
+                                        <span class="unit">원</span>
+                                    </p>
+                                    <span class="categoryCode" style="display: none">ML</span>
+                                    <span class="ssrCode" style="display: none">LCML</span>
+                                    <span class="journeyNo" style="display: none">0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sub-section">
+                            <div id="divMemberCK0" class="check-wrap">
+                                <div class="checkbox-line-item-wrap" id="divPassengerTab">
+
+
+<!--                                    <div class="checkbox-line-item" style="margin-bottom: 20px">-->
+<!--                                        <span class="checkbox checkbox&#45;&#45;small">-->
+<!--                                            <input type="checkbox" class="checkbox__input" id="che">-->
+<!--                                            <label class="checkbox__label">-->
+<!--                                                <i aria-hidden="true" class="checkbox__ico"></i>-->
+<!--                                                <span name="spanCkPaxKey" style="display: none">MCFBRFQ-</span>-->
+<!--                                                <span name="spanCkPax">KIM/GYUNGJUN</span>-->
+<!--                                            </label>-->
+<!--                                        </span>-->
+<!--                                    </div>-->
+
+
+                                    <div name="divCkpaxPrice" style="display: none">9,000</div>
+                                    <div class="option-select gray-box" style="display: none;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-sheet__fixed pc-full" style="position: relative">
+            <div class="bottom-sheet__amount">
+                <span class="bottom-sheet__amount-text">추가금액</span> <!-- 추가금액 -->
+                <strong class="bottom-sheet__amount-value">
+                    <i aria-label="plus">+</i>
+                    <span id="layerAddAmount">
+                <span class="price_txt" id="sumPrice">0</span>
+                <span class="unit">원</span>
+                </span>
+                </strong>
+            </div>
+            <div class="button-wrap button-wrap-stick pc-0 pc-radius">
+                <button id="btnComplete" type="button" class="button button--primary" onclick="closeSelectMeal()" disabled>
+                    <span class="button__text">선택 완료</span> <!-- 선택 완료 -->
+                </button>
+            </div>
+        </div>
+
+        <div id="closeSelectMeal" onclick="closeSelectMeal()" rel="modal:close" class="bottom-sheet__button-close">
+            <span class="blind">닫기</span>
+        </div>
+    </div></div>
+<!-- //기내식 담을 승객 선택 -->
+
+<!-- 담은 상품 보기 2명 이상 -->
+<div id="ancillaryCartLayer" class="modal modal-full modal-scroll">
+    <div class="modal-header">
+        <div class="modal-header__title">담은 상품</div> <!-- 담은 상품 -->
+    </div>
+    <div class="modal-content">
+        <div id="divCartsBagList" class="put-product"></div>
+        <!-- 담은 상품 없을 경우 -->
+        <div id="divCartsEmptied" class="finish-item-wrap finish-item-wrap--full">
+            <div class="finish-item nodata">
+                <div class="finish-item__img">
+                    <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-nodata-03.png"
+                         alt="담은 상품이 없어요"> <!-- 담은 상품이 없어요 -->
+                </div>
+                <p class="finish-item__title pc-size">담은 상품이 없어요</p> <!-- 담은 상품이 없어요 -->
+                <p class="finish-item__text">더 편한 비행을 위해 서비스를 담아보세요!</p> <!-- 더 편한 비행을 위해 서비스를 담아보세요! -->
+            </div>
+        </div>
+        <!-- //담은 상품 없을 경우 -->
+    </div>
+    <a href="javascript:void(0)" rel="modal:close" class="modal__close">
+        <span class="blind">닫기</span>
+    </a>
+</div>
+<!--  담은 상품 보기 2명 이상 -->
+
+
+<!-- 담은 상품 보기 1명 -->
+<div id="ancillaryPassengerCartLayer" class="modal modal-full modal-scroll">
+    <div class="modal-header has-button">
+        <button id="btnBack" class="header__button">
+            <span class="hidden">이전으로</span>
+        </button>
+        <h2 id="hPassengerName" class="modal-header__title"></h2>
+        <h2 id="hPassengerKey" style="display: none"></h2>
+    </div>
+    <div class="modal-content h_70">
+        <div id="divTabContent" data-element="tab" class="tab tab--default pc-tab-full tab-fixed">
+            <div id="divCartTab" class="tab__buttons"></div>
+        </div>
+    </div>
+    <a href="javascript:void(0)" rel="modal:close" class="modal__close">
+        <span class="blind">닫기</span>
+    </a>
+</div>
+<!-- 담은 상품 보기 1명 -->
+
+
+<div id="ifmWrap"
+     style="height:100%; display:none; overflow:auto; text-align:center; -webkit-overflow-scrolling:touch;">
+    <iframe src="" width="100%" height="100%" name="popupChkApp"></iframe>
+</div>
+<script>
+
+
+    for (let i = 0; i < passengerNum; i++) {
+        console.log("들어옴")
+
+        let passengerHTML = '<div class="checkbox-line-item" style="margin-bottom: 20px">\n' +
+            '                                        <span class="checkbox checkbox--small">\n' +
+            '                                            <input type="checkbox" class="checkbox__input" id="che">\n' +
+            '                                            <label class="checkbox__label">\n' +
+            '                                                <i aria-hidden="true" class="checkbox__ico"></i>\n' +
+            '                                                <span name="spanCkPaxKey" style="display: none">MCFBRFQ-</span>\n' +
+            '                                                <span name="spanCkPax">' + passengerNames[i] + '</span>\n' +
+            '                                            </label>\n' +
+            '                                        </span>\n' +
+            '                                    </div>';
+        $('#divPassengerTab').append(passengerHTML);
+    }
+
+    $(document).on('click', '#closeSelectMeal', function reset(){
+        let checkPer = document.getElementById('divPassengerTab');
+        // console.log(checkPer.childElementCount)
+        // console.log(checkPer.children[0])
+        // console.log(checkPer.children[5])
+        // console.log(checkPer)
+        let btnSelect = document.getElementById('btnComplete');
+
+        for(let i=2; i<checkPer.children.length; i++){
+            checkPer.children[i].classList.remove('is-active');
+            console.log(checkPer.children[i])
+            let check = checkPer.children[i].firstElementChild.firstElementChild;
+            check.checked = false;
+            console.log(check.checked)
+        }
+        btnSelect.classList.remove('button--active');
+        document.getElementById('sumPrice').innerText = '0';
+    })
+</script>
+
+
+
+</body>
+</html>
