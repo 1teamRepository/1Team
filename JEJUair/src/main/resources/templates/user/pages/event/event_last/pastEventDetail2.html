@@ -1,0 +1,542 @@
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+<!--head-->
+<div th:replace="/user/fragment/head :: head"></div>
+<!--head 끝-->
+
+<body id="subLayoutBody" class="isPc">
+
+
+<!-- 개선 #1271286440
+<div id="skipNav" class="skip-nav">
+	<a href="#content" class="skip-nav__item">본문 바로가기</a>
+</div>
+-->
+<!-- 상단 띠배너 공지사항은 메인페이지만 표시합니다. -->
+
+
+<!-- appAlert -->
+<div th:replace="/user/fragment/appAlert :: appAlert"></div>
+<!-- //appAlert 끝 -->
+
+<!-- header -->
+<div th:replace="/user/fragment/header :: header"></div>
+<!-- //header 끝 -->
+
+
+<div id="body">
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD2BQQ4" height="0" width="0"
+                style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="wrap wrap--no-paddings">
+
+
+        <div id="breadcrumb" class="breadcrumb pc-only" aria-label="breadcrumb">
+            <nav class="breadcrumb__inner">
+                <div class="breadcrumb__item">
+                    <a href="javascript:;" class="breadcrumb__link" style="cursor: default;">홈</a>
+                </div>
+
+
+                <div class="breadcrumb__item">
+                    <a href="javascript:;" class="breadcrumb__link" style="cursor: default;">이벤트</a>
+                </div>
+
+
+                <div class="breadcrumb__item breadcrumb__item--current" aria-current="page" data-element="toggle"
+                     data-options="{&quot;mode&quot;: &quot;slide&quot;, &quot;speed&quot;: 100, &quot;clickToClose&quot;: true}">
+
+
+                    <button type="button" class="breadcrumb__link breadcrumb__link--list" data-element="toggle__anchor"
+                            aria-controls="toggle-2" aria-expanded="false">지난 이벤트
+                    </button>
+
+
+                    <div class="breadcrumb__siblings-list" data-element="toggle__panel" id="toggle-2">
+
+
+                        <a href="javascript:void(0);" class="item" onclick="location.href='/user/event/eventList';">진행중인
+                            이벤트</a>
+
+
+                    </div>
+                </div>
+
+
+            </nav>
+        </div>
+
+
+        <div class="content" id="content">
+            <main id="main" class="main ">
+
+                <div class="event-wrap">
+
+
+                    <div class="page-title-wrap pc-only">
+                        <div class="page-title">이벤트 상세</div>
+                    </div>
+
+
+                    <div class="event-page-banner">
+                        <div class="event-top-banner"
+                             style="background-image: url(https://static.jejuair.net/cms/images/event_scrn/20220629162623399.jpg)">
+                            <div class="event-banner-item">
+                                <div class="event-banner">
+                                    <span class="event-banner__text" style="color: ;">여름휴가 추천노선! </span>
+
+
+                                    <p class="event-banner__title" style="color: ;">
+                                        NH농협카드 결제 시<br>최대 4만원 운임할인!
+                                    </p>
+
+
+                                    <div class="event-banner__bottom">
+                                        <span class="event-banner__date" style="color: ;">2022.07.04 ~ 2022.07.17</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-wrap">
+                        <div class="event-detail">
+
+
+                            <script src="https://static.jejuair.net/hpgg/resources/bizjs/event/eventView.js"></script>
+                            <input type="hidden" name="eventNo" value="0000000365">
+                            <input type="hidden" name="langCd" value="ko">
+                            <input type="hidden" name="isLogin" value="false">
+                            <input type="hidden" name="readonly" value="false">
+                            <input type="hidden" name="isApp" value="false">
+                            <!-- 타이틀영역 -->
+                            <div class="event-detail__contents-wrap" data-anchor="">
+
+
+                                <!-- 15. 이벤트 기간 -->
+                                <div class="section-wrap">
+
+                                    <div class="event-anchor-title" data-tab-anchor="프로모션 기간 ">프로모션 기간</div>
+
+                                    <div class="event-detail__period-item" data-tab-anchor="프로모션 기간 ">
+                                        <p class="event-detail__period-date">2022.07.04(월) ~ 2022.07.17(일)</p>
+                                    </div>
+                                </div>
+                                <!-- //15. 이벤트 기간 -->
+
+
+                                <!-- 텍스트 -->
+
+
+                                <div class="section-wrap">
+
+
+                                    <div class="event-txt-wrap sub-section">
+                                        <strong class="event-section-title"></strong>
+                                        <p class="text__default">※ 대상카드 : NH농협 개인카드(채움)</p>
+                                    </div>
+
+                                </div>
+                                <!--// 텍스트 -->
+
+
+                                <!-- 텍스트 -->
+
+
+                                <div class="section-wrap">
+
+
+                                    <div class="event-anchor-title" data-tab-anchor="적용채널">적용채널</div>
+
+                                    <div class="event-txt-wrap sub-section">
+                                        <strong class="event-section-title"></strong>
+                                        <p class="text__default">제주항공 홈페이지, 모바일웹 , App</p>
+                                    </div>
+
+                                </div>
+                                <!--// 텍스트 -->
+
+
+                                <!-- 텍스트 -->
+
+
+                                <div class="section-wrap">
+
+
+                                    <div class="event-anchor-title" data-tab-anchor="프로모션 코드 할인 혜택">프로모션 코드 할인 혜택</div>
+
+                                    <div class="event-txt-wrap sub-section">
+                                        <strong class="event-section-title"></strong>
+                                        <p class="text__default">* 반드시 하단 코드 사용 유의사항을 확인해주세요</p>
+                                    </div>
+
+                                </div>
+                                <!--// 텍스트 -->
+
+
+                                <!-- 1. 에어카페 쿠폰 -->
+
+
+                                <script src="https://static.jejuair.net/hpgg/resources/bizjs/event/componentViews/couponViewHandler.js"></script>
+                                <div class="section-wrap">
+                                    <div class="event-cupon-wrap">
+
+                                        <div class="event-cupon sale">
+                                            <div class="event-cupon-top">
+                                                <div class="event-cupon-name">인천 - 코타키나발루/후쿠오카</div>
+
+
+                                                <div class="event-cupon-price"><span class="sub-small">최대</span>40,000원
+                                                </div>
+
+                                                <p class="event-cupon-txt"></p>
+
+                                                <span class="badge sale">NH농협카드 전용</span>
+
+                                            </div>
+
+                                            <div class="event-cupon-bot">
+
+                                                <div class="list-item">- 왕복예약 시 사용 가능<br>- 출발 기간 :
+                                                    2022.07.04(월)~08.31(수)<br>- 대상노선 : 인천-코타키나발루/후쿠오카
+                                                </div>
+
+
+                                                <button type="button" class="copy-coupon" data-coupon-no="NH국제"
+                                                        onclick="eventView.showPastAlert()">프로모션 코드 복사
+                                                </button>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="event-cupon sale">
+                                            <div class="event-cupon-top">
+                                                <div class="event-cupon-name">인천 - 호찌민/나트랑/다낭</div>
+
+
+                                                <div class="event-cupon-price"><span class="sub-small">최대</span>40,000원
+                                                </div>
+
+                                                <p class="event-cupon-txt"></p>
+
+                                                <span class="badge sale">NH농협카드 전용</span>
+
+                                            </div>
+
+                                            <div class="event-cupon-bot">
+
+                                                <div class="list-item">- 왕복예약 시 사용 가능<br>- 출발 기간 :
+                                                    2022.07.04(월)~08.31(수)<br>- 대상노선 : 인천-호찌민/나트랑/다낭
+                                                </div>
+
+
+                                                <button type="button" class="copy-coupon" data-coupon-no="NH국제"
+                                                        onclick="eventView.showPastAlert()">프로모션 코드 복사
+                                                </button>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="event-cupon sale">
+                                            <div class="event-cupon-top">
+                                                <div class="event-cupon-name">부산-괌/사이판/싱가포르</div>
+
+
+                                                <div class="event-cupon-price"><span class="sub-small">최대</span>40,000원
+                                                </div>
+
+                                                <p class="event-cupon-txt"></p>
+
+                                                <span class="badge sale">NH농협카드 전용</span>
+
+                                            </div>
+
+                                            <div class="event-cupon-bot">
+
+                                                <div class="list-item">- 왕복예약 시 사용 가능<br>- 출발 기간 :
+                                                    2022.07.04(월)~08.31(수)<br>- 대상노선 : 부산-괌/사이판/싱가포르
+                                                </div>
+
+
+                                                <button type="button" class="copy-coupon" data-coupon-no="NH국제"
+                                                        onclick="eventView.showPastAlert()">프로모션 코드 복사
+                                                </button>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!--// 1. 에어카페 쿠폰 -->
+
+
+                                <!-- 1. 에어카페 쿠폰 -->
+
+
+                                <script src="https://static.jejuair.net/hpgg/resources/bizjs/event/componentViews/couponViewHandler.js"></script>
+                                <div class="section-wrap">
+                                    <div class="event-cupon-wrap">
+
+                                        <div class="event-cupon sale">
+                                            <div class="event-cupon-top">
+                                                <div class="event-cupon-name">군산-제주</div>
+
+                                                <div class="event-cupon-price"><span class="sub-big">3,000원</span><span
+                                                        class="sub-small"></span></div>
+
+
+                                                <p class="event-cupon-txt"></p>
+
+                                                <span class="badge sale">NH농협카드 전용</span>
+
+                                            </div>
+
+                                            <div class="event-cupon-bot">
+
+                                                <div class="list-item">- 왕복예약 시 사용 가능<br>- 출발 기간 :
+                                                    2022.07.04(월)~08.31(수)<br>- 대상노선 : 군산-제주
+                                                </div>
+
+
+                                                <button type="button" class="copy-coupon" data-coupon-no="NH국내"
+                                                        onclick="eventView.showPastAlert()">프로모션 코드 복사
+                                                </button>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="event-cupon sale">
+                                            <div class="event-cupon-top">
+                                                <div class="event-cupon-name">여수-제주</div>
+
+                                                <div class="event-cupon-price"><span class="sub-big">3,000원</span><span
+                                                        class="sub-small"></span></div>
+
+
+                                                <p class="event-cupon-txt"></p>
+
+                                                <span class="badge sale">NH농협카드 전용</span>
+
+                                            </div>
+
+                                            <div class="event-cupon-bot">
+
+                                                <div class="list-item">- 왕복예약 시 사용 가능<br>- 출발 기간 :
+                                                    2022.07.04(월)~08.31(수)<br>- 대상노선 : 여수-제주
+                                                </div>
+
+
+                                                <button type="button" class="copy-coupon" data-coupon-no="NH국내"
+                                                        onclick="eventView.showPastAlert()">프로모션 코드 복사
+                                                </button>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="event-cupon sale">
+                                            <div class="event-cupon-top">
+                                                <div class="event-cupon-name">청주-제주</div>
+
+                                                <div class="event-cupon-price"><span class="sub-big">3,000원</span><span
+                                                        class="sub-small"></span></div>
+
+
+                                                <p class="event-cupon-txt"></p>
+
+                                                <span class="badge sale">NH농협카드 전용</span>
+
+                                            </div>
+
+                                            <div class="event-cupon-bot">
+
+                                                <div class="list-item">- 왕복예약 시 사용 가능<br>- 출발 기간 :
+                                                    2022.07.04(월)~08.31(수)<br>- 대상노선 : 청주-제주
+                                                </div>
+
+
+                                                <button type="button" class="copy-coupon" data-coupon-no="NH국내"
+                                                        onclick="eventView.showPastAlert()">프로모션 코드 복사
+                                                </button>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!--// 1. 에어카페 쿠폰 -->
+
+
+                                <!-- 2단 링크 버튼 -->
+
+                                <script src="https://static.jejuair.net/hpgg/resources/bizjs/event/componentViews/btnLinkViewHandler.js"></script>
+                                <div class="button-wrap event-btn-wrap">
+                                    <button type="button" class="button button--event02"
+                                            onclick="btnLinkViewHandler.goUrl(this)" data-component-div-cd="btn2Link"
+                                            data-web-url="https://www.jejuair.net/ko/ibe/booking/Availability.do?depStn=ICN&amp;arrStn=DAD&amp;depDate=2022-07-20&amp;arrDate=2022-07-31"
+                                            data-app-url="https://www.jejuair.net/ko/ibe/booking/Availability.do?depStn=ICN&amp;arrStn=DAD&amp;depDate=2022-07-20&amp;arrDate=2022-07-31"
+                                            data-collection="Y">
+                                        <span class="button__text">예매하기</span>
+                                    </button>
+                                    <button type="button" class="button button--event03"
+                                            onclick="btnLinkViewHandler.goUrl(this)" data-component-div-cd="btn2Link"
+                                            data-web-url="https://www.jejuair.net/ko/memberBenefit/memberBenefit.do?param=promotion"
+                                            data-app-url="https://www.jejuair.net/ko/memberBenefit/memberBenefit.do?param=promotion"
+                                            data-collection="Y">
+                                        <span class="button__text">사용방법 보기</span>
+                                    </button>
+                                </div>
+                                <!--//2단 링크 버튼 -->
+
+
+                                <!-- 유의사항 -->
+
+                                <div class="section-wrap info-wrap">
+                                    <div class="service-information" data-element="toggle"
+                                         data-options="{&quot;mode&quot;: &quot;move scroll&quot;}">
+                                        <div class="service-information__title">
+                                            <button type="button" class="service-information__anchor"
+                                                    data-element="toggle__anchor" aria-controls="toggle-3"
+                                                    aria-expanded="false">프로모션 코드 사용 유의사항
+                                            </button>
+                                        </div>
+                                        <div class="service-information__content" data-element="toggle__panel"
+                                             id="toggle-3">
+                                            <p>· 제주항공 프로모션 코드는 제주항공 회원으로 NH농협카드 결제 한정이며, 회원 본인 탑승 건에 한하여 로그인 후
+                                                사용가능합니다.</p>
+                                            <p>· 원하는 노선을 선택 후 검색단 하단에 표출되는 '프로모션 코드 입력' 란에 본 코드를 기입했을 시, 할인이 적용된 가격으로
+                                                운임이 자동 표출됩니다.</p>
+                                            <p>· 프로모션 코드 할인이 적용되는 범위는 유류할증료, 공항 시설 이용료를 제외한 항공운임에 할인 적용 됩니다.&nbsp;</p>
+                                            <p>· 프로모션 코드는 여정 변경 시에는 사용이 미적용 되며, 최초 예약에 한하여 사용 가능합니다.</p>
+                                            <p>·프로모션 코드는 성인운임에 한하여 사용 가능합니다.<br></p>
+                                            <p>· 왕복 조건 프로모션 코드 할인 적용 예약건의 일부 구간 부분 예약 취소 시 환불 금액은 전체 프로모션 코드 할인금액이 반영되어
+                                                환불 됩니다.</p>
+                                            <p>· 포인트 결제 시 프로모션 코드 사용이 불가하오니 사전 양해 부탁드립니다.</p>
+                                            <p>· 본 프로모션에서 제공되는 프로모션 코드는 조건을 충족하는 경우에 한하여 사용이 가능합니다.</p>
+                                            <p>· 판매 기간 내&nbsp;국제선 왕복 운임 구매 시에만 적용됩니다. 성수기 운임 포함 일부 운임 할인 적용이 제한 될 수
+                                                있습니다.&nbsp;&nbsp;</p>
+                                            <p>· 타 프로모션 코드 및 결제수단 프로모션과 중복 사용이 불가능하며, 신규 회원 할인 및 신분 할인(국가유공자/제주도민 할인 등)
+                                                과의 중복 적용은 가능합니다. </p>
+                                            <p><span style="font-family: sans-serif; font-size: 14px;">·&nbsp;</span>단,
+                                                중복 적용 시 신분 할인 선 적용 후 프로모션 코드 할인이 적용되는 점 사전 확인 부탁드립니다.</p>
+                                            <p>· 부정적인 방법 및 중복된 정보로 구매할 경우 예약이 제한될 수 있습니다.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- //유의사항 -->
+
+
+                                <!-- 유의사항 -->
+
+                                <div class="section-wrap info-wrap">
+                                    <div class="service-information" data-element="toggle"
+                                         data-options="{&quot;mode&quot;: &quot;move scroll&quot;}">
+                                        <div class="service-information__title">
+                                            <button type="button" class="service-information__anchor"
+                                                    data-element="toggle__anchor" aria-controls="toggle-4"
+                                                    aria-expanded="false">예약관련 유의사항
+                                            </button>
+                                        </div>
+                                        <div class="service-information__content" data-element="toggle__panel"
+                                             id="toggle-4">
+                                            <p>·&nbsp; 예약은 제주항공 홈페이지, 모바일 웹/앱을 통해서만 가능합니다.</p>
+                                            <p>·&nbsp; 결제시 일반카드 결제 &gt; NH카드 선택시 프로모션코드가 적용됩니다.&nbsp;</p>
+                                            <p>·&nbsp; NH비씨/법인/선불/충전/기프트카드는 제외되며, 적용이 되더라도 취소될 수 있습니다.</p>
+                                            <p>·&nbsp; 유류할증료와 공항 시설 사용료는 발권일, 환율에 따라 변동될 수 있습니다.</p>
+                                            <p>·&nbsp; 항공권 구매 시 예약 변경 및 환불 등에 대한 상세 안내를 반드시 확인 바랍니다.</p>
+                                            <p>·&nbsp; 부정적인 방법 및 중복된 정보로 구매할 경우 예약이 제한될 수 있습니다.&nbsp;</p>
+                                            <p>·&nbsp; FLY 운임은 무료 수하물이 포함되지 않습니다.</p>
+                                            <p>·&nbsp; 프로모션 코드는 사전 고지 없이 조기 소진될 수 있습니다.&nbsp;</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- //유의사항 -->
+
+
+                                <!-- html -->
+
+                                <script src="https://static.jejuair.net/hpgg/resources/bizjs/event/componentViews/htmlViewHandler.js"></script>
+                                <div class="section-wrap">
+                                    <div style="">
+                                        <div style=""><b style="font-family: sans-serif; font-size: 14px;">·</b><span
+                                                style="font-family: sans-serif; font-size: 14px;">&nbsp;계약 체결 전 상품설명서와 약관을 확인하시기 바랍니다.</span><br>
+                                        </div>
+                                        <div style=""><b>· 상환능력에 비해 신용카드사용액이 과도할 경우 개인신용평점이 하락할 수 있고, 하락 시 금융거래 관련 불이익
+                                            발생할 수 있습니다.</b></div>
+                                        <div style=""><b>· 일정기간 원리금 연체 시, 모든 원리금 변제할 의무 발생할 수 있습니다.</b></div>
+                                        <div style=""><b>· 신용카드 발급이 부적정한 경우( 연체금 보유, 신용점수 낮음 등) 카드발급이 제한될 수 있습니다.</b>
+                                        </div>
+                                        <div style=""><b>· 카드이용대금과 이에 수반되는 모든 수수료를 지정된 대금 결제일에 상환합니다.</b></div>
+                                        <div style="">·&nbsp;<span style="font-family: sans-serif; font-size: 14px;">금융소비자 보호에 관한 법률 제 조제 항에 19조 1항 따라 설명을 받을 수 있는 권리가 있으며 그, 설명을 듣고 내용을 충분히 이해한 후 거래하시기 바랍니다.</span>
+                                        </div>
+                                        <div style=""><b>· 연체이자율 : , 회원별 이용상품별 약정금리 최대 + 3%(p), 법정 최고금리(20%) 이내, 단 연체 발생
+                                            시점에 약정금리가 없는 경우는 아래와 같이 적용함</b></div>
+                                        <div style=""><b>&nbsp;- 일시불 거래 연체 시, 「거래발생 시점의 최소기간(2개월)</b><b
+                                                style="font-family: sans-serif; font-size: 14px;">」,</b><b
+                                                style="font-size: 14px;">&nbsp;무이자할부 거래 연체 , 「거래발생 시점의 동일한 할부 계약기간」 의
+                                            유이자 할부 금리 적용</b></div>
+                                        <div style=""><b>&nbsp;- 그 외의 경우 약정금리는 상법상 상사법정이율과 상호금융 가계자금대출금리* 중 높은 금리적용</b>
+                                        </div>
+                                        <div style=""><b>* 한국은행에서 매월 발표하는 가장 최근의 비은행 금융기관 가중평균대출금리 (신규대출 기준)&nbsp;</b>
+                                        </div>
+                                        <div style=""><span style="font-size: 14px;">· 준법감시인 심의필* 2022-3074(2022.07.01~2022.07.31)&nbsp;</span><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- //html -->
+
+                            </div>
+                            <button type="button" data-element="modal_anchor" data-target="" class="hidden"></button>
+
+
+                        </div>
+                    </div>
+
+                    <div class="button-wrap pc-60" data-element="bottomContent" data-space="30">
+
+                        <a href="/ko/event/pastEvent.do" class="button button--primary button--active"><span
+                                class="button__text">다른 이벤트 보러가기</span></a>
+
+
+                    </div>
+                    <button type="button" class="button-top" aria-label="상단 이동" style="display: none;"></button>
+                    <!--Top 버튼-->
+
+
+                </div>
+            </main>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- footer -->
+<div th:replace="user/fragment/footer :: footer"></div>
+<!-- / footer 끝 -->
+
+
+<!-- 공통 스크립트 선언 -->
+
+<!--<div th:replace="/user/fragment/js :: js"></div>-->
+<script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
+<script type="text/javascript" src="/user/lib/js/common.js"></script>
+<script type="text/javascript" src="/user/lib/js/plugin.js"></script>
+
+<!-- 공통 스크립트 선언 끝 -->
+
+<!--body, html 주석은 위치 고정-->
+</body>
+</html>
+<!--body, html 주석은 위치 고정 끝-->
