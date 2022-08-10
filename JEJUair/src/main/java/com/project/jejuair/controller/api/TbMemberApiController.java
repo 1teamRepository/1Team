@@ -67,4 +67,9 @@ public class TbMemberApiController extends CrudController <TbMemberRequest, TbMe
         return tbMemberApiLogicService.pointUpdate(request);
     }
 
+    @PostMapping("/search")
+    public Header<List<TbMemberResponse>> findByAll(@PageableDefault(sort = {"memIdx"}, direction = Sort.Direction.DESC) Pageable pageable, @RequestBody Header<TbMemberRequest> request){
+        return tbMemberApiLogicService.searchByAll(pageable, request);
+    }
+
 }

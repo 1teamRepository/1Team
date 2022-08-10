@@ -62,9 +62,10 @@
                                                 </thead>
 
                                                 <tbody id="itemList">
-                                                    <tr class="lists"
-                                                        v-for="dto in itemList">
-                                                        <td class="res_idx"><a :href=`/admin/reservation/list/view/${dto.resIdx}`>{{dto.resIdx}}</a></td>
+                                                <tr v-for="(dto,i) in itemList"
+                                                    :key="i"
+                                                    @click='locate(dto.resIdx)'>
+                                                        <td class="res_idx">{{dto.resIdx}}</td>
                                                         <td class="res_ko_name">{{dto.memKoLastname}}{{dto.memKoFirstname}}</td>
                                                         <td class="res_email">{{dto.memEmail}}</td>
                                                         <td class="res_hp">{{dto.memHp}}</td>

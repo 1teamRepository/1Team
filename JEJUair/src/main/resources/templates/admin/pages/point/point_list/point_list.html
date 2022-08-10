@@ -63,10 +63,10 @@
                         </thead>
 
                         <tbody id="itemList">
-                        <tr v-for="(dto, i) in itemList"
+                        <tr v-for="(dto,i) in itemList"
                             :key="i"
-                            @onclick="location.href='/admin/point/view/${dto.pntIdx}'">
-                            <td class="point_idx"><a :href=`/admin/point/view/${dto.pntIdx}`>{{dto.pntIdx}}</a></td>
+                            @click='locate(dto.pntIdx)'>
+                            <td class="point_idx">{{dto.pntIdx}}</td>
                             <td class="point_content">{{dto.pntContent}}</td>
                             <td class="point_amount">{{dto.pntAmount}}</td>
                             <td class="point_userid">{{dto.pntUserid}}</td>
