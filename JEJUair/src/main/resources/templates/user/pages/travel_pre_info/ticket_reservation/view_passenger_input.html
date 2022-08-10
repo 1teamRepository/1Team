@@ -3,7 +3,7 @@
 <!--head-->
 <div th:replace="/user/fragment/head :: head"></div>
 <!--head 끝-->
-
+<script type="text/javascript" src="/user/lib/js/ticket_reservation/json_loading.js"></script>
 <body id="bookingLayoutBody">
 
 <!--appAlert-->
@@ -22,22 +22,6 @@
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <script>
-        console.log("================jsonparse=============")
-
-        const tripJson = JSON.parse(localStorage.getItem("tripJson"))
-        console.log(tripJson);
-        let resRoute = tripJson["resRoute"];
-        let schDeparture = tripJson["schDeparture"];
-        let schArrival = tripJson["schArrival"];
-        let schDepartureDate = tripJson["schDepartureDate"];
-        let schPassengerNum = tripJson["schPassengerNum"];
-        let seatValue = tripJson["seatValue"];
-
-        console.log("================jsonparse=============")
-
-
-    </script>
 
     <div class="wrap wrap--booking NA_1_51 step-ui">
 
@@ -451,7 +435,7 @@
 <div th:replace="/user/fragment/footer :: footer"></div>
 <!-- / footer 끝 -->
 
-<script type="text/javascript" src="/user/lib/js/ticket_reservation/view_passenger_input/view_passenger_input_ow.js"></script>
+<script type="text/javascript" src="/user/lib/js/ticket_reservation/view_passenger_input.js"></script>
 
 <div id="ifmWrap"
      style="height:100%; display:none; overflow:auto; text-align:center; -webkit-overflow-scrolling:touch;">

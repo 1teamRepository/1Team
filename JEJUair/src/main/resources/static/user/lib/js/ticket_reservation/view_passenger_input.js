@@ -1,16 +1,24 @@
+
+let schDeparture = tripJson["schDeparture"];
+let schArrival = tripJson["schArrival"];
+let schDepartureDate = tripJson["schDepartureDate"];
+
 // 승객 수
-let passengerNum = Number(tripJson["schPassengerNum"]);
+const passengerNum = Number(tripJson["schPassengerNum"]);
 const divFare = Number(tripJson["divFare"]);
 const divTax = Number(tripJson["divTax"]);
 const divFuel = Number(tripJson["divFuel"]);
 
-$('#divFare').find('.flight__cost')[0].innerHTML = divFare;
-$('#divTax').find('.flight__cost')[0].innerHTML = divTax;
-$('#divFuel').find('.flight__cost')[0].innerHTML = divFuel;
-$('#spanCost').find('.flight__cost')[0].innerHTML =  Number(divFare) + Number(divTax) + Number(divFuel);
+$('#divFare').find('.flight__cost')[0].innerHTML = divFare+tripJson2["divFare"];
+$('#divTax').find('.flight__cost')[0].innerHTML = divTax+tripJson2["divTax"];
+$('#divFuel').find('.flight__cost')[0].innerHTML = divFuel+tripJson2["divFuel"];
+$('#spanCost').find('.flight__cost')[0].innerHTML =  tripJson["spanCost"] + tripJson2["spanCost"];
 
 let divTabs = $('#divTabs');
 let divPsgr = $('#divPsgr');
+
+let memEngFirstname = "";
+let memEngLastname = "";
 
 for (let i = 1; i < passengerNum; i++) {
     let divTabsHTML = '<div id="psgrTab' + i + '" class="tab__button" data-element="tab__list">'
@@ -174,6 +182,25 @@ function checkEmpty() {
     }
 }
 
+$.get({
+    url: '/api/customer/'+tripJson["memIdx"],
+    dataType : "json",
+    contentType: 'application/json',
+    async: false,
+    success: function(response){
+        console.log(response)
+        console.log(response.data)
+        memEngLastname = response.data.memEngLastname;
+        memEngFirstname = response.data.memEngFirstname;
+    }
+})
+
+
+if(tripJson.foreign === "true"){
+    document.getElementById("divSubTitle").innerText = "여권 정보와 동일하게 입력해 주세요.";
+    document.getElementById("txtLastName0").setAttribute("value", memEngLastname);
+    document.getElementById("txtFirstName0").setAttribute("value", memEngFirstname);
+}
 
 $(document).on('click', '#btnOK', function () {
     let passJson = {
@@ -181,17 +208,38 @@ $(document).on('click', '#btnOK', function () {
         memEmail: $('#txtContactEmail').val()
     }
 
+    let passJson2 = {
+        memHp: $('#txtContactPhone').val(),
+        memEmail: $('#txtContactEmail').val()
+    }
+
     for (let i = 0; i < Number(tripJson["schPassengerNum"]); i++) {
-        console.log(document.querySelectorAll(".txtLastNameClass")[i]);
+
         passJson["passLastName"+i] = document.querySelectorAll(".txtLastNameClass")[i].value;
         passJson["passFirstName"+i] = document.querySelectorAll(".txtFirstNameClass")[i].value;
         passJson["passYear"+i] = document.querySelectorAll(".txtYearClass")[i].value;
         passJson["selMonth"+i] = document.querySelectorAll(".selMonthClass")[i].value;
         passJson["selDate"+i] = document.querySelectorAll(".selDateClass")[i].value;
-        console.log(document.querySelectorAll(".txtLastNameClass")[i].value);
+
+        passJson2["passLastName"+i] = document.querySelectorAll(".txtLastNameClass")[i].value;
+        passJson2["passFirstName"+i] = document.querySelectorAll(".txtFirstNameClass")[i].value;
+        passJson2["passYear"+i] = document.querySelectorAll(".txtYearClass")[i].value;
+        passJson2["selMonth"+i] = document.querySelectorAll(".selMonthClass")[i].value;
+        passJson2["selDate"+i] = document.querySelectorAll(".selDateClass")[i].value;
+
     }
-    console.log(passJson)
+
+    passJson["roundCheck"] = "false";
+
+    for (let i = 0; i < Number(tripJson["schPassengerNum"]); i++) {
+        passJson2["pasSeat"+i] = "";
+        passJson2["pasBaggagePrice"+i] = 0;
+        passJson2["pasBaggage"+i] = "";
+        passJson2["pasBagIdx"+i] = 0;
+        passJson2["pasMeal"+i] = 0;
+    }
 
     localStorage.setItem("passJson", JSON.stringify(passJson));
-    location.href="/user/oneway/seat_select";
+    localStorage.setItem("passJson2", JSON.stringify(passJson2));
+    location.href="/user/seat_select";
 })

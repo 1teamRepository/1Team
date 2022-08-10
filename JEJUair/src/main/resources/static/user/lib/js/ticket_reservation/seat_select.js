@@ -4,23 +4,14 @@ let ecoSeats = 0;
 
 // 승객 수
 let passengerNum = Number(tripJson["schPassengerNum"]);
-const divFare = Number(tripJson["divFare"]);
-const divTax = Number(tripJson["divTax"]);
-const divFuel = Number(tripJson["divFuel"]);
-let seatValue = tripJson["seatValue"];
 let bizO = "";
 let bizX = document.getElementById("divBusinessLite");
 
 let passengerNames = []
+
 for (let i = 0; i < passengerNum; i++) {
     passengerNames[i] = passJson["passLastName"+i]+passJson["passFirstName"+i]
     console.log(passengerNames[i])
-}
-
-
-if (seatValue == "biz") {
-    bizX.style.display = "block";
-    bizO = "disabled";
 }
 
 const ColArr = ['A', 'B', 'C', 'D', 'E', 'F'];
@@ -36,14 +27,16 @@ let ecoEmptyHTML = "";
 let ecoSeatLineNum = 1;
 
 let ecoPrice = 5000;
-let bizPrice = 5000;
+let bizPrice = 10000;
 
-$('#divFare').find('.flight__cost')[0].innerHTML = divFare;
-$('#divTax').find('.flight__cost')[0].innerHTML = divTax;
-$('#divFuel').find('.flight__cost')[0].innerHTML = divFuel;
-$('#spanCost').find('.flight__cost')[0].innerHTML =  Number(divFare) + Number(divTax) + Number(divFuel);
+$('#divFare').find('.flight__cost')[0].innerHTML = tripJson.divFare + tripJson2.divFare;
+$('#divTax').find('.flight__cost')[0].innerHTML = tripJson.divTax + tripJson2.divTax ;
+$('#divFuel').find('.flight__cost')[0].innerHTML = tripJson.divFuel + tripJson2.divFuel;
+$('#spanCost').find('.flight__cost')[0].innerHTML =  tripJson.spanCost + tripJson2.spanCost;
 
-let existingSeatArray = []
+let existingSeatArray = [];
+
+reserveProgress();
 
 $.get("/api/flight_schedule/"+schIdx, function(response){
     let schRead = response.data;
@@ -118,7 +111,9 @@ $.get("/api/flight_schedule/"+schIdx, function(response){
 
     for (let i = 0; i < existingSeatArray.length; i++) {
         console.log(document.querySelector('.select-seat__seat[designator = "'+existingSeatArray[i].pasSeat+'"]'));
-        document.querySelector('.select-seat__seat[designator = "'+existingSeatArray[i].pasSeat+'"]').setAttribute("disabled", true);
+        if(existingSeatArray[i].pasSeat != null){
+            document.querySelector('.select-seat__seat[designator = "'+existingSeatArray[i].pasSeat+'"]').setAttribute("disabled", true);
+        }
     }
 
 
@@ -167,12 +162,14 @@ function selectSeat(select) {
             bizSelected++;
         }
     }
-    let totalSeatPrice = ecoSelected * ecoPrice + bizSelected * bizPrice;
+    const totalSeatPrice = Number(ecoSelected * ecoPrice) + Number(bizSelected * bizPrice);
 
-    $('#spanCost').find('.flight__cost')[0].innerHTML =  Number(divFare) + Number(divTax) + Number(divFuel) + totalSeatPrice;
-    $('#divSeat').find('.flight__cost')[0].innerHTML = totalSeatPrice;
 
-    if (ecoSelected + bizSelected != 0) {
+    $('#divSeat').find('.flight__cost')[0].innerHTML = tripJson.divSeat + totalSeatPrice;
+    $('#divSeat').find('.flight__cost')[0].setAttribute("value", totalSeatPrice);
+    $('#spanCost').find('.flight__cost')[0].innerHTML =  tripJson.spanCost + tripJson2.spanCost + totalSeatPrice;
+
+    if (ecoSelected + bizSelected !== 0) {
         document.getElementById('extraServiceFee').style.display = "block";
     } else {
         document.getElementById('extraServiceFee').style.display = "none";
@@ -180,7 +177,7 @@ function selectSeat(select) {
 }
 
 for (let i = 0; i < passengerNum; i++) {
-    let passengerHTML = '<div class="tab__button" data-element="tab__list" role="presentation"><button class="tab__anchor" type="button" data-element="tab__anchor" onclick="btnMember_Click(this);" data-index="' + i + '" id="passenger"' + i + 'role="tab" tabindex="" select-seat="" aria-selected="true" aria-expanded="true"><span class="passenger"><span class="num">' + (i + 1) + '</span><strong class="name"> ' + passengerNames[i] + '  </strong><span name="passengerTypeCode" style="display: none">ADT</span> <span name="passengerKey" style="display: none" value="' + i + '"></span><span name="unitKey" style="display: none"></span><span name="seat" class="seat selected_seat" ></span><span name="variant" style="display: none"></span></span></button></div>'
+    let passengerHTML = '<div class="tab__button" data-element="tab__list" role="presentation"><button class="tab__anchor" type="button" data-element="tab__anchor" onclick="btnMember_Click(this);" data-index="' + i + '" id="passenger' + i + '" role="tab" tabindex="" select-seat="" aria-selected="true" aria-expanded="true"><span class="passenger"><span class="num">' + (i + 1) + '</span><strong class="name"> ' + passengerNames[i] + '  </strong><span name="passengerTypeCode" style="display: none">ADT</span> <span name="passengerKey" style="display: none" value="' + i + '"></span><span name="unitKey" style="display: none"></span><span name="seat" class="seat selected_seat" ></span><span name="variant" style="display: none"></span></span></button></div>'
     $('#divMember').append(passengerHTML);
 }
 
@@ -196,19 +193,92 @@ function scrollFunction() {
     }
 }
 
+function reserveProgress(){
+    if(tripJson.resRoute === "ONEWAY"){
+        document.getElementById("sectionName").innerHTML = "가는 편(편도)";
+        document.getElementById("spanNextPC").firstElementChild.innerHTML = "다음";
+        document.getElementById("btnNextPC").classList.add("onewayPage");
 
-$(document).on('click', '#btnNextPC', function () {
+        if (tripJson.seatValue === "biz") {
+            bizX.style.display = "block";
+            bizO = "disabled";
+        }
 
-    for (let i = 0; i < Number(tripJson["schPassengerNum"]); i++) {
-        console.log(document.querySelectorAll(".selected_seat")[i]);
-        passJson["pasSeat"+i] = document.querySelectorAll(".selected_seat")[i].innerHTML;
-        console.log(document.querySelectorAll(".selected_seat")[i].innerHTML);
+    }else if(passJson["roundCheck"]==="false"){
+        document.getElementById("sectionName").innerHTML = "가는 편(왕복)";
+        document.getElementById("spanNextPC").firstElementChild.innerHTML = "오는 편 선택하기";
+        document.getElementById("btnNextPC").classList.add("roundPage");
+
+        if (tripJson.seatValue === "biz") {
+            bizX.style.display = "block";
+            bizO = "disabled";
+        }
+
+    }else if(passJson["roundCheck"]==="true"){
+        document.getElementById("sectionName").innerHTML = "오는 편(왕복)";
+        document.getElementById("spanNextPC").firstElementChild.innerHTML = "다음";
+        document.getElementById("btnNextPC").classList.add("roundbackPage");
+
+        if (tripJson2.seatValue === "biz") {
+            bizX.style.display = "block";
+            bizO = "disabled";
+        }
+    }
+}
+
+$(document).on('click', '.onewayPage', function () {
+
+    for (let i = 0; i < tripJson["schPassengerNum"]; i++) {
+        if(document.getElementById("passenger"+i).getAttribute("select-seat") == null){
+            passJson["pasSeat"+i] = "";
+        }else{
+            passJson["pasSeat"+i] = document.querySelectorAll(".selected_seat")[i].innerHTML;
+        }
     }
 
-    tripJson["divSeat"] = Number($('#divSeat').find('.flight__cost')[0].innerHTML);
-    tripJson["spanCost"] = tripJson["divSeat"]+divFare + divTax + divFuel;
+    tripJson["divSeat"] = Number($('#divSeat').find('.flight__cost')[0].getAttribute("value"));
+    tripJson["spanCost"] = tripJson["spanCost"]+tripJson["divSeat"];
     localStorage.setItem("passJson", JSON.stringify(passJson));
     localStorage.setItem("tripJson", JSON.stringify(tripJson));
-    location.href="/user/oneway/baggage_select";
+
+    location.href="/user/baggage_select";
 })
 
+$(document).on('click', '.roundPage', function () {
+
+    for (let i = 0; i < tripJson["schPassengerNum"]; i++) {
+        if(document.getElementById("passenger"+i).getAttribute("select-seat") == null){
+            passJson["pasSeat"+i] = "";
+        }else{
+            passJson["pasSeat"+i] = document.querySelectorAll(".selected_seat")[i].innerHTML;
+        }
+    }
+
+    tripJson["divSeat"] = Number($('#divSeat').find('.flight__cost')[0].getAttribute("value"));
+    tripJson["spanCost"] = tripJson["spanCost"]+tripJson["divSeat"];
+    passJson["roundCheck"] = "true";
+    localStorage.setItem("passJson", JSON.stringify(passJson));
+    localStorage.setItem("tripJson", JSON.stringify(tripJson));
+
+    location.href="/user/seat_select";
+})
+
+$(document).on('click', '.roundbackPage', function () {
+
+    for (let i = 0; i < tripJson["schPassengerNum"]; i++) {
+        if(document.getElementById("passenger"+i).getAttribute("select-seat") == null){
+            passJson2["pasSeat"+i] = "";
+        }else{
+            passJson2["pasSeat"+i] = document.querySelectorAll(".selected_seat")[i].innerHTML;
+        }
+    }
+
+    tripJson2["divSeat"] = Number($('#divSeat').find('.flight__cost')[0].getAttribute("value"));
+    tripJson2["spanCost"] = tripJson2["spanCost"]+tripJson2["divSeat"];
+    passJson["roundCheck"] = "false";
+    localStorage.setItem("passJson", JSON.stringify(passJson));
+    localStorage.setItem("passJson2", JSON.stringify(passJson2));
+    localStorage.setItem("tripJson2", JSON.stringify(tripJson2));
+
+    location.href="/user/baggage_select";
+})

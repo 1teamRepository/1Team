@@ -5,6 +5,7 @@
 <!--head-->
 <div th:replace="/user/fragment/head :: head"></div>
 <!--head 끝-->
+<script type="text/javascript" src="/user/lib/js/ticket_reservation/json_loading.js"></script>
 <body id="subLayoutBody">
 
 <!--appAlert-->
@@ -41,6 +42,34 @@
                 <div class="sub-section">
                     <div class="gray-box">
                         <dl class="join-info">
+                            <div class="join-info__row">
+                                <p style="margin-bottom: 30px; font-weight: bolder; font-size: 20px; color: #0d0d0d">가는 편</p>
+                            </div>
+                            <div class="join-info__row">
+
+                                <dt class="w65">여정</dt><!-- 여정 -->
+                                <dd>
+                                    <span class="departure_port"></span>
+                                    <span class="one-way" aria-label="oneway"><img
+                                            src="https://static.jejuair.net/hpgg/resources/images/icon/icon-graybox-oneway.png"
+                                            alt=""></span>
+                                    <span class="arrival_port"></span>
+                                </dd>
+                            </div>
+                            <div class="join-info__row">
+                                <dt class="w65">예약번호</dt><!-- 예약번호 -->
+                                <dd><span class="res_idx"></span></dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+
+                <div class="sub-section roundback_hidden" style="display: none">
+                    <div class="gray-box">
+                        <dl class="join-info">
+                            <div class="join-info__row">
+                                <p style="margin-bottom: 30px; font-weight: bolder; font-size: 20px; color: #0d0d0d">오는 편</p>
+                            </div>
                             <div class="join-info__row">
                                 <dt class="w65">여정</dt><!-- 여정 -->
                                 <dd>
@@ -202,18 +231,11 @@
      style="height:100%; display:none; overflow:auto; text-align:center; -webkit-overflow-scrolling:touch;">
     <iframe src="" width="100%" height="100%" name="popupChkApp"></iframe>
 </div>
-<script type="text/javascript" src="/user/lib/js/ticket_reservation/view_payment_complete/view_payment_complete_ow.js"></script>
+<script type="text/javascript" src="/user/lib/js/ticket_reservation/view_payment_complete.js"></script>
 <!-- 공통 스크립트 선언 -->
 <script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
 <script type="text/javascript" src="/user/lib/js/common.js"></script>
 <script type="text/javascript" src="/user/lib/js/plugin.js"></script>
-
-<script>
-    document.querySelector(".departure_port").innerHTML = tripJson.schDeparture;
-    document.querySelector(".arrival_port").innerHTML = tripJson.schArrival;
-    document.querySelector(".res_idx").innerHTML = resIdx;
-
-</script>
 
 </body>
 </html>

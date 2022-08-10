@@ -100,6 +100,67 @@
                             </div>
                         </div>
                     </div>
+                    <div class="pc-pay-wrap" id="roundBackInfo" style="display: none">
+                        <div class="left">
+                            <div class="section-title"></div>
+                        </div>
+                        <div class="right">
+
+                            <div class="journeys__title" style="margin-top: 40px">
+                                <div class="journeys__heading">오는 편</div>
+                                <div class="journeys__passengers">
+                                    <div class="person">
+                                        <div class="person__item">
+                                            <i aria-label="성인" class="icon adult"></i><!-- 성인 -->
+                                            <span class="passengerNum"></span><span class="hidden">명</span>
+                                            <!-- <span>{0}</span><span class="hidden">명</span> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="journeys boarding-list-pc">
+                                <div class="boarding-wrap reserve">
+                                    <div class="boarding-box">
+                                        <div class="boarding">
+                                            <div class="boarding__header">
+                                                <div class="boarding__header--item1">
+                                                    <span class="aircraft_name"></span>
+                                                </div>
+                                                <div class="boarding__header--item2">
+                                                    <span class="marked--brand"></span>
+                                                </div>
+                                            </div>
+                                            <div class="boarding__info-wrap">
+                                                <div class="boarding__info--top">
+                                                    <div class="boarding__info--top-item1">
+                                                        <span class="departure_date"></span><em
+                                                            class="mo-br departure_time"></em>
+                                                    </div>
+                                                    <div class="boarding__info--top-item2">
+                                                        <span class="arrival_date"></span><em
+                                                            class="mo-br arrival_time"></em>
+                                                    </div>
+                                                </div>
+                                                <div class="boarding__info">
+                                                    <div class="boarding__info-before">
+                                                        <div class="boarding__info-title departure_port"></div>
+
+                                                    </div>
+                                                    <div aria-label="one-way" class="icon-mark one-way"></div>
+                                                    <div class="boarding__info-after">
+                                                        <div class="boarding__info-title arrival_port"></div>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="section-wrap pc-pay-wrap2">
@@ -282,13 +343,13 @@
         </div>
     </div>
 </div>
-<div id="passModal" class="modal_container" style="display: none; position: absolute; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.4); height: 1600px; width: 100%;">
+<div id="passModal" class="modal_container" style="display: none; position: absolute; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.4); height: 200%; width: 100%; z-index: 2000">
     <div id="paxDetailLayer" class="modal modal-full modal-scroll modal-small" style="overflow: hidden; display: block; position: absolute; top: 25%; left: 45%; min-height: auto">
         <div class="modal-header">
             <div class="modal-header__title">탑승객별 운임 상세</div>
         </div>
         <div class="modal-content" style="height: 575px;">
-            <div class="receipt-style" id="totalPsFares">
+            <div class="receipt-style" id="totalPsFares" style="padding-bottom: 20px; margin-bottom: 20px;">
                 <dl class="line-list-item">
                     <dt class="title total">
                         <div class="txt-left">총 결제금액</div>
@@ -342,7 +403,7 @@
 
 <!-- 공통 스크립트 선언 끝 -->
 
-<script type="text/javascript" src="/user/lib/js/ticket_reservation/view_confirm/view_confirm_ow.js"></script>
+<script type="text/javascript" src="/user/lib/js/ticket_reservation/view_confirm.js"></script>
 
 <!--body, html 주석은 위치 고정-->
 </body>
