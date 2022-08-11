@@ -472,7 +472,7 @@ function paymentModal(select){
 // 가격 계산 로직
 function fareCal(select){
     const gradeDefault = document.querySelectorAll(".tab-btn");
-    const fare = Number($(select).find(".price_txt")[0].innerText.replace(",", ""));
+    const fare = Number($(select).find(".price_txt")[0].innerText.replaceAll(",", ""));
     // 가격
     const divFare = fare*passengerNum;
     const divTax = 4000*passengerNum;

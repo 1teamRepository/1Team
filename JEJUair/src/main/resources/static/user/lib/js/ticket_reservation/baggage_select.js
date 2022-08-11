@@ -115,7 +115,7 @@ function baggageSelect(select){
         console.log(countSelected[i].querySelector(".baggage_cost").innerHTML);
         let baggageCost = 0;
         if(countSelected[i].querySelector(".baggage_cost").innerHTML != 0){
-            baggageCost = Number(countSelected[i].querySelector(".baggage_cost").innerHTML.replace(",",""));
+            baggageCost = Number(countSelected[i].querySelector(".baggage_cost").innerHTML.replaceAll(",",""));
         }
         totalBaggagePrice += Number(baggageCost);
     }
