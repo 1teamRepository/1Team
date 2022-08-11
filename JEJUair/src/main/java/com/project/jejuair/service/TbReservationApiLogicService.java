@@ -12,6 +12,7 @@ import com.project.jejuair.repository.TbMemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -110,5 +111,22 @@ public class TbReservationApiLogicService extends BaseService<TbReservationReque
                 .build();
         return Header.OK(tbReservationResponseList, pagination);
     }
+
+    public Header<List<TbReservationResponse>> findSchedules(Long id, Pageable pageable){
+        Page<TbReservation> tbReservationList = new PageImpl<>(baseRepository.findAll(pageable).
+                stream().filter(tbReservation -> tbReservation.getTbMember().getMemIdx().equals(id)).collect(Collectors.toList()));
+        List<TbReservationResponse> tbReservationResponseList = tbReservationList.stream()
+                .map(tbReservation -> response(tbReservation)).collect(Collectors.toList());
+
+        Pagination pagination = Pagination.builder()
+                .totalPages(tbReservationList.getTotalPages())
+                .totalElements(tbReservationList.getTotalElements())
+                .currentPage(tbReservationList.getNumber())
+                .currentElements(tbReservationList.getNumberOfElements())
+                .build();
+        return Header.OK(tbReservationResponseList, pagination);
+
+    }
+
 
 }

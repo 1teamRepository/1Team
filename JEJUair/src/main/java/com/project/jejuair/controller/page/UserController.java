@@ -643,10 +643,7 @@ public class UserController {
 
 
     //항공권 결제 후 예매 확인 및 취소
-    @RequestMapping("/viewReservationList")
-    public ModelAndView viewReservationList() {
-        return new ModelAndView("/user/pages/mypage/afterpayment/viewReservationList");
-    }
+
 
     @RequestMapping("/viewReservationDetail")
     public ModelAndView viewReservationDetail() {
@@ -659,9 +656,17 @@ public class UserController {
         return new ModelAndView("/user/pages/mypage/afterpayment/viewPnrCancelComplete");
     }
 
-    @RequestMapping("/viewPaymentComplete")
-    public ModelAndView viewPaymentComplete() {
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/viewPaymentComplete");
+
+
+    @RequestMapping("/viewReservationList")
+    public ModelAndView viewReservationList(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("userid") != null) {
+            return new ModelAndView("/user/pages/mypage/afterpayment/viewReservationList")
+                    .addObject("idx", session.getAttribute("idx"));
+        } else {
+            return new ModelAndView("/user/pages/login/login");
+        }
     }
 
 }

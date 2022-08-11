@@ -52,5 +52,10 @@ public class TbReservationApiController extends CrudController<TbReservationRequ
         return tbReservationApiLogicService.search(pageable);
     }
 
+    @GetMapping("/findSchedules/{idx}")
+    public Header<List<TbReservationResponse>> findSchedules(@PathVariable Long idx, @PageableDefault(sort = {"resIdx"}, direction = Sort.Direction.DESC) Pageable pageable){
+        return tbReservationApiLogicService.findSchedules(idx,pageable);
+    }
+
 
 }
