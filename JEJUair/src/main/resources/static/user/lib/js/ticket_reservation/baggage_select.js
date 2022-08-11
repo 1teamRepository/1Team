@@ -1,11 +1,11 @@
 const schIdx = Number(tripJson["schIdx"]);
 let passengerNum = tripJson["schPassengerNum"];
 
-$('#divFare').find('.flight__cost')[0].innerHTML = tripJson.divFare + tripJson2.divFare;
-$('#divTax').find('.flight__cost')[0].innerHTML = tripJson.divTax + tripJson2.divTax ;
-$('#divFuel').find('.flight__cost')[0].innerHTML = tripJson.divFuel + tripJson2.divFuel;
-$('#divSeatFee').find('.flight__cost')[0].innerHTML = tripJson.divSeat + tripJson2.divSeat;
-$('#spanCost').find('.flight__cost')[0].innerHTML =  tripJson.spanCost + tripJson2.spanCost;
+$('#divFare').find('.flight__cost')[0].innerHTML = (tripJson.divFare + tripJson2.divFare).toLocaleString();;
+$('#divTax').find('.flight__cost')[0].innerHTML = (tripJson.divTax + tripJson2.divTax).toLocaleString(); ;
+$('#divFuel').find('.flight__cost')[0].innerHTML = (tripJson.divFuel + tripJson2.divFuel).toLocaleString();;
+$('#divSeatFee').find('.flight__cost')[0].innerHTML = (tripJson.divSeat + tripJson2.divSeat).toLocaleString();;
+$('#spanCost').find('.flight__cost')[0].innerHTML =  (tripJson.spanCost + tripJson2.spanCost).toLocaleString();;
 
 reserveProgress();
 
@@ -46,7 +46,7 @@ for (let i = 0; i < passengerNum-1; i++) {
         '                                                <div class="title"><span name="baggageValue" style="display: none">20</span><span class="title__sub"><strong class="baggage_weight">20KG</strong></span></div><div name="divCategoryCode" style="display: none">XB</div>\n' +
         '                                                <div name="divSsrCode" style="display: none">XB20</div><div class="labels"></div>\n' +
         '                                            </div>\n' +
-        '                                            <div class="bottom-area"><div class="price-wrap"><div class="price"><span class="price_txt baggage_cost">8000</span><span class="unit"> 원</span></div></div><div name="divMarketIndex" style="display: none">0</div></div>\n' +
+        '                                            <div class="bottom-area"><div class="price-wrap"><div class="price"><span class="price_txt baggage_cost">8,000</span><span class="unit"> 원</span></div></div><div name="divMarketIndex" style="display: none">0</div></div>\n' +
         '                                        </div>\n' +
         '\n' +
         '                                        <div class="button-list__item" role="button" bagIdx="3"  style="cursor:pointer">\n' +
@@ -54,7 +54,7 @@ for (let i = 0; i < passengerNum-1; i++) {
         '                                                <div class="title"><span name="baggageValue" style="display: none">25</span><span class="title__sub"><strong class="baggage_weight">25KG</strong></span></div><div name="divCategoryCode" style="display: none">XB</div>\n' +
         '                                                <div name="divSsrCode" style="display: none">XB25</div><div class="labels"></div>\n' +
         '                                            </div>\n' +
-        '                                            <div class="bottom-area"><div class="price-wrap"><div class="price"><span class="price_txt baggage_cost">16000</span><span class="unit"> 원</span></div></div><div name="divMarketIndex" style="display: none">0</div></div>\n' +
+        '                                            <div class="bottom-area"><div class="price-wrap"><div class="price"><span class="price_txt baggage_cost">16,000</span><span class="unit"> 원</span></div></div><div name="divMarketIndex" style="display: none">0</div></div>\n' +
         '                                        </div>\n' +
         '\n' +
         '                                        <div class="button-list__item" role="button" bagIdx="4"  style="cursor:pointer">\n' +
@@ -62,7 +62,7 @@ for (let i = 0; i < passengerNum-1; i++) {
         '                                                <div class="title"><span name="baggageValue" style="display: none">30</span><span class="title__sub"><strong class="baggage_weight">30KG</strong></span></div><div name="divCategoryCode" style="display: none">XB</div>\n' +
         '                                                <div name="divSsrCode" style="display: none">XB30</div><div class="labels"></div>\n' +
         '                                            </div>\n' +
-        '                                            <div class="bottom-area"><div class="price-wrap"><div class="price"><span class="price_txt baggage_cost">24000</span><span class="unit"> 원</span></div></div><div name="divMarketIndex" style="display: none">0</div></div>\n' +
+        '                                            <div class="bottom-area"><div class="price-wrap"><div class="price"><span class="price_txt baggage_cost">24,000</span><span class="unit"> 원</span></div></div><div name="divMarketIndex" style="display: none">0</div></div>\n' +
         '                                        </div>\n' +
         '\n' +
         '                                        <div class="button-list__item" role="button" bagIdx="5"  style="cursor:pointer">\n' +
@@ -70,7 +70,7 @@ for (let i = 0; i < passengerNum-1; i++) {
         '                                                <div class="title"><span name="baggageValue" style="display: none">35</span><span class="title__sub"><strong class="baggage_weight">35KG</strong></span></div><div name="divCategoryCode" style="display: none">XB</div>\n' +
         '                                                <div name="divSsrCode" style="display: none">XB35</div><div class="labels"></div>\n' +
         '                                            </div>\n' +
-        '                                            <div class="bottom-area"><div class="price-wrap"><div class="price"><span class="price_txt baggage_cost">32000</span><span class="unit"> 원</span></div></div><div name="divMarketIndex" style="display: none">0</div></div>\n' +
+        '                                            <div class="bottom-area"><div class="price-wrap"><div class="price"><span class="price_txt baggage_cost">32,000</span><span class="unit"> 원</span></div></div><div name="divMarketIndex" style="display: none">0</div></div>\n' +
         '                                        </div>\n' +
         '\n' +
         '                                        <div class="button-list__item" role="button" bagIdx="6"  style="cursor:pointer">\n' +
@@ -78,7 +78,7 @@ for (let i = 0; i < passengerNum-1; i++) {
         '                                                <div class="title"><span name="baggageValue" style="display: none">40</span><span class="title__sub"><strong class="baggage_weight">40KG</strong></span></div><div name="divCategoryCode" style="display: none">XB</div>\n' +
         '                                                <div name="divSsrCode" style="display: none">XB40</div><div class="labels"></div>\n' +
         '                                            </div>\n' +
-        '                                            <div class="bottom-area"><div class="price-wrap"><div class="price"><span class="price_txt baggage_cost">40000</span><span class="unit"> 원</span></div></div><div name="divMarketIndex" style="display: none">0</div></div>\n' +
+        '                                            <div class="bottom-area"><div class="price-wrap"><div class="price"><span class="price_txt baggage_cost">40,000</span><span class="unit"> 원</span></div></div><div name="divMarketIndex" style="display: none">0</div></div>\n' +
         '                                        </div>\n' +
         '                                    </div>\n' +
         '                                </div>\n' +
@@ -113,13 +113,16 @@ function baggageSelect(select){
 
     for (let i = 0; i < countSelected.length; i++) {
         console.log(countSelected[i].querySelector(".baggage_cost").innerHTML);
-        const baggageCost = countSelected[i].querySelector(".baggage_cost").innerHTML;
+        let baggageCost = 0;
+        if(countSelected[i].querySelector(".baggage_cost").innerHTML != 0){
+            baggageCost = Number(countSelected[i].querySelector(".baggage_cost").innerHTML.replaceAll(",",""));
+        }
         totalBaggagePrice += Number(baggageCost);
     }
 
-    document.querySelector("#divBaggageFee .flight__cost").innerHTML = String(tripJson.divBaggageFee + totalBaggagePrice);
+    document.querySelector("#divBaggageFee .flight__cost").innerHTML = Number(tripJson.divBaggageFee + totalBaggagePrice).toLocaleString();
     document.querySelector("#divBaggageFee .flight__cost").setAttribute("value", String(totalBaggagePrice));
-    $('#spanCost').find('.flight__cost')[0].innerHTML = tripJson.spanCost + tripJson2.spanCost + totalBaggagePrice;
+    $('#spanCost').find('.flight__cost')[0].innerHTML = Number(tripJson.spanCost + tripJson2.spanCost + totalBaggagePrice).toLocaleString();
 }
 
 
@@ -143,7 +146,11 @@ function reserveProgress(){
 $(document).on('click', '.onewayPage', function () {
 
     for (let i = 0; i < Number(tripJson["schPassengerNum"]); i++) {
-        passJson["pasBaggagePrice"+i] = Number(document.querySelectorAll(".baggage_selected .baggage_cost")[i].innerHTML);
+        if(document.querySelectorAll(".baggage_selected .baggage_cost")[i].innerHTML == 0){
+            passJson["pasBaggagePrice"+i] = 0;
+        }else{
+            passJson["pasBaggagePrice"+i] = Number(document.querySelectorAll(".baggage_selected .baggage_cost")[i].innerHTML.replaceAll(",", ""));
+        }
         passJson["pasBaggage"+i] = document.querySelectorAll(".baggage_selected .baggage_weight")[i].innerHTML;
         passJson["pasBagIdx"+i] = document.querySelectorAll(".baggage_selected")[i].getAttribute("bagIdx");
     }
@@ -162,7 +169,11 @@ $(document).on('click', '.onewayPage', function () {
 $(document).on('click', '.roundPage', function () {
 
     for (let i = 0; i < Number(tripJson["schPassengerNum"]); i++) {
-        passJson["pasBaggagePrice"+i] = Number(document.querySelectorAll(".baggage_selected .baggage_cost")[i].innerHTML);
+        if(document.querySelectorAll(".baggage_selected .baggage_cost")[i].innerHTML == 0){
+            passJson["pasBaggagePrice"+i] = 0;
+        }else{
+            passJson["pasBaggagePrice"+i] = Number(document.querySelectorAll(".baggage_selected .baggage_cost")[i].innerHTML.replaceAll(",", ""));
+        }
         passJson["pasBaggage"+i] = document.querySelectorAll(".baggage_selected .baggage_weight")[i].innerHTML;
         passJson["pasBagIdx"+i] = document.querySelectorAll(".baggage_selected")[i].getAttribute("bagIdx");
     }
@@ -182,7 +193,11 @@ $(document).on('click', '.roundPage', function () {
 $(document).on('click', '.roundbackPage', function () {
 
     for (let i = 0; i < Number(tripJson["schPassengerNum"]); i++) {
-        passJson2["pasBaggagePrice"+i] = Number(document.querySelectorAll(".baggage_selected .baggage_cost")[i].innerHTML);
+        if(document.querySelectorAll(".baggage_selected .baggage_cost")[i].innerHTML == 0){
+            passJson2["pasBaggagePrice"+i] = 0;
+        }else{
+            passJson2["pasBaggagePrice"+i] = Number(document.querySelectorAll(".baggage_selected .baggage_cost")[i].innerHTML.replaceAll(",", ""));
+        }
         passJson2["pasBaggage"+i] = document.querySelectorAll(".baggage_selected .baggage_weight")[i].innerHTML;
         passJson2["pasBagIdx"+i] = Number(document.querySelectorAll(".baggage_selected")[i].getAttribute("bagIdx"));
         console.log(document.querySelectorAll(".baggage_selected .baggage_cost")[i].innerHTML);

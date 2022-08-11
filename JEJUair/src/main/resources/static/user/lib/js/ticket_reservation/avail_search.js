@@ -472,7 +472,7 @@ function paymentModal(select){
 // 가격 계산 로직
 function fareCal(select){
     const gradeDefault = document.querySelectorAll(".tab-btn");
-    const fare = Number($(select).find(".price_txt")[0].innerText);
+    const fare = Number($(select).find(".price_txt")[0].innerText.replaceAll(",", ""));
     // 가격
     const divFare = fare*passengerNum;
     const divTax = 4000*passengerNum;
@@ -490,10 +490,10 @@ function fareCal(select){
     schIdx.classList.add("select_schIdx");
     select.classList.add("active");
 
-    $('#divFare').find('.flight__cost')[0].innerHTML = tripJson.divFare + divFare;
-    $('#divTax').find('.flight__cost')[0].innerHTML = tripJson.divTax + divTax;
-    $('#divFuel').find('.flight__cost')[0].innerHTML = tripJson.divFuel + divFuel;
-    $('#spanCost').find('.flight__cost')[0].innerHTML =  tripJson.spanCost + divFare + divTax + divFuel;
+    $('#divFare').find('.flight__cost')[0].innerHTML = Number(tripJson.divFare + divFare).toLocaleString();
+    $('#divTax').find('.flight__cost')[0].innerHTML = Number(tripJson.divTax + divTax).toLocaleString();
+    $('#divFuel').find('.flight__cost')[0].innerHTML = Number(tripJson.divFuel + divFuel).toLocaleString();
+    $('#spanCost').find('.flight__cost')[0].innerHTML = Number(tripJson.spanCost + divFare + divTax + divFuel).toLocaleString();
 
     $('#divFare').find('.flight__cost')[0].setAttribute("value", divFare);
     $('#divTax').find('.flight__cost')[0].setAttribute("value", divTax);
