@@ -9,10 +9,10 @@ const divFare = Number(tripJson["divFare"]);
 const divTax = Number(tripJson["divTax"]);
 const divFuel = Number(tripJson["divFuel"]);
 
-$('#divFare').find('.flight__cost')[0].innerHTML = divFare+tripJson2["divFare"];
-$('#divTax').find('.flight__cost')[0].innerHTML = divTax+tripJson2["divTax"];
-$('#divFuel').find('.flight__cost')[0].innerHTML = divFuel+tripJson2["divFuel"];
-$('#spanCost').find('.flight__cost')[0].innerHTML =  tripJson["spanCost"] + tripJson2["spanCost"];
+$('#divFare').find('.flight__cost')[0].innerHTML = Number(divFare+tripJson2["divFare"]).toLocaleString();
+$('#divTax').find('.flight__cost')[0].innerHTML = Number(divTax+tripJson2["divTax"]).toLocaleString();
+$('#divFuel').find('.flight__cost')[0].innerHTML = Number(divFuel+tripJson2["divFuel"]).toLocaleString();
+$('#spanCost').find('.flight__cost')[0].innerHTML =  Number(tripJson["spanCost"] + tripJson2["spanCost"]).toLocaleString();
 
 let divTabs = $('#divTabs');
 let divPsgr = $('#divPsgr');

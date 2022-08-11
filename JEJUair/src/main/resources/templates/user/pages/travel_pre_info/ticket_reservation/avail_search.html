@@ -743,7 +743,7 @@
                                        :key="i">
                                             <span class="date" data-index="1"
                                                   data-departuredate="20220911">{{dto.text}}</span>
-                                        <span class="price"><span class="price_txt">{{dto.price}}</span>
+                                        <span class="price"><span class="price_txt">{{Number(dto.price).toLocaleString()}}</span>
                                                 <span class="unit">원</span>~</span>
                                     </a>
                                     <!--  가는 여정의 기준날 , 조회한 날짜
@@ -837,7 +837,7 @@
                                             <span class="grade fly">FLY</span>
                                             <span class="price" >
                                                 <strong class="point">
-                                                    <span class="price_txt">{{dto.schFlyPrice}}</span>
+                                                    <span class="price_txt">{{Number(dto.schFlyPrice).toLocaleString()}}</span>
                                                     <span class="unit">원</span></strong>
                                             </span>
                                             <span class="remaining-seat">
@@ -849,7 +849,7 @@
                                             <span class="grade new-class">BIZ LITE</span>
                                             <span class="price">
                                                 <strong class="point">
-                                                    <span class="price_txt">{{dto.schBizLitePrice}}</span>
+                                                    <span class="price_txt">{{Number(dto.schBizLitePrice).toLocaleString()}}</span>
                                                     <span class="unit">원</span></strong>
                                             </span>
                                             <span class="remaining-seat">

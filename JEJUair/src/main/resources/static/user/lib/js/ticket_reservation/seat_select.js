@@ -1,4 +1,7 @@
 const schIdx = Number(tripJson["schIdx"]);
+const schIdx2 = Number(tripJson2["schIdx"]);
+console.log("schIdx : ", schIdx)
+console.log("schIdx2 : ", schIdx2)
 let bizSeats = 0;
 let ecoSeats = 0;
 
@@ -29,21 +32,19 @@ let ecoSeatLineNum = 1;
 let ecoPrice = 5000;
 let bizPrice = 10000;
 
-$('#divFare').find('.flight__cost')[0].innerHTML = tripJson.divFare + tripJson2.divFare;
-$('#divTax').find('.flight__cost')[0].innerHTML = tripJson.divTax + tripJson2.divTax ;
-$('#divFuel').find('.flight__cost')[0].innerHTML = tripJson.divFuel + tripJson2.divFuel;
-$('#spanCost').find('.flight__cost')[0].innerHTML =  tripJson.spanCost + tripJson2.spanCost;
+$('#divFare').find('.flight__cost')[0].innerHTML = (tripJson.divFare + tripJson2.divFare).toLocaleString();
+$('#divTax').find('.flight__cost')[0].innerHTML = (tripJson.divTax + tripJson2.divTax).toLocaleString();
+$('#divFuel').find('.flight__cost')[0].innerHTML = (tripJson.divFuel + tripJson2.divFuel).toLocaleString();
+$('#spanCost').find('.flight__cost')[0].innerHTML =  (tripJson.spanCost + tripJson2.spanCost).toLocaleString();
 
 let existingSeatArray = [];
+let existingSeatArray2 = [];
 
 reserveProgress();
 
 $.get("/api/flight_schedule/"+schIdx, function(response){
     let schRead = response.data;
     console.log(schRead);
-    console.log("tbAircraftAcftIdx : " + schRead["tbAircraftAcftIdx"]);
-    console.log("acftBizLiteSeats :" + schRead["acftBizLiteSeats"]);
-    console.log("acftBizLiteSeats : "+schRead["acftNomalSeats"]);
     bizSeats = Number(schRead["acftBizLiteSeats"]);
     ecoSeats = Number(schRead["acftNomalSeats"]);
 
@@ -53,13 +54,46 @@ $.get("/api/flight_schedule/"+schIdx, function(response){
         contentType: 'application/json',
         async: false,
         success: function(response){
-            console.log(response)
-            console.log(response.data)
-            console.log(response.data[0])
             existingSeatArray = response.data
 
         }
     })
+
+    if(passJson["roundCheck"]==="true"){
+        $.get({
+            url: "/api/flight_schedule/"+schIdx2,
+            dataType: "json",
+            contentType: 'application/json',
+            async: false,
+            success: function (res) {
+                let schRead2 = res.data;
+                console.log("======schRead2=======")
+                console.log(schRead2);
+                console.log("tbAircraftAcftIdx : " + schRead2["tbAircraftAcftIdx"]);
+                console.log("acftBizLiteSeats :" + schRead2["acftBizLiteSeats"]);
+                console.log("acftBizLiteSeats : "+schRead2["acftNomalSeats"]);
+                bizSeats = Number(schRead2["acftBizLiteSeats"]);
+                ecoSeats = Number(schRead2["acftNomalSeats"]);
+
+                $.get({
+                    url: '/api/passenger/seatFind/' + schIdx2,
+                    dataType: "json",
+                    contentType: 'application/json',
+                    async: false,
+                    success: function (response2) {
+                        console.log(response2)
+                        console.log(response2.data)
+                        console.log(response2.data[0])
+                        existingSeatArray2 = response2.data
+
+                    }
+                })
+        }
+
+        })
+
+    }
+
 
     for (let i = 0; i < bizSeats + 2*(bizSeatLineNum-1); i++) {
         const designator = i % 6 == 0 ? "BIZ" + bizSeatLineNum + ColArr[i % 6] : "BIZ" + (bizSeatLineNum - 1) + ColArr[i % 6];
@@ -109,14 +143,21 @@ $.get("/api/flight_schedule/"+schIdx, function(response){
         }
     }
 
-    for (let i = 0; i < existingSeatArray.length; i++) {
-        console.log(document.querySelector('.select-seat__seat[designator = "'+existingSeatArray[i].pasSeat+'"]'));
-        if(existingSeatArray[i].pasSeat != null){
-            document.querySelector('.select-seat__seat[designator = "'+existingSeatArray[i].pasSeat+'"]').setAttribute("disabled", true);
+    if(tripJson.resRoute==="ONEWAY" || passJson["roundCheck"] === "false"){
+        for (let i = 0; i < existingSeatArray.length; i++) {
+            console.log(document.querySelector('.select-seat__seat[designator = "'+existingSeatArray[i].pasSeat+'"]'));
+            if(existingSeatArray[i].pasSeat != null){
+                document.querySelector('.select-seat__seat[designator = "'+existingSeatArray[i].pasSeat+'"]').setAttribute("disabled", true);
+            }
+        }
+    }if(passJson["roundCheck"] === "true"){
+        for (let i = 0; i < existingSeatArray2.length; i++) {
+            console.log(document.querySelector('.select-seat__seat[designator = "'+existingSeatArray2[i].pasSeat+'"]'));
+            if(existingSeatArray2[i].pasSeat != null){
+                document.querySelector('.select-seat__seat[designator = "'+existingSeatArray2[i].pasSeat+'"]').setAttribute("disabled", true);
+            }
         }
     }
-
-
 });
 
 
@@ -165,9 +206,9 @@ function selectSeat(select) {
     const totalSeatPrice = Number(ecoSelected * ecoPrice) + Number(bizSelected * bizPrice);
 
 
-    $('#divSeat').find('.flight__cost')[0].innerHTML = tripJson.divSeat + totalSeatPrice;
+    $('#divSeat').find('.flight__cost')[0].innerHTML = (tripJson.divSeat + totalSeatPrice).toLocaleString();
     $('#divSeat').find('.flight__cost')[0].setAttribute("value", totalSeatPrice);
-    $('#spanCost').find('.flight__cost')[0].innerHTML =  tripJson.spanCost + tripJson2.spanCost + totalSeatPrice;
+    $('#spanCost').find('.flight__cost')[0].innerHTML =  (tripJson.spanCost + tripJson2.spanCost + totalSeatPrice).toLocaleString();
 
     if (ecoSelected + bizSelected !== 0) {
         document.getElementById('extraServiceFee').style.display = "block";

@@ -59,17 +59,17 @@ function loadSchInfo() {
         document.querySelectorAll(".passengerNum")[1].innerHTML = String(tripJson["schPassengerNum"]);
         document.querySelectorAll(".passengerNum")[2].innerHTML = String(tripJson["schPassengerNum"]);
 
-        document.querySelector(".divFare").innerHTML = String(tripJson.divFare + tripJson2.divFare);
-        document.querySelector(".divTax").innerHTML = String(tripJson.divTax + tripJson2.divTax) ;
-        document.querySelector(".divFuel").innerHTML = String(tripJson.divFuel + tripJson2.divFuel);
-        document.querySelector(".divSeat").innerHTML = String(tripJson.divSeat + tripJson2.divSeat);
-        document.querySelector(".divBaggageFee").innerHTML = String(tripJson.divBaggageFee + tripJson2.divBaggageFee);
-        document.querySelectorAll(".spanCost")[0].innerHTML =  tripJson.spanCost + tripJson2.spanCost;
-        document.querySelectorAll(".spanCost")[1].innerHTML = tripJson.spanCost + tripJson2.spanCost;
-        document.querySelector(".divTotalFare").innerHTML = String(tripJson.divFare + tripJson2.divFare+ tripJson.divTax + tripJson2.divTax + tripJson.divFuel + tripJson2.divFuel);
-        document.querySelector(".divTotalService").innerHTML = String(tripJson.divSeat + tripJson2.divSeat + tripJson.divBaggageFee + tripJson2.divBaggageFee); //+tripJson.divFood + tripJson2.divFood
+        document.querySelector(".divFare").innerHTML = Number(tripJson.divFare + tripJson2.divFare).toLocaleString();
+        document.querySelector(".divTax").innerHTML = Number(tripJson.divTax + tripJson2.divTax).toLocaleString() ;
+        document.querySelector(".divFuel").innerHTML = Number(tripJson.divFuel + tripJson2.divFuel).toLocaleString();
+        document.querySelector(".divSeat").innerHTML = Number(tripJson.divSeat + tripJson2.divSeat).toLocaleString();
+        document.querySelector(".divBaggageFee").innerHTML = Number(tripJson.divBaggageFee + tripJson2.divBaggageFee).toLocaleString();
+        document.querySelectorAll(".spanCost")[0].innerHTML =  Number(tripJson.spanCost + tripJson2.spanCost).toLocaleString();
+        document.querySelectorAll(".spanCost")[1].innerHTML = Number(tripJson.spanCost + tripJson2.spanCost).toLocaleString();
+        document.querySelector(".divTotalFare").innerHTML = Number(tripJson.divFare + tripJson2.divFare+ tripJson.divTax + tripJson2.divTax + tripJson.divFuel + tripJson2.divFuel).toLocaleString();
+        document.querySelector(".divTotalService").innerHTML = Number(tripJson.divSeat + tripJson2.divSeat + tripJson.divBaggageFee + tripJson2.divBaggageFee).toLocaleString(); //+tripJson.divFood + tripJson2.divFood
 
-        document.querySelector(".spanFinalCost").innerHTML = tripJson.spanCost + tripJson2.spanCost;
+        document.querySelector(".spanFinalCost").innerHTML = Number(tripJson.spanCost + tripJson2.spanCost).toLocaleString();
 
         let passengerNum = tripJson["schPassengerNum"];
 
@@ -86,24 +86,24 @@ function loadSchInfo() {
             let passengerHTML = ' <dl class="line-list-item">\n' +
                 '                    <dt class="title">\n' +
                 '                        <div class="txt-left"> '+passJson["passLastName"+i]+passJson["passFirstName"+i]+'</div>\n' +
-                '                        <div class="price"><p><span class="price_txt">'+(Number((tripJson["divFare"]+tripJson2["divFare"])/passengerNum)+Number((tripJson["divFuel"]+tripJson2["divFuel"])/passengerNum)+Number((tripJson["divTax"]+tripJson2["divTax"])/passengerNum)+Number(passJson["pasBaggagePrice"+i] + passJson2["pasBaggagePrice"+i])+seatPrice1+seatPrice2)+'</span>\n' +
+                '                        <div class="price"><p><span class="price_txt">'+(Number((tripJson["divFare"]+tripJson2["divFare"])/passengerNum)+Number((tripJson["divFuel"]+tripJson2["divFuel"])/passengerNum)+Number((tripJson["divTax"]+tripJson2["divTax"])/passengerNum)+Number(passJson["pasBaggagePrice"+i] + passJson2["pasBaggagePrice"+i])+seatPrice1+seatPrice2).toLocaleString()+'</span>\n' +
                 '                            <span class="unit">&nbsp원</span></p></div>\n' +
                 '                    </dt>\n' +
                 '                    <dd class="list">\n' +
                 '                        <ul>\n' +
                 '                            <li>\n' +
                 '                                <div class="txt-left">항공운임</div>\n' +
-                '                                <div class="txt-right"><span class="price_txt">'+Number((tripJson["divFare"]+tripJson2["divFare"])/passengerNum)+'</span>\n' +
+                '                                <div class="txt-right"><span class="price_txt">'+Number((tripJson["divFare"]+tripJson2["divFare"])/passengerNum).toLocaleString()+'</span>\n' +
                 '                                    <span class="unit">&nbsp원</span></div>\n' +
                 '                            </li>\n' +
                 '                            <li>\n' +
                 '                                <div class="txt-left">유류할증료</div>\n' +
-                '                                <div class="txt-right"><span class="price_txt">'+Number((tripJson["divFuel"]+tripJson2["divFuel"])/passengerNum)+'</span>\n' +
+                '                                <div class="txt-right"><span class="price_txt">'+Number((tripJson["divFuel"]+tripJson2["divFuel"])/passengerNum).toLocaleString()+'</span>\n' +
                 '                                    <span class="unit">&nbsp원</span></div>\n' +
                 '                            </li>\n' +
                 '                            <li>\n' +
                 '                                <div class="txt-left">공항시설 사용료</div>\n' +
-                '                                <div class="txt-right"><span class="price_txt">'+Number((tripJson["divTax"]+tripJson2["divTax"])/passengerNum)+'</span>\n' +
+                '                                <div class="txt-right"><span class="price_txt">'+Number((tripJson["divTax"]+tripJson2["divTax"])/passengerNum).toLocaleString()+'</span>\n' +
                 '                                    <span class="unit">&nbsp원</span></div>\n' +
                 '                            </li>\n' +
                 '                        </ul>\n' +
@@ -121,7 +121,7 @@ function loadSchInfo() {
                 '                                        <td class="receipt_conts">\n' +
                 '                                            <ul>\n' +
                 '                                                <li><span class="item">'+passJson["pasBaggage"+i]+'</span> <span\n' +
-                '                                                    class="price"><span class="price_txt">'+passJson["pasBaggagePrice"+i]+'</span><span class="unit">&nbsp&nbsp원</span></span>\n' +
+                '                                                    class="price"><span class="price_txt">'+passJson["pasBaggagePrice"+i].toLocaleString()+'</span><span class="unit">&nbsp&nbsp원</span></span>\n' +
                 '                                                </li>\n' +
                 '                                            </ul>\n' +
                 '                                        </td>\n' +
@@ -143,7 +143,7 @@ function loadSchInfo() {
                 '                                        <td class="receipt_conts">\n' +
                 '                                            <ul>\n' +
                 '                                                <li><span class="item">'+passJson["pasSeat"+i]+'</span> <span class="price"><span\n' +
-                '                                                    class="price_txt">'+seatPrice1+'</span><span class="unit">&nbsp&nbsp원</span></span>\n' +
+                '                                                    class="price_txt">'+seatPrice1.toLocaleString()+'</span><span class="unit">&nbsp&nbsp원</span></span>\n' +
                 '                                                </li>\n' +
                 '                                            </ul>\n' +
                 '                                        </td>\n' +
@@ -166,7 +166,7 @@ function loadSchInfo() {
                 '                                        <td class="receipt_conts">\n' +
                 '                                            <ul>\n' +
                 '                                                <li><span class="item">'+passJson2["pasBaggage"+i]+'</span> <span\n' +
-                '                                                    class="price"><span class="price_txt">'+passJson2["pasBaggagePrice"+i]+'</span><span class="unit">&nbsp&nbsp원</span></span>\n' +
+                '                                                    class="price"><span class="price_txt">'+passJson2["pasBaggagePrice"+i].toLocaleString()+'</span><span class="unit">&nbsp&nbsp원</span></span>\n' +
                 '                                                </li>\n' +
                 '                                            </ul>\n' +
                 '                                        </td>\n' +
@@ -188,7 +188,7 @@ function loadSchInfo() {
                 '                                        <td class="receipt_conts">\n' +
                 '                                            <ul>\n' +
                 '                                                <li><span class="item">'+passJson2["pasSeat"+i]+'</span> <span class="price"><span\n' +
-                '                                                    class="price_txt">'+seatPrice2+'</span><span class="unit">&nbsp&nbsp원</span></span>\n' +
+                '                                                    class="price_txt">'+seatPrice2.toLocaleString()+'</span><span class="unit">&nbsp&nbsp원</span></span>\n' +
                 '                                                </li>\n' +
                 '                                            </ul>\n' +
                 '                                        </td>\n' +
@@ -217,7 +217,7 @@ function loadSchInfo() {
 
             if(Number(document.querySelector("#hasPoint").value) > Number(document.querySelector("#inputPoint").value)){
                 document.querySelector(".spanPoint").innerHTML = document.querySelector("#inputPoint").value;
-                document.querySelector(".spanFinalCost").innerHTML = String(Number(document.querySelectorAll(".spanCost")[0].innerHTML) - Number(document.querySelector(".spanPoint").innerHTML));
+                document.querySelector(".spanFinalCost").innerHTML = (Number(document.querySelectorAll(".spanCost")[0].innerHTML.replaceAll(",","")) - Number(document.querySelector(".spanPoint").innerHTML)).toLocaleString();
             }else{
                 alert("사용포인트는 가용포인트를 초과할 수 없습니다.");
             }
@@ -278,7 +278,7 @@ $(document).on('click', '#btnNext', function () {
         data:{
             pntUserid: tripJson["memUserid"],
             pntContent: "항공권 결제 사용 포인트",
-            pntAmount: Number("-"+document.querySelector(".spanPoint").innerHTML),
+            pntAmount: Number("-"+document.querySelector(".spanPoint").innerHTML.replaceAll(",","")),
             pntStatus: "USE",
             pntMemIdx: tripJson.memIdx
         }
@@ -299,10 +299,19 @@ $(document).on('click', '#btnNext', function () {
             // location.href = "/user/ticket_reservation"
         }
     });
-    tripJson["spanFinalCost"] = Number(document.querySelector(".spanFinalCost").innerHTML);
+    tripJson["spanFinalCost"] = Number(document.querySelector(".spanFinalCost").innerHTML.replaceAll(",",""));
+
+
+    if(tripJson2.spanCost === 0){
+        tripJson["spanCost"] = Number(tripJson.spanCost + Number(tbPoint.data.pntAmount));
+    }else{
+        tripJson["spanCost"] = Number(tripJson.spanCost + parseInt(tbPoint.data.pntAmount/2));
+        tripJson2["spanCost"] = Number(tripJson2.spanCost + parseInt(tbPoint.data.pntAmount/2));
+    }
 
     localStorage.setItem("passJson", JSON.stringify(passJson));
     localStorage.setItem("tripJson", JSON.stringify(tripJson));
+    localStorage.setItem("tripJson2", JSON.stringify(tripJson2));
 
     location.href = "/user/view_payment";
 });
