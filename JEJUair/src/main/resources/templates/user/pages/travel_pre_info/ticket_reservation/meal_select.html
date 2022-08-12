@@ -4,21 +4,7 @@
 <div th:replace="/user/fragment/head :: head"></div>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <!--head 끝-->
-<script>
-    console.log("================jsonparse=============")
-
-    const passJson = JSON.parse(localStorage.getItem("passJson"))
-    console.log("passJson");
-    console.log(passJson);
-    const tripJson = JSON.parse(localStorage.getItem("tripJson"))
-    console.log("tripJson");
-    console.log(tripJson);
-    const schIdx = Number(tripJson["schIdx"]);
-
-
-    console.log("================jsonparse=============")
-
-</script>
+<script type="text/javascript" src="/user/lib/js/ticket_reservation/json_loading.js"></script>
 <body id="bookingLayoutBody">
 
 <!--appAlert-->
@@ -89,7 +75,7 @@
                                     <img src="https://static.jejuair.net/cms/images/aircafe_prod/20211012141828420.jpg" data-src="https://static.jejuair.net/cms/images/aircafe_prod/20211012141828420.jpg" alt="오색비빔밥">
                                     <div class="label-wrap">
                                         <span class="label-wrap__item label-wrap__item" style="background-color: #17b4a4; color : #fff">BEST</span>
-                                        <span class="label-wrap__item label-wrap__item--sale">SALE</span>
+                                        <span class="label-wrap__item label-wrap__item--sale" style="display: none">{{dto.foodIdx}}</span>
                                     </div>
                                 </div>
                                 <div class="list-product__info">
@@ -124,20 +110,6 @@
                             </div>
                         </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     </div>
                     <!-- 더보기 -->
                     <div id="divMore" class="more-wrap mobile-only">
@@ -146,7 +118,6 @@
                         </button>
                     </div>
                 </div>
-
 
                 <div class="booking-sticky booking-sticky--reservation" data-element="toggle"
                      data-options='{"mode": "slide"}'>
@@ -157,7 +128,6 @@
                                     <span>예상 결제금액</span><!-- 예상 결제금액 -->
                                 </div>
 
-
                                 <button id="btnSummary" type="button" class="summary" data-element="toggle__anchor">
                                     <span id="spanCost" class="cost">
                                         <span class="price_txt flight__cost"></span>
@@ -166,9 +136,6 @@
                                     <span id="spanPoint" class="point" style="display: none">+</span>
                                 </button>
                             </div>
-                            <button type="button" id="btnCartPC" class="button button--primary button--black pc-only">
-                                <span class="button__text">담은 상품 (0)</span><!-- 담은 상품 -->
-                            </button>
                             <button type="button" id="btnNextPC" class="button button--primary button--active pc-only">
                                 <span class="button__text">선택 완료</span><!-- 선택 완료 -->
                             </button>
@@ -232,9 +199,6 @@
                             </div>
                         </div>
                         <div class="button-wrap button-wrap--stick mobile-only">
-                            <button type="button" id="btnCartMobile" class="button button--primary button--black">
-                                <span class="button__text">담은 상품 (0)</span><!-- 담은 상품 -->
-                            </button>
                             <button type="button" id="btnNextMobile" class="button button--primary button--active">
                                 <span class="button__text">선택 완료</span><!-- 선택 완료 -->
                             </button>
@@ -277,10 +241,6 @@
                                         <div class="label-wrap">
                                             <span class="label-wrap__item" style="background-color:#17b4a4; color:#fff">BEST</span>
 
-
-
-
-
                                         </div>
                                     </div>
                                     <div class="list-product__info pc-info">
@@ -294,10 +254,10 @@
 
 
                                                 <div class="cost-wrap__amount">
-								<span class="cost">
-									<span class="price_txt pd0">9,000</span>
-<span class="unit">원</span>
-								</span>
+                                                    <span class="cost">
+                                                       <span class="price_txt pd0">9,000</span>
+                                                        <span class="unit">원</span>
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
@@ -308,20 +268,17 @@
                         <ul class="icon-list icon-list--image">
 
                             <li class="icon-list__item">
-				<span class="icon">
-					<img src="https://static.jejuair.net/cms/images/aircafe_menu_expln/20211012142009019.png" alt="">
-				</span><span class="text">조리시간 소요되는</span>
+                                <span class="icon">
+                                   <img src="https://static.jejuair.net/cms/images/aircafe_menu_expln/20211012142009019.png" alt="">
+                                </span><span class="text">조리시간 소요되는</span>
                             </li>
 
 
                             <li class="icon-list__item">
-				<span class="icon">
-					<img src="https://static.jejuair.net/cms/images/aircafe_menu_expln/20211012142014151.png" alt="">
-				</span><span class="text">알레르기 주의</span>
+                                <span class="icon">
+                                   <img src="https://static.jejuair.net/cms/images/aircafe_menu_expln/20211012142014151.png" alt="">
+                                </span><span class="text">알레르기 주의</span>
                             </li>
-
-
-
 
                         </ul>
                         <div id="divEditorCont" class="sub-section"><p class="text--bold"><br></p><p class="text--bold">유의사항</p>
@@ -422,7 +379,7 @@
         <div class="bottom-sheet__bot bottom-sheet__tab bottom-sheet__bot--amount">
             <div id="divPaxSelect" data-element="tab" class="tab tab--default tab--fixed">
                 <div id="divTabButton" class="tab__buttons">
-                    <div class="tab__button" data-element="tab__list" role="presentation">
+                    <div id="roundGo" class="tab__button" data-element="tab__list" role="presentation">
                         <button name="btnTabName" class="tab__anchor is-active" type="button">가는 편</button>
                     </div>
                     <div id="roundOut" class="tab__button" data-element="tab__list" role="presentation" style="display: none">
@@ -444,7 +401,7 @@
                                     </p>
                                     <span class="categoryCode" style="display: none">ML</span>
                                     <span class="ssrCode" style="display: none">LCML</span>
-                                    <span class="journeyNo" style="display: none">0</span>
+                                    <span class="journeyNo" id="foodIdx" style="display: none">0</span>
                                 </div>
                             </div>
                         </div>
@@ -453,16 +410,16 @@
                                 <div class="checkbox-line-item-wrap" id="divPassengerTab">
 
 
-<!--                                    <div class="checkbox-line-item" style="margin-bottom: 20px">-->
-<!--                                        <span class="checkbox checkbox&#45;&#45;small">-->
-<!--                                            <input type="checkbox" class="checkbox__input" id="che">-->
-<!--                                            <label class="checkbox__label">-->
-<!--                                                <i aria-hidden="true" class="checkbox__ico"></i>-->
-<!--                                                <span name="spanCkPaxKey" style="display: none">MCFBRFQ-</span>-->
-<!--                                                <span name="spanCkPax">KIM/GYUNGJUN</span>-->
-<!--                                            </label>-->
-<!--                                        </span>-->
-<!--                                    </div>-->
+                                    <!--                                    <div class="checkbox-line-item" style="margin-bottom: 20px">-->
+                                    <!--                                        <span class="checkbox checkbox&#45;&#45;small">-->
+                                    <!--                                            <input type="checkbox" class="checkbox__input" id="che">-->
+                                    <!--                                            <label class="checkbox__label">-->
+                                    <!--                                                <i aria-hidden="true" class="checkbox__ico"></i>-->
+                                    <!--                                                <span name="spanCkPaxKey" style="display: none">MCFBRFQ-</span>-->
+                                    <!--                                                <span name="spanCkPax">KIM/GYUNGJUN</span>-->
+                                    <!--                                            </label>-->
+                                    <!--                                        </span>-->
+                                    <!--                                    </div>-->
 
 
                                     <div name="divCkpaxPrice" style="display: none">9,000</div>
@@ -555,13 +512,12 @@
 
     for (let i = 0; i < passengerNum; i++) {
         console.log("들어옴")
-
-        let passengerHTML = '<div class="checkbox-line-item" style="margin-bottom: 20px">\n' +
+        let passengerHTML = '<div class="checkbox-line-item" style="margin-bottom: 20px; display: block;">\n' +
             '                                        <span class="checkbox checkbox--small">\n' +
             '                                            <input type="checkbox" class="checkbox__input" id="che">\n' +
             '                                            <label class="checkbox__label">\n' +
             '                                                <i aria-hidden="true" class="checkbox__ico"></i>\n' +
-            '                                                <span name="spanCkPaxKey" style="display: none">MCFBRFQ-</span>\n' +
+            '                                                <span name="spanCkPaxKey" style=" color: gold;"></span>\n' +
             '                                                <span name="spanCkPax">' + passengerNames[i] + '</span>\n' +
             '                                            </label>\n' +
             '                                        </span>\n' +
@@ -578,17 +534,23 @@
         let btnSelect = document.getElementById('btnComplete');
 
         for(let i=2; i<checkPer.children.length; i++){
-            checkPer.children[i].classList.remove('is-active');
-            console.log(checkPer.children[i])
-            let check = checkPer.children[i].firstElementChild.firstElementChild;
-            check.checked = false;
-            console.log(check.checked)
+            // console.log(checkPer.children[i].classList[2])
+            // console.log(checkPer.children[i].classList[1])
+            // console.log(checkPer.children[i].classList[0])
+            if(checkPer.children[i].classList[2] != 'selectedItem'){
+                checkPer.children[i].classList.remove('is-active');
+                console.log(checkPer.children[i])
+                let check = checkPer.children[i].firstElementChild.firstElementChild;
+                check.checked = false;
+                console.log(check.checked)
+            }
+
         }
         btnSelect.classList.remove('button--active');
         document.getElementById('sumPrice').innerText = '0';
     })
 </script>
-
+<script type="text/javascript" src="/user/lib/js/head/head.js"></script>
 
 
 </body>

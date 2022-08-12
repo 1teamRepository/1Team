@@ -64,10 +64,12 @@ function loadSchInfo() {
         document.querySelector(".divFuel").innerHTML = Number(tripJson.divFuel + tripJson2.divFuel).toLocaleString();
         document.querySelector(".divSeat").innerHTML = Number(tripJson.divSeat + tripJson2.divSeat).toLocaleString();
         document.querySelector(".divBaggageFee").innerHTML = Number(tripJson.divBaggageFee + tripJson2.divBaggageFee).toLocaleString();
+        document.querySelector(".divFood").innerHTML = Number(tripJson.divMealFee + tripJson2.divMealFee).toLocaleString();
+
         document.querySelectorAll(".spanCost")[0].innerHTML =  Number(tripJson.spanCost + tripJson2.spanCost).toLocaleString();
         document.querySelectorAll(".spanCost")[1].innerHTML = Number(tripJson.spanCost + tripJson2.spanCost).toLocaleString();
         document.querySelector(".divTotalFare").innerHTML = Number(tripJson.divFare + tripJson2.divFare+ tripJson.divTax + tripJson2.divTax + tripJson.divFuel + tripJson2.divFuel).toLocaleString();
-        document.querySelector(".divTotalService").innerHTML = Number(tripJson.divSeat + tripJson2.divSeat + tripJson.divBaggageFee + tripJson2.divBaggageFee).toLocaleString(); //+tripJson.divFood + tripJson2.divFood
+        document.querySelector(".divTotalService").innerHTML = Number(tripJson.divSeat + tripJson2.divSeat + tripJson.divBaggageFee + tripJson2.divBaggageFee + tripJson.divMealFee + tripJson2.divMealFee).toLocaleString();
 
         document.querySelector(".spanFinalCost").innerHTML = Number(tripJson.spanCost + tripJson2.spanCost).toLocaleString();
 
@@ -80,13 +82,13 @@ function loadSchInfo() {
             const seatPrice1 = passJson["pasSeat"+i] === "" ? 0 : (tripJson.seatValue === "eco" ? 5000 : 10000);
             let seatPrice2 = 0;
             if(tripJson2.resRoute === "ROUNDBACK"){
-                seatPrice2 = passJson["pasSeat"+i] === "" ? 0 : (tripJson2.seatValue === "eco" ? 5000 : 10000);
+                seatPrice2 = passJson2["pasSeat"+i] === "" ? 0 : (tripJson2.seatValue === "eco" ? 5000 : 10000);
             }
 
             let passengerHTML = ' <dl class="line-list-item">\n' +
                 '                    <dt class="title">\n' +
                 '                        <div class="txt-left"> '+passJson["passLastName"+i]+passJson["passFirstName"+i]+'</div>\n' +
-                '                        <div class="price"><p><span class="price_txt">'+(Number((tripJson["divFare"]+tripJson2["divFare"])/passengerNum)+Number((tripJson["divFuel"]+tripJson2["divFuel"])/passengerNum)+Number((tripJson["divTax"]+tripJson2["divTax"])/passengerNum)+Number(passJson["pasBaggagePrice"+i] + passJson2["pasBaggagePrice"+i])+seatPrice1+seatPrice2).toLocaleString()+'</span>\n' +
+                '                        <div class="price"><p><span class="price_txt">'+(Number((tripJson["divFare"]+tripJson2["divFare"])/passengerNum)+Number((tripJson["divFuel"]+tripJson2["divFuel"])/passengerNum)+Number((tripJson["divTax"]+tripJson2["divTax"])/passengerNum)+Number(passJson["pasBaggagePrice"+i] + passJson2["pasBaggagePrice"+i])+seatPrice1+seatPrice2+ Number(passJson["pasMeal"+i] + passJson2["pasMeal"+i])).toLocaleString()+'</span>\n' +
                 '                            <span class="unit">&nbsp원</span></p></div>\n' +
                 '                    </dt>\n' +
                 '                    <dd class="list">\n' +
@@ -131,8 +133,8 @@ function loadSchInfo() {
                 '                                        </td>\n' +
                 '                                        <td class="receipt_conts">\n' +
                 '                                            <ul>\n' +
-                '                                                <li><span class="item"></span> <span\n' +
-                '                                                    class="price"><span class="price_txt">0</span><span class="unit">&nbsp&nbsp원</span></span>\n' +
+                '                                                <li><span class="item">'+passJson["pasMealName"+i]+'</span><span\n' +
+                '                                                    class="price"><span class="price_txt">'+passJson["pasMeal"+i].toLocaleString()+'</span><span class="unit">&nbsp&nbsp원</span></span>\n' +
                 '                                                </li>\n' +
                 '                                            </ul>\n' +
                 '                                        </td>\n' +
@@ -176,8 +178,8 @@ function loadSchInfo() {
                 '                                        </td>\n' +
                 '                                        <td class="receipt_conts">\n' +
                 '                                            <ul>\n' +
-                '                                                <li><span class="item"></span> <span\n' +
-                '                                                    class="price"><span class="price_txt">0</span><span class="unit">&nbsp&nbsp원</span></span>\n' +
+                '                                                <li><span class="item">'+passJson2["pasMealName"+i]+'</span> <span\n' +
+                '                                                    class="price"><span class="price_txt">'+passJson2["pasMeal"+i].toLocaleString()+'</span><span class="unit">&nbsp&nbsp원</span></span>\n' +
                 '                                                </li>\n' +
                 '                                            </ul>\n' +
                 '                                        </td>\n' +

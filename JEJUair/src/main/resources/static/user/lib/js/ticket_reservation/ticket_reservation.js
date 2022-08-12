@@ -12,6 +12,7 @@ let tripJson = {
     divMealFee: 0,
     spanCost: 0
 }
+
 let tripJson2 = {
     resRoute: "",
     divFare: 0,

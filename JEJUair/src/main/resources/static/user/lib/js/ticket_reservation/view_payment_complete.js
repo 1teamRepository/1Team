@@ -165,7 +165,7 @@ if(tripJson.resRoute==="ONEWAY" || tripJson.resRoute==="ROUNDGO") {
                 pasSeat: passJson["pasSeat" + i],
                 tbFlightScheduleSchIdx: Number(tripJson["schIdx"]),
                 tbReservationResIdx: resIdx,
-                tbAirlineFoodFoodIdx: 1,
+                tbAirlineFoodFoodIdx: passJson["pasMealIdx" + i],
                 tbBaggageBagIdx: passJson["pasBagIdx" + i]
             }
         }
@@ -342,7 +342,7 @@ if(tripJson.resRoute==="ONEWAY" || tripJson.resRoute==="ROUNDGO") {
                 pasSeat: passJson2["pasSeat" + i],
                 tbFlightScheduleSchIdx: Number(tripJson2["schIdx"]),
                 tbReservationResIdx: resIdx2,
-                tbAirlineFoodFoodIdx: 1,
+                tbAirlineFoodFoodIdx: passJson2["pasMealIdx" + i],
                 tbBaggageBagIdx: passJson2["pasBagIdx" + i]
             }
         }

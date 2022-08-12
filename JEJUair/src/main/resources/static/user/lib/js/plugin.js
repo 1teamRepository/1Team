@@ -48,7 +48,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
     };
 
     COMMON.checkFocusibleElement = function ($element) {
-      var tagName = $element[0].tagName.toLowerCase();
+      // var tagName = $element[0].tagName.toLowerCase();
+      let tagName = ""
       var boolTagname = false;
 
       if (tagName === 'a' || tagName === 'button') {
