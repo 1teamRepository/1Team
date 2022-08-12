@@ -18,478 +18,523 @@
 <!--header 끝-->
 <div id="body">
 
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD2BQQ4" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PD2BQQ4" height="0" width="0"
+                style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
-  <div class="wrap cancel--pb GD">
-
-
-
-
-    <div class="content" id="content">
-      <main id="main" class="main ">
+    <div class="wrap cancel--pb GD">
 
 
-        <form id="formResvList" method="post" target="_self">
-        </form>
+        <div class="content" id="content">
+            <main id="itemList" class="main">
+                <div id="category" value="reservation"></div>
+
+                <form id="formResvList" method="post" target="_self">
+                </form>
 
 
-        <form id="formResvDetail" method="post" target="_self">
-          <input type="hidden" id="resvDetailReq" name="resvDetailReq" value="">
-          <input type="hidden" id="rpnr" name="rpnr" value="">
-        </form>
+                <form id="formResvDetail" method="post" target="_self">
+                    <input type="hidden" id="resvDetailReq" name="resvDetailReq" value="">
+                    <input type="hidden" id="rpnr" name="rpnr" value="">
+                </form>
 
 
-        <form id="formExchange" name="formExchange" method="post" target="_self">
-          <input type="hidden" name="pnrData" value="">
-          <input type="hidden" name="processType" value="">
-          <input type="hidden" name="tripType" value="">
-          <input type="hidden" name="domIntType" value="">
-          <input type="hidden" name="divideFlag" value="">
-          <input type="hidden" name="rpnr" value="">
-        </form>
+                <form id="formExchange" name="formExchange" method="post" target="_self">
+                    <input type="hidden" name="pnrData" value="">
+                    <input type="hidden" name="processType" value="">
+                    <input type="hidden" name="tripType" value="">
+                    <input type="hidden" name="domIntType" value="">
+                    <input type="hidden" name="divideFlag" value="">
+                    <input type="hidden" name="rpnr" value="">
+                </form>
 
-        <form id="formAddSsr" name="formAddSsr" method="post" target="_self">
-          <input type="hidden" name="pnrData" value="">
-          <input type="hidden" name="cultureCode" value="">
-          <input type="hidden" name="domIntType" value="">
-          <input type="hidden" name="tripType" value="">
-          <input type="hidden" name="inflType" value="M">
-          <input type="hidden" name="ssrAgentId" value="">
-          <input type="hidden" name="rpnr" value="">
+                <form id="formAddSsr" name="formAddSsr" method="post" target="_self">
+                    <input type="hidden" name="pnrData" value="">
+                    <input type="hidden" name="cultureCode" value="">
+                    <input type="hidden" name="domIntType" value="">
+                    <input type="hidden" name="tripType" value="">
+                    <input type="hidden" name="inflType" value="M">
+                    <input type="hidden" name="ssrAgentId" value="">
+                    <input type="hidden" name="rpnr" value="">
 
-          <input type="hidden" name="buyFlag" value="">
-        </form>
+                    <input type="hidden" name="buyFlag" value="">
+                </form>
 
-        <form id="formCancelSSr" name="formCancelSSr" method="post" target="_self">
-          <input type="hidden" name="jsResvDetail" value="">
-          <input type="hidden" name="insuData" value="">
-          <input type="hidden" name="ssrCancelAgentId" value="">
-          <input type="hidden" name="rpnr" value="">
-        </form>
+                <form id="formCancelSSr" name="formCancelSSr" method="post" target="_self">
+                    <input type="hidden" name="jsResvDetail" value="">
+                    <input type="hidden" name="insuData" value="">
+                    <input type="hidden" name="ssrCancelAgentId" value="">
+                    <input type="hidden" name="rpnr" value="">
+                </form>
 
-        <form id="formCancelInsu" name="formCancelInsu" method="post" target="_self">
-          <input type="hidden" name="insuData" value="">
-          <input type="hidden" name="jsResvDetail" value="">
-          <input type="hidden" name="type" value="insu">
-          <input type="hidden" name="ssrCancelInsuAgentId" value="insu">
-          <input type="hidden" name="rpnr" value="">
-        </form>
+                <form id="formCancelInsu" name="formCancelInsu" method="post" target="_self">
+                    <input type="hidden" name="insuData" value="">
+                    <input type="hidden" name="jsResvDetail" value="">
+                    <input type="hidden" name="type" value="insu">
+                    <input type="hidden" name="ssrCancelInsuAgentId" value="insu">
+                    <input type="hidden" name="rpnr" value="">
+                </form>
 
-        <form id="formAutoBoardingPass" name="formAutoBoardingPass" method="post" target="_self">
-          <input type="hidden" name="resvDetailReq" value="">
-          <input type="hidden" name="passengerObj" value="">
-          <input type="hidden" name="domIntType" value="">
-          <input type="hidden" name="viewFlag" value="">
-          <input type="hidden" name="rpnr" value="">
-        </form>
+                <form id="formAutoBoardingPass" name="formAutoBoardingPass" method="post" target="_self">
+                    <input type="hidden" name="resvDetailReq" value="">
+                    <input type="hidden" name="passengerObj" value="">
+                    <input type="hidden" name="domIntType" value="">
+                    <input type="hidden" name="viewFlag" value="">
+                    <input type="hidden" name="rpnr" value="">
+                </form>
 
-        <form id="formWheelChair" name="formWheelChair" method="post" target="_self">
-          <input type="hidden" name="pnrData" value="">
-          <input type="hidden" name="processType" value="">
-          <input type="hidden" name="cultureCode" value="">
-        </form>
-        <div class="page-title-wrap pc-only">
-          <div class="page-title">예약상세</div>
-        </div>
-        <div class="section-wrap">
-          <div class="frame" id="resvInfo"><div class="frame__body">
-            <div class="summarize pdbox">
-              <ul class="summarize__list">
-                <li class="summarize__item">
-                  <span class="summarize__key">예약번호</span>
-                  <span class="summarize__value">
-                    <span class="marked--brand">R3Q5XI</span>
+                <form id="formWheelChair" name="formWheelChair" method="post" target="_self">
+                    <input type="hidden" name="pnrData" value="">
+                    <input type="hidden" name="processType" value="">
+                    <input type="hidden" name="cultureCode" value="">
+                </form>
+                <div class="page-title-wrap pc-only">
+                    <div class="page-title">예약상세</div>
+                </div>
+                <div class="section-wrap">
+                    <div class="frame" id="resvInfo">
+                        <div class="frame__body">
+                            <div class="summarize pdbox">
+                                <ul class="summarize__list">
+                                    <li class="summarize__item">
+                                        <span class="summarize__key">예약번호</span>
+                                        <span class="summarize__value">
+                    <span class="marked--brand"><input id="resIdx" disabled :value=`${itemList.resIdx}` style="display: none">{{itemList.resIdx}}</span>
                   </span>
-                </li>
-                <li class="summarize__item">
-                  <span class="summarize__key">예약일</span>
-                  <span class="summarize__value">2022.08.06 (토) </span>
-                </li>
-                <li class="summarize__item">
-                  <span class="summarize__key">구분</span>
-                  <span class="summarize__value">편도</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          </div>
+                                    </li>
+                                    <li class="summarize__item">
+                                        <span class="summarize__key">예약일</span>
+                                        <span class="summarize__value">{{itemList.resRegDate}}</span>
+                                    </li>
+                                    <li class="summarize__item">
+                                        <span class="summarize__key">구분</span>
+                                        <span class="summarize__value">{{itemList.resRoute}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
 
-        </div>
-        <div class="section-wrap">
-          <div class="frame">
-            <div class="frame__head">
-              <div class="frame__heading">여정 정보</div>
-            </div>
-            <div class="frame__body" id="resvJourney"><div class="journeys__title">	<div class="journeys__heading">가는 편</div>
-              <div class="journeys__passengers">
-                <div class="person">
-                  <div class="person__item">
-                    <i aria-label="성인" class="icon adult"></i><span>1</span><span class="hidden">명</span>
-                  </div>
                 </div>
-              </div>
-            </div>
-              <div class="journeys boarding-list-pc via-list">
-                <div class="boarding-wrap">
-                  <div class="boarding-box">
-                    <div class="boarding">
-                      <div class="boarding__header">
-                        <div class="boarding__header--item1">
-                          <span>7C161</span>
+                <div class="section-wrap">
+                    <div class="frame">
+                        <div class="frame__head">
+                            <div class="frame__heading">여정 정보</div>
                         </div>
-                        <div class="boarding__header--item2">
-                          <span class="marked--brand">FLYBAG</span>
-                        </div>
-                      </div>
-                      <div class="boarding__info-wrap">
-                        <div class="boarding__info--top">
-                          <div class="boarding__info--top-item1"><span>2022.10.04 (화) 20:05</span></div>
-                          <div class="boarding__info--top-item2">
-                            <div class="boarding__info-date">2022.10.04 (화) 21:15</div>
-                          </div>
-                        </div>
-                        <div class="boarding__info">
-                          <div class="boarding__info-before">
-                            <div class="boarding__info-title">서울</div>
-                            <div class="boarding__info-text">김포</div>
-                          </div>
-                          <div aria-label="one-way" class="icon-mark one-way"></div>
-                          <div class="boarding__info-after">
-                            <div class="boarding__info-title">제주</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="button-wrap2" id="btnSection_0">
-                    <button type="button" class="button -w100" onclick="goAutoBoardingPass(&quot;R&quot;);" id="autoCheckinBtn_0">모바일 탑승권 자동발급 신청</button>
-                  </div>
-                  <div class="journeys-fnc-btn" id="btnDiv">
-                    <div class="button-wrap3-row" id="resvBtnDiv">
-                      <div class="button-wrap">
-                        <button type="button" style="" class="button button--border-org" id="modifyResvBtn" onclick="moveExchange('E')">예약변경</button>
-                        <button type="button" style="" class="button button--border-org" id="cancelResvBtn" onclick="moveExchange('C');">예약취소</button>
-                      </div>
-                    </div>
+                        <div class="frame__body" id="resvJourney">
+                            <div class="journeys__title">
+                                <div class="journeys__heading">가는 편</div>
+                                <div class="journeys__passengers">
+                                    <div class="person">
+                                        <div class="person__item">
+                                            <i aria-label="성인" class="icon adult"></i><span>1</span><span
+                                                class="hidden">명</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="journeys boarding-list-pc via-list">
+                                <div class="boarding-wrap">
+                                    <div class="boarding-box">
+                                        <div class="boarding">
+                                            <div class="boarding__header">
+                                                <div class="boarding__header--item1">
+                                                    <span>{{itemList.schAircraftName}}</span>
+                                                </div>
+                                                <div class="boarding__header--item2">
+                                                    <span class="marked--brand"></span>
+                                                </div>
+                                            </div>
+                                            <div class="boarding__info-wrap">
+                                                <div class="boarding__info--top">
+                                                    <div class="boarding__info--top-item1"><span>{{itemList.schDepartureDate}} &nbsp {{itemList.schDepartureTime}}</span>
+                                                    </div>
+                                                    <div class="boarding__info--top-item2">
+                                                        <div class="boarding__info-date">{{itemList.schArrivalDate}}
+                                                            &nbsp {{itemList.schArrivalTime}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="boarding__info">
+                                                    <div class="boarding__info-before">
+                                                        <div class="boarding__info-title">{{itemList.schDeparture}}
+                                                        </div>
+                                                    </div>
+                                                    <div aria-label="one-way" class="icon-mark one-way"></div>
+                                                    <div class="boarding__info-after">
+                                                        <div class="boarding__info-title">{{itemList.schArrival}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="journeys-fnc-btn" id="btnDiv">
+                                        <div class="button-wrap3-row" id="resvBtnDiv">
+                                            <div class="button-wrap">
+                                                <button type="button" style="" class="button button--border-org"
+                                                        id="cancel" value="예약취소" >예약취소
+                                                </button>
+                                            </div>
+                                        </div>
 
-                    <div class="button-wrap3-row" id="ssrPetDiv" style="display: none;">
-                      <div class="button-wrap">
-                        <button type="button" style="display:none;" class="button" id="requestPetBtn">반려동물 신청</button>
-                      </div>
+                                        <div class="button-wrap3-row" id="ssrPetDiv" style="display: none;">
+                                            <div class="button-wrap">
+                                                <button type="button" style="display:none;" class="button"
+                                                        id="requestPetBtn">반려동물 신청
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="button-wrap3-row" id="ssrInfantDiv" style="display: none;">
+                                            <div class="button-wrap">
+                                                <button type="button" style="display:none;" class="button"
+                                                        id="addInfantBtn">유아 승객 추가
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="button-wrap3-row" id="ssrWheelChairDiv" style="display: none;">
+                                            <div class="button-wrap">
+                                                <button type="button" style="display:none;" class="button"
+                                                        id="requestWheelChairBtn" onclick="moveWheelChair('RQST');">휠체어
+                                                    이용 신청
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="button-wrap3-row" style="display: none;">
+                                            <div class="button-wrap">
+                                                <button type="button" style="display:none;" class="button"
+                                                        id="modifyPlaceBtn">체류지 주소 수정
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="button-wrap section-wrap" id="paymentBtnDiv" style="display:none;">
+                                <button type="button" class="button button--primary button--active" id="paymentBtn"
+                                        onclick="moveExchange('L');" style="display:none;">
+                                    <span class="button__text">결제하기</span>
+                                </button>
+                            </div>
+
+                        </div>
                     </div>
-                    <div class="button-wrap3-row" id="ssrInfantDiv" style="display: none;">
-                      <div class="button-wrap">
-                        <button type="button" style="display:none;" class="button" id="addInfantBtn">유아 승객 추가</button>
-                      </div>
-                    </div>
-                    <div class="button-wrap3-row" id="ssrWheelChairDiv" style="display: none;">
-                      <div class="button-wrap">
-                        <button type="button" style="display:none;" class="button" id="requestWheelChairBtn" onclick="moveWheelChair('RQST');">휠체어 이용 신청</button>
-                      </div>
-                    </div>
-                    <div class="button-wrap3-row" style="display: none;">
-                      <div class="button-wrap">
-                        <button type="button" style="display:none;" class="button" id="modifyPlaceBtn">체류지 주소 수정</button>
-                      </div>
-                    </div>
-                  </div>
                 </div>
-              </div>
-              <div class="button-wrap section-wrap" id="paymentBtnDiv" style="display:none;">
-                <button type="button" class="button button--primary button--active" id="paymentBtn" onclick="moveExchange('L');" style="display:none;">
-                  <span class="button__text">결제하기</span>
-                </button>
-              </div>
-
-            </div>
-          </div>
-        </div>
-        <div class="section-wrap" id="faresDiv" style="">
-          <div class="frame">
-            <div class="frame__head">
-              <div class="frame__heading">운임 정보</div>
-            </div>
-            <div class="frame__body">
-              <div class="journey-info">
-                <ul class="journey-info__groups" id="resvPrice">
-                  <li class="journey-info__group">
-                    <div class="journey-info__title">항공 운송료</div>
-                    <ul class="journey-info__list">
-                      <li class="journey-info__item">
-                        <span class="journey-info__key">항공운임</span>
-                        <span class="journey-info__value"><span class="price_txt">11,900
+                <div class="section-wrap" id="faresDiv" style="">
+                    <!--             v-for="(dto,i) in itemList"-->
+                    <!--             :key="(i)">-->
+                    <div class="frame">
+                        <div class="frame__head">
+                            <div class="frame__heading">운임 정보</div>
+                        </div>
+                        <div class="frame__body">
+                            <div class="journey-info">
+                                <ul class="journey-info__groups" id="resvPrice">
+                                    <li class="journey-info__group">
+                                        <div class="journey-info__title">항공 운송료</div>
+                                        <ul class="journey-info__list">
+                                            <li class="journey-info__item">
+                                                <span class="journey-info__key">항공운임</span>
+                                                <span class="journey-info__value"><span class="price_txt">11,900
                         </span>
                           <span class="unit">원</span>
                         </span>
-                      </li>
-                      <li class="journey-info__item">
+                                            </li>
+                                            <li class="journey-info__item">
                         <span class="journey-info__key">
                           <span class="journey-info">공항시설 사용료</span>
                         </span>
-                        <span class="journey-info__value">
+                                                <span class="journey-info__value">
                           <span class="price_txt">4,000</span>
                           <span class="unit">원</span>
                         </span>
-                      </li>
-                      <li class="journey-info__item">
-                        <span class="journey-info__key">유류할증료</span>
-                        <span class="journey-info__value">
+                                            </li>
+                                            <li class="journey-info__item">
+                                                <span class="journey-info__key">유류할증료</span>
+                                                <span class="journey-info__value">
                           <span class="price_txt">22,000</span>
                           <span class="unit">원</span></span>
-                      </li>	</ul></li><li class="journey-info__group">
-                  <div class="journey-info__title">부가서비스</div>
-                  <div class="payment-amount-info itemize--line">
-                    <div class="pc-flex-pay">
-                      <div class="payment-amount left payment-amount--type2">
-                        <div class="payment-amount__title">가는 편</div>
-                      </div>
-                      <div class="payment-amount">
-                        <table class="tbl_receipt">
-                          <tbody>
-                          <tr>
-                            <td class="receipt_title"><span>사전 좌석</span></td>
-                            <td class="receipt_conts">
-                              <ul>
-                                <li><span class="price"><span class="price_txt">1,000</span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="journey-info__group">
+                                        <div class="journey-info__title">부가서비스</div>
+                                        <div class="payment-amount-info itemize--line">
+                                            <div class="pc-flex-pay">
+                                                <div class="payment-amount left payment-amount--type2">
+                                                    <div class="payment-amount__title">가는 편</div>
+                                                </div>
+                                                <div class="payment-amount">
+                                                    <table class="tbl_receipt">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td class="receipt_title"><span>사전 좌석</span></td>
+                                                            <td class="receipt_conts">
+                                                                <ul>
+                                                                    <li><span class="price"><span class="price_txt">1,000</span>
                                   <span class="unit">원</span></span>
-                                </li>
-                              </ul>
-                            </td>
-                          </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="journey-info__totals">
-                    <div class="journey-info__total">
-                      <span class="journey-info__total-key">총 결제금액</span>
-                      <span class="journey-info__total-value"><span class="price_txt">38,900</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="journey-info__totals">
+                                            <div class="journey-info__total">
+                                                <span class="journey-info__total-key">총 결제금액</span>
+                                                <span class="journey-info__total-value"><span
+                                                        class="price_txt">38,900</span>
                         <span class="unit">원</span></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                </li>
-                </ul>
-
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="section-wrap">
-          <div class="frame" id="psInfoDiv" style="">
-            <div class="frame__head pc-only">
-              <div class="frame__heading">탑승객 정보</div>
-            </div>
-            <div class="frame__body">
-              <div class="line-list-wrap" style="display:none;">
-                <div class="line-list-item" id="umInfo"></div>
-              </div>
-              <div class="journey-passengers">
-                <div data-element="toggle" data-options="{'mode': 'slide', 'speed': 300}" class="toggle-item">
-                  <div class="toggle-item__title mobile-only">
-                    <button type="button" data-element="toggle__anchor" class="toggle-item__anchor" aria-controls="toggle-2" aria-expanded="false">탑승객 정보</button>
-                  </div>
-                  <div data-element="toggle__panel" id="toggle-2" style="display: none;">
-                    <ul class="journey-passengers__persons" id="resvPassenger"><li class="journey-passengers__person"><ul class="journey-passengers__list">	<li class="journey-passengers__item">				<span class="journey-passengers__key">성인1</span>		<span class="journey-passengers__value">김 / 은비</span>	</li><li class="journey-passengers__item">	<span class="journey-passengers__key">회원번호</span>	<span class="journey-passengers__value">060007812</span></li></ul></li></ul>
-                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
 
-        <div class="section-wrap" style="display:none;" id="animalDiv">
-          <div class="frame">
-            <div class="frame__head">
-              <div class="frame__heading">반려동물 신청 정보</div>
-            </div>
-            <div class="frame__body">
-              <div class="journey-info">
-                <ul class="journey-info__groups _line" id="petInfo"></ul>
-              </div>
-            </div>
-          </div>
-        </div>
 
 
-        <div class="section-wrap" style="display:none;" id="wheelChairDiv">
-          <div class="frame">
-            <div class="frame__head">
-              <div class="frame__heading">휠체어 이용 신청 정보</div>
-            </div>
-            <div class="frame__body">
-              <div class="journey-info">
-                <ul class="journey-info__groups _line" id="wheelChairInfo"></ul>
-              </div>
-              <div class="journeys-fnc-btn mt10">
-                <div class="button-wrap3-row">
-                  <div class="button-wrap">
-                    <button type="button" class="button" id="cancelWheelChairBtn" onclick="moveWheelChair('CNCL');">신청 취소</button>
-                  </div>
+                <div class="journey-func" style="display:none;" id="cashReceiptDiv">
+                    <div class="journey-func__groups">
+                        <div class="journey-func__group">
+                            <a href="javascript:void(0)" data-element="modal_anchor" class="button button--optional"
+                               id="btnReqCashReceipt" data-target="#cashReceiptLayer" data-modal-type="full"><span
+                                    class="button__text">현금 영수증 신청</span></a>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
+
+                <div class="section-wrap" id="pointPaymentDiv" style="display:none;">
+                    <div class="frame">
+                        <div class="frame__head">
+                            <div class="frame__heading">포인트 결제 내역</div>
+                        </div>
+                        <div class="frame__body" id="pointPayment"></div>
+                    </div>
+                </div>
+
+                <div class="section-wrap" id="dividePaymentDiv" style="display:none;">
+                    <div class="frame">
+                        <div class="frame__head">
+                            <div class="frame__heading">차감정보</div>
+                        </div>
+                        <div class="frame__body" id="divideInfoPayment">
+                        </div>
+                    </div>
+                </div>
+                <!-- 예약 변경으로 PNR이 분리된 케이스인 경우 차감정보 -->
+
+                <div class="section-wrap">
+                    <div class="frame" id="psInfoDiv" style="">
+                        <div class="frame__head pc-only">
+                            <div class="frame__heading">탑승객 정보</div>
+                        </div>
+                        <div class="frame__body">
+                            <div class="line-list-wrap" style="display:none;">
+                                <div class="line-list-item" id="umInfo"></div>
+                            </div>
+                            <div class="journey-passengers">
+                                <div data-element="toggle" data-options="{'mode': 'slide', 'speed': 300}"
+                                     class="toggle-item">
+                                    <div class="toggle-item__title mobile-only">
+                                        <button type="button" data-element="toggle__anchor" class="toggle-item__anchor"
+                                                aria-controls="toggle-2" aria-expanded="false">탑승객 정보
+                                        </button>
+                                    </div>
+                                    <div data-element="toggle__panel" id="toggle-2" style="display: none;">
+                                        <ul class="journey-passengers__persons" id="resvPassenger">
+                                            <li class="journey-passengers__person">
+                                                <ul class="journey-passengers__list">
+                                                    <li class="journey-passengers__item"><span
+                                                            class="journey-passengers__key">성인</span> <span
+                                                            class="journey-passengers__value">{{itemList.memKoLastname}}/ {{itemList.memKoFirstname}}</span>
+                                                    </li>
+                                                    <li class="journey-passengers__item"><span
+                                                            class="journey-passengers__key">회원아이디</span> <span
+                                                            class="journey-passengers__value">{{itemList.memUserid}}</span>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="section-wrap" style="display:none;" id="animalDiv">
+                    <div class="frame">
+                        <div class="frame__head">
+                            <div class="frame__heading">반려동물 신청 정보</div>
+                        </div>
+                        <div class="frame__body">
+                            <div class="journey-info">
+                                <ul class="journey-info__groups _line" id="petInfo"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="section-wrap" style="display:none;" id="wheelChairDiv">
+                    <div class="frame">
+                        <div class="frame__head">
+                            <div class="frame__heading">휠체어 이용 신청 정보</div>
+                        </div>
+                        <div class="frame__body">
+                            <div class="journey-info">
+                                <ul class="journey-info__groups _line" id="wheelChairInfo"></ul>
+                            </div>
+                            <div class="journeys-fnc-btn mt10">
+                                <div class="button-wrap3-row">
+                                    <div class="button-wrap">
+                                        <button type="button" class="button" id="cancelWheelChairBtn"
+                                                onclick="moveWheelChair('CNCL');">신청 취소
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="section-wrap" style="display:none;" id="guardianDiv">
+                    <div class="frame">
+                        <div class="frame__head pc-only">
+                            <div class="frame__heading">동반 보호자</div>
+                        </div>
+                        <div class="frame__body">
+                            <div class="line-list-wrap">
+                                <div class="line-list-item" id="gurdianInfo"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="section-wrap" style="display:none;" id="insureDiv">
+                    <div class="frame" id="setInsuranceDetail"></div>
+                </div>
+
+                <div class="journey-func" style="display:none;" id="cashReceiptDiv">
+                    <div class="journey-func__groups">
+                        <div class="journey-func__group">
+                            <a href="javascript:void(0)" data-element="modal_anchor" class="button button--optional"
+                               id="btnReqCashReceipt" data-target="#cashReceiptLayer" data-modal-type="full"><span
+                                    class="button__text">현금 영수증 신청</span></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-wrap" id="pointPaymentDiv" style="display:none;">
+                    <div class="frame">
+                        <div class="frame__head">
+                            <div class="frame__heading">포인트 결제 내역</div>
+                        </div>
+                        <div class="frame__body" id="pointPayment"></div>
+                    </div>
+                </div>
+
+                <div class="section-wrap" id="dividePaymentDiv" style="display:none;">
+                    <div class="frame">
+                        <div class="frame__head">
+                            <div class="frame__heading">차감정보</div>
+                        </div>
+                        <div class="frame__body" id="divideInfoPayment">
+                        </div>
+                    </div>
+                </div>
+                <!-- 예약 변경으로 PNR이 분리된 케이스인 경우 차감정보 -->
+
+                <div class="section-wrap" id="refundPaymentDiv" style="display:none;">
+                    <div class="frame">
+                        <div class="frame__head">
+                            <div class="frame__heading">환불정보</div>
+                        </div>
+                        <div class="frame__body" id="refundInfoPayment">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="alertModalLayer" class="modal modal--simple">
+                    <div class="modal-content"><p class="alert-text"></p></div>
+                    <div class="modal__button-area button-wrap">
+                        <button type="button" class="button button--secondary button--active" rel="modal:close"
+                                onclick="javascript:closeCurrentModal(this);"><span class="button__text">확인</span>
+                        </button>
+                    </div>
+                </div>
+
+
+                <div id="reloadLayer" class="modal modal--simple">
+                    <div class="modal-content"><p class="alert-text"></p></div>
+                    <div class="modal__button-area button-wrap">
+                        <button type="button" class="button button--secondary button--active" onclick="reloadDetail();">
+                            <span class="button__text">확인</span></button>
+                    </div>
+                </div>
+
+
+                <div id="backListLayer" class="modal modal--simple">
+                    <div class="modal-content"><h2 class="alert-title"></h2>
+                        <p class="alert-text"></p></div>
+                    <div class="modal__button-area button-wrap">
+
+                        <button type="button" class="button button--secondary button--active" onclick="moveResvList();">
+                            <span class="button__text">확인</span>
+                        </button>
+
+
+                    </div>
+                </div>
+
+
+                <div id="confirmRefundLayer" class="modal modal--simple">
+                    <div class="modal-content"><p class="alert-text"></p></div>
+                    <div class="modal__button-area button-wrap center">
+                        <button type="button" class="button button--secondary button--active"
+                                onclick="closeCurrentModal(this);">
+                            <span class="button__text">취소</span>
+                        </button>
+
+                        <button type="button" class="button button--secondary button--active" onclick="moveResvList();">
+                            <span class="button__text">확인</span>
+                        </button>
+
+
+                    </div>
+                </div>
+
+                <button type="button" id="btnModalOpen" data-element="modal_anchor" style="display: none;"></button>
+
+                <div id="receiptForm" class="modal modal-full modal-small modal-scroll"></div>
+
+                <div id="connectSectionForm" class="modal modal-full modal-scroll"></div>
+
+                <div id="untkForm" class="modal modal-full modal-scroll" data-width="910">
+                    <div class="modal-header">
+                        <div class="modal-header__title">항공편 스케줄 변경 안내</div>
+                    </div>
+                    <div class="modal-content"></div>
+                </div>
+
+                <div id="modalBank" class="modal modal-full modal-scroll"></div>
+            </main>
         </div>
 
-
-        <div class="section-wrap" style="display:none;" id="guardianDiv">
-          <div class="frame">
-            <div class="frame__head pc-only">
-              <div class="frame__heading">동반 보호자</div>
-            </div>
-            <div class="frame__body">
-              <div class="line-list-wrap">
-                <div class="line-list-item" id="gurdianInfo"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-        <div class="section-wrap" style="display:none;" id="insureDiv">
-          <div class="frame" id="setInsuranceDetail"></div>
-        </div>
-
-        <div class="section-wrap" id="paymentsDiv" style="">
-
-          <div class="frame">
-            <div class="frame__head">
-              <div class="frame__heading">결제정보</div>
-            </div>
-            <div class="frame__body" id="resvPayments"><div class="table-horizontal cancel--mt">	<table>		<caption></caption>			<colgroup>			<col style="width: 140px">			<col width="auto">		</colgroup>		<tbody class="table-horizontal__tbody">		<tr>			<th scope="row" class="table-horizontal__th">결제방법</th>			<td class="table-horizontal__td">카카오페이</td>		</tr>		<tr>			<th scope="row" class="table-horizontal__th">승인번호</th>			<td class="table-horizontal__td">T3062907986722274305</td>		</tr>		<tr>			<th scope="row" class="table-horizontal__th">결제일</th>			<td class="table-horizontal__td">2022.08.06 (토) </td>		</tr>		 <tr>			 <th scope="row" class="table-horizontal__th">결제금액</th>			 <td class="table-horizontal__td"><span class="price_txt">38,900</span>
-              <span class="unit">원</span></td>		</tr>		</tbody>	</table></div><br></div>
-          </div>
-        </div>
-
-
-        <div class="journey-func" style="display:none;" id="cashReceiptDiv">
-          <div class="journey-func__groups">
-            <div class="journey-func__group">
-              <a href="javascript:void(0)" data-element="modal_anchor" class="button button--optional" id="btnReqCashReceipt" data-target="#cashReceiptLayer" data-modal-type="full"><span class="button__text">현금 영수증 신청</span></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="section-wrap" id="pointPaymentDiv" style="display:none;">
-          <div class="frame">
-            <div class="frame__head">
-              <div class="frame__heading">포인트 결제 내역</div>
-            </div>
-            <div class="frame__body" id="pointPayment"></div>
-          </div>
-        </div>
-
-        <div class="section-wrap" id="dividePaymentDiv" style="display:none;">
-          <div class="frame">
-            <div class="frame__head">
-              <div class="frame__heading">차감정보</div>
-            </div>
-            <div class="frame__body" id="divideInfoPayment">
-            </div>
-          </div>
-        </div>
-        <!-- 예약 변경으로 PNR이 분리된 케이스인 경우 차감정보 -->
-
-        <div class="section-wrap" id="refundPaymentDiv" style="display:none;">
-          <div class="frame">
-            <div class="frame__head">
-              <div class="frame__heading">환불정보</div>
-            </div>
-            <div class="frame__body" id="refundInfoPayment">
-            </div>
-          </div>
-        </div>
-
-        <div class="section-wrap">
-          <div class="service-information" data-element="toggle" data-options="{&quot;mode&quot;: &quot;move scroll&quot;}" data-action="info-toggle" data-toggle-id="0000000076">
-            <div class="service-information__title">
-              <button type="button" class="service-information__anchor" data-element="toggle__anchor" aria-controls="toggle-3" aria-expanded="false">유의사항</button>
-            </div>
-            <div class="service-information__content" data-element="toggle__panel" id="toggle-3"><ul class="list-guide list-guide--small">
-
-              <!--li class="list-guide__item">2인 이상 예약 후 예약이 분리된 경우, 해당 금액은 환불로 표기됩니다.</li-->
-              <li class="list-guide__item">신분할인을 받은 경우, 탑승수속 시 관련 증빙서류를 제시하여 주시기 바랍니다.</li>
-              <li class="list-guide__item">탑승수속 마감 이후 도착하신 고객은 탑승이 거절되므로 여유있게 공항에 도착하시길 권장합니다.</li>
-              <li class="list-guide__item">국내선 탑승수속 마감 : 출발 2시간 전 ~ 출발 30분 전</li>
-              <li class="list-guide__item">국제선 탑승수속 마감
-                <p class="notice-text notice-text--type2 pc-10">인천공항 : 출발 2시간 30분 전 ~ 출발 60분 전</p>
-                <p class="notice-text notice-text--type2 pc-10">인천공항 외 공항 : 출발 2시간 전 ~ 출발 60분 전</p>
-
-              </li>
-
-
-              <li class="list-guide__item">항공편 일정은 정부 인가 조건이며, 사전 예고 없이 변경될 수 있습니다.</li>
-              <li class="list-guide__item">예매 시, 회원번호를 입력하지 못한 회원님은 탑승 완료 후 홈페이지, 모바일웹/앱에서 6개월 이내 누락포인트 적립 신청이 가능합니다.</li>
-              <li class="list-guide__item">비즈니스 라이트의 경우, 제공 서비스가 예고없이 변경될 수 있으며 현장 상황에 따라 준비한 서비스가 제공되지 않을 수 있습니다.</li>
-            </ul>
-            </div>
-          </div>
-        </div>
-
-
-        <div id="alertModalLayer" class="modal modal--simple">
-          <div class="modal-content"><p class="alert-text"></p></div>
-          <div class="modal__button-area button-wrap"><button type="button" class="button button--secondary button--active" rel="modal:close" onclick="javascript:closeCurrentModal(this);"><span class="button__text">확인</span></button></div>
-        </div>
-
-
-        <div id="reloadLayer" class="modal modal--simple">
-          <div class="modal-content"><p class="alert-text"></p></div>
-          <div class="modal__button-area button-wrap"><button type="button" class="button button--secondary button--active" onclick="reloadDetail();"><span class="button__text">확인</span></button></div>
-        </div>
-
-
-        <div id="backListLayer" class="modal modal--simple">
-          <div class="modal-content"><h2 class="alert-title"></h2><p class="alert-text"></p></div>
-          <div class="modal__button-area button-wrap">
-
-            <button type="button" class="button button--secondary button--active" onclick="moveResvList();">
-              <span class="button__text">확인</span>
-            </button>
-
-
-          </div>
-        </div>
-
-
-        <div id="confirmRefundLayer" class="modal modal--simple">
-          <div class="modal-content"><p class="alert-text"></p></div>
-          <div class="modal__button-area button-wrap center">
-            <button type="button" class="button button--secondary button--active" onclick="closeCurrentModal(this);">
-              <span class="button__text">취소</span>
-            </button>
-
-            <button type="button" class="button button--secondary button--active" onclick="moveResvList();">
-              <span class="button__text">확인</span>
-            </button>
-
-
-          </div>
-        </div>
-
-        <button type="button" id="btnModalOpen" data-element="modal_anchor" style="display: none;"></button>
-
-        <div id="receiptForm" class="modal modal-full modal-small modal-scroll"></div>
-
-        <div id="connectSectionForm" class="modal modal-full modal-scroll"></div>
-
-        <div id="untkForm" class="modal modal-full modal-scroll" data-width="910">
-          <div class="modal-header"><div class="modal-header__title">항공편 스케줄 변경 안내</div></div>
-          <div class="modal-content"></div>
-        </div>
-
-        <div id="modalBank" class="modal modal-full modal-scroll"></div>
-      </main>
     </div>
-
-  </div>
 </div>
 
 <!-- footer -->
@@ -498,7 +543,7 @@
 
 <div id="ifmWrap"
      style="height:100%; display:none; overflow:auto; text-align:center; -webkit-overflow-scrolling:touch;">
-  <iframe src="" width="100%" height="100%" name="popupChkApp"></iframe>
+    <iframe src="" width="100%" height="100%" name="popupChkApp"></iframe>
 </div>
 
 <!-- 공통 스크립트 선언 -->
@@ -506,5 +551,8 @@
 <script type="text/javascript" src="/user/lib/js/common.js"></script>
 <script type="text/javascript" src="/user/lib/js/plugin.js"></script>
 <script type="text/javascript" src="/user/lib/js/userJs/password_edit.js"></script>
+<script type="text/javascript" src="/user/lib/js/userJs/viewReservation/viewReservation.js"></script>
+<script type="text/javascript" src="/user/lib/js/userJs/viewReservation/viewReservationCancel.js"></script>
+
 </body>
 </html>

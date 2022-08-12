@@ -93,6 +93,11 @@
             el: '#itemList',
             data: {
                 itemList: {}
+            },
+            methods:{
+                locate(index){
+                    window.location.href=`/user/viewReservationDetail/${index}`
+                }
             }
         });
         searchList();

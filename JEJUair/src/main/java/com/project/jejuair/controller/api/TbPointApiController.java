@@ -51,5 +51,10 @@ public class TbPointApiController extends CrudController<TbPointRequest, TbPoint
         return tbPointApiLogicService.search(pageable);
     }
 
+    @GetMapping("/search/{idx}")
+    public Header<List<TbPointResponse>> findPoint(@PathVariable Long idx, @PageableDefault(sort = {"pntIdx"}, direction = Sort.Direction.DESC) Pageable pageable){
+        System.out.println(idx);
+        return tbPointApiLogicService.findPoint(idx,pageable);
+    }
 
 }
