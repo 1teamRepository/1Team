@@ -20,5 +20,6 @@ public interface TbMemberRepository extends JpaRepository<TbMember, Long> {
 
     Page<TbMember> findByMemUserid(String memUserid, Pageable pageable);
 
+    Optional<TbMember> findByMemEmail(String memEmail);
 
 }
