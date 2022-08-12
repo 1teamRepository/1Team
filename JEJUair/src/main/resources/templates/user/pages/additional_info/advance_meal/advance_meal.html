@@ -36,7 +36,7 @@
 					<button type="button" class="breadcrumb__link breadcrumb__link--list" data-element="toggle__anchor">사전 기내식</button>
 					<div class="breadcrumb__siblings-list" data-element="toggle__panel">
 						<a href="/user/additionalInfo/advanceBaggage" class="item">사전 수하물</a>
-						<a href="/user/additionalInfo/additionalIntro" class="item">부가서비스 소개</a>
+						<a href="user/additionalInfo/additionalIntro" class="item">부가서비스 소개</a>
 						<a href="/user/additionalInfo/advanceSeat" class="item">사전 좌석</a>
 						<a href="/user/additionalInfo/insurance" class="item">보험 상품</a>
 						<a href="/user/additionalInfo/afterPayment" class="item">나중에 결제</a>
@@ -44,13 +44,8 @@
 						<a href="/user/additionalInfo/bicycleService" class="item">자전거 캐링백 서비스</a>
 					</div>
 				</div>
-
-
-
 			</nav>
 		</div>
-
-
 
 		<div class="content" id="content">
 			<main id="main" class="main ">
@@ -64,39 +59,29 @@
 					<div class="banner_single-img" style="background-image: url(https://static.jejuair.net/hpgg/resources/images/@temp/preorderedmeal-image-01.png);"></div>
 				</div>
 
-				<div class="section-wrap">
+				<div class="section-wrap" id="itemList">
+					<div class="list-product show">
 
-
-				<div class="section-wrap">
-					<div class="list-product show" data-chip-show=0>
-
-						<div class="list-product__item">
+						<div class="list-product__item"
+							 v-for="(dto,i) in itemList"
+							 :key="i">
 							<div class="carousel carousel--full swiper-container" data-carousel="productItem">
 								<div class="carousel__item swiper-wrapper">
 									<div class="carousel__list swiper-slide">
 										<div class="carousel__contents">
 											<div class="list-product__image">
+												<!-- 음식 이미지 -->
 												<img src="https://static.jejuair.net/cms/images/aircafe_prod/20211012134308825.jpg" alt="SANDWICH ON THE CLOUD">
 											</div>
 										</div>
 									</div>
-
 								</div>
-								<div class="label-wrap">
-									<span class="label-wrap__item" style="background-color:#17b4a4; color:#fff">BEST</span>
-
-
-
-
-								</div>
-								<div class="carousel__button carousel__button-prev"></div>
-								<div class="carousel__button carousel__button-next"></div>
-								<div class="carousel__pagination-number"></div>
 							</div>
+							<!-- 리스트 -->
 							<div class="list-product__info">
-								<div class="list-product__sub-text eng">Sandwich On the Cloud</div>
-								<div class="list-product__title">구름 위의 샌드위치</div>
-								<p class="list-dsc">구름 위에서 즐기는 햄치즈/참치마요 닭가슴살 클럽 샌드위치</p>
+								<div class="list-product__sub-text eng">{{dto.foodEngName}}</div>
+								<div class="list-product__title">{{dto.foodKorName}}</div>
+								<p class="list-dsc">{{dto.foodContent}}</p>
 								<div class="cost-wrap">
 									<div class="cost-wrap__before">
 
@@ -105,240 +90,35 @@
 									</div>
 									<div class="cost-wrap__after">
 								<span class="cost">
-
-
-										9,000원
-
+										{{dto.foodKrwPrice}}원
 								</span>
 										<div class="currency-wrap eng">
-											<span>USD 9</span>
-											<span>JPY 900</span>
+											<span>USD {{dto.foodUsdPrice}}</span>
+											<span>JPY {{dto.foodJpyPrice}}</span>
 										</div>
 									</div>
 								</div>
 							</div>
-
-							<div class="list-product__detail product-detail" data-element="toggle" data-options='{"mode": "slide"}' data-text-toggle>
-								<button type="button" class="product-detail__button" data-element="toggle__anchor" data-text-anchor>
-									<span class="product-detail__button-text" data-text-label data-open="펼치기" data-close="접기"></span>
-								</button>
-								<div class="product-detail__content" data-element="toggle__panel">
-									<div class="product-detail__info-wrap">
-
-										<div class="product-detail__icon__list">
-											<i class="icon"><img src="https://static.jejuair.net/cms/images/aircafe_menu_expln/20211012142009019.png" alt=""></i>
-											<p class="text">조리시간 소요되는</p>
-										</div>
-
-
-
-										<div class="product-detail__icon__list">
-											<i class="icon"><img src="https://static.jejuair.net/cms/images/aircafe_menu_expln/20211012142014151.png" alt=""></i>
-											<p class="text">알레르기 주의</p>
-										</div>
-
-
-
-
-
-
-
-									</div>
-
-									<p class="text--bold"><br></p><p class="text--bold">유의사항</p>
-									<ul class="list-guide list-guide--small">
-										<li class="list-guide__item">괌, 사이판, 방콕, 부산, 제주 출발편은 현지에서 생산된 햄치즈 샌드위치가 제공됩니다.
-										</li>
-									</ul>
-									<br>
-									<p class="text--bold">구성</p>
-									<ul class="list-guide list-guide--small">
-										<li class="list-guide__item">햄치즈샌드위치, 닭가슴살 샌드위치
-										</li>
-									</ul>
-									<br>
-									<p class="text--bold">주재료</p>
-									<ul class="list-guide list-guide--small">
-										<li class="list-guide__item">훈제치킨, 호밀식빵, 계란, 참치캔, 햄, 치즈, 할라피뇨, 마요네즈(유제품 포함)
-										</li>
-									</ul>
-									<br>
-									<p class="text--bold">알러지 유의사항</p>
-									<ul class="list-guide list-guide--small">
-										<li class="list-guide__item">알류, 콩류, 밀, 닭고기, 유제품, 돼지고기, 토마토, 쇠고기
-										</li>
-									</ul>
-									<br>
-								</div>
-							</div>
+							<!-- 펼치기 -->
 						</div>
-
-						<div class="list-product__item">
-							<div class="carousel carousel--full swiper-container" data-carousel="productItem">
-								<div class="carousel__item swiper-wrapper">
-									<div class="carousel__list swiper-slide">
-										<div class="carousel__contents">
-											<div class="list-product__image">
-												<img src="https://static.jejuair.net/cms/images/aircafe_prod/20211012141512893.jpg" alt="생선요리와 화이트와인">
-											</div>
-										</div>
-									</div>
-
-								</div>
-								<div class="label-wrap">
-									<span class="label-wrap__item" style="background-color:#ff4e4e; color:#fff">SALE</span>
-
-
-
-
-								</div>
-								<div class="carousel__button carousel__button-prev"></div>
-								<div class="carousel__button carousel__button-next"></div>
-								<div class="carousel__pagination-number"></div>
-							</div>
-							<div class="list-product__info">
-								<div class="list-product__sub-text eng">Seafood and White Wine</div>
-								<div class="list-product__title">생선요리와 화이트와인</div>
-								<p class="list-dsc">흰살생선, 새우 등으로 이루어진 생선요리 세트</p>
-								<div class="cost-wrap">
-									<div class="cost-wrap__before">
-
-										<!-- [-+]?[0-9]*\\.?[0-9]+$ -->
-
-										<span aria-label="할인" class="discount">27% 할인</span>
-										<span class="cost">
-
-
-												15,000원
-
-										</span>
-
-									</div>
-									<div class="cost-wrap__after">
-								<span class="cost">
-
-
-										11,000원
-
-								</span>
-										<div class="currency-wrap eng">
-											<span>USD 11</span>
-											<span>JPY 1,100</span>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="list-product__detail product-detail" data-element="toggle" data-options='{"mode": "slide"}' data-text-toggle>
-								<button type="button" class="product-detail__button" data-element="toggle__anchor" data-text-anchor>
-									<span class="product-detail__button-text" data-text-label data-open="펼치기" data-close="접기"></span>
-								</button>
-								<div class="product-detail__content" data-element="toggle__panel">
-									<div class="product-detail__info-wrap">
-
-										<div class="product-detail__icon__list">
-											<i class="icon"><img src="https://static.jejuair.net/cms/images/aircafe_menu_expln/20211013090101173.png" alt=""></i>
-											<p class="text">뜨거운 음식</p>
-										</div>
-
-
-
-										<div class="product-detail__icon__list">
-											<i class="icon"><img src="https://static.jejuair.net/cms/images/aircafe_menu_expln/20211013090106391.png" alt=""></i>
-											<p class="text">조리시간 소요되는</p>
-										</div>
-
-
-
-										<div class="product-detail__icon__list">
-											<i class="icon"><img src="https://static.jejuair.net/cms/images/aircafe_menu_expln/20211013090111466.png" alt=""></i>
-											<p class="text">알레르기 주의</p>
-										</div>
-
-
-
-										<div class="product-detail__icon__list">
-											<i class="icon"><img src="https://static.jejuair.net/cms/images/aircafe_menu_expln/20211013090119593.png" alt=""></i>
-											<p class="text">성인전용</p>
-										</div>
-
-
-
-									</div>
-
-									<p class="text--bold"><br></p><p class="text--bold">유의사항</p>
-									<ul class="list-guide list-guide--small">
-										<li class="list-guide__item">주류 포함 상품으로 만 19세 미만의 미성년자는 구매 불가능함을 안내드립니다.<br>
-											일부노선은 제공되지 않습니다.(청주발, 오사카발)<br>
-											무안 출발편의 경우, 해산물요리와 화이트와인으로 제공됩니다.)
-										</li>
-									</ul>
-									<br>
-									<p class="text--bold">구성</p>
-									<ul class="list-guide list-guide--small">
-										<li class="list-guide__item">생선요리, 와사비 마요네즈 소스(유제품포함), 화이트 와인
-										</li>
-									</ul>
-									<br>
-									<p class="text--bold">주재료</p>
-									<ul class="list-guide list-guide--small">
-										<li class="list-guide__item">쌀, 양파, 브로콜리, 와사비, 마요네즈(유제품포함), 피망, 오징어, 흰살생선(동태살), 중하
-										</li>
-									</ul>
-									<br>
-									<p class="text--bold">알러지 유의사항</p>
-									<ul class="list-guide list-guide--small">
-										<li class="list-guide__item">콩류, 밀, 유제품, 새우, 오징어, 알류, 토마토, 닭고기, 쇠고기, 조개류
-										</li>
-									</ul>
-									<br>
-								</div>
-							</div>
-						</div>
-
-
-
 					</div>
 				</div>
-
-
-
-
-
-				<div class="button-wrap pc-center fixed-wrap section-wrap">
-					<button type="button" class="button button--primary button--active" onclick="bayCOnfirm();"><span class="button__text">구매하기</span></button>
-				</div>
-
 			</main>
 		</div>
-
 	</div>
 </div>
-
-
-
-
-
-
-
 
 <!-- footer -->
 <div th:replace="user/fragment/footer :: footer"></div>
 <!-- / footer 끝 -->
 
-<div id="ifmWrap" style="height:100%; display:none; overflow:auto; text-align:center; -webkit-overflow-scrolling:touch;">
-	<iframe src="" width="100%" height="100%" name="popupChkApp"></iframe>
-</div>
-
 
 <!-- 공통 스크립트 선언 -->
-
-<!--<div th:replace="/user/fragment/js :: js"></div>-->
 <script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
 <script type="text/javascript" src="/user/lib/js/common.js"></script>
 <script type="text/javascript" src="/user/lib/js/plugin.js"></script>
+<script type="text/javascript" src="/user/lib/js/food/foodList.js"></script>
 <script type="text/javascript" src="/user/lib/js/head/head.js"></script>
-
 <!-- 공통 스크립트 선언 끝 -->
 
 <!--body, html 주석은 위치 고정-->

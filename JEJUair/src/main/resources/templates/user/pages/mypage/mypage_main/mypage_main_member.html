@@ -5,6 +5,8 @@
 <!--head-->
 <div th:replace="/user/fragment/head :: head"></div>
 <!--head 끝-->
+<script type="text/javascript" src="/user/lib/js/mypage/main_view.js"></script>
+<link rel="stylesheet" type="text/css" href="/admin/lib/css/common.css">
 
 <body id="subLayoutBody" class="isPc">
 
@@ -116,144 +118,46 @@
                     </div>
                 </div>
 
-                <form id="frmForAvail" name="frmForAvail" method="post">
-                    <input type="hidden" id="availSearchData" name="availSearchData">
-                </form>
-                <form id="frmResvDetail" name="frmResvDetail" method="post">
-                    <input type="hidden" name="resvDetailReq" value="">
-                    <input type="hidden" name="rpnr" value="">
-                </form>
                 <div class="section-wrap point">
-                    <div class="title__additional">
+                    <div class="title__additional" style="font-weight: bold; font-size: 25px;">
                         나의 포인트
                     </div>
 
-                    <div id="linkedTab" data-element="tab__link" class="linked-tab">
-                        <div data-element="tab__panel" class="tab__panel tab__panel--pat20">
-                            <div data-element="tab" class="tab tab--2depth">
+                    <div class="containerbody">
+                        <!-- main -->
+                        <div class="main">
+                            <div value="point"></div>
+                            <div class="details" style="padding: 0;">
+                                <!-- order details list -->
+                                <div class="recentOrders" style="box-shadow: none; padding: 0;">
+                                    <table>
+                                        <thead>
+                                        <tr class="topbanner" style="background-color: #FF5000; color: white;">
+                                            <td class="airplaneName">NO</td>
+                                            <td class="departureTime">내용</td>
+                                            <td class="departureLocation">금액(P)</td>
+                                            <td class="departureTime">아이디</td>
+                                            <td class="arriveTime">상태</td>
+                                            <td class="arriveTime">사용(적립)일시</td>
+                                        </tr>
+                                        </thead>
 
+                                        <tbody id="itemList">
+                                        <tr v-for="(dto,i) in itemList"
+                                            :key="i">
+                                            <td class="point_idx">{{dto.pntIdx}}</td>
+                                            <td class="point_content">{{dto.pntContent}}</td>
+                                            <td class="point_amount">{{dto.pntAmount}}</td>
+                                            <td class="point_userid">{{dto.pntUserid}}</td>
+                                            <td class="point_status">{{dto.pntStatus}}</td>
+                                            <td class="point_reg_date">{{dto.pntRegDate}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
 
-                                <div class="select-chips full swiper-container swiper-container-initialized swiper-container-horizontal">
-                                    <ul class="chips-group swiper-wrapper">
-                                        <li class="chip swiper-slide swiper-slide-active">
-                                            <button type="button" class="chip-btn checked is-active" data-val="Q01" data-index="0" data-element="tab__anchor" id="plugin-tab-5" role="tab" tabindex="" aria-selected="true" aria-expanded="true">
-                                                <span class="txt">전체</span>
-                                            </button>
-                                        </li>
-                                        <li class="chip swiper-slide swiper-slide-next">
-                                            <button type="button" class="chip-btn" data-val="Q02" data-index="1" data-element="tab__anchor" id="plugin-tab-6" role="tab" tabindex="" aria-selected="false" aria-expanded="false">
-                                                <span class="txt">적립</span>
-                                            </button>
-                                        </li>
-
-                                        <li class="chip swiper-slide">
-                                            <button type="button" class="chip-btn" data-val="Q03" data-index="3" data-element="tab__anchor" id="plugin-tab-8" role="tab" tabindex="" aria-selected="false" aria-expanded="false">
-                                                <span class="txt">사용</span>
-                                            </button>
-                                        </li>
-                                    </ul>
-                                    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
-
-
-
-
-
-                                <!-- 전체 -->
-                                <div data-element="tab__panel" class="tab__panel is-active" aria-labelledby="plugin-tab-5" role="tabpanel" tabindex="0">
-                                    <div id="tabAll" class="result-box result-box--point result-box--col3"></div>
-                                    <!-- //전체 -->
-
-                                    <!--  조회 내역이 없을 경우 노출 -->
-                                    <div class="finish-item-wrap noSearch" style="display: block;">
-                                        <div class="finish-item nothing">
-                                            <div class="finish-item__img">
-                                                <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-result-none.png" alt="">
-                                            </div>
-                                            <p class="finish-item__title">조회 결과가 없습니다.</p>
-                                        </div>
+                                    <div class="paging" id="pageNum">
                                     </div>
-                                    <!--  //조회 내역이 없을 경우 노출 -->
                                 </div>
-
-                                <!-- 적립 -->
-                                <div data-element="tab__panel" class="tab__panel" style="display:none;" aria-labelledby="plugin-tab-6" role="tabpanel" tabindex="0">
-                                    <div id="tab1" class="result-box result-box--point result-box--col3"></div>
-                                    <!--  조회 내역이 없을 경우 노출 -->
-                                    <div class="finish-item-wrap noSearch" style="display: block;">
-                                        <div class="finish-item nothing">
-                                            <div class="finish-item__img">
-                                                <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-result-none.png" alt="">
-                                            </div>
-                                            <p class="finish-item__title">조회 결과가 없습니다.</p>
-                                        </div>
-                                    </div>
-                                    <!--  //조회 내역이 없을 경우 노출 -->
-                                </div>
-                                <!-- //적립 -->
-
-                                <!-- 구매 -->
-                                <div data-element="tab__panel" class="tab__panel" style="display:none;" aria-labelledby="plugin-tab-7" role="tabpanel" tabindex="0">
-                                    <div id="tab2" class="result-box result-box--point result-box--col3"></div>
-                                    <!--  조회 내역이 없을 경우 노출 -->
-                                    <div class="finish-item-wrap noSearch" style="display: block;">
-                                        <div class="finish-item nothing">
-                                            <div class="finish-item__img">
-                                                <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-result-none.png" alt="">
-                                            </div>
-                                            <p class="finish-item__title">조회 결과가 없습니다.</p>
-                                        </div>
-                                    </div>
-                                    <!--  //조회 내역이 없을 경우 노출 -->
-                                </div>
-                                <!-- //구매 -->
-
-                                <!-- 사용 -->
-                                <div data-element="tab__panel" class="tab__panel" style="display:none;" aria-labelledby="plugin-tab-8" role="tabpanel" tabindex="0">
-                                    <div id="tab3" class="result-box result-box--point result-box--col3"></div>
-                                    <!--  조회 내역이 없을 경우 노출 -->
-                                    <div class="finish-item-wrap noSearch" style="display: block;">
-                                        <div class="finish-item nothing">
-                                            <div class="finish-item__img">
-                                                <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-result-none.png" alt="">
-                                            </div>
-                                            <p class="finish-item__title">조회 결과가 없습니다.</p>
-                                        </div>
-                                    </div>
-                                    <!--  //조회 내역이 없을 경우 노출 -->
-                                </div>
-                                <!-- //사용 -->
-
-                                <!-- 선물 -->
-                                <div data-element="tab__panel" class="tab__panel" style="display:none;" aria-labelledby="plugin-tab-9" role="tabpanel" tabindex="0">
-                                    <div id="tab4" class="result-box result-box--point result-box--col3"></div>
-                                    <!--  조회 내역이 없을 경우 노출 -->
-                                    <div class="finish-item-wrap noSearch" style="display: block;">
-                                        <div class="finish-item nothing">
-                                            <div class="finish-item__img">
-                                                <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-result-none.png" alt="">
-                                            </div>
-                                            <p class="finish-item__title">조회 결과가 없습니다.</p>
-                                        </div>
-                                    </div>
-                                    <!--  //조회 내역이 없을 경우 노출 -->
-                                </div>
-                                <!-- //선물 -->
-
-                                <!-- 안내 -->
-                                <div data-element="tab__panel" class="tab__panel" style="display:none;" aria-labelledby="plugin-tab-10" role="tabpanel" tabindex="0">
-                                    <div id="tab5" class="result-box result-box--point result-box--col3"></div>
-                                    <!--  조회 내역이 없을 경우 노출 -->
-                                    <div class="finish-item-wrap noSearch" style="display: block;">
-                                        <div class="finish-item nothing">
-                                            <div class="finish-item__img">
-                                                <img src="https://static.jejuair.net/hpgg/resources/images/icon/icon-result-none.png" alt="">
-                                            </div>
-                                            <p class="finish-item__title">조회 결과가 없습니다.</p>
-                                        </div>
-                                    </div>
-                                    <!--  //조회 내역이 없을 경우 노출 -->
-                                </div>
-                                <!-- //안내 -->
                             </div>
                         </div>
                     </div>
@@ -319,8 +223,8 @@
 <script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
 <script type="text/javascript" src="/user/lib/js/common.js"></script>
 <script type="text/javascript" src="/user/lib/js/plugin.js"></script>
-<script type="text/javascript" src="/user/lib/js/mypage/main_view.js"></script>
 <script type="text/javascript" src="/user/lib/js/head/head.js"></script>
+
 
 <!-- 혜택 모달 실행 -->
 <script>

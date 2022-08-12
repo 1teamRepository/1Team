@@ -7,6 +7,7 @@ import com.project.jejuair.model.network.request.TbPointRequest;
 import com.project.jejuair.model.network.response.TbPointResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -90,6 +91,24 @@ public class TbPointApiLogicService extends BaseService<TbPointRequest, TbPointR
                 .currentElements(tbPoint.getNumberOfElements())
                 .build();
         return Header.OK(tbPointResponseList, pagination);
+    }
+
+    public Header<List<TbPointResponse>> findPoint(Long id, Pageable pageable){
+        Page<TbPoint> tbPointList = new PageImpl<>(baseRepository.findAll(pageable).
+                stream().filter(tbPoint -> tbPoint.getPntMemIdx().equals(id)).collect(Collectors.toList()));
+        System.out.println("1번 : " + tbPointList);
+        List<TbPointResponse> tbPointResponseList = tbPointList.stream()
+                .map(tbPoint -> response(tbPoint)).collect(Collectors.toList());
+        System.out.println("2번 : " + tbPointResponseList);
+        Pagination pagination = Pagination.builder()
+                .totalPages(tbPointList.getTotalPages())
+                .totalElements(tbPointList.getTotalElements())
+                .currentPage(tbPointList.getNumber())
+                .currentElements(tbPointList.getNumberOfElements())
+                .build();
+        System.out.println("3번 : " + pagination);
+        return Header.OK(tbPointResponseList, pagination);
+
     }
 
 
