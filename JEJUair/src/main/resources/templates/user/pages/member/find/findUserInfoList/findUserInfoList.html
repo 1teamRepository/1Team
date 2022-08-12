@@ -17,7 +17,6 @@
 <div th:replace="/user/fragment/header :: header"></div>
 <!--header 끝-->
 
-
 <div id="body">
 
     <!-- Google Tag Manager (noscript) -->
@@ -34,7 +33,7 @@
             <main id="main" class="main ">
 
                 <!--20210519 title영역 수정-->
-                <div class="page-title-wrap">
+                <div class="page-title-wrap" style="text-align: center">
                     <div class="page-title">아이디/비밀번호 찾기</div>
                     <div class="page-sub-title">입력하신 정보로 계정을 찾았어요.
                     </div>
@@ -42,46 +41,46 @@
                     <!--20210519 class명 변경-->
                 </div>
 
-                <!-- 2022.05 개선  S 12231 dk -->
-                <input type="text" id="category" value="customer" style="display: none">
-                <div class="section-wrap" id="view">
-                    <div id="divIdList" class="radio-button-block radio-list">
+                <form method="post" action="/user/mail/doSend">
+                    <!-- 2022.05 개선  S 12231 dk -->
+                    <input type="hidden" id="category" value="customer">
+                    <div class="section-wrap" id="view">
+                        <div id="divIdList" class="radio-button-block radio-list">
 							<span class="radio-button checkbox--small">
 								<input type="radio" id="rdoId0" name="rdoId"
                                        class="radio-button__input checkbox__input">
-								<label for="rdoId0" class="radio-button__label delete-in checkbox__label" id="borderbox" onclick="changeBtn()">
+								<label for="rdoId0" class="radio-button__label delete-in checkbox__label" id="borderbox"
+                                       onclick="changeBtn()">
 									<span class="dis-table">
 										<span class="radio-button__title type02">
 											<span>아이디</span>
-											<span class="color-org">
-                                                {{view.memUserid}}
-											</span>
+											<span class="color-org" th:text="${memUserid}"></span>
 										</span>
 										<span class="radio-button__title type02">
 											<span>가입일</span>
-											<span>
-                                                {{view.memRegDate}}
-                                            </span>
+											<span name="memRegDate" th:text="${memRegDate}"></span>
 										</span>
-                                        <input type="hidden" id="memEmail" :value="${view.memEmail}">
+                                        <input type="hidden" name="title" th:value="${memUserid}">
+                                        <input type="hidden" id="email" name="email" th:value="${memEmail}">
+                                        <input type="hidden" id="memUserPw" name="body" th:value="${memUserPw}">
 										<i class="checkbox__ico right" id="checkbox"></i>
 									</span>
 								</label>
 							</span>
 
+                        </div>
                     </div>
-                </div>
 
-                <!-- 버튼 테스트 s -->
-                <!-- 비밀번호 재설정  버튼 추가 -->
-                <div class="button-wrap section-wrap">
-                    <button type="button" class="button button--primary" id="btnPwModify">
-                        <span class="button__text">이메일로 비밀번호 받기</span>
-                    </button>
-                    <!-- </button> -->
-                    </a>
-                </div>
-
+                    <!-- 버튼 테스트 s -->
+                    <!-- 비밀번호 재설정  버튼 추가 -->
+                    <div class="button-wrap section-wrap">
+                        <button type="submit" class="button button--primary" id="btnPwModify">
+                            <span class="button__text">이메일로 비밀번호 받기</span>
+                        </button>
+                        <!-- </button> -->
+                        </a>
+                    </div>
+                </form>
             </main>
         </div>
 
@@ -99,15 +98,28 @@
 <script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
 <script type="text/javascript" src="/user/lib/js/common.js"></script>
 <script type="text/javascript" src="/user/lib/js/plugin.js"></script>
-<!--버튼 색상 변경 스크립트-->
 <script>
-    function changeBtn(){
-        let btn = document.getElementById("btnPwModify")
-        btn.style.backgroundColor ="FF5000"
-    }
+    $(document).on('click', '#btnPwModify', function() {
+        if (!$('#rdoId0').is(':checked')) {
+            alert('체크박스를 클릭하세요.');
+            $('#rdoId0').focus();
+            return false;
+        }
+    })
 </script>
 
-<script type="text/javascript" src="/user/lib/js/find/pwSend.js"></script>
+<script>
+    function changeBtn() {
+        let btnPwModify = document.getElementById("btnPwModify");
+        btnPwModify.style.backgroundColor = "FF5000";
+    }
+</script>
+<script>
+    window.onload = function getEmail() {
+        let emailArea = document.getElementById("emailArea")
+        console.log(emailArea)
+    }
+</script>
 </body>
 
 </html>

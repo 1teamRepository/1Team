@@ -51,5 +51,11 @@ public class TbAnswerApiController extends CrudController<TbAnswerRequest, TbAns
         return tbAnswerApiLogicService.search(pageable);
     }
 
+    @GetMapping("list/{ansUserid}")
+    public Header<List<TbAnswerResponse>> inquiryGet(@PathVariable String ansUserid, @PageableDefault(sort = {"ansIdx"}, direction = Sort.Direction.DESC) Pageable pageable){
+        System.out.println(ansUserid);
+        System.out.println("controller : "+ tbAnswerApiLogicService.inquiryOk(ansUserid, pageable));
+        return tbAnswerApiLogicService.inquiryOk(ansUserid, pageable);
+    }
 
 }

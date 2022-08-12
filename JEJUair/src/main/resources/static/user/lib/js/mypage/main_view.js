@@ -13,6 +13,8 @@ $(function(){
 
     let category = document.getElementById("category").getAttribute("value");
     let sessionIdx = document.getElementById("memIdx").getAttribute("value");
+    let sessionUserid = document.getElementById("userid").value;
+    localStorage.setItem("userid", sessionUserid)
 
     readView(sessionIdx);
     function readView(sessionIdx){

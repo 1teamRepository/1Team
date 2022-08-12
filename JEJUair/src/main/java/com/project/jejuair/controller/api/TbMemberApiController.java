@@ -62,6 +62,14 @@ public class TbMemberApiController extends CrudController <TbMemberRequest, TbMe
         return cnt;
     }
 
+    @PostMapping("/emailCheck")
+    @ResponseBody
+    public int emailCheck(@RequestParam("memEmail") String memEmail){
+        int cnt = tbMemberApiLogicService.emailCheck(memEmail);
+        System.out.println(cnt);
+        return cnt;
+    }
+
     @PutMapping("/save")
     public Header<TbMemberResponse> pointUpdate(@RequestBody Header<TbMemberRequest> request) {
         return tbMemberApiLogicService.pointUpdate(request);

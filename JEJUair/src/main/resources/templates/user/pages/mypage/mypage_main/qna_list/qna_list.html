@@ -45,6 +45,7 @@
                                  style="border-top: none">
                                 <div class="accordion__item" style="cursor: pointer">
                                     <div for="answer01" class="accordion__anchor" id="clickArea1">
+                                        <input type="hidden" name="ansIdx" id="ansIdx" :value=`${dto.ansIdx}`>
                                             <div class="accordion__item-header" >
                                                 <span class="label101" style="background-color: #888888; color: #FFFFFF; font-size: 13px">답변 여부: {{dto.ansAnswerCheck}}</span>
                                             </div>
@@ -60,44 +61,22 @@
                                         <span class="date" style="color: #888888; font-size: 16px; display: block!important;">{{dto.ansInquiryRegdate}}</span>
                                         <div class="btn-wrap">
                                             <label>
-                                                <button class="btn-wrap__button btn-wrap__button--delete" type="button"
-                                                        id="delete">
+                                                <button class="btn-wrap__button btn-wrap__button--delete" type="button" onclick="deleteInquiry()">
                                                     <span>삭제하기</span>
                                                 </button>
                                             </label>
                                         </div>
                                     </div>
                                     <!-- 답변 div -->
-                                    <div aria-labelledby="plugin-accordion-4" class="accordion__panel answerHidden"
+                                    <div aria-labelledby="plugin-accordion-4" class="accordion__panel answerHidden" id="answerHidden"
                                          style="background: #f5f5f5; position: relative; padding: 20px 34px 15px 40px; font-size: 16px;box-sizing: border-box;
-                                                   min-height: 100px; max-height: 100px; display: none">
+                                                   min-height: 100px; max-height: 100px; display: none;">
                                         <div class="accordion__text" style="font-size: 14px">
                                             {{dto.ansAnswerContent}}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                                <div class="page-center">
-                                    <div class="paging" style="margin-top: 30px; font-size: 0; text-align: center">
-                                        <span id="page-first" class="page-last" style="transform: rotate(180deg);">
-                                            <a href="#"></a>
-                                        </span>
-                                        <span id="page-prev" class="page-next" style="transform: rotate(180deg);">
-                                            <a href="#"></a>
-                                        </span>
-                                        <span id="pagination">
-                                            <span class="page-num on">
-                                                <a href="#">1</a>
-                                            </span>
-                                        </span>
-                                        <span id="page-next" class="page-next">
-                                            <a href="#"></a>
-                                        </span>
-                                        <span id="page-last" class="page-last">
-                                            <a href="#"></a>
-                                        </span>
-                                    </div>
-                                </div>
                         </span>
                 </div>
 
@@ -148,20 +127,36 @@
     })
 
     function dropdown(select){
-        const block = select.parentElement.querySelector(".accordion__panel")
-        const arrow = select.parentElement.querySelector(".accordion__title")
+        let block = select.parentElement.querySelector(".accordion__panel")
+        let anchor = select.parentElement.querySelector(".accordion__anchor")
 
         if(block.classList.contains("answerHidden")){
             block.style.display = "block"
             block.classList.remove("answerHidden");
-            arrow.style.transform("rotate(315deg)")
-            //block.style.transform("all .2s")
+            anchor.classList.add("is-active")
         }else{
             block.style.display = "none"
             block.classList.add("answerHidden")
-            arrow.style.transform("rotate(135deg)")
-            //block.style.transform("all .2s")
+            anchor.classList.remove("is-active")
         }
+    }
+</script>
+<script>
+    function deleteInquiry(){
+        const yn = confirm("삭제하시겠습니까?");
+        if(yn){
+            let ansIdx = document.getElementById("ansIdx").value
+            console.log(ansIdx)
+            deleteView(ansIdx);
+            location.href = `/user/qna_list`;
+        }
+    }
+
+    function deleteView(i){
+        $.ajax({
+            url: `/api/inquiry/`+i,
+            method: "DELETE"
+        })
     }
 </script>
 </body>

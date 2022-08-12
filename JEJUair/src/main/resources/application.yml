@@ -4,3 +4,12 @@ spring:
     url: jdbc:oracle:thin:@db20220628105328_high?TNS_ADMIN=C:/webAI_KGJ/Wallet_DB20220628105328
     username: admin
     password: "!Jang62360548"
+
+  mail:
+    host: smtp.naver.com
+    port: 465
+    username: esk3784@naver.com
+    password: "@Zmgoak1813!"
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.ssl.enable: true

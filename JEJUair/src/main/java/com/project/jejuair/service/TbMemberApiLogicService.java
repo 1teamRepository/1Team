@@ -127,6 +127,27 @@ public class TbMemberApiLogicService extends BaseService<TbMemberRequest, TbMemb
     }
 
 
+    public int emailCheck(String memEmail) {
+        int result = 1; //기본값
+
+        if (memEmail.equals("")){
+            result = 2;
+        }
+        else if (tbMemberRepository.findByMemEmail(memEmail).isEmpty()) {
+            result = 0; // 없는 이메일
+        }else{ result = 1;} //있는 이메일
+        System.out.println(result);
+        return result;
+    }
+
+    public Header<TbMemberResponse> emailOk(String memEmail){
+        return tbMemberRepository.findByMemEmail(memEmail)
+                .map(user -> response(user)).map(Header::OK)
+                .orElseGet(() -> Header.ERROR(("데이터 없음")));
+    }
+
+
+
     public Header<List<TbMemberResponse>> search(Pageable pageable){
         Page<TbMember> tbMember = baseRepository.findAll(pageable);
         List<TbMemberResponse> tbMemberResponseList = tbMember.stream().map(

@@ -1,19 +1,22 @@
 package com.project.jejuair.controller.page;
 
 import com.project.jejuair.model.network.response.TbMemberResponse;
+import com.project.jejuair.service.MailService;
 import com.project.jejuair.service.TbMemberApiLogicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.net.URI;
+import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping("/user")
@@ -49,6 +52,7 @@ public class UserController {
             String gender = String.valueOf(tbMemberResponse.getMemGender());
             String hp = tbMemberResponse.getMemHp();
             String email = tbMemberResponse.getMemEmail();
+            Integer point = tbMemberResponse.getMemPoint();
 
             session.setAttribute("idx", memIdx);
             session.setAttribute("userid", memUserid);
@@ -60,6 +64,7 @@ public class UserController {
             session.setAttribute("gender", gender);
             session.setAttribute("hp", hp);
             session.setAttribute("email", email);
+            session.setAttribute("point", point);
 
             System.out.println("로그인 성공");
             return new ModelAndView("redirect:/user/");
@@ -137,39 +142,87 @@ public class UserController {
     @RequestMapping("/logout")
     public ModelAndView logOut(HttpServletRequest request) throws Exception {
         HttpSession session = request.getSession();
-        session.setAttribute("name", null);
-        session.setAttribute("id", null);
+        session.invalidate();
         System.out.println("로그아웃");
         return new ModelAndView("/user/pages/index");
     }
 
-
-
     @RequestMapping("")
-    public ModelAndView index() {
-        return new ModelAndView("/user/pages/index");
+    public ModelAndView index(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        return new ModelAndView("/user/pages/index")
+                .addObject("memPoint", session.getAttribute("point"));
     }
-
     @RequestMapping("/findEmailUserInfo")
     public ModelAndView findEmailUserInfo() {
         return new ModelAndView("/user/pages/member/find/findEmailUserInfo/findEmailUserInfo");
     }
 
-    @RequestMapping("/findResult")
-    public ModelAndView findUserInfo() {
-        return new ModelAndView("/user/pages/member/find/findResult/findResult");
-    }
+    @PostMapping("/emailOk")
+    public ModelAndView emailOk(HttpServletRequest request, String memEmail){
+        TbMemberResponse tbMemberResponse = tbMemberApiLogicService.emailOk(memEmail).getData();
+        if (tbMemberResponse != null) {
+            HttpSession session = request.getSession();
+            String email = tbMemberResponse.getMemEmail();
+            String userid = tbMemberResponse.getMemUserid();
+            LocalDateTime regdate = tbMemberResponse.getMemRegDate();
+            String userPw = tbMemberResponse.getMemUserpw();
 
+            session.setAttribute("email", email);
+            session.setAttribute("userid", userid);
+            session.setAttribute("regdate", regdate);
+            session.setAttribute("userPw", userPw);
+
+            return new ModelAndView("redirect:/user/findUserInfoList");
+        } else {
+            System.out.println("실패");
+            return new ModelAndView("/user/pages/member/find/findEmailUserInfo/findEmailUserInfo");
+        }
+    }
 
     @RequestMapping("/findUserInfoList")
-    public ModelAndView findUserInfoList() {
-        return new ModelAndView("/user/pages/member/find/findUserInfoList/findUserInfoList");
+    public ModelAndView findUserInfoList(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        System.out.println("findUserInfoList 도착");
+        System.out.println(session.getAttribute("email"));
+        System.out.println(session.getAttribute("userid"));
+        System.out.println(session.getAttribute("regdate"));
+        System.out.println(session.getAttribute("userPw"));
+
+        return new ModelAndView("/user/pages/member/find/findUserInfoList/findUserInfoList")
+                .addObject("memUserid", session.getAttribute("userid"))
+                .addObject("memRegDate", session.getAttribute("regdate"))
+                .addObject("memEmail", session.getAttribute("email"))
+                .addObject("memUserPw", session.getAttribute("userPw"));
     }
 
-    @RequestMapping("/emailSendGuide")
-    public ModelAndView emailSendGuide() {
-        return new ModelAndView("/user/pages/member/login/emailSendGuide");
+
+    @Autowired
+    private MailService mailService;
+
+    @RequestMapping("/mail/send")
+    public String showSend(){
+        return "/mail/send";
     }
+
+    @RequestMapping("/mail/doSend")
+    @ResponseBody
+    public ResponseEntity<?> doSend(String email, String title, String body){
+        mailService.send(email, title, body);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(URI.create("/user/findResult"));
+        return new ResponseEntity<>(headers, HttpStatus.MOVED_PERMANENTLY);
+    }
+
+    @RequestMapping("/findResult")
+    public ModelAndView findUserInfo(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+
+        return new ModelAndView("/user/pages/member/find/findResult/findResult")
+                .addObject("email", session.getAttribute("email"));
+    }
+
 
     @RequestMapping("/member_benefit_new")
     public ModelAndView member_benefit() {
@@ -274,10 +327,12 @@ public class UserController {
 
         HttpSession session = request.getSession();
         Long memIdx= (Long) session.getAttribute("idx");
+        String userId = (String) session.getAttribute("userid");
 
         if (session.getAttribute("idx") != null) {
             return new ModelAndView("/user/pages/mypage/mypage_main/mypage_main_member")
-                    .addObject("idx", memIdx);
+                    .addObject("idx", memIdx)
+                    .addObject("userid", userId);
         }else{
             return new ModelAndView("/user/pages/login/login");
         }
@@ -297,11 +352,11 @@ public class UserController {
     @RequestMapping("/qna_list")
     public ModelAndView qna_list(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        Long memIdx= (Long) session.getAttribute("idx");
+        String ansUserid= (String) session.getAttribute("userid");
 
         if (session.getAttribute("idx") != null) {
             return new ModelAndView("/user/pages/mypage/mypage_main/qna_list/qna_list")
-                    .addObject("idx", memIdx);
+                    .addObject("ansUserid", ansUserid);
         } else {
             return new ModelAndView("/user/pages/login/login");
         }
@@ -311,8 +366,7 @@ public class UserController {
     public ModelAndView qna_form(HttpServletRequest request) {
 
         HttpSession session = request.getSession();
-        Long memIdx= (Long) session.getAttribute("idx");
-        String memUserid= (String) session.getAttribute("id");
+        String memUserid= (String) session.getAttribute("userid");
         System.out.println("id: "+ memUserid);
 
         if (session.getAttribute("idx") != null) {

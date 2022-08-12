@@ -6,6 +6,7 @@ import com.project.jejuair.model.network.Header;
 import com.project.jejuair.model.network.Pagination;
 import com.project.jejuair.model.network.request.TbAnswerRequest;
 import com.project.jejuair.model.network.response.TbAnswerResponse;
+import com.project.jejuair.repository.TbAnswerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -57,24 +58,27 @@ public class TbAnswerApiLogicService extends BaseService<TbAnswerRequest, TbAnsw
     public Header<TbAnswerResponse> read(Long ansIdx) {
         return baseRepository.findById(ansIdx).map(tbAnswer -> response(tbAnswer))
                 .map(Header::OK).orElseGet(() -> Header.ERROR("데이터 없음"));
+
     }
+
+
 
     @Override
     public Header<TbAnswerResponse> update(Header<TbAnswerRequest> request) {
         TbAnswerRequest tbAnswerRequest = request.getData();
         Optional<TbAnswer> tbAnswer = baseRepository.findById(tbAnswerRequest.getAnsIdx());
         return tbAnswer.map(
-                newTbAnswer -> {
-                 newTbAnswer.setAnsInquiryContent(tbAnswerRequest.getAnsInquiryTitle());
-                 newTbAnswer.setAnsInquiryContent(tbAnswerRequest.getAnsInquiryContent());
-                 newTbAnswer.setAnsUserid(tbAnswerRequest.getAnsUserid());
-                 newTbAnswer.setAnsAnswerCheck(tbAnswerRequest.getAnsAnswerCheck());
-                 newTbAnswer.setAnsAnswerContent(tbAnswerRequest.getAnsAnswerContent());
-                 newTbAnswer.setAnsInquiryRegDate(tbAnswerRequest.getAnsInquiryRegDate());
-                 newTbAnswer.setAnsAnswerRegDate(LocalDateTime.now());
+                        newTbAnswer -> {
+                            newTbAnswer.setAnsInquiryContent(tbAnswerRequest.getAnsInquiryTitle());
+                            newTbAnswer.setAnsInquiryContent(tbAnswerRequest.getAnsInquiryContent());
+                            newTbAnswer.setAnsUserid(tbAnswerRequest.getAnsUserid());
+                            newTbAnswer.setAnsAnswerCheck(tbAnswerRequest.getAnsAnswerCheck());
+                            newTbAnswer.setAnsAnswerContent(tbAnswerRequest.getAnsAnswerContent());
+                            newTbAnswer.setAnsInquiryRegDate(tbAnswerRequest.getAnsInquiryRegDate());
+                            newTbAnswer.setAnsAnswerRegDate(LocalDateTime.now());
 
-                 return newTbAnswer;
-                }).map(newTbAnswer -> baseRepository.save(newTbAnswer))
+                            return newTbAnswer;
+                        }).map(newTbAnswer -> baseRepository.save(newTbAnswer))
                 .map(newTbAnswer -> response(newTbAnswer)).map(Header::OK)
                 .orElseGet(() -> Header.ERROR("데이터 없음"));
     }
@@ -102,6 +106,18 @@ public class TbAnswerApiLogicService extends BaseService<TbAnswerRequest, TbAnsw
         return Header.OK(tbAnswerResponseList, pagination);
     }
 
+    public Header<List<TbAnswerResponse>> inquiryOk(String ansUserid, Pageable pageable){
+        Page<TbAnswer> tbAnswersList = baseRepository.findAll(pageable);
+        List<TbAnswerResponse> tbAnswerResponseList = tbAnswersList.stream()
+                .map(tbAnswer -> response(tbAnswer))
+                .filter(tbAnswerResponse -> tbAnswerResponse.getAnsUserid().equals(ansUserid)).collect(Collectors.toList());
 
-
+        Pagination pagination = Pagination.builder()
+                .totalPages(tbAnswersList.getTotalPages())
+                .totalElements(tbAnswersList.getTotalElements())
+                .currentPage(tbAnswersList.getNumber())
+                .currentElements(tbAnswersList.getNumberOfElements())
+                .build();
+        return Header.OK(tbAnswerResponseList, pagination);
+    }
 }

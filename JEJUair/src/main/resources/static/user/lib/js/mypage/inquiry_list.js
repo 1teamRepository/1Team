@@ -1,4 +1,4 @@
-$(function(){
+$(function () {
 
     let pageNum = new Vue({
         el: '#pageNum',
@@ -15,60 +15,36 @@ $(function(){
         }
     });
 
-    searchStart(0);
+    let ansUserid = localStorage.getItem("userid")
+    console.log(ansUserid)
+    searchUserid(ansUserid);
 
-    function searchStart(index){
-        let category = document.getElementById("category").getAttribute("value");
-        $.get("/api/"+category+"?page="+index, function(response){
+    function searchUserid() {
+        $.get("/api/inquiry/list/" + ansUserid, function (response) {
 
             let pagination = response.pagination;
             pageNum.totalPages = pagination.totalPages;
             pageNum.currentPage = pagination.currentPage + 1;
-
-
-        });
-    }
-
-    let ssMemIdx = document.getElementById("memIdx").value;
-    searchIndex(ssMemIdx);
-
-    function searchIndex(index){
-        let category = document.getElementById("category").getAttribute("value");
-        $.get("/api/inquiry", function(response){
-
             itemList.itemList = response.data;
 
-    });
-}
+            let lastPage = response.pagination.totalPages;
+            let pageStr = "";
 
-$(document).on('click', '.pages', function(){
-    let pageId = this.id.substring(3);
-    searchStart(pageId);
-});
+            if (lastPage != 0) {
+                pageStr += "<div class='page_btn'><a id='firstpage_btn'>First</a></div>";
+            }
+            for (let i = 0; i < lastPage; i++) {
+                pageStr += "<div class='page_btn2'><a class='pagenum pages' id='btn" + i + "'>" + (i + 1) + "</a></div>"
 
-$(document).on('click', '#page-first', function(){
-    searchStart(0);
-});
+            }
+            if (lastPage != 0) {
+                pageStr += "<div class='page_btn'><a id='lastpage_btn'>End</a></div>";
+            }
+            $('#pageNum').html(pageStr);
 
-$(document).on('click', '#page-last', function(){
-    searchStart(pageNum.totalPages-1);
-});
-
-let sessionIdx = document.getElementById("memIdx").getAttribute("value");
-
-$("#delete").click(() => {
-    const yn = confirm("삭제하시겠습니까?");
-    if(yn){
-        deleteView(sessionIdx);
-        location.href = `/user/qna_list`;
+            let btnColor = document.getElementById("btn" + pagination.currentPage).parentElement;
+            btnColor.classList.add('current_btn');
+        });
     }
-})
-
-function deleteView(sessionIdx){
-    $.ajax({
-        url: `/api/`+ category+`/`+sessionIdx,
-        method: "DELETE"
-    })
-}
 
 });
