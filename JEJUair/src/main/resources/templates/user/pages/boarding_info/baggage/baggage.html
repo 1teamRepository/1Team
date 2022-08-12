@@ -37,14 +37,9 @@
 					<button type="button" class="breadcrumb__link breadcrumb__link--list"
 							data-element="toggle__anchor">수하물</button>
 					<div class="breadcrumb__siblings-list" data-element="toggle__panel">
-						<a href="javascript:void(0);" class="item" onclick="URL_LINK.getI18Url('/ibe/checkin/viewCheckin.do')">모바일
-							탑승권</a>
-						<a href="javascript:void(0);" class="item" onclick="URL_LINK.getI18Url('/linkService/airport/info.do')">공항
-							정보</a>
-						<a href="javascript:void(0);" class="item"
-						   onclick="URL_LINK.getI18Url('/linkService/fastProcedure/guide.do')">빠른 수속</a>
-						<a href="javascript:void(0);" class="item" onclick="URL_LINK.getI18Url('/linkService/help/main.do')">도움이 필요한
-							고객</a>
+						<a href="/user/boardingInfo/baggage" class="item">수하물 안내</a>
+						<a href="/user/boardingInfo/fastCheckIn" class="item">빠른 수속</a>
+						<a href="/user/boardingInfo/customerHelp" class="item">도움이 필요한 고객</a>
 					</div>
 				</div>
 			</nav>
@@ -61,7 +56,7 @@
 					<div class="section-wrap">
 						<div class="section-title">휴대 수하물</div>
 						<div class="arrow-list arrow-list--box">
-							<a href="/ko/linkService/boardingProcessGuide/cabinBaggage.do" class="arrow-list__item">
+							<a href="/user/boardingInfo/cabinBaggage" class="arrow-list__item">
 								<span class="arrow-list__text arrow-list__text--title">기내 수하물</span>
 							</a>
 						</div>
@@ -69,24 +64,18 @@
 					<div class="section-wrap">
 						<div class="section-title">위탁 수하물</div>
 						<div class="arrow-list arrow-list--box">
-							<a href="/ko/linkService/boardingProcessGuide/trustBaggage.do" class="arrow-list__item">
+							<a href="/user/boardingInfo/trustBaggage" class="arrow-list__item">
 								<span class="arrow-list__text arrow-list__text--title">위탁 수하물</span>
-							</a>
-							<a href="/ko/linkService/boardingProcessGuide/specialBaggage.do" class="arrow-list__item">
-								<span class="arrow-list__text arrow-list__text--title">특수 수하물</span>
-							</a>
-							<a href="/ko/linkService/boardingProcessGuide/baggageFare.do" class="arrow-list__item">
-								<span class="arrow-list__text arrow-list__text--title">수하물 운임</span>
 							</a>
 						</div>
 					</div>
 					<div class="section-wrap">
 						<div class="section-title">기타 안내</div>
 						<div class="arrow-list arrow-list--box">
-							<a href="/ko/linkService/boardingProcessGuide/transportLimitation.do" class="arrow-list__item">
+							<a href="/user/boardingInfo/transportLimit" class="arrow-list__item">
 								<span class="arrow-list__text arrow-list__text--title">운송제한 물품</span>
 							</a>
-							<a href="/ko/linkService/boardingProcessGuide/liability.do" class="arrow-list__item">
+							<a href="/user/boardingInfo/liability" class="arrow-list__item">
 								<span class="arrow-list__text arrow-list__text--title">수하물 분실 및 배상</span>
 							</a>
 						</div>
@@ -108,10 +97,12 @@
 	<script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
 	<script type="text/javascript" src="/user/lib/js/common.js"></script>
 	<script type="text/javascript" src="/user/lib/js/plugin.js"></script>
+	<script type="text/javascript" src="/user/lib/js/head/head.js"></script>
 
 	<!-- 공통 스크립트 선언 끝 -->
 
 	<!--body, html 주석은 위치 고정-->
+</div>
 </body>
 </html>
 <!--body, html 주석은 위치 고정 끝-->

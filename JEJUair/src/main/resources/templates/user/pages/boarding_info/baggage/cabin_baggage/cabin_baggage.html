@@ -38,14 +38,9 @@
 						<button type="button" class="breadcrumb__link breadcrumb__link--list"
 							data-element="toggle__anchor">수하물</button>
 						<div class="breadcrumb__siblings-list" data-element="toggle__panel">
-							<a href="javascript:void(0);" class="item"
-								onclick="URL_LINK.getI18Url('/ibe/checkin/viewCheckin.do')">모바일 탑승권</a>
-							<a href="javascript:void(0);" class="item"
-								onclick="URL_LINK.getI18Url('/linkService/airport/info.do')">공항 정보</a>
-							<a href="javascript:void(0);" class="item"
-								onclick="URL_LINK.getI18Url('/linkService/fastProcedure/guide.do')">빠른 수속</a>
-							<a href="javascript:void(0);" class="item"
-								onclick="URL_LINK.getI18Url('/linkService/help/main.do')">도움이 필요한 고객</a>
+							<a href="/user/boardingInfo/baggage" class="item">수하물 안내</a>
+							<a href="/user/boardingInfo/fastCheckIn" class="item">빠른 수속</a>
+							<a href="/user/boardingInfo/customerHelp" class="item">도움이 필요한 고객</a>
 						</div>
 					</div>
 				</nav>
@@ -186,29 +181,6 @@
 						</ul>
 					</div>
 
-					<div class="container--large service-information-wrap pc-60 no-mgt">
-						<!-- 탑승 게이트 위탁 수하물 안내 -->
-						<div class="service-information" data-action="info-toggle" data-toggle-id="0000000133">
-							<div class="service-information__title">
-								<button type="button" class="service-information__anchor"
-									data-element="toggle__anchor">탑승 게이트 위탁 수하물 안내</button>
-							</div>
-							<div class="service-information__content" data-element="toggle__panel">
-							</div>
-						</div>
-						<!-- //탑승 게이트 위탁 수하물 안내 -->
-
-						<!-- 기내 반입 금지 수하물 안내 -->
-						<div class="service-information" data-action="info-toggle" data-toggle-id="0000000134">
-							<div class="service-information__title">
-								<button type="button" class="service-information__anchor"
-									data-element="toggle__anchor">기내 반입 금지 수하물 안내</button>
-							</div>
-							<div class="service-information__content" data-element="toggle__panel">
-							</div>
-						</div>
-						<!-- //기내 반입 금지 수하물 안내 -->
-					</div>
 				</main>
 			</div>
 
@@ -232,6 +204,7 @@
 <script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
 <script type="text/javascript" src="/user/lib/js/common.js"></script>
 <script type="text/javascript" src="/user/lib/js/plugin.js"></script>
+<script type="text/javascript" src="/user/lib/js/head/head.js"></script>
 
 <!-- 공통 스크립트 선언 끝 -->
 

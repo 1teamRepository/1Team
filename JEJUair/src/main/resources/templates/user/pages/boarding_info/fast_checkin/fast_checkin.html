@@ -50,24 +50,9 @@
 
 
                     <div class="breadcrumb__siblings-list" data-element="toggle__panel" id="toggle-2">
-
-
-                        <a href="javascript:void(0);" class="item"
-                           onclick="URL_LINK.getI18Url('/ibe/checkin/viewCheckin.do')">모바일 탑승권</a>
-
-
-                        <a href="javascript:void(0);" class="item"
-                           onclick="URL_LINK.getI18Url('/linkService/airport/info.do')">공항 정보</a>
-
-
-                        <a href="javascript:void(0);" class="item"
-                           onclick="URL_LINK.getI18Url('/linkService/help/main.do')">도움이 필요한 고객</a>
-
-
-                        <a href="javascript:void(0);" class="item"
-                           onclick="URL_LINK.getI18Url('/linkService/boardingProcessGuide/baggageGuide.do')">수하물</a>
-
-
+                        <a href="/user/boardingInfo/fastCheckIn" class="item">빠른 수속</a>
+                        <a href="/user/boardingInfo/customerHelp" class="item">도움이 필요한 고객</a>
+                        <a href="/user/boardingInfo/baggage" class="item">수하물 안내</a>
                     </div>
                 </div>
 
@@ -145,39 +130,6 @@
                                      aria-labelledby="plugin-tab-7" role="tabpanel" tabindex="0">
                                     <p class="text__default pc-text-large">어디서나 무료체크인으로 시간을 절약하세요.<br>출발 공항에서만 가능합니다.
                                     </p>
-                                    <!-- 숨김처리 <ul class="list-guide list-guide--asterisk">
-                                        <li class="list-guide__item">
-                                            해외 공항 출발 편은 모바일탑승권 발급이 제한됩니다.
-
-                                        </li>
-                                    </ul>
-
-                                    <div class="tag-list__btn sub-box">
-                                        <div class="tag-list__item">
-                                            <a href="/ko/linkService/airport/info.do#0000000048" class="tag-list__text">김포(국내)</a>
-                                        </div>
-                                        <div class="tag-list__item">
-                                            <a href="/ko/linkService/airport/info.do#0000000003" class="tag-list__text">인천</a>
-                                        </div>
-                                        <div class="tag-list__item">
-                                            <a href="/ko/linkService/airport/info.do#0000000004" class="tag-list__text">부산</a>
-                                        </div>
-                                        <div class="tag-list__item">
-                                            <a href="/ko/linkService/airport/info.do#0000000048" class="tag-list__text">김포(국제)</a>
-                                        </div>
-                                        <div class="tag-list__item">
-                                            <a href="/ko/linkService/airport/info.do#0000000030" class="tag-list__text">오사카</a>
-                                        </div>
-                                        <div class="tag-list__item">
-                                            <a href="/ko/linkService/airport/info.do#0000000028" class="tag-list__text">후쿠오카</a>
-                                        </div>
-                                        <div class="tag-list__item">
-                                            <a href="/ko/linkService/airport/info.do#0000000032" class="tag-list__text">삿포로</a>
-                                        </div>
-                                        <div class="tag-list__item">
-                                            <a href="/ko/linkService/airport/info.do#0000000045" class="tag-list__text">세부</a>
-                                        </div>
-                                    </div> -->
 
                                     <!-- 공항에서의 절차 -->
                                     <div class="section-wrap">
@@ -194,10 +146,7 @@
                                                                     <p class="process-list__desc bold">모바일탑승권 발급을 완료한 후
                                                                         문자메시지로 모바일탑승권을 전송받습니다.</p>
                                                                 </div>
-                                                                <!-- <div class="process-list__img mobile-only">
-                                            <img src="https://static.jejuair.net/hpgg/resources/images/@temp/@img-process01.png" alt="">
-                                            <button type="button" class="view-map" aria-label="지도 크게 보기"></button>
-                                        </div> -->
+
                                                                 <div class="process-list__text">
                                                                     <p class="process-list__desc">동승객의 탑승권은 반드시 동승객 본인에게
                                                                         문자메시지 또는 이메일로 공유해 주세요.</p>
@@ -230,10 +179,7 @@
                                                                     <p class="process-list__desc">수하물 위탁은 공항 현장의 모바일 탑승권
                                                                         전용 위탁 카운터 또는 셀프백드랍(인천공항)을 이용해 주세요.</p>
                                                                 </div>
-                                                                <!-- <div class="process-list__img mobile-only">
-                                            <img src="https://static.jejuair.net/hpgg/resources/images/@temp/@img-process01.png" alt="">
-                                            <button type="button" class="view-map" aria-label="지도 크게 보기"></button>
-                                        </div> -->
+
                                                                 <div class="link-wrap  link-wrap--left">
                                                                     <a href="./selfbagDrop.do"
                                                                        class="link-wrap__underline"><span>셀프백드랍 이용안내</span></a>
@@ -249,10 +195,7 @@
                                                                     <p class="process-list__desc bold">탑승권에 인쇄된 QR코드를
                                                                         출발장 보안게이트 앞 탑승권 확인 기기에 인식해 주세요.</p>
                                                                 </div>
-                                                                <!-- <div class="process-list__img mobile-only">
-                                            <img src="https://static.jejuair.net/hpgg/resources/images/@temp/@img-process01.png" alt="">
-                                            <button type="button" class="view-map" aria-label="지도 크게 보기"></button>
-                                        </div> -->
+
                                                                 <div class="link-wrap link-wrap--left">
                                                                     <a href="https://www.airport.kr/ap_lp/ko/dep/process/pubsecu/pubsecu.do"
                                                                        target="_blank" title="새창열림"
@@ -269,10 +212,7 @@
                                                                     <p class="process-list__desc bold">출발 탑승구에 미리 도착 후
                                                                         대기하시다가 정시 출발에 협조해 주시기 바랍니다.</p>
                                                                 </div>
-                                                                <!-- <div class="process-list__img mobile-only">
-                                            <img src="https://static.jejuair.net/hpgg/resources/images/@temp/@img-process01.png" alt="">
-                                            <button type="button" class="view-map" aria-label="지도 크게 보기"></button>
-                                        </div> -->
+
                                                                 <div class="process-list__text">
                                                                     <p class="process-list__desc">탑승구 통과 후 기내 입구에서 발권한
                                                                         탑승권을 제시해 주세요.</p>
@@ -1148,6 +1088,7 @@
 <script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
 <script type="text/javascript" src="/user/lib/js/common.js"></script>
 <script type="text/javascript" src="/user/lib/js/plugin.js"></script>
+<script type="text/javascript" src="/user/lib/js/head/head.js"></script>
 
 <!-- 공통 스크립트 선언 끝 -->
 
