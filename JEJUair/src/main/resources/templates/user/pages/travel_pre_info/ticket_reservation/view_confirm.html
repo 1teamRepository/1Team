@@ -238,12 +238,13 @@
                         <div class="toggle-item__title left">
                             <div class="section-title">포인트 사용</div>
                         </div>
-                        <div data-element="toggle__panel" class="toggle-item__content pdt-none pdb-none right" style="display: block;">
+                        <div class="right toggle-item__content" style="display: block !important;">
+<!--                              pdt-none pdb-none-->
                             <div class="itemize itemize--line">
-                                <div class="itemize__item">
+                                <div class="itemize__item" style="border: 0px solid #dddddd;">
                                     <h4 class="itemize__title">현재 포인트 내역</h4><!-- 항공 운송료 -->
                                 </div>
-                                <div class="itemize__item">
+                                <div class="itemize__item" style="border: 0px solid #dddddd;">
                                     <div class="flex-text" style="align-items: center">
                                         <div class="flex-text__title">가용 포인트</div>
                                         <div class="flex-text__additional" style="display: flex; align-items: center">
@@ -397,14 +398,17 @@
 <!-- 공통 스크립트 선언 -->
 
 <!--<div th:replace="/user/fragment/js :: js"></div>-->
+
 <script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
 <script type="text/javascript" src="/user/lib/js/common.js"></script>
 <script type="text/javascript" src="/user/lib/js/plugin.js"></script>
 
+
+
 <!-- 공통 스크립트 선언 끝 -->
 
 <script type="text/javascript" src="/user/lib/js/ticket_reservation/view_confirm.js"></script>
-
+<script type="text/javascript" src="/user/lib/js/head/head.js"></script>
 <!--body, html 주석은 위치 고정-->
 </body>
 </html>

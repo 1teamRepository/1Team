@@ -1,11 +1,11 @@
 const schIdx = Number(tripJson["schIdx"]);
 let passengerNum = tripJson["schPassengerNum"];
 
-$('#divFare').find('.flight__cost')[0].innerHTML = (tripJson.divFare + tripJson2.divFare).toLocaleString();;
-$('#divTax').find('.flight__cost')[0].innerHTML = (tripJson.divTax + tripJson2.divTax).toLocaleString(); ;
-$('#divFuel').find('.flight__cost')[0].innerHTML = (tripJson.divFuel + tripJson2.divFuel).toLocaleString();;
-$('#divSeatFee').find('.flight__cost')[0].innerHTML = (tripJson.divSeat + tripJson2.divSeat).toLocaleString();;
-$('#spanCost').find('.flight__cost')[0].innerHTML =  (tripJson.spanCost + tripJson2.spanCost).toLocaleString();;
+$('#divFare').find('.flight__cost')[0].innerHTML = (tripJson.divFare + tripJson2.divFare).toLocaleString();
+$('#divTax').find('.flight__cost')[0].innerHTML = (tripJson.divTax + tripJson2.divTax).toLocaleString();
+$('#divFuel').find('.flight__cost')[0].innerHTML = (tripJson.divFuel + tripJson2.divFuel).toLocaleString();
+$('#divSeatFee').find('.flight__cost')[0].innerHTML = (tripJson.divSeat + tripJson2.divSeat).toLocaleString();
+$('#spanCost').find('.flight__cost')[0].innerHTML =  (tripJson.spanCost + tripJson2.spanCost).toLocaleString();
 
 reserveProgress();
 
@@ -16,7 +16,7 @@ for (let i = 0; i < passengerNum; i++) {
 }
 
 for (let i = 0; i < passengerNum; i++) {
-    let passengerHTML = '<div class="tab__button" data-element="tab__list" role="presentation"><button class="tab__anchor" type="button" data-element="tab__anchor" onclick="btnMember_Click(this);" data-index="' + i + '"  id="passenger' + i + '" role="tab" tabindex="" select-seat="" aria-selected="true" aria-expanded="true"><span class="passenger"><span class="num">' + (i + 1) + '</span><strong class="name">' + passengerNames[i] + '</strong><span name="passengerTypeCode" style="display: none">ADT</span> <span name="passengerKey" style="display: none" value="' + i + '"></span><span name="unitKey" style="display: none"></span><span name="seat" class="seat" ></span><span name="variant" style="display: none"></span></span></button></div>'
+    let passengerHTML = '<div class="tab__button" data-element="tab__list" role="presentation"><button class="tab__anchor" type="button" data-element="tab__anchor" data-index="' + i + '"  id="passenger' + i + '" role="tab" tabindex="" select-seat="" aria-selected="true" aria-expanded="true"><span class="passenger"><span class="num">' + (i + 1) + '</span><strong class="name">' + passengerNames[i] + '</strong><span name="passengerTypeCode" style="display: none">ADT</span> <span name="passengerKey" style="display: none" value="' + i + '"></span><span name="unitKey" style="display: none"></span><span name="seat" class="seat" ></span><span name="variant" style="display: none"></span></span></button></div>'
     $('#divPassengerTab').append(passengerHTML);
 }
 
@@ -162,8 +162,8 @@ $(document).on('click', '.onewayPage', function () {
 
     console.log(passJson);
     console.log(tripJson);
-   // location.href="/user/meal_select";
-    location.href="/user/view_confirm";
+   location.href="/user/meal_select";
+    // location.href="/user/view_confirm";
 })
 
 $(document).on('click', '.roundPage', function () {
@@ -212,6 +212,6 @@ $(document).on('click', '.roundbackPage', function () {
 
     console.log(passJson2);
     console.log(tripJson2);
-    // location.href="/user/meal_select";
-    location.href="/user/view_confirm";
+    location.href="/user/meal_select";
+    // location.href="/user/view_confirm";
 })

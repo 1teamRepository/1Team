@@ -4570,43 +4570,43 @@ $(function(){
 
 
 // Jquery Window Error Start
-$(window).on("error",function(event) {
-	let originalEvent = event.originalEvent;
-	
-	let errorMsg	= originalEvent.message;
-	let errorStack	= "-";
-	if(originalEvent.error) {
-		errorStack = originalEvent.error.stack;
-	}
-	let message = "";
-	if (errorMsg) {
-		message = [
-			'Message: '	+ errorMsg					+ '\n',
-			'URL: '		+ originalEvent.filename	+ '\n',
-			'Line: '	+ originalEvent.lineno		+ '\n',
-			'Column: '	+ originalEvent.colno		+ '\n',
-			'Browser: ' + getBrowserVersion()		+ '\n',
-			'Error: '	+ errorStack
-		].join(' - ');
-	} else {
-		message = "Unsupported browser."
-	}
-	$.ajax({
-		url: '/api/common/biz/scriptErroLog.json',
-		type: 'POST',
-		beforeSend: function (request)
-        {
-            request.setRequestHeader("ecode", "FRTUSV001");
-			request.setRequestHeader("emessage", message.replace(/\n/g,""));
-        },
-		data	: {
-			message : message
-		},    
-		success: function (data) {
-		}
-	});
-	return false;	
-});
+// $(window).on("error",function(event) {
+// 	let originalEvent = event.originalEvent;
+//
+// 	let errorMsg	= originalEvent.message;
+// 	let errorStack	= "-";
+// 	if(originalEvent.error) {
+// 		errorStack = originalEvent.error.stack;
+// 	}
+// 	let message = "";
+// 	if (errorMsg) {
+// 		message = [
+// 			'Message: '	+ errorMsg					+ '\n',
+// 			'URL: '		+ originalEvent.filename	+ '\n',
+// 			'Line: '	+ originalEvent.lineno		+ '\n',
+// 			'Column: '	+ originalEvent.colno		+ '\n',
+// 			'Browser: ' + getBrowserVersion()		+ '\n',
+// 			'Error: '	+ errorStack
+// 		].join(' - ');
+// 	} else {
+// 		message = "Unsupported browser."
+// 	}
+// 	$.ajax({
+// 		url: '/api/common/biz/scriptErroLog.json',
+// 		type: 'POST',
+// 		beforeSend: function (request)
+//         {
+//             request.setRequestHeader("ecode", "FRTUSV001");
+// 			request.setRequestHeader("emessage", message.replace(/\n/g,""));
+//         },
+// 		data	: {
+// 			message : message
+// 		},
+// 		success: function (data) {
+// 		}
+// 	});
+// 	return false;
+// });
 
 function cfn_ticlogEvent() {
 	//ex --> open tic			: cfn_ticlogEvent("PointRefund", "PnrCancelConfirm", "PageOpen", null);
