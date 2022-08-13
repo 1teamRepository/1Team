@@ -258,7 +258,7 @@
                                     <div class="flex-text" style="align-items: center">
                                         <div class="flex-text__title">사용 포인트</div>
                                         <div class="flex-text__additional" style="display: flex; align-items: center">
-                                            <input type="text" data-element="input" id="inputPoint" name="payPoint" class="input__text align-right" style="width: 600px" value="0">
+                                            <input type="number" min="0" data-element="input" id="inputPoint" name="payPoint" class="input__text align-right" style="width: 600px" value="0">
                                             <button type="button" data-element="remove" class="input__remove-button show">
                                                 <span class="hidden">삭제</span>
                                             </button>
@@ -320,26 +320,7 @@
                     </div>
                 </div>
 
-
                 <button type="button" id="btnModalOpen" data-element="modal_anchor" style="display: none;"></button>
-                <form role="form" method="post">
-                    <input type="hidden" id="pnrData" name="pnrData" value=""/>
-                    <input type="hidden" id="rpnr" name="rpnr" value="">
-                    <input type="hidden" id="paymentData" name="paymentData" value=""/>
-                    <input type="hidden" id="domIntType" name="domIntType" value="D"/>
-                    <input type="hidden" id="saleTypeCd" name="saleTypeCd" value="NOR"/>
-                    <input type="hidden" id="productTypeCode" name="productTypeCode" value="RSV"/>
-                    <input type="hidden" id="bookType" name="bookType" value="Common"/>
-                    <input type="hidden" id="tripType" name="tripType" value="OW"/>
-                    <input type="hidden" id="seatData" name="seatData" value=""/>
-                    <input type="hidden" id="cartData" name="cartData" value=""/>
-                    <input type="hidden" id="voucherInfo" name="voucherInfo" value=""/>
-                    <input type="hidden" id="discountInfo" name="discountInfo" value=""/>
-                    <input type="hidden" id="GAProducts" name="GAProducts" value=""/>
-                    <input type="hidden" id="payType" name="payType" value="G"/>
-                    <input type="hidden" id="inflType" name="inflType" value="B"/>
-                    <input type="hidden" id="cultureCode" name="cultureCode" value=""/>
-                </form>
             </main>
         </div>
     </div>
@@ -350,7 +331,7 @@
             <div class="modal-header__title">탑승객별 운임 상세</div>
         </div>
         <div class="modal-content" style="height: 575px;">
-            <div class="receipt-style" id="totalPsFares" style="padding-bottom: 20px; margin-bottom: 20px;">
+            <div class="receipt-style" id="totalPsFares">
                 <dl class="line-list-item">
                     <dt class="title total">
                         <div class="txt-left">총 결제금액</div>

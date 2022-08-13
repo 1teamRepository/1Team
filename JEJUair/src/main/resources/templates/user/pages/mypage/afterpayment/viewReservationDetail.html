@@ -130,7 +130,7 @@
                                 <div class="journeys__passengers">
                                     <div class="person">
                                         <div class="person__item">
-                                            <i aria-label="성인" class="icon adult"></i><span>1</span><span
+                                            <i aria-label="성인" class="icon adult"></i><span class="passenger_num"></span><span
                                                 class="hidden">명</span>
                                         </div>
                                     </div>
@@ -180,35 +180,6 @@
                                             </div>
                                         </div>
 
-                                        <div class="button-wrap3-row" id="ssrPetDiv" style="display: none;">
-                                            <div class="button-wrap">
-                                                <button type="button" style="display:none;" class="button"
-                                                        id="requestPetBtn">반려동물 신청
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="button-wrap3-row" id="ssrInfantDiv" style="display: none;">
-                                            <div class="button-wrap">
-                                                <button type="button" style="display:none;" class="button"
-                                                        id="addInfantBtn">유아 승객 추가
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="button-wrap3-row" id="ssrWheelChairDiv" style="display: none;">
-                                            <div class="button-wrap">
-                                                <button type="button" style="display:none;" class="button"
-                                                        id="requestWheelChairBtn" onclick="moveWheelChair('RQST');">휠체어
-                                                    이용 신청
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="button-wrap3-row" style="display: none;">
-                                            <div class="button-wrap">
-                                                <button type="button" style="display:none;" class="button"
-                                                        id="modifyPlaceBtn">체류지 주소 수정
-                                                </button>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -237,58 +208,62 @@
                                         <ul class="journey-info__list">
                                             <li class="journey-info__item">
                                                 <span class="journey-info__key">항공운임</span>
-                                                <span class="journey-info__value"><span class="price_txt">11,900
-                        </span>
-                          <span class="unit">원</span>
-                        </span>
-                                            </li>
-                                            <li class="journey-info__item">
-                        <span class="journey-info__key">
-                          <span class="journey-info">공항시설 사용료</span>
-                        </span>
-                                                <span class="journey-info__value">
-                          <span class="price_txt">4,000</span>
-                          <span class="unit">원</span>
-                        </span>
+                                                <span class="journey-info__value"><span class="price_txt divFare">
+                                                </span>
+                                                  <span class="unit">원</span>
+                                                </span>
                                             </li>
                                             <li class="journey-info__item">
                                                 <span class="journey-info__key">유류할증료</span>
                                                 <span class="journey-info__value">
-                          <span class="price_txt">22,000</span>
-                          <span class="unit">원</span></span>
+                                                  <span class="price_txt divFuel"></span>
+                                                  <span class="unit">원</span></span>
+                                            </li>
+                                            <li class="journey-info__item">
+                                                <span class="journey-info__key">
+                                                  <span class="journey-info">공항시설 사용료</span>
+                                                </span>
+                                                <span class="journey-info__value">
+                                                  <span class="price_txt divTax"></span>
+                                                  <span class="unit">원</span>
+                                                </span>
                                             </li>
                                         </ul>
                                     </li>
                                     <li class="journey-info__group">
                                         <div class="journey-info__title">부가서비스</div>
                                         <div class="payment-amount-info itemize--line">
-                                            <div class="pc-flex-pay">
-                                                <div class="payment-amount left payment-amount--type2">
-                                                    <div class="payment-amount__title">가는 편</div>
-                                                </div>
-                                                <div class="payment-amount">
-                                                    <table class="tbl_receipt">
-                                                        <tbody>
-                                                        <tr>
-                                                            <td class="receipt_title"><span>사전 좌석</span></td>
-                                                            <td class="receipt_conts">
-                                                                <ul>
-                                                                    <li><span class="price"><span class="price_txt">1,000</span>
-                                  <span class="unit">원</span></span>
-                                                                    </li>
-                                                                </ul>
-                                                            </td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
+                                            <div class="journey-info__title">가는 편</div>
+                                            <ul class="journey-info__list">
+                                                <li class="journey-info__item">
+                                                    <span class="journey-info__key">사전 좌석</span>
+                                                    <span class="journey-info__value"><span class="price_txt divSeat">
+                                            </span>
+                                              <span class="unit">원</span>
+                                            </span>
+                                                </li>
+                                                <li class="journey-info__item">
+                                                    <span class="journey-info__key">사전 수하물</span>
+                                                    <span class="journey-info__value">
+                                              <span class="price_txt divBaggageFee"></span>
+                                              <span class="unit">원</span></span>
+                                                </li>
+                                                <li class="journey-info__item">
+                                            <span class="journey-info__key">
+                                              <span class="journey-info">사전 기내식</span>
+                                            </span>
+                                                    <span class="journey-info__value">
+                                              <span class="price_txt divFood"></span>
+                                              <span class="unit">원</span>
+                                            </span>
+                                                </li>
+                                            </ul>
                                         </div>
-                                        <div class="journey-info__totals">
+                                        <div class="journey-info__totals" style="margin-top: 10px">
                                             <div class="journey-info__total">
                                                 <span class="journey-info__total-key">총 결제금액</span>
                                                 <span class="journey-info__total-value"><span
-                                                        class="price_txt">38,900</span>
+                                                        class="price_txt spanCost"></span>
                         <span class="unit">원</span></span>
                                             </div>
                                         </div>
@@ -301,36 +276,6 @@
                 </div>
 
 
-
-
-                <div class="journey-func" style="display:none;" id="cashReceiptDiv">
-                    <div class="journey-func__groups">
-                        <div class="journey-func__group">
-                            <a href="javascript:void(0)" data-element="modal_anchor" class="button button--optional"
-                               id="btnReqCashReceipt" data-target="#cashReceiptLayer" data-modal-type="full"><span
-                                    class="button__text">현금 영수증 신청</span></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="section-wrap" id="pointPaymentDiv" style="display:none;">
-                    <div class="frame">
-                        <div class="frame__head">
-                            <div class="frame__heading">포인트 결제 내역</div>
-                        </div>
-                        <div class="frame__body" id="pointPayment"></div>
-                    </div>
-                </div>
-
-                <div class="section-wrap" id="dividePaymentDiv" style="display:none;">
-                    <div class="frame">
-                        <div class="frame__head">
-                            <div class="frame__heading">차감정보</div>
-                        </div>
-                        <div class="frame__body" id="divideInfoPayment">
-                        </div>
-                    </div>
-                </div>
                 <!-- 예약 변경으로 PNR이 분리된 케이스인 경우 차감정보 -->
 
                 <div class="section-wrap">
@@ -372,100 +317,8 @@
                     </div>
                 </div>
 
-
-                <div class="section-wrap" style="display:none;" id="animalDiv">
-                    <div class="frame">
-                        <div class="frame__head">
-                            <div class="frame__heading">반려동물 신청 정보</div>
-                        </div>
-                        <div class="frame__body">
-                            <div class="journey-info">
-                                <ul class="journey-info__groups _line" id="petInfo"></ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="section-wrap" style="display:none;" id="wheelChairDiv">
-                    <div class="frame">
-                        <div class="frame__head">
-                            <div class="frame__heading">휠체어 이용 신청 정보</div>
-                        </div>
-                        <div class="frame__body">
-                            <div class="journey-info">
-                                <ul class="journey-info__groups _line" id="wheelChairInfo"></ul>
-                            </div>
-                            <div class="journeys-fnc-btn mt10">
-                                <div class="button-wrap3-row">
-                                    <div class="button-wrap">
-                                        <button type="button" class="button" id="cancelWheelChairBtn"
-                                                onclick="moveWheelChair('CNCL');">신청 취소
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="section-wrap" style="display:none;" id="guardianDiv">
-                    <div class="frame">
-                        <div class="frame__head pc-only">
-                            <div class="frame__heading">동반 보호자</div>
-                        </div>
-                        <div class="frame__body">
-                            <div class="line-list-wrap">
-                                <div class="line-list-item" id="gurdianInfo"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
                 <div class="section-wrap" style="display:none;" id="insureDiv">
                     <div class="frame" id="setInsuranceDetail"></div>
-                </div>
-
-                <div class="journey-func" style="display:none;" id="cashReceiptDiv">
-                    <div class="journey-func__groups">
-                        <div class="journey-func__group">
-                            <a href="javascript:void(0)" data-element="modal_anchor" class="button button--optional"
-                               id="btnReqCashReceipt" data-target="#cashReceiptLayer" data-modal-type="full"><span
-                                    class="button__text">현금 영수증 신청</span></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="section-wrap" id="pointPaymentDiv" style="display:none;">
-                    <div class="frame">
-                        <div class="frame__head">
-                            <div class="frame__heading">포인트 결제 내역</div>
-                        </div>
-                        <div class="frame__body" id="pointPayment"></div>
-                    </div>
-                </div>
-
-                <div class="section-wrap" id="dividePaymentDiv" style="display:none;">
-                    <div class="frame">
-                        <div class="frame__head">
-                            <div class="frame__heading">차감정보</div>
-                        </div>
-                        <div class="frame__body" id="divideInfoPayment">
-                        </div>
-                    </div>
-                </div>
-                <!-- 예약 변경으로 PNR이 분리된 케이스인 경우 차감정보 -->
-
-                <div class="section-wrap" id="refundPaymentDiv" style="display:none;">
-                    <div class="frame">
-                        <div class="frame__head">
-                            <div class="frame__heading">환불정보</div>
-                        </div>
-                        <div class="frame__body" id="refundInfoPayment">
-                        </div>
-                    </div>
                 </div>
 
                 <div id="alertModalLayer" class="modal modal--simple">
@@ -550,7 +403,6 @@
 <script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
 <script type="text/javascript" src="/user/lib/js/common.js"></script>
 <script type="text/javascript" src="/user/lib/js/plugin.js"></script>
-<script type="text/javascript" src="/user/lib/js/userJs/password_edit.js"></script>
 <script type="text/javascript" src="/user/lib/js/userJs/viewReservation/viewReservation.js"></script>
 <script type="text/javascript" src="/user/lib/js/userJs/viewReservation/viewReservationCancel.js"></script>
 

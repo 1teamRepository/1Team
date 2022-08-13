@@ -50,6 +50,8 @@ public class TbPassengerApiLogicService extends BaseService<TbPassengerRequest, 
                 .bagWeight(tbPassenger.getTbBaggage().getBagWeight())
 
                 .tbFlightScheduleSchIdx(tbPassenger.getTbFlightSchedule().getSchIdx())
+                .schBizLitePrice(tbPassenger.getTbFlightSchedule().getSchBizLitePrice())
+                .schFlyPrice(tbPassenger.getTbFlightSchedule().getSchFlyPrice())
                 .build();
         return tbPassengerResponse;
     }

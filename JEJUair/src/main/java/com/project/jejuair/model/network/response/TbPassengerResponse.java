@@ -22,6 +22,8 @@ public class TbPassengerResponse {
     private String pasSeat;
 
     private Long tbFlightScheduleSchIdx;
+    private Long schBizLitePrice;
+    private Long schFlyPrice;
 
     private Long tbReservationResIdx;
 

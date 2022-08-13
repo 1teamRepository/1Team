@@ -135,34 +135,23 @@
                                         <tr class="topbanner" style="background-color: #FF5000; color: white;">
                                             <td class="airplaneName">NO</td>
                                             <td class="departureTime">내용</td>
-                                            <td class="departureLocation">금액(P)</td>
-                                            <td class="departureTime">아이디</td>
+                                            <td class="departureLocation">포인트 변동(P)</td>
                                             <td class="arriveTime">상태</td>
                                             <td class="arriveTime">사용(적립)일시</td>
                                         </tr>
                                         </thead>
 
                                         <tbody id="itemList">
-                                        <tr v-for="(dto,i) in itemList"
-                                            :key="i">
-                                            <td class="point_idx">{{dto.pntIdx}}</td>
-                                            <td class="point_content">{{dto.pntContent}}</td>
-                                            <td class="point_amount">{{dto.pntAmount}}</td>
-                                            <td class="point_userid">{{dto.pntUserid}}</td>
-                                            <td class="point_status">{{dto.pntStatus}}</td>
-                                            <td class="point_reg_date">{{dto.pntRegDate}}</td>
-                                        </tr>
                                         </tbody>
                                     </table>
-
-                                    <div class="paging" id="pageNum">
+                                    <div style="margin-top: 20px">
+                                        <span>* 최근 10번의 적립 및 사용 내역만 표시됩니다.</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </main>
 
         </div>

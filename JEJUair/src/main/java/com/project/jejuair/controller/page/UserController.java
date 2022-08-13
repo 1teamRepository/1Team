@@ -790,18 +790,15 @@ public class UserController {
     //항공권 결제 후 예매 확인 및 취소
 
 
-    @RequestMapping("/viewReservationDetail")
-    public ModelAndView viewReservationDetail() {
+    @RequestMapping("/viewReservationDetail/{resIdx}")
+    public ModelAndView viewReservationDetail(HttpServletRequest request, @PathVariable(name = "resIdx") Long resIdx) {
         return new ModelAndView("/user/pages/mypage/afterpayment/viewReservationDetail");
     }
-
 
     @RequestMapping("/viewPnrCancelComplete")
     public ModelAndView viewPnrCancelComplete() {
         return new ModelAndView("/user/pages/mypage/afterpayment/viewPnrCancelComplete");
     }
-
-
 
     @RequestMapping("/viewReservationList")
     public ModelAndView viewReservationList(HttpServletRequest request) {

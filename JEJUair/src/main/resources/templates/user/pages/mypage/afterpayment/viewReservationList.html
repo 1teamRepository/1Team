@@ -2,21 +2,6 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org/">
 
-<!--head-->
-<div th:replace="/user/fragment/head :: head"></div>
-<!--head 끝-->
-
-<body id="subLayoutBody">
-
-<!--appAlert-->
-<div th:replace="/user/fragment/appAlert :: appAlert"></div>
-<!--appAlert 끝-->
-
-
-<!--header-->
-<div th:replace="/user/fragment/header :: header"></div>
-<!--header 끝-->
-
 <style>
     /* 3-3 페이지네이션 시작 */
 
@@ -72,6 +57,21 @@
     /* 3-3 페이지네이션 끝 */
 
 </style>
+<!--head-->
+<div th:replace="/user/fragment/head :: head"></div>
+<!--head 끝-->
+
+<body id="subLayoutBody">
+
+<!--appAlert-->
+<div th:replace="/user/fragment/appAlert :: appAlert"></div>
+<!--appAlert 끝-->
+
+
+<!--header-->
+<div th:replace="/user/fragment/header :: header"></div>
+<!--header 끝-->
+
 
 
 <script th:inline="javascript">
@@ -261,8 +261,7 @@
                                         </div>
                                         <div class="boarding__header--item2">
                                             <button type="button" aria-label="<span>내보내기" class="button-share2"
-                                                    data-element="sns_share" data-url=""
-                                                    onclick="shareReservation(this, &quot;UDJ2GH&quot;, &quot;20221004185500&quot;);"></button>
+                                                    data-element="sns_share" data-url=""></button>
                                         </div>
                                     </div>
                                     <div class="boarding__info-wrap">
@@ -272,8 +271,7 @@
                                                 <div class="boarding__info-date">{{dto.schDepartureDate}} &nbsp&nbsp&nbsp {{dto.schDepartureTime}}</div>
                                             </div>
                                         </div>
-                                        <a href="javascript:void(0)"
-                                           onclick="goReservationDetail(&quot;UDJ2GH&quot;, &quot;20221004185500&quot;);">
+                                        <a href="javascript:void(0)">
                                             <div class="boarding__info">
                                                 <div class="boarding__info-before">
                                                     <div class="boarding__info-title">{{dto.schDeparture}}</div>
