@@ -1,5 +1,6 @@
 
 window.localStorage.removeItem("passJson");
+window.localStorage.removeItem("passJson2");
 window.localStorage.removeItem("tripJson");
 window.localStorage.removeItem("tripJson2");
 
@@ -65,6 +66,9 @@ $(document).on('click', '.choise__button', function () {
     selectAirport(this);
 })
 
+$(document).on('click', '.gnb__button', function () {
+    gnbBtn();
+})
 
 //selectTrip
 const tripBtn = document.querySelectorAll('.item-btn');
@@ -256,6 +260,20 @@ function selectAirport(select) {
         isForeign.setAttribute("value", "true");
     }
 }
+
+function gnbBtn(){
+    if (!document.querySelector(".gnb__button").classList.contains("active")){
+        document.querySelector(".gnb__button").classList.add("active");
+        document.querySelector("#gnb").style.display = "block";
+        document.querySelector("html").classList.add("active-gnb");
+    }else{
+        document.querySelector(".gnb__button").classList.remove("active");
+        document.querySelector("#gnb").style.display = "none";
+        document.querySelector("html").classList.remove("active-gnb");
+    }
+}
+
+
 
 
 //왕복 or 편도 : reserveRoute // 출발지 : departureData // 도착지 : arrivalData // 왕복 날짜 : onewayStart // 왕복 날짜 : roundStart, roundEnd // 성인 승객 수 : adtCount

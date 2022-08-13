@@ -96,19 +96,15 @@ public class TbPointApiLogicService extends BaseService<TbPointRequest, TbPointR
     public Header<List<TbPointResponse>> findPoint(Long id, Pageable pageable){
         Page<TbPoint> tbPointList = new PageImpl<>(baseRepository.findAll(pageable).
                 stream().filter(tbPoint -> tbPoint.getPntMemIdx().equals(id)).collect(Collectors.toList()));
-        System.out.println("1번 : " + tbPointList);
         List<TbPointResponse> tbPointResponseList = tbPointList.stream()
                 .map(tbPoint -> response(tbPoint)).collect(Collectors.toList());
-        System.out.println("2번 : " + tbPointResponseList);
         Pagination pagination = Pagination.builder()
                 .totalPages(tbPointList.getTotalPages())
                 .totalElements(tbPointList.getTotalElements())
                 .currentPage(tbPointList.getNumber())
                 .currentElements(tbPointList.getNumberOfElements())
                 .build();
-        System.out.println("3번 : " + pagination);
         return Header.OK(tbPointResponseList, pagination);
-
     }
 
 

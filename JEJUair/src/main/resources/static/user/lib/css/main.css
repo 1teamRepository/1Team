@@ -491,6 +491,53 @@
 .wrap--main .main-carousel__text .title, .wrap--main .main-carousel__text .title2  {text-align: left;}
 .footer__inner.ko-only .button-footer-biz{display: none;}
 
+.main_banner_event{
+    position: absolute;
+    width: 100%;
+    height: 480px;
+    background-size:100% 480px;
+    opacity: 0;
+    cursor: pointer;
+    transition-property: opacity;
+    transition-duration: 1s;
+}
+
+#banner0{
+    background:url(/user/lib/images/banner/banner1.png) center center no-repeat;
+    opacity: 1;
+    z-index: 8;
+}
+
+#banner1{
+    background:url(/user/lib/images/banner/banner2.png) center center no-repeat;
+    z-index: 7;
+}
+
+#banner2{
+    background:url(/user/lib/images/banner/banner3.png) center center no-repeat;
+    z-index: 6;
+}
+#banner3{
+    background:url(/user/lib/images/banner/banner4.png) center center no-repeat;
+    z-index: 5;
+}
+#banner4{
+    background:url(/user/lib/images/banner/banner5.png) center center no-repeat;
+    z-index: 4;
+}
+#banner5{
+    background:url(/user/lib/images/banner/banner6.png) center center no-repeat;
+    z-index: 3;
+}
+#banner6{
+    background:url(/user/lib/images/banner/banner7.png) center center no-repeat;
+    z-index: 2;
+}
+#banner7 {
+    background: url(/user/lib/images/banner/banner8.png) center center no-repeat;
+    z-index: 1;
+}
+
 @media screen and (max-width:1079px) {
    
     .mobile-shawdow {position: absolute; border-radius:10px; height:210px; width: calc(100% - 40px); z-index: 10;position:absolute; top:308px; 
@@ -704,6 +751,7 @@
 
     .main-ticketing .customer-layer .section-spacer {margin: 0 -20px;}    
     .NA_1_1 .main-ticketing {box-shadow:none; padding: 16px 16px 0px;}
+
 }
 
 

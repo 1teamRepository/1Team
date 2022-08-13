@@ -1,9 +1,3 @@
-let memPoint = 0;
-
-
-
-let foodPrice = 0;
-let foodPrice2 = 0;
 
 loadSchInfo();
 console.log("/api/flight_schedule/" + tripJson["schIdx"]);
@@ -199,9 +193,6 @@ function loadSchInfo() {
                 '                                </table>\n' +
                 '                            </div>\n' +
                 '                        </div>\n' +
-                
-                
-                
                 '                    </dd>\n' +
                 '                </dl>'
             $('#passengerFareList').append(passengerHTML);
@@ -216,7 +207,6 @@ function loadSchInfo() {
         })
 
         function setPoint(){
-
             if(Number(document.querySelector("#hasPoint").value) > Number(document.querySelector("#inputPoint").value)){
                 document.querySelector(".spanPoint").innerHTML = document.querySelector("#inputPoint").value;
                 document.querySelector(".spanFinalCost").innerHTML = (Number(document.querySelectorAll(".spanCost")[0].innerHTML.replaceAll(",","")) - Number(document.querySelector(".spanPoint").innerHTML)).toLocaleString();
@@ -226,7 +216,6 @@ function loadSchInfo() {
         }
     });
 }
-
 
 $(document).on('click', "#btnPaxDetail", function(){
     document.getElementById("passModal").style.display = "inline-block";
@@ -240,75 +229,78 @@ $(document).on('click', '.modal__close', function(){
 $(document).on('click', '#btnNext', function () {
 
 
-    //    멤버 point 차감
+    if(document.querySelector(".spanPoint").innerHTML !== "0"){
 
-    let tbMember = {
-        transaction_time: new Date(),
-        resultCode:"ok",
-        description:"ok",
-        data:{
-            memIdx: tripJson.memIdx,
-            memPoint: Number("-"+document.querySelector(".spanPoint").innerHTML)
+        //    멤버 point 차감
+
+        let tbMember = {
+            transaction_time: new Date(),
+            resultCode:"ok",
+            description:"ok",
+            data:{
+                memIdx: tripJson.memIdx,
+                memPoint: Number("-"+document.querySelector(".spanPoint").innerHTML)
+            }
         }
-    }
 
-    $.post({
-        url: '/api/customer/save',
-        method: "PUT",
-        data: JSON.stringify(tbMember),
-        dataType: 'json',
-        contentType: 'application/json',
-        async: false,
-        success: function(response){
-            console.log("===== member response ====")
-            console.log(response.data);
-        },
-        error: function(){
-            alert('오류가 발생했습니다. 예매 시작화면으로 돌아갑니다.');
-            // location.href = "/user/ticket_reservation"
+        $.post({
+            url: '/api/customer/save',
+            method: "PUT",
+            data: JSON.stringify(tbMember),
+            dataType: 'json',
+            contentType: 'application/json',
+            async: false,
+            success: function(response){
+                console.log("===== member response ====")
+                console.log(response.data);
+            },
+            error: function(){
+                alert('오류가 발생했습니다. 예매 시작화면으로 돌아갑니다.');
+                // location.href = "/user/ticket_reservation"
+            }
+        });
+
+
+
+        //포인트 사용 내역 추가
+
+        let tbPoint = {
+            transaction_time: new Date(),
+            resultCode:"ok",
+            description:"ok",
+            data:{
+                pntUserid: tripJson["memUserid"],
+                pntContent: "항공권 결제 사용 포인트",
+                pntAmount: Number("-"+document.querySelector(".spanPoint").innerHTML.replaceAll(",","")),
+                pntStatus: "USE",
+                pntMemIdx: tripJson.memIdx
+            }
         }
-    });
 
+        $.post({
+            url: '/api/point',
+            data: JSON.stringify(tbPoint),
+            dataType: 'json',
+            contentType: 'application/json',
+            async: false,
+            success: function(response){
+                console.log("===== point response ====")
+                console.log(response.data);
+            },
+            error: function(){
+                alert('오류가 발생했습니다. 예매 시작화면으로 돌아갑니다.');
+                // location.href = "/user/ticket_reservation"
+            }
+        });
 
+        tripJson["spanFinalCost"] = Number(document.querySelector(".spanFinalCost").innerHTML.replaceAll(",",""));
 
-    //포인트 사용 내역 추가
-
-    let tbPoint = {
-        transaction_time: new Date(),
-        resultCode:"ok",
-        description:"ok",
-        data:{
-            pntUserid: tripJson["memUserid"],
-            pntContent: "항공권 결제 사용 포인트",
-            pntAmount: Number("-"+document.querySelector(".spanPoint").innerHTML.replaceAll(",","")),
-            pntStatus: "USE",
-            pntMemIdx: tripJson.memIdx
+        if(tripJson2.spanCost === 0){
+            tripJson["spanCost"] = Number(tripJson.spanCost + Number(tbPoint.data.pntAmount));
+        }else{
+            tripJson["spanCost"] = Number(tripJson.spanCost + parseInt(tbPoint.data.pntAmount/2));
+            tripJson2["spanCost"] = Number(tripJson2.spanCost + parseInt(tbPoint.data.pntAmount/2));
         }
-    }
-
-    $.post({
-        url: '/api/point',
-        data: JSON.stringify(tbPoint),
-        dataType: 'json',
-        contentType: 'application/json',
-        async: false,
-        success: function(response){
-            console.log("===== point response ====")
-            console.log(response.data);
-        },
-        error: function(){
-            alert('오류가 발생했습니다. 예매 시작화면으로 돌아갑니다.');
-            // location.href = "/user/ticket_reservation"
-        }
-    });
-    tripJson["spanFinalCost"] = Number(document.querySelector(".spanFinalCost").innerHTML.replaceAll(",",""));
-
-
-    if(tripJson2.spanCost === 0){
-        tripJson["spanCost"] = Number(tripJson.spanCost + Number(tbPoint.data.pntAmount));
-    }else{
-        tripJson["spanCost"] = Number(tripJson.spanCost + parseInt(tbPoint.data.pntAmount/2));
-        tripJson2["spanCost"] = Number(tripJson2.spanCost + parseInt(tbPoint.data.pntAmount/2));
     }
 
     localStorage.setItem("passJson", JSON.stringify(passJson));

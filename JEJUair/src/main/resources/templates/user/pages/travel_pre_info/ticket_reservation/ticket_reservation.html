@@ -16,7 +16,18 @@
 <!--header-->
 <div th:replace="/user/fragment/header :: header"></div>
 <!--header 끝-->
+<style>
+    .active-gnb .gnb {
+        height: auto;
+    }
 
+    .active-gnb .gnb__button:before {
+        background-image: url(/user/lib/images/icon_gnb_close.png);
+        background-size: 100%;
+        background-color: #fff;
+    }
+
+</style>
 
 <div id="body">
 

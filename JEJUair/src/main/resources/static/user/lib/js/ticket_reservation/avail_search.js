@@ -273,6 +273,11 @@ $(document).on('click', '.ticketing-date', function() {
     ticketingDisplay();
 })
 
+$(document).on('click', '.gnb__button', function () {
+    gnbBtn();
+})
+
+
 
 reserveProgress();
 btnAble();
@@ -615,3 +620,17 @@ $(document).on('click', '.roundbackPage', function () {
     localStorage.setItem("tripJson2", JSON.stringify(tripJson2));
     location.href="/user/view_passenger_input";
 })
+
+
+
+function gnbBtn(){
+    if (!document.querySelector(".gnb__button").classList.contains("active")){
+        document.querySelector(".gnb__button").classList.add("active");
+        document.querySelector("#gnb").style.display = "block";
+        document.querySelector("html").classList.add("active-gnb");
+    }else{
+        document.querySelector(".gnb__button").classList.remove("active");
+        document.querySelector("#gnb").style.display = "none";
+        document.querySelector("html").classList.remove("active-gnb");
+    }
+}
