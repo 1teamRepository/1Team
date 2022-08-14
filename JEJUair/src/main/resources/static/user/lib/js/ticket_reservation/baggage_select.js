@@ -1,5 +1,26 @@
 const schIdx = Number(tripJson["schIdx"]);
 let passengerNum = tripJson["schPassengerNum"];
+let foodAvailable = "";
+
+$.get({
+    url: '/api/flight_schedule/' + tripJson["schIdx"],
+    dataType: "json",
+    contentType: 'application/json',
+    async: false,
+    success: function (response) {
+        console.log(response.data)
+        foodAvailable = response.data.schFood;
+    }
+})
+
+for (let i = 0; i < passengerNum; i++) {
+    passJson["pasMeal"+i] = 0;
+    passJson2["pasMeal"+i] = 0;
+    passJson["pasMealName"+i] = 'none';
+    passJson2["pasMealName"+i] = 'none';
+    passJson["pasMealIdx" + i] = 0;
+    passJson2["pasMealIdx" + i] = 0;
+}
 
 $('#divFare').find('.flight__cost')[0].innerHTML = (tripJson.divFare + tripJson2.divFare).toLocaleString();
 $('#divTax').find('.flight__cost')[0].innerHTML = (tripJson.divTax + tripJson2.divTax).toLocaleString();
@@ -162,8 +183,11 @@ $(document).on('click', '.onewayPage', function () {
 
     console.log(passJson);
     console.log(tripJson);
-   location.href="/user/meal_select";
-    // location.href="/user/view_confirm";
+    if(foodAvailable==="YES"){
+        location.href="/user/meal_select";
+    }else if(foodAvailable==="NO"){
+        location.href="/user/view_confirm";
+    }
 })
 
 $(document).on('click', '.roundPage', function () {
@@ -212,6 +236,10 @@ $(document).on('click', '.roundbackPage', function () {
 
     console.log(passJson2);
     console.log(tripJson2);
-    location.href="/user/meal_select";
-    // location.href="/user/view_confirm";
+
+    if(foodAvailable==="YES"){
+        location.href="/user/meal_select";
+    }else if(foodAvailable==="NO"){
+        location.href="/user/view_confirm";
+    }
 })

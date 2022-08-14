@@ -366,7 +366,12 @@ if(tripJson.resRoute==="ONEWAY" || tripJson.resRoute==="ROUNDGO") {
 
     }
 
-
-
 }
 
+$(document).on('click', '#btnHome', function () {
+    location.href="/user";
+})
+
+$(document).on('click', '#btnList', function () {
+    location.href="/user/viewReservationList";
+})
