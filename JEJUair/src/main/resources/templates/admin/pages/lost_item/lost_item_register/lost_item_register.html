@@ -134,7 +134,8 @@
                                 </li>
                                 <li class="clear">
                                     <span class="tit_lbl">이미지 첨부</span>
-                                    <div class="reg_content" ><input name="lostImg" id="lostImg" type="text" class="textBox3"><button class="button file" value="선택">선택</button></div>
+                                    <div class="reg_content" ><input name="lostImg" id="lostImg" type="file" class="textBox3" onchange="loadFile(this)">
+                                        <button for="lostImg" type="file" class="button file" value="선택">선택</button></div>
 
                                 </li>
                             </ul>
@@ -152,6 +153,34 @@
     </div>
 
 </div>
+
+
+<script>
+    function loadFile(input) {
+        var file = input.files[0];   //선택된 파일 가져오기
+
+        //미리 만들어 놓은 div에 text(파일 이름) 추가
+        var name = document.getElementById('lostImg');
+        name.textContent = file.name;
+
+        //새로운 이미지 div 추가
+        var newImage = document.createElement("img");
+        newImage.setAttribute("class", 'img');
+
+        //이미지 source 가져오기
+        newImage.src = URL.createObjectURL(file);
+
+        newImage.style.width = "70%";
+        newImage.style.height = "70%";
+        newImage.style.objectFit = "contain";
+        newImage.style.visibility = "visible";
+
+        //이미지를 image-show div에 추가
+        var container = document.getElementById('image-show');
+        container.appendChild(newImage);
+    };
+</script>
+
 
 <!--아이콘 사용을 위한 설치 스크립트-->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

@@ -29,10 +29,60 @@ $(document).on('click', '#select_btn', function () {
         searchList(0, selected, searchTotal);
 
     }
+});
+
+
+
+//모달창 열기
+$(document).on('click', '#list-card__item', function () {
+    let index = document.getElementById("lostIdx").value;
+
+    readView(index);
+    console.log(index);
+
+
+    function readView(index) {
+
+        $.get("/api/lost_item/" + index, function (response) {
+            let lostItem = response.data;
+            console.log(response);
+            console.log(response.data);
+            console.log(lostItem);
+
+
+            let lostAcqDate = `${lostItem.lostAcqDate}`
+            let lostDisDate = `${lostItem.lostDisDate}`
+            let lostProperty = `${lostItem.lostItem}`
+            let lostAcqAirName = `${lostItem.lostAcqAirName}`
+            let lostStoragePlace = `${lostItem.lostStoragePlace}`
+            let lostColor = `${lostItem.lostColor}`
+            let lostExplain = `${lostItem.lostExplain}`
+
+
+            document.getElementById("detailPickupDt").innerText = lostAcqDate;
+            document.getElementById("keepingChgDt").innerText = lostDisDate;
+            document.getElementById("detailItemCd").innerText = lostProperty;
+            document.getElementById("detailPickupSpotCont").innerText = lostAcqAirName;
+            document.getElementById("detailRegBranchId").innerText = lostStoragePlace;
+            document.getElementById("detailHueCd").innerText = lostColor;
+            document.getElementById("imageReplacementSentenceCont").innerText = lostExplain;
+
+
+        });
+    }
+    document.getElementById("modalLayer02").style.display ="block";
 
 
 
 
+});
+
+
+//모달창 닫기
+$(document).on('click', '#modal_close', function (event) {
+    event.stopPropagation();
+    document.getElementById("modalLayer02").style.display ="none";
+    console.log("들어옴3")
 });
 
 
@@ -114,6 +164,7 @@ function searchByAll(color,item, selected, searchTotal){
 // }
 
 
+
 function searchList(index, selected, searchTotal){
     console.log("들어옴2");
 
@@ -121,6 +172,7 @@ function searchList(index, selected, searchTotal){
         el: '#itemList',            //아이디불러옴 vue 작동
         data: {
             itemList: {}
+
         }
     });
 
@@ -128,13 +180,16 @@ function searchList(index, selected, searchTotal){
 
     $.get("/api/lost_item?page="+index, function(response){
 
+
+
         //console.log(itemList.itemList)
         //자료가없을떄
-        console.log(response)
+        console.log(response);
         if(response.data == null) {
             let noneData = document.getElementsByClassName("finish-item-wrap");
             noneData.style.display="block"
         }
+
 
         //let pagination = response.pagination;
         //pageNum.totalPages = pagination.totalPages;
@@ -148,6 +203,8 @@ function searchList(index, selected, searchTotal){
 
 
 
+
+
     searchTotal.children[1].style.display = "block";
     console.log("style들어옴")
     //여러개 리스트 있을때
@@ -156,6 +213,10 @@ function searchList(index, selected, searchTotal){
         selected[i].style.display = "block";
     }
 }
+
+
+//모달창 열기
+
 
 // $(function(){
 //     debugger

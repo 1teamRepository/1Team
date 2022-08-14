@@ -1,57 +1,86 @@
 $(function(){
     let category = document.getElementById("category").getAttribute("value");
-    $(document).on('click', '#sendit', function() {
-        if (!$('#lostExplain').val()) {
-            alert('유실물명을 입력하세요');
-            $('#lostExplain').focus();
+    $(document).on('click', '#sendit', function(){
+        if(!$('#lostItem').val()){
+            alert('분실물을 입력하세요');
+            $('#lostItem').focus();
             return false;
         }
 
-        if (!$('#lostAcqAirName').val()) {
-            alert('습득편명을 입력하세요');
+        if(!$('#lostAcqAirName').val()) {
+            alert('습득편명을 입력하세요' );
             $('#lostAcqAirName').focus();
             return false;
         }
 
-        if (!$('#lostAcqDate').val()) {
+        if(!$('#lostAcqDate').val()){
             alert('습득날짜를 입력하세요');
             $('#lostAcqDate').focus();
             return false;
         }
 
+        let storage = document.getElementById("lostStoragePlace");
+        let lostStoragePlace = storage.options[storage.selectedIndex].value;
+        if(lostStoragePlace == "null" || lostStoragePlace == undefined){
+            alert('보관장소를 선택하세요');
+            $('#lostStoragePlace').focus();
+            return false;
+        }
 
-        if (!$('#lostDisDate').val()) {
-            alert('폐기날짜 입력하세요');
+        if(!$('#lostStoragePlace').val()){
+            alert('보관장소를 선택하세요');
+            $('#lostStoragePlace').focus();
+        }
+
+        if(!$('#lostDisDate').val()){
+            alert('폐기날짜를 입력하세요');
             $('#lostDisDate').focus();
             return false;
         }
 
+        let color = document.getElementById("lostColor");
+        let lostColor = color.options[color.selectedIndex].value;
+        if(lostColor == "null" || lostColor == undefined){
+            alert('색상을 선택하세요');
+            $('#lostColor').focus();
+            return false;
+        }
 
-        if (!$('#lostItem').val()) {
-            alert('상세설명을 입력하세요');
+
+        let item = document.getElementById("lostItem");
+        let lostItem = item.options[item.selectedIndex].value;
+        if(lostItem == "null" || lostItem == undefined){
+            alert('품목을 선택하세요');
             $('#lostItem').focus();
             return false;
         }
 
-        if (!$('#lostSeatNum').val()) {
-            alert('좌석번호 입력하세요');
+
+        if(!$('#lostExplain').val()){
+            alert('상세설명을 입력하세요');
+            $('#lostExplain').focus();
+            return false;
+        }
+
+        if(!$('#lostSeatNum').val()){
+            alert('좌석번호를 입력하세요');
             $('#lostSeatNum').focus();
             return false;
         }
 
-
-        let storage = document.getElementById("lostStoragePlace");
-        let lostStoragePlace = storage.options[storage.selectedIndex].value;
-
-        let color = document.getElementById("lostColor");
-        let lostColor = color.options[color.selectedIndex].value;
-
-        let item = document.getElementById("lostItem");
-        let lostItem = item.options[item.selectedIndex].value;
-
         let status = document.getElementById("lostStatus");
         let lostStatus = status.options[status.selectedIndex].value;
+        if(lostStatus == "null" || lostStatus == undefined){
+            alert('상태를 선택하세요');
+            $('#lostStatus').focus();
+            return false;
+        }
 
+        if(!$('#lostImg').val()){
+            alert("사진을 등록하세요");
+            $('#lostImg').focus();
+            return false;
+        }
 
 
 
