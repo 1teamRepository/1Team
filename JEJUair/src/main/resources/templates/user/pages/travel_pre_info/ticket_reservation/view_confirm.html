@@ -314,9 +314,15 @@
 
                 <div class="container--large">
                     <div class="fixed-wrap button-wrap pc-center section-wrap pc-type01">
-                        <button id="btnNext" name="btnNext" type="button" class="button button--primary button--active">
-                            <span class="button__text">카카오페이 결제하기</span><!-- 다음 -->
-                        </button>
+                        <form method="post" action="/kakaoPay">
+                            <input type="hidden" id="partner_user_id" name="partner_user_id">
+                            <input type="hidden" id="item_name" name="item_name">
+                            <input type="hidden" id="total_amount" name="total_amount">
+                            <button name="btnNext" id=btnNext type="submit" class="button button--primary button--active">
+                                <!--                                -->
+                                <span class="button__text">카카오페이 결제하기</span><!-- 다음 -->
+                            </button>
+                        </form>
                     </div>
                 </div>
 

@@ -199,6 +199,9 @@ function loadSchInfo() {
             if(tripJson.resRoute === "ONEWAY"){
                 document.querySelectorAll(".roundbackReceipt")[i].style.display = "none";
             }
+            document.getElementById("partner_user_id").setAttribute("value", tripJson.memUserid);
+            document.getElementById("item_name").setAttribute("value", tripJson.schDeparture+" - "+tripJson.schArrival);
+            document.getElementById("total_amount").setAttribute("value", String(tripJson.spanCost+tripJson2.spanCost));
 
         }
 
@@ -293,13 +296,17 @@ $(document).on('click', '#btnNext', function () {
             }
         });
 
+
+
         tripJson["spanFinalCost"] = Number(document.querySelector(".spanFinalCost").innerHTML.replaceAll(",",""));
 
         if(tripJson2.spanCost === 0){
             tripJson["spanCost"] = Number(tripJson.spanCost + Number(tbPoint.data.pntAmount));
+            document.getElementById("total_amount").setAttribute("value", String(tripJson.spanCost+tripJson2.spanCost));
         }else{
             tripJson["spanCost"] = Number(tripJson.spanCost + parseInt(tbPoint.data.pntAmount/2));
             tripJson2["spanCost"] = Number(tripJson2.spanCost + parseInt(tbPoint.data.pntAmount/2));
+            document.getElementById("total_amount").setAttribute("value", String(tripJson.spanCost+tripJson2.spanCost));
         }
     }
 
@@ -307,5 +314,5 @@ $(document).on('click', '#btnNext', function () {
     localStorage.setItem("tripJson", JSON.stringify(tripJson));
     localStorage.setItem("tripJson2", JSON.stringify(tripJson2));
 
-    location.href = "/user/view_payment";
+    // location.href = "/user/view_payment";
 });
