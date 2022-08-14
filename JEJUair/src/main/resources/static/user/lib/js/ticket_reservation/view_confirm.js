@@ -73,10 +73,10 @@ function loadSchInfo() {
 
         for (let i = 0; i < passengerNum; i++) {
 
-            const seatPrice1 = passJson["pasSeat"+i] === "" ? 0 : (tripJson.seatValue === "eco" ? 5000 : 10000);
+            const seatPrice1 = passJson["pasSeat"+i] === "BIZ" || passJson["pasSeat"+i] === "ECO" ? 0 : (tripJson.seatValue === "eco" ? 5000 : 10000);
             let seatPrice2 = 0;
             if(tripJson2.resRoute === "ROUNDBACK"){
-                seatPrice2 = passJson2["pasSeat"+i] === "" ? 0 : (tripJson2.seatValue === "eco" ? 5000 : 10000);
+                seatPrice2 = passJson2["pasSeat"+i] === "BIZ" || passJson2["pasSeat"+i] === "ECO" ? 0 : (tripJson2.seatValue === "eco" ? 5000 : 10000);
             }
 
             let passengerHTML = ' <dl class="line-list-item">\n' +

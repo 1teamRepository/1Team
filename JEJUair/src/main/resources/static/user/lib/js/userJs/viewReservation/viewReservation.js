@@ -9,7 +9,8 @@ $(function () {
     let category = document.getElementById("category").getAttribute("value");
     let str = $(location).attr('href').split('/').reverse();
     let passengerNum = 0;
-
+    let fare = 0;
+    let seatGrade = 0;
 
     readView(str[0]);
 
@@ -27,9 +28,10 @@ $(function () {
                 success: function (response) {
                     console.log(response.data);
                     passengerNum = response.data.length;
-                    let seatGrade = response.data[0].pasSeat.substring(0, 3) === "BIZ" ? 10000 : 5000;
-                    let fare = response.data[0].pasSeat.substring(0, 3) === "BIZ"
+                    seatGrade = response.data[0].pasSeat.substring(0, 3) === "BIZ" ? 10000 : 5000;
+                    fare = response.data[0].pasSeat.substring(0, 3) === "BIZ"
                         ? response.data[0].schBizLitePrice * passengerNum : response.data[0].schFlyPrice * passengerNum;
+
                     let fuelPrice = 22000 * passengerNum;
                     let taxPrice = 4000 * passengerNum;
                     let baggagePrice = 0;
