@@ -13,8 +13,7 @@ let bizX = document.getElementById("divBusinessLite");
 let passengerNames = []
 
 for (let i = 0; i < passengerNum; i++) {
-    passengerNames[i] = passJson["passLastName"+i]+passJson["passFirstName"+i]
-    console.log(passengerNames[i])
+    passengerNames[i] = passJson["passLastName"+i]+"/"+passJson["passFirstName"+i]
 }
 
 const ColArr = ['A', 'B', 'C', 'D', 'E', 'F'];
@@ -54,8 +53,8 @@ $.get("/api/flight_schedule/"+schIdx, function(response){
         contentType: 'application/json',
         async: false,
         success: function(response){
+            console.log(existingSeatArray)
             existingSeatArray = response.data
-
         }
     })
 
@@ -67,11 +66,6 @@ $.get("/api/flight_schedule/"+schIdx, function(response){
             async: false,
             success: function (res) {
                 let schRead2 = res.data;
-                console.log("======schRead2=======")
-                console.log(schRead2);
-                console.log("tbAircraftAcftIdx : " + schRead2["tbAircraftAcftIdx"]);
-                console.log("acftBizLiteSeats :" + schRead2["acftBizLiteSeats"]);
-                console.log("acftBizLiteSeats : "+schRead2["acftNomalSeats"]);
                 bizSeats = Number(schRead2["acftBizLiteSeats"]);
                 ecoSeats = Number(schRead2["acftNomalSeats"]);
 
@@ -81,19 +75,15 @@ $.get("/api/flight_schedule/"+schIdx, function(response){
                     contentType: 'application/json',
                     async: false,
                     success: function (response2) {
-                        console.log(response2)
-                        console.log(response2.data)
-                        console.log(response2.data[0])
                         existingSeatArray2 = response2.data
-
+                        console.log(existingSeatArray2)
                     }
                 })
-        }
+            }
 
         })
 
     }
-
 
     for (let i = 0; i < bizSeats + 2*(bizSeatLineNum-1); i++) {
         const designator = i % 6 == 0 ? "BIZ" + bizSeatLineNum + ColArr[i % 6] : "BIZ" + (bizSeatLineNum - 1) + ColArr[i % 6];
@@ -145,16 +135,18 @@ $.get("/api/flight_schedule/"+schIdx, function(response){
 
     if(tripJson.resRoute==="ONEWAY" || passJson["roundCheck"] === "false"){
         for (let i = 0; i < existingSeatArray.length; i++) {
-            console.log(document.querySelector('.select-seat__seat[designator = "'+existingSeatArray[i].pasSeat+'"]'));
-            if(existingSeatArray[i].pasSeat != null){
-                document.querySelector('.select-seat__seat[designator = "'+existingSeatArray[i].pasSeat+'"]').setAttribute("disabled", true);
+            if(existingSeatArray[i].pasSeat !== "BIZ" && existingSeatArray[i].pasSeat !== "ECO"){
+                if(existingSeatArray[i].pasSeat != null){
+                    document.querySelector('.select-seat__seat[designator = "'+existingSeatArray[i].pasSeat+'"]').setAttribute("disabled", true);
+                }
             }
         }
     }if(passJson["roundCheck"] === "true"){
         for (let i = 0; i < existingSeatArray2.length; i++) {
-            console.log(document.querySelector('.select-seat__seat[designator = "'+existingSeatArray2[i].pasSeat+'"]'));
-            if(existingSeatArray2[i].pasSeat != null){
-                document.querySelector('.select-seat__seat[designator = "'+existingSeatArray2[i].pasSeat+'"]').setAttribute("disabled", true);
+            if(existingSeatArray2[i].pasSeat !== "BIZ" && existingSeatArray2[i].pasSeat !== "ECO"){
+                if(existingSeatArray2[i].pasSeat != null) {
+                    document.querySelector('.select-seat__seat[designator = "' + existingSeatArray2[i].pasSeat + '"]').setAttribute("disabled", true);
+                }
             }
         }
     }
@@ -182,7 +174,6 @@ function selectSeat(select) {
         }
     } else {
         if ($(activePassenger).attr("select-seat") === "" && $(select).attr("data-seat") === "") {
-            console.log(typeof ($(select).attr('data-seat')));
             $(activePassenger).attr("select-seat", $(select).attr("designator"));
             document.querySelector(".is-active>.passenger>.seat").innerHTML = $(select).attr("designator");
             select.classList.add('selected');
@@ -289,7 +280,11 @@ $(document).on('click', '.roundPage', function () {
 
     for (let i = 0; i < tripJson["schPassengerNum"]; i++) {
         if(document.getElementById("passenger"+i).getAttribute("select-seat") == null){
-            passJson["pasSeat"+i] = "";
+            if(tripJson.seatValue === "biz"){
+                passJson["pasSeat"+i] = "BIZ";
+            }else{
+                passJson["pasSeat"+i] = "ECO";
+            }
         }else{
             passJson["pasSeat"+i] = document.querySelectorAll(".selected_seat")[i].innerHTML;
         }
@@ -308,7 +303,11 @@ $(document).on('click', '.roundbackPage', function () {
 
     for (let i = 0; i < tripJson["schPassengerNum"]; i++) {
         if(document.getElementById("passenger"+i).getAttribute("select-seat") == null){
-            passJson2["pasSeat"+i] = "";
+            if(tripJson.seatValue === "biz"){
+                passJson2["pasSeat"+i] = "BIZ";
+            }else{
+                passJson2["pasSeat"+i] = "ECO";
+            }
         }else{
             passJson2["pasSeat"+i] = document.querySelectorAll(".selected_seat")[i].innerHTML;
         }
