@@ -367,6 +367,10 @@ if(tripJson.resRoute==="ONEWAY" || tripJson.resRoute==="ROUNDGO") {
     }
 
 }
+window.localStorage.removeItem("passJson");
+window.localStorage.removeItem("passJson2");
+window.localStorage.removeItem("tripJson");
+window.localStorage.removeItem("tripJson2");
 
 $(document).on('click', '#btnHome', function () {
     location.href="/user";
