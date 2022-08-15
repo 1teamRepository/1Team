@@ -27,7 +27,7 @@
                 <!-- 본문 -->
                 <div class="bodytext_area box_inner">
                     <dl class="myinfo">
-                        <form id="regForm" class="regForm">
+                        <form id="regForm" class="regForm" enctype="multipart/form-data">
                             <div class="tableBorder">
                                 <div class="pageTitle">
                                     <h2>기내식 등록</h2>
@@ -64,7 +64,7 @@
                                     </li>
                                     <li class="clear">
                                         <span class="tit_lbl">첨부사진</span>
-                                        <div class="reg_content"><input name="foodPicture" id="foodPicture" type="text" class="textBox3" value=""><button class="button file">선택</button></div>
+                                        <div class="reg_content"><input type="file" name="foodPic" id="foodPic" class="textBox"></div>
                                     </li>
                                     <li class="clear">
                                         <span class="tit_lbl">출발지</span>

@@ -71,6 +71,7 @@ function readView(index, view){
         document.getElementById('foodName').innerText = `${readItem.foodKorName}`
         document.getElementById('foodPrice').innerText = `${readItem.foodKrwPrice}`
         document.getElementById('foodIdx').innerText = `${readItem.foodIdx}`
+        document.getElementById('card_image').src = `${readItem.foodPicture}`
         view.view = response.data;
         openTp()
     })

@@ -29,6 +29,31 @@
 <div id="body">
     <input id="memIdx" th:value="${idx}" style="display: none">
     <div class="wrap wrap--button MO">
+        <div id="breadcrumb" class="breadcrumb pc-only" aria-label="breadcrumb">
+            <nav class="breadcrumb__inner">
+                <div class="breadcrumb__item">
+                    <a href="javascript:;" class="breadcrumb__link" style="cursor: default;">홈</a>
+                </div>
+
+                <div class="breadcrumb__item">
+                    <a href="javascript:;" class="breadcrumb__link" style="cursor: default;">마이페이지</a>
+                </div>
+
+                <div class="breadcrumb__item breadcrumb__item--current" aria-current="page" data-element="toggle" data-options="{&quot;mode&quot;: &quot;slide&quot;, &quot;speed&quot;: 100, &quot;clickToClose&quot;: true}">
+
+                    <button type="button" class="breadcrumb__link breadcrumb__link--list" data-element="toggle__anchor" aria-controls="toggle-2" aria-expanded="false">나의 1:1 문의</button>
+
+                    <div class="breadcrumb__siblings-list" data-element="toggle__panel" id="toggle-2">
+                        <a href="javascript:void(0);" class="item" onclick="location.href='/user/mypage_main_member';">마이페이지 메인</a>
+                        <a href="javascript:void(0);" class="item" onclick="location.href='/user/viewReservationList';">나의 예약 현황</a>
+                        <a href="javascript:void(0);" class="item" onclick="location.href='/user/info_edit_mypage';">회원 정보 조회</a>
+                    </div>
+                </div>
+
+
+
+            </nav>
+        </div>
         <div class="content" id="content">
             <div id="category" value="inquiry"></div>
             <main class="main help_tab" id="main">

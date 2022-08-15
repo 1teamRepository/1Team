@@ -41,7 +41,7 @@
                     <!--  로그인 후 노출 -->
                     <div id="login_visible" style="display: none">
                         <span class="util__personal">
-                            <a href="/user/point_member"><span class="text">나의 포인트 </span>
+                            <a href="/user/mypage_main_member"><span class="text">나의 포인트 </span>
                             <strong class="point" data-user-info-box="availPoint" id="memPoint" th:text="${memPoint}"><span
                                     class="text">P</span>
                             </strong>
@@ -52,7 +52,7 @@
                     </div>
                     <!-- / 로그인 후 노출 끝 -->
 
-                    <a href="/user/point_main" class="util__link">리프레시 포인트</a>
+<!--                    <a href="/user/point_main" class="util__link">리프레시 포인트</a>-->
                     <a href="/user/customerService/faqList" class="util__link">고객센터</a>
                     <a href="/user/customerService/notice/noticeList" class="util__link">공지사항</a>
 
@@ -252,9 +252,9 @@
                             <div class="gnb__title">마이페이지</div>
                             <div class="gnb__list">
                                 <a href="/user/mypage_main_member" class="gnb__list-item">마이페이지 메인</a>
-                                <a href="/user/reserve_info" class="gnb__list-item">예약 조회</a>
-                                <a href="/user/my_reserve" class="gnb__list-item">나의 예약 현황</a>
-                                <a href="/user/my_history" class="gnb__list-item">나의 탑승 내역</a>
+<!--                                <a href="/user/reserve_info" class="gnb__list-item">예약 조회</a>-->
+                                <a href="/user/viewReservationList" class="gnb__list-item">나의 예약 현황</a>
+                                <a href="/user/qna_list" class="gnb__list-item">나의 1:1 문의</a>
                                 <a href="/user/info_edit_mypage" class="gnb__list-item">회원정보 조희</a>
                             </div>
                         </div>
