@@ -36,7 +36,7 @@
 					<button type="button" class="breadcrumb__link breadcrumb__link--list" data-element="toggle__anchor">사전 기내식</button>
 					<div class="breadcrumb__siblings-list" data-element="toggle__panel">
 						<a href="/user/additionalInfo/advanceBaggage" class="item">사전 수하물</a>
-						<a href="user/additionalInfo/additionalIntro" class="item">부가서비스 소개</a>
+						<a href="/user/additionalInfo/additionalIntro" class="item">부가서비스 소개</a>
 						<a href="/user/additionalInfo/advanceSeat" class="item">사전 좌석</a>
 						<a href="/user/additionalInfo/insurance" class="item">보험 상품</a>
 						<a href="/user/additionalInfo/afterPayment" class="item">나중에 결제</a>
@@ -71,7 +71,7 @@
 										<div class="carousel__contents">
 											<div class="list-product__image">
 												<!-- 음식 이미지 -->
-												<img src="https://static.jejuair.net/cms/images/aircafe_prod/20211012134308825.jpg" alt="SANDWICH ON THE CLOUD">
+												<img v-if=dto.foodPicture :src='dto.foodPicture'  alt="기내식 사진">
 											</div>
 										</div>
 									</div>

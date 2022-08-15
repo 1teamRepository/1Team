@@ -61,15 +61,13 @@ $(function(){
         let memPoint = `${memData.memPoint}`
         console.log(memPoint)
 
-        if (memPoint >= 250000) {
+        if (memPoint >= 500000) {
             memberGrade.innerHTML = "VIP"
-        }
-        if (memPoint >= 100000) {
+        }else if (memPoint >= 250000) {
             memberGrade.innerHTML = "GOLD"
-        }
-        if (memPoint >= 50000) {
+        }else if (memPoint >= 100000) {
             memberGrade.innerHTML = "SILVER+"
-        } else {
+        }else{
             memberGrade.innerHTML = "SILVER"
         }
     }

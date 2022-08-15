@@ -4,6 +4,13 @@ let totalCnt = new Vue({
         totalElements: 0
     }
 });
+let itemList = new Vue({
+    el: '#itemList',            //아이디불러옴 vue 작동
+    data: {
+        itemList: {}
+
+    }
+});
 $(document).on('click', '#select_btn', function () {
     let selected = document.getElementsByClassName("list-card__item");      //클래스는 배열로 받음 변수옆에 대괄호붙여줌
     let searchTotal = document.getElementById("search-result__header");
@@ -21,14 +28,18 @@ $(document).on('click', '#select_btn', function () {
 
 //아이템과 컬러가 채워져있으면 searchByAll 실행, Elseif 데이터 없으면, searchList(0);
 
+
+
     if (selectlostColor != "" || selectlostItem != ""){
         console.log("if 들어옴");
-        searchByAll(selectlostColor,selectlostItem, selected, searchTotal)
+        searchByAll(selectlostColor,selectlostItem, selected, searchTotal, itemList)
+
     } else {
         console.log("else 들어옴");
-        searchList(0, selected, searchTotal);
+        searchList(0, selected, searchTotal, itemList);
 
     }
+
 });
 
 
@@ -87,7 +98,7 @@ $(document).on('click', '#modal_close', function (event) {
 
 
 
-function searchByAll(color,item, selected, searchTotal){
+async function searchByAll(color,item, selected, searchTotal, itemList){
 
 
     let jsonData = {
@@ -100,17 +111,12 @@ function searchByAll(color,item, selected, searchTotal){
         }
     }
     console.log(jsonData);
-    let itemList = new Vue({
-        el: '#itemList',            //아이디불러옴 vue 작동
-        data: {
-            itemList: {}
-        }
-    });
 
 
 
-    $.post({
-        url: 'http://localhost:9999/api/lost_item/search',
+
+    await $.post({
+        url: '/api/lost_item/search',
         data: JSON.stringify(jsonData),
         dataType: 'json',
         contentType: 'application/json',
@@ -134,7 +140,7 @@ function searchByAll(color,item, selected, searchTotal){
         }
     });
 
-
+    console.log(itemList.itemList);
 
     searchTotal.children[1].style.display = "block";
     console.log("style들어옴")
@@ -165,20 +171,14 @@ function searchByAll(color,item, selected, searchTotal){
 
 
 
-function searchList(index, selected, searchTotal){
+async function searchList(index, selected, searchTotal, itemList){
     console.log("들어옴2");
 
-    let itemList = new Vue({
-        el: '#itemList',            //아이디불러옴 vue 작동
-        data: {
-            itemList: {}
-
-        }
-    });
 
 
 
-    $.get("/api/lost_item?page="+index, function(response){
+
+    await $.get("/api/lost_item?page="+index, function(response){
 
 
 
@@ -189,6 +189,7 @@ function searchList(index, selected, searchTotal){
             let noneData = document.getElementsByClassName("finish-item-wrap");
             noneData.style.display="block"
         }
+
 
 
         //let pagination = response.pagination;
@@ -202,7 +203,7 @@ function searchList(index, selected, searchTotal){
     });
 
 
-
+    console.log(itemList.itemList);
 
 
     searchTotal.children[1].style.display = "block";

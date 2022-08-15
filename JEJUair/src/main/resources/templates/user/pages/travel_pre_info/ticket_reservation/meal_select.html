@@ -72,7 +72,7 @@
                             <a href="javascript:void(0)" class="list-product__inner" data-element="modal_anchor"
                                data-target="#mealDetailLayer" data-modal-type="full">
                                 <div class="list-product__image">
-                                    <img src="https://static.jejuair.net/cms/images/aircafe_prod/20211012141828420.jpg" data-src="https://static.jejuair.net/cms/images/aircafe_prod/20211012141828420.jpg" alt="오색비빔밥">
+                                    <img v-if=dto.foodPicture :src='dto.foodPicture'  alt="기내식 사진">
                                     <div class="label-wrap">
                                         <span class="label-wrap__item label-wrap__item" style="background-color: #17b4a4; color : #fff">BEST</span>
                                         <span class="label-wrap__item label-wrap__item--sale" style="display: none">{{dto.foodIdx}}</span>
@@ -391,7 +391,7 @@
                         <div class="list-card__item" style=" margin-left: 20px; ">
                             <div class="list-card__item-inner">
                                 <div class="list-card__image">
-                                    <img src="https://static.jejuair.net/cms/images/aircafe_prod/20211012134308825.jpg" alt="SANDWICH ON THE CLOUD">
+                                    <img src="" alt="SANDWICH ON THE CLOUD" id="card_image">
                                 </div>
                                 <div class="list-card__info">
                                     <strong class="list-card__title" id="foodName"></strong>

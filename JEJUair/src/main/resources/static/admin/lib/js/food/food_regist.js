@@ -1,4 +1,10 @@
 $(function(){
+    let imageFile
+    $("#foodPic").on("change", function(event){
+        imageFile = event.target.files[0];
+        console.log(imageFile)
+    });
+
     $(document).on('click', '#regist', function(){
         if(!$('#foodKrwPrice').val()){
             alert("가격(KOR)을 입력하세요");
@@ -33,11 +39,11 @@ $(function(){
             $('#foodDiscount').focus();
             return false;
         }
-        if(!$('#foodPicture').val()){
-            alert("사진을 등록하세요");
-            $('#foodPicture').focus();
-            return false;
-        }
+        // if(!$('#foodPicture').val()){
+        //     alert("사진을 등록하세요");
+        //     $('#foodPicture').focus();
+        //     return false;
+        // }
         /*
                     {
                         "transaction_time":"2022-07-12",
@@ -87,7 +93,6 @@ $(function(){
                 foodEngName:$('#foodEngName').val(),
                 foodJpyPrice :$('#foodJpyPrice').val(),
                 foodDiscount:$('#foodDiscount').val(),
-                foodPicture:$('#foodPicture').val(),
                 foodSpecific: foodSpecificList,
                 foodStartingPoint: foodStartingPointList,
                 foodTitle:$('#fo_title').val(),
@@ -95,11 +100,20 @@ $(function(){
             }
         }
 
+        let form = $('#regForm')[0];
+        let formData = new FormData(form);
+        formData.append('file', imageFile);
+        console.log(imageFile)
+        console.log(formData.get('file'))
+        formData.append('key', new Blob([JSON.stringify(jsonData)], {type: "application/json"}));
+        console.log(formData.get('key'))
+
         $.post({
             url: '/api/food',
-            data: JSON.stringify(jsonData),
-            dataType: 'json',
-            contentType: 'application/json',
+            data: formData,
+            enctype:"multipart/form-data",
+            processData: false,
+            contentType: false,
             success: function(){
                 alert("등록 성공!");
                 location.href='/admin/food/list';
