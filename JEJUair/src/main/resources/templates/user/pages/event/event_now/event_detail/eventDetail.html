@@ -58,13 +58,15 @@
 
 					<div class="event-page-banner">
 						<div class="event-top-banner"
-							 style="background-image: url(https://static.jejuair.net/cms/images/event_scrn/20220616180012301.jpg)">
+							 :style="{ backgroundImage: `url(${itemList.evtImg})` }">
 							<div class="event-banner-item">
 								<div class="event-banner">
-										<span class="event-banner__text" style="color: #000;"></span>
 
-									<p class="event-banner__title" style="color: #000;">
+									<span class="event-banner__text" style="color: #000;">
 										{{itemList.evtTitle}}
+									</span>
+									<p class="event-banner__title" style="color: #000;">
+										{{itemList.evtContent}}
 									</p>
 
 									<div class="event-banner__bottom">

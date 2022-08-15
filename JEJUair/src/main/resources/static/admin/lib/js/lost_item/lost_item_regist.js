@@ -1,4 +1,10 @@
 $(function(){
+    let imageFile
+    $("#lostImg").on("change", function(event){
+        imageFile = event.target.files[0];
+        console.log(imageFile)
+    });
+
     let category = document.getElementById("category").getAttribute("value");
     $(document).on('click', '#sendit', function(){
         if(!$('#lostItem').val()){
@@ -102,14 +108,21 @@ $(function(){
 
             }
         }
-        console.log(jsonData);
+        let form = $('#regForm')[0];
+        let formData = new FormData(form);
+        formData.append('file', imageFile);
+        // console.log(imageFile)
+        console.log(formData.get('file'))
+        formData.append('key', new Blob([JSON.stringify(jsonData)], {type: "application/json"}));
+        console.log(formData.get('key'))
 
 
         $.post({
             url: '/api/'+category,
-            data: JSON.stringify(jsonData),
-            dataType: 'json',
-            contentType: 'application/json',
+            data: formData,
+            enctype:"multipart/form-data",
+            processData: false,
+            contentType: false,
             success: function(){
                 alert('등록성공!');
                 location.href='/admin/'+category+'/list';

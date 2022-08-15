@@ -45,12 +45,13 @@ $(document).on('click', '#select_btn', function () {
 
 
 //모달창 열기
-$(document).on('click', '#list-card__item', function () {
-    let index = document.getElementById("lostIdx").value;
+$(document).on('click', '.list-card__item', function () {
+    // let index = document.getElementById("lostIdx").value;
+    console.log(this.children[1].firstElementChild.value)
+    let index = this.children[1].firstElementChild.value;
 
-    readView(index);
     console.log(index);
-
+    readView(index);
 
     function readView(index) {
 
@@ -69,7 +70,7 @@ $(document).on('click', '#list-card__item', function () {
             let lostColor = `${lostItem.lostColor}`
             let lostExplain = `${lostItem.lostExplain}`
 
-
+            document.getElementById('card_image').src = `${lostItem.lostImg}`;
             document.getElementById("detailPickupDt").innerText = lostAcqDate;
             document.getElementById("keepingChgDt").innerText = lostDisDate;
             document.getElementById("detailItemCd").innerText = lostProperty;

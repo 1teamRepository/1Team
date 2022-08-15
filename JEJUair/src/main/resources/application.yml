@@ -23,3 +23,4 @@ spring:
 custom:
   path:
     upload-images: ''
+
