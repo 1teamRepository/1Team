@@ -230,12 +230,8 @@ $(document).on('click', '.modal__close', function(){
 
 
 $(document).on('click', '#btnNext', function () {
-
-
     if(document.querySelector(".spanPoint").innerHTML !== "0"){
-
         //    멤버 point 차감
-
         let tbMember = {
             transaction_time: new Date(),
             resultCode:"ok",

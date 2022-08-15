@@ -34,6 +34,13 @@ public class kakaopayController {
         System.out.println("kakaoPay post............................................");
         log.info("kakaoPay post............................................");
         return "redirect:" + kakaopay.kakaoPayReady(partner_user_id, item_name, total_amount);
+    }
+
+    @RequestMapping("/kakaoPayCancel")
+    public ModelAndView kakaoPayCancel() {
+        System.out.println("kakaoPay post............................................");
+        log.info("kakaoPay post............................................");
+        return new ModelAndView("/user/pages/index");
 
     }
 
