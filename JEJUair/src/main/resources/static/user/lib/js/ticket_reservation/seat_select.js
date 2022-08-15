@@ -53,8 +53,8 @@ $.get("/api/flight_schedule/"+schIdx, function(response){
         contentType: 'application/json',
         async: false,
         success: function(response){
-            console.log(existingSeatArray)
             existingSeatArray = response.data
+            console.log(existingSeatArray)
         }
     })
 
@@ -261,8 +261,12 @@ function reserveProgress(){
 $(document).on('click', '.onewayPage', function () {
 
     for (let i = 0; i < tripJson["schPassengerNum"]; i++) {
-        if(document.getElementById("passenger"+i).getAttribute("select-seat") == null){
-            passJson["pasSeat"+i] = "";
+        if(document.getElementById("passenger"+i).getAttribute("select-seat") == null || document.getElementById("passenger"+i).getAttribute("select-seat") === ""){
+            if(tripJson.seatValue === "biz"){
+                passJson["pasSeat"+i] = "BIZ";
+            }else{
+                passJson["pasSeat"+i] = "ECO";
+            }
         }else{
             passJson["pasSeat"+i] = document.querySelectorAll(".selected_seat")[i].innerHTML;
         }
@@ -279,7 +283,7 @@ $(document).on('click', '.onewayPage', function () {
 $(document).on('click', '.roundPage', function () {
 
     for (let i = 0; i < tripJson["schPassengerNum"]; i++) {
-        if(document.getElementById("passenger"+i).getAttribute("select-seat") == null){
+        if(document.getElementById("passenger"+i).getAttribute("select-seat") == null || document.getElementById("passenger"+i).getAttribute("select-seat") === ""){
             if(tripJson.seatValue === "biz"){
                 passJson["pasSeat"+i] = "BIZ";
             }else{
@@ -302,7 +306,7 @@ $(document).on('click', '.roundPage', function () {
 $(document).on('click', '.roundbackPage', function () {
 
     for (let i = 0; i < tripJson["schPassengerNum"]; i++) {
-        if(document.getElementById("passenger"+i).getAttribute("select-seat") == null){
+        if(document.getElementById("passenger"+i).getAttribute("select-seat") == null || document.getElementById("passenger"+i).getAttribute("select-seat") === ""){
             if(tripJson.seatValue === "biz"){
                 passJson2["pasSeat"+i] = "BIZ";
             }else{
