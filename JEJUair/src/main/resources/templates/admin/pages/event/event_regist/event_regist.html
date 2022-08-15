@@ -55,7 +55,7 @@
                     </div>
 
                     <div class="scheduleSearch">
-                        <form id="event_regist" method="post" class="regForm">
+                        <form id="event_regist" method="post" class="regForm" enctype="multipart/form-data">
                             <div class="wrapper1">
 
                                 <h3>이벤트 기간</h3>
@@ -65,6 +65,13 @@
                                 <input type="date" name="evtEndDate" class="searchBox1" id="evtEndDate"
                                        title="검색어를 입력하세요"
                                        placeholder="2022.06.19" value="">
+                                <div class="searchBox1" style=" margin-top: 5px; display: flex; justify-content: end">
+                                    <span class="tit_lbl"
+                                          style="margin-right: 20px; margin-left: 10px; font-size: 15px; color: rgb(153,153, 153)">
+                                        첨부사진
+                                    </span>
+                                    <div class="reg_content"><input type="file" name="eventPic" id="eventPic"></div>
+                                </div>
                             </div>
                             <table>
 

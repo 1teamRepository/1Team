@@ -257,8 +257,7 @@
                                      v-for="(dto,i) in itemList"
                                      :key="i">
                                     <div class="list-card__image">
-                                        <!--                                         <img src="/ko/customerService/cabinLost/getAttachThumFileSrcOne.json?attachfileNo=20220804000000077873" alt="분실품">-->
-                                        {{dto.lostImg}}
+                                        <img v-if=dto.lostImg :src='dto.lostImg' alt="분실품">
                                         <div class="label-wrap label-wrap--lost">
                                             <span class="label-wrap__item label-wrap__item--type3">보관</span>
                                             <input type="hidden" id="lostpropId" value="CAB0003822">
@@ -269,8 +268,8 @@
                                         <div class="list-card--lost__info-date">{{dto.lostRegDate}}</div>
                                         <strong class="list-card__title">{{dto.lostItem}}</strong>
                                         <div class="list-card--lost__info-list">
-                                            <span class="flight">{{dto.lostSeatNum}}/</span>
-                                            <span class="location">{{dto.lostAcqAirName}}</span>
+                                            <span class="flight">{{dto.lostAcqAirName}}/{{dto.lostSeatNum}}</span>
+                                            <span class="location">{{dto.lostStoragePlace}}</span>
                                         </div>
                                     </div>
                                     <!--유실물 상세 모달 -->
@@ -283,13 +282,12 @@
                                         <div class="modal-header">
                                             <div class="modal-header__title">유실물 상세</div>
                                         </div>
-                                        <div class="modal-content">
+                                        <div class="modal-content" style="height: 418px;">
 
                                             <div class="carousel carousel--full swiper-container carousel__bg-button" data-carousel="fullItem">
                                                 <div class="carousel__item swiper-wrapper" id="itemImages">
+                                                    <img src="" alt="유실물" id="card_image">
                                                 </div>
-                                                <div class="carousel__button carousel__button-prev"></div>
-                                                <div class="carousel__button carousel__button-next"></div>
                                                 <div class="carousel__pagination"></div>
                                             </div>
 
@@ -343,6 +341,12 @@
                                             </div>
                                             <div class="guide-info guide-info--gray pc-15">
                                                 <p class="guide-info__text">확인된 유실물은 수령 방법과 위치에 대한 안내를 받으신 후 방문하여 수령해 주세요.</p>
+                                            </div>
+                                        </div>
+                                        <div class="section-wrap">
+                                            <div class="notice-box">
+                                                <div class="notice-box__title">유실물 문의</div>
+                                                <p class="notice-box__text">1599-1500 위 번호로 연락주시길 바랍니다.</p>
                                             </div>
                                         </div>
                                         <!--                                        <div class="fixed-wrap fixed-wrap&#45;&#45;multi-line border-none">-->

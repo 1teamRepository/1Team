@@ -283,11 +283,11 @@
                                      @click='locate(dto.evtIdx)'>
 
                                         <div class="event-banner-item"
-                                             style="background-image: url(https://img.huffingtonpost.com/asset/5e2fe88c2400005e040b519f.jpeg?ops=1200_630)">
+                                             :style="{ backgroundImage: `url(${dto.evtImg})` }">
                                             <div class="event-banner">
-                                                <span class="event-banner__text" style="color: #ffffff;">{{dto.evtTitle}} </span>
-                                                <p class="event-banner__title" style="color: #ffffff;">
-                                                    {{dto.evtTitle}}
+                                                <span class="event-banner__text" style="color: black;">{{dto.evtTitle}} </span>
+                                                <p class="event-banner__title" style="color: black;">
+                                                    {{dto.evtContent}}
                                                 </p>
                                             </div>
                                         </div>

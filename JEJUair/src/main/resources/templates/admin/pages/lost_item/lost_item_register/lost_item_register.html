@@ -32,7 +32,7 @@
             <!-- 본문 -->
             <div class="bodytext_area box_inner">
                 <dl class="myinfo">
-                    <form action="#" id="lost_item" class="regForm" method="post">
+                    <form action="#" id="lost_item" class="regForm" enctype="multipart/form-data">
                         <div class="tableBorder">
                             <div class="pageTitle">
                                 <h2>유실물 등록</h2>
@@ -134,8 +134,7 @@
                                 </li>
                                 <li class="clear">
                                     <span class="tit_lbl">이미지 첨부</span>
-                                    <div class="reg_content" ><input name="lostImg" id="lostImg" type="file" class="textBox3" onchange="loadFile(this)">
-                                        <button for="lostImg" type="file" class="button file" value="선택">선택</button></div>
+                                    <div class="reg_content" ><input name="lostImg" id="lostImg" type="file" class="textBox3"></div>
 
                                 </li>
                             </ul>
@@ -155,31 +154,31 @@
 </div>
 
 
-<script>
-    function loadFile(input) {
-        var file = input.files[0];   //선택된 파일 가져오기
+<!--<script>-->
+<!--    function loadFile(input) {-->
+<!--        var file = input.files[0];   //선택된 파일 가져오기-->
 
-        //미리 만들어 놓은 div에 text(파일 이름) 추가
-        var name = document.getElementById('lostImg');
-        name.textContent = file.name;
+<!--        //미리 만들어 놓은 div에 text(파일 이름) 추가-->
+<!--        var name = document.getElementById('lostImg');-->
+<!--        name.textContent = file.name;-->
 
-        //새로운 이미지 div 추가
-        var newImage = document.createElement("img");
-        newImage.setAttribute("class", 'img');
+<!--        //새로운 이미지 div 추가-->
+<!--        var newImage = document.createElement("img");-->
+<!--        newImage.setAttribute("class", 'img');-->
 
-        //이미지 source 가져오기
-        newImage.src = URL.createObjectURL(file);
+<!--        //이미지 source 가져오기-->
+<!--        newImage.src = URL.createObjectURL(file);-->
 
-        newImage.style.width = "70%";
-        newImage.style.height = "70%";
-        newImage.style.objectFit = "contain";
-        newImage.style.visibility = "visible";
+<!--        newImage.style.width = "70%";-->
+<!--        newImage.style.height = "70%";-->
+<!--        newImage.style.objectFit = "contain";-->
+<!--        newImage.style.visibility = "visible";-->
 
-        //이미지를 image-show div에 추가
-        var container = document.getElementById('image-show');
-        container.appendChild(newImage);
-    };
-</script>
+<!--        //이미지를 image-show div에 추가-->
+<!--        var container = document.getElementById('image-show');-->
+<!--        container.appendChild(newImage);-->
+<!--    };-->
+<!--</script>-->
 
 
 <!--아이콘 사용을 위한 설치 스크립트-->

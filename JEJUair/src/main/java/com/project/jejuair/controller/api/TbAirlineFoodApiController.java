@@ -49,11 +49,11 @@ public class TbAirlineFoodApiController extends CrudController<TbAirlineFoodRequ
         File dstPic;
         String dstPicName;
         String createPicName;
-        String picUrl = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\admin\\lib\\images\\upload\\";
+        String picUrl = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\admin\\lib\\images\\upload\\meal\\";
 
         do{
             createPicName = RandomStringUtils.randomAlphabetic(32)+"."+picExtension;
-            dstPicName = "/admin/lib/images/upload/"+ createPicName;
+            dstPicName = "/admin/lib/images/upload/meal/"+ createPicName;
             dstPic = new File(picUrl + createPicName);
         }while(dstPic.exists());
 
