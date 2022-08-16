@@ -1,7 +1,6 @@
 package com.project.jejuair.model.entity;
 
 import com.project.jejuair.model.enumclass.Point.PntStatus;
-import com.project.jejuair.model.enumclass.extraService.ExtServiceType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

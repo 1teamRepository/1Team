@@ -1,7 +1,6 @@
 package com.project.jejuair.service;
 
 import com.project.jejuair.model.entity.TbAirlineFood;
-import com.project.jejuair.model.entity.TbExtraService;
 import com.project.jejuair.model.network.Header;
 import com.project.jejuair.model.network.Pagination;
 import com.project.jejuair.model.network.request.TbAirlineFoodRequest;

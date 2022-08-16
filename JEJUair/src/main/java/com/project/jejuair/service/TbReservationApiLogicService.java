@@ -10,7 +10,6 @@ import com.project.jejuair.model.network.response.TbReservationResponse;
 import com.project.jejuair.repository.TbFlightScheduleRepository;
 import com.project.jejuair.repository.TbMemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;

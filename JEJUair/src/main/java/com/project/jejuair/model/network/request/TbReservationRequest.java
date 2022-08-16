@@ -1,11 +1,6 @@
 package com.project.jejuair.model.network.request;
 
-import com.project.jejuair.model.entity.TbFlightSchedule;
-import com.project.jejuair.model.entity.TbMember;
-import com.project.jejuair.model.entity.TbPassenger;
-import com.project.jejuair.model.enumclass.common.Consent;
-import com.project.jejuair.model.enumclass.common.Gender;
-import com.project.jejuair.model.enumclass.reservation.ResPosition;
+
 import com.project.jejuair.model.enumclass.reservation.ResRoute;
 import com.project.jejuair.model.enumclass.reservation.ResStatus;
 import com.project.jejuair.model.network.response.TbPassengerResponse;

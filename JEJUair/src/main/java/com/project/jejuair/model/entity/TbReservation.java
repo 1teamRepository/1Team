@@ -1,6 +1,6 @@
 package com.project.jejuair.model.entity;
 
-import com.project.jejuair.model.enumclass.common.Gender;
+
 import com.project.jejuair.model.enumclass.reservation.ResRoute;
 import com.project.jejuair.model.enumclass.reservation.ResStatus;
 import lombok.AllArgsConstructor;

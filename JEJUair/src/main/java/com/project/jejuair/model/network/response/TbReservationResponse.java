@@ -1,8 +1,5 @@
 package com.project.jejuair.model.network.response;
 
-import com.project.jejuair.model.entity.TbFlightSchedule;
-import com.project.jejuair.model.entity.TbMember;
-import com.project.jejuair.model.entity.TbPassenger;
 import com.project.jejuair.model.enumclass.reservation.ResRoute;
 import com.project.jejuair.model.enumclass.reservation.ResStatus;
 import lombok.AllArgsConstructor;

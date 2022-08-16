@@ -1,6 +1,5 @@
 package com.project.jejuair.model.entity;
 
-import com.project.jejuair.model.enumclass.extraService.ExtServiceType;
 import com.project.jejuair.model.enumclass.lost.LostStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
