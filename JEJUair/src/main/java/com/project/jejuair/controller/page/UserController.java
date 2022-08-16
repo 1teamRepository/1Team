@@ -33,7 +33,6 @@ public class UserController {
     @RequestMapping("/login") //localhost:8899/user/login
     public String Logout(HttpServletRequest request){
         HttpSession session = request.getSession();
-        session.invalidate();
         return "/user/pages/login/login";
     }
 
