@@ -58,43 +58,8 @@
                                     <div class="reg_content"><input name="fo_price_jpy" type="text" class="textBox" disabled :value=`${view.foodJpyPrice}`></div>
                                 </li>
                                 <li class="clear">
-                                    <span class="tit_lbl">할인율</span>
-                                    <div class="reg_content"><input name="fo_discount" type="text" class="textBox2" disabled :value=`${view.foodDiscount}`> %</div>
-                                </li>
-                                <li class="clear">
                                     <span class="tit_lbl">첨부사진</span>
                                     <div class="reg_content"><input name="fo_photo" type="text" class="textBox3" disabled :value=`${view.foodPicture}`></div>
-                                </li>
-                                <li class="clear">
-                                    <span class="tit_lbl">출발지</span>
-                                    <div class="reg_content"><input name="fo_startingPoint" type="text" class="textBox" disabled :value=`${view.foodStartingPoint}`></div>
-                                </li>
-
-                                <li class="clear">
-                                    <span class="tit_lbl">특이사항</span>
-                                    <div class="reg_content multicheck">
-                                        <div id="specific_open" class="invis">
-                                            <p class="multitext" onclick="openCheck('specific_open')">열기</p>
-                                        </div>
-                                        <div id="specific_close" class="vis">
-                                            <p class="multitext" onclick="closeCheck('specific_close')">닫기</p>
-                                            <div class="vis_list">
-                                                <label><input type="checkbox" name="foodSpecific" id="specific1" value="조리시간 소요되는"  disabled>조리시간 소요되는</label>
-                                                <label><input type="checkbox" name="foodSpecific" id="specific2" value="알레르기 주의"  disabled>알레르기 주의</label>
-                                                <label><input type="checkbox" name="foodSpecific" id="specific3" value="뜨거운 음식" disabled>뜨거운 음식</label>
-                                                <label><input type="checkbox" name="foodSpecific" id="specific4" value="성인전용" disabled>성인전용</label>
-                                                <label><input type="checkbox" name="foodSpecific" id="specific5" value="인천,부산,괌/사이판,김포,무안" disabled>인천,부산,괌/사이판,김포,무안</label>
-                                                <label><input type="checkbox" name="foodSpecific" id="specific6" value="어린이메뉴" disabled>어린이메뉴</label>
-                                                <label><input type="checkbox" name="foodSpecific" id="specific7" value="메뉴 유동적" disabled>메뉴 유동적</label>
-                                                <label><input type="checkbox" name="foodSpecific" id="specific8" value="신메뉴" disabled>신메뉴</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li class="clear" style="display: none">
-                                    <span class="tit_lbl">특이사항</span>
-                                    <div class="reg_content"><input name="fo_foodSpecific" id="fo_foodSpecific" type="text" class="textBox" :value=`${view.foodSpecific}`></div>
                                 </li>
 
                             </ul>

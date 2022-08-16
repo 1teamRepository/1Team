@@ -34,11 +34,7 @@ $(function(){
             $('#foodJpyPrice').focus();
             return false;
         }
-        if(!$('#foodDiscount').val()){
-            alert("할인율을 입력하세요");
-            $('#foodDiscount').focus();
-            return false;
-        }
+
         // if(!$('#foodPicture').val()){
         //     alert("사진을 등록하세요");
         //     $('#foodPicture').focus();
@@ -57,29 +53,6 @@ $(function(){
                         }
                     }
          */
-        let foodStartingPoints = document.getElementsByName("foodStartingPoint");
-        let foodStartingPointList = "";
-        for (let i=0; i<foodStartingPoints.length; i++){
-            if (foodStartingPoints[i].checked){
-                if(foodStartingPointList == ""){
-                    foodStartingPointList += foodStartingPoints[i].getAttribute("value")
-                }else{
-                    foodStartingPointList += ', ' + foodStartingPoints[i].getAttribute("value");
-                }
-            }
-        }
-
-        let foodSpecifics = document.getElementsByName("foodSpecific");
-        let foodSpecificList = "";
-        for (let i=0; i<foodSpecifics.length; i++){
-            if (foodSpecifics[i].checked){
-                if(foodSpecificList == ""){
-                    foodSpecificList += foodSpecifics[i].getAttribute("value")
-                }else{
-                    foodSpecificList += (', ' + foodSpecifics[i].getAttribute("value"));
-                }
-            }
-        }
 
         //    javascript 객체로 json 형태를 만든거. json 자체는 아님
         let jsonData = {
@@ -92,9 +65,6 @@ $(function(){
                 foodUsdPrice:$('#foodUsdPrice').val(),
                 foodEngName:$('#foodEngName').val(),
                 foodJpyPrice :$('#foodJpyPrice').val(),
-                foodDiscount:$('#foodDiscount').val(),
-                foodSpecific: foodSpecificList,
-                foodStartingPoint: foodStartingPointList,
                 foodTitle:$('#fo_title').val(),
                 foodContent:$('#fo_content').val()
             }

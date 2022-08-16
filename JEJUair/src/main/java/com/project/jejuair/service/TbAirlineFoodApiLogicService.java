@@ -28,10 +28,7 @@ public class TbAirlineFoodApiLogicService extends BaseService<TbAirlineFoodReque
                 .foodKrwPrice(tbAirlineFood.getFoodKrwPrice())
                 .foodUsdPrice(tbAirlineFood.getFoodUsdPrice())
                 .foodJpyPrice(tbAirlineFood.getFoodJpyPrice())
-                .foodDiscount(tbAirlineFood.getFoodDiscount())
                 .foodPicture(tbAirlineFood.getFoodPicture())
-                .foodStartingPoint(tbAirlineFood.getFoodStartingPoint())
-                .foodSpecific(tbAirlineFood.getFoodSpecific())
                 .foodTitle(tbAirlineFood.getFoodTitle())
                 .foodContent(tbAirlineFood.getFoodContent())
                 .foodRegDate(tbAirlineFood.getFoodRegDate())
@@ -48,10 +45,7 @@ public class TbAirlineFoodApiLogicService extends BaseService<TbAirlineFoodReque
                 .foodKrwPrice(tbAirlineFoodRequest.getFoodKrwPrice())
                 .foodUsdPrice(tbAirlineFoodRequest.getFoodUsdPrice())
                 .foodJpyPrice(tbAirlineFoodRequest.getFoodJpyPrice())
-                .foodDiscount(tbAirlineFoodRequest.getFoodDiscount())
                 .foodPicture(tbAirlineFoodRequest.getFoodPicture())
-                .foodStartingPoint(tbAirlineFoodRequest.getFoodStartingPoint())
-                .foodSpecific(tbAirlineFoodRequest.getFoodSpecific())
                 .foodTitle(tbAirlineFoodRequest.getFoodTitle())
                 .foodContent(tbAirlineFoodRequest.getFoodContent())
                 .foodRegDate(LocalDateTime.now())
@@ -78,10 +72,7 @@ public class TbAirlineFoodApiLogicService extends BaseService<TbAirlineFoodReque
                     newTbAirlineFood.setFoodKrwPrice(tbAirlineFoodRequest.getFoodKrwPrice());
                     newTbAirlineFood.setFoodUsdPrice(tbAirlineFoodRequest.getFoodUsdPrice());
                     newTbAirlineFood.setFoodJpyPrice(tbAirlineFoodRequest.getFoodJpyPrice());
-                    newTbAirlineFood.setFoodDiscount(tbAirlineFoodRequest.getFoodDiscount());
                     newTbAirlineFood.setFoodPicture(tbAirlineFoodRequest.getFoodPicture());
-                    newTbAirlineFood.setFoodStartingPoint(tbAirlineFoodRequest.getFoodStartingPoint());
-                    newTbAirlineFood.setFoodSpecific(tbAirlineFoodRequest.getFoodSpecific());
                     newTbAirlineFood.setFoodTitle(tbAirlineFoodRequest.getFoodTitle());
                     newTbAirlineFood.setFoodContent(tbAirlineFoodRequest.getFoodContent());
                     return newTbAirlineFood;

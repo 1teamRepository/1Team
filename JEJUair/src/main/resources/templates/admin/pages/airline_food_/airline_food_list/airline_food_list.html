@@ -47,8 +47,9 @@
                             <td class="fo_idx">번호</td>
                             <td class="fo_name">기내식명</td>
                             <td class="fo_price">기내식명(영어)</td>
-                            <td class="fo_food_num">가격</td>
-                            <td class="fo_departure_location">출발지</td>
+                            <td class="fo_food_num">가격(KRW)</td>
+                            <td class="fo_food_num">가격(USD)</td>
+                            <td class="fo_food_num">가격(JPY)</td>
                             <td class="fo_regist_date">등록일자</td>
                         </tr>
                         </thead>
@@ -61,7 +62,8 @@
                             <td class="fo_name">{{dto.foodKorName}}</td>
                             <td class="fo_price">{{dto.foodEngName}}</td>
                             <td class="fo_food_num">{{dto.foodKrwPrice}}</td>
-                            <td class="fo_departure_location">{{dto.foodStartingPoint}}</td>
+                            <td class="fo_food_num">{{dto.foodUsdPrice}}</td>
+                            <td class="fo_food_num">{{dto.foodJpyPrice}}</td>
                             <td class="fo_regist_date">{{dto.foodRegDate}}</td>
                         </tr>
                         </tbody>
