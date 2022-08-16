@@ -376,34 +376,6 @@ public class AdminController {
         return new ModelAndView("/admin/pages/admin_settings/admin_regist/admin_regist");
     }
 
-    @RequestMapping("/recommended/list")
-    public ModelAndView recommendedList(){
-        return new ModelAndView("/admin/pages/mainpage_settings/recommended_flight_list/recommended_flight_list");
-    }
-
-    @RequestMapping("/recommended/regist")
-    public ModelAndView recommendedRegist(){
-        return new ModelAndView("/admin/pages/mainpage_settings/recommended_flight_regist/recommended_flight_regist");
-    }
-
-
-    @RequestMapping("/coupon/list") //localhost:10000/admin/coupon/list
-    public ModelAndView couponList(){
-        return new ModelAndView("/admin/pages/coupon/coupon_list/coupon_list");
-    }
-
-    @RequestMapping("/coupon/view/{copIdx}")
-    public ModelAndView couponView(@PathVariable(name="copIdx") Long copIdx){
-        return new ModelAndView("/admin/pages/coupon/coupon_list/coupon_detail");
-    }
-
-    @RequestMapping("/coupon/edit/{copIdx}")
-    public ModelAndView couponEdit(@PathVariable(name="copIdx") Long copIdx){
-        return new ModelAndView("/admin/pages/coupon/coupon_list/coupon_edit");
-    }
-
-    @RequestMapping("/coupon/regist") //localhost:10000/admin/coupon/regist
-    public ModelAndView couponRegist(){return new ModelAndView("/admin/pages/coupon/coupon_regist/coupon_reg");}
 
     @RequestMapping("/inquiry/list")
     public ModelAndView inquiryPersonal(){

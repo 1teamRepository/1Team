@@ -1,6 +1,5 @@
 package com.project.jejuair.service;
 
-import com.project.jejuair.model.entity.TbAircraft;
 import com.project.jejuair.model.entity.TbPassenger;
 import com.project.jejuair.model.network.Header;
 import com.project.jejuair.model.network.Pagination;

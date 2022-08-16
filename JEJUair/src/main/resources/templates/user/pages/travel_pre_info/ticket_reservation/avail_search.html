@@ -742,38 +742,44 @@
 
 
                 <!-- 날짜 선택 란-->
-                <div class="air-flight" name="DEP_area">
-                    <div class="air-flight-head">
-                        <div class="title content-guide">가는 편</div>
-                    </div>
-                    <div class="air-flight-list">
-                        <div class="inner content-guide">
-                            <div class="swiper-container swiper-container-initialized swiper-container-horizontal" id="dateList">
-                                <div class="swiper-wrapper" id="DEP_lowSwiper" style="transition-duration: 0ms;">
-                                    <!--  가는 여정의 기준날 , 조회한 날짜 -->
-                                    <a href="#" class="air-flight-slide swiper-slide" style="width: 143.429px;"
-                                       v-for="(dto,i) in dateList"
-                                       :key="i">
-                                            <span class="date" data-index="1"
-                                                  data-departuredate="20220911">{{dto.text}}</span>
-                                        <span class="price"><span class="price_txt">{{Number(dto.price).toLocaleString()}}</span>
-                                                <span class="unit">원</span>~</span>
-                                    </a>
-                                    <!--  가는 여정의 기준날 , 조회한 날짜
-                                    <a href="#" class="air-flight-slide swiper-slide active"
-                                       style="width: 143.429px;">
-                                            <span class="date" data-index="3"
-                                                  data-departuredate="20220914">09.14(수)</span>
-                                        <span class="price"><span class="price_txt">90,000</span>
-                                                <span class="unit">원</span>~</span>
-                                    </a>-->
-
-                                </div>
-                                <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-                            </div>
-                            <button type="button" class="air-flight-next"></button>
-                            <button type="button" class="air-flight-prev"></button>
+                <div class="air-flight" name="DEP_area" style="border-top: 1px solid #ddd;">
+                    <div class="air-flight-head departure_mark">
+                        <div class="title content-guide">
                         </div>
+
+<!--                    </div>-->
+<!--                    <div class="air-flight-head arrival_mark">-->
+<!--                        <div class="title content-guide">오는 편</div>-->
+<!--                    </div>-->
+
+                    <!--                    <div class="air-flight-list">-->
+<!--                        <div class="inner content-guide">-->
+<!--                            <div class="swiper-container swiper-container-initialized swiper-container-horizontal" id="dateList">-->
+<!--                                <div class="swiper-wrapper" id="DEP_lowSwiper" style="transition-duration: 0ms;">-->
+<!--                                    &lt;!&ndash;  가는 여정의 기준날 , 조회한 날짜 &ndash;&gt;-->
+<!--                                    <a href="#" class="air-flight-slide swiper-slide" style="width: 143.429px;"-->
+<!--                                       v-for="(dto,i) in dateList"-->
+<!--                                       :key="i">-->
+<!--                                            <span class="date" data-index="1"-->
+<!--                                                  data-departuredate="20220911">{{dto.text}}</span>-->
+<!--                                        <span class="price"><span class="price_txt">{{Number(dto.price).toLocaleString()}}</span>-->
+<!--                                                <span class="unit">원</span>~</span>-->
+<!--                                    </a>-->
+<!--                                    &lt;!&ndash;  가는 여정의 기준날 , 조회한 날짜-->
+<!--                                    <a href="#" class="air-flight-slide swiper-slide active"-->
+<!--                                       style="width: 143.429px;">-->
+<!--                                            <span class="date" data-index="3"-->
+<!--                                                  data-departuredate="20220914">09.14(수)</span>-->
+<!--                                        <span class="price"><span class="price_txt">90,000</span>-->
+<!--                                                <span class="unit">원</span>~</span>-->
+<!--                                    </a>&ndash;&gt;-->
+
+<!--                                </div>-->
+<!--                                <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>-->
+<!--                            </div>-->
+<!--                            <button type="button" class="air-flight-next"></button>-->
+<!--                            <button type="button" class="air-flight-prev"></button>-->
+<!--                        </div>-->
                     </div>
                 </div>
                 <!-- // 날짜 선택 란-->
@@ -781,25 +787,7 @@
                 <!-- 비행편 -->
                 <div class="ticket-pare" name="DEP_area">
                     <div class="content-guide">
-                        <div class="filter-row">
-                            <div class="filter-row-sub">
-                                <div class="select-wrap type01">
-                                    <select title="정렬방식 선택" class="select-wrap__select" name="selSort">
-                                        <!-- 정렬방식 선택 -->
-                                        <option value="byDepTime" selected="">출발시간순</option><!-- 출발시간순 -->
-                                        <option value="byPrice">최저가순</option><!-- 최저가순 -->
-                                    </select>
-                                </div>
-                                <div class="select-wrap type01">
-                                    <select title="정렬방식 선택" class="select-wrap__select" name="selVia">
-                                        <!-- 정렬방식 선택 -->
-                                        <option value="byAll" selected="">모든경로</option>
-                                        <option value="byDirect">직항</option>
-                                        <option value="byVia">경유</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="finish-item-wrap" style="display:none;" id="DEP_empty">
                             <div class="finish-item">
                                 <div class="finish-item__img"><img
@@ -820,16 +808,16 @@
                                     <div class="head">
                                         <input type="hidden" class="schIdx" name="schIdx" :value=`${dto.schIdx}`>
                                         <span class="tk-num">{{dto.schAircraftName}}</span>
-                                        <div class="chips"><span class="chip lowest">최저가</span></div>
+                                        <div class="chips"><span class="chip lowest"></span></div>
                                         <ul class="util-menu">
                                             <li class="util-menu-item">
                                                 <button type="button" aria-label="share" data-element="sns_share"
                                                         class="util-menu-btn share"
-                                                        onclick="shareMyFavorites(this);"><span
+                                                        ><span
                                                         class="blind">공유</span></button>
                                             </li><!-- 공유 -->
                                             <li class="util-menu-item"><button type="button"
-                                                                               onclick="javascript:insertFlightFavorites(this);"
+
                                                                                class="util-menu-btn wish"><span
                                                     class="blind">찜하기</span></button></li>
                                             <!--찜하기-->
@@ -854,7 +842,7 @@
                                                     <span class="unit">원</span></strong>
                                             </span>
                                             <span class="remaining-seat">
-                                                9석</span>
+                                                </span>
                                         </div>
                                     </a>
                                     <a class="tab-btn new-class" value="biz">
@@ -866,7 +854,7 @@
                                                     <span class="unit">원</span></strong>
                                             </span>
                                             <span class="remaining-seat">
-                                                9석</span>
+                                                </span>
                                             <!--<span class="price"><strong class="point">마감</strong></span>__> 매진 -->
                                         </div>
                                     </a>
@@ -898,17 +886,17 @@
                         <div class="button-wrap button-wrap--space">
                             <button type="button" class="button button--small" data-element="modal_anchor"
                                     data-target="#serviceOptionLayer" data-modal-type="full" data-databind="Y"
-                                    onclick="callServiceOption(this);">
+                                    >
                                 <span class="button__text">운임 내 제공 서비스</span><!-- 운임 내 제공 서비스 -->
                             </button>
                             <button type="button" class="button button--small" data-element="modal_anchor"
                                     data-target="#importantInfoLayer" data-modal-type="full" data-databind="Y"
-                                    onclick="callImportantInfo(this);">
+                                    >
                                 <span class="button__text">유의사항</span><!-- 유의사항 -->
                             </button>
                             <button type="button" class="button button--small button--right"
                                     data-element="modal_anchor" data-target="#integPluginLayer" data-modal-type="full"
-                                    data-databind="Y" onclick="callIntegPlugin(this);">
+                                    data-databind="Y">
                                 <span class="button__text">통합 플러그인 설치</span><!-- 통합 플러그인 설치 -->
                             </button>
                         </div>

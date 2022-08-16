@@ -1,15 +1,12 @@
 package com.project.jejuair.service;
 
 
-import com.project.jejuair.model.entity.TbMember;
 import com.project.jejuair.model.entity.TbPayment;
-import com.project.jejuair.model.entity.TbReservation;
 import com.project.jejuair.model.enumclass.payment.PayStatus;
 import com.project.jejuair.model.network.Header;
 import com.project.jejuair.model.network.Pagination;
 import com.project.jejuair.model.network.request.TbPaymentRequest;
 import com.project.jejuair.model.network.response.TbPaymentResponse;
-import com.project.jejuair.repository.TbMemberRepository;
 import com.project.jejuair.repository.TbReservationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
