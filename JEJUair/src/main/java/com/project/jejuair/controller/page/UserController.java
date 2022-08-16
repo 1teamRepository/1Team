@@ -29,7 +29,8 @@ public class UserController {
 
     //로그인페이지
 
-    @RequestMapping("/login")
+
+    @RequestMapping("/login") //localhost:8899/user/login
     public String Logout(HttpServletRequest request){
         HttpSession session = request.getSession();
         session.invalidate();
@@ -112,7 +113,7 @@ public class UserController {
 
 
 
-    @RequestMapping("/password_edit")
+    @RequestMapping("/password_edit") //localhost:8899/user/password_edit
     public ModelAndView password_edit(HttpServletRequest request) {
         HttpSession session = request.getSession();
         if(session.getAttribute("userid") != null) {
@@ -144,7 +145,7 @@ public class UserController {
 
     }
 
-    @RequestMapping("/nameChange")
+    @RequestMapping("/nameChange") //localhost:8899/user/nameChange
     public ModelAndView nameChange(HttpServletRequest request) {
         HttpSession session = request.getSession();
         if(session.getAttribute("idx") != null) {
@@ -157,7 +158,7 @@ public class UserController {
 
 
     //로그아웃
-    @RequestMapping("/logout")
+    @RequestMapping("/logout") //localhost:8899/user/logout
     public ModelAndView logOut(HttpServletRequest request) throws Exception {
         HttpSession session = request.getSession();
         session.invalidate();
@@ -172,9 +173,11 @@ public class UserController {
                 .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/findEmailUserInfo")
-    public ModelAndView findEmailUserInfo() {
-        return new ModelAndView("/user/pages/member/find/findEmailUserInfo/findEmailUserInfo");
+    @RequestMapping("/findEmailUserInfo") //localhost:8899/user/findEmailUserInfo      //emailOk 넘어가는거 확인
+    public ModelAndView findEmailUserInfo(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        return new ModelAndView("/user/pages/member/find/findEmailUserInfo/findEmailUserInfo")
+                .addObject("memPoint", session.getAttribute("point"));
     }
 
     @PostMapping("/emailOk")
@@ -199,7 +202,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping("/findUserInfoList")
+    @RequestMapping("/findUserInfoList") //localhost:8899/user/findUserInfoList
     public ModelAndView findUserInfoList(HttpServletRequest request) {
         HttpSession session = request.getSession();
         System.out.println("findUserInfoList 도착");
@@ -243,7 +246,7 @@ public class UserController {
     }
 
 
-    @RequestMapping("/member_benefit_new")
+    @RequestMapping("/member_benefit_new") //localhost:8899/user/member_benefit_new   //이미지하나 안뜸
     public ModelAndView member_benefit(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return new ModelAndView("/user/pages/member_benefit/member_benefit_new/member_benefit_new")
@@ -251,20 +254,38 @@ public class UserController {
     }
 
 
-    @RequestMapping("/point_main")
-    public ModelAndView point_main() {
-        return new ModelAndView("/user/pages/member_benefit/point/point_main");
+//    @RequestMapping("/point_main") //localhost:8899/user/point_main
+//    public ModelAndView point_main(HttpServletRequest request) {
+//        HttpSession session = request.getSession();
+//        if(session.getAttribute("idx") != null) {
+//            return new ModelAndView("/user/pages/member_benefit/point/point_main")
+//                    .addObject("memPoint", session.getAttribute("point"));
+//        }else {
+//            return new ModelAndView("/user/pages/login/login");
+//        }
+//    }
+
+
+    @RequestMapping("/after_point_save") //localhost:8899/user/after_point_save //잘 모르겠음
+    public ModelAndView after_point_save(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if(session.getAttribute("idx") != null) {
+        return new ModelAndView("/user/pages/member_benefit/point/point_save/after_point_save/after_point_save")
+                .addObject("memPoint", session.getAttribute("point"));
+        }else {
+            return new ModelAndView("/user/pages/login/login");
+        }
     }
 
-
-    @RequestMapping("/after_point_save")
-    public ModelAndView after_point_save() {
-        return new ModelAndView("/user/pages/member_benefit/point/point_save/after_point_save/after_point_save");
-    }
-
-    @RequestMapping("/point_save_info")
-    public ModelAndView point_save_info() {
-        return new ModelAndView("/user/pages/member_benefit/point/point_save_info/point_save_info");
+    @RequestMapping("/point_save_info") //localhost:8899/user/point_save_info
+    public ModelAndView point_save_info(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if(session.getAttribute("idx") != null) {
+        return new ModelAndView("/user/pages/member_benefit/point/point_save_info/point_save_info")
+                .addObject("memPoint", session.getAttribute("point"));
+    }else {
+        return new ModelAndView("/user/pages/login/login");
+        }
     }
 
 
@@ -278,26 +299,42 @@ public class UserController {
 //        return new ModelAndView("/user/pages/member_benefit/point/point_use_info/point_nomember");
 //    }
 
-    @RequestMapping("/point_buy")
-    public ModelAndView point_buy() {
-        return new ModelAndView("/user/pages/member_benefit/point_buy/point_buy");
+    @RequestMapping("/point_buy") //localhost:8899/user/point_buy
+    public ModelAndView point_buy(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if(session.getAttribute("idx") != null) {
+        return new ModelAndView("/user/pages/member_benefit/point_buy/point_buy")
+                .addObject("memPoint", session.getAttribute("point"));
+        }else {
+            return new ModelAndView("/user/pages/login/login");
+        }
     }
 
-    @RequestMapping("/point_search") //JS 작동 안함
-    public ModelAndView point_search() {
-        return new ModelAndView("/user/pages/member_benefit/point_search/point_search");
+    @RequestMapping("/point_search") //JS 작동 안함 //localhost:8899/user/point_search
+    public ModelAndView point_search(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if(session.getAttribute("idx") != null) {
+        return new ModelAndView("/user/pages/member_benefit/point_search/point_search")
+                .addObject("memPoint", session.getAttribute("point"));
+        }else {
+        return new ModelAndView("/user/pages/login/login");
+     }
     }
 
 
-    @RequestMapping("/info_edit")
+    @RequestMapping("/info_edit") //localhost:8899/user/info_edit   //회원정보수정 안됨
     public ModelAndView info_edit(HttpServletRequest request) {
         HttpSession session = request.getSession();
+        if(session.getAttribute("idx") != null) {
         return new ModelAndView("/user/pages/mypage/info_edit/info_edit")
                 .addObject("memPoint", session.getAttribute("point"));
+    }else {
+        return new ModelAndView("/user/pages/login/login");
+    }
     }
 
 
-    @RequestMapping("/info_edit_password")
+    @RequestMapping("/info_edit_password") //localhost:8899/user/info_edit_password
     public ModelAndView userIndex(HttpServletRequest request){
         HttpSession session = request.getSession();
         if(session.getAttribute("idx") != null) {
@@ -309,7 +346,7 @@ public class UserController {
     }
 
 
-    @RequestMapping("/info_edit_mypage")
+    @RequestMapping("/info_edit_mypage") //localhost:8899/user/info_edit_mypage
     public ModelAndView info_edit_mypage(HttpServletRequest request){
         HttpSession session = request.getSession();
 
@@ -333,17 +370,29 @@ public class UserController {
 
 
 
-    @RequestMapping("/my_history")
-    public ModelAndView my_history() {
-        return new ModelAndView("/user/pages/mypage/my_history/my_history");
+    @RequestMapping("/my_history") //localhost:8899/user/my_history     //달력안먹음
+    public ModelAndView my_history(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if(session.getAttribute("idx") != null) {
+        return new ModelAndView("/user/pages/mypage/my_history/my_history")
+                .addObject("memPoint", session.getAttribute("point"));
+        }else {
+            return new ModelAndView("/user/pages/login/login");
+        }
     }
 
-    @RequestMapping("/my_reserve")
-    public ModelAndView my_reserve() {
-        return new ModelAndView("/user/pages/mypage/my_reserve/my_reserve");
+    @RequestMapping("/my_reserve") //localhost:8899/user/my_reserve     //항공권 조회 안됨
+    public ModelAndView my_reserve(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if(session.getAttribute("idx") != null) {
+        return new ModelAndView("/user/pages/mypage/my_reserve/my_reserve")
+                .addObject("memPoint", session.getAttribute("point"));
+        }else {
+            return new ModelAndView("/user/pages/login/login");
+        }
     }
 
-    @RequestMapping("/mypage_main_member")
+    @RequestMapping("/mypage_main_member") //localhost:8899/user/mypage_main_member
     public ModelAndView mypage_main_member(HttpServletRequest request){
 
         HttpSession session = request.getSession();
@@ -361,7 +410,7 @@ public class UserController {
     }
 
 
-    @RequestMapping("/reserve_info")
+    @RequestMapping("/reserve_info") //localhost:8899/user/reserve_info
     public ModelAndView reserve_info(HttpServletRequest request) {
         HttpSession session = request.getSession();
         if (session.getAttribute("idx") != null) {
@@ -371,7 +420,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping("/qna_list")
+    @RequestMapping("/qna_list") //localhost:8899/user/qna_list     //헤더 안먹음
     public ModelAndView qna_list(HttpServletRequest request) {
         HttpSession session = request.getSession();
         String ansUserid= (String) session.getAttribute("userid");
@@ -384,7 +433,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping("/qna_form")
+    @RequestMapping("/qna_form") //localhost:8899/user/qna_form  //헤더 안먹음
     public ModelAndView qna_form(HttpServletRequest request) {
 
         HttpSession session = request.getSession();
@@ -399,32 +448,35 @@ public class UserController {
         }
     }
 
-    @RequestMapping("/domestic_price")
-    public ModelAndView domestic_price() {
-        return new ModelAndView("/user/pages/travel_pre_info/domestic_price/domestic_price");
+    @RequestMapping("/domestic_price")  //localhost:8899/user/domestic_price
+    public ModelAndView domestic_price(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        return new ModelAndView("/user/pages/travel_pre_info/domestic_price/domestic_price")
+                .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/flight_info") //우재가 하기로 함
-    public ModelAndView flight_info() {
-        return new ModelAndView("/user/pages/travel_pre_info/flight_info/flight_info");
+    @RequestMapping("/flight_info") //우재가 하기로 함 //localhost:8899/user/flight_info
+    public ModelAndView flight_info(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        return new ModelAndView("/user/pages/travel_pre_info/flight_info/flight_info")
+                .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/inter_price")
-    public ModelAndView inter_price() {
-        return new ModelAndView("/user/pages/travel_pre_info/inter_price/inter_price");
+    @RequestMapping("/inter_price") //localhost:8899/user/inter_price
+    public ModelAndView inter_price(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        return new ModelAndView("/user/pages/travel_pre_info/inter_price/inter_price")
+                .addObject("memPoint", session.getAttribute("point"));
     }
 
 
 //    예매 페이지 시작
 
-    @RequestMapping("/ticket_reservation") //메인에서 해결 후 가져오기
+    @RequestMapping("/ticket_reservation") //메인에서 해결 후 가져오기 //localhost:8899/user/ticket_reservation
     public ModelAndView ticket_reservation(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        if (session.getAttribute("userid") != null) {
-            return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/ticket_reservation");
-        } else {
-            return new ModelAndView("/user/pages/login/login");
-        }
+            return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/ticket_reservation")
+                    .addObject("memPoint", session.getAttribute("point"));
     }
 
     @PostMapping("/avail_search_form")
@@ -458,13 +510,19 @@ public class UserController {
     }
 
 
-    @RequestMapping("/avail_search") //되는데 허접,,데이터 필요
-    public ModelAndView avail_search() {
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/avail_search");
+    @RequestMapping("/avail_search") //되는데 허접,,데이터 필요  //localhost:8899/user/avail_search //데이터필요
+    public ModelAndView avail_search(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("idx") != null) {
+        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/avail_search")
+                .addObject("memPoint", session.getAttribute("point"));
+        }else {
+            return new ModelAndView("/user/pages/login/login");
+        }
     }
 
 
-    @RequestMapping("/view_passenger_input")
+    @RequestMapping("/view_passenger_input")  //localhost:8899/user/view_passenger_input
     public ModelAndView oneway_view_passenger_input(HttpServletRequest request) {
         HttpSession session = request.getSession();
         if (session.getAttribute("userid") != null) {
@@ -484,24 +542,48 @@ public class UserController {
         }
     }
 
-    @RequestMapping("/seat_select")
-    public ModelAndView oneway_seat_select() {
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/seat_select");
+    @RequestMapping("/seat_select") //localhost:8899/user/seat_select
+    public ModelAndView oneway_seat_select(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("userid") != null) {
+        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/seat_select")
+                .addObject("memPoint", session.getAttribute("point"));
+        }else {
+            return new ModelAndView("/user/pages/login/login");
+        }
     }
 
-    @RequestMapping("/baggage_select")
-    public ModelAndView oneway_baggage_select() {
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/baggage_select");
+    @RequestMapping("/baggage_select") //localhost:8899/user/baggage_select
+    public ModelAndView oneway_baggage_select(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("userid") != null) {
+        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/baggage_select")
+                .addObject("memPoint", session.getAttribute("point"));
+        }else {
+            return new ModelAndView("/user/pages/login/login");
+        }
     }
 
-    @RequestMapping("/meal_select")
-    public ModelAndView oneway_meal_select() {
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/meal_select");
+    @RequestMapping("/meal_select") //localhost:8899/user/meal_select
+    public ModelAndView oneway_meal_select(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("userid") != null) {
+        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/meal_select")
+                .addObject("memPoint", session.getAttribute("point"));
+        }else {
+            return new ModelAndView("/user/pages/login/login");
+        }
     }
 
-    @RequestMapping("/view_confirm")
-    public ModelAndView oneway_view_confirm() {
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/view_confirm");
+    @RequestMapping("/view_confirm") //localhost:8899/user/view_confirm
+    public ModelAndView oneway_view_confirm(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("userid") != null) {
+        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/view_confirm")
+                .addObject("memPoint", session.getAttribute("point"));
+        }else {
+            return new ModelAndView("/user/pages/login/login");
+        }
     }
 
 //    @RequestMapping("/oneway/view_payment")
@@ -516,9 +598,15 @@ public class UserController {
 //        }
 //    }
 
-    @RequestMapping("/view_payment")
-    public ModelAndView oneway_view_payment() {
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/view_payment_complete");
+    @RequestMapping("/view_payment") //localhost:8899/user/view_payment
+    public ModelAndView oneway_view_payment(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("userid") != null) {
+        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/view_payment_complete")
+                .addObject("memPoint", session.getAttribute("point"));
+        }else {
+            return new ModelAndView("/user/pages/login/login");
+        }
     }
 
 // 예매 페이지 끝
@@ -531,21 +619,21 @@ public class UserController {
 //        return new ModelAndView("/user/pages/index")
 //                .addObject("memPoint", session.getAttribute("point"));
 //    }
-    @RequestMapping("/additionalInfo/additionalIntro") //localhost:10000/user/additionalInfo/additionalIntro
+    @RequestMapping("/additionalInfo/additionalIntro") //localhost:8899/user/additionalInfo/additionalIntro //헤더안먹음
     public ModelAndView user_additionalIntro(HttpServletRequest request) {
         HttpSession session = request.getSession();
     return new ModelAndView("/user/pages/additional_info/additional_intro/additional_intro")
             .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/additionalInfo/advanceBaggage") //localhost:10000/user/additionalInfo/advanceBaggage
+    @RequestMapping("/additionalInfo/advanceBaggage") //localhost:8899/user/additionalInfo/advanceBaggage  //구매하기 안넘어감//링크작업
     public ModelAndView user_advanceBaggage(HttpServletRequest request) {
         HttpSession session = request.getSession();
     return new ModelAndView("/user/pages/additional_info/advance_baggage/advance_baggage")
             .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/additionalInfo/advanceMeal") //localhost:10000/user/additionalInfo/advanceMeal
+    @RequestMapping("/additionalInfo/advanceMeal") //localhost:8899/user/additionalInfo/advanceMeal
     public ModelAndView user_advanceMeal(HttpServletRequest request) {
         HttpSession session = request.getSession();
     return new ModelAndView("/user/pages/additional_info/advance_meal/advance_meal")
@@ -553,35 +641,35 @@ public class UserController {
     }
 
 
-    @RequestMapping("/additionalInfo/advanceSeat") //localhost:10000/user/additionalInfo/advanceSeat
+    @RequestMapping("/additionalInfo/advanceSeat") //localhost:8899/user/additionalInfo/advanceSeat
     public ModelAndView user_advanceSeat(HttpServletRequest request) {
         HttpSession session = request.getSession();
     return new ModelAndView("/user/pages/additional_info/advance_seat/advance_seat")
             .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/additionalInfo/afterPayment") //localhost:10000/user/additionalInfo/afterPayment
+    @RequestMapping("/additionalInfo/afterPayment") //localhost:8899/user/additionalInfo/afterPayment   //유의사항, 구매 안넘어감//링크작업
     public ModelAndView user_afterPayment(HttpServletRequest request) {
         HttpSession session = request.getSession();
     return new ModelAndView("/user/pages/additional_info/after_payment/after_payment")
             .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/additionalInfo/bicycleService") //localhost:10000/user/additionalInfo/bicycleService
+    @RequestMapping("/additionalInfo/bicycleService") //localhost:8899/user/additionalInfo/bicycleService
     public ModelAndView user_bicycleService(HttpServletRequest request) {
         HttpSession session = request.getSession();
     return new ModelAndView("/user/pages/additional_info/bicycle_service/bicycle_service")
             .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/additionalInfo/bundlePurchase") //localhost:10000/user/additionalInfo/bundlePurchase
+    @RequestMapping("/additionalInfo/bundlePurchase") //localhost:8899/user/additionalInfo/bundlePurchase   //예매하기안넘어감//링크작업
     public ModelAndView user_bundlePurchase(HttpServletRequest request) {
         HttpSession session = request.getSession();
     return new ModelAndView("/user/pages/additional_info/bundle_purchase/bundle_purchase")
             .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/additionalInfo/insurance") //localhost:10000/user/additionalInfo/insurance
+    @RequestMapping("/additionalInfo/insurance") //localhost:8899/user/additionalInfo/insurance
     public ModelAndView user_insurance(HttpServletRequest request) {
         HttpSession session = request.getSession();
     return new ModelAndView("/user/pages/additional_info/insurance/insurance")
@@ -589,49 +677,49 @@ public class UserController {
     }
 
 
-    @RequestMapping("/boardingInfo/cabinBaggage") //localhost:10000/user/boardingInfo/cabinBaggage
+    @RequestMapping("/boardingInfo/cabinBaggage") //localhost:8899/user/boardingInfo/cabinBaggage
     public ModelAndView user_cabinBaggage(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return new ModelAndView("/user/pages/boarding_info/baggage/cabin_baggage/cabin_baggage")
                 .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/boardingInfo/liability") //localhost:10000/user/boardingInfo/liability
+    @RequestMapping("/boardingInfo/liability") //localhost:8899/user/boardingInfo/liability     //링크작업
     public ModelAndView user_liability(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return new ModelAndView("/user/pages/boarding_info/baggage/liability/liability")
                 .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/boardingInfo/transportLimit") //localhost:10000/user/boardingInfo/transportLimit
+    @RequestMapping("/boardingInfo/transportLimit") //localhost:8899/user/boardingInfo/transportLimit
     public ModelAndView user_transportLimit(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return new ModelAndView("/user/pages/boarding_info/baggage/transport_limit/transport_limit")
                 .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/boardingInfo/trustBaggage") //localhost:10000/user/boardingInfo/trustBaggage
+    @RequestMapping("/boardingInfo/trustBaggage") //localhost:8899/user/boardingInfo/trustBaggage
     public ModelAndView user_trustBaggage(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return new ModelAndView("/user/pages/boarding_info/baggage/trust_baggage/trust_baggage")
                 .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/boardingInfo/baggage") //localhost:10000/user/boardingInfo/baggage
+    @RequestMapping("/boardingInfo/baggage") //localhost:8899/user/boardingInfo/baggage
     public ModelAndView user_baggage(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return new ModelAndView("/user/pages/boarding_info/baggage/baggage")
                 .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/boardingInfo/customerHelp") //localhost:10000/user/boardingInfo/customerHelp
+    @RequestMapping("/boardingInfo/customerHelp") //localhost:8899/user/boardingInfo/customerHelp
     public ModelAndView user_customerHelp(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return new ModelAndView("/user/pages/boarding_info/customer_for_help/customer_for_help")
                 .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/boardingInfo/fastCheckIn") //localhost:10000/user/boardingInfo/fastCheckIn
+    @RequestMapping("/boardingInfo/fastCheckIn") //localhost:8899/user/boardingInfo/fastCheckIn     //링크작업//셀프백드랍안뜸
     public ModelAndView user_fastCheckIn(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return new ModelAndView("/user/pages/boarding_info/fast_checkin/fast_checkin")
@@ -640,28 +728,28 @@ public class UserController {
 
 
 
-    @RequestMapping("/customerService/faqList") //localhost:10000/user/customerService/faqList
+    @RequestMapping("/customerService/faqList") //localhost:8899/user/customerService/faqList
     public ModelAndView user_faqList(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return new ModelAndView("/user/pages/customer_service/customer_service/faqList")
                 .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/customerService/cabinLost") //localhost:10000/user/customerService/cabinLost
+    @RequestMapping("/customerService/cabinLost") //localhost:8899/user/customerService/cabinLost
     public ModelAndView user_cabinLost(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return new ModelAndView("/user/pages/customer_service/lost_items/cabin_lostinquire/cabinLost")
                 .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/customerService/notice/noticeDetail") //localhost:10000/user/customerService/notice/noticeDetail
+    @RequestMapping("/customerService/notice/noticeDetail") //localhost:8899/user/customerService/notice/noticeDetail       //공지사항목록으로안감 경로확인
     public ModelAndView user_noticeDetail(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return new ModelAndView("/user/pages/customer_service/notice/notice_detail/noticeDetail")
                 .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/customerService/notice/noticeList") //localhost:10000/user/customerService/notice/noticeList
+    @RequestMapping("/customerService/notice/noticeList") //localhost:8899/user/customerService/notice/noticeList
     public ModelAndView user_notice(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return new ModelAndView("/user/pages/customer_service/notice/notice")
@@ -672,39 +760,51 @@ public class UserController {
 
 
 
-    @RequestMapping("/event/pastEvent") //localhost:10000/user/event/pastEvent
-    public ModelAndView user_pastEvent() {
-        return new ModelAndView("/user/pages/event/event_last/pastEvent");
+    @RequestMapping("/event/pastEvent") //localhost:8899/user/event/pastEvent
+    public ModelAndView user_pastEvent(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        return new ModelAndView("/user/pages/event/event_last/pastEvent")
+                .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/event/pastEventDetail") //localhost:10000/user/event/pastEventDetail
-    public ModelAndView user_pastEventDetail() {
-        return new ModelAndView("/user/pages/event/event_last/pastEventDetail");
+    @RequestMapping("/event/pastEventDetail") //localhost:8899/user/event/pastEventDetail       //버튼 안넘어감 링크작업
+    public ModelAndView user_pastEventDetail(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        return new ModelAndView("/user/pages/event/event_last/pastEventDetail")
+                .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/event/pastEventDetail1") //localhost:10000/user/event/pastEventDetail1
-    public ModelAndView user_pastEventDetail1() {
-        return new ModelAndView("/user/pages/event/event_last/pastEventDetail1");
+    @RequestMapping("/event/pastEventDetail1") //localhost:8899/user/event/pastEventDetail1 //다른이벤트 버튼 안넘어감 링크작업
+    public ModelAndView user_pastEventDetail1(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        return new ModelAndView("/user/pages/event/event_last/pastEventDetail1")
+                .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/event/pastEventDetail2") //localhost:10000/user/event/pastEventDetail2
-    public ModelAndView user_pastEventDetail2() {
-        return new ModelAndView("/user/pages/event/event_last/pastEventDetail2");
+    @RequestMapping("/event/pastEventDetail2") //localhost:8899/user/event/pastEventDetail2 //버튼 안넘어감 링크작업
+    public ModelAndView user_pastEventDetail2(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        return new ModelAndView("/user/pages/event/event_last/pastEventDetail2")
+                .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/event/eventDetail/{evtIdx}") //localhost:10000/user/event/eventDetail
+    @RequestMapping("/event/eventDetail/{evtIdx}")
     public ModelAndView user_eventDetail(HttpServletRequest request, @PathVariable(name = "evtIdx") Long evtIdx) {
-        return new ModelAndView("/user/pages/event/event_now/event_detail/eventDetail");
+        HttpSession session = request.getSession();
+        return new ModelAndView("/user/pages/event/event_now/event_detail/eventDetail")
+                .addObject("memPoint", session.getAttribute("point"));
     }
 
 
-    @RequestMapping("/event/eventList") //localhost:10000/user/event/eventList
-    public ModelAndView user_eventList() {
-        return new ModelAndView("/user/pages/event/event_now/eventList");
+    @RequestMapping("/event/eventList") //localhost:8899/user/event/eventList
+    public ModelAndView user_eventList(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        return new ModelAndView("/user/pages/event/event_now/eventList")
+                .addObject("memPoint", session.getAttribute("point"));
     }
 
 
-    @RequestMapping("/flight_service/immigration_form")
+    @RequestMapping("/flight_service/immigration_form")  //localhost:8899/user/flight_service/immigration_form
     public ModelAndView immigration_form(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return new ModelAndView("/user/pages/flight_service/immigration_form/immigration_form")
@@ -712,74 +812,74 @@ public class UserController {
     }
 
 
-    @RequestMapping("/footer_menu/carriage_terms")
+    @RequestMapping("/footer_menu/carriage_terms") //localhost:8899/user/footer_menu/carriage_terms
     public ModelAndView carriage_terms(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return new ModelAndView("/user/pages/footer_menu/carriage_terms/carriageTemrs")
                 .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/footer_menu/corp_info")
+    @RequestMapping("/footer_menu/corp_info") //localhost:8899/user/footer_menu/corp_info
     public ModelAndView corp_info(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return new ModelAndView("/user/pages/footer_menu/corp_info/corp_info")
                 .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/footer_menu/esg")
+    @RequestMapping("/footer_menu/esg") //localhost:8899/user/footer_menu/esg
     public ModelAndView esg(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return new ModelAndView("/user/pages/footer_menu/esg/esg")
                 .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/footer_menu/homepage_terms")
+    @RequestMapping("/footer_menu/homepage_terms") //localhost:8899/user/footer_menu/homepage_terms
     public ModelAndView homepage_terms(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return new ModelAndView("/user/pages/footer_menu/homepage_terms/homepage_terms")
                 .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/footer_menu/invest_info/invest_info_detail")
+    @RequestMapping("/footer_menu/invest_info/invest_info_detail") //localhost:8899/user/footer_menu/invest_info/invest_info_detail
     public ModelAndView invest_info_detail(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return new ModelAndView("/user/pages/footer_menu/invest_info/invest_info_detail/invest_info_detail")
                 .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/footer_menu/invest_info/notice_detail")
+    @RequestMapping("/footer_menu/invest_info/notice_detail") //localhost:8899/user/footer_menu/invest_info/notice_detail
     public ModelAndView notice_detail(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return new ModelAndView("/user/pages/footer_menu/invest_info/notice_detail/notice_detail")
                 .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/footer_menu/personal_terms")
+    @RequestMapping("/footer_menu/personal_terms") //localhost:8899/user/footer_menu/personal_terms
     public ModelAndView personal_terms(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return new ModelAndView("/user/pages/footer_menu/personal_terms/personal_terms")
                 .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/footer_menu/sitemap")
+    @RequestMapping("/footer_menu/sitemap")  //localhost:8899/user/footer_menu/sitemap
     public ModelAndView sitemap(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return new ModelAndView("/user/pages/footer_menu/sitemap/sitemap")
                 .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/footer_menu/transportationServicePlan")
+    @RequestMapping("/footer_menu/transportationServicePlan") //localhost:8899/user/footer_menu/transportationServicePlan
     public ModelAndView transportationServicePlan(HttpServletRequest request) {
         HttpSession session = request.getSession();
         return new ModelAndView("/user/pages/footer_menu/sitemap/transportationServicePlan")
                 .addObject("memPoint", session.getAttribute("point"));
     }
 
-    @RequestMapping("/join")
+    @RequestMapping("/join")   //localhost:8899/user/join
     public ModelAndView join() {
         return new ModelAndView("/user/pages/join/join");}
 
-    @RequestMapping("/join_form")
+    @RequestMapping("/join_form") //localhost:8899/user/join_form
     public ModelAndView join_form() {
         return new ModelAndView("/user/pages/join/join_form");}
 
@@ -792,18 +892,30 @@ public class UserController {
 
     @RequestMapping("/viewReservationDetail/{resIdx}")
     public ModelAndView viewReservationDetail(HttpServletRequest request, @PathVariable(name = "resIdx") Long resIdx) {
-        return new ModelAndView("/user/pages/mypage/afterpayment/viewReservationDetail");
-    }
-
-    @RequestMapping("/viewPnrCancelComplete")
-    public ModelAndView viewPnrCancelComplete() {
-        return new ModelAndView("/user/pages/mypage/afterpayment/viewPnrCancelComplete");
-    }
-
-    @RequestMapping("/viewReservationList")
-    public ModelAndView viewReservationList(HttpServletRequest request) {
         HttpSession session = request.getSession();
         if (session.getAttribute("userid") != null) {
+            return new ModelAndView("/user/pages/mypage/afterpayment/viewReservationDetail")
+                    .addObject("idx", session.getAttribute("idx"));
+        } else {
+            return new ModelAndView("/user/pages/login/login");
+        }
+    }
+
+    @RequestMapping("/viewPnrCancelComplete") //localhost:8899/user/viewPnrCancelComplete       //안먹음
+    public ModelAndView viewPnrCancelComplete(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("idx") != null) {          //userid? idx?
+        return new ModelAndView("/user/pages/mypage/afterpayment/viewPnrCancelComplete")
+                .addObject("idx", session.getAttribute("idx"));
+        } else {
+            return new ModelAndView("/user/pages/login/login");
+        }
+    }
+
+    @RequestMapping("/viewReservationList")  //localhost:8899/user/viewReservationList      //안먹음
+    public ModelAndView viewReservationList(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("idx") != null) {      //userid? idx?
             return new ModelAndView("/user/pages/mypage/afterpayment/viewReservationList")
                     .addObject("idx", session.getAttribute("idx"));
         } else {
