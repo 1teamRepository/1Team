@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Log
 @Controller
 @RequestMapping("")
@@ -37,19 +40,23 @@ public class kakaopayController {
     }
 
     @RequestMapping("/kakaoPayCancel")
-    public ModelAndView kakaoPayCancel() {
+    public ModelAndView kakaoPayCancel(HttpServletRequest request) {
+        HttpSession session = request.getSession();
         System.out.println("kakaoPay post............................................");
         log.info("kakaoPay post............................................");
-        return new ModelAndView("/user/pages/index");
+        return new ModelAndView("/user/pages/index")
+                .addObject("memPoint", session.getAttribute("point"));
 
     }
 
     @RequestMapping("/kakaoPaySuccess")
-    public ModelAndView kakaoPaySuccess(@RequestParam("pg_token") String pg_token) {
+    public ModelAndView kakaoPaySuccess(HttpServletRequest request, @RequestParam("pg_token") String pg_token) {
+        HttpSession session = request.getSession();
         System.out.println("kakaoPaySuccess get............................................");
         log.info("kakaoPaySuccess get............................................");
         log.info("kakaoPaySuccess pg_token : " + pg_token);
-        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/view_payment_complete");
+        return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/view_payment_complete")
+                .addObject("memPoint", session.getAttribute("point"));
         //결제승인단계
         // Controller에서 model.addAttribute를 이용하여 화면 쪽에 정보를 전송
 //        model.addAttribute("info", kakaopay.kakaoPayInfo(pg_token));

@@ -45,7 +45,7 @@ public class AdminController {
             session.setAttribute("name", name);
             session.setAttribute("id", admAdminId);
             System.out.println("로그인 성공");
-            return new ModelAndView("redirect:/admin");
+            return new ModelAndView("redirect:/admin/flight_schedule/list");
         }else{
             System.out.println("로그인 실패");
             return new ModelAndView("/admin/pages/login")
@@ -57,7 +57,7 @@ public class AdminController {
     public ModelAndView adminIndex(HttpServletRequest request){
         HttpSession session = request.getSession();
         if(session.getAttribute("name") != null) {
-            return new ModelAndView("/admin/pages/index");
+            return new ModelAndView("/admin/pages/flight_schedule/flight_schedule_list/flight_schedule_list");
         }else {
             return new ModelAndView("/admin/pages/login");
         }

@@ -427,7 +427,8 @@ public class UserController {
 
         if (session.getAttribute("idx") != null) {
             return new ModelAndView("/user/pages/mypage/mypage_main/qna_list/qna_list")
-                    .addObject("ansUserid", ansUserid);
+                    .addObject("ansUserid", ansUserid)
+                    .addObject("memPoint", session.getAttribute("point"));
         } else {
             return new ModelAndView("/user/pages/login/login");
         }
@@ -442,7 +443,8 @@ public class UserController {
 
         if (session.getAttribute("idx") != null) {
             return new ModelAndView("/user/pages/mypage/mypage_main/qna_list/qna_form/qna_form")
-                    .addObject("id", memUserid);
+                    .addObject("id", memUserid)
+                    .addObject("memPoint", session.getAttribute("point"));
         } else {
             return new ModelAndView("/user/pages/login/login");
         }
@@ -475,8 +477,12 @@ public class UserController {
     @RequestMapping("/ticket_reservation") //메인에서 해결 후 가져오기 //localhost:8899/user/ticket_reservation
     public ModelAndView ticket_reservation(HttpServletRequest request) {
         HttpSession session = request.getSession();
+        if (session.getAttribute("userid") != null) {
             return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/ticket_reservation")
                     .addObject("memPoint", session.getAttribute("point"));
+        }else{
+            return new ModelAndView("/user/pages/login/login");
+        }
     }
 
     @PostMapping("/avail_search_form")
@@ -503,7 +509,8 @@ public class UserController {
                     .addObject("passengerNum", passengerNum)
                     .addObject("foreign", foreign)
                     .addObject("idx",session.getAttribute("idx"))
-                    .addObject("userid",session.getAttribute("userid"));
+                    .addObject("userid",session.getAttribute("userid"))
+                    .addObject("memPoint", session.getAttribute("point"));
         } else {
             return new ModelAndView("/user/pages/login/login");
         }
@@ -536,7 +543,8 @@ public class UserController {
                     .addObject("ssn", session.getAttribute("ssn"))
                     .addObject("gender", session.getAttribute("gender"))
                     .addObject("hp", session.getAttribute("hp"))
-                    .addObject("email", session.getAttribute("email"));
+                    .addObject("email", session.getAttribute("email"))
+                    .addObject("memPoint", session.getAttribute("point"));
         } else {
             return new ModelAndView("/user/pages/login/login");
         }
@@ -586,17 +594,6 @@ public class UserController {
         }
     }
 
-//    @RequestMapping("/oneway/view_payment")
-//    public ModelAndView oneway_view_payment(HttpServletRequest request) {
-//        HttpSession session = request.getSession();
-//        if (session.getAttribute("userid") != null) {
-//            return new ModelAndView("/user/pages/travel_pre_info/ticket_reservation/oneway/view_payment_complete_ow")
-//                    .addObject("idx",session.getAttribute("idx"))
-//                    .addObject("userid",session.getAttribute("userid"));
-//        } else {
-//            return new ModelAndView("/user/pages/login/login");
-//        }
-//    }
 
     @RequestMapping("/view_payment") //localhost:8899/user/view_payment
     public ModelAndView oneway_view_payment(HttpServletRequest request) {
@@ -895,7 +892,8 @@ public class UserController {
         HttpSession session = request.getSession();
         if (session.getAttribute("userid") != null) {
             return new ModelAndView("/user/pages/mypage/afterpayment/viewReservationDetail")
-                    .addObject("idx", session.getAttribute("idx"));
+                    .addObject("idx", session.getAttribute("idx"))
+                    .addObject("memPoint", session.getAttribute("point"));
         } else {
             return new ModelAndView("/user/pages/login/login");
         }
@@ -906,7 +904,8 @@ public class UserController {
         HttpSession session = request.getSession();
         if (session.getAttribute("idx") != null) {          //userid? idx?
         return new ModelAndView("/user/pages/mypage/afterpayment/viewPnrCancelComplete")
-                .addObject("idx", session.getAttribute("idx"));
+                .addObject("idx", session.getAttribute("idx"))
+                .addObject("memPoint", session.getAttribute("point"));
         } else {
             return new ModelAndView("/user/pages/login/login");
         }
@@ -917,7 +916,8 @@ public class UserController {
         HttpSession session = request.getSession();
         if (session.getAttribute("idx") != null) {      //userid? idx?
             return new ModelAndView("/user/pages/mypage/afterpayment/viewReservationList")
-                    .addObject("idx", session.getAttribute("idx"));
+                    .addObject("idx", session.getAttribute("idx"))
+                    .addObject("memPoint", session.getAttribute("point"));
         } else {
             return new ModelAndView("/user/pages/login/login");
         }
