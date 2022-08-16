@@ -141,8 +141,6 @@
 <script type="text/javascript" src="/user/lib/js/lib.min.js"></script>
 <script type="text/javascript" src="/user/lib/js/common.js"></script>
 <script type="text/javascript" src="/user/lib/js/plugin.js"></script>
-<script type="text/javascript" src="/user/lib/js/preorderedSeat.js"></script>
-<script type="text/javascript" src="/user/lib/js/bizCommons.js"></script>
 <script type="text/javascript" src="/user/lib/js/head/head.js"></script>
 
 <!-- 공통 스크립트 선언 끝 -->
@@ -150,33 +148,5 @@
 <!--body, html 주석은 위치 고정-->
 </body>
 <!--body, html 주석은 위치 고정 끝-->
-<script>
-// 좌석배치도 한눈에 보기 새창
-$('.js-seat-open').on('click', function () {
-	var checkChecked = $('#switchItem1').prop('checked');
-	var langCd = I18N.language;
-	if (checkChecked) {
-		if(langCd == 'ko') {
-			window.open("https://static.jejuair.net/hpgg/resources/images/seat/img-seat-bizlite.png", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=0,left=0,width=" + screen.width + ",height=" + screen.height);
-		} else if(langCd == 'en') {
-			window.open("https://static.jejuair.net/hpgg/resources/images/seat/img-seat-bizlite-en.png", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=0,left=0,width=" + screen.width + ",height=" + screen.height);
-		} else if(langCd == 'ja') {
-			window.open("https://static.jejuair.net/hpgg/resources/images/seat/img-seat-bizlite-ja.png", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=0,left=0,width=" + screen.width + ",height=" + screen.height);
-		} else {
-			window.open("https://static.jejuair.net/hpgg/resources/images/seat/img-seat-bizlite-cn.png", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=0,left=0,width=" + screen.width + ",height=" + screen.height);
-		}
-	} else {
-		if(langCd == 'ko') {
-			window.open("https://static.jejuair.net/hpgg/resources/images/seat/img-seat-normal.png", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=0,left=0,width=" + screen.width + ",height=" + screen.height);
-		} else if(langCd == 'en') {
-			window.open("https://static.jejuair.net/hpgg/resources/images/seat/img-seat-normal-en.png", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=0,left=0,width=" + screen.width + ",height=" + screen.height);
-		} else if(langCd == 'ja') {
-			window.open("https://static.jejuair.net/hpgg/resources/images/seat/img-seat-normal-ja.png", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=0,left=0,width=" + screen.width + ",height=" + screen.height);
-		} else {
-			window.open("https://static.jejuair.net/hpgg/resources/images/seat/img-seat-normal-cn.png", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=0,left=0,width=" + screen.width + ",height=" + screen.height);
-		}
-	}
-});
-</script>
 
 </html>

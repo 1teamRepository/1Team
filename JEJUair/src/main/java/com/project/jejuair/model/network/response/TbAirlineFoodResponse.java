@@ -19,10 +19,7 @@ public class TbAirlineFoodResponse {
     private Integer foodJpyPrice;
     private String foodKorName;
     private String foodEngName;
-    private Integer foodDiscount;
     private String foodPicture;
-    private String foodStartingPoint;
-    private String foodSpecific;
     private String foodTitle;
     private String foodContent;
     private LocalDateTime foodRegDate;

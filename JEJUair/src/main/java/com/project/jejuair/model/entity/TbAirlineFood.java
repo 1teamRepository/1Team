@@ -32,17 +32,10 @@ public class TbAirlineFood {
     private Integer foodUsdPrice;
     private String foodEngName;
     private Integer foodJpyPrice;
-    private Integer foodDiscount;
     private String foodPicture;
-    private String foodStartingPoint;
-    private String foodSpecific;
     private String foodTitle;
     private String foodContent;
     @CreatedDate
     private LocalDateTime foodRegDate;
 
-
-
-//    @OneToOne
-//    private TbExtraService tbExtraService;
 }
