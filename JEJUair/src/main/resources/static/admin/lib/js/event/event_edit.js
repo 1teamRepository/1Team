@@ -20,11 +20,6 @@ $(function(){
         }
 
 
-        if($('#evtContent' == "null")){
-            alert('내용을 입력하세요');
-            $('#evtContent').focus();
-            return false;
-        }
 
 
 

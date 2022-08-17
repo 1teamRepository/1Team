@@ -44,7 +44,7 @@ public class TbAnswerApiLogicService extends BaseService<TbAnswerRequest, TbAnsw
                 .ansUserid(tbAnswerRequest.getAnsUserid())
                 .ansAnswerCheck(Check.No)
                 .ansInquiryTitle(tbAnswerRequest.getAnsInquiryTitle())
-                .ansAnswerContent(tbAnswerRequest.getAnsAnswerContent())
+                .ansAnswerContent(" ")
                 .ansInquiryRegDate(LocalDateTime.now())
                 .ansAnswerRegDate(tbAnswerRequest.getAnsAnswerRegDate())
                 .ansMemIdx(tbAnswerRequest.getAnsMemIdx())

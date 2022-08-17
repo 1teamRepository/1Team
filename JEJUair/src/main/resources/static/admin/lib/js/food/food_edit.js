@@ -64,7 +64,7 @@ $(function(){
             contentType: 'application/json',
             success: function(){
                 alert("수정 성공!");
-                location.href='/admin/food/view';
+                location.href='/admin/food/list';
             },
             error: function(){
                 alert("수정 실패!");
