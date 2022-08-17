@@ -1,11 +1,13 @@
 
 $(function(){
-    aircraftNameList();
-    DepartureDestinationList();
 
-    function aircraftNameList(){
-        $.get("/api/aircraft", function (response){
-            response.data.map(function(val, index){
+    $.get({
+        url: '/api/aircraft/findList',
+        dataType: "json",
+        contentType: 'application/json',
+        async: false,
+        success: function (response) {
+            response.data.map(function(val, index) {
                 let idx = val['acftIdx'];
                 let name = val['acftAircraftName'];
                 let aircraftName = $('#acftAircraftName');
@@ -21,12 +23,15 @@ $(function(){
                 option.value = idx;
                 acftIdx.append(option);
             });
-        });
-    };
+        }
+    })
 
-    function DepartureDestinationList(){
-        $.get("/api/destination", function (response){
-            //console.dir(response)
+    $.get({
+        url: '/api/destination/findList',
+        dataType: "json",
+        contentType: 'application/json',
+        async: false,
+        success: function (response) {
             response.data.map(function(val, index){
                 //console.dir(val)
                 //console.log(name)
@@ -43,8 +48,8 @@ $(function(){
                 option.value = name;
                 destination[1].append(option);
             });
-        });
-    }
+        }
+    })
 
 
 });

@@ -52,4 +52,9 @@ public class TbDestinationApiController extends CrudController<TbDestinationRequ
     public Header<List<TbDestinationResponse>> findAll(@PageableDefault(sort = {"desIdx"}, direction = Sort.Direction.DESC) Pageable pageable){     //paging할수있는 객체 생성함
         return tbDestinationApiLogicService.search(pageable);
     }
+
+    @GetMapping("/findList")
+    public Header<List<TbDestinationResponse>> findList(@PageableDefault(size = 100, sort = {"desIdx"}, direction = Sort.Direction.DESC) Pageable pageable){     //paging할수있는 객체 생성함
+        return tbDestinationApiLogicService.search(pageable);
+    }
 }

@@ -2,10 +2,12 @@ package com.project.jejuair.service;
 
 
 import com.project.jejuair.model.entity.TbFlightSchedule;
+import com.project.jejuair.model.entity.TbPassenger;
 import com.project.jejuair.model.network.Header;
 import com.project.jejuair.model.network.Pagination;
 import com.project.jejuair.model.network.request.TbFlightScheduleRequest;
 import com.project.jejuair.model.network.response.TbFlightScheduleResponse;
+import com.project.jejuair.model.network.response.TbPassengerResponse;
 import com.project.jejuair.repository.TbAircraftRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -127,6 +129,5 @@ public class TbFlightScheduleApiLogicService extends BaseService<TbFlightSchedul
                 .build();
         return Header.OK(tbFlightScheduleResponseList, pagination);
     }
-
 
 }

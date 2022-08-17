@@ -12,7 +12,7 @@ $(function(){
     });
     searchList(0);
     function searchList(index){
-        $.get("/api/event?page="+index, function(response){
+        $.get("/api/event/findList?page="+index, function(response){
             itemList.itemList = response.data;
             console.log(itemList.itemList.evtTitle)
         });

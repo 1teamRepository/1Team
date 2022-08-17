@@ -132,7 +132,7 @@ $(function(){
 
     function searchStart(index){
         // let category = document.getElementById("category").getAttribute("value");
-        $.get("/api/flight_schedule?page="+index, function(response){
+            $.get("/api/flight_schedule/findList?page="+index, function(response){
             console.log(response)
             // let pagination = response.pagination;
             // pageNum.totalPages = pagination.totalPages;
@@ -180,7 +180,7 @@ $(function(){
                         }
 
                     }if(reserveRouteRes == 'roundback'){
-                        if(roundEndDateRes == `${item.schDepartureDate}` &&
+                        if(roundEndDateRes == `${item.schArrivalDate}` &&
                             arrivalData == `${item.schDeparture}` &&
                             departureData == `${item.schArrival}`){
                             console.log("===ROUNDBACK 스케줄 ===")
