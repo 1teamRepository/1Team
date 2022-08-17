@@ -16,8 +16,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @SequenceGenerator(
-        name="seq_baggage",
-        sequenceName = "seq_baggage",
+        name="seq_payment",
+        sequenceName = "seq_payment",
         initialValue = 1,
         allocationSize = 1
 )
@@ -25,7 +25,7 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 public class TbPayment {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_baggage")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_payment")
     private Long payIdx;            // 고유번호
     private Long payAmount;         // 결제 금액
     private String payUserid;
