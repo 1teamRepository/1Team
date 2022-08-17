@@ -49,7 +49,6 @@ public class TbFlightScheduleApiController extends CrudController<TbFlightSchedu
 
     @GetMapping("")
     public Header<List<TbFlightScheduleResponse>> findAll(@PageableDefault(sort = {"schIdx"}, direction = Sort.Direction.DESC) Pageable pageable){
-        System.out.println(tbFlightScheduleApiLogicService.search(pageable));
         return tbFlightScheduleApiLogicService.search(pageable);
     }
 

@@ -85,5 +85,9 @@ public class TbAirlineFoodApiController extends CrudController<TbAirlineFoodRequ
         return tbAirlineFoodApiLogicService.search(pageable);
     }
 
+    @GetMapping("/findList")
+    public Header<List<TbAirlineFoodResponse>> findList(@PageableDefault(size = 14, sort = {"foodIdx"}, direction = Sort.Direction.DESC)Pageable pageable){     //paging할수있는 객체 생성함
+        return tbAirlineFoodApiLogicService.search(pageable);
+    }
 
 }

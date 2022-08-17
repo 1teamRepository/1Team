@@ -10,7 +10,7 @@ $(function() {
     searchStart();
 
     function searchStart() {
-        $.get("/api/food", function (response) {
+        $.get("/api/food/findList", function (response) {
             itemList.itemList = response.data;
         })
     }

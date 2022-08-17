@@ -111,10 +111,6 @@ async function searchByAll(color,item, selected, searchTotal, itemList){
             lostItem: item
         }
     }
-    console.log(jsonData);
-
-
-
 
     await $.post({
         url: '/api/lost_item/search',
@@ -179,7 +175,7 @@ async function searchList(index, selected, searchTotal, itemList){
 
 
 
-    await $.get("/api/lost_item?page="+index, function(response){
+    await $.get("/api/lost_item/findList?page="+index, function(response){
 
 
 
