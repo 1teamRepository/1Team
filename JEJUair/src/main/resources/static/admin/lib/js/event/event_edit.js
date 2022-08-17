@@ -20,13 +20,12 @@ $(function(){
         }
 
 
-        if($('#evtContent' == "null")){
+        if(!$('#evtContent').val()) {
             alert('내용을 입력하세요');
             $('#evtContent').focus();
             return false;
         }
-
-
+        
 
         /*
                     {
