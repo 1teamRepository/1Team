@@ -62,8 +62,8 @@ $(function(){
         }
     });
 
-    console.log("---searchDate---")
-    console.log(searchDate)
+    // console.log("---searchDate---")
+    // console.log(searchDate)
     function dateCal(date, num , cal){
         // console.log('들어옴 /dateCal')
         let newDate;
@@ -133,7 +133,7 @@ $(function(){
     function searchStart(index){
         // let category = document.getElementById("category").getAttribute("value");
             $.get("/api/flight_schedule/findList?page="+index, function(response){
-            console.log(response)
+            // console.log(response)
             // let pagination = response.pagination;
             // pageNum.totalPages = pagination.totalPages;
             // pageNum.currentPage = pagination.currentPage + 1;
@@ -142,7 +142,7 @@ $(function(){
             let schdata = [] ;
             choiceSchedule()
             console.log("---schdata---")
-            console.log(schdata)
+            // console.log(schdata)
             schdata = total()
 
             route()
@@ -276,8 +276,6 @@ $(document).on('click', '.ticketing-date', function() {
 $(document).on('click', '.gnb__button', function () {
     gnbBtn();
 })
-
-
 
 reserveProgress();
 btnAble();
@@ -634,3 +632,4 @@ function gnbBtn(){
         document.querySelector("html").classList.remove("active-gnb");
     }
 }
+

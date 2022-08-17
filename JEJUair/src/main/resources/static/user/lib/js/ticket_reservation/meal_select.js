@@ -23,7 +23,7 @@ $(function(){
 
     function searchStart(index){
         // let category = document.getElementById("category").getAttribute("value");
-        $.get("/api/food?page="+index, function(response) {
+        $.get("/api/food/findList?page="+index, function(response) {
             console.log(response)
 
             mealList.mealList = response.data;
